@@ -1,0 +1,291 @@
+=! ./src/lib.rs
+=/ /*!
+=/ 
+=/ Bindings and wrappers for __GTK__
+=/ 
+=/ To implement __GTK+__ inheritance in rust, we implemented gtk superclasses as traits
+=/ located in `rgtk::self::traits::*`. The various widgets implement these traits and
+=/ live in `rgtk::gtk::widgets::*` and are rexported into `rgtk::gtk::*`.
+=/ 
+=/ GTK Inheritance in rgtk
+=/ ======================
+=/ 
+=/ You probably know but __Gtk+__ uses its own GObject system: inherited class and interface.
+=/ 
+=/ To respect this design I follow a special design on __rgtk__:
+=/ 
+=/ * Interface -> Implement them on a trait with only default methods.
+=/ * Class -> Implement the construct on the class impl and other methods on a traits.
+=/ * Sub-class -> Implement all the methods on the class.
+=/ 
+=/ Exemple for GtkOrientable, GtkBox, GtkButtonBox:
+=/ 
+=/ GtkOrientable is an interface with all the methods implemented as default method of the trait self::traits::Orientable.
+=/ 
+=/ GtkBox is a class with constructors implemented on the struct `gtk::Box`, and the other method as default methods of the trait `self::traits::Box`. So `gtk::Box` implements `self::traits::Orientable` and `self::traits::Box`.
+=/ 
+=/ GtkButtonBox is a sub-class of GtkBox, the struct `gtk::ButtonBox` implements all the methods of GtkButtonBox and the traits `self::traits::Orientable` and `self::traits::Box`.
+=/ 
+=/ Finally all the gtk widgets implement the trait self::traits::Widget.
+=/ */
+=! ./src/widgets/lock_button.rs
+=/ //! A container for arranging buttons
+=! ./src/widgets/separator.rs
+=/ //! A separator widget
+=! ./src/widgets/_box.rs
+=/ //! A container box
+=! ./src/widgets/stack_sidebar.rs
+=/ //! A controller for StackSidebar
+=! ./src/widgets/font_button.rs
+=/ //! A button to launch a font chooser dialog
+=! ./src/widgets/range.rs
+=| use ffi;
+/// A Range widget
+=! ./src/widgets/menu_tool_button.rs
+=/ //! A ToolItem containing a button with an additional dropdown menu
+=! ./src/widgets/font_chooser_widget.rs
+=/ //! GtkFontChooserWidget — A widget for selecting fonts
+=! ./src/widgets/link_button.rs
+=/ //! Create buttons bound to a URL
+=! ./src/widgets/menu_item.rs
+=/ //! The widget used for item in menus
+=! ./src/widgets/cell_renderer_toggle.rs
+=/ //! Renders a toggle button in a cell
+=! ./src/widgets/tree_view_column.rs
+=/ //! A widget that emits a signal when clicked on
+=! ./src/widgets/info_bar.rs
+=/ //! Report important messages to the user
+=! ./src/widgets/toggle_tool_button.rs
+=/ //! A ToolItem containing a toggle button
+=! ./src/widgets/alignment.rs
+=/ //! A widget which controls the alignment and size of its child
+=! ./src/widgets/combo_box.rs
+=/ //! GtkComboBox — A widget used to choose from a list of items
+=! ./src/widgets/combo_box_text.rs
+=/ //! GtkComboBox — A widget used to choose from a list of items
+=! ./src/widgets/tool_palette.rs
+=/ //! GtkToolPalette — A tool palette with categories
+=! ./src/widgets/spin_button.rs
+=/ //! Retrieve an integer or floating-point number from the user
+=! ./src/widgets/entry_buffer.rs
+=/ //! Text buffer for ::Entry
+=! ./src/widgets/volume_button.rs
+=/ //! A button which pops up a volume control
+=! ./src/widgets/button_box.rs
+=/ //! A container for arranging buttons
+=! ./src/widgets/button.rs
+=/ //! A widget that emits a signal when clicked on
+=! ./src/widgets/label.rs
+=/ //! A widget that displays a small to medium amount of text
+=! ./src/widgets/scale.rs
+=/ //! A slider widget for selecting a value from a range
+=! ./src/widgets/text_tag.rs
+=/ //! GtkTextTag — A tag that can be applied to text in a GtkTextBuffer
+=! ./src/widgets/toggle_button.rs
+=/ //! A button to launch a font chooser dialog
+=! ./src/widgets/grid.rs
+=/ //! Pack widgets in a rows and columns
+=! ./src/widgets/separator_tool_item.rs
+=/ //! The base class of widgets that can be added to ToolShe
+=! ./src/widgets/overlay.rs
+=/ //! A container which overlays widgets on top of each other
+=! ./src/widgets/icon_view.rs
+=! ./src/widgets/file_chooser_widget.rs
+=/ //! GtkFileChooserWidget — A file chooser widget
+=! ./src/widgets/gl_area.rs
+=/ //! A widget for custom drawing with OpenGL
+=| impl GLArea§fn new
+    /// Creates a new GLArea widget.
+=| impl GLArea§fn get_context
+    /// Retrieves the gdk::GLContext used by area.
+=| impl GLArea§fn make_current
+    /// Ensures that the gdk::GLContext used by area is associated with the gtk::GLArea.
+    ///
+    /// This function is automatically called before emitting the "render" signal, and doesn't
+    /// normally need to be called by application code.
+=| impl GLArea§fn queue_render
+    /// Marks the currently rendered data (if any) as invalid, and queues a redraw of the widget,
+    /// ensuring that the "render" signal is emitted during the draw.
+    ///
+    /// This is only needed when the GLArea::set_auto_render() has been called with a false value.
+    /// The default behaviour is to emit "render" on each draw.
+=| impl GLArea§fn attach_buffers
+    /// Ensures that the area framebuffer object is made the current draw and read target, and that
+    /// all the required buffers for the area are created and bound to the frambuffer.
+    ///
+    /// This function is automatically called before emitting the "render" signal, and doesn't
+    /// normally need to be called by application code.
+=| impl GLArea§fn get_error
+    /// Gets the current error set on the area.
+=| impl GLArea§fn set_has_alpha
+    /// If has_alpha is true the buffer allocated by the widget will have an alpha channel component,
+    /// and when rendering to the window the result will be composited over whatever is below the widget.
+    ///
+    /// If has_alpha is false there will be no alpha channel, and the buffer will fully replace
+    /// anything below the widget.
+=| impl GLArea§fn get_has_alpha
+    /// Returns whether the area has an alpha component.
+=| impl GLArea§fn set_has_depth_buffer
+    /// If has_depth_buffer is true the widget will allocate and enable a depth buffer for the target
+    /// framebuffer. Otherwise there will be none.
+=| impl GLArea§fn get_has_depth_buffer
+    /// Returns whether the area has a depth buffer.
+=| impl GLArea§fn set_has_stencil_buffer
+    /// If has_stencil_buffer is true the widget will allocate and enable a stencil buffer for the
+    /// target framebuffer. Otherwise there will be none.
+=| impl GLArea§fn get_has_stencil_buffer
+    /// Returns whether the area has a stencil buffer.
+=| impl GLArea§fn set_auto_render
+    /// If auto_render is true the “render” signal will be emitted every time the widget draws. This
+    /// is the default and is useful if drawing the widget is faster.
+    ///
+    /// If auto_render is false the data from previous rendering is kept around and will be used for
+    /// drawing the widget the next time, unless the window is resized. In order to force a rendering
+    /// GLArea::queue_render() must be called. This mode is useful when the scene changes seldomly,
+    /// but takes a long time to redraw.
+=| impl GLArea§fn get_auto_render
+    /// Returns whether the area is in auto render mode or not.
+=| impl GLArea§fn get_required_version
+    /// Retrieves the required version of OpenGL set using GLArea::set_required_version().
+=| impl GLArea§fn set_required_version
+    /// Sets the required version of OpenGL to be used when creating the context for the widget.
+    ///
+    /// This function must be called before the area has been realized.
+=! ./src/widgets/event_box.rs
+=/ //! GtkEventBox — A widget used to catch events for widgets which do not have their own window
+=! ./src/widgets/app_chooser_widget.rs
+=/ //! Application chooser widget that can be embedded in other widgets
+=! ./src/widgets/level_bar.rs
+=/ //! A bar that can used as a level indicator
+=! ./src/widgets/text_mark.rs
+=/ //! GtkTextMark — A position in the buffer preserved across buffer modifications
+=! ./src/widgets/note_book.rs
+=/ //! A tabbed notebook container
+=! ./src/widgets/viewport.rs
+=/ //! An adapter which makes widgets scrollable
+=! ./src/widgets/recent_chooser_widget.rs
+=/ //! GtkRecentChooserWidget — Displays recently used files
+=! ./src/widgets/popover.rs
+=/ //! GtkPopover — Context dependent bubbles
+=! ./src/widgets/calendar.rs
+=/ //! Displays a calendar and allows the user to select a date
+=! ./src/widgets/tree_iter.rs
+=| use ffi;§struct TreeIter
+    /// Text buffer iterator
+=! ./src/widgets/text_buffer.rs
+=! ./src/widgets/tool_item.rs
+=/ //! The base class of widgets that can be added to ToolShe
+=! ./src/widgets/gtype.rs
+=/ //! A numerical value which represents the unique identifier of a registered type.
+=! ./src/widgets/revealer.rs
+=/ //! Hide and show with animation
+=! ./src/widgets/flow_box.rs
+=/ //! A container that allows reflowing its children
+=! ./src/widgets/check_button.rs
+=/ //! Create widgets with a discrete toggle button
+=! ./src/widgets/separator_menu_item.rs
+=/ //! The widget used for item in menus
+=! ./src/widgets/action_bar.rs
+=/ //! Hide and show with animation
+=! ./src/widgets/widget.rs
+=/ //! A widget
+=! ./src/widgets/status_bar.rs
+=/ //! An adapter which makes widgets scrollable
+=! ./src/widgets/color_button.rs
+=/ //! A button to launch a color selection dialog
+=! ./src/widgets/menu_button.rs
+=/ //! A widget that shows a menu when clicked on
+=! ./src/widgets/image.rs
+=/ //! A widget displaying an image
+=! ./src/widgets/search_entry.rs
+=/ //! An entry which shows a search icon
+=! ./src/widgets/fixed.rs
+=/ //! A container which allows you to position widgets at fixed coordinates
+=! ./src/widgets/tool_bar.rs
+=/ //! Create bars of buttons and other widgets
+=! ./src/widgets/popover_menu.rs
+=/ //! GtkPopoverMenu — Popovers to use as menus
+=! ./src/widgets/adjustment.rs
+=/ //! Adjustment — A representation of an adjustable bounded value
+=! ./src/widgets/places_sidebar.rs
+=/ //! GtkPlacesSidebar — Sidebar that displays frequently-used places in the file system
+=! ./src/widgets/arrow.rs
+=/ //! Displays an arrow
+=! ./src/widgets/aspect_frame.rs
+=/ //! A frame that constrains its child to a particular aspect ratio
+=! ./src/widgets/stack.rs
+=/ //! A stacking container
+=! ./src/widgets/entry_completion.rs
+=/ //! GtkEntryCompletion — Completion functionality for GtkEntry
+=! ./src/widgets/scrollbar.rs
+=/ //! A Scrollbar
+=! ./src/widgets/text_iter.rs
+=! ./src/widgets/header_bar.rs
+=/ //! A Box::new(with) a centered child
+=! ./src/widgets/expander.rs
+=/ //! A container which can hide its child
+=! ./src/widgets/text_view.rs
+=/ //! GtkTextView — Widget that displays a GtkTextBuffer
+=! ./src/widgets/color_chooser_widget.rs
+=/ //! GtkColorChooserWidget — A widget for choosing colors
+=! ./src/widgets/drawing_area.rs
+=! ./src/widgets/tool_button.rs
+=/ //! A ToolItem subclass that displays buttons
+=! ./src/widgets/scale_button.rs
+=/ //! A button which pops up a scale
+=! ./src/widgets/progress_bar.rs
+=/ //! A widget which indicates progress visually
+=! ./src/widgets/window.rs
+=/ //! Toplevel which can contain other widgets
+=! ./src/widgets/list_box.rs
+=/ //! A container that allows reflowing its children
+=! ./src/widgets/scrolled_window.rs
+=! ./src/widgets/tree_selection.rs
+=/ //! GtkTreeSelection — The selection object for GtkTreeView
+=! ./src/widgets/paned.rs
+=/ //! A widget with two adjustable panes
+=! ./src/widgets/switch.rs
+=/ //! A "light switch" style toggle
+=! ./src/widgets/text_tag_table.rs
+=! ./src/widgets/entry.rs
+=/ //! A single line text entry field
+=! ./src/widgets/size_group.rs
+=/ //! GtkSizeGroup — Grouping widgets so they request the same size
+=! ./src/widgets/cell_renderer_text.rs
+=/ //! Renders text in a cell
+=! ./src/widgets/text_attributes.rs
+=/ //! GtkTextTag — A tag that can be applied to text in a GtkTextBuffer
+=! ./src/widgets/layout.rs
+=/ //! Infinite scrollable area containing child widgets and/or custom drawing
+=! ./src/widgets/socket.rs
+=/ //! GtkSocket — Container for widgets from other processes
+=! ./src/widgets/tree_view.rs
+=/ //! A widget for displaying both trees and lists
+=! ./src/widgets/tool_item_group.rs
+=/ //! GtkToolItemGroup — A sub container used in a tool palette
+=! ./src/widgets/stack_switcher.rs
+=/ //! A controller for GtkStack
+=! ./src/widgets/check_menu_item.rs
+=/ //! The widget used for item in menus
+=! ./src/widgets/spinner.rs
+=/ //! Show a spinner animation
+=! ./src/widgets/search_bar.rs
+=/ //! A container box
+=! ./src/widgets/radio_button.rs
+=/ //! A choice from multiple check buttons
+=! ./src/widgets/frame.rs
+=/ //! A bin with a decorative frame and optional label
+=! ./src/traits/menu_item.rs
+=/ //! The widget used for item in menus
+=! ./src/traits/cell_editable.rs
+=/ //! Interface for widgets which can are used for editing cells
+=! ./src/traits/scrollable.rs
+=/ //! An interface for scrollable widgets
+=! ./src/traits/style_provider.rs
+=! ./src/traits/actionable.rs
+=/ //! GtkActionable — An interface for widgets that can be associated with actions
+=! ./src/traits/dialog.rs
+=! ./src/traits/menu_shell.rs
+=/ //! A base class for menu objects
+=! ./src/traits/check_menu_item.rs
+=/ //! The widget used for item in menus
