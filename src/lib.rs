@@ -7,6 +7,7 @@ pub const GTK_DOCS: &'static str = include_str!("../gtk/comments.cmts");
 pub const PANGO_DOCS: &'static str = include_str!("../pango/comments.cmts");
 
 use std::io;
+use std::path::Path;
 use stripper_lib::{
     loop_over_files,
     parse_cmts,
@@ -14,11 +15,22 @@ use stripper_lib::{
     strip_comments,
 };
 
-pub fn embed(docs: &str, path: &str, ignores: &[&str]) {
+/// Embeds the docs from `docs`.
+///
+/// `path` is the root directory to process.
+///
+/// `ignores` is the list of files to skip (relative to `path`).
+pub fn embed<P: AsRef<Path>>(docs: &str, path: P, ignores: &[&str]) {
     let mut infos = parse_cmts(docs.lines());
-    loop_over_files(path, &mut infos, &regenerate_comments, &ignores, false);
+    loop_over_files(path.as_ref(), &mut infos, &regenerate_comments, &ignores, false);
 }
 
-pub fn purge(path: &str, ignores: &[&str]) {
-    loop_over_files(path, &mut io::sink(), &strip_comments, &ignores, false);
+/// Remove any doc comments.
+///
+/// `path` is the root directory to process.
+///
+/// `ignores` is the list of files to skip (relative to `path`).
+pub fn purge<P: AsRef<Path>>(path: P, ignores: &[&str]) {
+    loop_over_files(path.as_ref(), &mut io::sink(), &|w, s, d| strip_comments(w, s, d, true),
+        &ignores, false);
 }
