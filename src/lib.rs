@@ -1,10 +1,10 @@
 extern crate stripper_lib;
 
-pub const CAIRO_DOCS: &'static str = include_str!("../cairo/comments.cmts");
-pub const GDK_DOCS: &'static str = include_str!("../gdk/comments.cmts");
-pub const GLIB_DOCS: &'static str = include_str!("../glib/comments.cmts");
-pub const GTK_DOCS: &'static str = include_str!("../gtk/comments.cmts");
-pub const PANGO_DOCS: &'static str = include_str!("../pango/comments.cmts");
+pub const CAIRO_DOCS: &'static str = include_str!("../cairo.md");
+pub const GDK_DOCS: &'static str = include_str!("../gdk.md");
+pub const GLIB_DOCS: &'static str = include_str!("../glib.md");
+pub const GTK_DOCS: &'static str = include_str!("../gtk.md");
+pub const PANGO_DOCS: &'static str = include_str!("../pango.md");
 
 use std::io;
 use std::path::Path;

@@ -1,8 +1,0 @@
-=! ./src/widgets/rectangle.rs
-=! ./src/widgets/item.rs
-=! ./src/widgets/glyph_string.rs
-=! ./src/widgets/matrix.rs
-=! ./src/pango.rs
-=/ /*!
-=/ Bindings and wrappers for __PANGO__
-=/ */
