@@ -1,10 +1,10 @@
 extern crate stripper_lib;
 
-pub const CAIRO_DOCS: &'static str = include_str!("../cairo/comments.cmts");
-pub const GDK_DOCS: &'static str = include_str!("../gdk/comments.cmts");
-pub const GLIB_DOCS: &'static str = include_str!("../glib/comments.cmts");
-pub const GTK_DOCS: &'static str = include_str!("../gtk/comments.cmts");
-pub const PANGO_DOCS: &'static str = include_str!("../pango/comments.cmts");
+pub const CAIRO_DOCS: &'static str = include_str!("../cairo.md");
+pub const GDK_DOCS: &'static str = include_str!("../gdk.md");
+pub const GLIB_DOCS: &'static str = include_str!("../glib.md");
+pub const GTK_DOCS: &'static str = include_str!("../gtk.md");
+pub const PANGO_DOCS: &'static str = include_str!("../pango.md");
 
 use std::io;
 use std::path::Path;
@@ -21,8 +21,9 @@ use stripper_lib::{
 ///
 /// `ignores` is the list of files to skip (relative to `path`).
 pub fn embed<P: AsRef<Path>>(docs: &str, path: P, ignores: &[&str]) {
-    let mut infos = parse_cmts(docs.lines());
-    loop_over_files(path.as_ref(), &mut infos, &regenerate_comments, &ignores, false);
+    let mut infos = parse_cmts(docs.lines(), true);
+    loop_over_files(path.as_ref(), &mut |w, s| regenerate_comments(w, s, &mut infos, true),
+        &ignores, false);
 }
 
 /// Remove any doc comments.
@@ -31,6 +32,6 @@ pub fn embed<P: AsRef<Path>>(docs: &str, path: P, ignores: &[&str]) {
 ///
 /// `ignores` is the list of files to skip (relative to `path`).
 pub fn purge<P: AsRef<Path>>(path: P, ignores: &[&str]) {
-    loop_over_files(path.as_ref(), &mut io::sink(), &|w, s, d| strip_comments(w, s, d, true),
+    loop_over_files(path.as_ref(), &mut |w, s| strip_comments(w, s, &mut io::sink(), true),
         &ignores, false);
 }
