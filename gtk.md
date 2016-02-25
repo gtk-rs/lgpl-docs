@@ -49,9 +49,6 @@ Creates a new `AboutDialog`.
 a newly created `AboutDialog`
 <!-- impl AboutDialog::fn add_credit_section -->
 Creates a new section in the Credits page.
-
-# Parameters
-
 ## `section_name`
 The name of the section
 ## `people`
@@ -172,50 +169,32 @@ automatically wrapped.
 <!-- impl AboutDialog::fn set_artists -->
 Sets the strings which are displayed in the artists tab
 of the secondary credits dialog.
-
-# Parameters
-
 ## `artists`
 a `None`-terminated array of strings
 <!-- impl AboutDialog::fn set_authors -->
 Sets the strings which are displayed in the authors tab
 of the secondary credits dialog.
-
-# Parameters
-
 ## `authors`
 a `None`-terminated array of strings
 <!-- impl AboutDialog::fn set_comments -->
 Sets the comments string to display in the about dialog.
 This should be a short string of one or two lines.
-
-# Parameters
-
 ## `comments`
 a comments string
 <!-- impl AboutDialog::fn set_copyright -->
 Sets the copyright string to display in the about dialog.
 This should be a short string of one or two lines.
-
-# Parameters
-
 ## `copyright`
 the copyright string
 <!-- impl AboutDialog::fn set_documenters -->
 Sets the strings which are displayed in the documenters tab
 of the secondary credits dialog.
-
-# Parameters
-
 ## `documenters`
 a `None`-terminated array of strings
 <!-- impl AboutDialog::fn set_license -->
 Sets the license information to be displayed in the secondary
 license dialog. If `license` is `None`, the license button is
 hidden.
-
-# Parameters
-
 ## `license`
 the license information or `None`
 <!-- impl AboutDialog::fn set_license_type -->
@@ -224,35 +203,23 @@ list of known licenses.
 
 This function overrides the license set using
 `AboutDialog::set_license`.
-
-# Parameters
-
 ## `license_type`
 the type of license
 <!-- impl AboutDialog::fn set_logo -->
 Sets the pixbuf to be displayed as logo in the about dialog.
 If it is `None`, the default window icon set with
 `Window::set_default_icon` will be used.
-
-# Parameters
-
 ## `logo`
 a `gdk_pixbuf::Pixbuf`, or `None`
 <!-- impl AboutDialog::fn set_logo_icon_name -->
 Sets the pixbuf to be displayed as logo in the about dialog.
 If it is `None`, the default window icon set with
 `Window::set_default_icon` will be used.
-
-# Parameters
-
 ## `icon_name`
 an icon name, or `None`
 <!-- impl AboutDialog::fn set_program_name -->
 Sets the name to display in the about dialog.
 If this is not set, it defaults to `g_get_application_name`.
-
-# Parameters
-
 ## `name`
 the program name
 <!-- impl AboutDialog::fn set_translator_credits -->
@@ -272,38 +239,23 @@ It is a good idea to use the customary msgid “translator-credits” for this
 purpose, since translators will already know the purpose of that msgid, and
 since `AboutDialog` will detect if “translator-credits” is untranslated
 and hide the tab.
-
-# Parameters
-
 ## `translator_credits`
 the translator credits
 <!-- impl AboutDialog::fn set_version -->
 Sets the version string to display in the about dialog.
-
-# Parameters
-
 ## `version`
 the version string
 <!-- impl AboutDialog::fn set_website -->
 Sets the URL to use for the website link.
-
-# Parameters
-
 ## `website`
 a URL string starting with "http://"
 <!-- impl AboutDialog::fn set_website_label -->
 Sets the label to be used for the website link.
-
-# Parameters
-
 ## `website_label`
 the label used for the website link
 <!-- impl AboutDialog::fn set_wrap_license -->
 Sets whether the license text in `self` is
 automatically wrapped.
-
-# Parameters
-
 ## `wrap_license`
 whether to wrap the license
 <!-- struct AccelGroup -->
@@ -322,10 +274,6 @@ menu item. Mnemonics are shortcuts for GUI elements such as text
 entries or buttons; they appear as underlined characters. See
 `Label::new_with_mnemonic`. Menu items can have both accelerators
 and mnemonics, of course.
-
-# Implements
-
-
 <!-- impl AccelGroup::fn new -->
 Creates a new `AccelGroup`.
 
@@ -335,9 +283,6 @@ a new `AccelGroup` object
 <!-- impl AccelGroup::fn from_accel_closure -->
 Finds the `AccelGroup` to which `closure` is connected;
 see `AccelGroup::connect`.
-
-# Parameters
-
 ## `closure`
 a `gobject::Closure`
 
@@ -348,9 +293,6 @@ the `AccelGroup` to which `closure`
 <!-- impl AccelGroup::fn activate -->
 Finds the first accelerator in `self` that matches
 `accel_key` and `accel_mods`, and activates it.
-
-# Parameters
-
 ## `accel_quark`
 the quark for the accelerator name
 ## `acceleratable`
@@ -375,9 +317,6 @@ The signature used for the `closure` is that of ``GtkAccelGroupActivate``.
 
 Note that, due to implementation details, a single closure can
 only be connected to one accelerator group.
-
-# Parameters
-
 ## `accel_key`
 key value of the accelerator
 ## `accel_mods`
@@ -399,9 +338,6 @@ The signature used for the `closure` is that of ``GtkAccelGroupActivate``.
 Note that `accel_path` string will be stored in a `glib::Quark`. Therefore,
 if you pass a static string, you can save some memory by interning it
 first with `g_intern_static_string`.
-
-# Parameters
-
 ## `accel_path`
 path used for determining key and modifiers
 ## `closure`
@@ -411,9 +347,6 @@ Removes an accelerator previously installed through
 `AccelGroup::connect`.
 
 Since 2.20 `closure` can be `None`.
-
-# Parameters
-
 ## `closure`
 the closure to remove from this accelerator
  group, or `None` to remove all closures
@@ -424,9 +357,6 @@ the closure to remove from this accelerator
 <!-- impl AccelGroup::fn disconnect_key -->
 Removes an accelerator previously installed through
 `AccelGroup::connect`.
-
-# Parameters
-
 ## `accel_key`
 key value of the accelerator
 ## `accel_mods`
@@ -439,9 +369,6 @@ modifier combination of the accelerator
 <!-- impl AccelGroup::fn find -->
 Finds the first entry in an accelerator group for which
 `find_func` returns `true` and returns its `AccelKey`.
-
-# Parameters
-
 ## `find_func`
 a function to filter the entries
  of `self` with
@@ -480,9 +407,6 @@ of times.
 <!-- impl AccelGroup::fn query -->
 Queries an accelerator group for all entries matching `accel_key`
 and `accel_mods`.
-
-# Parameters
-
 ## `accel_key`
 key value of the accelerator
 ## `accel_mods`
@@ -526,24 +450,15 @@ the center `Widget`.
 <!-- impl ActionBar::fn pack_end -->
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl ActionBar::fn pack_start -->
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl ActionBar::fn set_center_widget -->
 Sets the center widget for the `ActionBar`.
-
-# Parameters
-
 ## `center_widget`
 a widget to use for the center
 <!-- struct Actionable -->
@@ -562,9 +477,13 @@ or "`Application`, but other action groups that are added with
 
 # Implements
 
-[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ActionableExt -->
 Trait containing all `Actionable` methods.
+
+# Implementors
+
+[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`LinkButton`](struct.LinkButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`RadioButton`](struct.RadioButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait ActionableExt::fn get_action_name -->
 Gets the action name for `self`.
 
@@ -593,9 +512,6 @@ Names are of the form “win.save” or “app.quit” for actions on the
 containing `ApplicationWindow` or its associated `Application`,
 respectively. This is the same form used for actions in the `gio::Menu`
 associated with the window.
-
-# Parameters
-
 ## `action_name`
 an action name, or `None`
 <!-- trait ActionableExt::fn set_action_target -->
@@ -608,9 +524,6 @@ This is a convenience function that calls `glib::Variant::new` for
 If you are setting a string-valued target and want to set the action
 name at the same time, you can use
 gtk_actionable_set_detailed_action_name ().
-
-# Parameters
-
 ## `format_string`
 a GVariant format string
 <!-- trait ActionableExt::fn set_action_target_value -->
@@ -633,9 +546,6 @@ the action’s state to change to that value. Since the action’s state
 is now equal to the target value of the button, the button will now
 be rendered as active (and the other buttons, with different targets,
 rendered inactive).
-
-# Parameters
-
 ## `target_value`
 a `glib::Variant` to set as the target value, or `None`
 <!-- trait ActionableExt::fn set_detailed_action_name -->
@@ -650,9 +560,6 @@ the target is string-valued.
 `"action::target"` where `action`
 is the action name and `target` is the string to use
 as the target.
-
-# Parameters
-
 ## `detailed_action_name`
 the detailed action name
 <!-- struct Adjustment -->
@@ -669,15 +576,8 @@ The owner of the `Adjustment` typically calls the
 `Adjustment::value_changed` and `Adjustment::changed` functions
 after changing the value and its bounds. This results in the emission of the
 `Adjustment::value_changed` or `Adjustment::changed` signal respectively.
-
-# Implements
-
-
 <!-- impl Adjustment::fn new -->
 Creates a new `Adjustment`.
-
-# Parameters
-
 ## `value`
 the initial value.
 ## `lower`
@@ -705,9 +605,6 @@ between `lower` and `upper` is in the current page (i.e. between
 If the range is larger than the page size, then only the start of it will
 be in the current page.
 A `Adjustment::changed` signal will be emitted if the value is changed.
-
-# Parameters
-
 ## `lower`
 the lower value.
 ## `upper`
@@ -718,9 +615,6 @@ Sets all properties of the adjustment at once.
 Use this function to avoid multiple emissions of the `Adjustment::changed`
 signal. See `Adjustment::set_lower` for an alternative way
 of compressing multiple emissions of `Adjustment::changed` into one.
-
-# Parameters
-
 ## `value`
 the new value
 ## `lower`
@@ -790,9 +684,6 @@ calls to the individual setters.
 Alternatively, using a single `gobject::Object::set` for all the properties
 to change, or using `Adjustment::configure` has the same effect
 of compressing `Adjustment::changed` emissions.
-
-# Parameters
-
 ## `lower`
 the new minimum value
 <!-- impl Adjustment::fn set_page_increment -->
@@ -801,9 +692,6 @@ Sets the page increment of the adjustment.
 See `Adjustment::set_lower` about how to compress multiple
 emissions of the `Adjustment::changed` signal when setting multiple adjustment
 properties.
-
-# Parameters
-
 ## `page_increment`
 the new page increment
 <!-- impl Adjustment::fn set_page_size -->
@@ -812,9 +700,6 @@ Sets the page size of the adjustment.
 See `Adjustment::set_lower` about how to compress multiple
 emissions of the `Adjustment`::changed signal when setting multiple adjustment
 properties.
-
-# Parameters
-
 ## `page_size`
 the new page size
 <!-- impl Adjustment::fn set_step_increment -->
@@ -823,9 +708,6 @@ Sets the step increment of the adjustment.
 See `Adjustment::set_lower` about how to compress multiple
 emissions of the `Adjustment::changed` signal when setting multiple adjustment
 properties.
-
-# Parameters
-
 ## `step_increment`
 the new step increment
 <!-- impl Adjustment::fn set_upper -->
@@ -838,9 +720,6 @@ property is nonzero.
 See `Adjustment::set_lower` about how to compress multiple
 emissions of the `Adjustment::changed` signal when setting multiple adjustment
 properties.
-
-# Parameters
-
 ## `upper`
 the new maximum value
 <!-- impl Adjustment::fn set_value -->
@@ -850,15 +729,43 @@ Sets the `Adjustment` value. The value is clamped to lie between
 Note that for adjustments which are used in a `Scrollbar`, the effective
 range of allowed values goes from `Adjustment:lower` to
 `Adjustment:upper` - `Adjustment:page_size`.
-
-# Parameters
-
 ## `value`
 the new value.
 <!-- impl Adjustment::fn value_changed -->
 Emits a `Adjustment::value_changed` signal from the `Adjustment`.
 This is typically called by the owner of the `Adjustment` after it has
 changed the `Adjustment:value` property.
+<!-- enum Align -->
+Controls how a widget deals with extra space in a single (x or y)
+dimension.
+
+Alignment only matters if the widget receives a “too large” allocation,
+for example if you packed the widget with the `Widget:expand`
+flag inside a `Box`, then the widget might get extra space. If
+you have for example a 16x16 icon inside a 32x32 space, the icon
+could be scaled and stretched, it could be centered, or it could be
+positioned to one side of the space.
+
+Note that in horizontal context `Align::Start` and `Align::End`
+are interpreted relative to text direction.
+
+GTK_ALIGN_BASELINE support for it is optional for containers and widgets, and
+it is only supported for vertical alignment. When its not supported by
+a child or a container it is treated as `Align::Fill`.
+<!-- enum Align::variant Fill -->
+stretch to fill all space if possible, center if
+ no meaningful way to stretch
+<!-- enum Align::variant Start -->
+snap to left or top side, leaving space on right
+ or bottom
+<!-- enum Align::variant End -->
+snap to right or bottom side, leaving space on left
+ or top
+<!-- enum Align::variant Center -->
+center natural width of widget inside the
+ allocation
+<!-- enum Align::variant Baseline -->
+align the widget according to the baseline. Since 3.10.
 <!-- struct Alignment -->
 The `Alignment` widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
@@ -887,9 +794,6 @@ Creates a new `Alignment`.
 # Deprecated
 
 Use `Widget` alignment and margin properties
-
-# Parameters
-
 ## `xalign`
 the horizontal alignment of the child widget, from 0 (left) to 1
  (right).
@@ -916,9 +820,6 @@ See gtk_alignment_set_padding ().
 # Deprecated
 
 Use `Widget` alignment and margin properties
-
-# Parameters
-
 ## `padding_top`
 location to store the padding for
  the top of the widget, or `None`
@@ -937,9 +838,6 @@ Sets the `Alignment` values.
 # Deprecated
 
 Use `Widget` alignment and margin properties
-
-# Parameters
-
 ## `xalign`
 the horizontal alignment of the child widget, from 0 (left) to 1
  (right).
@@ -964,9 +862,6 @@ padding on the left.
 # Deprecated
 
 Use `Widget` alignment and margin properties
-
-# Parameters
-
 ## `padding_top`
 the padding at the top of the widget
 ## `padding_bottom`
@@ -975,6 +870,12 @@ the padding at the bottom of the widget
 the padding at the left of the widget
 ## `padding_right`
 the padding at the right of the widget.
+<!-- struct Allocation -->
+A `Allocation`-struct of a widget represents region
+which has been allocated to the widget by its parent. It is a subregion
+of its parents allocation. See
+[`Widget`’s geometry management section][geometry-management] for
+more information.
 <!-- struct AppChooserDialog -->
 `AppChooserDialog` shows a `AppChooserWidget` inside a `Dialog`.
 
@@ -992,9 +893,6 @@ use `AppChooserDialog::set_heading`.
 <!-- impl AppChooserDialog::fn new -->
 Creates a new `AppChooserDialog` for the provided `gio::File`,
 to allow the user to select an application for it.
-
-# Parameters
-
 ## `parent`
 a `Window`, or `None`
 ## `flags`
@@ -1008,9 +906,6 @@ a newly created `AppChooserDialog`
 <!-- impl AppChooserDialog::fn new_for_content_type -->
 Creates a new `AppChooserDialog` for the provided content type,
 to allow the user to select an application for it.
-
-# Parameters
-
 ## `parent`
 a `Window`, or `None`
 ## `flags`
@@ -1037,9 +932,6 @@ the `AppChooserWidget` of `self`
 <!-- impl AppChooserDialog::fn set_heading -->
 Sets the text to display at the top of the dialog.
 If the heading is not set, the dialog displays a default text.
-
-# Parameters
-
 ## `heading`
 a string containing Pango markup
 <!-- struct AppChooserWidget -->
@@ -1067,9 +959,6 @@ To keep track of the selected application, use the
 <!-- impl AppChooserWidget::fn new -->
 Creates a new `AppChooserWidget` for applications
 that can handle content of the given type.
-
-# Parameters
-
 ## `content_type`
 the content type to show applications for
 
@@ -1121,49 +1010,31 @@ the value of `AppChooserWidget:show-recommended`
 <!-- impl AppChooserWidget::fn set_default_text -->
 Sets the text that is shown if there are not applications
 that can handle the content type.
-
-# Parameters
-
 ## `text`
 the new value for `AppChooserWidget:default-text`
 <!-- impl AppChooserWidget::fn set_show_all -->
 Sets whether the app chooser should show all applications
 in a flat list.
-
-# Parameters
-
 ## `setting`
 the new value for `AppChooserWidget:show-all`
 <!-- impl AppChooserWidget::fn set_show_default -->
 Sets whether the app chooser should show the default handler
 for the content type in a separate section.
-
-# Parameters
-
 ## `setting`
 the new value for `AppChooserWidget:show-default`
 <!-- impl AppChooserWidget::fn set_show_fallback -->
 Sets whether the app chooser should show related applications
 for the content type in a separate section.
-
-# Parameters
-
 ## `setting`
 the new value for `AppChooserWidget:show-fallback`
 <!-- impl AppChooserWidget::fn set_show_other -->
 Sets whether the app chooser should show applications
 which are unrelated to the content type.
-
-# Parameters
-
 ## `setting`
 the new value for `AppChooserWidget:show-other`
 <!-- impl AppChooserWidget::fn set_show_recommended -->
 Sets whether the app chooser should show recommended applications
 for the content type in a separate section.
-
-# Parameters
-
 ## `setting`
 the new value for `AppChooserWidget:show-recommended`
 <!-- struct Arrow -->
@@ -1198,9 +1069,6 @@ Creates a new `Arrow` widget.
 # Deprecated
 
 Use a `Image` with a suitable icon.
-
-# Parameters
-
 ## `arrow_type`
 a valid `ArrowType`.
 ## `shadow_type`
@@ -1215,13 +1083,30 @@ Sets the direction and style of the `Arrow`, `self`.
 # Deprecated
 
 Use a `Image` with a suitable icon.
-
-# Parameters
-
 ## `arrow_type`
 a valid `ArrowType`.
 ## `shadow_type`
 a valid `ShadowType`.
+<!-- enum ArrowPlacement -->
+Used to specify the placement of scroll arrows in scrolling menus.
+<!-- enum ArrowPlacement::variant Both -->
+Place one arrow on each end of the menu.
+<!-- enum ArrowPlacement::variant Start -->
+Place both arrows at the top of the menu.
+<!-- enum ArrowPlacement::variant End -->
+Place both arrows at the bottom of the menu.
+<!-- enum ArrowType -->
+Used to indicate the direction in which an arrow should point.
+<!-- enum ArrowType::variant Up -->
+Represents an upward pointing arrow.
+<!-- enum ArrowType::variant Down -->
+Represents a downward pointing arrow.
+<!-- enum ArrowType::variant Left -->
+Represents a left pointing arrow.
+<!-- enum ArrowType::variant Right -->
+Represents a right pointing arrow.
+<!-- enum ArrowType::variant None -->
+No arrow. Since 2.10.
 <!-- struct AspectFrame -->
 The `AspectFrame` is useful when you want
 pack a widget so that it can resize but always retains
@@ -1236,9 +1121,6 @@ a frame around the child. The frame will be
 [`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl AspectFrame::fn new -->
 Create a new `AspectFrame`.
-
-# Parameters
-
 ## `label`
 Label text.
 ## `xalign`
@@ -1260,9 +1142,6 @@ If `true`, `ratio` is ignored, and the aspect
 the new `AspectFrame`.
 <!-- impl AspectFrame::fn set -->
 Set parameters for an existing `AspectFrame`.
-
-# Parameters
-
 ## `xalign`
 Horizontal alignment of the child within the allocation of
  the `AspectFrame`. This ranges from 0.0 (left aligned)
@@ -1276,6 +1155,50 @@ The desired aspect ratio.
 ## `obey_child`
 If `true`, `ratio` is ignored, and the aspect
  ratio is taken from the requistion of the child.
+<!-- enum AssistantPageType -->
+An enum for determining the page role inside the `Assistant`. It's
+used to handle buttons sensitivity and visibility.
+
+Note that an assistant needs to end its page flow with a page of type
+`AssistantPageType::Confirm`, `AssistantPageType::Summary` or
+`AssistantPageType::Progress` to be correct.
+
+The Cancel button will only be shown if the page isn’t “committed”.
+See `Assistant::commit` for details.
+<!-- enum AssistantPageType::variant Content -->
+The page has regular contents. Both the
+ Back and forward buttons will be shown.
+<!-- enum AssistantPageType::variant Intro -->
+The page contains an introduction to the
+ assistant task. Only the Forward button will be shown if there is a
+ next page.
+<!-- enum AssistantPageType::variant Confirm -->
+The page lets the user confirm or deny the
+ changes. The Back and Apply buttons will be shown.
+<!-- enum AssistantPageType::variant Summary -->
+The page informs the user of the changes
+ done. Only the Close button will be shown.
+<!-- enum AssistantPageType::variant Progress -->
+Used for tasks that take a long time to
+ complete, blocks the assistant until the page is marked as complete.
+ Only the back button will be shown.
+<!-- enum AssistantPageType::variant Custom -->
+Used for when other page types are not
+ appropriate. No buttons will be shown, and the application must
+ add its own buttons through `Assistant::add_action_widget`.
+<!-- enum BaselinePosition -->
+Whenever a container has some form of natural row it may align
+children in that row along a common typographical baseline. If
+the amount of verical space in the row is taller than the total
+requested height of the baseline-aligned children then it can use a
+`BaselinePosition` to select where to put the baseline inside the
+extra availible space.
+<!-- enum BaselinePosition::variant Top -->
+Align the baseline at the top
+<!-- enum BaselinePosition::variant Center -->
+Center the baseline
+<!-- enum BaselinePosition::variant Bottom -->
+Align the baseline at the bottom
 <!-- struct Bin -->
 The `Bin` widget is a container with just one child.
 It is not very useful itself, but it is useful for deriving subclasses,
@@ -1289,6 +1212,10 @@ Many GTK+ widgets are subclasses of `Bin`, including `Window`,
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait BinExt -->
 Trait containing all `Bin` methods.
+
+# Implementors
+
+[`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`Bin`](struct.Bin.html), [`Button`](struct.Button.html), [`ComboBox`](struct.ComboBox.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`Frame`](struct.Frame.html), [`ListBoxRow`](struct.ListBoxRow.html), [`MenuItem`](struct.MenuItem.html), [`Overlay`](struct.Overlay.html), [`Popover`](struct.Popover.html), [`Revealer`](struct.Revealer.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`StackSidebar`](struct.StackSidebar.html), [`ToolItem`](struct.ToolItem.html), [`Viewport`](struct.Viewport.html), [`Window`](struct.Window.html)
 <!-- trait BinExt::fn get_child -->
 Gets the child of the `Bin`, or `None` if the bin contains
 no child widget. The returned widget does not have a reference
@@ -1297,6 +1224,28 @@ added, so you do not need to unref it.
 # Returns
 
 pointer to child of the `Bin`
+<!-- enum BorderStyle -->
+Describes how the border of a UI element should be rendered.
+<!-- enum BorderStyle::variant None -->
+No visible border
+<!-- enum BorderStyle::variant Solid -->
+A single line segment
+<!-- enum BorderStyle::variant Inset -->
+Looks as if the content is sunken into the canvas
+<!-- enum BorderStyle::variant Outset -->
+Looks as if the content is coming out of the canvas
+<!-- enum BorderStyle::variant Hidden -->
+Same as `BorderStyle::None`
+<!-- enum BorderStyle::variant Dotted -->
+A series of round dots
+<!-- enum BorderStyle::variant Dashed -->
+A series of square-ended dashes
+<!-- enum BorderStyle::variant Double -->
+Two parallel lines with some space between them
+<!-- enum BorderStyle::variant Groove -->
+Looks as if it were carved in the canvas
+<!-- enum BorderStyle::variant Ridge -->
+Looks as if it were coming out of the canvas
 <!-- struct Box -->
 The `Box` widget organizes child widgets into a rectangular area.
 
@@ -1347,11 +1296,12 @@ the same functionality as `Box`.
 [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait BoxExt -->
 Trait containing all `Box` methods.
+
+# Implementors
+
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`InfoBar`](struct.InfoBar.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html)
 <!-- impl Box::fn new -->
 Creates a new `Box`.
-
-# Parameters
-
 ## `orientation`
 the box’s orientation.
 ## `spacing`
@@ -1389,9 +1339,6 @@ spacing between children
 Adds `child` to `self`, packed with reference to the end of `self`.
 The `child` is packed after (away from end of) any other child
 packed with reference to the end of `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 ## `expand`
@@ -1414,9 +1361,6 @@ extra space in pixels to put between this child and its
 Adds `child` to `self`, packed with reference to the start of `self`.
 The `child` is packed after any other child packed with reference
 to the start of `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 ## `expand`
@@ -1437,9 +1381,6 @@ extra space in pixels to put between this child and its
  `child` and the reference edge of `self`
 <!-- trait BoxExt::fn query_child_packing -->
 Obtains information about how `child` is packed into `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` of the child to query
 ## `expand`
@@ -1464,9 +1405,6 @@ A widget’s position in the `self` children list determines where
 the widget is packed into `self`. A child widget at some position
 in the list will be packed just after all other widgets of the
 same packing type that appear earlier in the list.
-
-# Parameters
-
 ## `child`
 the `Widget` to move
 ## `position`
@@ -1480,9 +1418,6 @@ child. If there is more vertical space available than requested,
 and the baseline is not allocated by the parent then
 `position` is used to allocate the baseline wrt the
 extra space available.
-
-# Parameters
-
 ## `position`
 a `BaselinePosition`
 <!-- trait BoxExt::fn set_center_widget -->
@@ -1490,16 +1425,10 @@ Sets a center widget; that is a child widget that will be
 centered with respect to the full width of the box, even
 if the children at either side take up different amounts
 of space.
-
-# Parameters
-
 ## `widget`
 the widget to center
 <!-- trait BoxExt::fn set_child_packing -->
 Sets the way `child` is packed into `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` of the child to set
 ## `expand`
@@ -1514,20 +1443,177 @@ the new value of the pack-type child property
 Sets the `Box:homogeneous` property of `self`, controlling
 whether or not all children of `self` are given equal space
 in the box.
-
-# Parameters
-
 ## `homogeneous`
 a boolean value, `true` to create equal allotments,
  `false` for variable allotments
 <!-- trait BoxExt::fn set_spacing -->
 Sets the `Box:spacing` property of `self`, which is the
 number of pixels to place between children of `self`.
-
-# Parameters
-
 ## `spacing`
 the number of pixels to put between children
+<!-- struct Buildable -->
+`Buildable` allows objects to extend and customize their deserialization
+from [`Builder` UI descriptions][BUILDER-UI].
+The interface includes methods for setting names and properties of objects,
+parsing custom tags and constructing child objects.
+
+The `Buildable` interface is implemented by all widgets and
+many of the non-widget objects that are provided by GTK+. The
+main user of this interface is `Builder`. There should be
+very little need for applications to call any of these functions directly.
+
+An object only needs to implement this interface if it needs to extend the
+`Builder` format or run any extra routines at deserialization time.
+
+# Implements
+
+[`BuildableExt`](trait.BuildableExt.html)
+<!-- trait BuildableExt -->
+Trait containing all `Buildable` methods.
+
+# Implementors
+
+[`AboutDialog`](struct.AboutDialog.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`Notebook`](struct.Notebook.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`SizeGroup`](struct.SizeGroup.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+<!-- trait BuildableExt::fn add_child -->
+Adds a child to `self`. `type_` is an optional string
+describing how the child should be added.
+## `builder`
+a `Builder`
+## `child`
+child to add
+## `type_`
+kind of child or `None`
+<!-- trait BuildableExt::fn construct_child -->
+Constructs a child of `self` with the name `name`.
+
+`Builder` calls this function if a “constructor” has been
+specified in the UI definition.
+## `builder`
+`Builder` used to construct this object
+## `name`
+name of child to construct
+
+# Returns
+
+the constructed child
+<!-- trait BuildableExt::fn custom_finished -->
+This is similar to `Buildable::parser_finished` but is
+called once for each custom tag handled by the `self`.
+## `builder`
+a `Builder`
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+the name of the tag
+## `data`
+user data created in custom_tag_start
+<!-- trait BuildableExt::fn custom_tag_end -->
+This is called at the end of each custom element handled by
+the buildable.
+## `builder`
+`Builder` used to construct this object
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+name of tag
+## `data`
+user data that will be passed in to parser functions
+<!-- trait BuildableExt::fn custom_tag_start -->
+This is called for each unknown element under `<child>`.
+## `builder`
+a `Builder` used to construct this object
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+name of tag
+## `parser`
+a `glib::MarkupParser` to fill in
+## `data`
+return location for user data that will be passed in
+ to parser functions
+
+# Returns
+
+`true` if a object has a custom implementation, `false`
+ if it doesn't.
+<!-- trait BuildableExt::fn get_internal_child -->
+Get the internal child called `childname` of the `self` object.
+## `builder`
+a `Builder`
+## `childname`
+name of child
+
+# Returns
+
+the internal child of the buildable object
+<!-- trait BuildableExt::fn get_name -->
+Gets the name of the `self` object.
+
+`Builder` sets the name based on the
+[`Builder` UI definition][BUILDER-UI]
+used to construct the `self`.
+
+# Returns
+
+the name set with `Buildable::set_name`
+<!-- trait BuildableExt::fn parser_finished -->
+Called when the builder finishes the parsing of a
+[`Builder` UI definition][BUILDER-UI].
+Note that this will be called once for each time
+`Builder::add_from_file` or `Builder::add_from_string`
+is called on a builder.
+## `builder`
+a `Builder`
+<!-- trait BuildableExt::fn set_buildable_property -->
+Sets the property name `name` to `value` on the `self` object.
+## `builder`
+a `Builder`
+## `name`
+name of property
+## `value`
+value of property
+<!-- trait BuildableExt::fn set_name -->
+Sets the name of the `self` object.
+## `name`
+name to set
+<!-- enum BuilderError -->
+Error codes that identify various errors that can occur while using
+`Builder`.
+<!-- enum BuilderError::variant InvalidTypeFunction -->
+A type-func attribute didn’t name
+ a function that returns a `glib::Type`.
+<!-- enum BuilderError::variant UnhandledTag -->
+The input contained a tag that `Builder`
+ can’t handle.
+<!-- enum BuilderError::variant MissingAttribute -->
+An attribute that is required by
+ `Builder` was missing.
+<!-- enum BuilderError::variant InvalidAttribute -->
+`Builder` found an attribute that
+ it doesn’t understand.
+<!-- enum BuilderError::variant InvalidTag -->
+`Builder` found a tag that
+ it doesn’t understand.
+<!-- enum BuilderError::variant MissingPropertyValue -->
+A required property value was
+ missing.
+<!-- enum BuilderError::variant InvalidValue -->
+`Builder` couldn’t parse
+ some attribute value.
+<!-- enum BuilderError::variant VersionMismatch -->
+The input file requires a newer version
+ of GTK+.
+<!-- enum BuilderError::variant DuplicateId -->
+An object id occurred twice.
+<!-- enum BuilderError::variant ObjectTypeRefused -->
+A specified object type is of the same type or
+ derived from the type of the composite class being extended with builder XML.
+<!-- enum BuilderError::variant TemplateMismatch -->
+The wrong type was specified in a composite class’s template XML
+<!-- enum BuilderError::variant InvalidProperty -->
+The specified property is unknown for the object class.
+<!-- enum BuilderError::variant InvalidSignal -->
+The specified signal is unknown for the object class.
 <!-- struct Button -->
 The `Button` widget is generally used to trigger a callback function that is
 called when the button is pressed. The various signals and how to use them
@@ -1539,9 +1625,13 @@ almost any other standard `Widget`. The most commonly used child is the
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ButtonExt -->
 Trait containing all `Button` methods.
+
+# Implementors
+
+[`Button`](struct.Button.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`LinkButton`](struct.LinkButton.html), [`ScaleButton`](struct.ScaleButton.html), [`ToggleButton`](struct.ToggleButton.html)
 <!-- impl Button::fn new -->
 Creates a new `Button` widget. To add a child widget to the button,
 use `Container::add`.
@@ -1558,9 +1648,6 @@ will be updated appropriately.
 
 This function is a convenience wrapper around `Button::new` and
 `ButtonExt::set_image`.
-
-# Parameters
-
 ## `icon_name`
 an icon name
 ## `size`
@@ -1580,9 +1667,6 @@ label (as for `Button::new_with_mnemonic`).
 # Deprecated
 
 Use `Button::new_with_label` instead.
-
-# Parameters
-
 ## `stock_id`
 the name of the stock item
 
@@ -1592,9 +1676,6 @@ a new `Button`
 <!-- impl Button::fn new_with_label -->
 Creates a `Button` widget with a `Label` child containing the given
 text.
-
-# Parameters
-
 ## `label`
 The text you want the `Label` to hold.
 
@@ -1608,9 +1689,6 @@ If you need a literal underscore character in a label, use “__” (two
 underscores). The first underlined character represents a keyboard
 accelerator called a mnemonic.
 Pressing Alt and that key activates the button.
-
-# Parameters
-
 ## `label`
 The text of the button, with an underscore in front of the
  mnemonic character
@@ -1633,9 +1711,6 @@ Gets the alignment of the child in the button.
 
 Access the child widget directly if you need to control
 its alignment.
-
-# Parameters
-
 ## `xalign`
 return location for horizontal alignment
 ## `yalign`
@@ -1736,9 +1811,6 @@ the child is a `Misc` or a `Alignment`.
 
 Access the child widget directly if you need to control
 its alignment.
-
-# Parameters
-
 ## `xalign`
 the horizontal position of the child, 0.0 is left aligned,
  1.0 is right aligned
@@ -1751,9 +1823,6 @@ setting and always show the image, if available.
 
 Use this property if the button would be useless or hard to use
 without the image.
-
-# Parameters
-
 ## `always_show`
 `true` if the menuitem should always show the image
 <!-- trait ButtonExt::fn set_focus_on_click -->
@@ -1761,9 +1830,6 @@ Sets whether the button will grab focus when it is clicked with the mouse.
 Making mouse clicks not grab focus is useful in places like toolbars where
 you don’t want the keyboard focus removed from the main area of the
 application.
-
-# Parameters
-
 ## `focus_on_click`
 whether the button grabs focus when clicked with the mouse
 <!-- trait ButtonExt::fn set_image -->
@@ -1771,17 +1837,11 @@ Set the image of `self` to the given widget. The image will be
 displayed if the label text is `None` or if
 `Button:always-show-image` is `true`. You don’t have to call
 `Widget::show` on `image` yourself.
-
-# Parameters
-
 ## `image`
 a widget to set as the image for the button
 <!-- trait ButtonExt::fn set_image_position -->
 Sets the position of the image relative to the text
 inside the button.
-
-# Parameters
-
 ## `position`
 the position
 <!-- trait ButtonExt::fn set_label -->
@@ -1790,9 +1850,6 @@ also used to select the stock item if `ButtonExt::set_use_stock`
 is used.
 
 This will also clear any previously set labels.
-
-# Parameters
-
 ## `label`
 a string
 <!-- trait ButtonExt::fn set_relief -->
@@ -1801,32 +1858,20 @@ Two styles exist, `ReliefStyle::Normal` and `ReliefStyle::None`.
 The default style is, as one can guess, `ReliefStyle::Normal`.
 The deprecated value `ReliefStyle::Half` behaves the same as
 `ReliefStyle::Normal`.
-
-# Parameters
-
 ## `relief`
 The `ReliefStyle` as described above
 <!-- trait ButtonExt::fn set_use_stock -->
 If `true`, the label set on the button is used as a
 stock id to select the stock item for the button.
-
-# Parameters
-
 ## `use_stock`
 `true` if the button should use a stock item
 <!-- trait ButtonExt::fn set_use_underline -->
 If true, an underline in the text of the button label indicates
 the next character should be used for the mnemonic accelerator key.
-
-# Parameters
-
 ## `use_underline`
 `true` if underlines in the text indicate mnemonics
 <!-- impl ButtonBox::fn new -->
 Creates a new `ButtonBox`.
-
-# Parameters
-
 ## `orientation`
 the box's orientation.
 
@@ -1836,9 +1881,6 @@ a new `ButtonBox`.
 <!-- impl ButtonBox::fn get_child_non_homogeneous -->
 Returns whether the child is exempted from homogenous
 sizing.
-
-# Parameters
-
 ## `child`
 a child of `self`
 
@@ -1847,9 +1889,6 @@ a child of `self`
 `true` if the child is not subject to homogenous sizing
 <!-- impl ButtonBox::fn get_child_secondary -->
 Returns whether `child` should appear in a secondary group of children.
-
-# Parameters
-
 ## `child`
 a child of `self`
 
@@ -1864,9 +1903,6 @@ Retrieves the method being used to arrange the buttons in a button box.
 the method used to lay out buttons in `self`.
 <!-- impl ButtonBox::fn set_child_non_homogeneous -->
 Sets whether the child is exempted from homogeous sizing.
-
-# Parameters
-
 ## `child`
 a child of `self`
 ## `non_homogeneous`
@@ -1884,9 +1920,6 @@ of before/after depends on direction of the widget (see
 or `ButtonBoxStyle::End`, then the secondary children are aligned at
 the other end of the button box from the main children. For the
 other styles, they appear immediately next to the main children.
-
-# Parameters
-
 ## `child`
 a child of `self`
 ## `is_secondary`
@@ -1894,11 +1927,53 @@ if `true`, the `child` appears in a secondary group of the
  button box.
 <!-- impl ButtonBox::fn set_layout -->
 Changes the way buttons are arranged in their container.
-
-# Parameters
-
 ## `layout_style`
 the new layout style
+<!-- enum ButtonBoxStyle -->
+Used to dictate the style that a `ButtonBox` uses to layout the buttons it
+contains.
+<!-- enum ButtonBoxStyle::variant Spread -->
+Buttons are evenly spread across the box.
+<!-- enum ButtonBoxStyle::variant Edge -->
+Buttons are placed at the edges of the box.
+<!-- enum ButtonBoxStyle::variant Start -->
+Buttons are grouped towards the start of the box,
+ (on the left for a HBox, or the top for a VBox).
+<!-- enum ButtonBoxStyle::variant End -->
+Buttons are grouped towards the end of the box,
+ (on the right for a HBox, or the bottom for a VBox).
+<!-- enum ButtonBoxStyle::variant Center -->
+Buttons are centered in the box. Since 2.12.
+<!-- enum ButtonBoxStyle::variant Expand -->
+Buttons expand to fill the box. Since 3.12.
+<!-- enum ButtonRole -->
+The role specifies the desired appearance of a `ModelButton`.
+<!-- enum ButtonRole::variant Normal -->
+A plain button
+<!-- enum ButtonRole::variant Check -->
+A check button
+<!-- enum ButtonRole::variant Radio -->
+A radio button
+<!-- enum ButtonsType -->
+Prebuilt sets of buttons for the dialog. If
+none of these choices are appropriate, simply use `ButtonsType::None`
+then call `Dialog::add_buttons`.
+
+> Please note that `ButtonsType::Ok`, `ButtonsType::YesNo`
+> and `ButtonsType::OkCancel` are discouraged by the
+> [GNOME Human Interface Guidelines](http://library.gnome.org/devel/hig-book/stable/).
+<!-- enum ButtonsType::variant None -->
+no buttons at all
+<!-- enum ButtonsType::variant Ok -->
+an OK button
+<!-- enum ButtonsType::variant Close -->
+a Close button
+<!-- enum ButtonsType::variant Cancel -->
+a Cancel button
+<!-- enum ButtonsType::variant YesNo -->
+Yes and No buttons
+<!-- enum ButtonsType::variant OkCancel -->
+OK and Cancel buttons
 <!-- struct Calendar -->
 `Calendar` is a widget that displays a Gregorian calendar, one month
 at a time. It can be created with `Calendar::new`.
@@ -1935,9 +2010,6 @@ a newly `Calendar` widget
 Remove all visual markers.
 <!-- impl Calendar::fn get_date -->
 Obtains the selected date from a `Calendar`.
-
-# Parameters
-
 ## `year`
 location to store the year as a decimal
  number (e.g. 2011), or `None`
@@ -1949,9 +2021,6 @@ location to store the day number (between
  1 and 31), or `None`
 <!-- impl Calendar::fn get_day_is_marked -->
 Returns if the `day` of the `self` is already marked.
-
-# Parameters
-
 ## `day`
 the day number between 1 and 31.
 
@@ -1980,24 +2049,15 @@ Returns the current display options of `self`.
 the display options.
 <!-- impl Calendar::fn mark_day -->
 Places a visual marker on a particular day.
-
-# Parameters
-
 ## `day`
 the day number to mark between 1 and 31.
 <!-- impl Calendar::fn select_day -->
 Selects a day from the current month.
-
-# Parameters
-
 ## `day`
 the day number between 1 and 31, or 0 to unselect
  the currently selected day.
 <!-- impl Calendar::fn select_month -->
 Shifts the calendar to a different month.
-
-# Parameters
-
 ## `month`
 a month number between 0 and 11.
 ## `year`
@@ -2013,9 +2073,6 @@ is not set.
 The size of the details area can be restricted by setting the
 `Calendar:detail-width-chars` and `Calendar:detail-height-rows`
 properties.
-
-# Parameters
-
 ## `func`
 a function providing details for each day.
 ## `data`
@@ -2025,32 +2082,20 @@ a function for releasing `data`.
 <!-- impl Calendar::fn set_detail_height_rows -->
 Updates the height of detail cells.
 See `Calendar:detail-height-rows`.
-
-# Parameters
-
 ## `rows`
 detail height in rows.
 <!-- impl Calendar::fn set_detail_width_chars -->
 Updates the width of detail cells.
 See `Calendar:detail-width-chars`.
-
-# Parameters
-
 ## `chars`
 detail width in characters.
 <!-- impl Calendar::fn set_display_options -->
 Sets display options (whether to display the heading and the month
 headings).
-
-# Parameters
-
 ## `flags`
 the display options to set
 <!-- impl Calendar::fn unmark_day -->
 Removes the visual marker from a particular day.
-
-# Parameters
-
 ## `day`
 the day number to unmark between 1 and 31.
 <!-- struct CellArea -->
@@ -2378,13 +2423,14 @@ the value of a cell property, use `CellAreaExt::cell_get_property`,
 [`CellAreaExt`](trait.CellAreaExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait CellAreaExt -->
 Trait containing all `CellArea` methods.
+
+# Implementors
+
+[`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html)
 <!-- trait CellAreaExt::fn activate -->
 Activates `self`, usually by activating the currently focused
 cell, however some subclasses which embed widgets in the area
 can also activate a widget if it currently has the focus.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` in context with the current row data
 ## `widget`
@@ -2405,9 +2451,6 @@ This is used by `CellArea` subclasses when handling events
 to activate cells, the base `CellArea` class activates cells
 for keyboard events for free in its own `CellArea`->`activate`
 implementation.
-
-# Parameters
-
 ## `widget`
 the `Widget` that `self` is rendering onto
 ## `renderer`
@@ -2425,9 +2468,6 @@ the `CellRendererState` for `renderer`
 whether cell activation was successful
 <!-- trait CellAreaExt::fn add -->
 Adds `renderer` to `self` with the default child cell properties.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to add to `self`
 <!-- trait CellAreaExt::fn add_focus_sibling -->
@@ -2437,9 +2477,6 @@ focus for a given row.
 
 Events handled by focus siblings can also activate the given
 focusable `renderer`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` expected to have focus
 ## `sibling`
@@ -2447,9 +2484,6 @@ the `CellRenderer` to add to `renderer`’s focus area
 <!-- trait CellAreaExt::fn add_with_properties -->
 Adds `renderer` to `self`, setting cell properties at the same time.
 See `CellAreaExt::add` and `CellAreaExt::cell_set` for more details.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` to be placed inside `self`
 ## `first_prop_name`
@@ -2457,9 +2491,6 @@ the name of the first cell property to set
 <!-- trait CellAreaExt::fn apply_attributes -->
 Applies any connected attributes to the renderers in
 `self` by pulling the values from `tree_model`.
-
-# Parameters
-
 ## `tree_model`
 the `TreeModel` to pull values from
 ## `iter`
@@ -2472,9 +2503,6 @@ whether `iter` is expanded in the view and
 <!-- trait CellAreaExt::fn attribute_connect -->
 Connects an `attribute` to apply values from `column` for the
 `TreeModel` in use.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to connect an attribute for
 ## `attribute`
@@ -2485,9 +2513,6 @@ the `TreeModel` column to fetch attribute values from
 Disconnects `attribute` for the `renderer` in `self` so that
 attribute will no longer be updated with values from the
 model.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to disconnect an attribute for
 ## `attribute`
@@ -2495,9 +2520,6 @@ the attribute name
 <!-- trait CellAreaExt::fn attribute_get_column -->
 Returns the model column that an attribute has been mapped to,
 or -1 if the attribute is not mapped.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer`
 ## `attribute`
@@ -2508,18 +2530,12 @@ an attribute on the renderer
 the model column, or -1
 <!-- trait CellAreaExt::fn cell_get -->
 Gets the values of one or more cell properties for `renderer` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` which is inside `self`
 ## `first_prop_name`
 the name of the first cell property to get
 <!-- trait CellAreaExt::fn cell_get_property -->
 Gets the value of a cell property for `renderer` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` inside `self`
 ## `property_name`
@@ -2528,9 +2544,6 @@ the name of the property to get
 a location to return the value
 <!-- trait CellAreaExt::fn cell_get_valist -->
 Gets the values of one or more cell properties for `renderer` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` inside `self`
 ## `first_property_name`
@@ -2540,18 +2553,12 @@ return location for the first property, followed
  optionally by more name/return location pairs, followed by `None`
 <!-- trait CellAreaExt::fn cell_set -->
 Sets one or more cell properties for `cell` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` which is a cell inside `self`
 ## `first_prop_name`
 the name of the first cell property to set
 <!-- trait CellAreaExt::fn cell_set_property -->
 Sets a cell property for `renderer` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` inside `self`
 ## `property_name`
@@ -2560,9 +2567,6 @@ the name of the cell property to set
 the value to set the cell property to
 <!-- trait CellAreaExt::fn cell_set_valist -->
 Sets one or more cell properties for `renderer` in `self`.
-
-# Parameters
-
 ## `renderer`
 a `CellRenderer` which inside `self`
 ## `first_property_name`
@@ -2582,9 +2586,6 @@ a separate collective height. `IconView` uses this to
 request the heights of each row based on a context which
 was already used to request all the row widths that are
 to be displayed.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` to copy
 
@@ -2604,9 +2605,6 @@ which was used to request the size of those rows of data).
 a newly created `CellAreaContext` which can be used with `self`.
 <!-- trait CellAreaExt::fn event -->
 Delegates event handling to a `CellArea`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` for this row of data.
 ## `widget`
@@ -2629,9 +2627,6 @@ for a given `direction` and row data.
 Implementing `CellArea` classes should implement this
 method to receive and navigate focus in its own way particular
 to how it lays out cells.
-
-# Parameters
-
 ## `direction`
 the `DirectionType`
 
@@ -2640,9 +2635,6 @@ the `DirectionType`
 `true` if focus remains inside `self` as a result of this call.
 <!-- trait CellAreaExt::fn foreach -->
 Calls `callback` for every `CellRenderer` in `self`.
-
-# Parameters
-
 ## `callback`
 the ``GtkCellCallback`` to call
 ## `callback_data`
@@ -2650,9 +2642,6 @@ user provided data pointer
 <!-- trait CellAreaExt::fn foreach_alloc -->
 Calls `callback` for every `CellRenderer` in `self` with the
 allocated rectangle inside `cell_area`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` for this row of data.
 ## `widget`
@@ -2668,9 +2657,6 @@ user provided data pointer
 <!-- trait CellAreaExt::fn get_cell_allocation -->
 Derives the allocation of `renderer` inside `self` if `self`
 were to be renderered in `cell_area`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` used to hold sizes for `self`.
 ## `widget`
@@ -2685,9 +2671,6 @@ where to store the allocation for `renderer`
 <!-- trait CellAreaExt::fn get_cell_at_position -->
 Gets the `CellRenderer` at `x` and `y` coordinates inside `self` and optionally
 returns the full cell allocation for it inside `cell_area`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` used to hold sizes for `self`.
 ## `widget`
@@ -2746,9 +2729,6 @@ This is handy for `CellArea` subclasses when handling events,
 after determining the renderer at the event location it can
 then chose to activate the focus cell for which the event
 cell may have been a sibling.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer`
 
@@ -2758,9 +2738,6 @@ the `CellRenderer` for which `renderer`
  is a sibling, or `None`.
 <!-- trait CellAreaExt::fn get_focus_siblings -->
 Gets the focus sibling cell renderers for `renderer`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` expected to have focus
 
@@ -2776,9 +2753,6 @@ when requesting sizes over an arbitrary number of rows, it’s not important
 to check the `minimum_height` and `natural_height` of this call but rather to
 consult `CellAreaContext::get_preferred_height` after a series of
 requests.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` to perform this request with
 ## `widget`
@@ -2802,9 +2776,6 @@ If at some point, the width of a single row changes, it should be
 requested with `CellAreaExt::get_preferred_width` again and then
 the full width of the requested rows checked again with
 `CellAreaContext::get_preferred_width`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` which has already been requested for widths.
 ## `widget`
@@ -2823,9 +2794,6 @@ when requesting sizes over an arbitrary number of rows, it’s not important
 to check the `minimum_width` and `natural_width` of this call but rather to
 consult `CellAreaContext::get_preferred_width` after a series of
 requests.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` to perform this request with
 ## `widget`
@@ -2849,9 +2817,6 @@ If at some point, the height of a single row changes, it should be
 requested with `CellAreaExt::get_preferred_height` again and then
 the full height of the requested rows checked again with
 `CellAreaContext::get_preferred_height`.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` which has already been requested for widths.
 ## `widget`
@@ -2871,9 +2836,6 @@ or a width-for-height layout.
 The `SizeRequestMode` preferred by `self`.
 <!-- trait CellAreaExt::fn has_renderer -->
 Checks if `self` contains `renderer`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to check
 
@@ -2884,9 +2846,6 @@ the `CellRenderer` to check
 This is a convenience function for `CellArea` implementations
 to get the inner area where a given `CellRenderer` will be
 rendered. It removes any padding previously added by `CellAreaExt::request_renderer`.
-
-# Parameters
-
 ## `widget`
 the `Widget` that `self` is rendering onto
 ## `cell_area`
@@ -2904,9 +2863,6 @@ whether `self` can do anything when activated.
 <!-- trait CellAreaExt::fn is_focus_sibling -->
 Returns whether `sibling` is one of `renderer`’s focus siblings
 (see `CellAreaExt::add_focus_sibling`).
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` expected to have focus
 ## `sibling`
@@ -2917,17 +2873,11 @@ the `CellRenderer` to check against `renderer`’s sibling list
 `true` if `sibling` is a focus sibling of `renderer`
 <!-- trait CellAreaExt::fn remove -->
 Removes `renderer` from `self`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to remove from `self`
 <!-- trait CellAreaExt::fn remove_focus_sibling -->
 Removes `sibling` from `renderer`’s focus sibling list
 (see `CellAreaExt::add_focus_sibling`).
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` expected to have focus
 ## `sibling`
@@ -2935,9 +2885,6 @@ the `CellRenderer` to remove from `renderer`’s focus area
 <!-- trait CellAreaExt::fn render -->
 Renders `self`’s cells according to `self`’s layout onto `widget` at
 the given coordinates.
-
-# Parameters
-
 ## `context`
 the `CellAreaContext` for this row of data.
 ## `widget`
@@ -2958,9 +2905,6 @@ to request size for cell renderers. It’s important to use this
 function to request size and then use `CellAreaExt::inner_cell_area`
 at render and event time since this function will add padding
 around the cell for focus painting.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to request size for
 ## `orientation`
@@ -2981,9 +2925,6 @@ This is generally called by implementations of
 `CellAreaClass.focus`() or `CellAreaClass.event`(),
 however it can also be used to implement functions such
 as `TreeView::set_cursor_on_cell`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to give focus to
 <!-- trait CellAreaExt::fn stop_editing -->
@@ -2995,9 +2936,6 @@ the ::editing-done signal will be emitted on the current
 edit widget.
 
 See `CellAreaExt::get_edited_cell` and `CellAreaExt::get_edit_widget`.
-
-# Parameters
-
 ## `canceled`
 whether editing was canceled.
 <!-- struct CellAreaBox -->
@@ -3039,9 +2977,6 @@ Adds `renderer` to `self`, packed with reference to the end of `self`.
 
 The `renderer` is packed after (away from end of) any other
 `CellRenderer` packed with reference to the end of `self`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to add
 ## `expand`
@@ -3056,9 +2991,6 @@ Adds `renderer` to `self`, packed with reference to the start of `self`.
 
 The `renderer` is packed after any other `CellRenderer` packed
 with reference to the start of `self`.
-
-# Parameters
-
 ## `renderer`
 the `CellRenderer` to add
 ## `expand`
@@ -3070,9 +3002,6 @@ whether `renderer` should be aligned in adjacent rows
 whether `renderer` should have the same size in all rows
 <!-- impl CellAreaBox::fn set_spacing -->
 Sets the spacing to add between cell renderers in `self`.
-
-# Parameters
-
 ## `spacing`
 the space to add between ``GtkCellRenderers``
 <!-- struct CellAreaContext -->
@@ -3086,10 +3015,6 @@ request and render groups of data rows. However, it’s important that the
 same context which was used to request sizes for a given `TreeModel`
 row also be used for the same row when calling other `CellArea` APIs
 such as `CellAreaExt::render` and `CellAreaExt::event`.
-
-# Implements
-
-
 <!-- impl CellAreaContext::fn allocate -->
 Allocates a width and/or a height for all rows which are to be
 rendered with `self`.
@@ -3103,9 +3028,6 @@ rows. This is generally the case for `TreeView` when
 `TreeView:fixed-height-mode` is enabled.
 
 Since 3.0
-
-# Parameters
-
 ## `width`
 the allocated width for all `TreeModel` rows rendered
  with `self`, or -1.
@@ -3118,9 +3040,6 @@ Fetches the current allocation size for `self`.
 If the context was not allocated in width or height, or if the
 context was recently reset with `CellAreaContext::reset`,
 the returned value will be -1.
-
-# Parameters
-
 ## `width`
 location to store the allocated width, or `None`
 ## `height`
@@ -3146,9 +3065,6 @@ requested with this context.
 
 After `CellAreaContext::reset` is called and/or before ever
 requesting the size of a `CellArea`, the returned values are 0.
-
-# Parameters
-
 ## `minimum_height`
 location to store the minimum height,
  or `None`
@@ -3161,9 +3077,6 @@ which have been requested for the same said `width` with this context.
 
 After `CellAreaContext::reset` is called and/or before ever
 requesting the size of a `CellArea`, the returned values are -1.
-
-# Parameters
-
 ## `width`
 a proposed width for allocation
 ## `minimum_height`
@@ -3178,9 +3091,6 @@ requested with this context.
 
 After `CellAreaContext::reset` is called and/or before ever
 requesting the size of a `CellArea`, the returned values are 0.
-
-# Parameters
-
 ## `minimum_width`
 location to store the minimum width,
  or `None`
@@ -3193,9 +3103,6 @@ have been requested for the same said `height` with this context.
 
 After `CellAreaContext::reset` is called and/or before ever
 requesting the size of a `CellArea`, the returned values are -1.
-
-# Parameters
-
 ## `height`
 a proposed height for allocation
 ## `minimum_width`
@@ -3212,9 +3119,6 @@ This is used by `CellAreaContext` implementations during
 the request process over a series of `TreeModel` rows to
 progressively push the requested height over a series of
 `CellAreaExt::get_preferred_height` requests.
-
-# Parameters
-
 ## `minimum_height`
 the proposed new minimum height for `self`
 ## `natural_height`
@@ -3227,9 +3131,6 @@ This is used by `CellAreaContext` implementations during
 the request process over a series of `TreeModel` rows to
 progressively push the requested width over a series of
 `CellAreaExt::get_preferred_width` requests.
-
-# Parameters
-
 ## `minimum_width`
 the proposed new minimum width for `self`
 ## `natural_width`
@@ -3265,9 +3166,13 @@ when editing the contents of a `TreeView` cell.
 
 # Implements
 
-[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait CellEditableExt -->
 Trait containing all `CellEditable` methods.
+
+# Implementors
+
+[`CellEditable`](struct.CellEditable.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Entry`](struct.Entry.html), [`SearchEntry`](struct.SearchEntry.html), [`SpinButton`](struct.SpinButton.html)
 <!-- trait CellEditableExt::fn editing_done -->
 Emits the `CellEditable::editing-done` signal.
 <!-- trait CellEditableExt::fn remove_widget -->
@@ -3276,9 +3181,6 @@ Emits the `CellEditable::remove-widget` signal.
 Begins editing on a `self`. `event` is the ``GdkEvent`` that began
 the editing process. It may be `None`, in the instance that editing was
 initiated through programatic means.
-
-# Parameters
-
 ## `event`
 A ``GdkEvent``, or `None`
 <!-- struct CellLayout -->
@@ -3354,6 +3256,10 @@ for your class.
 [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait CellLayoutExt -->
 Trait containing all `CellLayout` methods.
+
+# Implementors
+
+[`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellLayout`](struct.CellLayout.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`EntryCompletion`](struct.EntryCompletion.html), [`IconView`](struct.IconView.html), [`TreeViewColumn`](struct.TreeViewColumn.html)
 <!-- trait CellLayoutExt::fn add_attribute -->
 Adds an attribute mapping to the list in `self`.
 
@@ -3361,9 +3267,6 @@ The `column` is the column of the model to get a value from, and the
 `attribute` is the parameter on `cell` to be set from the value. So for
 example if column 2 of the model contains strings, you could have the
 “text” attribute of a `CellRendererText` get its values from column 2.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer`
 ## `attribute`
@@ -3376,9 +3279,6 @@ removes all renderers from `self`.
 <!-- trait CellLayoutExt::fn clear_attributes -->
 Clears all existing attributes previously set with
 `CellLayout::set_attributes`.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer` to clear the attribute mapping on
 <!-- trait CellLayoutExt::fn get_area -->
@@ -3404,9 +3304,6 @@ Adds the `cell` to the end of `self`. If `expand` is `false`, then the
 divided evenly between cells for which `expand` is `true`.
 
 Note that reusing the same cell renderer is not supported.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer`
 ## `expand`
@@ -3417,9 +3314,6 @@ then the `cell` is allocated no more space than it needs. Any unused space
 is divided evenly between cells for which `expand` is `true`.
 
 Note that reusing the same cell renderer is not supported.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer`
 ## `expand`
@@ -3429,9 +3323,6 @@ Re-inserts `cell` at `position`.
 
 Note that `cell` has already to be packed into `self`
 for this to function properly.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer` to reorder
 ## `position`
@@ -3442,9 +3333,6 @@ Sets the attributes in list as the attributes of `self`.
 The attributes should be in attribute/column order, as in
 `CellLayout::add_attribute`. All existing attributes are
 removed, and replaced with the new attributes.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer`
 <!-- trait CellLayoutExt::fn set_cell_data_func -->
@@ -3455,9 +3343,6 @@ for setting the column value, and should set the value of `self`’s
 cell renderer(s) as appropriate.
 
 `func` may be `None` to remove a previously set function.
-
-# Parameters
-
 ## `cell`
 a `CellRenderer`
 ## `func`
@@ -3507,13 +3392,14 @@ has been set or not. You should not set them independently.
 [`CellRendererExt`](trait.CellRendererExt.html)
 <!-- trait CellRendererExt -->
 Trait containing all `CellRenderer` methods.
+
+# Implementors
+
+[`CellRendererPixbuf`](struct.CellRendererPixbuf.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`CellRendererSpinner`](struct.CellRendererSpinner.html), [`CellRendererText`](struct.CellRendererText.html), [`CellRendererToggle`](struct.CellRendererToggle.html), [`CellRenderer`](struct.CellRenderer.html)
 <!-- trait CellRendererExt::fn activate -->
 Passes an activate event to the cell renderer for possible processing.
 Some cell renderers may use events; for example, `CellRendererToggle`
 toggles when it gets a mouse click.
-
-# Parameters
-
 ## `event`
 a ``GdkEvent``
 ## `widget`
@@ -3534,9 +3420,6 @@ render flags
 <!-- trait CellRendererExt::fn get_aligned_area -->
 Gets the aligned area used by `self` inside `cell_area`. Used for finding
 the appropriate edit and focus rectangle.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `flags`
@@ -3548,36 +3431,24 @@ the return location for the space inside `cell_area`
  that would acually be used to render.
 <!-- trait CellRendererExt::fn get_alignment -->
 Fills in `xalign` and `yalign` with the appropriate values of `self`.
-
-# Parameters
-
 ## `xalign`
 location to fill in with the x alignment of the cell, or `None`
 ## `yalign`
 location to fill in with the y alignment of the cell, or `None`
 <!-- trait CellRendererExt::fn get_fixed_size -->
 Fills in `width` and `height` with the appropriate size of `self`.
-
-# Parameters
-
 ## `width`
 location to fill in with the fixed width of the cell, or `None`
 ## `height`
 location to fill in with the fixed height of the cell, or `None`
 <!-- trait CellRendererExt::fn get_padding -->
 Fills in `xpad` and `ypad` with the appropriate values of `self`.
-
-# Parameters
-
 ## `xpad`
 location to fill in with the x padding of the cell, or `None`
 ## `ypad`
 location to fill in with the y padding of the cell, or `None`
 <!-- trait CellRendererExt::fn get_preferred_height -->
 Retreives a renderer’s natural size when rendered to `widget`.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `minimum_size`
@@ -3587,9 +3458,6 @@ location to store the natural size, or `None`
 <!-- trait CellRendererExt::fn get_preferred_height_for_width -->
 Retreives a cell renderers’s minimum and natural height if it were rendered to
 `widget` with the specified `width`.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `width`
@@ -3601,9 +3469,6 @@ location for storing the preferred size, or `None`
 <!-- trait CellRendererExt::fn get_preferred_size -->
 Retrieves the minimum and natural size of a cell taking
 into account the widget’s preference for height-for-width management.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `minimum_size`
@@ -3612,9 +3477,6 @@ location for storing the minimum size, or `None`
 location for storing the natural size, or `None`
 <!-- trait CellRendererExt::fn get_preferred_width -->
 Retreives a renderer’s natural size when rendered to `widget`.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `minimum_size`
@@ -3624,9 +3486,6 @@ location to store the natural size, or `None`
 <!-- trait CellRendererExt::fn get_preferred_width_for_height -->
 Retreives a cell renderers’s minimum and natural width if it were rendered to
 `widget` with the specified `height`.
-
-# Parameters
-
 ## `widget`
 the `Widget` this cell will be rendering to
 ## `height`
@@ -3660,9 +3519,6 @@ in `x_offset` and `y_offset` are inclusive of the xpad and ypad properties.
 # Deprecated
 
 Use `CellRendererExt::get_preferred_size` instead.
-
-# Parameters
-
 ## `widget`
 the widget the renderer is rendering to
 ## `cell_area`
@@ -3679,9 +3535,6 @@ location to return height needed to render a cell, or `None`
 Translates the cell renderer state to `StateFlags`,
 based on the cell renderer and widget sensitivity, and
 the given `CellRendererState`.
-
-# Parameters
-
 ## `widget`
 a `Widget`, or `None`
 ## `cell_state`
@@ -3710,9 +3563,6 @@ should be honored with respect to `cell_area`. `background_area` includes the
 blank space around the cell, and also the area containing the tree expander;
 so the `background_area` rectangles for all cells tile to cover the entire
 `window`.
-
-# Parameters
-
 ## `cr`
 a cairo context to draw to
 ## `widget`
@@ -3726,50 +3576,32 @@ area normally rendered by a cell renderer
 flags that affect rendering
 <!-- trait CellRendererExt::fn set_alignment -->
 Sets the renderer’s alignment within its available space.
-
-# Parameters
-
 ## `xalign`
 the x alignment of the cell renderer
 ## `yalign`
 the y alignment of the cell renderer
 <!-- trait CellRendererExt::fn set_fixed_size -->
 Sets the renderer size to be explicit, independent of the properties set.
-
-# Parameters
-
 ## `width`
 the width of the cell renderer, or -1
 ## `height`
 the height of the cell renderer, or -1
 <!-- trait CellRendererExt::fn set_padding -->
 Sets the renderer’s padding.
-
-# Parameters
-
 ## `xpad`
 the x padding of the cell renderer
 ## `ypad`
 the y padding of the cell renderer
 <!-- trait CellRendererExt::fn set_sensitive -->
 Sets the cell renderer’s sensitivity.
-
-# Parameters
-
 ## `sensitive`
 the sensitivity of the cell
 <!-- trait CellRendererExt::fn set_visible -->
 Sets the cell renderer’s visibility.
-
-# Parameters
-
 ## `visible`
 the visibility of the cell
 <!-- trait CellRendererExt::fn start_editing -->
 Passes an activate event to the cell renderer for possible processing.
-
-# Parameters
-
 ## `event`
 a ``GdkEvent``
 ## `widget`
@@ -3795,9 +3627,6 @@ If `canceled` is `true`, the cell renderer will emit the
 This function should be called by cell renderer implementations
 in response to the `CellEditable::editing-done` signal of
 `CellEditable`.
-
-# Parameters
-
 ## `canceled`
 `true` if the editing has been canceled
 <!-- struct CellRendererAccel -->
@@ -3816,6 +3645,16 @@ Creates a new `CellRendererAccel`.
 # Returns
 
 the new cell renderer
+<!-- enum CellRendererAccelMode -->
+Determines if the edited accelerators are GTK+ accelerators. If
+they are, consumed modifiers are suppressed, only accelerators
+accepted by GTK+ are allowed, and the accelerators are rendered
+in the same way as they are in menus.
+<!-- enum CellRendererAccelMode::variant Gtk -->
+GTK+ accelerators mode
+<!-- enum CellRendererAccelMode::variant Other -->
+Other accelerator mode
+GTK_CELL_RENDERER_ACCEL_MODE_MODIFIER_TAP: Bare modifiers mode
 <!-- struct CellRendererCombo -->
 `CellRendererCombo` renders text in a cell like `CellRendererText` from
 which it is derived. But while `CellRendererText` offers a simple entry to
@@ -3845,6 +3684,17 @@ a different string in each row of the `TreeView`.
 # Returns
 
 the new cell renderer
+<!-- enum CellRendererMode -->
+Identifies how the user can interact with a particular cell.
+<!-- enum CellRendererMode::variant Inert -->
+The cell is just for display
+ and cannot be interacted with. Note that this doesn’t mean that eg. the
+ row being drawn can’t be selected -- just that a particular element of
+ it cannot be individually modified.
+<!-- enum CellRendererMode::variant Activatable -->
+The cell can be clicked.
+<!-- enum CellRendererMode::variant Editable -->
+The cell can be edited or otherwise modified.
 <!-- struct CellRendererPixbuf -->
 A `CellRendererPixbuf` can be used to render an image in a cell. It allows
 to render either a given `gdk_pixbuf::Pixbuf` (set via the
@@ -3948,6 +3798,10 @@ the `CellRendererText` allows to edit its text using an entry.
 [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html)
 <!-- trait CellRendererTextExt -->
 Trait containing all `CellRendererText` methods.
+
+# Implementors
+
+[`CellRendererAccel`](struct.CellRendererAccel.html), [`CellRendererCombo`](struct.CellRendererCombo.html), [`CellRendererSpin`](struct.CellRendererSpin.html), [`CellRendererText`](struct.CellRendererText.html)
 <!-- impl CellRendererText::fn new -->
 Creates a new `CellRendererText`. Adjust how text is drawn using
 object properties. Object properties can be
@@ -3968,9 +3822,6 @@ function. Using this function is unflexible, and should really only be used
 if calculating the size of a cell is too slow (ie, a massive number of cells
 displayed). If `number_of_rows` is -1, then the fixed height is unset, and
 the height is determined by the properties again.
-
-# Parameters
-
 ## `number_of_rows`
 Number of rows of text each cell renderer is allocated, or -1
 <!-- struct CellRendererToggle -->
@@ -4016,16 +3867,10 @@ Returns whether we’re rendering radio toggles rather than checkboxes.
 `true` if we’re rendering radio toggles rather than checkboxes
 <!-- impl CellRendererToggle::fn set_activatable -->
 Makes the cell renderer activatable.
-
-# Parameters
-
 ## `setting`
 the value to set.
 <!-- impl CellRendererToggle::fn set_active -->
 Activates or deactivates a cell renderer.
-
-# Parameters
-
 ## `setting`
 the value to set.
 <!-- impl CellRendererToggle::fn set_radio -->
@@ -4036,9 +3881,6 @@ This can be set globally for the cell renderer, or changed just
 before rendering each cell in the model (for `TreeView`, you set
 up a per-row setting using `TreeViewColumn` to associate model
 columns with cell renderer properties).
-
-# Parameters
-
 ## `radio`
 `true` to make the toggle look like a radio button
 <!-- struct CheckButton -->
@@ -4051,9 +3893,13 @@ The important signal ( `ToggleButton::toggled` ) is also inherited from
 
 # Implements
 
-[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait CheckButtonExt -->
 Trait containing all `CheckButton` methods.
+
+# Implementors
+
+[`CheckButton`](struct.CheckButton.html), [`RadioButton`](struct.RadioButton.html)
 <!-- impl CheckButton::fn new -->
 Creates a new `CheckButton`.
 
@@ -4062,9 +3908,6 @@ Creates a new `CheckButton`.
 a `Widget`.
 <!-- impl CheckButton::fn new_with_label -->
 Creates a new `CheckButton` with a `Label` to the right of it.
-
-# Parameters
-
 ## `label`
 the text for the check button.
 
@@ -4075,9 +3918,6 @@ a `Widget`.
 Creates a new `CheckButton` containing a label. The label
 will be created using `Label::new_with_mnemonic`, so underscores
 in `label` indicate the mnemonic for the check button.
-
-# Parameters
-
 ## `label`
 The text of the button, with an underscore in front of the
  mnemonic character
@@ -4096,7 +3936,7 @@ toggles the value.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl CheckMenuItem::fn new -->
 Creates a new `CheckMenuItem`.
 
@@ -4105,9 +3945,6 @@ Creates a new `CheckMenuItem`.
 a new `CheckMenuItem`.
 <!-- impl CheckMenuItem::fn new_with_label -->
 Creates a new `CheckMenuItem` with a label.
-
-# Parameters
-
 ## `label`
 the string to use for the label.
 
@@ -4118,9 +3955,6 @@ a new `CheckMenuItem`.
 Creates a new `CheckMenuItem` containing a label. The label
 will be created using `Label::new_with_mnemonic`, so underscores
 in `label` indicate the mnemonic for the menu item.
-
-# Parameters
-
 ## `label`
 The text of the button, with an underscore in front of the
  character
@@ -4149,16 +3983,10 @@ Retrieves the value set by `CheckMenuItem::set_inconsistent`.
 `true` if inconsistent
 <!-- impl CheckMenuItem::fn set_active -->
 Sets the active state of the menu item’s check box.
-
-# Parameters
-
 ## `is_active`
 boolean value indicating whether the check box is active.
 <!-- impl CheckMenuItem::fn set_draw_as_radio -->
 Sets whether `self` is drawn like a `RadioMenuItem`
-
-# Parameters
-
 ## `draw_as_radio`
 whether `self` is drawn like a `RadioMenuItem`
 <!-- impl CheckMenuItem::fn set_inconsistent -->
@@ -4170,9 +3998,6 @@ display the check in an “in between” state. This function turns on
 state again if the user explicitly selects a setting. This has to be
 done manually, `CheckMenuItem::set_inconsistent` only affects
 visual appearance, it doesn’t affect the semantics of the widget.
-
-# Parameters
-
 ## `setting`
 `true` to display an “inconsistent” third state check
 <!-- impl CheckMenuItem::fn toggled -->
@@ -4184,7 +4009,7 @@ It is suitable widget for selecting a color in a preference dialog.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl ColorButton::fn new -->
 Creates a new color button.
 
@@ -4203,9 +4028,6 @@ Creates a new color button.
 # Deprecated
 
 Use `ColorButton::new_with_rgba` instead.
-
-# Parameters
-
 ## `color`
 A `gdk::Color` to set the current color with
 
@@ -4214,9 +4036,6 @@ A `gdk::Color` to set the current color with
 a new color button
 <!-- impl ColorButton::fn new_with_rgba -->
 Creates a new color button.
-
-# Parameters
-
 ## `rgba`
 A `gdk::RGBA` to set the current color with
 
@@ -4239,9 +4058,6 @@ Sets `color` to be the current color in the `ColorButton` widget.
 # Deprecated
 
 Use `ColorChooser::get_rgba` instead.
-
-# Parameters
-
 ## `color`
 a `gdk::Color` to fill in with the current color
 <!-- impl ColorButton::fn get_rgba -->
@@ -4250,9 +4066,6 @@ Sets `rgba` to be the current color in the `ColorButton` widget.
 # Deprecated
 
 Use `ColorChooser::get_rgba` instead.
-
-# Parameters
-
 ## `rgba`
 a `gdk::RGBA` to fill in with the current color
 <!-- impl ColorButton::fn get_title -->
@@ -4277,9 +4090,6 @@ Sets the current opacity to be `alpha`.
 # Deprecated
 
 Use `ColorChooser::set_rgba` instead.
-
-# Parameters
-
 ## `alpha`
 an integer between 0 and 65535
 <!-- impl ColorButton::fn set_color -->
@@ -4288,9 +4098,6 @@ Sets the current color to be `color`.
 # Deprecated
 
 Use `ColorChooser::set_rgba` instead.
-
-# Parameters
-
 ## `color`
 A `gdk::Color` to set the current color with
 <!-- impl ColorButton::fn set_rgba -->
@@ -4299,16 +4106,10 @@ Sets the current color to be `rgba`.
 # Deprecated
 
 Use `ColorChooser::set_rgba` instead.
-
-# Parameters
-
 ## `rgba`
 a `gdk::RGBA` to set the current color with
 <!-- impl ColorButton::fn set_title -->
 Sets the title for the color selection dialog.
-
-# Parameters
-
 ## `title`
 String containing new window title
 <!-- impl ColorButton::fn set_use_alpha -->
@@ -4317,9 +4118,6 @@ Sets whether or not the color button should use the alpha channel.
 # Deprecated
 
 Use `ColorChooser::set_use_alpha` instead.
-
-# Parameters
-
 ## `use_alpha`
 `true` if color button should use alpha channel, `false` if not
 <!-- struct ColorChooserDialog -->
@@ -4331,9 +4129,6 @@ a color. It implements the `ColorChooser` interface.
 [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl ColorChooserDialog::fn new -->
 Creates a new `ColorChooserDialog`.
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -4399,6 +4194,10 @@ an entry.
 [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait ComboBoxExt -->
 Trait containing all `ComboBox` methods.
+
+# Implementors
+
+[`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html)
 <!-- impl ComboBox::fn new -->
 Creates a new empty `ComboBox`.
 
@@ -4407,9 +4206,6 @@ Creates a new empty `ComboBox`.
 A new `ComboBox`.
 <!-- impl ComboBox::fn new_with_area -->
 Creates a new empty `ComboBox` using `area` to layout cells.
-
-# Parameters
-
 ## `area`
 the `CellArea` to use to layout cell renderers
 
@@ -4420,9 +4216,6 @@ A new `ComboBox`.
 Creates a new empty `ComboBox` with an entry.
 
 The new combo box will use `area` to layout cells.
-
-# Parameters
-
 ## `area`
 the `CellArea` to use to layout cell renderers
 
@@ -4437,9 +4230,6 @@ Creates a new empty `ComboBox` with an entry.
 A new `ComboBox`.
 <!-- impl ComboBox::fn new_with_model -->
 Creates a new `ComboBox` with the model initialized to `model`.
-
-# Parameters
-
 ## `model`
 A `TreeModel`.
 
@@ -4449,9 +4239,6 @@ A new `ComboBox`.
 <!-- impl ComboBox::fn new_with_model_and_entry -->
 Creates a new empty `ComboBox` with an entry
 and with the model initialized to `model`.
-
-# Parameters
-
 ## `model`
 A `TreeModel`
 
@@ -4487,9 +4274,6 @@ is returned.
 the ID of the active row, or `None`
 <!-- trait ComboBoxExt::fn get_active_iter -->
 Sets `iter` to point to the current active item, if it exists.
-
-# Parameters
-
 ## `iter`
 The uninitialized `TreeIter`
 
@@ -4613,16 +4397,10 @@ applications should have little use for it.
 Pops up the menu or dropdown list of `self`, the popup window
 will be grabbed so only `device` and its associated pointer/keyboard
 are the only ``GdkDevices`` able to send events to it.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 <!-- trait ComboBoxExt::fn set_active -->
 Sets the active item of `self` to be the item at `index`.
-
-# Parameters
-
 ## `index_`
 An index in the model passed during construction, or -1 to have
 no active item
@@ -4633,9 +4411,6 @@ a `None` ID string cannot be made active by this function.
 
 If the `ComboBox:id-column` property of `self` is unset or if no
 row has the given ID then the function does nothing and returns `false`.
-
-# Parameters
-
 ## `active_id`
 the ID of the row to select, or `None`
 
@@ -4647,35 +4422,23 @@ the ID of the row to select, or `None`
 <!-- trait ComboBoxExt::fn set_active_iter -->
 Sets the current active item to be the one referenced by `iter`, or
 unsets the active item if `iter` is `None`.
-
-# Parameters
-
 ## `iter`
 The `TreeIter`, or `None`
 <!-- trait ComboBoxExt::fn set_add_tearoffs -->
 Sets whether the popup menu should have a tearoff
 menu item.
-
-# Parameters
-
 ## `add_tearoffs`
 `true` to add tearoff menu items
 <!-- trait ComboBoxExt::fn set_button_sensitivity -->
 Sets whether the dropdown button of the combo box should be
 always sensitive (`SensitivityType::On`), never sensitive (`SensitivityType::Off`)
 or only if there is at least one item to display (`SensitivityType::Auto`).
-
-# Parameters
-
 ## `sensitivity`
 specify the sensitivity of the dropdown button
 <!-- trait ComboBoxExt::fn set_column_span_column -->
 Sets the column with column span information for `self` to be
 `column_span`. The column span column contains integers which indicate
 how many columns an item should span.
-
-# Parameters
-
 ## `column_span`
 A column in the model passed during construction
 <!-- trait ComboBoxExt::fn set_entry_text_column -->
@@ -4685,9 +4448,6 @@ must be of type `G_TYPE_STRING`.
 
 This is only relevant if `self` has been created with
 `ComboBox:has-entry` as `true`.
-
-# Parameters
-
 ## `text_column`
 A column in `model` to get the strings from for
  the internal entry
@@ -4696,9 +4456,6 @@ Sets whether the combo box will grab focus when it is clicked with
 the mouse. Making mouse clicks not grab focus is useful in places
 like toolbars where you don’t want the keyboard focus removed from
 the main area of the application.
-
-# Parameters
-
 ## `focus_on_click`
 whether the combo box grabs focus when clicked
  with the mouse
@@ -4706,9 +4463,6 @@ whether the combo box grabs focus when clicked
 Sets the model column which `self` should use to get string IDs
 for values from. The column `id_column` in the model of `self`
 must be of type `G_TYPE_STRING`.
-
-# Parameters
-
 ## `id_column`
 A column in `model` to get string IDs for values from
 <!-- trait ComboBoxExt::fn set_model -->
@@ -4718,26 +4472,17 @@ model (if applicable). If model is `None`, then it will unset the model.
 Note that this function does not clear the cell renderers, you have to
 call `CellLayout::clear` yourself if you need to set up different
 cell renderers for the new model.
-
-# Parameters
-
 ## `model`
 A `TreeModel`
 <!-- trait ComboBoxExt::fn set_popup_fixed_width -->
 Specifies whether the popup’s width should be a fixed width
 matching the allocated width of the combo box.
-
-# Parameters
-
 ## `fixed`
 whether to use a fixed popup width
 <!-- trait ComboBoxExt::fn set_row_separator_func -->
 Sets the row separator function, which is used to determine
 whether a row should be drawn as a separator. If the row separator
 function is `None`, no separators are drawn. This is the default value.
-
-# Parameters
-
 ## `func`
 a ``GtkTreeViewRowSeparatorFunc``
 ## `data`
@@ -4748,25 +4493,16 @@ destroy notifier for `data`, or `None`
 Sets the column with row span information for `self` to be `row_span`.
 The row span column contains integers which indicate how many rows
 an item should span.
-
-# Parameters
-
 ## `row_span`
 A column in the model passed during construction.
 <!-- trait ComboBoxExt::fn set_title -->
 Sets the menu’s title in tearoff mode.
-
-# Parameters
-
 ## `title`
 a title for the menu in tearoff mode
 <!-- trait ComboBoxExt::fn set_wrap_width -->
 Sets the wrap width of `self` to be `width`. The wrap width is basically
 the preferred number of columns when you want the popup to be layed out
 in a table.
-
-# Parameters
-
 ## `width`
 Preferred number of columns
 <!-- struct ComboBoxText -->
@@ -4832,9 +4568,6 @@ If `id` is non-`None` then it is used as the ID of the row.
 
 This is the same as calling `ComboBoxText::insert` with a
 position of -1.
-
-# Parameters
-
 ## `id`
 a string ID for this value, or `None`
 ## `text`
@@ -4844,9 +4577,6 @@ Appends `text` to the list of strings stored in `self`.
 
 This is the same as calling `ComboBoxText::insert_text` with a
 position of -1.
-
-# Parameters
-
 ## `text`
 A string
 <!-- impl ComboBoxText::fn get_active_text -->
@@ -4865,9 +4595,6 @@ If `id` is non-`None` then it is used as the ID of the row. See
 `ComboBox:id-column`.
 
 If `position` is negative then `text` is appended.
-
-# Parameters
-
 ## `position`
 An index to insert `text`
 ## `id`
@@ -4881,9 +4608,6 @@ If `position` is negative then `text` is appended.
 
 This is the same as calling `ComboBoxText::insert` with a `None`
 ID string.
-
-# Parameters
-
 ## `position`
 An index to insert `text`
 ## `text`
@@ -4894,9 +4618,6 @@ If `id` is non-`None` then it is used as the ID of the row.
 
 This is the same as calling `ComboBoxText::insert` with a
 position of 0.
-
-# Parameters
-
 ## `id`
 a string ID for this value, or `None`
 ## `text`
@@ -4906,16 +4627,10 @@ Prepends `text` to the list of strings stored in `self`.
 
 This is the same as calling `ComboBoxText::insert_text` with a
 position of 0.
-
-# Parameters
-
 ## `text`
 A string
 <!-- impl ComboBoxText::fn remove -->
 Removes the string at `position` from `self`.
-
-# Parameters
-
 ## `position`
 Index of the item to remove
 <!-- impl ComboBoxText::fn remove_all -->
@@ -5120,6 +4835,10 @@ An example of these properties in UI definitions:
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ContainerExt -->
 Trait containing all `Container` methods.
+
+# Implementors
+
+[`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Container`](struct.Container.html), [`Fixed`](struct.Fixed.html), [`FlowBox`](struct.FlowBox.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Layout`](struct.Layout.html), [`ListBox`](struct.ListBox.html), [`MenuShell`](struct.MenuShell.html), [`Notebook`](struct.Notebook.html), [`Paned`](struct.Paned.html), [`Stack`](struct.Stack.html), [`TextView`](struct.TextView.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeView`](struct.TreeView.html)
 <!-- trait ContainerExt::fn add -->
 Adds `widget` to `self`. Typically used for simple containers
 such as `Window`, `Frame`, or `Button`; for more complicated
@@ -5133,35 +4852,23 @@ you can’t place the same widget inside two different containers.
 Note that some containers, such as `ScrolledWindow` or `ListBox`,
 may add intermediate children between the added widget and the
 container.
-
-# Parameters
-
 ## `widget`
 a widget to be placed inside `self`
 <!-- trait ContainerExt::fn add_with_properties -->
 Adds `widget` to `self`, setting child properties at the same time.
 See `ContainerExt::add` and `ContainerExt::child_set` for more details.
-
-# Parameters
-
 ## `widget`
 a widget to be placed inside `self`
 ## `first_prop_name`
 the name of the first child property to set
 <!-- trait ContainerExt::fn child_get -->
 Gets the values of one or more child properties for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `first_prop_name`
 the name of the first property to get
 <!-- trait ContainerExt::fn child_get_property -->
 Gets the value of a child property for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `property_name`
@@ -5170,9 +4877,6 @@ the name of the property to get
 a location to return the value
 <!-- trait ContainerExt::fn child_get_valist -->
 Gets the values of one or more child properties for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `first_property_name`
@@ -5188,9 +4892,6 @@ Emits a `Widget::child-notify` signal for the
 This is an analogue of `gobject::Object::notify` for child properties.
 
 Also see `Widget::child_notify`.
-
-# Parameters
-
 ## `child`
 the child widget
 ## `child_property`
@@ -5198,18 +4899,12 @@ the name of a child property installed on
  the class of `self`
 <!-- trait ContainerExt::fn child_set -->
 Sets one or more child properties for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `first_prop_name`
 the name of the first property to set
 <!-- trait ContainerExt::fn child_set_property -->
 Sets a child property for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `property_name`
@@ -5218,9 +4913,6 @@ the name of the property to set
 the value to set the property to
 <!-- trait ContainerExt::fn child_set_valist -->
 Sets one or more child properties for `child` and `self`.
-
-# Parameters
-
 ## `child`
 a widget which is a child of `self`
 ## `first_property_name`
@@ -5245,9 +4937,6 @@ container). “Internal” children generally weren’t added by the user
 of the container, but were added by the container implementation
 itself. Most applications should use `ContainerExt::foreach`,
 rather than `ContainerExt::forall`.
-
-# Parameters
-
 ## `callback`
 a callback
 ## `callback_data`
@@ -5257,9 +4946,6 @@ Invokes `callback` on each non-internal child of `self`. See
 `ContainerExt::forall` for details on what constitutes an
 “internal” child. Most applications should use
 `ContainerExt::foreach`, rather than `ContainerExt::forall`.
-
-# Parameters
-
 ## `callback`
 a callback
 ## `callback_data`
@@ -5284,9 +4970,6 @@ set explicitly. If no focus chain has been explicitly
 set, GTK+ computes the focus chain based on the positions
 of the children. In that case, GTK+ stores `None` in
 `focusable_widgets` and returns `false`.
-
-# Parameters
-
 ## `focusable_widgets`
 location
  to store the focus chain of the
@@ -5328,9 +5011,6 @@ the vertical focus adjustment, or `None` if
 <!-- trait ContainerExt::fn get_path_for_child -->
 Returns a newly created widget path representing all the widget hierarchy
 from the toplevel down to and including `child`.
-
-# Parameters
-
 ## `child`
 a child of `self`
 
@@ -5366,9 +5046,6 @@ convenient and optimized way of getting the same effect as calling
 In most cases, a container can simply either inherit the
 `Widget::draw` implementation from `Container`, or do some drawing
 and then chain to the ::draw implementation from `Container`.
-
-# Parameters
-
 ## `child`
 a child of `self`
 ## `cr`
@@ -5385,9 +5062,6 @@ a container, using `gobject::Object::ref`. If you don’t want to use `widget`
 again it’s usually more efficient to simply destroy it directly
 using `Widget::destroy` since this will remove it from the
 container and help break any circular reference count cycles.
-
-# Parameters
-
 ## `widget`
 a current child of `self`
 <!-- trait ContainerExt::fn resize_children -->
@@ -5401,9 +5075,6 @@ they leave the space inside. The border is added on all sides of
 the container. To add space to only one side, use a specific
 `Widget:margin` property on the child widget, for example
 `Widget:margin-top`.
-
-# Parameters
-
 ## `border_width`
 amount of blank space to leave outside
  the container. Valid values are in the range 0-65535 pixels.
@@ -5415,9 +5086,6 @@ container, but this is not enforced by this method, since it’s allowed
 to set the focus chain before you pack the widgets, or have a widget
 in the chain that isn’t always packed. The necessary checks are done
 when the focus chain is actually traversed.
-
-# Parameters
-
 ## `focusable_widgets`
 
  the new focus chain
@@ -5430,9 +5098,6 @@ default behaviour by overriding the class closure of this signal.
 
 This is function is mostly meant to be used by widgets. Applications can use
 `Widget::grab_focus` to manually set the focus to a specific widget.
-
-# Parameters
-
 ## `child`
 a `Widget`, or `None`
 <!-- trait ContainerExt::fn set_focus_hadjustment -->
@@ -5445,9 +5110,6 @@ the vertical adjustment.
 
 The adjustments have to be in pixel units and in the same coordinate
 system as the allocation for immediate children of the container.
-
-# Parameters
-
 ## `adjustment`
 an adjustment which should be adjusted when the focus is
  moved among the descendents of `self`
@@ -5461,9 +5123,6 @@ the horizontal adjustment.
 
 The adjustments have to be in pixel units and in the same coordinate
 system as the allocation for immediate children of the container.
-
-# Parameters
-
 ## `adjustment`
 an adjustment which should be adjusted when the focus
  is moved among the descendents of `self`
@@ -5476,9 +5135,6 @@ redrawn if any of their children changed allocation.
 # Deprecated
 
 Call `Widget::queue_draw` in your size_allocate handler.
-
-# Parameters
-
 ## `needs_redraws`
 the new value for the container’s `reallocate_redraws` flag
 <!-- trait ContainerExt::fn set_resize_mode -->
@@ -5493,13 +5149,26 @@ or executed immediately.
 Resize modes are deprecated. They aren’t necessary
  anymore since frame clocks and might introduce obscure bugs if
  used.
-
-# Parameters
-
 ## `resize_mode`
 the new resize mode
 <!-- trait ContainerExt::fn unset_focus_chain -->
 Removes a focus chain explicitly set with `ContainerExt::set_focus_chain`.
+<!-- enum CornerType -->
+Specifies which corner a child widget should be placed in when packed into
+a `ScrolledWindow`. This is effectively the opposite of where the scroll
+bars are placed.
+<!-- enum CornerType::variant TopLeft -->
+Place the scrollbars on the right and bottom of the
+ widget (default behaviour).
+<!-- enum CornerType::variant BottomLeft -->
+Place the scrollbars on the top and right of the
+ widget.
+<!-- enum CornerType::variant TopRight -->
+Place the scrollbars on the left and bottom of the
+ widget.
+<!-- enum CornerType::variant BottomRight -->
+Place the scrollbars on the top and left of the
+ widget.
 <!-- struct CssProvider -->
 `CssProvider` is an object implementing the `StyleProvider` interface.
 It is able to parse [CSS-like](http://www.w3.org/TR/CSS2)
@@ -6680,10 +6349,6 @@ An example for using engine-specific style properties:
     -clearlooks-colorize-scrollbar: false;
 }
 ```
-
-# Implements
-
-
 <!-- impl CssProvider::fn new -->
 Returns a newly created `CssProvider`.
 
@@ -6700,9 +6365,6 @@ The provider used for fallback styling.
  This memory is owned by GTK+, and you must not free it.
 <!-- impl CssProvider::fn get_named -->
 Loads a theme from the usual theme paths
-
-# Parameters
-
 ## `name`
 A theme name
 ## `variant`
@@ -6716,9 +6378,6 @@ a `CssProvider` with the theme loaded.
 <!-- impl CssProvider::fn load_from_data -->
 Loads `data` into `self`, making it clear any previously loaded
 information.
-
-# Parameters
-
 ## `data`
 CSS data loaded in memory
 ## `length`
@@ -6735,9 +6394,6 @@ the length of `data` in bytes, or -1 for NUL terminated strings. If
 <!-- impl CssProvider::fn load_from_file -->
 Loads the data contained in `file` into `self`, making it
 clear any previously loaded information.
-
-# Parameters
-
 ## `file`
 `gio::File` pointing to a file to load
 
@@ -6750,9 +6406,6 @@ clear any previously loaded information.
 <!-- impl CssProvider::fn load_from_path -->
 Loads the data contained in `path` into `self`, making it clear
 any previously loaded information.
-
-# Parameters
-
 ## `path`
 the path of a filename to load, in the GLib filename encoding
 
@@ -6768,9 +6421,6 @@ the `CssProvider`, clearing any previously loaded information.
 
 To track errors while loading CSS, connect to the
 `CssProvider::parsing-error` signal.
-
-# Parameters
-
 ## `resource_path`
 a `gio::Resource` resource path
 <!-- impl CssProvider::fn to_string -->
@@ -6785,6 +6435,76 @@ this `self`.
 # Returns
 
 a new string representing the `self`.
+<!-- enum CssProviderError -->
+Error codes for `GTK_CSS_PROVIDER_ERROR`.
+<!-- enum CssProviderError::variant Failed -->
+Failed.
+<!-- enum CssProviderError::variant Syntax -->
+Syntax error.
+<!-- enum CssProviderError::variant Import -->
+Import error.
+<!-- enum CssProviderError::variant Name -->
+Name error.
+<!-- enum CssProviderError::variant Deprecated -->
+Deprecation error.
+<!-- enum CssProviderError::variant UnknownValue -->
+Unknown value.
+<!-- enum CssSectionType -->
+The different types of sections indicate parts of a CSS document as
+parsed by GTK’s CSS parser. They are oriented towards the
+[CSS Grammar](http://www.w3.org/TR/CSS21/grammar.html),
+but may contain extensions.
+
+More types might be added in the future as the parser incorporates
+more features.
+<!-- enum CssSectionType::variant Document -->
+The section describes a complete document.
+ This section time is the only one where `CssSection::get_parent`
+ might return `None`.
+<!-- enum CssSectionType::variant Import -->
+The section defines an import rule.
+<!-- enum CssSectionType::variant ColorDefinition -->
+The section defines a color. This
+ is a GTK extension to CSS.
+<!-- enum CssSectionType::variant BindingSet -->
+The section defines a binding set. This
+ is a GTK extension to CSS.
+<!-- enum CssSectionType::variant Ruleset -->
+The section defines a CSS ruleset.
+<!-- enum CssSectionType::variant Selector -->
+The section defines a CSS selector.
+<!-- enum CssSectionType::variant Declaration -->
+The section defines the declaration of
+ a CSS variable.
+<!-- enum CssSectionType::variant Value -->
+The section defines the value of a CSS declaration.
+<!-- enum CssSectionType::variant Keyframes -->
+The section defines keyframes. See [CSS
+ Animations](http://dev.w3.org/csswg/css3-animations/`keyframes`) for details. Since 3.6
+<!-- enum DeleteType -->
+See also: `Entry::delete-from-cursor`.
+<!-- enum DeleteType::variant Chars -->
+Delete characters.
+<!-- enum DeleteType::variant WordEnds -->
+Delete only the portion of the word to the
+ left/right of cursor if we’re in the middle of a word.
+<!-- enum DeleteType::variant Words -->
+Delete words.
+<!-- enum DeleteType::variant DisplayLines -->
+Delete display-lines. Display-lines
+ refers to the visible lines, with respect to to the current line
+ breaks. As opposed to paragraphs, which are defined by line
+ breaks in the input.
+<!-- enum DeleteType::variant DisplayLineEnds -->
+Delete only the portion of the
+ display-line to the left/right of cursor.
+<!-- enum DeleteType::variant ParagraphEnds -->
+Delete to the end of the
+ paragraph. Like C-k in Emacs (or its reverse).
+<!-- enum DeleteType::variant Paragraphs -->
+Delete entire line. Like C-k in pico.
+<!-- enum DeleteType::variant Whitespace -->
+Delete only whitespace. Like M-\ in Emacs.
 <!-- struct Dialog -->
 Dialog boxes are a convenient way to prompt the user for a small amount
 of input, e.g. to display a message, ask a question, or anything else
@@ -6911,6 +6631,10 @@ An example of a `Dialog` UI definition fragment:
 [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait DialogExt -->
 Trait containing all `Dialog` methods.
+
+# Implementors
+
+[`AboutDialog`](struct.AboutDialog.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`Dialog`](struct.Dialog.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`MessageDialog`](struct.MessageDialog.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html)
 <!-- impl Dialog::fn new -->
 Creates a new dialog box.
 
@@ -6953,9 +6677,6 @@ Here’s a simple example:
                                        GTK_RESPONSE_REJECT,
                                        NULL);
 ```
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -6975,9 +6696,6 @@ signal on the dialog when the widget is activated. The widget is
 appended to the end of the dialog’s action area. If you want to add a
 non-activatable widget, simply pack it into the `action_area` field
 of the `Dialog` struct.
-
-# Parameters
-
 ## `child`
 an activatable widget
 ## `response_id`
@@ -6988,9 +6706,6 @@ clicking the button will emit the `Dialog::response` signal with
 the given `response_id`. The button is appended to the end of the
 dialog’s action area. The button widget is returned, but usually
 you don’t need it.
-
-# Parameters
-
 ## `button_text`
 text of button
 ## `response_id`
@@ -7004,9 +6719,6 @@ Adds more buttons, same as calling `DialogExt::add_button`
 repeatedly. The variable argument list should be `None`-terminated
 as with `Dialog::new_with_buttons`. Each button must have both
 text and response ID.
-
-# Parameters
-
 ## `first_button_text`
 button text
 <!-- trait DialogExt::fn get_action_area -->
@@ -7037,9 +6749,6 @@ the header bar
 <!-- trait DialogExt::fn get_response_for_widget -->
 Gets the response id of a widget in the action area
 of a dialog.
-
-# Parameters
-
 ## `widget`
 a widget in the action area of `self`
 
@@ -7050,9 +6759,6 @@ the response id of `widget`, or `ResponseType::None`
 <!-- trait DialogExt::fn get_widget_for_response -->
 Gets the widget button that uses the given response ID in the action area
 of a dialog.
-
-# Parameters
-
 ## `response_id`
 the response ID used by the `self` widget
 
@@ -7065,9 +6771,6 @@ Emits the `Dialog::response` signal with the given response ID.
 Used to indicate that the user has responded to the dialog in some way;
 typically either you or `DialogExt::run` will be monitoring the
 ::response signal and take appropriate action.
-
-# Parameters
-
 ## `response_id`
 response ID
 <!-- trait DialogExt::fn run -->
@@ -7160,9 +6863,6 @@ gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
 # Deprecated
 
 Deprecated
-
-# Parameters
-
 ## `first_response_id`
 a response id used by one `self`’s buttons
 <!-- trait DialogExt::fn set_alternative_button_order_from_array -->
@@ -7178,9 +6878,6 @@ This function is for use by language bindings.
 # Deprecated
 
 Deprecated
-
-# Parameters
-
 ## `n_params`
 the number of response ids in `new_order`
 ## `new_order`
@@ -7190,22 +6887,48 @@ an array of response ids of
 Sets the last widget in the dialog’s action area with the given `response_id`
 as the default widget for the dialog. Pressing “Enter” normally activates
 the default widget.
-
-# Parameters
-
 ## `response_id`
 a response ID
 <!-- trait DialogExt::fn set_response_sensitive -->
 Calls `gtk_widget_set_sensitive (widget, @setting)`
 for each widget in the dialog’s action area with the given `response_id`.
 A convenient way to sensitize/desensitize dialog buttons.
-
-# Parameters
-
 ## `response_id`
 a response ID
 ## `setting`
 `true` for sensitive
+<!-- enum DirectionType -->
+Focus movement types.
+<!-- enum DirectionType::variant TabForward -->
+Move forward.
+<!-- enum DirectionType::variant TabBackward -->
+Move backward.
+<!-- enum DirectionType::variant Up -->
+Move up.
+<!-- enum DirectionType::variant Down -->
+Move down.
+<!-- enum DirectionType::variant Left -->
+Move left.
+<!-- enum DirectionType::variant Right -->
+Move right.
+<!-- enum DragResult -->
+Gives an indication why a drag operation failed.
+The value can by obtained by connecting to the
+`Widget::drag-failed` signal.
+<!-- enum DragResult::variant Success -->
+The drag operation was successful.
+<!-- enum DragResult::variant NoTarget -->
+No suitable drag target.
+<!-- enum DragResult::variant UserCancelled -->
+The user cancelled the drag operation.
+<!-- enum DragResult::variant TimeoutExpired -->
+The drag operation timed out.
+<!-- enum DragResult::variant GrabBroken -->
+The pointer or keyboard grab used
+ for the drag operation was broken.
+<!-- enum DragResult::variant Error -->
+The drag operation failed due to some
+ unspecified error.
 <!-- struct DrawingArea -->
 The `DrawingArea` widget is used for creating custom user interface
 elements. It’s essentially a blank widget; you can draw on it. After
@@ -7337,6 +7060,10 @@ insert_text_handler (GtkEditable *editable,
 [`EditableExt`](trait.EditableExt.html)
 <!-- trait EditableExt -->
 Trait containing all `Editable` methods.
+
+# Implementors
+
+[`Editable`](struct.Editable.html), [`Entry`](struct.Entry.html), [`SearchEntry`](struct.SearchEntry.html), [`SpinButton`](struct.SpinButton.html)
 <!-- trait EditableExt::fn copy_clipboard -->
 Copies the contents of the currently selected content in the editable and
 puts it on the clipboard.
@@ -7353,9 +7080,6 @@ those characters at positions from `start_pos` up to, but not including
 are those from `start_pos` to the end of the text.
 
 Note that the positions are specified in characters, not bytes.
-
-# Parameters
-
 ## `start_pos`
 start position
 ## `end_pos`
@@ -7367,9 +7091,6 @@ including `end_pos`. If `end_pos` is negative, then the characters
 retrieved are those characters from `start_pos` to the end of the text.
 
 Note that positions are specified in characters, not bytes.
-
-# Parameters
-
 ## `start_pos`
 start of text
 ## `end_pos`
@@ -7402,9 +7123,6 @@ with the start of the selection and `end_pos` with end. If no text was
 selected both will be identical and `false` will be returned.
 
 Note that positions are specified in characters, not bytes.
-
-# Parameters
-
 ## `start_pos`
 location to store the starting position, or `None`
 ## `end_pos`
@@ -7419,9 +7137,6 @@ widget, at position `position`.
 
 Note that the position is in characters, not in bytes.
 The function updates `position` to point after the newly inserted text.
-
-# Parameters
-
 ## `new_text`
 the text to append
 ## `new_text_length`
@@ -7439,9 +7154,6 @@ characters selected are those characters from `start_pos` to
 the end of the text.
 
 Note that positions are specified in characters, not bytes.
-
-# Parameters
-
 ## `start_pos`
 start of region
 ## `end_pos`
@@ -7449,9 +7161,6 @@ end of region
 <!-- trait EditableExt::fn set_editable -->
 Determines if the user can edit the text in the editable
 widget or not.
-
-# Parameters
-
 ## `is_editable`
 `true` if the user is allowed to edit the text
  in the widget
@@ -7463,9 +7172,6 @@ index in the contents of the editable. The value must be less than or
 equal to the number of characters in the editable. A value of -1
 indicates that the position should be set after the last character
 of the editable. Note that `position` is in characters, not in bytes.
-
-# Parameters
-
 ## `position`
 the position of the cursor
 <!-- struct Entry -->
@@ -7510,6 +7216,10 @@ via the context menu of the entry.
 [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- trait EntryExt -->
 Trait containing all `Entry` methods.
+
+# Implementors
+
+[`Entry`](struct.Entry.html), [`SearchEntry`](struct.SearchEntry.html), [`SpinButton`](struct.SpinButton.html)
 <!-- impl Entry::fn new -->
 Creates a new entry.
 
@@ -7518,9 +7228,6 @@ Creates a new entry.
 a new `Entry`.
 <!-- impl Entry::fn new_with_buffer -->
 Creates a new entry with the specified text buffer.
-
-# Parameters
-
 ## `buffer`
 The buffer to use for the new `Entry`.
 
@@ -7588,9 +7295,6 @@ Gets the value set by `EntryExt::set_has_frame`.
 whether the entry has a beveled frame
 <!-- trait EntryExt::fn get_icon_activatable -->
 Returns whether the icon is activatable.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7606,9 +7310,6 @@ If the entry is not realized or has no icon at the given position,
 `icon_area` is filled with zeros.
 
 See also `EntryExt::get_text_area`
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 ## `icon_area`
@@ -7619,9 +7320,6 @@ position’s coordinates are relative to the `self`’s top left corner.
 If `x`, `y` doesn’t lie inside an icon, -1 is returned.
 This function is intended for use in a `Widget::query-tooltip`
 signal handler.
-
-# Parameters
-
 ## `x`
 the x coordinate of the position to find
 ## `y`
@@ -7634,9 +7332,6 @@ the index of the icon at the given position, or -1
 Retrieves the `gio::Icon` used for the icon, or `None` if there is
 no icon or if the icon was set by some other method (e.g., by
 stock, pixbuf, or icon name).
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7648,9 +7343,6 @@ A `gio::Icon`, or `None` if no icon is set
 Retrieves the icon name used for the icon, or `None` if there is
 no icon or if the icon was set by some other method (e.g., by
 pixbuf, stock or gicon).
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7664,9 +7356,6 @@ Retrieves the image used for the icon.
 Unlike the other methods of setting and getting icon data, this
 method will work regardless of whether the icon was set using a
 `gdk_pixbuf::Pixbuf`, a `gio::Icon`, a stock item, or an icon name.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7676,9 +7365,6 @@ A `gdk_pixbuf::Pixbuf`, or `None` if no icon is
  set for this position.
 <!-- trait EntryExt::fn get_icon_sensitive -->
 Returns whether the icon appears sensitive or insensitive.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7693,9 +7379,6 @@ pixbuf, icon name or gicon).
 # Deprecated
 
 Use `EntryExt::get_icon_name` instead.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7707,9 +7390,6 @@ A stock id, or `None` if no icon is set or if the icon
 Gets the type of representation being used by the icon
 to store image data. If the icon has no image data,
 the return value will be `ImageType::Empty`.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 
@@ -7719,9 +7399,6 @@ image representation being used
 <!-- trait EntryExt::fn get_icon_tooltip_markup -->
 Gets the contents of the tooltip on the icon at the specified
 position in `self`.
-
-# Parameters
-
 ## `icon_pos`
 the icon position
 
@@ -7732,9 +7409,6 @@ the tooltip text, or `None`. Free the returned
 <!-- trait EntryExt::fn get_icon_tooltip_text -->
 Gets the contents of the tooltip on the icon at the specified
 position in `self`.
-
-# Parameters
-
 ## `icon_pos`
 the icon position
 
@@ -7803,9 +7477,6 @@ Keep in mind that the layout text may contain a preedit string, so
 `EntryExt::layout_index_to_text_index` and
 `EntryExt::text_index_to_layout_index` are needed to convert byte
 indices in the layout to byte indices in the entry contents.
-
-# Parameters
-
 ## `x`
 location to store X offset of layout, or `None`
 ## `y`
@@ -7893,9 +7564,6 @@ useful when drawing something to the entry in a draw callback.
 If the entry is not realized, `text_area` is filled with zeros.
 
 See also `EntryExt::get_icon_area`.
-
-# Parameters
-
 ## `text_area`
 Return location for the text area.
 <!-- trait EntryExt::fn get_text_length -->
@@ -7947,9 +7615,6 @@ when overriding key event handling. This is needed in the case when
 you need to insert your own key handling between the input method
 and the default key event handling of the `Entry`.
 See `TextView::reset_im_context` for an example of use.
-
-# Parameters
-
 ## `event`
 the key event
 
@@ -7961,9 +7626,6 @@ Converts from a position in the entry contents (returned
 by `EntryExt::get_text`) to a position in the
 entry’s `pango::Layout` (returned by `EntryExt::get_layout`,
 with text retrieved via `pango::Layout::get_text`).
-
-# Parameters
-
 ## `layout_index`
 byte index into the entry layout text
 
@@ -7991,35 +7653,23 @@ widget is usually one of the dialog buttons.
 (For experts: if `setting` is `true`, the entry calls
 `Window::activate_default` on the window containing the entry, in
 the default handler for the `Entry::activate` signal.)
-
-# Parameters
-
 ## `setting`
 `true` to activate window’s default widget on Enter keypress
 <!-- trait EntryExt::fn set_alignment -->
 Sets the alignment for the contents of the entry. This controls
 the horizontal positioning of the contents when the displayed
 text is shorter than the width of the entry.
-
-# Parameters
-
 ## `xalign`
 The horizontal alignment, from 0 (left) to 1 (right).
  Reversed for RTL layouts
 <!-- trait EntryExt::fn set_attributes -->
 Sets a `pango::AttrList`; the attributes in the list are applied to the
 entry text.
-
-# Parameters
-
 ## `attrs`
 a `pango::AttrList`
 <!-- trait EntryExt::fn set_buffer -->
 Set the `EntryBuffer` object which holds the text for
 this widget.
-
-# Parameters
-
 ## `buffer`
 a `EntryBuffer`
 <!-- trait EntryExt::fn set_completion -->
@@ -8027,9 +7677,6 @@ Sets `completion` to be the auxiliary completion object to use with `self`.
 All further configuration of the completion mechanism is done on
 `completion` using the `EntryCompletion` API. Completion is disabled if
 `completion` is set to `None`.
-
-# Parameters
-
 ## `completion`
 The `EntryCompletion` or `None`
 <!-- trait EntryExt::fn set_cursor_hadjustment -->
@@ -8040,24 +7687,15 @@ the adjustment.
 
 The adjustment has to be in pixel units and in the same coordinate system
 as the entry.
-
-# Parameters
-
 ## `adjustment`
 an adjustment which should be adjusted when the cursor
  is moved, or `None`
 <!-- trait EntryExt::fn set_has_frame -->
 Sets whether the entry has a beveled frame around it.
-
-# Parameters
-
 ## `setting`
 new value
 <!-- trait EntryExt::fn set_icon_activatable -->
 Sets whether the icon is activatable.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 ## `activatable`
@@ -8076,9 +7714,6 @@ By default, GTK+ uses the icon as the drag icon. You can use the
 `Widget::drag-begin` signal to set a different icon. Note that you
 have to use `g_signal_connect_after` to ensure that your signal handler
 gets executed after the default handler.
-
-# Parameters
-
 ## `icon_pos`
 icon position
 ## `target_list`
@@ -8092,9 +7727,6 @@ If the icon isn’t known, a “broken image” icon will be displayed
 instead.
 
 If `icon` is `None`, no icon will be shown in the specified position.
-
-# Parameters
-
 ## `icon_pos`
 The position at which to set the icon
 ## `icon`
@@ -8107,9 +7739,6 @@ If the icon name isn’t known, a “broken image” icon will be displayed
 instead.
 
 If `icon_name` is `None`, no icon will be shown in the specified position.
-
-# Parameters
-
 ## `icon_pos`
 The position at which to set the icon
 ## `icon_name`
@@ -8118,9 +7747,6 @@ An icon name, or `None`
 Sets the icon shown in the specified position using a pixbuf.
 
 If `pixbuf` is `None`, no icon will be shown in the specified position.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 ## `pixbuf`
@@ -8134,18 +7760,12 @@ If `stock_id` is `None`, no icon will be shown in the specified position.
 # Deprecated
 
 Use `EntryExt::set_icon_from_icon_name` instead.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 ## `stock_id`
 The name of the stock item, or `None`
 <!-- trait EntryExt::fn set_icon_sensitive -->
 Sets the sensitivity for the specified icon.
-
-# Parameters
-
 ## `icon_pos`
 Icon position
 ## `sensitive`
@@ -8160,9 +7780,6 @@ Use `None` for `tooltip` to remove an existing tooltip.
 
 See also `Widget::set_tooltip_markup` and
 `EntryExt::set_icon_tooltip_text`.
-
-# Parameters
-
 ## `icon_pos`
 the icon position
 ## `tooltip`
@@ -8175,9 +7792,6 @@ Use `None` for `tooltip` to remove an existing tooltip.
 
 See also `Widget::set_tooltip_text` and
 `EntryExt::set_icon_tooltip_markup`.
-
-# Parameters
-
 ## `icon_pos`
 the icon position
 ## `tooltip`
@@ -8197,26 +7811,17 @@ pixel-exact positioning of the entry is important.
 Use the standard border and padding CSS properties (through
  objects like `StyleContext` and `CssProvider`); the value set with
  this function is ignored by `Entry`.
-
-# Parameters
-
 ## `border`
 a `Border`, or `None`
 <!-- trait EntryExt::fn set_input_hints -->
 Sets the `Entry:input-hints` property, which
 allows input methods to fine-tune their behaviour.
-
-# Parameters
-
 ## `hints`
 the hints
 <!-- trait EntryExt::fn set_input_purpose -->
 Sets the `Entry:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
-
-# Parameters
-
 ## `purpose`
 the purpose
 <!-- trait EntryExt::fn set_invisible_char -->
@@ -8227,9 +7832,6 @@ show the user how many characters have been typed. By default, GTK+
 picks the best invisible char available in the current font. If you
 set the invisible char to 0, then the user will get no feedback
 at all; there will be no text on the screen as they type.
-
-# Parameters
-
 ## `ch`
 a Unicode character
 <!-- trait EntryExt::fn set_max_length -->
@@ -8245,25 +7847,16 @@ GtkEntryBuffer *buffer;
 buffer = gtk_entry_get_buffer (entry);
 gtk_entry_buffer_set_max_length (buffer, max);
 ```
-
-# Parameters
-
 ## `max`
 the maximum length of the entry, or 0 for no maximum.
  (other than the maximum length of entries.) The value passed in will
  be clamped to the range 0-65536.
 <!-- trait EntryExt::fn set_max_width_chars -->
 Sets the desired maximum width in characters of `self`.
-
-# Parameters
-
 ## `n_chars`
 the new desired maximum width, in characters
 <!-- trait EntryExt::fn set_overwrite_mode -->
 Sets whether the text is overwritten when typing in the `Entry`.
-
-# Parameters
-
 ## `overwrite`
 new value
 <!-- trait EntryExt::fn set_placeholder_text -->
@@ -8276,34 +7869,22 @@ received focus, using this feature is a bit problematic if the entry
 is given the initial focus in a window. Sometimes this can be
 worked around by delaying the initial focus setting until the
 first key event arrives.
-
-# Parameters
-
 ## `text`
 a string to be displayed when `self` is empty an unfocused, or `None`
 <!-- trait EntryExt::fn set_progress_fraction -->
 Causes the entry’s progress indicator to “fill in” the given
 fraction of the bar. The fraction should be between 0.0 and 1.0,
 inclusive.
-
-# Parameters
-
 ## `fraction`
 fraction of the task that’s been completed
 <!-- trait EntryExt::fn set_progress_pulse_step -->
 Sets the fraction of total entry width to move the progress
 bouncing block for each call to `EntryExt::progress_pulse`.
-
-# Parameters
-
 ## `fraction`
 fraction between 0.0 and 1.0
 <!-- trait EntryExt::fn set_tabs -->
 Sets a `pango::TabArray`; the tabstops in the array are applied to the entry
 text.
-
-# Parameters
-
 ## `tabs`
 a `pango::TabArray`
 <!-- trait EntryExt::fn set_text -->
@@ -8311,9 +7892,6 @@ Sets the text in the widget to the given
 value, replacing the current contents.
 
 See `EntryBuffer::set_text`.
-
-# Parameters
-
 ## `text`
 the new text
 <!-- trait EntryExt::fn set_visibility -->
@@ -8330,9 +7908,6 @@ Note that you probably want to set `Entry:input-purpose`
 to `InputPurpose::Password` or `InputPurpose::Pin` to
 inform input methods about the purpose of this entry,
 in addition to setting visibility to `false`.
-
-# Parameters
-
 ## `visible`
 `true` if the contents of the entry are displayed
  as plaintext
@@ -8342,18 +7917,12 @@ for `n_chars` characters. Note that it changes the size
 request, the size can still be affected by
 how you pack the widget into containers. If `n_chars` is -1, the
 size reverts to the default entry size.
-
-# Parameters
-
 ## `n_chars`
 width in chars
 <!-- trait EntryExt::fn text_index_to_layout_index -->
 Converts from a position in the entry’s `pango::Layout` (returned by
 `EntryExt::get_layout`) to a position in the entry contents
 (returned by `EntryExt::get_text`).
-
-# Parameters
-
 ## `text_index`
 byte index into the entry contents
 
@@ -8364,6 +7933,133 @@ byte index into the entry layout text
 Unsets the invisible char previously set with
 `EntryExt::set_invisible_char`. So that the
 default invisible char is used again.
+<!-- struct EntryBuffer -->
+The `EntryBuffer` class contains the actual text displayed in a
+`Entry` widget.
+
+A single `EntryBuffer` object can be shared by multiple `Entry`
+widgets which will then share the same text content, but not the cursor
+position, visibility attributes, icon etc.
+
+`EntryBuffer` may be derived from. Such a derived class might allow
+text to be stored in an alternate location, such as non-pageable memory,
+useful in the case of important passwords. Or a derived class could
+integrate with an application’s concept of undo/redo.
+<!-- impl EntryBuffer::fn new -->
+Create a new `EntryBuffer` object.
+
+Optionally, specify initial text to set in the buffer.
+## `initial_chars`
+initial buffer text, or `None`
+## `n_initial_chars`
+number of characters in `initial_chars`, or -1
+
+# Returns
+
+A new `EntryBuffer` object.
+<!-- impl EntryBuffer::fn delete_text -->
+Deletes a sequence of characters from the buffer. `n_chars` characters are
+deleted starting at `position`. If `n_chars` is negative, then all characters
+until the end of the text are deleted.
+
+If `position` or `n_chars` are out of bounds, then they are coerced to sane
+values.
+
+Note that the positions are specified in characters, not bytes.
+## `position`
+position at which to delete text
+## `n_chars`
+number of characters to delete
+
+# Returns
+
+The number of characters deleted.
+<!-- impl EntryBuffer::fn emit_deleted_text -->
+Used when subclassing `EntryBuffer`
+## `position`
+position at which text was deleted
+## `n_chars`
+number of characters deleted
+<!-- impl EntryBuffer::fn emit_inserted_text -->
+Used when subclassing `EntryBuffer`
+## `position`
+position at which text was inserted
+## `chars`
+text that was inserted
+## `n_chars`
+number of characters inserted
+<!-- impl EntryBuffer::fn get_bytes -->
+Retrieves the length in bytes of the buffer.
+See `EntryBuffer::get_length`.
+
+# Returns
+
+The byte length of the buffer.
+<!-- impl EntryBuffer::fn get_length -->
+Retrieves the length in characters of the buffer.
+
+# Returns
+
+The number of characters in the buffer.
+<!-- impl EntryBuffer::fn get_max_length -->
+Retrieves the maximum allowed length of the text in
+`self`. See `EntryBuffer::set_max_length`.
+
+# Returns
+
+the maximum allowed number of characters
+ in `EntryBuffer`, or 0 if there is no maximum.
+<!-- impl EntryBuffer::fn get_text -->
+Retrieves the contents of the buffer.
+
+The memory pointer returned by this call will not change
+unless this object emits a signal, or is finalized.
+
+# Returns
+
+a pointer to the contents of the widget as a
+ string. This string points to internally allocated
+ storage in the buffer and must not be freed, modified or
+ stored.
+<!-- impl EntryBuffer::fn insert_text -->
+Inserts `n_chars` characters of `chars` into the contents of the
+buffer, at position `position`.
+
+If `n_chars` is negative, then characters from chars will be inserted
+until a null-terminator is found. If `position` or `n_chars` are out of
+bounds, or the maximum buffer text length is exceeded, then they are
+coerced to sane values.
+
+Note that the position and length are in characters, not in bytes.
+## `position`
+the position at which to insert text.
+## `chars`
+the text to insert into the buffer.
+## `n_chars`
+the length of the text in characters, or -1
+
+# Returns
+
+The number of characters actually inserted.
+<!-- impl EntryBuffer::fn set_max_length -->
+Sets the maximum allowed length of the contents of the buffer. If
+the current contents are longer than the given length, then they
+will be truncated to fit.
+## `max_length`
+the maximum length of the entry buffer, or 0 for no maximum.
+ (other than the maximum length of entries.) The value passed in will
+ be clamped to the range 0-65536.
+<!-- impl EntryBuffer::fn set_text -->
+Sets the text in the buffer.
+
+This is roughly equivalent to calling `EntryBuffer::delete_text`
+and `EntryBuffer::insert_text`.
+
+Note that `n_chars` is in characters, not in bytes.
+## `chars`
+the new text
+## `n_chars`
+the number of characters in `text`, or -1
 <!-- struct EntryCompletion -->
 `EntryCompletion` is an auxiliary object to be used in conjunction with
 `Entry` to provide the completion functionality. It implements the
@@ -8419,9 +8115,6 @@ A newly created `EntryCompletion` object
 Creates a new `EntryCompletion` object using the
 specified `area` to layout cells in the underlying
 `TreeViewColumn` for the drop-down menu.
-
-# Parameters
-
 ## `area`
 the `CellArea` used to layout cells
 
@@ -8437,9 +8130,6 @@ Computes the common prefix that is shared by all rows in `self`
 that start with `key`. If no row matches `key`, `None` will be returned.
 Note that a text column must have been set for this function to work,
 see `EntryCompletion::set_text_column` for details.
-
-# Parameters
-
 ## `key`
 The text to complete for
 
@@ -8449,9 +8139,6 @@ The common prefix all rows starting with `key`
  or `None` if no row matches `key`.
 <!-- impl EntryCompletion::fn delete_action -->
 Deletes the action at `index_` from `self`’s action list.
-
-# Parameters
-
 ## `index_`
 the index of the item to delete
 <!-- impl EntryCompletion::fn get_completion_prefix -->
@@ -8525,9 +8212,6 @@ the column containing the strings
 <!-- impl EntryCompletion::fn insert_action_markup -->
 Inserts an action in `self`’s action item list at position `index_`
 with markup `markup`.
-
-# Parameters
-
 ## `index_`
 the index of the item to insert
 ## `markup`
@@ -8536,9 +8220,6 @@ markup of the item to insert
 Inserts an action in `self`’s action item list at position `index_`
 with text `text`. If you want the action item to have markup, use
 `EntryCompletion::insert_action_markup`.
-
-# Parameters
-
 ## `index_`
 the index of the item to insert
 ## `text`
@@ -8548,26 +8229,17 @@ Requests a prefix insertion.
 <!-- impl EntryCompletion::fn set_inline_completion -->
 Sets whether the common prefix of the possible completions should
 be automatically inserted in the entry.
-
-# Parameters
-
 ## `inline_completion`
 `true` to do inline completion
 <!-- impl EntryCompletion::fn set_inline_selection -->
 Sets whether it is possible to cycle through the possible completions
 inside the entry.
-
-# Parameters
-
 ## `inline_selection`
 `true` to do inline selection
 <!-- impl EntryCompletion::fn set_match_func -->
 Sets the match function for `self` to be `func`. The match function
 is used to determine if a row should or should not be in the completion
 list.
-
-# Parameters
-
 ## `func`
 the ``GtkEntryCompletionMatchFunc`` to use
 ## `func_data`
@@ -8579,42 +8251,27 @@ Requires the length of the search key for `self` to be at least
 `length`. This is useful for long lists, where completing using a small
 key takes a lot of time and will come up with meaningless results anyway
 (ie, a too large dataset).
-
-# Parameters
-
 ## `length`
 the minimum length of the key in order to start completing
 <!-- impl EntryCompletion::fn set_model -->
 Sets the model for a `EntryCompletion`. If `self` already has
 a model set, it will remove it before setting the new model.
 If model is `None`, then it will unset the model.
-
-# Parameters
-
 ## `model`
 the `TreeModel`
 <!-- impl EntryCompletion::fn set_popup_completion -->
 Sets whether the completions should be presented in a popup window.
-
-# Parameters
-
 ## `popup_completion`
 `true` to do popup completion
 <!-- impl EntryCompletion::fn set_popup_set_width -->
 Sets whether the completion popup window will be resized to be the same
 width as the entry.
-
-# Parameters
-
 ## `popup_set_width`
 `true` to make the width of the popup the same as the entry
 <!-- impl EntryCompletion::fn set_popup_single_match -->
 Sets whether the completion popup window will appear even if there is
 only a single match. You may want to set this to `false` if you
 are using [inline completion][`EntryCompletion`--inline-completion].
-
-# Parameters
-
 ## `popup_single_match`
 `true` if the popup should appear even for a single
  match
@@ -8628,11 +8285,14 @@ This functions creates and adds a `CellRendererText` for the selected
 column. If you need to set the text column, but don't want the cell
 renderer, use `gobject::Object::set` to set the `EntryCompletion:text-column`
 property directly.
-
-# Parameters
-
 ## `column`
 the column in the model of `self` to get strings from
+<!-- enum EntryIconPosition -->
+Specifies the side of the entry at which an icon is placed.
+<!-- enum EntryIconPosition::variant Primary -->
+At the beginning of the entry (depending on the text direction).
+<!-- enum EntryIconPosition::variant Secondary -->
+At the end of the entry (depending on the text direction).
 <!-- struct EventBox -->
 The `EventBox` widget is a subclass of `Bin` which also has its
 own window. It is useful since it allows you to catch events for widgets
@@ -8671,9 +8331,6 @@ is below, events in windows of child widgets will first got to that
 widget, and then to its parents.
 
 The default is to keep the window below the child.
-
-# Parameters
-
 ## `above_child`
 `true` if the event box window is above its child
 <!-- impl EventBox::fn set_visible_window -->
@@ -8710,9 +8367,6 @@ it won’t be received by the event box.
 This problem doesn’t occur for visible event boxes, because in
 that case, the event box window is actually the ancestor of the
 descendant windows, not just at the same place on the screen.
-
-# Parameters
-
 ## `visible_window`
 `true` to make the event box have a visible window
 <!-- struct EventController -->
@@ -8725,6 +8379,10 @@ actions as a consequence of those.
 [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait EventControllerExt -->
 Trait containing all `EventController` methods.
+
+# Implementors
+
+[`EventController`](struct.EventController.html), [`Gesture`](struct.Gesture.html)
 <!-- trait EventControllerExt::fn get_propagation_phase -->
 Gets the propagation phase at which `self` handles events.
 
@@ -8740,9 +8398,6 @@ a `Widget`
 <!-- trait EventControllerExt::fn handle_event -->
 Feeds an events into `self`, so it can be interpreted
 and the controller actions triggered.
-
-# Parameters
-
 ## `event`
 a ``GdkEvent``
 
@@ -8760,11 +8415,16 @@ Sets the propagation phase at which a controller handles events.
 If `phase` is `PropagationPhase::None`, no automatic event handling will be
 performed, but other additional gesture maintenance will. In that phase,
 the events can be managed by calling `EventControllerExt::handle_event`.
-
-# Parameters
-
 ## `phase`
 a propagation phase
+<!-- enum EventSequenceState -->
+Describes the state of a `gdk::EventSequence` in a `Gesture`.
+<!-- enum EventSequenceState::variant None -->
+The sequence is handled, but not grabbed.
+<!-- enum EventSequenceState::variant Claimed -->
+The sequence is handled and grabbed.
+<!-- enum EventSequenceState::variant Denied -->
+The sequence is denied.
 <!-- struct Expander -->
 A `Expander` allows the user to hide or show its child by clicking
 on an expander triangle similar to the triangles used in a `TreeView`.
@@ -8837,9 +8497,6 @@ An example of a UI definition fragment with `Expander`:
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl Expander::fn new -->
 Creates a new expander using `label` as the text of the label.
-
-# Parameters
-
 ## `label`
 the text of the label
 
@@ -8853,9 +8510,6 @@ If you need a literal underscore character in a label, use “__” (two
 underscores). The first underlined character represents a keyboard
 accelerator called a mnemonic.
 Pressing Alt and that key activates the button.
-
-# Parameters
-
 ## `label`
 the text of the label with an underscore
  in front of the mnemonic character
@@ -8938,70 +8592,56 @@ indicates a mnemonic. See `Expander::set_use_underline`.
 Sets the state of the expander. Set to `true`, if you want
 the child widget to be revealed, and `false` if you want the
 child widget to be hidden.
-
-# Parameters
-
 ## `expanded`
 whether the child widget is revealed
 <!-- impl Expander::fn set_label -->
 Sets the text of the label of the expander to `label`.
 
 This will also clear any previously set labels.
-
-# Parameters
-
 ## `label`
 a string
 <!-- impl Expander::fn set_label_fill -->
 Sets whether the label widget should fill all available
 horizontal space allocated to `self`.
-
-# Parameters
-
 ## `label_fill`
 `true` if the label should should fill
  all available horizontal space
 <!-- impl Expander::fn set_label_widget -->
 Set the label widget for the expander. This is the widget
 that will appear embedded alongside the expander arrow.
-
-# Parameters
-
 ## `label_widget`
 the new label widget
 <!-- impl Expander::fn set_resize_toplevel -->
 Sets whether the expander will resize the toplevel widget
 containing the expander upon resizing and collpasing.
-
-# Parameters
-
 ## `resize_toplevel`
 whether to resize the toplevel
 <!-- impl Expander::fn set_spacing -->
 Sets the spacing field of `self`, which is the number of
 pixels to place between expander and the child.
-
-# Parameters
-
 ## `spacing`
 distance between the expander and child in pixels
 <!-- impl Expander::fn set_use_markup -->
 Sets whether the text of the label contains markup in
 [Pango’s text markup language][PangoMarkupFormat].
 See `Label::set_markup`.
-
-# Parameters
-
 ## `use_markup`
 `true` if the label’s text should be parsed for markup
 <!-- impl Expander::fn set_use_underline -->
 If true, an underline in the text of the expander label indicates
 the next character should be used for the mnemonic accelerator key.
-
-# Parameters
-
 ## `use_underline`
 `true` if underlines in the text indicate mnemonics
+<!-- enum ExpanderStyle -->
+Used to specify the style of the expanders drawn by a `TreeView`.
+<!-- enum ExpanderStyle::variant Collapsed -->
+The style used for a collapsed subtree.
+<!-- enum ExpanderStyle::variant SemiCollapsed -->
+Intermediate style used during animation.
+<!-- enum ExpanderStyle::variant SemiExpanded -->
+Intermediate style used during animation.
+<!-- enum ExpanderStyle::variant Expanded -->
+The style used for an expanded subtree.
 <!-- struct FileChooser -->
 `FileChooser` is an interface that can be implemented by file
 selection widgets. In GTK+, the main objects that implement this
@@ -9132,9 +8772,13 @@ the whole extra widget.
 
 # Implements
 
-[`FileChooserExt`](trait.FileChooserExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`FileChooserExt`](trait.FileChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FileChooserExt -->
 Trait containing all `FileChooser` methods.
+
+# Implementors
+
+[`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileChooser`](struct.FileChooser.html)
 <!-- trait FileChooserExt::fn add_filter -->
 Adds `filter` to the list of filters that the user can select between.
 When a filter is selected, only files that are passed by that
@@ -9142,9 +8786,6 @@ filter are displayed.
 
 Note that the `self` takes ownership of the filter, so you have to
 ref and sink it if you want to keep a reference.
-
-# Parameters
-
 ## `filter`
 a `FileFilter`
 <!-- trait FileChooserExt::fn add_shortcut_folder -->
@@ -9152,9 +8793,6 @@ Adds a folder to be displayed with the shortcut folders in a file chooser.
 Note that shortcut folders do not get saved, as they are provided by the
 application. For example, you can use this to add a
 “/usr/share/mydrawprogram/Clipart” folder to the volume list.
-
-# Parameters
-
 ## `folder`
 filename of the folder to add
 
@@ -9167,9 +8805,6 @@ Adds a folder URI to be displayed with the shortcut folders in a file
 chooser. Note that shortcut folders do not get saved, as they are provided
 by the application. For example, you can use this to add a
 “file:///usr/share/mydrawprogram/Clipart” folder to the volume list.
-
-# Parameters
-
 ## `uri`
 URI of the folder to add
 
@@ -9444,16 +9079,10 @@ Free the returned list with `glib::SList::free`, and the filenames with
 `g_free`.
 <!-- trait FileChooserExt::fn remove_filter -->
 Removes `filter` from the list of filters that the user can select between.
-
-# Parameters
-
 ## `filter`
 a `FileFilter`
 <!-- trait FileChooserExt::fn remove_shortcut_folder -->
 Removes a folder from a file chooser’s list of shortcut folders.
-
-# Parameters
-
 ## `folder`
 filename of the folder to remove
 
@@ -9465,9 +9094,6 @@ In the latter case, the `error` will be set as appropriate.
 See also: `FileChooser::add_shortcut_folder`
 <!-- trait FileChooserExt::fn remove_shortcut_folder_uri -->
 Removes a folder URI from a file chooser’s list of shortcut folders.
-
-# Parameters
-
 ## `uri`
 URI of the folder to remove
 
@@ -9482,9 +9108,6 @@ Selects all the files in the current folder of a file chooser.
 <!-- trait FileChooserExt::fn select_file -->
 Selects the file referred to by `file`. An internal function. See
 `_gtk_file_chooser_select_uri`.
-
-# Parameters
-
 ## `file`
 the file to select
 
@@ -9495,9 +9118,6 @@ Not useful.
 Selects a filename. If the file name isn’t in the current
 folder of `self`, then the current folder of `self` will
 be changed to the folder containing `filename`.
-
-# Parameters
-
 ## `filename`
 the filename to select
 
@@ -9510,9 +9130,6 @@ See also: `FileChooser::set_filename`
 Selects the file to by `uri`. If the URI doesn’t refer to a
 file in the current folder of `self`, then the current folder of
 `self` will be changed to the folder containing `filename`.
-
-# Parameters
-
 ## `uri`
 the URI to select
 
@@ -9525,18 +9142,12 @@ user interface is adapted to suit the selected action. For example,
 an option to create a new folder might be shown if the action is
 `FileChooserAction::Save` but not if the action is
 `FileChooserAction::Open`.
-
-# Parameters
-
 ## `action`
 the action that the file selector is performing
 <!-- trait FileChooserExt::fn set_create_folders -->
 Sets whether file choser will offer to create new folders.
 This is only relevant if the action is not set to be
 `FileChooserAction::Open`.
-
-# Parameters
-
 ## `create_folders`
 `true` if the Create Folder button should be displayed
 <!-- trait FileChooserExt::fn set_current_folder -->
@@ -9547,9 +9158,6 @@ plus user interface elements for navigating to other folders.
 In general, you should not use this function. See the
 [section on setting up a file chooser dialog][gtkfilechooserdialog-setting-up]
 for the rationale behind this.
-
-# Parameters
-
 ## `filename`
 the full path of the new current folder
 
@@ -9559,9 +9167,6 @@ Not useful.
 <!-- trait FileChooserExt::fn set_current_folder_file -->
 Sets the current folder for `self` from a `gio::File`.
 Internal function, see `FileChooser::set_current_folder_uri`.
-
-# Parameters
-
 ## `file`
 the `gio::File` for the new folder
 
@@ -9577,9 +9182,6 @@ plus user interface elements for navigating to other folders.
 In general, you should not use this function. See the
 [section on setting up a file chooser dialog][gtkfilechooserdialog-setting-up]
 for the rationale behind this.
-
-# Parameters
-
 ## `uri`
 the URI for the new current folder
 
@@ -9598,9 +9200,6 @@ If you want to preselect a particular existing file, you should use
 `FileChooser::set_filename` or `FileChooser::set_uri` instead.
 Please see the documentation for those functions for an example of using
 `FileChooser::set_current_name` as well.
-
-# Parameters
-
 ## `name`
 the filename to use, as a UTF-8 string
 <!-- trait FileChooserExt::fn set_do_overwrite_confirmation -->
@@ -9615,16 +9214,10 @@ If all you need is the stock confirmation dialog, set this property to `true`.
 You can override the way confirmation is done by actually handling the
 `FileChooser::confirm-overwrite` signal; please refer to its documentation
 for the details.
-
-# Parameters
-
 ## `do_overwrite_confirmation`
 whether to confirm overwriting in save mode
 <!-- trait FileChooserExt::fn set_extra_widget -->
 Sets an application-supplied widget to provide extra options to the user.
-
-# Parameters
-
 ## `extra_widget`
 widget for extra options
 <!-- trait FileChooserExt::fn set_file -->
@@ -9662,9 +9255,6 @@ else
     gtk_file_chooser_set_file (chooser, existing_file);
   }
 ```
-
-# Parameters
-
 ## `file`
 the `gio::File` to set as current
 
@@ -9705,9 +9295,6 @@ else
 In the first case, the file chooser will present the user with useful suggestions
 as to where to save his new file. In the second case, the file’s existing location
 is already known, so the file chooser will use it.
-
-# Parameters
-
 ## `filename`
 the filename to set as current
 
@@ -9721,9 +9308,6 @@ is non-empty, then the filter should be one of the filters
 in that list. Setting the current filter when the list of
 filters is empty is useful if you want to restrict the displayed
 set of files without letting the user change it.
-
-# Parameters
-
 ## `filter`
 a `FileFilter`
 <!-- trait FileChooserExt::fn set_local_only -->
@@ -9740,9 +9324,6 @@ rather than the URI functions like
 On some systems non-native files may still be
 available using the native filesystem via a userspace
 filesystem (FUSE).
-
-# Parameters
-
 ## `local_only`
 `true` if only local files can be selected
 <!-- trait FileChooserExt::fn set_preview_widget -->
@@ -9758,9 +9339,6 @@ Otherwise, set the preview inactive.
 When there is no application-supplied preview widget, or the
 application-supplied preview widget is not active, the file chooser
 will display no preview at all.
-
-# Parameters
-
 ## `preview_widget`
 widget for displaying preview.
 <!-- trait FileChooserExt::fn set_preview_widget_active -->
@@ -9770,25 +9348,16 @@ current filename. When `active` is set to false, the file chooser
 may display an internally generated preview of the current file
 or it may display no preview at all. See
 `FileChooser::set_preview_widget` for more details.
-
-# Parameters
-
 ## `active`
 whether to display the user-specified preview widget
 <!-- trait FileChooserExt::fn set_select_multiple -->
 Sets whether multiple files can be selected in the file selector. This is
 only relevant if the action is set to be `FileChooserAction::Open` or
 `FileChooserAction::SelectFolder`.
-
-# Parameters
-
 ## `select_multiple`
 `true` if multiple files can be selected.
 <!-- trait FileChooserExt::fn set_show_hidden -->
 Sets whether hidden files and folders are displayed in the file selector.
-
-# Parameters
-
 ## `show_hidden`
 `true` if hidden files and folders should be displayed.
 <!-- trait FileChooserExt::fn set_uri -->
@@ -9825,9 +9394,6 @@ else
 In the first case, the file chooser will present the user with useful suggestions
 as to where to save his new file. In the second case, the file’s existing location
 is already known, so the file chooser will use it.
-
-# Parameters
-
 ## `uri`
 the URI to set as current
 
@@ -9841,9 +9407,6 @@ want to draw the whole preview area themselves should set this to `false` and
 display the name themselves in their preview widget.
 
 See also: `FileChooser::set_preview_widget`
-
-# Parameters
-
 ## `use_label`
 whether to display a stock label with the name of the previewed file
 <!-- trait FileChooserExt::fn unselect_all -->
@@ -9851,29 +9414,53 @@ Unselects all the files in the current folder of a file chooser.
 <!-- trait FileChooserExt::fn unselect_file -->
 Unselects the file referred to by `file`. If the file is not in the current
 directory, does not exist, or is otherwise not currently selected, does nothing.
-
-# Parameters
-
 ## `file`
 a `gio::File`
 <!-- trait FileChooserExt::fn unselect_filename -->
 Unselects a currently selected filename. If the filename
 is not in the current directory, does not exist, or
 is otherwise not currently selected, does nothing.
-
-# Parameters
-
 ## `filename`
 the filename to unselect
 <!-- trait FileChooserExt::fn unselect_uri -->
 Unselects the file referred to by `uri`. If the file
 is not in the current directory, does not exist, or
 is otherwise not currently selected, does nothing.
-
-# Parameters
-
 ## `uri`
 the URI to unselect
+<!-- enum FileChooserAction -->
+Describes whether a `FileChooser` is being used to open existing files
+or to save to a possibly new file.
+<!-- enum FileChooserAction::variant Open -->
+Indicates open mode. The file chooser
+ will only let the user pick an existing file.
+<!-- enum FileChooserAction::variant Save -->
+Indicates save mode. The file chooser
+ will let the user pick an existing file, or type in a new
+ filename.
+<!-- enum FileChooserAction::variant SelectFolder -->
+Indicates an Open mode for
+ selecting folders. The file chooser will let the user pick an
+ existing folder.
+<!-- enum FileChooserAction::variant CreateFolder -->
+Indicates a mode for creating a
+ new folder. The file chooser will let the user name an existing or
+ new folder.
+<!-- enum FileChooserConfirmation -->
+Used as a return value of handlers for the
+`FileChooser::confirm-overwrite` signal of a `FileChooser`. This
+value determines whether the file chooser will present the stock
+confirmation dialog, accept the user’s choice of a filename, or
+let the user choose another filename.
+<!-- enum FileChooserConfirmation::variant Confirm -->
+The file chooser will present
+ its stock dialog to confirm about overwriting an existing file.
+<!-- enum FileChooserConfirmation::variant AcceptFilename -->
+The file chooser will
+ terminate and accept the user’s choice of a file name.
+<!-- enum FileChooserConfirmation::variant SelectAgain -->
+The file chooser will
+ continue running, so as to let the user select another file name.
 <!-- struct FileChooserDialog -->
 `FileChooserDialog` is a dialog box suitable for use with
 “File/Open” or “File/Save as” commands. This widget works by
@@ -10035,9 +9622,6 @@ when you use `FileChooserDialog` to ensure proper operation.
 <!-- impl FileChooserDialog::fn new -->
 Creates a new `FileChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -10050,6 +9634,18 @@ stock ID or text to go in the first button, or `None`
 # Returns
 
 a new `FileChooserDialog`
+<!-- enum FileChooserError -->
+These identify the various errors that can occur while calling
+`FileChooser` functions.
+<!-- enum FileChooserError::variant Nonexistent -->
+Indicates that a file does not exist.
+<!-- enum FileChooserError::variant BadFilename -->
+Indicates a malformed filename.
+<!-- enum FileChooserError::variant AlreadyExists -->
+Indicates a duplicate path (e.g. when
+ adding a bookmark).
+<!-- enum FileChooserError::variant IncompleteHostname -->
+Indicates an incomplete hostname (e.g. "http://foo" without a slash after that).
 <!-- struct FileChooserWidget -->
 `FileChooserWidget` is a widget for choosing files.
 It exposes the `FileChooser` interface, and you should
@@ -10058,14 +9654,11 @@ widget.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FileChooserExt`](trait.FileChooserExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- impl FileChooserWidget::fn new -->
 Creates a new `FileChooserWidget`. This is a file chooser widget that can
 be embedded in custom windows, and it is the same widget that is used by
 `FileChooserDialog`.
-
-# Parameters
-
 ## `action`
 Open or save mode for the widget
 
@@ -10138,9 +9731,6 @@ function. The bitfield `needed` which is passed in provides information
 about what sorts of information that the filter function needs;
 this allows GTK+ to avoid retrieving expensive information when
 it isn’t needed by the filter.
-
-# Parameters
-
 ## `needed`
 bitfield of flags indicating the information that the custom
  filter function needs.
@@ -10153,16 +9743,10 @@ data to pass to `func`
 function to call to free `data` when it is no longer needed.
 <!-- impl FileFilter::fn add_mime_type -->
 Adds a rule allowing a given mime type to `self`.
-
-# Parameters
-
 ## `mime_type`
 name of a MIME type
 <!-- impl FileFilter::fn add_pattern -->
 Adds a rule allowing a shell style glob to a filter.
-
-# Parameters
-
 ## `pattern`
 a shell style glob
 <!-- impl FileFilter::fn add_pixbuf_formats -->
@@ -10176,9 +9760,6 @@ the fields returned from `FileFilter::get_needed`.
 This function will not typically be used by applications; it
 is intended principally for use in the implementation of
 `FileChooser`.
-
-# Parameters
-
 ## `filter_info`
 a `FileFilterInfo` containing information
  about a file.
@@ -10210,9 +9791,6 @@ bitfield of flags indicating needed fields when
 Sets the human-readable name of the filter; this is the string
 that will be displayed in the file selector user interface if
 there is a selectable list of filters.
-
-# Parameters
-
 ## `name`
 the human-readable-name for the filter, or `None`
  to remove any existing name.
@@ -10265,9 +9843,6 @@ Creates a new `Fixed`.
 a new `Fixed`.
 <!-- impl Fixed::fn move -->
 Moves a child of a `Fixed` container to the given position.
-
-# Parameters
-
 ## `widget`
 the child widget.
 ## `x`
@@ -10276,9 +9851,6 @@ the horizontal position to move the widget to.
 the vertical position to move the widget to.
 <!-- impl Fixed::fn put -->
 Adds a widget to a `Fixed` container at the given position.
-
-# Parameters
-
 ## `widget`
 the widget to add.
 ## `x`
@@ -10328,9 +9900,6 @@ Returns whether children activate on single clicks.
  `false` otherwise
 <!-- impl FlowBox::fn get_child_at_index -->
 Gets the nth child in the `self`.
-
-# Parameters
-
 ## `idx`
 the position of the child
 
@@ -10392,9 +9961,6 @@ as `ContainerExt::add`.
 
 If `position` is -1, or larger than the total number of children
 in the `self`, then the `widget` will be appended to the end.
-
-# Parameters
-
 ## `widget`
 the `Widget` to add
 ## `position`
@@ -10418,9 +9984,6 @@ mode allows it.
 <!-- impl FlowBox::fn select_child -->
 Selects a single child of `self`, if the selection
 mode allows it.
-
-# Parameters
-
 ## `child`
 a child of `self`
 <!-- impl FlowBox::fn selected_foreach -->
@@ -10428,9 +9991,6 @@ Calls a function for each selected child.
 
 Note that the selection cannot be modified from within
 this function.
-
-# Parameters
-
 ## `func`
 the function to call for each selected child
 ## `data`
@@ -10438,17 +9998,11 @@ user data to pass to the function
 <!-- impl FlowBox::fn set_activate_on_single_click -->
 If `single` is `true`, children will be activated when you click
 on them, otherwise you need to double-click.
-
-# Parameters
-
 ## `single`
 `true` to emit child-activated on a single click
 <!-- impl FlowBox::fn set_column_spacing -->
 Sets the horizontal space to add between children.
 See the `FlowBox:column-spacing` property.
-
-# Parameters
-
 ## `spacing`
 the spacing to use
 <!-- impl FlowBox::fn set_filter_func -->
@@ -10460,9 +10014,6 @@ The `filter_func` will be called for each child after the call, and
 it will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) or when `FlowBox::invalidate_filter`
 is called.
-
-# Parameters
-
 ## `filter_func`
 callback that
  lets you filter which children to show
@@ -10481,9 +10032,6 @@ adjustment.
 The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
-
-# Parameters
-
 ## `adjustment`
 an adjustment which should be adjusted
  when the focus is moved among the descendents of `container`
@@ -10491,9 +10039,6 @@ an adjustment which should be adjusted
 Sets the `FlowBox:homogeneous` property of `self`, controlling
 whether or not all children of `self` are given equal space
 in the box.
-
-# Parameters
-
 ## `homogeneous`
 `true` to create equal allotments,
  `false` for variable allotments
@@ -10504,33 +10049,21 @@ allocate space for in `self`’s orientation.
 Setting the maximum number of children per line
 limits the overall natural size request to be no more
 than `n_children` children long in the given orientation.
-
-# Parameters
-
 ## `n_children`
 the maximum number of children per line
 <!-- impl FlowBox::fn set_min_children_per_line -->
 Sets the minimum number of children to line up
 in `self`’s orientation before flowing.
-
-# Parameters
-
 ## `n_children`
 the minimum number of children per line
 <!-- impl FlowBox::fn set_row_spacing -->
 Sets the vertical space to add between children.
 See the `FlowBox:row-spacing` property.
-
-# Parameters
-
 ## `spacing`
 the spacing to use
 <!-- impl FlowBox::fn set_selection_mode -->
 Sets how selection works in `self`.
 See `SelectionMode` for details.
-
-# Parameters
-
 ## `mode`
 the new selection mode
 <!-- impl FlowBox::fn set_sort_func -->
@@ -10542,9 +10075,6 @@ The `sort_func` will be called for each child after the call,
 and will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) and when `FlowBox::invalidate_sort`
 is called.
-
-# Parameters
-
 ## `sort_func`
 the sort function
 ## `user_data`
@@ -10562,9 +10092,6 @@ adjustment.
 The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
-
-# Parameters
-
 ## `adjustment`
 an adjustment which should be adjusted
  when the focus is moved among the descendents of `container`
@@ -10574,9 +10101,6 @@ mode allows it.
 <!-- impl FlowBox::fn unselect_child -->
 Unselects a single child of `self`, if the selection
 mode allows it.
-
-# Parameters
-
 ## `child`
 a child of `self`
 <!-- impl FlowBoxChild::fn new -->
@@ -10624,7 +10148,7 @@ It is suitable widget for selecting a font in a preference dialog.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontButton::fn new -->
 Creates a new font picker widget.
 
@@ -10633,9 +10157,6 @@ Creates a new font picker widget.
 a new font picker widget.
 <!-- impl FontButton::fn new_with_font -->
 Creates a new font picker widget.
-
-# Parameters
-
 ## `fontname`
 Name of font to display in font chooser dialog
 
@@ -10685,9 +10206,6 @@ Returns whether the selected size is used in the label.
 whether the selected size is used in the label.
 <!-- impl FontButton::fn set_font_name -->
 Sets or updates the currently-displayed font in font picker dialog.
-
-# Parameters
-
 ## `fontname`
 Name of font to display in font chooser dialog
 
@@ -10696,37 +10214,22 @@ Name of font to display in font chooser dialog
 `true`
 <!-- impl FontButton::fn set_show_size -->
 If `show_size` is `true`, the font size will be displayed along with the name of the selected font.
-
-# Parameters
-
 ## `show_size`
 `true` if font size should be displayed in dialog.
 <!-- impl FontButton::fn set_show_style -->
 If `show_style` is `true`, the font style will be displayed along with name of the selected font.
-
-# Parameters
-
 ## `show_style`
 `true` if font style should be displayed in label.
 <!-- impl FontButton::fn set_title -->
 Sets the title for the font chooser dialog.
-
-# Parameters
-
 ## `title`
 a string containing the font chooser dialog title
 <!-- impl FontButton::fn set_use_font -->
 If `use_font` is `true`, the font name will be written using the selected font.
-
-# Parameters
-
 ## `use_font`
 If `true`, font name will be written using font chosen.
 <!-- impl FontButton::fn set_use_size -->
 If `use_size` is `true`, the font name will be written using the selected size.
-
-# Parameters
-
 ## `use_size`
 If `true`, font name will be written using the selected size.
 <!-- struct FontChooser -->
@@ -10740,6 +10243,10 @@ that implement this interface are `FontChooserWidget`,
 [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- trait FontChooserExt -->
 Trait containing all `FontChooser` methods.
+
+# Implementors
+
+[`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`FontChooser`](struct.FontChooser.html)
 <!-- trait FontChooserExt::fn get_font -->
 Gets the currently-selected font name.
 
@@ -10819,9 +10326,6 @@ Returns whether the preview entry is shown or not.
 <!-- trait FontChooserExt::fn set_filter_func -->
 Adds a filter function that decides which fonts to display
 in the font chooser.
-
-# Parameters
-
 ## `filter`
 a ``GtkFontFilterFunc``, or `None`
 ## `user_data`
@@ -10830,31 +10334,19 @@ data to pass to `filter`
 function to call to free `data` when it is no longer needed
 <!-- trait FontChooserExt::fn set_font -->
 Sets the currently-selected font.
-
-# Parameters
-
 ## `fontname`
 a font name like “Helvetica 12” or “Times Bold 18”
 <!-- trait FontChooserExt::fn set_font_desc -->
 Sets the currently-selected font from `font_desc`.
-
-# Parameters
-
 ## `font_desc`
 a `pango::FontDescription`
 <!-- trait FontChooserExt::fn set_preview_text -->
 Sets the text displayed in the preview area.
 The `text` is used to show how the selected font looks.
-
-# Parameters
-
 ## `text`
 the text to display in the preview area
 <!-- trait FontChooserExt::fn set_show_preview_entry -->
 Shows or hides the editable preview entry.
-
-# Parameters
-
 ## `show_preview_entry`
 whether to show the editable preview entry or not
 <!-- struct FontChooserDialog -->
@@ -10872,9 +10364,6 @@ and “cancel_button”.
 [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserDialog::fn new -->
 Creates a new `FontChooserDialog`.
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -10900,7 +10389,7 @@ To change the text which is shown in the preview area, use
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FontChooserExt`](trait.FontChooserExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserWidget::fn new -->
 Creates a new `FontChooserWidget`.
 
@@ -10939,12 +10428,13 @@ An example of a UI definition fragment with `Frame`:
 [`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FrameExt -->
 Trait containing all `Frame` methods.
+
+# Implementors
+
+[`AspectFrame`](struct.AspectFrame.html), [`Frame`](struct.Frame.html)
 <!-- impl Frame::fn new -->
 Creates a new `Frame`, with optional label `label`.
 If `label` is `None`, the label is omitted.
-
-# Parameters
-
 ## `label`
 the text to use as the label of the frame
 
@@ -10966,9 +10456,6 @@ the text in the label, or `None` if there
 <!-- trait FrameExt::fn get_label_align -->
 Retrieves the X and Y alignment of the frame’s label. See
 `FrameExt::set_label_align`.
-
-# Parameters
-
 ## `xalign`
 location to store X alignment of
  frame’s label, or `None`
@@ -10993,17 +10480,11 @@ the current shadow type of the frame.
 <!-- trait FrameExt::fn set_label -->
 Sets the text of the label. If `label` is `None`,
 the current label is removed.
-
-# Parameters
-
 ## `label`
 the text to use as the label of the frame
 <!-- trait FrameExt::fn set_label_align -->
 Sets the alignment of the frame widget’s label. The
 default values for a newly created frame are 0.0 and 0.5.
-
-# Parameters
-
 ## `xalign`
 The position of the label along the top edge
  of the widget. A value of 0.0 represents left alignment;
@@ -11017,16 +10498,10 @@ The y alignment of the label. A value of 0.0 aligns under
 Sets the label widget for the frame. This is the widget that
 will appear embedded in the top edge of the frame as a
 title.
-
-# Parameters
-
 ## `label_widget`
 the new label widget
 <!-- trait FrameExt::fn set_shadow_type -->
 Sets the shadow type for `self`.
-
-# Parameters
-
 ## `type_`
 the new `ShadowType`
 <!-- struct GLArea -->
@@ -11189,9 +10664,6 @@ Returns whether the area has a stencil buffer.
 <!-- impl GLArea::fn get_required_version -->
 Retrieves the required version of OpenGL set
 using `GLArea::set_required_version`.
-
-# Parameters
-
 ## `major`
 return location for the required major version
 ## `minor`
@@ -11221,18 +10693,12 @@ around and will be used for drawing the widget the next time,
 unless the window is resized. In order to force a rendering
 `GLArea::queue_render` must be called. This mode is useful when
 the scene changes seldomly, but takes a long time to redraw.
-
-# Parameters
-
 ## `auto_render`
 a boolean
 <!-- impl GLArea::fn set_error -->
 Sets an error on the area which will be shown instead of the
 GL rendering. This is useful in the `GLArea::create-context`
 signal if GL context creation fails.
-
-# Parameters
-
 ## `error`
 a new `glib::Error`, or `None` to unset the error
 <!-- impl GLArea::fn set_has_alpha -->
@@ -11242,27 +10708,18 @@ result will be composited over whatever is below the widget.
 
 If `has_alpha` is `false` there will be no alpha channel, and the
 buffer will fully replace anything below the widget.
-
-# Parameters
-
 ## `has_alpha`
 `true` to add an alpha component
 <!-- impl GLArea::fn set_has_depth_buffer -->
 If `has_depth_buffer` is `true` the widget will allocate and
 enable a depth buffer for the target framebuffer. Otherwise
 there will be none.
-
-# Parameters
-
 ## `has_depth_buffer`
 `true` to add a depth buffer
 <!-- impl GLArea::fn set_has_stencil_buffer -->
 If `has_stencil_buffer` is `true` the widget will allocate and
 enable a stencil buffer for the target framebuffer. Otherwise
 there will be none.
-
-# Parameters
-
 ## `has_stencil_buffer`
 `true` to add a stencil buffer
 <!-- impl GLArea::fn set_required_version -->
@@ -11270,9 +10727,6 @@ Sets the required version of OpenGL to be used when creating the context
 for the widget.
 
 This function must be called before the area has been realized.
-
-# Parameters
-
 ## `major`
 the major version
 ## `minor`
@@ -11364,14 +10818,15 @@ to know about the possible lifetimes of a `gdk::EventSequence`.
 [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureExt -->
 Trait containing all `Gesture` methods.
+
+# Implementors
+
+[`GestureRotate`](struct.GestureRotate.html), [`GestureSingle`](struct.GestureSingle.html), [`GestureZoom`](struct.GestureZoom.html), [`Gesture`](struct.Gesture.html)
 <!-- trait GestureExt::fn get_bounding_box -->
 If there are touch sequences being currently handled by `self`,
 this function returns `true` and fills in `rect` with the bounding
 box containing all active touches. Otherwise, `false` will be
 returned.
-
-# Parameters
-
 ## `rect`
 bounding box containing all active touches.
 
@@ -11383,9 +10838,6 @@ If there are touch sequences being currently handled by `self`,
 this function returns `true` and fills in `x` and `y` with the center
 of the bounding box containing all active touches. Otherwise, `false`
 will be returned.
-
-# Parameters
-
 ## `x`
 X coordinate for the bounding box center
 ## `y`
@@ -11410,9 +10862,6 @@ The list
  of ``GtkGestures``, free with `glib::List::free`
 <!-- trait GestureExt::fn get_last_event -->
 Returns the last event that was processed for `sequence`.
-
-# Parameters
-
 ## `sequence`
 a `gdk::EventSequence`
 
@@ -11430,9 +10879,6 @@ If `sequence` is currently being interpreted by `self`, this
 function returns `true` and fills in `x` and `y` with the last coordinates
 stored for that event sequence. The coordinates are always relative to the
 widget allocation.
-
-# Parameters
-
 ## `sequence`
 a `gdk::EventSequence`, or `None` for pointer events
 ## `x`
@@ -11445,9 +10891,6 @@ return location for Y axis of the sequence coordinates
 `true` if `sequence` is currently interpreted
 <!-- trait GestureExt::fn get_sequence_state -->
 Returns the `sequence` state, as seen by `self`.
-
-# Parameters
-
 ## `sequence`
 a `gdk::EventSequence`
 
@@ -11484,17 +10927,11 @@ Groups also perform an "implicit grabbing" of sequences, if a
 `gdk::EventSequence` state is set to `EventSequenceState::Claimed` on one group,
 every other gesture group attached to the same `Widget` will switch the
 state for that sequence to `EventSequenceState::Denied`.
-
-# Parameters
-
 ## `gesture`
 a `Gesture`
 <!-- trait GestureExt::fn handles_sequence -->
 Returns `true` if `self` is currently handling events corresponding to
 `sequence`.
-
-# Parameters
-
 ## `sequence`
 a `gdk::EventSequence`
 
@@ -11511,9 +10948,6 @@ interacting with it.
 `true` if gesture is active
 <!-- trait GestureExt::fn is_grouped_with -->
 Returns `true` if both gestures pertain to the same group.
-
-# Parameters
-
 ## `other`
 another `Gesture`
 
@@ -11573,9 +11007,6 @@ If both gestures are in the same group, just set the state on
 the gesture emitting the event, the sequence will be already
 be initialized to the group's global state when the second
 gesture processes the event.
-
-# Parameters
-
 ## `sequence`
 a `gdk::EventSequence`
 ## `state`
@@ -11589,9 +11020,6 @@ the sequence state
 Sets the state of all sequences that `self` is currently
 interacting with. See `GestureExt::set_sequence_state`
 for more details on sequence states.
-
-# Parameters
-
 ## `state`
 the sequence state
 
@@ -11603,9 +11031,6 @@ the sequence state
 Sets a specific window to receive events about, so `self`
 will effectively handle only events targeting `window`, or
 a child of it. `window` must pertain to `EventControllerExt::get_widget`.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`, or `None`
 <!-- trait GestureExt::fn ungroup -->
@@ -11623,11 +11048,12 @@ extracted through `GestureDragExt::get_offset` and
 [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureDragExt -->
 Trait containing all `GestureDrag` methods.
+
+# Implementors
+
+[`GestureDrag`](struct.GestureDrag.html), [`GesturePan`](struct.GesturePan.html)
 <!-- impl GestureDrag::fn new -->
 Returns a newly created `Gesture` that recognizes drags.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11638,9 +11064,6 @@ a newly created `GestureDrag`
 If the `self` is active, this function returns `true` and
 fills in `x` and `y` with the coordinates of the current point,
 as an offset to the starting drag point.
-
-# Parameters
-
 ## `x`
 X offset for the current point
 ## `y`
@@ -11653,9 +11076,6 @@ Y offset for the current point
 If the `self` is active, this function returns `true`
 and fills in `x` and `y` with the drag start coordinates,
 in window-relative coordinates.
-
-# Parameters
-
 ## `x`
 X coordinate for the drag start point
 ## `y`
@@ -11678,9 +11098,6 @@ signal will be emitted.
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureLongPress::fn new -->
 Returns a newly created `Gesture` that recognizes long presses.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11705,9 +11122,6 @@ its own.
 <!-- impl GestureMultiPress::fn new -->
 Returns a newly created `Gesture` that recognizes single and multiple
 presses.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11719,9 +11133,6 @@ If an area was set through `GestureMultiPress::set_area`,
 this function will return `true` and fill in `rect` with the
 press area. See `GestureMultiPress::set_area` for more
 details on what the press area represents.
-
-# Parameters
-
 ## `rect`
 return location for the press area
 
@@ -11738,9 +11149,6 @@ state.
 Note: The rectangle is only used to determine whether any
 non-first click falls within the expected area. This is not
 akin to an input shape.
-
-# Parameters
-
 ## `rect`
 rectangle to receive coordinates on
 <!-- struct GesturePan -->
@@ -11764,9 +11172,6 @@ are received, containing the offset in the given axis.
 [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GesturePan::fn new -->
 Returns a newly created `Gesture` that recognizes pan gestures.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 ## `orientation`
@@ -11783,9 +11188,6 @@ Returns the orientation of the pan gestures that this `self` expects.
 the expected orientation for pan gestures
 <!-- impl GesturePan::fn set_orientation -->
 Sets the orientation to be expected on pan gestures.
-
-# Parameters
-
 ## `orientation`
 expected orientation
 <!-- struct GestureRotate -->
@@ -11799,9 +11201,6 @@ changes, the `GestureRotate::angle-changed` signal is emitted.
 <!-- impl GestureRotate::fn new -->
 Returns a newly created `Gesture` that recognizes 2-touch
 rotation gestures.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11835,6 +11234,10 @@ currently pressed can be known through `GestureSingleExt::get_current_button`.
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureSingleExt -->
 Trait containing all `GestureSingle` methods.
+
+# Implementors
+
+[`GestureDrag`](struct.GestureDrag.html), [`GestureLongPress`](struct.GestureLongPress.html), [`GestureMultiPress`](struct.GestureMultiPress.html), [`GestureSingle`](struct.GestureSingle.html), [`GestureSwipe`](struct.GestureSwipe.html)
 <!-- trait GestureSingleExt::fn get_button -->
 Returns the button number `self` listens for, or 0 if `self`
 reacts to any button press.
@@ -11873,9 +11276,6 @@ Returns `true` if the gesture is only triggered by touch events.
 Sets the button number `self` listens to. If non-0, every
 button press from a different button number will be ignored.
 Touch events implicitly match with button 1.
-
-# Parameters
-
 ## `button`
 button number to listen to, or 0 for any button
 <!-- trait GestureSingleExt::fn set_exclusive -->
@@ -11883,18 +11283,12 @@ Sets whether `self` is exclusive. An exclusive gesture will
 only handle pointer and "pointer emulated" touch events, so at
 any given time, there is only one sequence able to interact with
 those.
-
-# Parameters
-
 ## `exclusive`
 `true` to make `self` exclusive
 <!-- trait GestureSingleExt::fn set_touch_only -->
 If `touch_only` is `true`, `self` will only handle events of type
 `gdk::EventType::TouchBegin`, `gdk::EventType::TouchUpdate` or `gdk::EventType::TouchEnd`. If `false`,
 mouse events will be handled too.
-
-# Parameters
-
 ## `touch_only`
 whether `self` handles only touch events
 <!-- struct GestureSwipe -->
@@ -11914,9 +11308,6 @@ All velocities are reported in pixels/sec units.
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureSwipe::fn new -->
 Returns a newly created `Gesture` that recognizes swipes.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11927,9 +11318,6 @@ a newly created `GestureSwipe`
 If the gesture is recognized, this function returns `true` and fill in
 `velocity_x` and `velocity_y` with the recorded velocity, as per the
 last event(s) processed.
-
-# Parameters
-
 ## `velocity_x`
 return value for the velocity in the X axis, in pixels/sec
 ## `velocity_y`
@@ -11950,9 +11338,6 @@ emitted to report the scale factor.
 <!-- impl GestureZoom::fn new -->
 Returns a newly created `Gesture` that recognizes zoom
 in/out gestures (usually known as pinch/zoom).
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -11998,9 +11383,6 @@ Adds a widget to the grid.
 The position of `child` is determined by `left` and `top`. The
 number of “cells” that `child` will occupy is determined by
 `width` and `height`.
-
-# Parameters
-
 ## `child`
 the widget to add
 ## `left`
@@ -12021,9 +11403,6 @@ at the end indicated by `side`.
 
 Attaching widgets labeled [1], [2], [3] with `sibling` == `None` and
 `side` == `PositionType::Left` yields a layout of [3][2][1].
-
-# Parameters
-
 ## `child`
 the widget to add
 ## `sibling`
@@ -12044,9 +11423,6 @@ the row index defining the global baseline
 <!-- impl Grid::fn get_child_at -->
 Gets the child of `self` whose area covers the grid
 cell whose upper left corner is at `left`, `top`.
-
-# Parameters
-
 ## `left`
 the left edge of the cell
 ## `top`
@@ -12071,9 +11447,6 @@ the column spacing of `self`
 Returns the baseline position of `row` as set
 by `Grid::set_row_baseline_position` or the default value
 `BaselinePosition::Center`.
-
-# Parameters
-
 ## `row`
 a row index
 
@@ -12098,9 +11471,6 @@ Inserts a column at the specified position.
 Children which are attached at or to the right of this position
 are moved one column to the right. Children which span across this
 position are grown to span the new column.
-
-# Parameters
-
 ## `position`
 the position to insert the column at
 <!-- impl Grid::fn insert_next_to -->
@@ -12110,9 +11480,6 @@ The new row or column is placed next to `sibling`, on the side
 determined by `side`. If `side` is `PositionType::Top` or `PositionType::Bottom`,
 a row is inserted. If `side` is `PositionType::Left` of `PositionType::Right`,
 a column is inserted.
-
-# Parameters
-
 ## `sibling`
 the child of `self` that the new row or column will be
  placed next to
@@ -12124,9 +11491,6 @@ Inserts a row at the specified position.
 Children which are attached at or below this position
 are moved one row down. Children which span across this
 position are grown to span the new row.
-
-# Parameters
-
 ## `position`
 the position to insert the row at
 <!-- impl Grid::fn remove_column -->
@@ -12136,9 +11500,6 @@ Children that are placed in this column are removed,
 spanning children that overlap this column have their
 width reduced by one, and children after the column
 are moved to the left.
-
-# Parameters
-
 ## `position`
 the position of the column to remove
 <!-- impl Grid::fn remove_row -->
@@ -12148,9 +11509,6 @@ Children that are placed in this row are removed,
 spanning children that overlap this row have their
 height reduced by one, and children below the row
 are moved up.
-
-# Parameters
-
 ## `position`
 the position of the row to remove
 <!-- impl Grid::fn set_baseline_row -->
@@ -12158,9 +11516,6 @@ Sets which row defines the global baseline for the entire grid.
 Each row in the grid can have its own local baseline, but only
 one of those is global, meaning it will be the baseline in the
 parent of the `self`.
-
-# Parameters
-
 ## `row`
 the row index
 
@@ -12169,40 +11524,25 @@ the row index
 the row index defining the global baseline
 <!-- impl Grid::fn set_column_homogeneous -->
 Sets whether all columns of `self` will have the same width.
-
-# Parameters
-
 ## `homogeneous`
 `true` to make columns homogeneous
 <!-- impl Grid::fn set_column_spacing -->
 Sets the amount of space between columns of `self`.
-
-# Parameters
-
 ## `spacing`
 the amount of space to insert between columns
 <!-- impl Grid::fn set_row_baseline_position -->
 Sets how the baseline should be positioned on `row` of the
 grid, in case that row is assigned more space than is requested.
-
-# Parameters
-
 ## `row`
 a row index
 ## `pos`
 a `BaselinePosition`
 <!-- impl Grid::fn set_row_homogeneous -->
 Sets whether all rows of `self` will have the same height.
-
-# Parameters
-
 ## `homogeneous`
 `true` to make rows homogeneous
 <!-- impl Grid::fn set_row_spacing -->
 Sets the amount of space between rows of `self`.
-
-# Parameters
-
 ## `spacing`
 the amount of space to insert between rows
 <!-- struct HeaderBar -->
@@ -12276,17 +11616,11 @@ the title of the header, or `None` if none has
 <!-- impl HeaderBar::fn pack_end -->
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl HeaderBar::fn pack_start -->
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl HeaderBar::fn set_custom_title -->
@@ -12300,9 +11634,6 @@ style classes.
 
 You should set the custom title to `None`, for the header title
 label to be visible again.
-
-# Parameters
-
 ## `title_widget`
 a custom widget to use for a title
 <!-- impl HeaderBar::fn set_decoration_layout -->
@@ -12323,26 +11654,17 @@ for the fallback app menu).
 
 For example, “menu:minimize,maximize,close” specifies a menu
 on the left, and minimize, maximize and close buttons on the right.
-
-# Parameters
-
 ## `layout`
 a decoration layout, or `None` to
  unset the layout
 <!-- impl HeaderBar::fn set_has_subtitle -->
 Sets whether the header bar should reserve space
 for a subtitle, even if none is currently set.
-
-# Parameters
-
 ## `setting`
 `true` to reserve space for a subtitle
 <!-- impl HeaderBar::fn set_show_close_button -->
 Sets whether this header bar shows the standard window decorations,
 including close, maximize, and minimize.
-
-# Parameters
-
 ## `setting`
 `true` to show standard widow decorations
 <!-- impl HeaderBar::fn set_subtitle -->
@@ -12352,20 +11674,54 @@ an additional detail to help him identify the current view.
 Note that `HeaderBar` by default reserves room for the subtitle,
 even if none is currently set. If this is not desired, set the
 `HeaderBar:has-subtitle` property to `false`.
-
-# Parameters
-
 ## `subtitle`
 a subtitle, or `None`
 <!-- impl HeaderBar::fn set_title -->
 Sets the title of the `HeaderBar`. The title should help a user
 identify the current view. A good title should not include the
 application name.
-
-# Parameters
-
 ## `title`
 a title, or `None`
+<!-- enum IMPreeditStyle -->
+Style for input method preedit. See also
+`Settings:gtk-im-preedit-style`
+<!-- enum IMPreeditStyle::variant Nothing -->
+Deprecated
+<!-- enum IMPreeditStyle::variant Callback -->
+Deprecated
+<!-- enum IMPreeditStyle::variant None -->
+Deprecated
+<!-- enum IMStatusStyle -->
+Style for input method status. See also
+`Settings:gtk-im-status-style`
+<!-- enum IMStatusStyle::variant Nothing -->
+Deprecated
+<!-- enum IMStatusStyle::variant Callback -->
+Deprecated
+<!-- enum IMStatusStyle::variant None -->
+Deprecated
+<!-- enum IconSize -->
+Built-in stock icon sizes.
+<!-- enum IconSize::variant Invalid -->
+Invalid size.
+<!-- enum IconSize::variant Menu -->
+Size appropriate for menus (16px).
+<!-- enum IconSize::variant SmallToolbar -->
+Size appropriate for small toolbars (16px).
+<!-- enum IconSize::variant LargeToolbar -->
+Size appropriate for large toolbars (24px)
+<!-- enum IconSize::variant Button -->
+Size appropriate for buttons (16px)
+<!-- enum IconSize::variant Dnd -->
+Size appropriate for drag and drop (32px)
+<!-- enum IconSize::variant Dialog -->
+Size appropriate for dialogs (48px)
+<!-- enum IconThemeError -->
+Error codes for `IconTheme` operations.
+<!-- enum IconThemeError::variant NotFound -->
+The icon specified does not exist in the theme
+<!-- enum IconThemeError::variant Failed -->
+An unspecified error occurred.
 <!-- struct IconView -->
 `IconView` provides an alternative view on a `TreeModel`.
 It displays the model as a grid of icons with labels. Like
@@ -12391,9 +11747,6 @@ A newly created `IconView` widget
 <!-- impl IconView::fn new_with_area -->
 Creates a new `IconView` widget using the
 specified `area` to layout cells inside the icons.
-
-# Parameters
-
 ## `area`
 the `CellArea` to use to layout cells
 
@@ -12402,9 +11755,6 @@ the `CellArea` to use to layout cells
 A newly created `IconView` widget
 <!-- impl IconView::fn new_with_model -->
 Creates a new `IconView` widget with the model `model`.
-
-# Parameters
-
 ## `model`
 The model.
 
@@ -12414,9 +11764,6 @@ A newly created `IconView` widget.
 <!-- impl IconView::fn convert_widget_to_bin_window_coords -->
 Converts widget coordinates to coordinates for the bin_window,
 as expected by e.g. `IconView::get_path_at_pos`.
-
-# Parameters
-
 ## `wx`
 X coordinate relative to the widget
 ## `wy`
@@ -12428,9 +11775,6 @@ return location for bin_window Y coordinate
 <!-- impl IconView::fn create_drag_icon -->
 Creates a `cairo::Surface` representation of the item at `path`.
 This image is used for a drag icon.
-
-# Parameters
-
 ## `path`
 a `TreePath` in `self`
 
@@ -12440,9 +11784,6 @@ a newly-allocated surface of the drag icon.
 <!-- impl IconView::fn enable_model_drag_dest -->
 Turns `self` into a drop destination for automatic DND. Calling this
 method sets `IconView:reorderable` to `false`.
-
-# Parameters
-
 ## `targets`
 the table of targets that the drag will
  support
@@ -12454,9 +11795,6 @@ the bitmask of possible actions for a drag to this
 <!-- impl IconView::fn enable_model_drag_source -->
 Turns `self` into a drag source for automatic DND. Calling this
 method sets `IconView:reorderable` to `false`.
-
-# Parameters
-
 ## `start_button_mask`
 Mask of allowed buttons to start drag
 ## `targets`
@@ -12478,9 +11816,6 @@ Fills the bounding rectangle in widget coordinates for the cell specified by
 `path` and `cell`. If `cell` is `None` the main cell area is used.
 
 This function is only valid if `self` is realized.
-
-# Parameters
-
 ## `path`
 a `TreePath`
 ## `cell`
@@ -12509,9 +11844,6 @@ If the cursor isn’t currently set, then *`path` will be `None`.
 If no cell currently has focus, then *`cell` will be `None`.
 
 The returned `TreePath` must be freed with `TreePath::free`.
-
-# Parameters
-
 ## `path`
 Return location for the current
  cursor path, or `None`
@@ -12524,9 +11856,6 @@ Return location the current
 `true` if the cursor is set.
 <!-- impl IconView::fn get_dest_item_at_pos -->
 Determines the destination item for a given position.
-
-# Parameters
-
 ## `drag_x`
 the position to determine the destination item for
 ## `drag_y`
@@ -12542,9 +11871,6 @@ Return location for the drop position, or `None`
 whether there is an item at the given position.
 <!-- impl IconView::fn get_drag_dest_item -->
 Gets information about the item that is highlighted for feedback.
-
-# Parameters
-
 ## `path`
 Return location for the path of
  the highlighted item, or `None`.
@@ -12557,9 +11883,6 @@ obtains the cell at the specified position. The returned path should
 be freed with `TreePath::free`.
 See `IconView::convert_widget_to_bin_window_coords` for converting
 widget coordinates to bin_window coordinates.
-
-# Parameters
-
 ## `x`
 The x position to be identified
 ## `y`
@@ -12576,9 +11899,6 @@ Return location for the renderer
 <!-- impl IconView::fn get_item_column -->
 Gets the column in which the item `path` is currently
 displayed. Column numbers start at 0.
-
-# Parameters
-
 ## `path`
 the `TreePath` of the item
 
@@ -12601,9 +11921,6 @@ the padding around items
 <!-- impl IconView::fn get_item_row -->
 Gets the row in which the item `path` is currently
 displayed. Row numbers start at 0.
-
-# Parameters
-
 ## `path`
 the `TreePath` of the item
 
@@ -12642,9 +11959,6 @@ See `IconView::get_item_at_pos`, if you are also interested in
 the cell at the specified position.
 See `IconView::convert_widget_to_bin_window_coords` for converting
 widget coordinates to bin_window coordinates.
-
-# Parameters
-
 ## `x`
 The x position to be identified
 ## `y`
@@ -12726,9 +12040,6 @@ tooltips the item returned will be the cursor item. When `true`, then any of
 `model`, `path` and `iter` which have been provided will be set to point to
 that row and the corresponding model. `x` and `y` will always be converted
 to be relative to `self`’s bin_window if `keyboard_tooltip` is `false`.
-
-# Parameters
-
 ## `x`
 the x coordinate (relative to widget coordinates)
 ## `y`
@@ -12751,9 +12062,6 @@ Sets `start_path` and `end_path` to be the first and last visible path.
 Note that there may be invisible paths in between.
 
 Both paths should be freed with `TreePath::free` after use.
-
-# Parameters
-
 ## `start_path`
 Return location for start of region,
  or `None`
@@ -12765,17 +12073,11 @@ Return location for end of region, or `None`
 `true`, if valid paths were placed in `start_path` and `end_path`
 <!-- impl IconView::fn item_activated -->
 Activates the item determined by `path`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be activated
 <!-- impl IconView::fn path_is_selected -->
 Returns `true` if the icon pointed to by `path` is currently
 selected. If `path` does not point to a valid location, `false` is returned.
-
-# Parameters
-
 ## `path`
 A `TreePath` to check selection on.
 
@@ -12797,9 +12099,6 @@ position. If the item is currently visible on the screen, nothing is done.
 This function only works if the model is set, and `path` is a valid row on
 the model. If the model changes before the `self` is realized, the
 centered path will be modified to reflect this change.
-
-# Parameters
-
 ## `path`
 The path of the item to move to.
 ## `use_align`
@@ -12813,17 +12112,11 @@ Selects all the icons. `self` must has its selection mode set
 to `SelectionMode::Multiple`.
 <!-- impl IconView::fn select_path -->
 Selects the row at `path`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be selected.
 <!-- impl IconView::fn selected_foreach -->
 Calls a function for each selected icon. Note that the model or
 selection cannot be modified from within this function.
-
-# Parameters
-
 ## `func`
 The function to call for each selected icon.
 ## `data`
@@ -12831,17 +12124,11 @@ User data to pass to the function.
 <!-- impl IconView::fn set_activate_on_single_click -->
 Causes the `IconView::item-activated` signal to be emitted on
 a single click instead of a double click.
-
-# Parameters
-
 ## `single`
 `true` to emit item-activated on a single click
 <!-- impl IconView::fn set_column_spacing -->
 Sets the ::column-spacing property which specifies the space
 which is inserted between the columns of the icon view.
-
-# Parameters
-
 ## `column_spacing`
 the column spacing
 <!-- impl IconView::fn set_columns -->
@@ -12849,9 +12136,6 @@ Sets the ::columns property which determines in how
 many columns the icons are arranged. If `columns` is
 -1, the number of columns will be chosen automatically
 to fill the available area.
-
-# Parameters
-
 ## `columns`
 the number of columns
 <!-- impl IconView::fn set_cursor -->
@@ -12864,9 +12148,6 @@ started in the specified cell.
 This function is often followed by `gtk_widget_grab_focus
 (icon_view)` in order to give keyboard focus to the widget.
 Please note that editing can only happen when the widget is realized.
-
-# Parameters
-
 ## `path`
 A `TreePath`
 ## `cell`
@@ -12875,9 +12156,6 @@ One of the cell renderers of `self`, or `None`
 `true` if the specified cell should start being edited.
 <!-- impl IconView::fn set_drag_dest_item -->
 Sets the item that is highlighted for feedback.
-
-# Parameters
-
 ## `path`
 The path of the item to highlight, or `None`.
 ## `pos`
@@ -12885,35 +12163,23 @@ Specifies where to drop, relative to the item
 <!-- impl IconView::fn set_item_orientation -->
 Sets the ::item-orientation property which determines whether the labels
 are drawn beside the icons instead of below.
-
-# Parameters
-
 ## `orientation`
 the relative position of texts and icons
 <!-- impl IconView::fn set_item_padding -->
 Sets the `IconView:item-padding` property which specifies the padding
 around each of the icon view’s items.
-
-# Parameters
-
 ## `item_padding`
 the item padding
 <!-- impl IconView::fn set_item_width -->
 Sets the ::item-width property which specifies the width
 to use for each item. If it is set to -1, the icon view will
 automatically determine a suitable item size.
-
-# Parameters
-
 ## `item_width`
 the width for each item
 <!-- impl IconView::fn set_margin -->
 Sets the ::margin property which specifies the space
 which is inserted at the top, bottom, left and right
 of the icon view.
-
-# Parameters
-
 ## `margin`
 the margin
 <!-- impl IconView::fn set_markup_column -->
@@ -12921,9 +12187,6 @@ Sets the column with markup information for `self` to be
 `column`. The markup column must be of type `G_TYPE_STRING`.
 If the markup column is set to something, it overrides
 the text column set by `IconView::set_text_column`.
-
-# Parameters
-
 ## `column`
 A column in the currently used model, or -1 to display no text
 <!-- impl IconView::fn set_model -->
@@ -12931,17 +12194,11 @@ Sets the model for a `IconView`.
 If the `self` already has a model set, it will remove
 it before setting the new model. If `model` is `None`, then
 it will unset the old model.
-
-# Parameters
-
 ## `model`
 The model.
 <!-- impl IconView::fn set_pixbuf_column -->
 Sets the column with pixbufs for `self` to be `column`. The pixbuf
 column must be of type `GDK_TYPE_PIXBUF`
-
-# Parameters
-
 ## `column`
 A column in the currently used model, or -1 to disable
 <!-- impl IconView::fn set_reorderable -->
@@ -12957,41 +12214,26 @@ drop can not be used in a reorderable view for any other purpose.
 This function does not give you any degree of control over the order -- any
 reordering is allowed. If more control is needed, you should probably
 handle drag and drop manually.
-
-# Parameters
-
 ## `reorderable`
 `true`, if the list of items can be reordered.
 <!-- impl IconView::fn set_row_spacing -->
 Sets the ::row-spacing property which specifies the space
 which is inserted between the rows of the icon view.
-
-# Parameters
-
 ## `row_spacing`
 the row spacing
 <!-- impl IconView::fn set_selection_mode -->
 Sets the selection mode of the `self`.
-
-# Parameters
-
 ## `mode`
 The selection mode
 <!-- impl IconView::fn set_spacing -->
 Sets the ::spacing property which specifies the space
 which is inserted between the cells (i.e. the icon and
 the text) of an item.
-
-# Parameters
-
 ## `spacing`
 the spacing
 <!-- impl IconView::fn set_text_column -->
 Sets the column with text for `self` to be `column`. The text
 column must be of type `G_TYPE_STRING`.
-
-# Parameters
-
 ## `column`
 A column in the currently used model, or -1 to display no text
 <!-- impl IconView::fn set_tooltip_cell -->
@@ -12999,9 +12241,6 @@ Sets the tip area of `tooltip` to the area which `cell` occupies in
 the item pointed to by `path`. See also `Tooltip::set_tip_area`.
 
 See also `IconView::set_tooltip_column` for a simpler alternative.
-
-# Parameters
-
 ## `tooltip`
 a `Tooltip`
 ## `path`
@@ -13019,18 +12258,12 @@ When enabled, `Widget:has-tooltip` will be set to `true` and
 
 Note that the signal handler sets the text with `Tooltip::set_markup`,
 so &, <, etc have to be escaped in the text.
-
-# Parameters
-
 ## `column`
 an integer, which is a valid column number for `self`’s model
 <!-- impl IconView::fn set_tooltip_item -->
 Sets the tip area of `tooltip` to be the area covered by the item at `path`.
 See also `IconView::set_tooltip_column` for a simpler alternative.
 See also `Tooltip::set_tip_area`.
-
-# Parameters
-
 ## `tooltip`
 a `Tooltip`
 ## `path`
@@ -13039,9 +12272,6 @@ a `TreePath`
 Unselects all the icons.
 <!-- impl IconView::fn unselect_path -->
 Unselects the row at `path`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be unselected.
 <!-- impl IconView::fn unset_model_drag_dest -->
@@ -13050,6 +12280,20 @@ method sets `IconView:reorderable` to `false`.
 <!-- impl IconView::fn unset_model_drag_source -->
 Undoes the effect of `IconView::enable_model_drag_source`. Calling this
 method sets `IconView:reorderable` to `false`.
+<!-- enum IconViewDropPosition -->
+An enum for determining where a dropped item goes.
+<!-- enum IconViewDropPosition::variant NoDrop -->
+no drop possible
+<!-- enum IconViewDropPosition::variant DropInto -->
+dropped item replaces the item
+<!-- enum IconViewDropPosition::variant DropLeft -->
+droppped item is inserted to the left
+<!-- enum IconViewDropPosition::variant DropRight -->
+dropped item is inserted to the right
+<!-- enum IconViewDropPosition::variant DropAbove -->
+dropped item is inserted above
+<!-- enum IconViewDropPosition::variant DropBelow -->
+dropped item is inserted below
 <!-- struct Image -->
 The `Image` widget displays an image. Various kinds of object
 can be displayed as an image; most typically, you would load a
@@ -13152,9 +12396,6 @@ Note that the animation frames are shown using a timeout with
 `G_PRIORITY_DEFAULT`. When using animations to indicate busyness,
 keep in mind that the animation will only be shown if the main loop
 is not busy with something that has a higher priority.
-
-# Parameters
-
 ## `animation`
 an animation
 
@@ -13178,9 +12419,6 @@ the `Image` from the pixbuf. (Or for animations, use
 The storage type (`Image::get_storage_type`) of the returned
 image is not defined, it will be whatever is appropriate for
 displaying the file.
-
-# Parameters
-
 ## `filename`
 a filename
 
@@ -13192,9 +12430,6 @@ Creates a `Image` displaying an icon from the current icon theme.
 If the icon name isn’t known, a “broken image” icon will be
 displayed instead. If the current icon theme is changed, the icon
 will be updated appropriately.
-
-# Parameters
-
 ## `icon`
 an icon
 ## `size`
@@ -13208,9 +12443,6 @@ Creates a `Image` displaying an icon from the current icon theme.
 If the icon name isn’t known, a “broken image” icon will be
 displayed instead. If the current icon theme is changed, the icon
 will be updated appropriately.
-
-# Parameters
-
 ## `icon_name`
 an icon name
 ## `size`
@@ -13235,9 +12467,6 @@ icon set; you still need to unref it if you own references.
 # Deprecated
 
 Use `Image::new_from_icon_name` instead.
-
-# Parameters
-
 ## `icon_set`
 a `IconSet`
 ## `size`
@@ -13255,9 +12484,6 @@ pixbuf; you still need to unref it if you own references.
 Note that this function just creates an `Image` from the pixbuf. The
 `Image` created will not react to state changes. Should you want that,
 you should use `Image::new_from_icon_name`.
-
-# Parameters
-
 ## `pixbuf`
 a `gdk_pixbuf::Pixbuf`, or `None`
 
@@ -13281,9 +12507,6 @@ the `Image` from the pixbuf. (Or for animations, use
 The storage type (`Image::get_storage_type`) of the returned
 image is not defined, it will be whatever is appropriate for
 displaying the file.
-
-# Parameters
-
 ## `resource_path`
 a resource path
 
@@ -13301,9 +12524,6 @@ You can register your own stock icon names, see
 # Deprecated
 
 Use `Image::new_from_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock icon name
 ## `size`
@@ -13317,9 +12537,6 @@ Creates a new `Image` displaying `surface`.
 The `Image` does not assume a reference to the
 surface; you still need to unref it if you own references.
 `Image` will add its own reference rather than adopting yours.
-
-# Parameters
-
 ## `surface`
 a `cairo::Surface`, or `None`
 
@@ -13345,9 +12562,6 @@ The storage type of the image must be `ImageType::Empty` or
 `ImageType::Gicon` (see `Image::get_storage_type`).
 The caller of this function does not own a reference to the
 returned `gio::Icon`.
-
-# Parameters
-
 ## `gicon`
 place to store a
  `gio::Icon`, or `None`
@@ -13360,9 +12574,6 @@ The storage type of the image must be `ImageType::Empty` or
 `ImageType::IconName` (see `Image::get_storage_type`).
 The returned string is owned by the `Image` and should not
 be freed.
-
-# Parameters
-
 ## `icon_name`
 place to store an
  icon name, or `None`
@@ -13377,9 +12588,6 @@ The storage type of the image must be `ImageType::Empty` or
 # Deprecated
 
 Use `Image::get_icon_name` instead.
-
-# Parameters
-
 ## `icon_set`
 location to store a
  `IconSet`, or `None`
@@ -13413,9 +12621,6 @@ be freed.
 # Deprecated
 
 Use `Image::get_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 place to store a
  stock icon name, or `None`
@@ -13433,32 +12638,20 @@ image representation being used
 <!-- impl Image::fn set_from_animation -->
 Causes the `Image` to display the given animation (or display
 nothing, if you set the animation to `None`).
-
-# Parameters
-
 ## `animation`
 the `gdk_pixbuf::PixbufAnimation`
 <!-- impl Image::fn set_from_file -->
 See `Image::new_from_file` for details.
-
-# Parameters
-
 ## `filename`
 a filename or `None`
 <!-- impl Image::fn set_from_gicon -->
 See `Image::new_from_gicon` for details.
-
-# Parameters
-
 ## `icon`
 an icon
 ## `size`
 an icon size
 <!-- impl Image::fn set_from_icon_name -->
 See `Image::new_from_icon_name` for details.
-
-# Parameters
-
 ## `icon_name`
 an icon name
 ## `size`
@@ -13469,25 +12662,16 @@ See `Image::new_from_icon_set` for details.
 # Deprecated
 
 Use `Image::set_from_icon_name` instead.
-
-# Parameters
-
 ## `icon_set`
 a `IconSet`
 ## `size`
 a stock icon size
 <!-- impl Image::fn set_from_pixbuf -->
 See `Image::new_from_pixbuf` for details.
-
-# Parameters
-
 ## `pixbuf`
 a `gdk_pixbuf::Pixbuf` or `None`
 <!-- impl Image::fn set_from_resource -->
 See `Image::new_from_resource` for details.
-
-# Parameters
-
 ## `resource_path`
 a resource path or `None`
 <!-- impl Image::fn set_from_stock -->
@@ -13496,29 +12680,47 @@ See `Image::new_from_stock` for details.
 # Deprecated
 
 Use `Image::set_from_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock icon name
 ## `size`
 a stock icon size
 <!-- impl Image::fn set_from_surface -->
 See `Image::new_from_surface` for details.
-
-# Parameters
-
 ## `surface`
 a cairo_surface_t
 <!-- impl Image::fn set_pixel_size -->
 Sets the pixel size to use for named icons. If the pixel size is set
 to a value != -1, it is used instead of the icon size set by
 `Image::set_from_icon_name`.
-
-# Parameters
-
 ## `pixel_size`
 the new pixel size
+<!-- enum ImageType -->
+Describes the image data representation used by a `Image`. If you
+want to get the image from the widget, you can only get the
+currently-stored representation. e.g. if the
+`Image::get_storage_type` returns `ImageType::Pixbuf`, then you can
+call `Image::get_pixbuf` but not `Image::get_stock`. For empty
+images, you can request any storage type (call any of the "get"
+functions), but they will all return `None` values.
+<!-- enum ImageType::variant Empty -->
+there is no image displayed by the widget
+<!-- enum ImageType::variant Pixbuf -->
+the widget contains a `gdk_pixbuf::Pixbuf`
+<!-- enum ImageType::variant Stock -->
+the widget contains a [stock item name][gtkstock]
+<!-- enum ImageType::variant IconSet -->
+the widget contains a `IconSet`
+<!-- enum ImageType::variant Animation -->
+the widget contains a `gdk_pixbuf::PixbufAnimation`
+<!-- enum ImageType::variant IconName -->
+the widget contains a named icon.
+ This image type was added in GTK+ 2.6
+<!-- enum ImageType::variant Gicon -->
+the widget contains a `gio::Icon`.
+ This image type was added in GTK+ 2.14
+<!-- enum ImageType::variant Surface -->
+the widget contains a `cairo::Surface`.
+ This image type was added in GTK+ 3.10
 <!-- struct InfoBar -->
 `InfoBar` is a widget that can be used to show messages to
 the user without showing a dialog. It is often temporarily shown
@@ -13602,9 +12804,6 @@ some arbitrary text. A response ID can be any positive number,
 or one of the values in the `ResponseType` enumeration. If the
 user clicks one of these dialog buttons, `InfoBar` will emit
 the “response” signal with the corresponding response ID.
-
-# Parameters
-
 ## `first_button_text`
 stock ID or text to go in first button, or `None`
 
@@ -13616,9 +12815,6 @@ Add an activatable widget to the action area of a `InfoBar`,
 connecting a signal handler that will emit the `InfoBar::response`
 signal on the message area when the widget is activated. The widget
 is appended to the end of the message areas action area.
-
-# Parameters
-
 ## `child`
 an activatable widget
 ## `response_id`
@@ -13629,9 +12825,6 @@ clicking the button will emit the “response” signal with the given
 response_id. The button is appended to the end of the info bars's
 action area. The button widget is returned, but usually you don't
 need it.
-
-# Parameters
-
 ## `button_text`
 text of button
 ## `response_id`
@@ -13646,9 +12839,6 @@ Adds more buttons, same as calling `InfoBar::add_button`
 repeatedly. The variable argument list should be `None`-terminated
 as with `InfoBar::new_with_buttons`. Each button must have both
 text and response ID.
-
-# Parameters
-
 ## `first_button_text`
 button text or stock ID
 <!-- impl InfoBar::fn get_action_area -->
@@ -13677,9 +12867,6 @@ Returns whether the widget will display a standard close button.
 `true` if the widget displays standard close button
 <!-- impl InfoBar::fn response -->
 Emits the “response” signal with the given `response_id`.
-
-# Parameters
-
 ## `response_id`
 a response ID
 <!-- impl InfoBar::fn set_default_response -->
@@ -13689,27 +12876,18 @@ Pressing “Enter” normally activates the default widget.
 
 Note that this function currently requires `self` to
 be added to a widget hierarchy.
-
-# Parameters
-
 ## `response_id`
 a response ID
 <!-- impl InfoBar::fn set_message_type -->
 Sets the message type of the message area.
 GTK+ uses this type to determine what color to use
 when drawing the message area.
-
-# Parameters
-
 ## `message_type`
 a `MessageType`
 <!-- impl InfoBar::fn set_response_sensitive -->
 Calls gtk_widget_set_sensitive (widget, setting) for each
 widget in the info bars’s action area with the given response_id.
 A convenient way to sensitize/desensitize dialog buttons.
-
-# Parameters
-
 ## `response_id`
 a response ID
 ## `setting`
@@ -13717,11 +12895,58 @@ TRUE for sensitive
 <!-- impl InfoBar::fn set_show_close_button -->
 If true, a standard close button is shown. When clicked it emits
 the response `ResponseType::Close`.
-
-# Parameters
-
 ## `setting`
 `true` to include a close button
+<!-- enum InputPurpose -->
+Describes primary purpose of the input widget. This information is
+useful for on-screen keyboards and similar input methods to decide
+which keys should be presented to the user.
+
+Note that the purpose is not meant to impose a totally strict rule
+about allowed characters, and does not replace input validation.
+It is fine for an on-screen keyboard to let the user override the
+character set restriction that is expressed by the purpose. The
+application is expected to validate the entry contents, even if
+it specified a purpose.
+
+The difference between `InputPurpose::Digits` and
+`InputPurpose::Number` is that the former accepts only digits
+while the latter also some punctuation (like commas or points, plus,
+minus) and “e” or “E” as in 3.14E+000.
+
+This enumeration may be extended in the future; input methods should
+interpret unknown values as “free form”.
+<!-- enum InputPurpose::variant FreeForm -->
+Allow any character
+<!-- enum InputPurpose::variant Alpha -->
+Allow only alphabetic characters
+<!-- enum InputPurpose::variant Digits -->
+Allow only digits
+<!-- enum InputPurpose::variant Number -->
+Edited field expects numbers
+<!-- enum InputPurpose::variant Phone -->
+Edited field expects phone number
+<!-- enum InputPurpose::variant Url -->
+Edited field expects URL
+<!-- enum InputPurpose::variant Email -->
+Edited field expects email address
+<!-- enum InputPurpose::variant Name -->
+Edited field expects the name of a person
+<!-- enum InputPurpose::variant Password -->
+Like `InputPurpose::FreeForm`, but characters are hidden
+<!-- enum InputPurpose::variant Pin -->
+Like `InputPurpose::Digits`, but characters are hidden
+<!-- enum Justification -->
+Used for justifying the text inside a `Label` widget. (See also
+`Alignment`).
+<!-- enum Justification::variant Left -->
+The text is placed at the left edge of the label.
+<!-- enum Justification::variant Right -->
+The text is placed at the right edge of the label.
+<!-- enum Justification::variant Center -->
+The text is placed in the center of the label.
+<!-- enum Justification::variant Fill -->
+The text is placed is distributed across the label.
 <!-- struct Label -->
 The `Label` widget displays a small amount of text. As the name
 implies, most labels are used to label another widget such as a
@@ -13859,9 +13084,6 @@ the `Label::activate-link` signal and the `Label::get_current_uri` function.
 <!-- impl Label::fn new -->
 Creates a new label with the given text inside it. You can
 pass `None` to get an empty label widget.
-
-# Parameters
-
 ## `str`
 The text of the label
 
@@ -13883,9 +13105,6 @@ activatable ancestor of the `Label` will be chosen as the mnemonic
 widget. For instance, if the label is inside a button or menu item,
 the button or menu item will automatically become the mnemonic widget
 and be activated by the mnemonic.
-
-# Parameters
-
 ## `str`
 The text of the label, with an underscore in front of the
  mnemonic character
@@ -13967,9 +13186,6 @@ inside it, since labels are windowless (they return `false` from
 `Widget::get_has_window`). Remember
 when using the `pango::Layout` functions you need to convert to
 and from pixels using PANGO_PIXELS() or `PANGO_SCALE`.
-
-# Parameters
-
 ## `x`
 location to store X offset of layout, or `None`
 ## `y`
@@ -14026,9 +13242,6 @@ Gets the value set by `Label::set_selectable`.
 <!-- impl Label::fn get_selection_bounds -->
 Gets the selected range of characters in the label, returning `true`
 if there’s a selection.
-
-# Parameters
-
 ## `start`
 return location for start of selection, as a character offset
 ## `end`
@@ -14099,9 +13312,6 @@ Selects a range of characters in the label, if the label is selectable.
 See `Label::set_selectable`. If the label is not selectable,
 this function has no effect. If `start_offset` or
 `end_offset` are -1, then the end of the label will be substituted.
-
-# Parameters
-
 ## `start_offset`
 start offset (in characters not bytes)
 ## `end_offset`
@@ -14111,9 +13321,6 @@ Sets the angle of rotation for the label. An angle of 90 reads from
 from bottom to top, an angle of 270, from top to bottom. The angle
 setting for the label is ignored if the label is selectable,
 wrapped, or ellipsized.
-
-# Parameters
-
 ## `angle`
 the angle that the baseline of the label makes with
  the horizontal, in degrees, measured counterclockwise
@@ -14127,17 +13334,11 @@ of the `Label:use-underline` or `Label:use-markup` properties.
 While it is not recommended to mix markup strings with manually set
 attributes, if you must; know that the attributes will be applied
 to the label after the markup string is parsed.
-
-# Parameters
-
 ## `attrs`
 a `pango::AttrList`, or `None`
 <!-- impl Label::fn set_ellipsize -->
 Sets the mode used to ellipsize (add an ellipsis: "...") to the text
 if there is not enough space to render the entire string.
-
-# Parameters
-
 ## `mode`
 a `pango::EllipsizeMode`
 <!-- impl Label::fn set_justify -->
@@ -14147,9 +13348,6 @@ first created with `Label::new`. If you instead want to set the
 alignment of the label as a whole, use `Widget::set_halign` instead.
 `Label::set_justify` has no effect on labels containing only a
 single line.
-
-# Parameters
-
 ## `jtype`
 a `Justification`
 <!-- impl Label::fn set_label -->
@@ -14157,9 +13355,6 @@ Sets the text of the label. The label is interpreted as
 including embedded underlines and/or Pango markup depending
 on the values of the `Label:use-underline`" and
 `Label:use-markup` properties.
-
-# Parameters
-
 ## `str`
 the new text to set for the label
 <!-- impl Label::fn set_line_wrap -->
@@ -14172,18 +13367,12 @@ wrap at its parent container’s width, because GTK+ widgets
 conceptually can’t make their requisition depend on the parent
 container’s size. For a label that wraps at a specific position,
 set the label’s width using `Widget::set_size_request`.
-
-# Parameters
-
 ## `wrap`
 the setting
 <!-- impl Label::fn set_line_wrap_mode -->
 If line wrapping is on (see `Label::set_line_wrap`) this controls how
 the line wrapping is done. The default is `pango::WrapMode::Word` which means
 wrap on word boundaries.
-
-# Parameters
-
 ## `wrap_mode`
 the line wrapping mode
 <!-- impl Label::fn set_lines -->
@@ -14191,9 +13380,6 @@ Sets the number of lines to which an ellipsized, wrapping label
 should be limited. This has no effect if the label is not wrapping
 or ellipsized. Set this to -1 if you don’t want to limit the
 number of lines.
-
-# Parameters
-
 ## `lines`
 the desired number of lines, or -1
 <!-- impl Label::fn set_markup -->
@@ -14211,9 +13397,6 @@ markup = g_markup_printf_escaped (format, str);
 gtk_label_set_markup (GTK_LABEL (label), markup);
 g_free (markup);
 ```
-
-# Parameters
-
 ## `str`
 a markup string (see [Pango markup format][PangoMarkupFormat])
 <!-- impl Label::fn set_markup_with_mnemonic -->
@@ -14225,17 +13408,11 @@ indicating that they represent a keyboard accelerator called a mnemonic.
 
 The mnemonic key can be used to activate another widget, chosen
 automatically, or explicitly using `Label::set_mnemonic_widget`.
-
-# Parameters
-
 ## `str`
 a markup string (see
  [Pango markup format][PangoMarkupFormat])
 <!-- impl Label::fn set_max_width_chars -->
 Sets the desired maximum width in characters of `self` to `n_chars`.
-
-# Parameters
-
 ## `n_chars`
 the new desired maximum width, in characters.
 <!-- impl Label::fn set_mnemonic_widget -->
@@ -14253,9 +13430,6 @@ The target widget will be accelerated by emitting the
 `Widget`::mnemonic-activate signal on it. The default handler for
 this signal will activate the widget if there are no mnemonic collisions
 and toggle focus between the colliding widgets otherwise.
-
-# Parameters
-
 ## `widget`
 the target `Widget`
 <!-- impl Label::fn set_pattern -->
@@ -14263,24 +13437,15 @@ The pattern of underlines you want under the existing text within the
 `Label` widget. For example if the current text of the label says
 “FooBarBaz” passing a pattern of “___ ___” will underline
 “Foo” and “Baz” but not “Bar”.
-
-# Parameters
-
 ## `pattern`
 The pattern as described above.
 <!-- impl Label::fn set_selectable -->
 Selectable labels allow the user to select text from the label, for
 copy-and-paste.
-
-# Parameters
-
 ## `setting`
 `true` to allow selecting text in the label
 <!-- impl Label::fn set_single_line_mode -->
 Sets whether the label is in single line mode.
-
-# Parameters
-
 ## `single_line_mode`
 `true` if the label should be in single line mode
 <!-- impl Label::fn set_text -->
@@ -14288,9 +13453,6 @@ Sets the text within the `Label` widget. It overwrites any text that
 was there before.
 
 This will also clear any previously set mnemonic accelerators.
-
-# Parameters
-
 ## `str`
 The text you want to set
 <!-- impl Label::fn set_text_with_mnemonic -->
@@ -14299,55 +13461,34 @@ If characters in `str` are preceded by an underscore, they are underlined
 indicating that they represent a keyboard accelerator called a mnemonic.
 The mnemonic key can be used to activate another widget, chosen
 automatically, or explicitly using `Label::set_mnemonic_widget`.
-
-# Parameters
-
 ## `str`
 a string
 <!-- impl Label::fn set_track_visited_links -->
 Sets whether the label should keep track of clicked
 links (and use a different color for them).
-
-# Parameters
-
 ## `track_links`
 `true` to track visited links
 <!-- impl Label::fn set_use_markup -->
 Sets whether the text of the label contains markup in
 [Pango’s text markup language][PangoMarkupFormat].
 See `Label::set_markup`.
-
-# Parameters
-
 ## `setting`
 `true` if the label’s text should be parsed for markup.
 <!-- impl Label::fn set_use_underline -->
 If true, an underline in the text indicates the next character should be
 used for the mnemonic accelerator key.
-
-# Parameters
-
 ## `setting`
 `true` if underlines in the text indicate mnemonics
 <!-- impl Label::fn set_width_chars -->
 Sets the desired width in characters of `self` to `n_chars`.
-
-# Parameters
-
 ## `n_chars`
 the new desired width, in characters.
 <!-- impl Label::fn set_xalign -->
 Sets the `Label:xalign` property for `self`.
-
-# Parameters
-
 ## `xalign`
 the new xalign value, between 0 and 1
 <!-- impl Label::fn set_yalign -->
 Sets the `Label:yalign` property for `self`.
-
-# Parameters
-
 ## `yalign`
 the new yalign value, between 0 and 1
 <!-- struct Layout -->
@@ -14370,9 +13511,6 @@ area.
 Creates a new `Layout`. Unless you have a specific adjustment
 you’d like the layout to use for scrolling, pass `None` for
 `hadjustment` and `vadjustment`.
-
-# Parameters
-
 ## `hadjustment`
 horizontal scroll adjustment, or `None`
 ## `vadjustment`
@@ -14406,9 +13544,6 @@ horizontal scroll adjustment
 Gets the size that has been set on the layout, and that determines
 the total extents of the layout’s scrollbar area. See
 gtk_layout_set_size ().
-
-# Parameters
-
 ## `width`
 location to store the width set on
  `self`, or `None`
@@ -14432,9 +13567,6 @@ Use `Scrollable::get_vadjustment`
 vertical scroll adjustment
 <!-- impl Layout::fn move -->
 Moves a current child of `self` to a new position.
-
-# Parameters
-
 ## `child_widget`
 a current child of `self`
 ## `x`
@@ -14444,9 +13576,6 @@ Y position to move to
 <!-- impl Layout::fn put -->
 Adds `child_widget` to `self`, at position (`x`,`y`).
 `self` becomes the new parent container of `child_widget`.
-
-# Parameters
-
 ## `child_widget`
 child widget
 ## `x`
@@ -14461,16 +13590,10 @@ See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 # Deprecated
 
 Use `Scrollable::set_hadjustment`
-
-# Parameters
-
 ## `adjustment`
 new scroll adjustment
 <!-- impl Layout::fn set_size -->
 Sets the size of the scrollable area of the layout.
-
-# Parameters
-
 ## `width`
 width of entire scrollable area
 ## `height`
@@ -14483,9 +13606,6 @@ See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 # Deprecated
 
 Use `Scrollable::set_vadjustment`
-
-# Parameters
-
 ## `adjustment`
 new scroll adjustment
 <!-- struct LevelBar -->
@@ -14565,9 +13685,6 @@ a `LevelBar`.
 <!-- impl LevelBar::fn new_for_interval -->
 Utility constructor that creates a new `LevelBar` for the specified
 interval.
-
-# Parameters
-
 ## `min_value`
 a positive value
 ## `max_value`
@@ -14584,9 +13701,6 @@ a style class named `level-``name` will be applied
 when rendering the level bar fill.
 If another offset marker named `name` exists, its value will be
 replaced by `value`.
-
-# Parameters
-
 ## `name`
 the name of the new offset
 ## `value`
@@ -14618,9 +13732,6 @@ a `LevelBarMode`
 <!-- impl LevelBar::fn get_offset_value -->
 Fetches the value specified for the offset marker `name` in `self`,
 returning `true` in case an offset named `name` was found.
-
-# Parameters
-
 ## `name`
 the name of an offset in the bar
 ## `value`
@@ -14639,47 +13750,68 @@ a value in the interval between
 <!-- impl LevelBar::fn remove_offset_value -->
 Removes an offset marker previously added with
 `LevelBar::add_offset_value`.
-
-# Parameters
-
 ## `name`
 the name of an offset in the bar
 <!-- impl LevelBar::fn set_inverted -->
 Sets the value of the `LevelBar:inverted` property.
-
-# Parameters
-
 ## `inverted`
 `true` to invert the level bar
 <!-- impl LevelBar::fn set_max_value -->
 Sets the value of the `LevelBar:max-value` property.
-
-# Parameters
-
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_min_value -->
 Sets the value of the `LevelBar:min-value` property.
-
-# Parameters
-
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_mode -->
 Sets the value of the `LevelBar:mode` property.
-
-# Parameters
-
 ## `mode`
 a `LevelBarMode`
 <!-- impl LevelBar::fn set_value -->
 Sets the value of the `LevelBar:value` property.
-
-# Parameters
-
 ## `value`
 a value in the interval between
  `LevelBar:min-value` and `LevelBar:max-value`
+<!-- enum LevelBarMode -->
+Describes how `LevelBar` contents should be rendered.
+Note that this enumeration could be extended with additional modes
+in the future.
+<!-- enum LevelBarMode::variant Continuous -->
+the bar has a continuous mode
+<!-- enum LevelBarMode::variant Discrete -->
+the bar has a discrete mode
+<!-- enum License -->
+The type of license for an application.
+
+This enumeration can be expanded at later date.
+<!-- enum License::variant Unknown -->
+No license specified
+<!-- enum License::variant Custom -->
+A license text is going to be specified by the
+ developer
+<!-- enum License::variant Gpl20 -->
+The GNU General Public License, version 2.0 or later
+<!-- enum License::variant Gpl30 -->
+The GNU General Public License, version 3.0 or later
+<!-- enum License::variant Lgpl21 -->
+The GNU Lesser General Public License, version 2.1 or later
+<!-- enum License::variant Lgpl30 -->
+The GNU Lesser General Public License, version 3.0 or later
+<!-- enum License::variant Bsd -->
+The BSD standard license
+<!-- enum License::variant MitX11 -->
+The MIT/X11 standard license
+<!-- enum License::variant Artistic -->
+The Artistic License, version 2.0
+<!-- enum License::variant Gpl20Only -->
+The GNU General Public License, version 2.0 only. Since 3.12.
+<!-- enum License::variant Gpl30Only -->
+The GNU General Public License, version 3.0 only. Since 3.12.
+<!-- enum License::variant Lgpl21Only -->
+The GNU Lesser General Public License, version 2.1 only. Since 3.12.
+<!-- enum License::variant Lgpl30Only -->
+The GNU Lesser General Public License, version 3.0 only. Since 3.12.
 <!-- struct LinkButton -->
 A `LinkButton` is a `Button` with a hyperlink, similar to the one
 used by web browsers, which triggers an action when clicked. It is useful
@@ -14699,12 +13831,9 @@ signal handler.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl LinkButton::fn new -->
 Creates a new `LinkButton` with the URI as its text.
-
-# Parameters
-
 ## `uri`
 a valid URI
 
@@ -14713,9 +13842,6 @@ a valid URI
 a new link button widget.
 <!-- impl LinkButton::fn new_with_label -->
 Creates a new `LinkButton` containing a label.
-
-# Parameters
-
 ## `uri`
 a valid URI
 ## `label`
@@ -14744,17 +13870,11 @@ The state may also be changed using `LinkButton::set_visited`.
 <!-- impl LinkButton::fn set_uri -->
 Sets `uri` as the URI where the `LinkButton` points. As a side-effect
 this unsets the “visited” state of the button.
-
-# Parameters
-
 ## `uri`
 a valid URI
 <!-- impl LinkButton::fn set_visited -->
 Sets the “visited” state of the URI where the `LinkButton`
 points. See `LinkButton::get_visited` for more details.
-
-# Parameters
-
 ## `visited`
 the new “visited” state
 <!-- struct ListBox -->
@@ -14802,9 +13922,6 @@ If `model` is `None`, `self` is left empty.
 It is undefined to add or remove widgets directly (for example, with
 `ListBox::insert` or `ContainerExt::add`) while `self` is bound to a
 model.
-
-# Parameters
-
 ## `model`
 the `gio::ListModel` to be bound to `self`
 ## `create_widget_func`
@@ -14820,9 +13937,6 @@ and any previously highlighted row will be unhighlighted.
 
 The row will also be unhighlighted when the widget gets
 a drag leave event.
-
-# Parameters
-
 ## `row`
 a `ListBoxRow`
 <!-- impl ListBox::fn drag_unhighlight_row -->
@@ -14845,9 +13959,6 @@ the adjustment
 Gets the n-th child in the list (not counting headers).
 If `_index` is negative or larger than the number of items in the
 list, `None` is returned.
-
-# Parameters
-
 ## `index_`
 the index of the row
 
@@ -14856,9 +13967,6 @@ the index of the row
 the child `Widget` or `None`
 <!-- impl ListBox::fn get_row_at_y -->
 Gets the row at the `y` position.
-
-# Parameters
-
 ## `y`
 position
 
@@ -14896,9 +14004,6 @@ this function has the same effect of `ContainerExt::add`.
 
 If `position` is -1, or larger than the total number of items in the
 `self`, then the `child` will be appended to the end.
-
-# Parameters
-
 ## `child`
 the `Widget` to add
 ## `position`
@@ -14921,27 +14026,18 @@ to an external factor.
 Prepend a widget to the list. If a sort function is set, the widget will
 actually be inserted at the calculated position and this function has the
 same effect of `ContainerExt::add`.
-
-# Parameters
-
 ## `child`
 the `Widget` to add
 <!-- impl ListBox::fn select_all -->
 Select all children of `self`, if the selection mode allows it.
 <!-- impl ListBox::fn select_row -->
 Make `row` the currently selected row.
-
-# Parameters
-
 ## `row`
 The row to select or `None`
 <!-- impl ListBox::fn selected_foreach -->
 Calls a function for each selected child.
 
 Note that the selection cannot be modified from within this function.
-
-# Parameters
-
 ## `func`
 the function to call for each selected child
 ## `data`
@@ -14949,9 +14045,6 @@ user data to pass to the function
 <!-- impl ListBox::fn set_activate_on_single_click -->
 If `single` is `true`, rows will be activated when you click on them,
 otherwise you need to double-click.
-
-# Parameters
-
 ## `single`
 a boolean
 <!-- impl ListBox::fn set_adjustment -->
@@ -14963,9 +14056,6 @@ In the normal case when the `self` is packed inside
 a `ScrolledWindow` the adjustment from that will
 be picked up automatically, so there is no need
 to manually do that.
-
-# Parameters
-
 ## `adjustment`
 the adjustment, or `None`
 <!-- impl ListBox::fn set_filter_func -->
@@ -14976,9 +14066,6 @@ filters the original list to only show the matching rows.
 The `filter_func` will be called for each row after the call, and it will
 continue to be called each time a row changes (via `ListBoxRow::changed`) or
 when `ListBox::invalidate_filter` is called.
-
-# Parameters
-
 ## `filter_func`
 callback that lets you filter which rows to show
 ## `user_data`
@@ -15004,9 +14091,6 @@ continue to be called each time a row changes (via `ListBoxRow::changed`) and wh
 the row before changes (either by `ListBoxRow::changed` on the previous row, or when
 the previous row becomes a different row). It is also called for all rows when
 `ListBox::invalidate_headers` is called.
-
-# Parameters
-
 ## `update_header`
 callback that lets you add row headers
 ## `user_data`
@@ -15016,17 +14100,11 @@ destroy notifier for `user_data`
 <!-- impl ListBox::fn set_placeholder -->
 Sets the placeholder widget that is shown in the list when
 it doesn't display any visible children.
-
-# Parameters
-
 ## `placeholder`
 a `Widget` or `None`
 <!-- impl ListBox::fn set_selection_mode -->
 Sets how selection works in the listbox.
 See `SelectionMode` for details.
-
-# Parameters
-
 ## `mode`
 The `SelectionMode`
 <!-- impl ListBox::fn set_sort_func -->
@@ -15036,9 +14114,6 @@ of the list, based on the contents of the rows.
 The `sort_func` will be called for each row after the call, and will continue to
 be called each time a row changes (via `ListBoxRow::changed`) and when
 `ListBox::invalidate_sort` is called.
-
-# Parameters
-
 ## `sort_func`
 the sort function
 ## `user_data`
@@ -15049,9 +14124,6 @@ destroy notifier for `user_data`
 Unselect all children of `self`, if the selection mode allows it.
 <!-- impl ListBox::fn unselect_row -->
 Unselects a single row of `self`, if the selection mode allows it.
-
-# Parameters
-
 ## `row`
 the row to unselected
 <!-- impl ListBoxRow::fn new -->
@@ -15114,25 +14186,16 @@ Returns whether the child is currently selected in its
 `true` if `self` is selected
 <!-- impl ListBoxRow::fn set_activatable -->
 Set the `ListBoxRow:activatable` property for this row.
-
-# Parameters
-
 ## `activatable`
 `true` to mark the row as activatable
 <!-- impl ListBoxRow::fn set_header -->
 Sets the current header of the `self`. This is only allowed to be called
 from a ``GtkListBoxUpdateHeaderFunc``. It will replace any existing
 header in the row, and be shown in front of the row in the listbox.
-
-# Parameters
-
 ## `header`
 the header, or `None`
 <!-- impl ListBoxRow::fn set_selectable -->
 Set the `ListBoxRow:selectable` property for this row.
-
-# Parameters
-
 ## `selectable`
 `true` to mark the row as selectable
 <!-- struct ListStore -->
@@ -15285,9 +14348,6 @@ are supported.
 As an example, `gtk_list_store_new (3, G_TYPE_INT, G_TYPE_STRING,
 GDK_TYPE_PIXBUF);` will create a new `ListStore` with three columns, of type
 int, string and `gdk_pixbuf::Pixbuf` respectively.
-
-# Parameters
-
 ## `n_columns`
 number of columns in the list store
 
@@ -15296,9 +14356,6 @@ number of columns in the list store
 a new `ListStore`
 <!-- impl ListStore::fn newv -->
 Non-vararg creation function. Used primarily by language bindings.
-
-# Parameters
-
 ## `n_columns`
 number of columns in the list store
 ## `types`
@@ -15311,9 +14368,6 @@ a new `ListStore`
 Appends a new row to `self`. `iter` will be changed to point to this new
 row. The row will be empty after this function is called. To fill in
 values, you need to call `ListStore::set` or `ListStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the appended row
 <!-- impl ListStore::fn clear -->
@@ -15324,9 +14378,6 @@ row. If `position` is -1 or is larger than the number of rows on the list,
 then the new row will be appended to the list. The row will be empty after
 this function is called. To fill in values, you need to call
 `ListStore::set` or `ListStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `position`
@@ -15336,9 +14387,6 @@ Inserts a new row after `sibling`. If `sibling` is `None`, then the row will be
 prepended to the beginning of the list. `iter` will be changed to point to
 this new row. The row will be empty after this function is called. To fill
 in values, you need to call `ListStore::set` or `ListStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `sibling`
@@ -15348,9 +14396,6 @@ Inserts a new row before `sibling`. If `sibling` is `None`, then the row will
 be appended to the end of the list. `iter` will be changed to point to this
 new row. The row will be empty after this function is called. To fill in
 values, you need to call `ListStore::set` or `ListStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `sibling`
@@ -15375,9 +14420,6 @@ is sorted, rows_reordered. Since emitting the rows_reordered signal
 repeatedly can affect the performance of the program,
 `ListStore::insert_with_values` should generally be preferred when
 inserting rows in a sorted list store.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row, or `None`
 ## `position`
@@ -15388,9 +14430,6 @@ A variant of `ListStore::insert_with_values` which
 takes the columns and values as two arrays, instead of
 varargs. This function is mainly intended for
 language-bindings.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row, or `None`.
 ## `position`
@@ -15406,9 +14445,6 @@ the length of the `columns` and `values` arrays
 > purposes.
 
 Checks if the given iter is a valid iter for this `ListStore`.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 
@@ -15419,9 +14455,6 @@ A `TreeIter`.
 Moves `iter` in `self` to the position after `position`. Note that this
 function only works with unsorted stores. If `position` is `None`, `iter`
 will be moved to the start of the list.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 ## `position`
@@ -15430,9 +14463,6 @@ A `TreeIter` or `None`.
 Moves `iter` in `self` to the position before `position`. Note that this
 function only works with unsorted stores. If `position` is `None`, `iter`
 will be moved to the end of the list.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 ## `position`
@@ -15441,18 +14471,12 @@ A `TreeIter`, or `None`.
 Prepends a new row to `self`. `iter` will be changed to point to this new
 row. The row will be empty after this function is called. To fill in
 values, you need to call `ListStore::set` or `ListStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the prepend row
 <!-- impl ListStore::fn remove -->
 Removes the given row from the list store. After being removed,
 `iter` is set to be the next valid row, or invalidated if it pointed
 to the last row in `self`.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter`
 
@@ -15462,9 +14486,6 @@ A valid `TreeIter`
 <!-- impl ListStore::fn reorder -->
 Reorders `self` to follow the order indicated by `new_order`. Note that
 this function only works with unsorted stores.
-
-# Parameters
-
 ## `new_order`
 an array of integers mapping the new
  position of each child to its old position before the re-ordering,
@@ -15480,9 +14501,6 @@ The list is terminated by a -1. For example, to set column 0 with type
 
 The value will be referenced by the store if it is a `G_TYPE_OBJECT`, and it
 will be copied if it is a `G_TYPE_STRING` or `G_TYPE_BOXED`.
-
-# Parameters
-
 ## `iter`
 row iterator
 <!-- impl ListStore::fn set_column_types -->
@@ -15490,9 +14508,6 @@ This function is meant primarily for `GObjects` that inherit from `ListStore`,
 and should only be used when constructing a new `ListStore`. It will not
 function after a row has been added, or a method on the `TreeModel`
 interface is called.
-
-# Parameters
-
 ## `n_columns`
 Number of columns for the list store
 ## `types`
@@ -15500,9 +14515,6 @@ An array length n of `GTypes`
 <!-- impl ListStore::fn set_valist -->
 See `ListStore::set`; this version takes a va_list for use by language
 bindings.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `var_args`
@@ -15511,9 +14523,6 @@ va_list of column/value pairs
 Sets the data in the cell specified by `iter` and `column`.
 The type of `value` must be convertible to the type of the
 column.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `column`
@@ -15526,9 +14535,6 @@ takes the columns and values as two arrays, instead of
 varargs. This function is mainly intended for
 language-bindings and in case the number of columns to
 change is not known until run-time.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `columns`
@@ -15540,9 +14546,6 @@ the length of the `columns` and `values` arrays
 <!-- impl ListStore::fn swap -->
 Swaps `a` and `b` in `self`. Note that this function only works with
 unsorted stores.
-
-# Parameters
-
 ## `a`
 A `TreeIter`.
 ## `b`
@@ -15626,9 +14629,6 @@ that is contained within the ``GtkApplicationWindows`` widget hierarchy.
 
 Actions can also be added using `Widget::insert_action_group` on the menu's
 attach widget or on any of its parent widgets.
-
-# Parameters
-
 ## `model`
 a `gio::MenuModel`
 
@@ -15638,9 +14638,6 @@ a new `Menu`
 <!-- impl Menu::fn get_for_attach_widget -->
 Returns a list of the menus which are attached to this widget.
 This list is owned by GTK+ and must not be modified.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 
@@ -15656,9 +14653,6 @@ rightmost, uppermost and lower column and row numbers of the table.
 (Columns and rows are indexed from zero).
 
 Note that this function is not related to `Menu::detach`.
-
-# Parameters
-
 ## `child`
 a `MenuItem`
 ## `left_attach`
@@ -15678,9 +14672,6 @@ If the menu is attached to the widget then it will be destroyed
 when the widget is destroyed, as if it was a child widget.
 An attached menu will also move between screens correctly if the
 widgets moves between screens.
-
-# Parameters
-
 ## `attach_widget`
 the `Widget` that the menu will be attached to
 ## `detacher`
@@ -15769,9 +14760,6 @@ properly, this needs to be the timestamp of the user event (such as
 a mouse click or key press) that caused the initiation of the popup.
 Only if no such event is available, `gtk_get_current_event_time` can
 be used instead.
-
-# Parameters
-
 ## `parent_menu_shell`
 the menu shell containing the
  triggering menu item, or `None`
@@ -15807,9 +14795,6 @@ properly, this needs to be the time stamp of the user event (such as
 a mouse click or key press) that caused the initiation of the popup.
 Only if no such event is available, `gtk_get_current_event_time` can
 be used instead.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 ## `parent_menu_shell`
@@ -15832,9 +14817,6 @@ the time at which the activation event occurred
 <!-- impl Menu::fn reorder_child -->
 Moves `child` to a new `position` in the list of `self`
 children.
-
-# Parameters
-
 ## `child`
 the `MenuItem` to move
 ## `position`
@@ -15848,9 +14830,6 @@ menu. This accelerator group needs to also be added to all windows
 that this menu is being used in with `Window::add_accel_group`,
 in order for those windows to support all the accelerators
 contained in this group.
-
-# Parameters
-
 ## `accel_group`
 the `AccelGroup` to be associated
  with the menu.
@@ -15876,17 +14855,11 @@ and their default setups can be found at `AccelMap::add_entry`.
 Note that `accel_path` string will be stored in a `glib::Quark`. Therefore,
 if you pass a static string, you can save some memory by interning
 it first with `g_intern_static_string`.
-
-# Parameters
-
 ## `accel_path`
 a valid accelerator path
 <!-- impl Menu::fn set_active -->
 Selects the specified menu item within the menu. This is used by
 the `ComboBox` and should not be used by anyone else.
-
-# Parameters
-
 ## `index`
 the index of the menu item to select. Index values are
  from 0 to n-1
@@ -15900,25 +14873,16 @@ This information can’t be reliably inferred from the coordinates
 returned by a ``GtkMenuPositionFunc``, since, for very long menus,
 these coordinates may extend beyond the monitor boundaries or even
 the screen boundaries.
-
-# Parameters
-
 ## `monitor_num`
 the number of the monitor on which the menu should
  be popped up
 <!-- impl Menu::fn set_reserve_toggle_size -->
 Sets whether the menu should reserve space for drawing toggles
 or icons, regardless of their actual presence.
-
-# Parameters
-
 ## `reserve_toggle_size`
 whether to reserve size for toggles
 <!-- impl Menu::fn set_screen -->
 Sets the `gdk::Screen` on which the menu will be displayed.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`, or `None` if the screen should be
  determined by the widget the menu is attached to
@@ -15927,9 +14891,6 @@ Changes the tearoff state of the menu. A menu is normally
 displayed as drop down menu which persists as long as the menu is
 active. It can also be displayed as a tearoff menu which persists
 until it is closed or reattached.
-
-# Parameters
-
 ## `torn_off`
 If `true`, menu is displayed as a tearoff menu.
 <!-- impl Menu::fn set_title -->
@@ -15939,9 +14900,6 @@ The title is displayed when the menu is shown as a tearoff
 menu. If `title` is `None`, the menu will see if it is attached
 to a parent menu item, and if so it will try to use the same
 text as that menu item’s label.
-
-# Parameters
-
 ## `title`
 a string containing the title for the menu
 <!-- struct MenuButton -->
@@ -16026,7 +14984,7 @@ part of the menu offscreen, it is “pushed in”.
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl MenuButton::fn new -->
 Creates a new `MenuButton` widget with downwards-pointing
 arrow as the only child. You can replace the child widget
@@ -16085,9 +15043,6 @@ button itself.
 
 Note that this property is only used with menus currently,
 and not for popovers.
-
-# Parameters
-
 ## `align_widget`
 a `Widget`
 <!-- impl MenuButton::fn set_direction -->
@@ -16100,9 +15055,6 @@ GTK+ will its best to keep it inside the screen and fully visible.
 
 If you pass `ArrowType::None` for a `direction`, the popup will behave
 as if you passed `ArrowType::Down` (although you won’t see any arrows).
-
-# Parameters
-
 ## `direction`
 a `ArrowType`
 <!-- impl MenuButton::fn set_menu_model -->
@@ -16116,38 +15068,36 @@ actions will be connected as documented for these functions.
 
 If `MenuButton:popup` or `MenuButton:popover` are already set,
 their content will be lost and replaced by the newly created popup.
-
-# Parameters
-
 ## `menu_model`
 a `gio::MenuModel`
 <!-- impl MenuButton::fn set_popover -->
 Sets the `Popover` that will be popped up when the button is
 clicked, or `None` to disable the button. If `MenuButton:menu-model`
 or `MenuButton:popup` are set, they will be set to `None`.
-
-# Parameters
-
 ## `popover`
 a `Popover`
 <!-- impl MenuButton::fn set_popup -->
 Sets the `Menu` that will be popped up when the button is clicked,
 or `None` to disable the button. If `MenuButton:menu-model` or
 `MenuButton:popover` are set, they will be set to `None`.
-
-# Parameters
-
 ## `menu`
 a `Menu`
 <!-- impl MenuButton::fn set_use_popover -->
 Sets whether to construct a `Popover` instead of `Menu`
 when `MenuButton::set_menu_model` is called. Note that
 this property is only consulted when a new menu model is set.
-
-# Parameters
-
 ## `use_popover`
 `true` to construct a popover from the menu model
+<!-- enum MenuDirectionType -->
+An enumeration representing directional movements within a menu.
+<!-- enum MenuDirectionType::variant Parent -->
+To the parent menu shell
+<!-- enum MenuDirectionType::variant Child -->
+To the submenu, if any, associated with the item
+<!-- enum MenuDirectionType::variant Next -->
+To the next menu item
+<!-- enum MenuDirectionType::variant Prev -->
+To the previous menu item
 <!-- struct MenuItem -->
 The `MenuItem` widget and the derived widgets are the only valid
 children for menus. Their function is to correctly handle highlighting,
@@ -16186,9 +15136,13 @@ An example of UI definition fragment with submenus:
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait MenuItemExt -->
 Trait containing all `MenuItem` methods.
+
+# Implementors
+
+[`CheckMenuItem`](struct.CheckMenuItem.html), [`MenuItem`](struct.MenuItem.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html)
 <!-- impl MenuItem::fn new -->
 Creates a new `MenuItem`.
 
@@ -16197,9 +15151,6 @@ Creates a new `MenuItem`.
 the newly created `MenuItem`
 <!-- impl MenuItem::fn new_with_label -->
 Creates a new `MenuItem` whose child is a `Label`.
-
-# Parameters
-
 ## `label`
 the text for the label
 
@@ -16211,9 +15162,6 @@ Creates a new `MenuItem` containing a label.
 
 The label will be created using `Label::new_with_mnemonic`,
 so underscores in `label` indicate the mnemonic for the menu item.
-
-# Parameters
-
 ## `label`
 The text of the button, with an underscore in front of the
  mnemonic character
@@ -16299,17 +15247,11 @@ Note that you do need to set an accelerator on the parent menu with
 Note that `accel_path` string will be stored in a `glib::Quark`.
 Therefore, if you pass a static string, you can save some memory
 by interning it first with `g_intern_static_string`.
-
-# Parameters
-
 ## `accel_path`
 accelerator path, corresponding to this menu
  item’s functionality, or `None` to unset the current path.
 <!-- trait MenuItemExt::fn set_label -->
 Sets `text` on the `self` label
-
-# Parameters
-
 ## `label`
 the text you want to set
 <!-- trait MenuItemExt::fn set_reserve_indicator -->
@@ -16319,9 +15261,6 @@ a submenu or not.
 
 There should be little need for applications to call
 this functions.
-
-# Parameters
-
 ## `reserve`
 the new value
 <!-- trait MenuItemExt::fn set_right_justified -->
@@ -16335,40 +15274,25 @@ or Arabic, right-justified-menu-items appear at the left.)
 
 If you insist on using it, use
  `Widget::set_hexpand` and `Widget::set_halign`.
-
-# Parameters
-
 ## `right_justified`
 if `true` the menu item will appear at the
  far right if added to a menu bar
 <!-- trait MenuItemExt::fn set_submenu -->
 Sets or replaces the menu item’s submenu, or removes it when a `None`
 submenu is passed.
-
-# Parameters
-
 ## `submenu`
 the submenu, or `None`
 <!-- trait MenuItemExt::fn set_use_underline -->
 If true, an underline in the text indicates the next character
 should be used for the mnemonic accelerator key.
-
-# Parameters
-
 ## `setting`
 `true` if underlines in the text indicate mnemonics
 <!-- trait MenuItemExt::fn toggle_size_allocate -->
 Emits the `MenuItem::toggle-size-allocate` signal on the given item.
-
-# Parameters
-
 ## `allocation`
 the allocation to use as signal data.
 <!-- trait MenuItemExt::fn toggle_size_request -->
 Emits the `MenuItem::toggle-size-request` signal on the given item.
-
-# Parameters
-
 ## `requisition`
 the requisition to use as signal data.
 <!-- struct MenuShell -->
@@ -16405,11 +15329,12 @@ grab and receive all key presses.
 [`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MenuShellExt -->
 Trait containing all `MenuShell` methods.
+
+# Implementors
+
+[`MenuShell`](struct.MenuShell.html), [`Menu`](struct.Menu.html)
 <!-- trait MenuShellExt::fn activate_item -->
 Activates the menu item within the menu shell.
-
-# Parameters
-
 ## `menu_item`
 the `MenuItem` to activate
 ## `force_deactivate`
@@ -16418,9 +15343,6 @@ if `true`, force the deactivation of the
 <!-- trait MenuShellExt::fn append -->
 Adds a new `MenuItem` to the end of the menu shell's
 item list.
-
-# Parameters
-
 ## `child`
 The `MenuItem` to add
 <!-- trait MenuShellExt::fn bind_model -->
@@ -16457,9 +15379,6 @@ For most cases you are probably better off using
 `Menu::new_from_model` or `MenuBar::new_from_model` or just
 directly passing the `gio::MenuModel` to `Application::set_app_menu` or
 `Application::set_menubar`.
-
-# Parameters
-
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
  binding
@@ -16502,9 +15421,6 @@ Returns `true` if the menu shell will take the keyboard focus on popup.
 <!-- trait MenuShellExt::fn insert -->
 Adds a new `MenuItem` to the menu shell’s item list
 at the position indicated by `position`.
-
-# Parameters
-
 ## `child`
 The `MenuItem` to add
 ## `position`
@@ -16513,18 +15429,12 @@ The position in the item list where `child`
 <!-- trait MenuShellExt::fn prepend -->
 Adds a new `MenuItem` to the beginning of the menu shell's
 item list.
-
-# Parameters
-
 ## `child`
 The `MenuItem` to add
 <!-- trait MenuShellExt::fn select_first -->
 Select the first visible or selectable child of the menu shell;
 don’t select tearoff items unless the only item is a tearoff
 item.
-
-# Parameters
-
 ## `search_sensitive`
 if `true`, search for the first selectable
  menu item, otherwise select nothing if
@@ -16533,9 +15443,6 @@ if `true`, search for the first selectable
  popped up initially.
 <!-- trait MenuShellExt::fn select_item -->
 Selects the menu item from the menu shell.
-
-# Parameters
-
 ## `menu_item`
 The `MenuItem` to select
 <!-- trait MenuShellExt::fn set_take_focus -->
@@ -16565,9 +15472,6 @@ should not display mnemonics or accelerators, since it cannot be
 guaranteed that they will work.
 
 See also `gdk_keyboard_grab`
-
-# Parameters
-
 ## `take_focus`
 `true` if the menu shell should take the keyboard
  focus on popup
@@ -16597,13 +15501,10 @@ An example for a UI definition fragment with menus:
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl MenuToolButton::fn new -->
 Creates a new `MenuToolButton` using `icon_widget` as icon and
 `label` as label.
-
-# Parameters
-
 ## `icon_widget`
 a widget that will be used as icon widget, or `None`
 ## `label`
@@ -16620,9 +15521,6 @@ the stock item indicated by `stock_id`.
 # Deprecated
 
 Use `MenuToolButton::new` instead.
-
-# Parameters
-
 ## `stock_id`
 the name of a stock item
 
@@ -16640,26 +15538,17 @@ the `Menu` associated
 Sets the tooltip markup text to be used as tooltip for the arrow button
 which pops up the menu. See `ToolItem::set_tooltip_text` for setting
 a tooltip on the whole `MenuToolButton`.
-
-# Parameters
-
 ## `markup`
 markup text to be used as tooltip text for button’s arrow button
 <!-- impl MenuToolButton::fn set_arrow_tooltip_text -->
 Sets the tooltip text to be used as tooltip for the arrow button which
 pops up the menu. See `ToolItem::set_tooltip_text` for setting a tooltip
 on the whole `MenuToolButton`.
-
-# Parameters
-
 ## `text`
 text to be used as tooltip text for button’s arrow button
 <!-- impl MenuToolButton::fn set_menu -->
 Sets the `Menu` that is popped up when the user clicks on the arrow.
 If `menu` is NULL, the arrow button becomes insensitive.
-
-# Parameters
-
 ## `menu`
 the `Menu` associated with `MenuToolButton`
 <!-- struct MessageDialog -->
@@ -16726,9 +15615,6 @@ Creates a new message dialog, which is a simple dialog with some text
 the user may want to see. When the user clicks a button a “response”
 signal is emitted with response IDs from `ResponseType`. See
 `Dialog` for more details.
-
-# Parameters
-
 ## `parent`
 transient parent, or `None` for none
 ## `flags`
@@ -16770,9 +15656,6 @@ argument.
  gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
                                 markup);
 ```
-
-# Parameters
-
 ## `parent`
 transient parent, or `None` for none
 ## `flags`
@@ -16806,18 +15689,12 @@ gtk_message_dialog_format_secondary_markup (message_dialog,
                                             "%s", msg);
 g_free (msg);
 ```
-
-# Parameters
-
 ## `message_format`
 `printf`-style markup string (see
  [Pango markup format][PangoMarkupFormat]), or `None`
 <!-- impl MessageDialog::fn format_secondary_text -->
 Sets the secondary text of the message dialog to be `message_format`
 (with `printf`-style).
-
-# Parameters
-
 ## `message_format`
 `printf`-style format string, or `None`
 <!-- impl MessageDialog::fn get_image -->
@@ -16847,19 +15724,25 @@ Sets the dialog’s image to `image`.
 # Deprecated
 
 Use `Dialog` to create dialogs with images
-
-# Parameters
-
 ## `image`
 the image
 <!-- impl MessageDialog::fn set_markup -->
 Sets the text of the message dialog to be `str`, which is marked
 up with the [Pango text markup language][PangoMarkupFormat].
-
-# Parameters
-
 ## `str`
 markup string (see [Pango markup format][PangoMarkupFormat])
+<!-- enum MessageType -->
+The type of message being displayed in the dialog.
+<!-- enum MessageType::variant Info -->
+Informational message
+<!-- enum MessageType::variant Warning -->
+Non-fatal warning message
+<!-- enum MessageType::variant Question -->
+Question requiring a choice
+<!-- enum MessageType::variant Error -->
+Fatal error message
+<!-- enum MessageType::variant Other -->
+None of the above
 <!-- struct Misc -->
 The `Misc` widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
@@ -16882,6 +15765,10 @@ this fact, all `Misc` API has been deprecated.
 [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MiscExt -->
 Trait containing all `Misc` methods.
+
+# Implementors
+
+[`Arrow`](struct.Arrow.html), [`Image`](struct.Image.html), [`Label`](struct.Label.html), [`Misc`](struct.Misc.html)
 <!-- trait MiscExt::fn get_alignment -->
 Gets the X and Y alignment of the widget within its allocation.
 See `MiscExt::set_alignment`.
@@ -16889,9 +15776,6 @@ See `MiscExt::set_alignment`.
 # Deprecated
 
 Use `Widget` alignment and margin properties.
-
-# Parameters
-
 ## `xalign`
 location to store X alignment of `self`, or `None`
 ## `yalign`
@@ -16903,9 +15787,6 @@ See `MiscExt::set_padding`.
 # Deprecated
 
 Use `Widget` alignment and margin properties.
-
-# Parameters
-
 ## `xpad`
 location to store padding in the X
  direction, or `None`
@@ -16918,9 +15799,6 @@ Sets the alignment of the widget.
 # Deprecated
 
 Use `Widget`'s alignment (`Widget:halign` and `Widget:valign`) and margin properties or `Label`'s `Label:xalign` and `Label:yalign` properties.
-
-# Parameters
-
 ## `xalign`
 the horizontal alignment, from 0 (left) to 1 (right).
 ## `yalign`
@@ -16931,15 +15809,33 @@ Sets the amount of space to add around the widget.
 # Deprecated
 
 Use `Widget` alignment and margin properties.
-
-# Parameters
-
 ## `xpad`
 the amount of space to add on the left and right of the widget,
  in pixels.
 ## `ypad`
 the amount of space to add on the top and bottom of the widget,
  in pixels.
+<!-- enum MovementStep -->
+<!-- enum MovementStep::variant LogicalPositions -->
+Move forward or back by graphemes
+<!-- enum MovementStep::variant VisualPositions -->
+Move left or right by graphemes
+<!-- enum MovementStep::variant Words -->
+Move forward or back by words
+<!-- enum MovementStep::variant DisplayLines -->
+Move up or down lines (wrapped lines)
+<!-- enum MovementStep::variant DisplayLineEnds -->
+Move to either end of a line
+<!-- enum MovementStep::variant Paragraphs -->
+Move up or down paragraphs (newline-ended lines)
+<!-- enum MovementStep::variant ParagraphEnds -->
+Move to either end of a paragraph
+<!-- enum MovementStep::variant Pages -->
+Move by pages
+<!-- enum MovementStep::variant BufferEnds -->
+Move to ends of the buffer
+<!-- enum MovementStep::variant HorizontalPages -->
+Move horizontally by pages
 <!-- struct Notebook -->
 The `Notebook` widget is a `Container` whose children are pages that
 can be switched between using tab labels along one edge.
@@ -16993,9 +15889,6 @@ Creates a new `Notebook` widget with no pages.
 the newly created `Notebook`
 <!-- impl Notebook::fn append_page -->
 Appends a page to `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17009,9 +15902,6 @@ the index (starting from 0) of the appended
 <!-- impl Notebook::fn append_page_menu -->
 Appends a page to `self`, specifying the widget to use as the
 label in the popup menu.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17036,16 +15926,10 @@ This function is very similar to `ContainerExt::remove`,
 but additionally informs the notebook that the removal
 is happening as part of a tab DND operation, which should
 not be cancelled.
-
-# Parameters
-
 ## `child`
 a child
 <!-- impl Notebook::fn get_action_widget -->
 Gets one of the action widgets. See `Notebook::set_action_widget`.
-
-# Parameters
-
 ## `pack_type`
 pack type of the action widget to receive
 
@@ -17070,9 +15954,6 @@ the group name,
  or `None` if none is set.
 <!-- impl Notebook::fn get_menu_label -->
 Retrieves the menu label widget of the page containing `child`.
-
-# Parameters
-
 ## `child`
 a widget contained in a page of `self`
 
@@ -17084,9 +15965,6 @@ the menu label, or `None` if the
 <!-- impl Notebook::fn get_menu_label_text -->
 Retrieves the text of the menu label for the page containing
 `child`.
-
-# Parameters
-
 ## `child`
 the child widget of a page of the notebook.
 
@@ -17104,9 +15982,6 @@ Gets the number of pages in a notebook.
 the number of pages in the notebook
 <!-- impl Notebook::fn get_nth_page -->
 Returns the child widget contained in page number `page_num`.
-
-# Parameters
-
 ## `page_num`
 the index of a page in the notebook, or -1
  to get the last page
@@ -17138,9 +16013,6 @@ See `Notebook::set_show_tabs`.
 `true` if the tabs are shown
 <!-- impl Notebook::fn get_tab_detachable -->
 Returns whether the tab contents can be detached from `self`.
-
-# Parameters
-
 ## `child`
 a child `Widget`
 
@@ -17161,9 +16033,6 @@ horizontal width of a tab border
 Returns the tab label widget for the page `child`.
 `None` is returned if `child` is not in `self` or
 if no tab label has specifically been set for `child`.
-
-# Parameters
-
 ## `child`
 the page
 
@@ -17173,9 +16042,6 @@ the tab label
 <!-- impl Notebook::fn get_tab_label_text -->
 Retrieves the text of the tab label for the page containing
 `child`.
-
-# Parameters
-
 ## `child`
 a widget contained in a page of `self`
 
@@ -17193,9 +16059,6 @@ notebook are drawn.
 the edge at which the tabs are drawn
 <!-- impl Notebook::fn get_tab_reorderable -->
 Gets whether the tab can be reordered via drag and drop or not.
-
-# Parameters
-
 ## `child`
 a child `Widget`
 
@@ -17214,9 +16077,6 @@ this function returns zero
 vertical width of a tab border
 <!-- impl Notebook::fn insert_page -->
 Insert a page into `self` at the given position.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17233,9 +16093,6 @@ the index (starting from 0) of the inserted
 <!-- impl Notebook::fn insert_page_menu -->
 Insert a page into `self` at the given position, specifying
 the widget to use as the label in the popup menu.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17262,9 +16119,6 @@ the last page.
 <!-- impl Notebook::fn page_num -->
 Finds the index of the page which contains the given child
 widget.
-
-# Parameters
-
 ## `child`
 a `Widget`
 
@@ -17280,9 +16134,6 @@ mouse button on the tab labels, a menu with all the pages
 will be popped up.
 <!-- impl Notebook::fn prepend_page -->
 Prepends a page to `self`.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17296,9 +16147,6 @@ the index (starting from 0) of the prepended
 <!-- impl Notebook::fn prepend_page_menu -->
 Prepends a page to `self`, specifying the widget to use as the
 label in the popup menu.
-
-# Parameters
-
 ## `child`
 the `Widget` to use as the contents of the page
 ## `tab_label`
@@ -17322,9 +16170,6 @@ is the first page.
 <!-- impl Notebook::fn remove_page -->
 Removes a page from the notebook given its index
 in the notebook.
-
-# Parameters
-
 ## `page_num`
 the index of a notebook page, starting
  from 0. If -1, the last page will be removed.
@@ -17333,9 +16178,6 @@ Reorders the page containing `child`, so that it appears in position
 `position`. If `position` is greater than or equal to the number of
 children in the list or negative, `child` will be moved to the end
 of the list.
-
-# Parameters
-
 ## `child`
 the child to move
 ## `position`
@@ -17347,9 +16189,6 @@ a `Box` if you need to pack more than one widget on the same side.
 
 Note that action widgets are “internal” children of the notebook and thus
 not included in the list returned from `ContainerExt::foreach`.
-
-# Parameters
-
 ## `widget`
 a `Widget`
 ## `pack_type`
@@ -17361,9 +16200,6 @@ Note that due to historical reasons, `Notebook` refuses
 to switch to a page unless the child widget is visible.
 Therefore, it is recommended to show child widgets before
 adding them to a notebook.
-
-# Parameters
-
 ## `page_num`
 index of the page to switch to, starting from 0.
  If negative, the last page will be used. If greater
@@ -17375,26 +16211,17 @@ Sets a group name for `self`.
 Notebooks with the same name will be able to exchange tabs
 via drag and drop. A notebook with a `None` group name will
 not be able to exchange tabs with any other notebook.
-
-# Parameters
-
 ## `group_name`
 the name of the notebook group,
  or `None` to unset it
 <!-- impl Notebook::fn set_menu_label -->
 Changes the menu label for the page containing `child`.
-
-# Parameters
-
 ## `child`
 the child widget
 ## `menu_label`
 the menu label, or `None` for default
 <!-- impl Notebook::fn set_menu_label_text -->
 Creates a new label and sets it as the menu label of `child`.
-
-# Parameters
-
 ## `child`
 the child widget
 ## `menu_text`
@@ -17402,25 +16229,16 @@ the label text
 <!-- impl Notebook::fn set_scrollable -->
 Sets whether the tab label area will have arrows for
 scrolling if there are too many tabs to fit in the area.
-
-# Parameters
-
 ## `scrollable`
 `true` if scroll arrows should be added
 <!-- impl Notebook::fn set_show_border -->
 Sets whether a bevel will be drawn around the notebook pages.
 This only has a visual effect when the tabs are not shown.
 See `Notebook::set_show_tabs`.
-
-# Parameters
-
 ## `show_border`
 `true` if a bevel should be drawn around the notebook
 <!-- impl Notebook::fn set_show_tabs -->
 Sets whether to show the tabs for the notebook or not.
-
-# Parameters
-
 ## `show_tabs`
 `true` if the tabs should be shown
 <!-- impl Notebook::fn set_tab_detachable -->
@@ -17469,9 +16287,6 @@ will initiate a drag cancel animation.
 
 If you want a notebook to accept drags from other widgets,
 you will have to set your own DnD code to do it.
-
-# Parameters
-
 ## `child`
 a child `Widget`
 ## `detachable`
@@ -17480,9 +16295,6 @@ whether the tab is detachable or not
 Changes the tab label for `child`.
 If `None` is specified for `tab_label`, then the page will
 have the label “page N”.
-
-# Parameters
-
 ## `child`
 the page
 ## `tab_label`
@@ -17491,9 +16303,6 @@ the tab label widget to use, or `None`
 <!-- impl Notebook::fn set_tab_label_text -->
 Creates a new label and sets it as the tab label for the page
 containing `child`.
-
-# Parameters
-
 ## `child`
 the page
 ## `tab_text`
@@ -17501,21 +16310,35 @@ the label text
 <!-- impl Notebook::fn set_tab_pos -->
 Sets the edge at which the tabs for switching pages in the
 notebook are drawn.
-
-# Parameters
-
 ## `pos`
 the edge to draw the tabs at
 <!-- impl Notebook::fn set_tab_reorderable -->
 Sets whether the notebook tab can be reordered
 via drag and drop or not.
-
-# Parameters
-
 ## `child`
 a child `Widget`
 ## `reorderable`
 whether the tab is reorderable or not
+<!-- enum NotebookTab -->
+<!-- enum NumberUpLayout -->
+Used to determine the layout of pages on a sheet when printing
+multiple pages per sheet.
+<!-- enum NumberUpLayout::variant Lrtb -->
+![](layout-lrtb.png)
+<!-- enum NumberUpLayout::variant Lrbt -->
+![](layout-lrbt.png)
+<!-- enum NumberUpLayout::variant Rltb -->
+![](layout-rltb.png)
+<!-- enum NumberUpLayout::variant Rlbt -->
+![](layout-rlbt.png)
+<!-- enum NumberUpLayout::variant Tblr -->
+![](layout-tblr.png)
+<!-- enum NumberUpLayout::variant Tbrl -->
+![](layout-tbrl.png)
+<!-- enum NumberUpLayout::variant Btlr -->
+![](layout-btlr.png)
+<!-- enum NumberUpLayout::variant Btrl -->
+![](layout-btrl.png)
 <!-- struct Orientable -->
 The `Orientable` interface is implemented by all widgets that can be
 oriented horizontally or vertically. Historically, such widgets have been
@@ -17531,6 +16354,10 @@ to “flip”.
 [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait OrientableExt -->
 Trait containing all `Orientable` methods.
+
+# Implementors
+
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FlowBox`](struct.FlowBox.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Grid`](struct.Grid.html), [`InfoBar`](struct.InfoBar.html), [`LevelBar`](struct.LevelBar.html), [`Orientable`](struct.Orientable.html), [`Paned`](struct.Paned.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`Separator`](struct.Separator.html), [`SpinButton`](struct.SpinButton.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait OrientableExt::fn get_orientation -->
 Retrieves the orientation of the `self`.
 
@@ -17539,11 +16366,16 @@ Retrieves the orientation of the `self`.
 the orientation of the `self`.
 <!-- trait OrientableExt::fn set_orientation -->
 Sets the orientation of the `self`.
-
-# Parameters
-
 ## `orientation`
 the orientable’s new orientation.
+<!-- enum Orientation -->
+Represents the orientation of widgets and other objects which can be switched
+between horizontal and vertical orientation on the fly, like `Toolbar` or
+`GesturePan`.
+<!-- enum Orientation::variant Horizontal -->
+The element is in horizontal orientation.
+<!-- enum Orientation::variant Vertical -->
+The element is in vertical orientation.
 <!-- struct Overlay -->
 `Overlay` is a container which contains a single main child, on top
 of which it can place “overlay” widgets. The
@@ -17581,11 +16413,44 @@ added with `ContainerExt::add`.
 
 The position at which `widget` is placed is determined
 from its `Widget:halign` and `Widget:valign` properties.
-
-# Parameters
-
 ## `widget`
 a `Widget` to be added to the container
+<!-- enum PackDirection -->
+Determines how widgets should be packed inside menubars
+and menuitems contained in menubars.
+<!-- enum PackDirection::variant Ltr -->
+Widgets are packed left-to-right
+<!-- enum PackDirection::variant Rtl -->
+Widgets are packed right-to-left
+<!-- enum PackDirection::variant Ttb -->
+Widgets are packed top-to-bottom
+<!-- enum PackDirection::variant Btt -->
+Widgets are packed bottom-to-top
+<!-- enum PackType -->
+Represents the packing location `Box` children. (See: `VBox`,
+`HBox`, and `ButtonBox`).
+<!-- enum PackType::variant Start -->
+The child is packed into the start of the box
+<!-- enum PackType::variant End -->
+The child is packed into the end of the box
+<!-- enum PageOrientation -->
+See also `PrintSettings::set_orientation`.
+<!-- enum PageOrientation::variant Portrait -->
+Portrait mode.
+<!-- enum PageOrientation::variant Landscape -->
+Landscape mode.
+<!-- enum PageOrientation::variant ReversePortrait -->
+Reverse portrait mode.
+<!-- enum PageOrientation::variant ReverseLandscape -->
+Reverse landscape mode.
+<!-- enum PageSet -->
+See also `gtk_print_job_set_page_set`.
+<!-- enum PageSet::variant All -->
+All pages.
+<!-- enum PageSet::variant Even -->
+Even pages.
+<!-- enum PageSet::variant Odd -->
+Odd pages.
 <!-- struct PageSetup -->
 A `PageSetup` object stores the page size, orientation and margins.
 The idea is that you can get one of these from the page setup dialog
@@ -17631,10 +16496,6 @@ do_page_setup (void)
 ```
 
 Printing support was added in GTK+ 2.10.
-
-# Implements
-
-
 <!-- impl PageSetup::fn new -->
 Creates a new `PageSetup`.
 
@@ -17645,9 +16506,6 @@ a new `PageSetup`.
 Reads the page setup from the file `file_name`. Returns a
 new `PageSetup` object with the restored page setup,
 or `None` if an error occurred. See `PageSetup::to_file`.
-
-# Parameters
-
 ## `file_name`
 the filename to read the page setup from
 
@@ -17658,9 +16516,6 @@ the restored `PageSetup`
 Reads the page setup from the group `group_name` in the key file
 `key_file`. Returns a new `PageSetup` object with the restored
 page setup, or `None` if an error occurred.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to retrieve the page_setup from
 ## `group_name`
@@ -17678,9 +16533,6 @@ Copies a `PageSetup`.
 a copy of `self`
 <!-- impl PageSetup::fn get_bottom_margin -->
 Gets the bottom margin in units of `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17689,9 +16541,6 @@ the unit for the return value
 the bottom margin
 <!-- impl PageSetup::fn get_left_margin -->
 Gets the left margin in units of `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17710,9 +16559,6 @@ Returns the page height in units of `unit`.
 Note that this function takes orientation and
 margins into consideration.
 See `PageSetup::get_paper_height`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17725,9 +16571,6 @@ Returns the page width in units of `unit`.
 Note that this function takes orientation and
 margins into consideration.
 See `PageSetup::get_paper_width`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17740,9 +16583,6 @@ Returns the paper height in units of `unit`.
 Note that this function takes orientation, but
 not margins into consideration.
 See `PageSetup::get_page_height`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17761,9 +16601,6 @@ Returns the paper width in units of `unit`.
 Note that this function takes orientation, but
 not margins into consideration.
 See `PageSetup::get_page_width`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17772,9 +16609,6 @@ the unit for the return value
 the paper width.
 <!-- impl PageSetup::fn get_right_margin -->
 Gets the right margin in units of `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17783,9 +16617,6 @@ the unit for the return value
 the right margin
 <!-- impl PageSetup::fn get_top_margin -->
 Gets the top margin in units of `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -17795,9 +16626,6 @@ the top margin
 <!-- impl PageSetup::fn load_file -->
 Reads the page setup from the file `file_name`.
 See `PageSetup::to_file`.
-
-# Parameters
-
 ## `file_name`
 the filename to read the page setup from
 
@@ -17807,9 +16635,6 @@ the filename to read the page setup from
 <!-- impl PageSetup::fn load_key_file -->
 Reads the page setup from the group `group_name` in the key file
 `key_file`.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to retrieve the page_setup from
 ## `group_name`
@@ -17821,69 +16646,45 @@ the name of the group in the key_file to read, or `None`
 `true` on success
 <!-- impl PageSetup::fn set_bottom_margin -->
 Sets the bottom margin of the `PageSetup`.
-
-# Parameters
-
 ## `margin`
 the new bottom margin in units of `unit`
 ## `unit`
 the units for `margin`
 <!-- impl PageSetup::fn set_left_margin -->
 Sets the left margin of the `PageSetup`.
-
-# Parameters
-
 ## `margin`
 the new left margin in units of `unit`
 ## `unit`
 the units for `margin`
 <!-- impl PageSetup::fn set_orientation -->
 Sets the page orientation of the `PageSetup`.
-
-# Parameters
-
 ## `orientation`
 a `PageOrientation` value
 <!-- impl PageSetup::fn set_paper_size -->
 Sets the paper size of the `PageSetup` without
 changing the margins. See
 `PageSetup::set_paper_size_and_default_margins`.
-
-# Parameters
-
 ## `size`
 a `PaperSize`
 <!-- impl PageSetup::fn set_paper_size_and_default_margins -->
 Sets the paper size of the `PageSetup` and modifies
 the margins according to the new paper size.
-
-# Parameters
-
 ## `size`
 a `PaperSize`
 <!-- impl PageSetup::fn set_right_margin -->
 Sets the right margin of the `PageSetup`.
-
-# Parameters
-
 ## `margin`
 the new right margin in units of `unit`
 ## `unit`
 the units for `margin`
 <!-- impl PageSetup::fn set_top_margin -->
 Sets the top margin of the `PageSetup`.
-
-# Parameters
-
 ## `margin`
 the new top margin in units of `unit`
 ## `unit`
 the units for `margin`
 <!-- impl PageSetup::fn to_file -->
 This function saves the information from `self` to `file_name`.
-
-# Parameters
-
 ## `file_name`
 the file to save to
 
@@ -17892,14 +16693,21 @@ the file to save to
 `true` on success
 <!-- impl PageSetup::fn to_key_file -->
 This function adds the page setup from `self` to `key_file`.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to save the page setup to
 ## `group_name`
 the group to add the settings to in `key_file`,
  or `None` to use the default name “Page Setup”
+<!-- enum PanDirection -->
+Describes the panning direction of a `GesturePan`
+<!-- enum PanDirection::variant Left -->
+panned towards the left
+<!-- enum PanDirection::variant Right -->
+panned towards the right
+<!-- enum PanDirection::variant Up -->
+panned upwards
+<!-- enum PanDirection::variant Down -->
+panned downwards
 <!-- struct Paned -->
 `Paned` has two panes, arranged either
 horizontally or vertically. The division between
@@ -17955,9 +16763,6 @@ gtk_widget_set_size_request (frame2, 50, -1);
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Paned::fn new -->
 Creates a new `Paned` widget.
-
-# Parameters
-
 ## `orientation`
 the paned’s orientation.
 
@@ -17968,18 +16773,12 @@ a new `Paned`.
 Adds a child to the top or left pane with default parameters. This is
 equivalent to
 `gtk_paned_pack1 (paned, child, FALSE, TRUE)`.
-
-# Parameters
-
 ## `child`
 the child to add
 <!-- impl Paned::fn add2 -->
 Adds a child to the bottom or right pane with default parameters. This
 is equivalent to
 `gtk_paned_pack2 (paned, child, TRUE, TRUE)`.
-
-# Parameters
-
 ## `child`
 the child to add
 <!-- impl Paned::fn get_child1 -->
@@ -18017,9 +16816,6 @@ Gets the `Paned:wide-handle` property.
 `true` if the paned should have a wide handle
 <!-- impl Paned::fn pack1 -->
 Adds a child to the top or left pane.
-
-# Parameters
-
 ## `child`
 the child to add
 ## `resize`
@@ -18028,9 +16824,6 @@ should this child expand when the paned widget is resized.
 can this child be made smaller than its requisition.
 <!-- impl Paned::fn pack2 -->
 Adds a child to the bottom or right pane.
-
-# Parameters
-
 ## `child`
 the child to add
 ## `resize`
@@ -18039,19 +16832,262 @@ should this child expand when the paned widget is resized.
 can this child be made smaller than its requisition.
 <!-- impl Paned::fn set_position -->
 Sets the position of the divider between the two panes.
-
-# Parameters
-
 ## `position`
 pixel position of divider, a negative value means that the position
  is unset.
 <!-- impl Paned::fn set_wide_handle -->
 Sets the `Paned:wide-handle` property.
-
-# Parameters
-
 ## `wide`
 the new value for the `Paned:wide-handle` property
+<!-- struct PaperSize -->
+`PaperSize` handles paper sizes. It uses the standard called
+[PWG 5101.1-2002 PWG: Standard for Media Standardized Names](http://www.pwg.org/standards.html)
+to name the paper sizes (and to get the data for the page sizes).
+In addition to standard paper sizes, `PaperSize` allows to
+construct custom paper sizes with arbitrary dimensions.
+
+The `PaperSize` object stores not only the dimensions (width
+and height) of a paper size and its name, it also provides
+default [print margins][print-margins].
+
+Printing support has been added in GTK+ 2.10.
+<!-- impl PaperSize::fn new -->
+Creates a new `PaperSize` object by parsing a
+[PWG 5101.1-2002](ftp://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf)
+paper name.
+
+If `name` is `None`, the default paper size is returned,
+see `PaperSize::get_default`.
+## `name`
+a paper size name, or `None`
+
+# Returns
+
+a new `PaperSize`, use `PaperSize::free`
+to free it
+<!-- impl PaperSize::fn new_custom -->
+Creates a new `PaperSize` object with the
+given parameters.
+## `name`
+the paper name
+## `display_name`
+the human-readable name
+## `width`
+the paper width, in units of `unit`
+## `height`
+the paper height, in units of `unit`
+## `unit`
+the unit for `width` and `height`. not `Unit::None`.
+
+# Returns
+
+a new `PaperSize` object, use `PaperSize::free`
+to free it
+<!-- impl PaperSize::fn new_from_ipp -->
+Creates a new `PaperSize` object by using
+IPP information.
+
+If `ipp_name` is not a recognized paper name,
+`width` and `height` are used to
+construct a custom `PaperSize` object.
+## `ipp_name`
+an IPP paper name
+## `width`
+the paper width, in points
+## `height`
+the paper height in points
+
+# Returns
+
+a new `PaperSize`, use `PaperSize::free`
+to free it
+<!-- impl PaperSize::fn new_from_key_file -->
+Reads a paper size from the group `group_name` in the key file
+`key_file`.
+## `key_file`
+the `glib::KeyFile` to retrieve the papersize from
+## `group_name`
+the name ofthe group in the key file to read,
+ or `None` to read the first group
+
+# Returns
+
+a new `PaperSize` object with the restored
+ paper size, or `None` if an error occurred
+<!-- impl PaperSize::fn new_from_ppd -->
+Creates a new `PaperSize` object by using
+PPD information.
+
+If `ppd_name` is not a recognized PPD paper name,
+`ppd_display_name`, `width` and `height` are used to
+construct a custom `PaperSize` object.
+## `ppd_name`
+a PPD paper name
+## `ppd_display_name`
+the corresponding human-readable name
+## `width`
+the paper width, in points
+## `height`
+the paper height in points
+
+# Returns
+
+a new `PaperSize`, use `PaperSize::free`
+to free it
+<!-- impl PaperSize::fn copy -->
+Copies an existing `PaperSize`.
+
+# Returns
+
+a copy of `self`
+<!-- impl PaperSize::fn free -->
+Free the given `PaperSize` object.
+<!-- impl PaperSize::fn get_default_bottom_margin -->
+Gets the default bottom margin for the `PaperSize`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the default bottom margin
+<!-- impl PaperSize::fn get_default_left_margin -->
+Gets the default left margin for the `PaperSize`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the default left margin
+<!-- impl PaperSize::fn get_default_right_margin -->
+Gets the default right margin for the `PaperSize`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the default right margin
+<!-- impl PaperSize::fn get_default_top_margin -->
+Gets the default top margin for the `PaperSize`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the default top margin
+<!-- impl PaperSize::fn get_display_name -->
+Gets the human-readable name of the `PaperSize`.
+
+# Returns
+
+the human-readable name of `self`
+<!-- impl PaperSize::fn get_height -->
+Gets the paper height of the `PaperSize`, in
+units of `unit`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the paper height
+<!-- impl PaperSize::fn get_name -->
+Gets the name of the `PaperSize`.
+
+# Returns
+
+the name of `self`
+<!-- impl PaperSize::fn get_ppd_name -->
+Gets the PPD name of the `PaperSize`, which
+may be `None`.
+
+# Returns
+
+the PPD name of `self`
+<!-- impl PaperSize::fn get_width -->
+Gets the paper width of the `PaperSize`, in
+units of `unit`.
+## `unit`
+the unit for the return value, not `Unit::None`
+
+# Returns
+
+the paper width
+<!-- impl PaperSize::fn is_custom -->
+Returns `true` if `self` is not a standard paper size.
+
+# Returns
+
+whether `self` is a custom paper size.
+<!-- impl PaperSize::fn is_equal -->
+Compares two `PaperSize` objects.
+## `size2`
+another `PaperSize` object
+
+# Returns
+
+`true`, if `self` and `size2`
+represent the same paper size
+<!-- impl PaperSize::fn is_ipp -->
+Returns `true` if `self` is an IPP standard paper size.
+
+# Returns
+
+whether `self` is not an IPP custom paper size.
+<!-- impl PaperSize::fn set_size -->
+Changes the dimensions of a `self` to `width` x `height`.
+## `width`
+the new width in units of `unit`
+## `height`
+the new height in units of `unit`
+## `unit`
+the unit for `width` and `height`
+<!-- impl PaperSize::fn to_key_file -->
+This function adds the paper size from `self` to `key_file`.
+## `key_file`
+the `glib::KeyFile` to save the paper size to
+## `group_name`
+the group to add the settings to in `key_file`
+<!-- impl PaperSize::fn get_default -->
+Returns the name of the default paper size, which
+depends on the current locale.
+
+# Returns
+
+the name of the default paper size. The string
+is owned by GTK+ and should not be modified.
+<!-- impl PaperSize::fn get_paper_sizes -->
+Creates a list of known paper sizes.
+## `include_custom`
+whether to include custom paper sizes
+ as defined in the page setup dialog
+
+# Returns
+
+a newly allocated list of newly
+ allocated `PaperSize` objects
+<!-- enum PathPriorityType -->
+Priorities for path lookups.
+See also `BindingSet::add_path`.
+<!-- enum PathPriorityType::variant Lowest -->
+Deprecated
+<!-- enum PathPriorityType::variant Gtk -->
+Deprecated
+<!-- enum PathPriorityType::variant Application -->
+Deprecated
+<!-- enum PathPriorityType::variant Theme -->
+Deprecated
+<!-- enum PathPriorityType::variant Rc -->
+Deprecated
+<!-- enum PathPriorityType::variant Highest -->
+Deprecated
+<!-- enum PathType -->
+Widget path types.
+See also `BindingSet::add_path`.
+<!-- enum PathType::variant Widget -->
+Deprecated
+<!-- enum PathType::variant WidgetClass -->
+Deprecated
+<!-- enum PathType::variant Class -->
+Deprecated
 <!-- struct PlacesSidebar -->
 `PlacesSidebar` is a widget that displays a list of frequently-used places in the
 file system: the user’s home directory, the user’s bookmarks, and volumes and drives.
@@ -18100,9 +17136,6 @@ shortcuts. The shortcuts are application-specific; they are not shared
 across applications, and they are not persistent. If this function
 is called multiple times with different locations, then they are added
 to the sidebar’s list in the same order as the function is called.
-
-# Parameters
-
 ## `location`
 location to add as an application-specific shortcut
 <!-- impl PlacesSidebar::fn get_local_only -->
@@ -18130,9 +17163,6 @@ selected.
 This function queries the bookmarks added by the user to the places sidebar,
 and returns one of them. This function is used by `FileChooser` to implement
 the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the cooresponding bookmark.
-
-# Parameters
-
 ## `n`
 index of the bookmark to query
 
@@ -18182,16 +17212,10 @@ g_slist_free_full (list, (GDestroyNotify) g_object_unref);
 Removes an application-specific shortcut that has been previously been
 inserted with `PlacesSidebar::add_shortcut`. If the `location` is not a
 shortcut in the sidebar, then nothing is done.
-
-# Parameters
-
 ## `location`
 location to remove
 <!-- impl PlacesSidebar::fn set_local_only -->
 Sets whether the `self` should only show local files.
-
-# Parameters
-
 ## `local_only`
 whether to show only local files
 <!-- impl PlacesSidebar::fn set_location -->
@@ -18200,9 +17224,6 @@ Sets the location that is being shown in the widgets surrounding the
 `self` will highlight that location if it is being shown in the list of
 places, or it will unhighlight everything if the `location` is not among the
 places in the list.
-
-# Parameters
-
 ## `location`
 location to select, or `None` for no current path
 <!-- impl PlacesSidebar::fn set_open_flags -->
@@ -18221,18 +17242,12 @@ argument will be set to one of the `flags` that was passed in
 
 Passing 0 for `flags` will cause `PlacesOpenFlags::Normal` to always be sent
 to callbacks for the “open-location” signal.
-
-# Parameters
-
 ## `flags`
 Bitmask of modes in which the calling application can open locations
 <!-- impl PlacesSidebar::fn set_show_connect_to_server -->
 Sets whether the `self` should show an item for connecting to a network server; this is off by default.
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
-
-# Parameters
-
 ## `show_connect_to_server`
 whether to show an item for the Connect to Server command
 <!-- impl PlacesSidebar::fn set_show_desktop -->
@@ -18240,20 +17255,30 @@ Sets whether the `self` should show an item for the Desktop folder.
 The default value for this option is determined by the desktop
 environment and the user’s configuration, but this function can be
 used to override it on a per-application basis.
-
-# Parameters
-
 ## `show_desktop`
 whether to show an item for the Desktop folder
 <!-- impl PlacesSidebar::fn set_show_enter_location -->
 Sets whether the `self` should show an item for connecting to a network server; this is off by default.
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
-
-# Parameters
-
 ## `show_enter_location`
 whether to show an item for the Connect to Server command
+<!-- enum PolicyType -->
+Determines how the size should be computed to achieve the one of the
+visibility mode for the scrollbars.
+<!-- enum PolicyType::variant Always -->
+The scrollbar is always visible. The view size is
+ independent of the content.
+<!-- enum PolicyType::variant Automatic -->
+The scrollbar will appear and disappear as necessary.
+ For example, when all of a `TreeView` can not be seen.
+<!-- enum PolicyType::variant Never -->
+The scrollbar should never appear. In this mode the
+ content determines the size.
+<!-- enum PolicyType::variant External -->
+Don't show a scrollbar, but don't force the
+ size to follow the content. This can be used e.g. to make multiple
+ scrolled windows share a scrollbar. Since: 3.16
 <!-- struct Popover -->
 `Popover` is a bubble-like context window, primarily meant to
 provide context-dependent information or options. Popovers are
@@ -18312,11 +17337,12 @@ with the ”verb-icon” attribute.
 [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait PopoverExt -->
 Trait containing all `Popover` methods.
+
+# Implementors
+
+[`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html)
 <!-- impl Popover::fn new -->
 Creates a new popover to point to `relative_to`
-
-# Parameters
-
 ## `relative_to`
 `Widget` the popover is related to
 
@@ -18334,9 +17360,6 @@ the ``GtkApplicationWindows`` widget hierarchy.
 
 Actions can also be added using `Widget::insert_action_group`
 on the menus attach widget or on any of its parent widgets.
-
-# Parameters
-
 ## `relative_to`
 `Widget` the popover is related to
 ## `model`
@@ -18370,9 +17393,6 @@ to attach your own action group to the widget hierarchy using
 group with a “quit” action and inserted it with the name “mygroup”
 then you would use the action name “mygroup.quit” in your
 `gio::MenuModel`.
-
-# Parameters
-
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
  binding
@@ -18390,9 +17410,6 @@ If a rectangle to point to has been set, this function will
 return `true` and fill in `rect` with such rectangle, otherwise
 it will return `false` and fill in `rect` with the attached
 widget coordinates.
-
-# Parameters
-
 ## `rect`
 location to store the rectangle
 
@@ -18423,18 +17440,12 @@ Sets whether `self` is modal, a modal popover will grab all input
 within the toplevel and grab the keyboard focus on it when being
 displayed. Clicking outside the popover area or pressing Esc will
 dismiss the popover and ungrab input.
-
-# Parameters
-
 ## `modal`
 `true` to make popover claim all input within the toplevel
 <!-- trait PopoverExt::fn set_pointing_to -->
 Sets the rectangle that `self` will point to, in the
 coordinate space of the widget `self` is attached to,
 see `PopoverExt::set_relative_to`.
-
-# Parameters
-
 ## `rect`
 rectangle to point to
 <!-- trait PopoverExt::fn set_position -->
@@ -18444,9 +17455,6 @@ is currently visible, it will be immediately updated.
 This preference will be respected where possible, although
 on lack of space (eg. if close to the window edges), the
 `Popover` may choose to appear on the opposite side
-
-# Parameters
-
 ## `position`
 preferred popover position
 <!-- trait PopoverExt::fn set_relative_to -->
@@ -18457,16 +17465,10 @@ Note: the ownership of popovers is always given to their `relative_to`
 widget, so if `relative_to` is set to `None` on an attached `self`, it
 will be detached from its previous widget, and consequently destroyed
 unless extra references are kept.
-
-# Parameters
-
 ## `relative_to`
 a `Widget`
 <!-- trait PopoverExt::fn set_transitions_enabled -->
 Sets whether show/hide transitions are enabled on this popover
-
-# Parameters
-
 ## `transitions_enabled`
 Whether transitions are enabled
 <!-- struct PopoverMenu -->
@@ -18559,11 +17561,85 @@ of `self` with `PopoverMenu:submenu`, or
 when the `ModelButton:menu-name` property is set,
 so this function is only needed when you are using
 other kinds of widgets to initiate menu changes.
-
-# Parameters
-
 ## `name`
 the name of the menu to switch to
+<!-- enum PositionType -->
+Describes which edge of a widget a certain feature is positioned at, e.g. the
+tabs of a `Notebook`, the handle of a `HandleBox` or the label of a
+`Scale`.
+<!-- enum PositionType::variant Left -->
+The feature is at the left edge.
+<!-- enum PositionType::variant Right -->
+The feature is at the right edge.
+<!-- enum PositionType::variant Top -->
+The feature is at the top edge.
+<!-- enum PositionType::variant Bottom -->
+The feature is at the bottom edge.
+<!-- enum PrintDuplex -->
+See also `PrintSettings::set_duplex`.
+<!-- enum PrintDuplex::variant Simplex -->
+No duplex.
+<!-- enum PrintDuplex::variant Horizontal -->
+Horizontal duplex.
+<!-- enum PrintDuplex::variant Vertical -->
+Vertical duplex.
+<!-- enum PrintError -->
+Error codes that identify various errors that can occur while
+using the GTK+ printing support.
+<!-- enum PrintError::variant General -->
+An unspecified error occurred.
+<!-- enum PrintError::variant InternalError -->
+An internal error occurred.
+<!-- enum PrintError::variant Nomem -->
+A memory allocation failed.
+<!-- enum PrintError::variant InvalidFile -->
+An error occurred while loading a page setup
+ or paper size from a key file.
+<!-- enum PrintOperationAction -->
+The `action` parameter to `PrintOperation::run`
+determines what action the print operation should perform.
+<!-- enum PrintOperationAction::variant PrintDialog -->
+Show the print dialog.
+<!-- enum PrintOperationAction::variant Print -->
+Start to print without showing
+ the print dialog, based on the current print settings.
+<!-- enum PrintOperationAction::variant Preview -->
+Show the print preview.
+<!-- enum PrintOperationAction::variant Export -->
+Export to a file. This requires
+ the export-filename property to be set.
+<!-- enum PrintOperationResult -->
+A value of this type is returned by `PrintOperation::run`.
+<!-- enum PrintOperationResult::variant Error -->
+An error has occured.
+<!-- enum PrintOperationResult::variant Apply -->
+The print settings should be stored.
+<!-- enum PrintOperationResult::variant Cancel -->
+The print operation has been canceled,
+ the print settings should not be stored.
+<!-- enum PrintOperationResult::variant InProgress -->
+The print operation is not complete
+ yet. This value will only be returned when running asynchronously.
+<!-- enum PrintPages -->
+See also `gtk_print_job_set_pages`
+<!-- enum PrintPages::variant All -->
+All pages.
+<!-- enum PrintPages::variant Current -->
+Current page.
+<!-- enum PrintPages::variant Ranges -->
+Range of pages.
+<!-- enum PrintPages::variant Selection -->
+Selected pages.
+<!-- enum PrintQuality -->
+See also `PrintSettings::set_quality`.
+<!-- enum PrintQuality::variant Low -->
+Low quality.
+<!-- enum PrintQuality::variant Normal -->
+Normal quality.
+<!-- enum PrintQuality::variant High -->
+High quality.
+<!-- enum PrintQuality::variant Draft -->
+Draft quality.
 <!-- struct PrintSettings -->
 A `PrintSettings` object represents the settings of a print dialog in
 a system-independent way. The main use for this object is that once
@@ -18577,10 +17653,6 @@ document. The predefined keys try to use shared values as much as possible
 so that moving such a document between systems still works.
 
 Printing support was added in GTK+ 2.10.
-
-# Implements
-
-
 <!-- impl PrintSettings::fn new -->
 Creates a new `PrintSettings` object.
 
@@ -18592,9 +17664,6 @@ Reads the print settings from `file_name`. Returns a new `PrintSettings`
 object with the restored settings, or `None` if an error occurred. If the
 file could not be loaded then error is set to either a `glib::FileError` or
 `glib::KeyFileError`. See `PrintSettings::to_file`.
-
-# Parameters
-
 ## `file_name`
 the filename to read the settings from
 
@@ -18606,9 +17675,6 @@ Reads the print settings from the group `group_name` in `key_file`. Returns a
 new `PrintSettings` object with the restored settings, or `None` if an
 error occurred. If the file could not be loaded then error is set to either
 a `glib::FileError` or `glib::KeyFileError`.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to retrieve the settings from
 ## `group_name`
@@ -18626,18 +17692,12 @@ Copies a `PrintSettings` object.
 a newly allocated copy of `self`
 <!-- impl PrintSettings::fn foreach -->
 Calls `func` for each key-value pair of `self`.
-
-# Parameters
-
 ## `func`
 the function to call
 ## `user_data`
 user data for `func`
 <!-- impl PrintSettings::fn get -->
 Looks up the string value associated with `key`.
-
-# Parameters
-
 ## `key`
 a key
 
@@ -18650,9 +17710,6 @@ that is associated with `key`.
 
 The string “true” represents `true`, any other
 string `false`.
-
-# Parameters
-
 ## `key`
 a key
 
@@ -18679,9 +17736,6 @@ Gets the value of `GTK_PRINT_SETTINGS_DITHER`.
 the dithering that is used
 <!-- impl PrintSettings::fn get_double -->
 Returns the double value associated with `key`, or 0.
-
-# Parameters
-
 ## `key`
 a key
 
@@ -18694,9 +17748,6 @@ the value that is associated with `key`, or `default_val`
 if the value does not represent a floating point number.
 
 Floating point numbers are parsed with `g_ascii_strtod`.
-
-# Parameters
-
 ## `key`
 a key
 ## `def`
@@ -18719,9 +17770,6 @@ Gets the value of `GTK_PRINT_SETTINGS_FINISHINGS`.
 the finishings
 <!-- impl PrintSettings::fn get_int -->
 Returns the integer value of `key`, or 0.
-
-# Parameters
-
 ## `key`
 a key
 
@@ -18731,9 +17779,6 @@ the integer value of `key`
 <!-- impl PrintSettings::fn get_int_with_default -->
 Returns the value of `key`, interpreted as
 an integer, or the default value.
-
-# Parameters
-
 ## `key`
 a key
 ## `def`
@@ -18745,9 +17790,6 @@ the integer value of `key`
 <!-- impl PrintSettings::fn get_length -->
 Returns the value associated with `key`, interpreted
 as a length. The returned value is converted to `units`.
-
-# Parameters
-
 ## `key`
 a key
 ## `unit`
@@ -18797,9 +17839,6 @@ Gets the value of `GTK_PRINT_SETTINGS_OUTPUT_BIN`.
 the output bin
 <!-- impl PrintSettings::fn get_page_ranges -->
 Gets the value of `GTK_PRINT_SETTINGS_PAGE_RANGES`.
-
-# Parameters
-
 ## `num_ranges`
 return location for the length of the returned array
 
@@ -18817,9 +17856,6 @@ the set of pages to print
 <!-- impl PrintSettings::fn get_paper_height -->
 Gets the value of `GTK_PRINT_SETTINGS_PAPER_HEIGHT`,
 converted to `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -18836,9 +17872,6 @@ the paper size
 <!-- impl PrintSettings::fn get_paper_width -->
 Gets the value of `GTK_PRINT_SETTINGS_PAPER_WIDTH`,
 converted to `unit`.
-
-# Parameters
-
 ## `unit`
 the unit for the return value
 
@@ -18908,9 +17941,6 @@ Gets the value of `GTK_PRINT_SETTINGS_USE_COLOR`.
 whether to use color
 <!-- impl PrintSettings::fn has_key -->
 Returns `true`, if a value is associated with `key`.
-
-# Parameters
-
 ## `key`
 a key
 
@@ -18921,9 +17951,6 @@ a key
 Reads the print settings from `file_name`. If the file could not be loaded
 then error is set to either a `glib::FileError` or `glib::KeyFileError`.
 See `PrintSettings::to_file`.
-
-# Parameters
-
 ## `file_name`
 the filename to read the settings from
 
@@ -18934,9 +17961,6 @@ the filename to read the settings from
 Reads the print settings from the group `group_name` in `key_file`. If the
 file could not be loaded then error is set to either a `glib::FileError` or
 `glib::KeyFileError`.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to retrieve the settings from
 ## `group_name`
@@ -18948,80 +17972,50 @@ the name of the group to use, or `None` to use the default
 `true` on success
 <!-- impl PrintSettings::fn set -->
 Associates `value` with `key`.
-
-# Parameters
-
 ## `key`
 a key
 ## `value`
 a string value, or `None`
 <!-- impl PrintSettings::fn set_bool -->
 Sets `key` to a boolean value.
-
-# Parameters
-
 ## `key`
 a key
 ## `value`
 a boolean
 <!-- impl PrintSettings::fn set_collate -->
 Sets the value of `GTK_PRINT_SETTINGS_COLLATE`.
-
-# Parameters
-
 ## `collate`
 whether to collate the output
 <!-- impl PrintSettings::fn set_default_source -->
 Sets the value of `GTK_PRINT_SETTINGS_DEFAULT_SOURCE`.
-
-# Parameters
-
 ## `default_source`
 the default source
 <!-- impl PrintSettings::fn set_dither -->
 Sets the value of `GTK_PRINT_SETTINGS_DITHER`.
-
-# Parameters
-
 ## `dither`
 the dithering that is used
 <!-- impl PrintSettings::fn set_double -->
 Sets `key` to a double value.
-
-# Parameters
-
 ## `key`
 a key
 ## `value`
 a double value
 <!-- impl PrintSettings::fn set_duplex -->
 Sets the value of `GTK_PRINT_SETTINGS_DUPLEX`.
-
-# Parameters
-
 ## `duplex`
 a `PrintDuplex` value
 <!-- impl PrintSettings::fn set_finishings -->
 Sets the value of `GTK_PRINT_SETTINGS_FINISHINGS`.
-
-# Parameters
-
 ## `finishings`
 the finishings
 <!-- impl PrintSettings::fn set_int -->
 Sets `key` to an integer value.
-
-# Parameters
-
 ## `key`
 a key
 ## `value`
 an integer
 <!-- impl PrintSettings::fn set_length -->
 Associates a length in units of `unit` with `key`.
-
-# Parameters
-
 ## `key`
 a key
 ## `value`
@@ -19032,67 +18026,40 @@ the unit of `length`
 Sets the value of `GTK_PRINT_SETTINGS_MEDIA_TYPE`.
 
 The set of media types is defined in PWG 5101.1-2002 PWG.
-
-# Parameters
-
 ## `media_type`
 the media type
 <!-- impl PrintSettings::fn set_n_copies -->
 Sets the value of `GTK_PRINT_SETTINGS_N_COPIES`.
-
-# Parameters
-
 ## `num_copies`
 the number of copies
 <!-- impl PrintSettings::fn set_number_up -->
 Sets the value of `GTK_PRINT_SETTINGS_NUMBER_UP`.
-
-# Parameters
-
 ## `number_up`
 the number of pages per sheet
 <!-- impl PrintSettings::fn set_number_up_layout -->
 Sets the value of `GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT`.
-
-# Parameters
-
 ## `number_up_layout`
 a `NumberUpLayout` value
 <!-- impl PrintSettings::fn set_orientation -->
 Sets the value of `GTK_PRINT_SETTINGS_ORIENTATION`.
-
-# Parameters
-
 ## `orientation`
 a page orientation
 <!-- impl PrintSettings::fn set_output_bin -->
 Sets the value of `GTK_PRINT_SETTINGS_OUTPUT_BIN`.
-
-# Parameters
-
 ## `output_bin`
 the output bin
 <!-- impl PrintSettings::fn set_page_ranges -->
 Sets the value of `GTK_PRINT_SETTINGS_PAGE_RANGES`.
-
-# Parameters
-
 ## `page_ranges`
 an array of ``GtkPageRanges``
 ## `num_ranges`
 the length of `page_ranges`
 <!-- impl PrintSettings::fn set_page_set -->
 Sets the value of `GTK_PRINT_SETTINGS_PAGE_SET`.
-
-# Parameters
-
 ## `page_set`
 a `PageSet` value
 <!-- impl PrintSettings::fn set_paper_height -->
 Sets the value of `GTK_PRINT_SETTINGS_PAPER_HEIGHT`.
-
-# Parameters
-
 ## `height`
 the paper height
 ## `unit`
@@ -19101,97 +18068,61 @@ the units of `height`
 Sets the value of `GTK_PRINT_SETTINGS_PAPER_FORMAT`,
 `GTK_PRINT_SETTINGS_PAPER_WIDTH` and
 `GTK_PRINT_SETTINGS_PAPER_HEIGHT`.
-
-# Parameters
-
 ## `paper_size`
 a paper size
 <!-- impl PrintSettings::fn set_paper_width -->
 Sets the value of `GTK_PRINT_SETTINGS_PAPER_WIDTH`.
-
-# Parameters
-
 ## `width`
 the paper width
 ## `unit`
 the units of `width`
 <!-- impl PrintSettings::fn set_print_pages -->
 Sets the value of `GTK_PRINT_SETTINGS_PRINT_PAGES`.
-
-# Parameters
-
 ## `pages`
 a `PrintPages` value
 <!-- impl PrintSettings::fn set_printer -->
 Convenience function to set `GTK_PRINT_SETTINGS_PRINTER`
 to `printer`.
-
-# Parameters
-
 ## `printer`
 the printer name
 <!-- impl PrintSettings::fn set_printer_lpi -->
 Sets the value of `GTK_PRINT_SETTINGS_PRINTER_LPI`.
-
-# Parameters
-
 ## `lpi`
 the resolution in lpi (lines per inch)
 <!-- impl PrintSettings::fn set_quality -->
 Sets the value of `GTK_PRINT_SETTINGS_QUALITY`.
-
-# Parameters
-
 ## `quality`
 a `PrintQuality` value
 <!-- impl PrintSettings::fn set_resolution -->
 Sets the values of `GTK_PRINT_SETTINGS_RESOLUTION`,
 `GTK_PRINT_SETTINGS_RESOLUTION_X` and
 `GTK_PRINT_SETTINGS_RESOLUTION_Y`.
-
-# Parameters
-
 ## `resolution`
 the resolution in dpi
 <!-- impl PrintSettings::fn set_resolution_xy -->
 Sets the values of `GTK_PRINT_SETTINGS_RESOLUTION`,
 `GTK_PRINT_SETTINGS_RESOLUTION_X` and
 `GTK_PRINT_SETTINGS_RESOLUTION_Y`.
-
-# Parameters
-
 ## `resolution_x`
 the horizontal resolution in dpi
 ## `resolution_y`
 the vertical resolution in dpi
 <!-- impl PrintSettings::fn set_reverse -->
 Sets the value of `GTK_PRINT_SETTINGS_REVERSE`.
-
-# Parameters
-
 ## `reverse`
 whether to reverse the output
 <!-- impl PrintSettings::fn set_scale -->
 Sets the value of `GTK_PRINT_SETTINGS_SCALE`.
-
-# Parameters
-
 ## `scale`
 the scale in percent
 <!-- impl PrintSettings::fn set_use_color -->
 Sets the value of `GTK_PRINT_SETTINGS_USE_COLOR`.
-
-# Parameters
-
 ## `use_color`
 whether to use color
 <!-- impl PrintSettings::fn to_file -->
 This function saves the print settings from `self` to `file_name`. If the
 file could not be loaded then error is set to either a `glib::FileError` or
 `glib::KeyFileError`.
-
-# Parameters
-
 ## `file_name`
 the file to save to
 
@@ -19200,9 +18131,6 @@ the file to save to
 `true` on success
 <!-- impl PrintSettings::fn to_key_file -->
 This function adds the print settings from `self` to `key_file`.
-
-# Parameters
-
 ## `key_file`
 the `glib::KeyFile` to save the print settings to
 ## `group_name`
@@ -19211,11 +18139,35 @@ the group to add the settings to in `key_file`, or
 <!-- impl PrintSettings::fn unset -->
 Removes any value associated with `key`.
 This has the same effect as setting the value to `None`.
-
-# Parameters
-
 ## `key`
 a key
+<!-- enum PrintStatus -->
+The status gives a rough indication of the completion of a running
+print operation.
+<!-- enum PrintStatus::variant Initial -->
+The printing has not started yet; this
+ status is set initially, and while the print dialog is shown.
+<!-- enum PrintStatus::variant Preparing -->
+This status is set while the begin-print
+ signal is emitted and during pagination.
+<!-- enum PrintStatus::variant GeneratingData -->
+This status is set while the
+ pages are being rendered.
+<!-- enum PrintStatus::variant SendingData -->
+The print job is being sent off to the
+ printer.
+<!-- enum PrintStatus::variant Pending -->
+The print job has been sent to the printer,
+ but is not printed for some reason, e.g. the printer may be stopped.
+<!-- enum PrintStatus::variant PendingIssue -->
+Some problem has occurred during
+ printing, e.g. a paper jam.
+<!-- enum PrintStatus::variant Printing -->
+The printer is processing the print job.
+<!-- enum PrintStatus::variant Finished -->
+The printing has been completed successfully.
+<!-- enum PrintStatus::variant FinishedAborted -->
+The printing has been aborted.
 <!-- struct ProgressBar -->
 The `ProgressBar` is typically used to display the progress of a long
 running operation. It provides a visual clue that processing
@@ -19300,34 +18252,22 @@ per pulse is determined by `ProgressBar::set_pulse_step`).
 <!-- impl ProgressBar::fn set_ellipsize -->
 Sets the mode used to ellipsize (add an ellipsis: "...") the text
 if there is not enough space to render the entire string.
-
-# Parameters
-
 ## `mode`
 a `pango::EllipsizeMode`
 <!-- impl ProgressBar::fn set_fraction -->
 Causes the progress bar to “fill in” the given fraction
 of the bar. The fraction should be between 0.0 and 1.0,
 inclusive.
-
-# Parameters
-
 ## `fraction`
 fraction of the task that’s been completed
 <!-- impl ProgressBar::fn set_inverted -->
 Progress bars normally grow from top to bottom or left to right.
 Inverted progress bars grow in the opposite direction.
-
-# Parameters
-
 ## `inverted`
 `true` to invert the progress bar
 <!-- impl ProgressBar::fn set_pulse_step -->
 Sets the fraction of total progress bar length to move the
 bouncing block for each call to `ProgressBar::pulse`.
-
-# Parameters
-
 ## `fraction`
 fraction between 0.0 and 1.0
 <!-- impl ProgressBar::fn set_show_text -->
@@ -19339,9 +18279,6 @@ the `ProgressBar:fraction` value, as a percentage.
 To make a progress bar that is styled and sized suitably for containing
 text (even if the actual text is blank), set `ProgressBar:show-text` to
 `true` and `ProgressBar:text` to the empty string (not `None`).
-
-# Parameters
-
 ## `show_text`
 whether to show superimposed text
 <!-- impl ProgressBar::fn set_text -->
@@ -19354,11 +18291,28 @@ If `text` is non-`None` and `ProgressBar:show-text` is `true`, the text will
 be displayed. In this case, it will not display the progress percentage.
 If `text` is the empty string, the progress bar will still be styled and sized
 suitably for containing text, as long as `ProgressBar:show-text` is `true`.
-
-# Parameters
-
 ## `text`
 a UTF-8 string, or `None`
+<!-- enum PropagationPhase -->
+Describes the stage at which events are fed into a `EventController`.
+<!-- enum PropagationPhase::variant None -->
+Events are not delivered automatically. Those can be
+ manually fed through `EventControllerExt::handle_event`. This should
+ only be used when full control about when, or whether the controller
+ handles the event is needed.
+<!-- enum PropagationPhase::variant Capture -->
+Events are delivered in the capture phase. The
+ capture phase happens before the bubble phase, runs from the toplevel down
+ to the event widget. This option should only be used on containers that
+ might possibly handle events before their children do.
+<!-- enum PropagationPhase::variant Bubble -->
+Events are delivered in the bubble phase. The bubble
+ phase happens after the capture phase, and before the default handlers
+ are run. This phase runs from the event widget, up to the toplevel.
+<!-- enum PropagationPhase::variant Target -->
+Events are delivered in the default widget event handlers,
+ note that widget implementations must chain up on button, motion, touch and
+ grab broken handlers for controllers in this phase to be run.
 <!-- struct RadioButton -->
 A single radio button performs the same basic function as a `CheckButton`,
 as its position in the object hierarchy reflects. It is only when multiple
@@ -19427,13 +18381,10 @@ can be used to determine if the button has been selected or deselected.
 
 # Implements
 
-[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl RadioButton::fn new -->
 Creates a new `RadioButton`. To be of any practical value, a widget should
 then be packed into the radio button.
-
-# Parameters
-
 ## `group`
 an existing
  radio button group, or `None` if you are creating a new group.
@@ -19445,9 +18396,6 @@ a new radio button
 Creates a new `RadioButton`, adding it to the same group as
 `radio_group_member`. As with `RadioButton::new`, a widget
 should be packed into the radio button.
-
-# Parameters
-
 ## `radio_group_member`
 an existing `RadioButton`.
 
@@ -19456,9 +18404,6 @@ an existing `RadioButton`.
 a new radio button.
 <!-- impl RadioButton::fn new_with_label -->
 Creates a new `RadioButton` with a text label.
-
-# Parameters
-
 ## `group`
 an existing
  radio button group, or `None` if you are creating a new group.
@@ -19471,9 +18416,6 @@ a new radio button.
 <!-- impl RadioButton::fn new_with_label_from_widget -->
 Creates a new `RadioButton` with a text label, adding it to
 the same group as `radio_group_member`.
-
-# Parameters
-
 ## `radio_group_member`
 widget to get radio group from or `None`
 ## `label`
@@ -19487,9 +18429,6 @@ Creates a new `RadioButton` containing a label, adding it to the same
 group as `group`. The label will be created using
 `Label::new_with_mnemonic`, so underscores in `label` indicate the
 mnemonic for the button.
-
-# Parameters
-
 ## `group`
 the radio button
  group, or `None`
@@ -19504,9 +18443,6 @@ a new `RadioButton`
 Creates a new `RadioButton` containing a label. The label
 will be created using `Label::new_with_mnemonic`, so underscores
 in `label` indicate the mnemonic for the button.
-
-# Parameters
-
 ## `radio_group_member`
 widget to get radio group from or `None`
 ## `label`
@@ -19545,9 +18481,6 @@ A common way to set up a group of radio buttons is the following:
        last_button = radio_button;
     }
 ```
-
-# Parameters
-
 ## `group_source`
 a radio button object whos group we are
  joining, or `None` to remove the radio button from its group
@@ -19556,9 +18489,6 @@ Sets a `RadioButton`’s group. It should be noted that this does not change
 the layout of your interface in any way, so if you are changing the group,
 it is likely you will need to re-arrange the user interface to reflect these
 changes.
-
-# Parameters
-
 ## `group`
 an existing radio
  button group, such as one returned from `RadioButton::get_group`, or `None`.
@@ -19576,6 +18506,10 @@ of the “steppers”. It also provides properties and methods for setting a
 [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait RangeExt -->
 Trait containing all `Range` methods.
+
+# Implementors
+
+[`Range`](struct.Range.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html)
 <!-- trait RangeExt::fn get_adjustment -->
 Get the `Adjustment` which is the “model” object for `Range`.
 See `RangeExt::set_adjustment` for details.
@@ -19623,9 +18557,6 @@ This function returns the area that contains the range’s trough
 and its steppers, in widget->window coordinates.
 
 This function is useful mainly for `Range` subclasses.
-
-# Parameters
-
 ## `range_rect`
 return location for the range rectangle
 <!-- trait RangeExt::fn get_restrict_to_fill_level -->
@@ -19652,9 +18583,6 @@ This function returns sliders range along the long dimension,
 in widget->window coordinates.
 
 This function is useful mainly for `Range` subclasses.
-
-# Parameters
-
 ## `slider_start`
 return location for the slider's
  start, or `None`
@@ -19690,9 +18618,6 @@ for keybindings and scrolling, and the page size. The page size
 is normally 0 for `Scale` and nonzero for `Scrollbar`, and
 indicates the size of the visible area of the widget being scrolled.
 The page size affects the size of the scrollbar slider.
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment`
 <!-- trait RangeExt::fn set_fill_level -->
@@ -19713,9 +18638,6 @@ Additionally, it’s possible to restrict the range’s slider position
 to values which are smaller than the fill level. This is controller
 by `RangeExt::set_restrict_to_fill_level` and is by default
 enabled.
-
-# Parameters
-
 ## `fill_level`
 the new position of the fill level indicator
 <!-- trait RangeExt::fn set_flippable -->
@@ -19723,9 +18645,6 @@ If a range is flippable, it will switch its direction if it is
 horizontal and its direction is `TextDirection::Rtl`.
 
 See `Widget::get_direction`.
-
-# Parameters
-
 ## `flippable`
 `true` to make the range flippable
 <!-- trait RangeExt::fn set_increments -->
@@ -19733,9 +18652,6 @@ Sets the step and page sizes for the range.
 The step size is used when the user clicks the `Scrollbar`
 arrows or moves `Scale` via arrow keys. The page size
 is used for example when moving via Page Up or Page Down keys.
-
-# Parameters
-
 ## `step`
 step size
 ## `page`
@@ -19745,35 +18661,23 @@ Ranges normally move from lower to higher values as the
 slider moves from top to bottom or left to right. Inverted
 ranges have higher values at the top or on the right rather than
 on the bottom or left.
-
-# Parameters
-
 ## `setting`
 `true` to invert the range
 <!-- trait RangeExt::fn set_lower_stepper_sensitivity -->
 Sets the sensitivity policy for the stepper that points to the
 'lower' end of the `Range`’s adjustment.
-
-# Parameters
-
 ## `sensitivity`
 the lower stepper’s sensitivity policy.
 <!-- trait RangeExt::fn set_min_slider_size -->
 Sets the minimum size of the range’s slider.
 
 This function is useful mainly for `Range` subclasses.
-
-# Parameters
-
 ## `min_size`
 The slider’s minimum size
 <!-- trait RangeExt::fn set_range -->
 Sets the allowable values in the `Range`, and clamps the range
 value to be between `min` and `max`. (If the range has a non-zero
 page size, it is clamped between `min` and `max` - page-size.)
-
-# Parameters
-
 ## `min`
 minimum range value
 ## `max`
@@ -19782,26 +18686,17 @@ maximum range value
 Sets whether the slider is restricted to the fill level. See
 `RangeExt::set_fill_level` for a general description of the fill
 level concept.
-
-# Parameters
-
 ## `restrict_to_fill_level`
 Whether the fill level restricts slider movement.
 <!-- trait RangeExt::fn set_round_digits -->
 Sets the number of digits to round the value to when
 it changes. See `Range::change-value`.
-
-# Parameters
-
 ## `round_digits`
 the precision in digits, or -1
 <!-- trait RangeExt::fn set_show_fill_level -->
 Sets whether a graphical fill level is show on the trough. See
 `RangeExt::set_fill_level` for a general description of the fill
 level concept.
-
-# Parameters
-
 ## `show_fill_level`
 Whether a fill level indicator graphics is shown.
 <!-- trait RangeExt::fn set_slider_size_fixed -->
@@ -19809,17 +18704,11 @@ Sets whether the range’s slider has a fixed size, or a size that
 depends on its adjustment’s page size.
 
 This function is useful mainly for `Range` subclasses.
-
-# Parameters
-
 ## `size_fixed`
 `true` to make the slider size constant
 <!-- trait RangeExt::fn set_upper_stepper_sensitivity -->
 Sets the sensitivity policy for the stepper that points to the
 'upper' end of the `Range`’s adjustment.
-
-# Parameters
-
 ## `sensitivity`
 the upper stepper’s sensitivity policy.
 <!-- trait RangeExt::fn set_value -->
@@ -19827,11 +18716,97 @@ Sets the current value of the range; if the value is outside the
 minimum or maximum range values, it will be clamped to fit inside
 them. The range emits the `Range::value-changed` signal if the
 value changes.
-
-# Parameters
-
 ## `value`
 new value of the range
+<!-- enum RcTokenType -->
+The `RcTokenType` enumeration represents the tokens
+in the RC file. It is exposed so that theme engines
+can reuse these tokens when parsing the theme-engine
+specific portions of a RC file.
+
+# Deprecated
+
+Use `CssProvider` instead.
+<!-- enum RcTokenType::variant Invalid -->
+Deprecated
+<!-- enum RcTokenType::variant Include -->
+Deprecated
+<!-- enum RcTokenType::variant Normal -->
+Deprecated
+<!-- enum RcTokenType::variant Active -->
+Deprecated
+<!-- enum RcTokenType::variant Prelight -->
+Deprecated
+<!-- enum RcTokenType::variant Selected -->
+Deprecated
+<!-- enum RcTokenType::variant Insensitive -->
+Deprecated
+<!-- enum RcTokenType::variant Fg -->
+Deprecated
+<!-- enum RcTokenType::variant Bg -->
+Deprecated
+<!-- enum RcTokenType::variant Text -->
+Deprecated
+<!-- enum RcTokenType::variant Base -->
+Deprecated
+<!-- enum RcTokenType::variant Xthickness -->
+Deprecated
+<!-- enum RcTokenType::variant Ythickness -->
+Deprecated
+<!-- enum RcTokenType::variant Font -->
+Deprecated
+<!-- enum RcTokenType::variant Fontset -->
+Deprecated
+<!-- enum RcTokenType::variant FontName -->
+Deprecated
+<!-- enum RcTokenType::variant BgPixmap -->
+Deprecated
+<!-- enum RcTokenType::variant PixmapPath -->
+Deprecated
+<!-- enum RcTokenType::variant Style -->
+Deprecated
+<!-- enum RcTokenType::variant Binding -->
+Deprecated
+<!-- enum RcTokenType::variant Bind -->
+Deprecated
+<!-- enum RcTokenType::variant Widget -->
+Deprecated
+<!-- enum RcTokenType::variant WidgetClass -->
+Deprecated
+<!-- enum RcTokenType::variant Class -->
+Deprecated
+<!-- enum RcTokenType::variant Lowest -->
+Deprecated
+<!-- enum RcTokenType::variant Gtk -->
+Deprecated
+<!-- enum RcTokenType::variant Application -->
+Deprecated
+<!-- enum RcTokenType::variant Theme -->
+Deprecated
+<!-- enum RcTokenType::variant Rc -->
+Deprecated
+<!-- enum RcTokenType::variant Highest -->
+Deprecated
+<!-- enum RcTokenType::variant Engine -->
+Deprecated
+<!-- enum RcTokenType::variant ModulePath -->
+Deprecated
+<!-- enum RcTokenType::variant ImModulePath -->
+Deprecated
+<!-- enum RcTokenType::variant ImModuleFile -->
+Deprecated
+<!-- enum RcTokenType::variant Stock -->
+Deprecated
+<!-- enum RcTokenType::variant Ltr -->
+Deprecated
+<!-- enum RcTokenType::variant Rtl -->
+Deprecated
+<!-- enum RcTokenType::variant Color -->
+Deprecated
+<!-- enum RcTokenType::variant Unbind -->
+Deprecated
+<!-- enum RcTokenType::variant Last -->
+Deprecated
 <!-- struct RecentChooser -->
 `RecentChooser` is an interface that can be implemented by widgets
 displaying the list of recently used files. In GTK+, the main objects
@@ -19845,14 +18820,15 @@ Recently used files are supported since GTK+ 2.10.
 [`RecentChooserExt`](trait.RecentChooserExt.html)
 <!-- trait RecentChooserExt -->
 Trait containing all `RecentChooser` methods.
+
+# Implementors
+
+[`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentChooser`](struct.RecentChooser.html)
 <!-- trait RecentChooserExt::fn add_filter -->
 Adds `filter` to the list of `RecentFilter` objects held by `self`.
 
 If no previous filter objects were defined, this function will call
 `RecentChooser::set_filter`.
-
-# Parameters
-
 ## `filter`
 a `RecentFilter`
 <!-- trait RecentChooserExt::fn get_current_item -->
@@ -19951,9 +18927,6 @@ The return value of this function is affected by the “sort-type” and “limi
 properties of `self`.
 
 Since the returned array is `None` terminated, `length` may be `None`.
-
-# Parameters
-
 ## `length`
 return location for a the length of the
  URI list, or `None`
@@ -19973,9 +18946,6 @@ A singly linked list
  should just free the returned list using `glib::SList::free`.
 <!-- trait RecentChooserExt::fn remove_filter -->
 Removes `filter` from the list of `RecentFilter` objects held by `self`.
-
-# Parameters
-
 ## `filter`
 a `RecentFilter`
 <!-- trait RecentChooserExt::fn select_all -->
@@ -19983,9 +18953,6 @@ Selects all the items inside `self`, if the `self` supports
 multiple selection.
 <!-- trait RecentChooserExt::fn select_uri -->
 Selects `uri` inside `self`.
-
-# Parameters
-
 ## `uri`
 a URI
 
@@ -19994,9 +18961,6 @@ a URI
 `true` if `uri` was found.
 <!-- trait RecentChooserExt::fn set_current_uri -->
 Sets `uri` as the current URI for `self`.
-
-# Parameters
-
 ## `uri`
 a URI
 
@@ -20006,17 +18970,11 @@ a URI
 <!-- trait RecentChooserExt::fn set_filter -->
 Sets `filter` as the current `RecentFilter` object used by `self`
 to affect the displayed recently used resources.
-
-# Parameters
-
 ## `filter`
 a `RecentFilter`
 <!-- trait RecentChooserExt::fn set_limit -->
 Sets the number of items that should be returned by
 `RecentChooser::get_items` and `RecentChooser::get_uris`.
-
-# Parameters
-
 ## `limit`
 a positive integer, or -1 for all items
 <!-- trait RecentChooserExt::fn set_local_only -->
@@ -20024,47 +18982,29 @@ Sets whether only local resources, that is resources using the file:// URI
 scheme, should be shown in the recently used resources selector. If
 `local_only` is `true` (the default) then the shown resources are guaranteed
 to be accessible through the operating system native file system.
-
-# Parameters
-
 ## `local_only`
 `true` if only local files can be shown
 <!-- trait RecentChooserExt::fn set_select_multiple -->
 Sets whether `self` can select multiple items.
-
-# Parameters
-
 ## `select_multiple`
 `true` if `self` can select more than one item
 <!-- trait RecentChooserExt::fn set_show_icons -->
 Sets whether `self` should show an icon near the resource when
 displaying it.
-
-# Parameters
-
 ## `show_icons`
 whether to show an icon near the resource
 <!-- trait RecentChooserExt::fn set_show_not_found -->
 Sets whether `self` should display the recently used resources that
 it didn’t find. This only applies to local resources.
-
-# Parameters
-
 ## `show_not_found`
 whether to show the local items we didn’t find
 <!-- trait RecentChooserExt::fn set_show_private -->
 Whether to show recently used resources marked registered as private.
-
-# Parameters
-
 ## `show_private`
 `true` to show private items, `false` otherwise
 <!-- trait RecentChooserExt::fn set_show_tips -->
 Sets whether to show a tooltips containing the full path of each
 recently used resource in a `RecentChooser` widget.
-
-# Parameters
-
 ## `show_tips`
 `true` if tooltips should be shown
 <!-- trait RecentChooserExt::fn set_sort_func -->
@@ -20076,9 +19016,6 @@ To the comparison function will be passed two `RecentInfo` structs and
 `sort_data`; `sort_func` should return a positive integer if the first
 item comes before the second, zero if the two items are equal and
 a negative integer if the first item comes after the second.
-
-# Parameters
-
 ## `sort_func`
 the comparison function
 ## `sort_data`
@@ -20088,18 +19025,12 @@ destroy notifier for `sort_data`, or `None`
 <!-- trait RecentChooserExt::fn set_sort_type -->
 Changes the sorting order of the recently used resources list displayed by
 `self`.
-
-# Parameters
-
 ## `sort_type`
 sort order that the chooser should use
 <!-- trait RecentChooserExt::fn unselect_all -->
 Unselects all the items inside `self`.
 <!-- trait RecentChooserExt::fn unselect_uri -->
 Unselects `uri` inside `self`.
-
-# Parameters
-
 ## `uri`
 a URI
 <!-- struct RecentChooserDialog -->
@@ -20152,9 +19083,6 @@ Recently used files are supported since GTK+ 2.10.
 <!-- impl RecentChooserDialog::fn new -->
 Creates a new `RecentChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -20170,9 +19098,6 @@ Creates a new `RecentChooserDialog` with a specified recent manager.
 
 This is useful if you have implemented your own recent manager, or if you
 have a customized instance of a `RecentManager` object.
-
-# Parameters
-
 ## `title`
 Title of the dialog, or `None`
 ## `parent`
@@ -20185,6 +19110,13 @@ stock ID or text to go in the first button, or `None`
 # Returns
 
 a new `RecentChooserDialog`
+<!-- enum RecentChooserError -->
+These identify the various errors that can occur while calling
+`RecentChooser` functions.
+<!-- enum RecentChooserError::variant NotFound -->
+Indicates that a file does not exist
+<!-- enum RecentChooserError::variant InvalidUri -->
+Indicates a malformed URI
 <!-- struct RecentChooserWidget -->
 `RecentChooserWidget` is a widget suitable for selecting recently used
 files. It is the main building block of a `RecentChooserDialog`. Most
@@ -20211,15 +19143,15 @@ Creates a new `RecentChooserWidget` with a specified recent manager.
 
 This is useful if you have implemented your own recent manager, or if you
 have a customized instance of a `RecentManager` object.
-
-# Parameters
-
 ## `manager`
 a `RecentManager`
 
 # Returns
 
 a new `RecentChooserWidget`
+<!-- struct RecentData -->
+Meta-data to be passed to `RecentManager::add_full` when
+registering a recently used resource.
 <!-- struct RecentFilter -->
 A `RecentFilter` can be used to restrict the files being shown
 in a `RecentChooser`. Files can be filtered based on their name
@@ -20291,17 +19223,11 @@ a new `RecentFilter`
 <!-- impl RecentFilter::fn add_age -->
 Adds a rule that allows resources based on their age - that is, the number
 of days elapsed since they were last modified.
-
-# Parameters
-
 ## `days`
 number of days
 <!-- impl RecentFilter::fn add_application -->
 Adds a rule that allows resources based on the name of the application
 that has registered them.
-
-# Parameters
-
 ## `application`
 an application name
 <!-- impl RecentFilter::fn add_custom -->
@@ -20310,9 +19236,6 @@ function. The bitfield `needed` which is passed in provides information
 about what sorts of information that the filter function needs;
 this allows GTK+ to avoid retrieving expensive information when
 it isn’t needed by the filter.
-
-# Parameters
-
 ## `needed`
 bitfield of flags indicating the information that the custom
  filter function needs.
@@ -20326,24 +19249,15 @@ function to call to free `data` when it is no longer needed.
 <!-- impl RecentFilter::fn add_group -->
 Adds a rule that allows resources based on the name of the group
 to which they belong
-
-# Parameters
-
 ## `group`
 a group name
 <!-- impl RecentFilter::fn add_mime_type -->
 Adds a rule that allows resources based on their registered MIME type.
-
-# Parameters
-
 ## `mime_type`
 a MIME type
 <!-- impl RecentFilter::fn add_pattern -->
 Adds a rule that allows resources based on a pattern matching their
 display name.
-
-# Parameters
-
 ## `pattern`
 a file pattern
 <!-- impl RecentFilter::fn add_pixbuf_formats -->
@@ -20359,9 +19273,6 @@ to indicate which fields have been set.
 This function will not typically be used by applications; it
 is intended principally for use in the implementation of
 `RecentChooser`.
-
-# Parameters
-
 ## `filter_info`
 a `RecentFilterInfo` containing information
  about a recently used resource
@@ -20393,11 +19304,235 @@ bitfield of flags indicating needed fields when
 Sets the human-readable name of the filter; this is the string
 that will be displayed in the recently used resources selector
 user interface if there is a selectable list of filters.
-
-# Parameters
-
 ## `name`
 then human readable name of `self`
+<!-- struct RecentInfo -->
+`RecentInfo`-struct contains private data only, and should
+be accessed using the provided API.
+
+`RecentInfo` constains all the meta-data
+associated with an entry in the recently used files list.
+<!-- impl RecentInfo::fn create_app_info -->
+Creates a `gio::AppInfo` for the specified `RecentInfo`
+## `app_name`
+the name of the application that should
+ be mapped to a `gio::AppInfo`; if `None` is used then the default
+ application for the MIME type is used
+
+# Returns
+
+the newly created `gio::AppInfo`, or `None`.
+ In case of error, `error` will be set either with a
+ `GTK_RECENT_MANAGER_ERROR` or a `G_IO_ERROR`
+<!-- impl RecentInfo::fn exists -->
+Checks whether the resource pointed by `self` still exists.
+At the moment this check is done only on resources pointing
+to local files.
+
+# Returns
+
+`true` if the resource exists
+<!-- impl RecentInfo::fn get_added -->
+Gets the timestamp (seconds from system’s Epoch) when the resource
+was added to the recently used resources list.
+
+# Returns
+
+the number of seconds elapsed from system’s Epoch when
+ the resource was added to the list, or -1 on failure.
+<!-- impl RecentInfo::fn get_age -->
+Gets the number of days elapsed since the last update
+of the resource pointed by `self`.
+
+# Returns
+
+a positive integer containing the number of days
+ elapsed since the time this resource was last modified
+<!-- impl RecentInfo::fn get_application_info -->
+Gets the data regarding the application that has registered the resource
+pointed by `self`.
+
+If the command line contains any escape characters defined inside the
+storage specification, they will be expanded.
+## `app_name`
+the name of the application that has registered this item
+## `app_exec`
+return location for the string containing
+ the command line
+## `count`
+return location for the number of times this item was registered
+## `time_`
+return location for the timestamp this item was last registered
+ for this application
+
+# Returns
+
+`true` if an application with `app_name` has registered this
+ resource inside the recently used list, or `false` otherwise. The
+ `app_exec` string is owned by the `RecentInfo` and should not be
+ modified or freed
+<!-- impl RecentInfo::fn get_applications -->
+Retrieves the list of applications that have registered this resource.
+## `length`
+return location for the length of the returned list
+
+# Returns
+
+
+ a newly allocated `None`-terminated array of strings.
+ Use `g_strfreev` to free it.
+<!-- impl RecentInfo::fn get_description -->
+Gets the (short) description of the resource.
+
+# Returns
+
+the description of the resource. The returned string
+ is owned by the recent manager, and should not be freed.
+<!-- impl RecentInfo::fn get_display_name -->
+Gets the name of the resource. If none has been defined, the basename
+of the resource is obtained.
+
+# Returns
+
+the display name of the resource. The returned string
+ is owned by the recent manager, and should not be freed.
+<!-- impl RecentInfo::fn get_gicon -->
+Retrieves the icon associated to the resource MIME type.
+
+# Returns
+
+a `gio::Icon` containing the icon, or `None`.
+ Use `gobject::Object::unref` when finished using the icon
+<!-- impl RecentInfo::fn get_groups -->
+Returns all groups registered for the recently used item `self`.
+The array of returned group names will be `None` terminated, so
+length might optionally be `None`.
+## `length`
+return location for the number of groups returned
+
+# Returns
+
+
+ a newly allocated `None` terminated array of strings.
+ Use `g_strfreev` to free it.
+<!-- impl RecentInfo::fn get_icon -->
+Retrieves the icon of size `size` associated to the resource MIME type.
+## `size`
+the size of the icon in pixels
+
+# Returns
+
+a `gdk_pixbuf::Pixbuf` containing the icon,
+ or `None`. Use `gobject::Object::unref` when finished using the icon.
+<!-- impl RecentInfo::fn get_mime_type -->
+Gets the MIME type of the resource.
+
+# Returns
+
+the MIME type of the resource. The returned string
+ is owned by the recent manager, and should not be freed.
+<!-- impl RecentInfo::fn get_modified -->
+Gets the timestamp (seconds from system’s Epoch) when the meta-data
+for the resource was last modified.
+
+# Returns
+
+the number of seconds elapsed from system’s Epoch when
+ the resource was last modified, or -1 on failure.
+<!-- impl RecentInfo::fn get_private_hint -->
+Gets the value of the “private” flag. Resources in the recently used
+list that have this flag set to `true` should only be displayed by the
+applications that have registered them.
+
+# Returns
+
+`true` if the private flag was found, `false` otherwise
+<!-- impl RecentInfo::fn get_short_name -->
+Computes a valid UTF-8 string that can be used as the
+name of the item in a menu or list. For example, calling
+this function on an item that refers to
+“file:///foo/bar.txt” will yield “bar.txt”.
+
+# Returns
+
+A newly-allocated string in UTF-8 encoding
+ free it with `g_free`
+<!-- impl RecentInfo::fn get_uri -->
+Gets the URI of the resource.
+
+# Returns
+
+the URI of the resource. The returned string is
+ owned by the recent manager, and should not be freed.
+<!-- impl RecentInfo::fn get_uri_display -->
+Gets a displayable version of the resource’s URI. If the resource
+is local, it returns a local path; if the resource is not local,
+it returns the UTF-8 encoded content of `RecentInfo::get_uri`.
+
+# Returns
+
+a newly allocated UTF-8 string containing the
+ resource’s URI or `None`. Use `g_free` when done using it.
+<!-- impl RecentInfo::fn get_visited -->
+Gets the timestamp (seconds from system’s Epoch) when the meta-data
+for the resource was last visited.
+
+# Returns
+
+the number of seconds elapsed from system’s Epoch when
+ the resource was last visited, or -1 on failure.
+<!-- impl RecentInfo::fn has_application -->
+Checks whether an application registered this resource using `app_name`.
+## `app_name`
+a string containing an application name
+
+# Returns
+
+`true` if an application with name `app_name` was found,
+ `false` otherwise
+<!-- impl RecentInfo::fn has_group -->
+Checks whether `group_name` appears inside the groups
+registered for the recently used item `self`.
+## `group_name`
+name of a group
+
+# Returns
+
+`true` if the group was found
+<!-- impl RecentInfo::fn is_local -->
+Checks whether the resource is local or not by looking at the
+scheme of its URI.
+
+# Returns
+
+`true` if the resource is local
+<!-- impl RecentInfo::fn last_application -->
+Gets the name of the last application that have registered the
+recently used resource represented by `self`.
+
+# Returns
+
+an application name. Use `g_free` to free it.
+<!-- impl RecentInfo::fn match -->
+Checks whether two `RecentInfo`-struct point to the same
+resource.
+## `info_b`
+a `RecentInfo`
+
+# Returns
+
+`true` if both `RecentInfo`-struct point to the same
+ resource, `false` otherwise
+<!-- impl RecentInfo::fn ref -->
+Increases the reference count of `recent_info` by one.
+
+# Returns
+
+the recent info object with its reference count
+ increased by one
+<!-- impl RecentInfo::fn unref -->
+Decreases the reference count of `self` by one. If the reference
+count reaches zero, `self` is deallocated, and the memory freed.
 <!-- struct RecentManager -->
 `RecentManager` provides a facility for adding, removing and
 looking up recently used files. Each recently used file is
@@ -20461,10 +19596,6 @@ controllable through the `Settings:gtk-recent-files-max-age`
 property.
 
 Recently used files are supported since GTK+ 2.10.
-
-# Implements
-
-
 <!-- impl RecentManager::fn new -->
 Creates a new recent manager object. Recent manager objects are used to
 handle the list of recently used resources. A `RecentManager` object
@@ -20505,9 +19636,6 @@ to be used when viewing the item instead of the last component of
 the URI; a short description of the item; whether the item should
 be considered private - that is, should be displayed only by the
 applications that have registered it.
-
-# Parameters
-
 ## `uri`
 a valid URI
 ## `recent_data`
@@ -20527,9 +19655,6 @@ it then feeds the data to `RecentManager::add_full`.
 
 See `RecentManager::add_full` if you want to explicitly
 define the metadata for the resource pointed by `uri`.
-
-# Parameters
-
 ## `uri`
 a valid URI
 
@@ -20549,9 +19674,6 @@ a list of
 <!-- impl RecentManager::fn has_item -->
 Checks whether there is a recently used resource registered
 with `uri` inside the recent manager.
-
-# Parameters
-
 ## `uri`
 a URI
 
@@ -20562,9 +19684,6 @@ a URI
 Searches for a URI inside the recently used resources list, and
 returns a `RecentInfo`-struct containing informations about the resource
 like its MIME type, or its display name.
-
-# Parameters
-
 ## `uri`
 a URI
 
@@ -20579,9 +19698,6 @@ Changes the location of a recently used resource from `uri` to `new_uri`.
 
 Please note that this function will not affect the resource pointed
 by the URIs, but only the URI used in the recently used resources list.
-
-# Parameters
-
 ## `uri`
 the URI of a recently used resource
 ## `new_uri`
@@ -20601,9 +19717,6 @@ the number of items that have been removed from the
 <!-- impl RecentManager::fn remove_item -->
 Removes a resource pointed by `uri` from the recently used resources
 list handled by a recent manager.
-
-# Parameters
-
 ## `uri`
 the URI of the item you wish to remove
 
@@ -20611,6 +19724,103 @@ the URI of the item you wish to remove
 
 `true` if the item pointed by `uri` has been successfully
  removed by the recently used resources list, and `false` otherwise
+<!-- enum RecentManagerError -->
+Error codes for `RecentManager` operations
+<!-- enum RecentManagerError::variant NotFound -->
+the URI specified does not exists in
+ the recently used resources list.
+<!-- enum RecentManagerError::variant InvalidUri -->
+the URI specified is not valid.
+<!-- enum RecentManagerError::variant InvalidEncoding -->
+the supplied string is not
+ UTF-8 encoded.
+<!-- enum RecentManagerError::variant NotRegistered -->
+no application has registered
+ the specified item.
+<!-- enum RecentManagerError::variant Read -->
+failure while reading the recently used
+ resources file.
+<!-- enum RecentManagerError::variant Write -->
+failure while writing the recently used
+ resources file.
+<!-- enum RecentManagerError::variant Unknown -->
+unspecified error.
+<!-- enum RecentSortType -->
+Used to specify the sorting method to be applyed to the recently
+used resource list.
+<!-- enum RecentSortType::variant None -->
+Do not sort the returned list of recently used
+ resources.
+<!-- enum RecentSortType::variant Mru -->
+Sort the returned list with the most recently used
+ items first.
+<!-- enum RecentSortType::variant Lru -->
+Sort the returned list with the least recently used
+ items first.
+<!-- enum RecentSortType::variant Custom -->
+Sort the returned list using a custom sorting
+ function passed using `RecentChooser::set_sort_func`.
+<!-- enum ReliefStyle -->
+Indicated the relief to be drawn around a `Button`.
+<!-- enum ReliefStyle::variant Normal -->
+Draw a normal relief.
+<!-- enum ReliefStyle::variant Half -->
+A half relief. Deprecated in 3.14, does the same as `ReliefStyle::Normal`
+<!-- enum ReliefStyle::variant None -->
+No relief.
+<!-- struct Requisition -->
+A `Requisition`-struct represents the desired size of a widget. See
+[`Widget`’s geometry management section][geometry-management] for
+more information.
+<!-- impl Requisition::fn new -->
+Allocates a new `Requisition`-struct and initializes its elements to zero.
+
+# Returns
+
+a new empty `Requisition`. The newly allocated `Requisition` should
+ be freed with `Requisition::free`.
+<!-- impl Requisition::fn copy -->
+Copies a `Requisition`.
+
+# Returns
+
+a copy of `self`
+<!-- impl Requisition::fn free -->
+Frees a `Requisition`.
+<!-- enum ResizeMode -->
+<!-- enum ResizeMode::variant Parent -->
+Pass resize request to the parent
+<!-- enum ResizeMode::variant Queue -->
+Queue resizes on this widget
+<!-- enum ResizeMode::variant Immediate -->
+Resize immediately. Deprecated.
+<!-- enum ResponseType -->
+Predefined values for use as response ids in `DialogExt::add_button`.
+All predefined values are negative, GTK+ leaves positive values for
+application-defined response ids.
+<!-- enum ResponseType::variant None -->
+Returned if an action widget has no response id,
+ or if the dialog gets programmatically hidden or destroyed
+<!-- enum ResponseType::variant Reject -->
+Generic response id, not used by GTK+ dialogs
+<!-- enum ResponseType::variant Accept -->
+Generic response id, not used by GTK+ dialogs
+<!-- enum ResponseType::variant DeleteEvent -->
+Returned if the dialog is deleted
+<!-- enum ResponseType::variant Ok -->
+Returned by OK buttons in GTK+ dialogs
+<!-- enum ResponseType::variant Cancel -->
+Returned by Cancel buttons in GTK+ dialogs
+<!-- enum ResponseType::variant Close -->
+Returned by Close buttons in GTK+ dialogs
+<!-- enum ResponseType::variant Yes -->
+Returned by Yes buttons in GTK+ dialogs
+<!-- enum ResponseType::variant No -->
+Returned by No buttons in GTK+ dialogs
+<!-- enum ResponseType::variant Apply -->
+Returned by Apply buttons in GTK+ dialogs
+<!-- enum ResponseType::variant Help -->
+Returned by Help buttons in GTK+ dialogs
 <!-- struct Revealer -->
 The `Revealer` widget is a container which animates
 the transition of its child from invisible to visible.
@@ -20670,27 +19880,33 @@ Tells the `Revealer` to reveal or conceal its child.
 
 The transition will be animated with the current
 transition type of `self`.
-
-# Parameters
-
 ## `reveal_child`
 `true` to reveal the child
 <!-- impl Revealer::fn set_transition_duration -->
 Sets the duration that transitions will take.
-
-# Parameters
-
 ## `duration`
 the new duration, in milliseconds
 <!-- impl Revealer::fn set_transition_type -->
 Sets the type of animation that will be used for
 transitions in `self`. Available types include
 various kinds of fades and slides.
-
-# Parameters
-
 ## `transition`
 the new transition type
+<!-- enum RevealerTransitionType -->
+These enumeration values describe the possible transitions
+when the child of a `Revealer` widget is shown or hidden.
+<!-- enum RevealerTransitionType::variant None -->
+No transition
+<!-- enum RevealerTransitionType::variant Crossfade -->
+Fade in
+<!-- enum RevealerTransitionType::variant SlideRight -->
+Slide in from the left
+<!-- enum RevealerTransitionType::variant SlideLeft -->
+Slide in from the right
+<!-- enum RevealerTransitionType::variant SlideUp -->
+Slide in from the bottom
+<!-- enum RevealerTransitionType::variant SlideDown -->
+Slide in from the top
 <!-- struct Scale -->
 A `Scale` is a slider control used to select a numeric value.
 To use it, you’ll probably want to investigate the methods on
@@ -20718,9 +19934,6 @@ the mark. It can be translated with the usual ”translatable” and
 [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Scale::fn new -->
 Creates a new `Scale`.
-
-# Parameters
-
 ## `orientation`
 the scale’s orientation.
 ## `adjustment`
@@ -20740,9 +19953,6 @@ value.
 Note that the way in which the precision is derived works best if `step`
 is a power of ten. If the resulting precision is not suitable for your
 needs, use `Scale::set_digits` to correct it.
-
-# Parameters
-
 ## `orientation`
 the scale’s orientation.
 ## `min`
@@ -20765,9 +19975,6 @@ marks value.
 If `markup` is not `None`, text is shown next to the tick mark.
 
 To remove marks from a scale, use `Scale::clear_marks`.
-
-# Parameters
-
 ## `value`
 the value at which the mark is placed, must be between
  the lower and upper limits of the scales’ adjustment
@@ -20816,9 +20023,6 @@ and from pixels using PANGO_PIXELS() or `PANGO_SCALE`.
 
 If the `Scale:draw-value` property is `false`, the return
 values are undefined.
-
-# Parameters
-
 ## `x`
 location to store X offset of layout, or `None`
 ## `y`
@@ -20833,18 +20037,12 @@ the position in which the current value is displayed
 Sets the number of decimal places that are displayed in the value.
 Also causes the value of the adjustment to be rounded off to this
 number of digits, so the retrieved value matches the value the user saw.
-
-# Parameters
-
 ## `digits`
 the number of decimal places to display,
  e.g. use 1 to display 1.0, 2 to display 1.00, etc
 <!-- impl Scale::fn set_draw_value -->
 Specifies whether the current value is displayed as a string next
 to the slider.
-
-# Parameters
-
 ## `draw_value`
 `true` to draw the value
 <!-- impl Scale::fn set_has_origin -->
@@ -20852,16 +20050,10 @@ If `has_origin` is set to `true` (the default),
 the scale will highlight the part of the scale
 between the origin (bottom or left side) of the scale
 and the current value.
-
-# Parameters
-
 ## `has_origin`
 `true` if the scale has an origin
 <!-- impl Scale::fn set_value_pos -->
 Sets the position in which the current value is displayed.
-
-# Parameters
-
 ## `pos`
 the position in which the current value is displayed
 <!-- struct ScaleButton -->
@@ -20872,15 +20064,16 @@ is tailored for this use case.
 
 # Implements
 
-[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ScaleButtonExt -->
 Trait containing all `ScaleButton` methods.
+
+# Implementors
+
+[`ScaleButton`](struct.ScaleButton.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- impl ScaleButton::fn new -->
 Creates a `ScaleButton`, with a range between `min` and `max`, with
 a stepping of `step`.
-
-# Parameters
-
 ## `size`
 a stock icon size
 ## `min`
@@ -20933,17 +20126,11 @@ current value of the scale button
 Sets the `Adjustment` to be used as a model
 for the `ScaleButton`’s scale.
 See `RangeExt::set_adjustment` for details.
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment`
 <!-- trait ScaleButtonExt::fn set_icons -->
 Sets the icons to be used by the scale button.
 For details, see the `ScaleButton:icons` property.
-
-# Parameters
-
 ## `icons`
 a `None`-terminated array of icon names
 <!-- trait ScaleButtonExt::fn set_value -->
@@ -20951,11 +20138,55 @@ Sets the current value of the scale; if the value is outside
 the minimum or maximum range values, it will be clamped to fit
 inside them. The scale button emits the `ScaleButton::value-changed`
 signal if the value changes.
-
-# Parameters
-
 ## `value`
 new value of the scale button
+<!-- enum ScrollStep -->
+<!-- enum ScrollStep::variant Steps -->
+Scroll in steps.
+<!-- enum ScrollStep::variant Pages -->
+Scroll by pages.
+<!-- enum ScrollStep::variant Ends -->
+Scroll to ends.
+<!-- enum ScrollStep::variant HorizontalSteps -->
+Scroll in horizontal steps.
+<!-- enum ScrollStep::variant HorizontalPages -->
+Scroll by horizontal pages.
+<!-- enum ScrollStep::variant HorizontalEnds -->
+Scroll to the horizontal ends.
+<!-- enum ScrollType -->
+Scrolling types.
+<!-- enum ScrollType::variant None -->
+No scrolling.
+<!-- enum ScrollType::variant Jump -->
+Jump to new location.
+<!-- enum ScrollType::variant StepBackward -->
+Step backward.
+<!-- enum ScrollType::variant StepForward -->
+Step forward.
+<!-- enum ScrollType::variant PageBackward -->
+Page backward.
+<!-- enum ScrollType::variant PageForward -->
+Page forward.
+<!-- enum ScrollType::variant StepUp -->
+Step up.
+<!-- enum ScrollType::variant StepDown -->
+Step down.
+<!-- enum ScrollType::variant PageUp -->
+Page up.
+<!-- enum ScrollType::variant PageDown -->
+Page down.
+<!-- enum ScrollType::variant StepLeft -->
+Step to the left.
+<!-- enum ScrollType::variant StepRight -->
+Step to the right.
+<!-- enum ScrollType::variant PageLeft -->
+Page to the left.
+<!-- enum ScrollType::variant PageRight -->
+Page to the right.
+<!-- enum ScrollType::variant Start -->
+Scroll to start.
+<!-- enum ScrollType::variant End -->
+Scroll to end.
 <!-- struct Scrollable -->
 `Scrollable` is an interface that is implemented by widgets with native
 scrolling ability.
@@ -20990,15 +20221,16 @@ All scrollable widgets should do the following.
 [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait ScrollableExt -->
 Trait containing all `Scrollable` methods.
+
+# Implementors
+
+[`IconView`](struct.IconView.html), [`Layout`](struct.Layout.html), [`Scrollable`](struct.Scrollable.html), [`TextView`](struct.TextView.html), [`ToolPalette`](struct.ToolPalette.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html)
 <!-- trait ScrollableExt::fn get_border -->
 Returns the size of a non-scrolling border around the
 outside of the scrollable. An example for this would
 be treeview headers. GTK+ can use this information to
 display overlayed graphics, like the overshoot indication,
 at the right position.
-
-# Parameters
-
 ## `border`
 return location for the results
 
@@ -21031,36 +20263,31 @@ Gets the vertical `ScrollablePolicy`.
 The vertical `ScrollablePolicy`.
 <!-- trait ScrollableExt::fn set_hadjustment -->
 Sets the horizontal adjustment of the `Scrollable`.
-
-# Parameters
-
 ## `hadjustment`
 a `Adjustment`
 <!-- trait ScrollableExt::fn set_hscroll_policy -->
 Sets the `ScrollablePolicy` to determine whether
 horizontal scrolling should start below the minimum width or
 below the natural width.
-
-# Parameters
-
 ## `policy`
 the horizontal `ScrollablePolicy`
 <!-- trait ScrollableExt::fn set_vadjustment -->
 Sets the vertical adjustment of the `Scrollable`.
-
-# Parameters
-
 ## `vadjustment`
 a `Adjustment`
 <!-- trait ScrollableExt::fn set_vscroll_policy -->
 Sets the `ScrollablePolicy` to determine whether
 vertical scrolling should start below the minimum height or
 below the natural height.
-
-# Parameters
-
 ## `policy`
 the vertical `ScrollablePolicy`
+<!-- enum ScrollablePolicy -->
+Defines the policy to be used in a scrollable widget when updating
+the scrolled window adjustments in a given orientation.
+<!-- enum ScrollablePolicy::variant Minimum -->
+Scrollable adjustments are based on the minimum size
+<!-- enum ScrollablePolicy::variant Natural -->
+Scrollable adjustments are based on the natural size
 <!-- struct Scrollbar -->
 The `Scrollbar` widget is a horizontal or vertical scrollbar,
 depending on the value of the `Orientable:orientation` property.
@@ -21081,9 +20308,6 @@ example the `Page Down` key).
 [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Scrollbar::fn new -->
 Creates a new scrollbar with the given orientation.
-
-# Parameters
-
 ## `orientation`
 the scrollbar’s orientation.
 ## `adjustment`
@@ -21151,6 +20375,10 @@ property.
 [`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ScrolledWindowExt -->
 Trait containing all `ScrolledWindow` methods.
+
+# Implementors
+
+[`PlacesSidebar`](struct.PlacesSidebar.html), [`ScrolledWindow`](struct.ScrolledWindow.html)
 <!-- impl ScrolledWindow::fn new -->
 Creates a new scrolled window.
 
@@ -21158,9 +20386,6 @@ The two arguments are the scrolled window’s adjustments; these will be
 shared with the scrollbars and the child widget to keep the bars in sync
 with the child. Usually you want to pass `None` for the adjustments, which
 will cause the scrolled window to create them for you.
-
-# Parameters
-
 ## `hadjustment`
 horizontal adjustment
 ## `vadjustment`
@@ -21191,9 +20416,6 @@ A widget supports scrolling natively if it implements the
 
 `ContainerExt::add` will automatically add
 a `Viewport` if the child doesn’t implement `Scrollable`.
-
-# Parameters
-
 ## `child`
 the widget you want to scroll
 <!-- trait ScrolledWindowExt::fn get_capture_button_press -->
@@ -21254,9 +20476,6 @@ See also `ScrolledWindowExt::set_placement` and
 <!-- trait ScrolledWindowExt::fn get_policy -->
 Retrieves the current policy values for the horizontal and vertical
 scrollbars. See `ScrolledWindowExt::set_policy`.
-
-# Parameters
-
 ## `hscrollbar_policy`
 location to store the policy
  for the horizontal scrollbar, or `None`
@@ -21295,50 +20514,32 @@ additionally handle `Widget::grab-broken-event`, it might be better
 to set `capture_button_press` to `false`.
 
 This setting only has an effect if kinetic scrolling is enabled.
-
-# Parameters
-
 ## `capture_button_press`
 `true` to capture button presses
 <!-- trait ScrolledWindowExt::fn set_hadjustment -->
 Sets the `Adjustment` for the horizontal scrollbar.
-
-# Parameters
-
 ## `hadjustment`
 horizontal scroll adjustment
 <!-- trait ScrolledWindowExt::fn set_kinetic_scrolling -->
 Turns kinetic scrolling on or off.
 Kinetic scrolling only applies to devices with source
 `gdk::InputSource::Touchscreen`.
-
-# Parameters
-
 ## `kinetic_scrolling`
 `true` to enable kinetic scrolling
 <!-- trait ScrolledWindowExt::fn set_min_content_height -->
 Sets the minimum height that `self` should keep visible.
 Note that this can and (usually will) be smaller than the minimum
 size of the content.
-
-# Parameters
-
 ## `height`
 the minimal content height
 <!-- trait ScrolledWindowExt::fn set_min_content_width -->
 Sets the minimum width that `self` should keep visible.
 Note that this can and (usually will) be smaller than the minimum
 size of the content.
-
-# Parameters
-
 ## `width`
 the minimal content width
 <!-- trait ScrolledWindowExt::fn set_overlay_scrolling -->
 Enables or disables overlay scrolling for this scrolled window.
-
-# Parameters
-
 ## `overlay_scrolling`
 whether to enable overlay scrolling
 <!-- trait ScrolledWindowExt::fn set_placement -->
@@ -21352,9 +20553,6 @@ Other values in `CornerType` are `CornerType::TopRight`,
 
 See also `ScrolledWindowExt::get_placement` and
 `ScrolledWindowExt::unset_placement`.
-
-# Parameters
-
 ## `window_placement`
 position of the child window
 <!-- trait ScrolledWindowExt::fn set_policy -->
@@ -21366,9 +20564,6 @@ scrollbar is always present; if `PolicyType::Never`, the scrollbar is
 never present; if `PolicyType::Automatic`, the scrollbar is present only
 if needed (that is, if the slider part of the bar would be smaller
 than the trough — the display is larger than the page size).
-
-# Parameters
-
 ## `hscrollbar_policy`
 policy for horizontal bar
 ## `vscrollbar_policy`
@@ -21376,16 +20571,10 @@ policy for vertical bar
 <!-- trait ScrolledWindowExt::fn set_shadow_type -->
 Changes the type of shadow drawn around the contents of
 `self`.
-
-# Parameters
-
 ## `type_`
 kind of shadow to draw around scrolled window contents
 <!-- trait ScrolledWindowExt::fn set_vadjustment -->
 Sets the `Adjustment` for the vertical scrollbar.
-
-# Parameters
-
 ## `vadjustment`
 vertical scroll adjustment
 <!-- trait ScrolledWindowExt::fn unset_placement -->
@@ -21432,9 +20621,6 @@ Connects the `Entry` widget passed as the one to be used in
 this search bar. The entry should be a descendant of the search bar.
 This is only required if the entry isn’t the direct child of the
 search bar (as in our main example).
-
-# Parameters
-
 ## `entry`
 a `Entry`
 <!-- impl SearchBar::fn get_search_mode -->
@@ -21480,9 +20666,6 @@ g_signal_connect (window,
                   G_CALLBACK (on_key_press_event),
                   search_bar);
 ```
-
-# Parameters
-
 ## `event`
 a ``GdkEvent`` containing key press events
 
@@ -21493,9 +20676,6 @@ a ``GdkEvent`` containing key press events
  the search bar if necessary), `GDK_EVENT_PROPAGATE` otherwise.
 <!-- impl SearchBar::fn set_search_mode -->
 Switches the search mode on or off.
-
-# Parameters
-
 ## `search_mode`
 the new state of the search mode
 <!-- impl SearchBar::fn set_show_close_button -->
@@ -21503,9 +20683,6 @@ Shows or hides the close button. Applications that
 already have a “search” toggle button should not show a close
 button in their search bar, as it duplicates the role of the
 toggle button.
-
-# Parameters
-
 ## `visible`
 whether the close button will be shown or not
 <!-- struct SearchEntry -->
@@ -21556,9 +20733,6 @@ If the key event is handled by the search entry and starts
 or continues a search, `GDK_EVENT_STOP` will be returned.
 The caller should ensure that the entry is shown in this
 case, and not propagate the event further.
-
-# Parameters
-
 ## `event`
 a key event
 
@@ -21567,6 +20741,34 @@ a key event
 `GDK_EVENT_STOP` if the key press event resulted
  in a search beginning or continuing, `GDK_EVENT_PROPAGATE`
  otherwise.
+<!-- enum SelectionMode -->
+Used to control what selections users are allowed to make.
+<!-- enum SelectionMode::variant None -->
+No selection is possible.
+<!-- enum SelectionMode::variant Single -->
+Zero or one element may be selected.
+<!-- enum SelectionMode::variant Browse -->
+Exactly one element is selected.
+ In some circumstances, such as initially or during a search
+ operation, it’s possible for no element to be selected with
+ `SelectionMode::Browse`. What is really enforced is that the user
+ can’t deselect a currently selected element except by selecting
+ another element.
+<!-- enum SelectionMode::variant Multiple -->
+Any number of elements may be selected.
+ The Ctrl key may be used to enlarge the selection, and Shift
+ key to select between the focus and the child pointed to.
+ Some widgets may also allow Click-drag to select a range of elements.
+<!-- enum SensitivityType -->
+Determines how GTK+ handles the sensitivity of stepper arrows
+at the end of range widgets.
+<!-- enum SensitivityType::variant Auto -->
+The arrow is made insensitive if the
+ thumb is at the end
+<!-- enum SensitivityType::variant On -->
+The arrow is always sensitive
+<!-- enum SensitivityType::variant Off -->
+The arrow is always insensitive
 <!-- struct Separator -->
 `Separator` is a horizontal or vertical separator widget, depending on the
 value of the `Orientable:orientation` property, used to group the widgets
@@ -21578,9 +20780,6 @@ into the interface.
 [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Separator::fn new -->
 Creates a new `Separator` with the given orientation.
-
-# Parameters
-
 ## `orientation`
 the separator’s orientation.
 
@@ -21594,7 +20793,7 @@ make it appear sunken into the interface.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl SeparatorMenuItem::fn new -->
 Creates a new `SeparatorMenuItem`.
 
@@ -21632,11 +20831,24 @@ See `SeparatorToolItem::set_draw`.
 Whether `self` is drawn as a vertical line, or just blank.
 Setting this to `false` along with `ToolItem::set_expand` is useful
 to create an item that forces following items to the end of the toolbar.
-
-# Parameters
-
 ## `draw`
 whether `self` is drawn as a vertical line
+<!-- enum ShadowType -->
+Used to change the appearance of an outline typically provided by a `Frame`.
+
+Note that many themes do not differentiate the appearance of the
+various shadow types: Either their is no visible shadow (`ShadowType::None`),
+or there is (any other value).
+<!-- enum ShadowType::variant None -->
+No outline.
+<!-- enum ShadowType::variant In -->
+The outline is bevelled inwards.
+<!-- enum ShadowType::variant Out -->
+The outline is bevelled outwards like a button.
+<!-- enum ShadowType::variant EtchedIn -->
+The outline has a sunken 3d appearance.
+<!-- enum ShadowType::variant EtchedOut -->
+The outline has a raised 3d appearance.
 <!-- struct SizeGroup -->
 `SizeGroup` provides a mechanism for grouping a number of widgets
 together so they all request the same amount of space. This is
@@ -21710,9 +20922,6 @@ An example of a UI definition fragment with `SizeGroup`:
 [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl SizeGroup::fn new -->
 Create a new `SizeGroup`.
-
-# Parameters
-
 ## `mode`
 the mode for the new size group.
 
@@ -21728,9 +20937,6 @@ depends on the mode of the size group. See `SizeGroup::set_mode`.
 
 When the widget is destroyed or no longer referenced elsewhere, it will
 be removed from the size group.
-
-# Parameters
-
 ## `widget`
 the `Widget` to add
 <!-- impl SizeGroup::fn get_ignore_hidden -->
@@ -21754,17 +20960,11 @@ a `glib::SList` of
  widgets. The list is owned by GTK+ and should not be modified.
 <!-- impl SizeGroup::fn remove_widget -->
 Removes a widget from a `SizeGroup`.
-
-# Parameters
-
 ## `widget`
 the `Widget` to remove
 <!-- impl SizeGroup::fn set_ignore_hidden -->
 Sets whether unmapped widgets should be ignored when
 calculating the size.
-
-# Parameters
-
 ## `ignore_hidden`
 whether unmapped widgets should be ignored
  when calculating the size
@@ -21775,11 +20975,34 @@ all have the same horizontal requisition (`SizeGroupMode::Horizontal`)
 all have the same vertical requisition (`SizeGroupMode::Vertical`),
 or should all have the same requisition in both directions
 (`SizeGroupMode::Both`).
-
-# Parameters
-
 ## `mode`
 the mode to set for the size group.
+<!-- enum SizeGroupMode -->
+The mode of the size group determines the directions in which the size
+group affects the requested sizes of its component widgets.
+<!-- enum SizeGroupMode::variant None -->
+group has no effect
+<!-- enum SizeGroupMode::variant Horizontal -->
+group affects horizontal requisition
+<!-- enum SizeGroupMode::variant Vertical -->
+group affects vertical requisition
+<!-- enum SizeGroupMode::variant Both -->
+group affects both horizontal and vertical requisition
+<!-- enum SizeRequestMode -->
+Specifies a preference for height-for-width or
+width-for-height geometry management.
+<!-- enum SizeRequestMode::variant HeightForWidth -->
+Prefer height-for-width geometry management
+<!-- enum SizeRequestMode::variant WidthForHeight -->
+Prefer width-for-height geometry management
+<!-- enum SizeRequestMode::variant ConstantSize -->
+Don’t trade height-for-width or width-for-height
+<!-- enum SortType -->
+Determines the direction of a sort.
+<!-- enum SortType::variant Ascending -->
+Sorting is in ascending order.
+<!-- enum SortType::variant Descending -->
+Sorting is in descending order.
 <!-- struct SpinButton -->
 A `SpinButton` is an ideal way to allow the user to set the value of
 some attribute. Rather than having to directly type a number into a
@@ -21864,9 +21087,6 @@ create_floating_spin_button (void)
 [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl SpinButton::fn new -->
 Creates a new `SpinButton`.
-
-# Parameters
-
 ## `adjustment`
 the `Adjustment` object that this spin
  button should use, or `None`
@@ -21889,9 +21109,6 @@ precision of `step`.
 Note that the way in which the precision is derived works best if `step`
 is a power of ten. If the resulting precision is not suitable for your
 needs, use `SpinButton::set_digits` to correct it.
-
-# Parameters
-
 ## `min`
 Minimum allowable value
 ## `max`
@@ -21906,9 +21123,6 @@ The new spin button as a `Widget`
 Changes the properties of an existing spin button. The adjustment,
 climb rate, and number of decimal places are all changed accordingly,
 after this function call.
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment`
 ## `climb_rate`
@@ -21930,9 +21144,6 @@ the current precision
 <!-- impl SpinButton::fn get_increments -->
 Gets the current step and page the increments used by `self`. See
 `SpinButton::set_increments`.
-
-# Parameters
-
 ## `step`
 location to store step increment, or `None`
 ## `page`
@@ -21947,9 +21158,6 @@ See `SpinButton::set_numeric`.
 <!-- impl SpinButton::fn get_range -->
 Gets the range allowed for `self`.
 See `SpinButton::set_range`.
-
-# Parameters
-
 ## `min`
 location to store minimum allowed value, or `None`
 ## `max`
@@ -21990,25 +21198,16 @@ exceeded. See `SpinButton::set_wrap`.
 `true` if the spin button wraps around
 <!-- impl SpinButton::fn set_adjustment -->
 Replaces the `Adjustment` associated with `self`.
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment` to replace the existing adjustment
 <!-- impl SpinButton::fn set_digits -->
 Set the precision to be displayed by `self`. Up to 20 digit precision
 is allowed.
-
-# Parameters
-
 ## `digits`
 the number of digits after the decimal point to be displayed for the spin button’s value
 <!-- impl SpinButton::fn set_increments -->
 Sets the step and page increments for spin_button. This affects how
 quickly the value changes when the spin button’s arrows are activated.
-
-# Parameters
-
 ## `step`
 increment applied for a button 1 press.
 ## `page`
@@ -22016,9 +21215,6 @@ increment applied for a button 2 press.
 <!-- impl SpinButton::fn set_numeric -->
 Sets the flag that determines if non-numeric text can be typed
 into the spin button.
-
-# Parameters
-
 ## `numeric`
 flag indicating if only numeric entry is allowed
 <!-- impl SpinButton::fn set_range -->
@@ -22026,9 +21222,6 @@ Sets the minimum and maximum allowable values for `self`.
 
 If the current value is outside this range, it will be adjusted
 to fit within the range, otherwise it will remain unchanged.
-
-# Parameters
-
 ## `min`
 minimum allowable value
 ## `max`
@@ -22037,48 +21230,61 @@ maximum allowable value
 Sets the policy as to whether values are corrected to the
 nearest step increment when a spin button is activated after
 providing an invalid value.
-
-# Parameters
-
 ## `snap_to_ticks`
 a flag indicating if invalid values should be corrected
 <!-- impl SpinButton::fn set_update_policy -->
 Sets the update behavior of a spin button.
 This determines whether the spin button is always updated
 or only when a valid value is set.
-
-# Parameters
-
 ## `policy`
 a `SpinButtonUpdatePolicy` value
 <!-- impl SpinButton::fn set_value -->
 Sets the value of `self`.
-
-# Parameters
-
 ## `value`
 the new value
 <!-- impl SpinButton::fn set_wrap -->
 Sets the flag that determines if a spin button value wraps
 around to the opposite limit when the upper or lower limit
 of the range is exceeded.
-
-# Parameters
-
 ## `wrap`
 a flag indicating if wrapping behavior is performed
 <!-- impl SpinButton::fn spin -->
 Increment or decrement a spin button’s value in a specified
 direction by a specified amount.
-
-# Parameters
-
 ## `direction`
 a `SpinType` indicating the direction to spin
 ## `increment`
 step increment to apply in the specified direction
 <!-- impl SpinButton::fn update -->
 Manually force an update of the spin button.
+<!-- enum SpinButtonUpdatePolicy -->
+The spin button update policy determines whether the spin button displays
+values even if they are outside the bounds of its adjustment.
+See `SpinButton::set_update_policy`.
+<!-- enum SpinButtonUpdatePolicy::variant Always -->
+When refreshing your `SpinButton`, the value is
+ always displayed
+<!-- enum SpinButtonUpdatePolicy::variant IfValid -->
+When refreshing your `SpinButton`, the value is
+ only displayed if it is valid within the bounds of the spin button's
+ adjustment
+<!-- enum SpinType -->
+The values of the `SpinType` enumeration are used to specify the
+change to make in `SpinButton::spin`.
+<!-- enum SpinType::variant StepForward -->
+Increment by the adjustments step increment.
+<!-- enum SpinType::variant StepBackward -->
+Decrement by the adjustments step increment.
+<!-- enum SpinType::variant PageForward -->
+Increment by the adjustments page increment.
+<!-- enum SpinType::variant PageBackward -->
+Decrement by the adjustments page increment.
+<!-- enum SpinType::variant Home -->
+Go to the adjustments lower bound.
+<!-- enum SpinType::variant End -->
+Go to the adjustments upper bound.
+<!-- enum SpinType::variant UserDefined -->
+Change by a specified amount.
 <!-- struct Spinner -->
 A `Spinner` widget displays an icon-size spinning animation.
 It is often used as an alternative to a `ProgressBar` for
@@ -22126,9 +21332,6 @@ a new `Stack`
 <!-- impl Stack::fn add_named -->
 Adds a child to `self`.
 The child is identified by the `name`.
-
-# Parameters
-
 ## `child`
 the widget to add
 ## `name`
@@ -22138,9 +21341,6 @@ Adds a child to `self`.
 The child is identified by the `name`. The `title`
 will be used by `StackSwitcher` to represent
 `child` in a tab bar, so it should be short.
-
-# Parameters
-
 ## `child`
 the widget to add
 ## `name`
@@ -22151,9 +21351,6 @@ a human-readable title for `child`
 Finds the child of the `Stack` with the name given as
 the argument. Returns `None` if there is no child with this
 name.
-
-# Parameters
-
 ## `name`
 the name of the child to find
 
@@ -22221,9 +21418,6 @@ Sets the `Stack` to be horizontally homogeneous or not.
 If it is homogeneous, the `Stack` will request the same
 width for all its children. If it isn't, the stack
 may change width when a different child becomes visible.
-
-# Parameters
-
 ## `hhomogeneous`
 `true` to make `self` horizontally homogeneous
 <!-- impl Stack::fn set_homogeneous -->
@@ -22235,17 +21429,11 @@ may change size when a different child becomes visible.
 Since 3.16, homogeneity can be controlled separately
 for horizontal and vertical size, with the
 `Stack:hhomogeneous` and `Stack:vhomogeneous`.
-
-# Parameters
-
 ## `homogeneous`
 `true` to make `self` homogeneous
 <!-- impl Stack::fn set_transition_duration -->
 Sets the duration that transitions between pages in `self`
 will take.
-
-# Parameters
-
 ## `duration`
 the new duration, in milliseconds
 <!-- impl Stack::fn set_transition_type -->
@@ -22256,9 +21444,6 @@ types include various kinds of fades and slides.
 The transition type can be changed without problems
 at runtime, so it is possible to change the animation
 based on the page that is about to become current.
-
-# Parameters
-
 ## `transition`
 the new transition type
 <!-- impl Stack::fn set_vhomogeneous -->
@@ -22266,9 +21451,6 @@ Sets the `Stack` to be vertically homogeneous or not.
 If it is homogeneous, the `Stack` will request the same
 height for all its children. If it isn't, the stack
 may change height when a different child becomes visible.
-
-# Parameters
-
 ## `vhomogeneous`
 `true` to make `self` vertically homogeneous
 <!-- impl Stack::fn set_visible_child -->
@@ -22282,9 +21464,6 @@ transition type of `self`.
 Note that the `child` widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
-
-# Parameters
-
 ## `child`
 a child of `self`
 <!-- impl Stack::fn set_visible_child_full -->
@@ -22293,9 +21472,6 @@ Makes the child with the given name visible.
 Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
-
-# Parameters
-
 ## `name`
 the name of the child to make visible
 ## `transition`
@@ -22311,9 +21487,6 @@ transition type of `self`.
 Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
-
-# Parameters
-
 ## `name`
 the name of the child to make visible
 <!-- struct StackSidebar -->
@@ -22347,9 +21520,6 @@ Set the `Stack` associated with this `StackSidebar`.
 
 The sidebar widget will automatically update according to the order
 (packing) and items within the given `Stack`.
-
-# Parameters
-
 ## `stack`
 a `Stack`
 <!-- struct StackSwitcher -->
@@ -22384,11 +21554,81 @@ the stack, or `None` if
  none has been set explicitly.
 <!-- impl StackSwitcher::fn set_stack -->
 Sets the stack to control.
-
-# Parameters
-
 ## `stack`
 a `Stack`
+<!-- enum StackTransitionType -->
+These enumeration values describe the possible transitions
+between pages in a `Stack` widget.
+
+New values may be added to this enumeration over time.
+<!-- enum StackTransitionType::variant None -->
+No transition
+<!-- enum StackTransitionType::variant Crossfade -->
+A cross-fade
+<!-- enum StackTransitionType::variant SlideRight -->
+Slide from left to right
+<!-- enum StackTransitionType::variant SlideLeft -->
+Slide from right to left
+<!-- enum StackTransitionType::variant SlideUp -->
+Slide from bottom up
+<!-- enum StackTransitionType::variant SlideDown -->
+Slide from top down
+<!-- enum StackTransitionType::variant SlideLeftRight -->
+Slide from left or right according to the children order
+<!-- enum StackTransitionType::variant SlideUpDown -->
+Slide from top down or bottom up according to the order
+<!-- enum StackTransitionType::variant OverUp -->
+Cover the old page by sliding up. Since 3.12
+<!-- enum StackTransitionType::variant OverDown -->
+Cover the old page by sliding down. Since: 3.12
+<!-- enum StackTransitionType::variant OverLeft -->
+Cover the old page by sliding to the left. Since: 3.12
+<!-- enum StackTransitionType::variant OverRight -->
+Cover the old page by sliding to the right. Since: 3.12
+<!-- enum StackTransitionType::variant UnderUp -->
+Uncover the new page by sliding up. Since 3.12
+<!-- enum StackTransitionType::variant UnderDown -->
+Uncover the new page by sliding down. Since: 3.12
+<!-- enum StackTransitionType::variant UnderLeft -->
+Uncover the new page by sliding to the left. Since: 3.12
+<!-- enum StackTransitionType::variant UnderRight -->
+Uncover the new page by sliding to the right. Since: 3.12
+<!-- enum StackTransitionType::variant OverUpDown -->
+Cover the old page sliding up or uncover the new page sliding down, according to order. Since: 3.12
+<!-- enum StackTransitionType::variant OverDownUp -->
+Cover the old page sliding down or uncover the new page sliding up, according to order. Since: 3.14
+<!-- enum StackTransitionType::variant OverLeftRight -->
+Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14
+<!-- enum StackTransitionType::variant OverRightLeft -->
+Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14
+<!-- enum StateType -->
+This type indicates the current state of a widget; the state determines how
+the widget is drawn. The `StateType` enumeration is also used to
+identify different colors in a `Style` for drawing, so states can be
+used for subparts of a widget as well as entire widgets.
+
+# Deprecated
+
+All APIs that are using this enumeration have been deprecated
+ in favor of alternatives using `StateFlags`.
+<!-- enum StateType::variant Normal -->
+State during normal operation.
+<!-- enum StateType::variant Active -->
+State of a currently active widget, such as a depressed button.
+<!-- enum StateType::variant Prelight -->
+State indicating that the mouse pointer is over
+ the widget and the widget will respond to mouse clicks.
+<!-- enum StateType::variant Selected -->
+State of a selected item, such the selected row in a list.
+<!-- enum StateType::variant Insensitive -->
+State indicating that the widget is
+ unresponsive to user actions.
+<!-- enum StateType::variant Inconsistent -->
+The widget is inconsistent, such as checkbuttons
+ or radiobuttons that aren’t either set to `true` nor `false`,
+ or buttons requiring the user attention.
+<!-- enum StateType::variant Focused -->
+The widget has the keyboard focus.
 <!-- struct StatusIcon -->
 The “system tray” or notification area is normally used for transient icons
 that indicate some special state. For example, a system tray icon might
@@ -22416,10 +21656,6 @@ on Win32 doesn’t allow to embed arbitrary widgets.
 notifications or more modern platform-specific APIs instead. GLib provides
 the `gio::Notification` API which works well with `Application`. Also see this
 [HowDoI](https://wiki.gnome.org/HowDoI/GNotification).
-
-# Implements
-
-
 <!-- impl StatusIcon::fn new -->
 Creates an empty status icon object.
 
@@ -22439,9 +21675,6 @@ space in the notification area, if necessary.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `filename`
 a filename
 
@@ -22455,9 +21688,6 @@ themed icon, it will be updated when the theme changes.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `icon`
 a `gio::Icon`
 
@@ -22472,9 +21702,6 @@ appropriately.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `icon_name`
 an icon name
 
@@ -22490,9 +21717,6 @@ space in the notification area, if necessary.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `pixbuf`
 a `gdk_pixbuf::Pixbuf`
 
@@ -22508,9 +21732,6 @@ own stock icon names, see `IconFactory::add_default` and
 # Deprecated
 
 Use `StatusIcon::new_from_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock icon id
 
@@ -22524,9 +21745,6 @@ to position `menu` aligned to the status icon `user_data`.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `menu`
 the `Menu`
 ## `x`
@@ -22556,9 +21774,6 @@ is embedded in a notification area, see
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `screen`
 return location for
  the screen, or `None` if the information is not needed
@@ -22769,9 +21984,6 @@ See `StatusIcon::new_from_file` for details.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `filename`
 a filename
 <!-- impl StatusIcon::fn set_from_gicon -->
@@ -22781,9 +21993,6 @@ See `StatusIcon::new_from_gicon` for details.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `icon`
 a GIcon
 <!-- impl StatusIcon::fn set_from_icon_name -->
@@ -22794,9 +22003,6 @@ See `StatusIcon::new_from_icon_name` for details.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `icon_name`
 an icon name
 <!-- impl StatusIcon::fn set_from_pixbuf -->
@@ -22806,9 +22012,6 @@ See `StatusIcon::new_from_pixbuf` for details.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `pixbuf`
 a `gdk_pixbuf::Pixbuf` or `None`
 <!-- impl StatusIcon::fn set_from_stock -->
@@ -22818,9 +22021,6 @@ See `StatusIcon::new_from_stock` for details.
 # Deprecated
 
 Use `StatusIcon::set_from_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock icon id
 <!-- impl StatusIcon::fn set_has_tooltip -->
@@ -22830,9 +22030,6 @@ See `StatusIcon:has-tooltip` for more information.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `has_tooltip`
 whether or not `self` has a tooltip
 <!-- impl StatusIcon::fn set_name -->
@@ -22844,9 +22041,6 @@ the user.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `name`
 the name
 <!-- impl StatusIcon::fn set_screen -->
@@ -22857,9 +22051,6 @@ then remapped on the new screen.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`
 <!-- impl StatusIcon::fn set_title -->
@@ -22871,9 +22062,6 @@ readers to render the tray icon.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `title`
 the title
 <!-- impl StatusIcon::fn set_tooltip_markup -->
@@ -22889,9 +22077,6 @@ See also the `StatusIcon:tooltip-markup` property and
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `markup`
 the contents of the tooltip for `self`, or `None`
 <!-- impl StatusIcon::fn set_tooltip_text -->
@@ -22907,9 +22092,6 @@ See also the `StatusIcon:tooltip-text` property and
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `text`
 the contents of the tooltip for `self`
 <!-- impl StatusIcon::fn set_visible -->
@@ -22918,9 +22100,6 @@ Shows or hides a status icon.
 # Deprecated
 
 Use notifications
-
-# Parameters
-
 ## `visible`
 `true` to show the status icon, `false` to hide it
 <!-- struct Statusbar -->
@@ -22967,9 +22146,6 @@ the new `Statusbar`
 Returns a new context identifier, given a description
 of the actual context. Note that the description is
 not shown in the UI.
-
-# Parameters
-
 ## `context_description`
 textual description of what context
  the new message is being used in
@@ -22990,16 +22166,10 @@ with the given context id.
 Note that this may not change the displayed message, if
 the message at the top of the stack has a different
 context id.
-
-# Parameters
-
 ## `context_id`
 a context identifier
 <!-- impl Statusbar::fn push -->
 Pushes a new message onto a statusbar’s stack.
-
-# Parameters
-
 ## `context_id`
 the message’s context id, as returned by
  `Statusbar::get_context_id`
@@ -23013,9 +22183,6 @@ a message id that can be used with
 <!-- impl Statusbar::fn remove -->
 Forces the removal of a message from a statusbar’s stack.
 The exact `context_id` and `message_id` must be specified.
-
-# Parameters
-
 ## `context_id`
 a context identifier
 ## `message_id`
@@ -23023,9 +22190,6 @@ a message identifier, as returned by `Statusbar::push`
 <!-- impl Statusbar::fn remove_all -->
 Forces the removal of all messages from a statusbar's
 stack with the exact `context_id`.
-
-# Parameters
-
 ## `context_id`
 a context identifier
 <!-- struct StyleContext -->
@@ -23094,10 +22258,6 @@ priority, keep in mind that the user settings in
 `XDG_CONFIG_HOME/gtk-3.0/gtk.css` will
 still take precedence over your changes, as it uses the
 `GTK_STYLE_PROVIDER_PRIORITY_USER` priority.
-
-# Implements
-
-
 <!-- impl StyleContext::fn new -->
 Creates a standalone `StyleContext`, this style context
 won’t be attached to any widget, so you may want
@@ -23121,9 +22281,6 @@ available.
 Note: If both priorities are the same, A `StyleProvider`
 added through `StyleContext::add_provider` takes precedence
 over another added through this function.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`
 ## `provider`
@@ -23136,9 +22293,6 @@ the priority of the style provider. The lower
  `GTK_STYLE_PROVIDER_PRIORITY_USER`
 <!-- impl StyleContext::fn remove_provider_for_screen -->
 Removes `provider` from the global style providers list in `screen`.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`
 ## `provider`
@@ -23150,9 +22304,6 @@ affects the appearance of all widgets, because when a widget gets a new
 style, it will both redraw and recompute any cached information about
 its appearance. As an example, it is used when the color scheme changes
 in the related `Settings` object.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`
 <!-- impl StyleContext::fn add_class -->
@@ -23174,9 +22325,6 @@ matched by:
 ```text
 .entry { ... }
 ```
-
-# Parameters
-
 ## `class_name`
 class name to use in styling
 <!-- impl StyleContext::fn add_provider -->
@@ -23189,9 +22337,6 @@ to affect the style of all widgets, use
 Note: If both priorities are the same, a `StyleProvider`
 added through this function takes precedence over another added
 through `StyleContext::add_provider_for_screen`.
-
-# Parameters
-
 ## `provider`
 a `StyleProvider`
 ## `priority`
@@ -23225,9 +22370,6 @@ would apply to even and odd rows, respectively.
 
 Region names must only contain lowercase letters
 and “-”, starting always with a lowercase letter.
-
-# Parameters
-
 ## `region_name`
 region name to use in styling
 ## `flags`
@@ -23246,18 +22388,12 @@ animatable regions.
 # Deprecated
 
 This function does nothing.
-
-# Parameters
-
 ## `region_id`
 animatable region to stop, or `None`.
  See `StyleContext::push_animatable_region`
 <!-- impl StyleContext::fn get -->
 Retrieves several style property values from `self` for a
 given state.
-
-# Parameters
-
 ## `state`
 state to retrieve the property values for
 <!-- impl StyleContext::fn get_background_color -->
@@ -23275,9 +22411,6 @@ style classes to modify the color to be rendered.
 # Deprecated
 
 Use `gtk_render_background` instead.
-
-# Parameters
-
 ## `state`
 state to retrieve the color for
 ## `color`
@@ -23285,9 +22418,6 @@ return value for the background color
 <!-- impl StyleContext::fn get_border -->
 Gets the border for a given state as a `Border`.
 See `GTK_STYLE_PROPERTY_BORDER_WIDTH`.
-
-# Parameters
-
 ## `state`
 state to retrieve the border for
 ## `border`
@@ -23298,18 +22428,12 @@ Gets the border color for a given state.
 # Deprecated
 
 Use `gtk_render_border` instead.
-
-# Parameters
-
 ## `state`
 state to retrieve the color for
 ## `color`
 return value for the border color
 <!-- impl StyleContext::fn get_color -->
 Gets the foreground color for a given state.
-
-# Parameters
-
 ## `state`
 state to retrieve the color for
 ## `color`
@@ -23335,9 +22459,6 @@ object is const and will remain valid until the
 
 Use `StyleContext::get` for "font" or
  subproperties instead.
-
-# Parameters
-
 ## `state`
 state to retrieve the font for
 
@@ -23362,9 +22483,6 @@ the junction sides
 <!-- impl StyleContext::fn get_margin -->
 Gets the margin for a given state as a `Border`.
 See `GTK_STYLE_PROPERTY_MARGIN`.
-
-# Parameters
-
 ## `state`
 state to retrieve the border for
 ## `margin`
@@ -23372,9 +22490,6 @@ return value for the margin settings
 <!-- impl StyleContext::fn get_padding -->
 Gets the padding for a given state as a `Border`.
 See `GTK_STYLE_PROPERTY_PADDING`.
-
-# Parameters
-
 ## `state`
 state to retrieve the padding for
 ## `padding`
@@ -23397,9 +22512,6 @@ Gets a style property from `self` for the given state.
 
 When `value` is no longer needed, `gobject::Value::unset` must be called
 to free any allocated memory.
-
-# Parameters
-
 ## `property`
 style property name
 ## `state`
@@ -23431,9 +22543,6 @@ reasons.
 
 Shorthand CSS properties cannot be queried for a location and will
 always return `None`.
-
-# Parameters
-
 ## `property`
 style property name
 
@@ -23454,9 +22563,6 @@ Gets the value for a widget style property.
 
 When `value` is no longer needed, `gobject::Value::unset` must be called
 to free any allocated memory.
-
-# Parameters
-
 ## `property_name`
 the name of the widget style property
 ## `value`
@@ -23464,16 +22570,10 @@ Return location for the property value
 <!-- impl StyleContext::fn get_style_valist -->
 Retrieves several widget style properties from `self` according to the
 current style.
-
-# Parameters
-
 ## `args`
 va_list of property name/return location pairs, followed by `None`
 <!-- impl StyleContext::fn get_valist -->
 Retrieves several style property values from `self` for a given state.
-
-# Parameters
-
 ## `state`
 state to retrieve the property values for
 ## `args`
@@ -23481,9 +22581,6 @@ va_list of property name/return location pairs, followed by `None`
 <!-- impl StyleContext::fn has_class -->
 Returns `true` if `self` currently has defined the
 given class name
-
-# Parameters
-
 ## `class_name`
 a class name
 
@@ -23494,9 +22591,6 @@ a class name
 Returns `true` if `self` has the region defined.
 If `flags_return` is not `None`, it is set to the flags
 affecting the region.
-
-# Parameters
-
 ## `region_name`
 a region name
 ## `flags_return`
@@ -23533,9 +22627,6 @@ a `glib::List` of
  itself with `glib::List::free` when you are done with it.
 <!-- impl StyleContext::fn lookup_color -->
 Looks up and resolves a color name in the `self` color map.
-
-# Parameters
-
 ## `color_name`
 color name to lookup
 ## `color`
@@ -23552,9 +22643,6 @@ the default icon factory, returning an icon set if found, otherwise
 # Deprecated
 
 Use `IconTheme::lookup_icon` instead.
-
-# Parameters
-
 ## `stock_id`
 an icon name
 
@@ -23608,9 +22696,6 @@ is why the style places the transition under the :hover pseudo-class.
 # Deprecated
 
 This function does nothing.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`
 ## `region_id`
@@ -23642,30 +22727,18 @@ can uniquely identify rendered elements subject to a state transition.
 # Deprecated
 
 This function does nothing.
-
-# Parameters
-
 ## `region_id`
 unique identifier for the animatable region
 <!-- impl StyleContext::fn remove_class -->
 Removes `class_name` from `self`.
-
-# Parameters
-
 ## `class_name`
 class name to remove
 <!-- impl StyleContext::fn remove_provider -->
 Removes `provider` from the style providers list in `self`.
-
-# Parameters
-
 ## `provider`
 a `StyleProvider`
 <!-- impl StyleContext::fn remove_region -->
 Removes a region from `self`.
-
-# Parameters
-
 ## `region_name`
 region name to unset
 <!-- impl StyleContext::fn restore -->
@@ -23688,9 +22761,6 @@ with it.
 # Deprecated
 
 This function does nothing.
-
-# Parameters
-
 ## `window`
 a `gdk::Window` used previously in
  `StyleContext::notify_state_change`
@@ -23701,9 +22771,6 @@ Amount to scroll in the Y axis
 <!-- impl StyleContext::fn set_background -->
 Sets the background of `window` to the background pattern or
 color specified in `self` for its current state.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`
 <!-- impl StyleContext::fn set_direction -->
@@ -23718,9 +22785,6 @@ call this yourself.
 Use `StyleContext::set_state` with
  `StateFlags::DirLtr` and `StateFlags::DirRtl`
  instead.
-
-# Parameters
-
 ## `direction`
 the new direction.
 <!-- impl StyleContext::fn set_frame_clock -->
@@ -23731,9 +22795,6 @@ The frame clock is used for the timing of animations.
 If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to
 call this yourself.
-
-# Parameters
-
 ## `frame_clock`
 a `gdk::FrameClock`
 <!-- impl StyleContext::fn set_junction_sides -->
@@ -23746,9 +22807,6 @@ by themes.
 Container widgets are expected to set junction hints as appropriate
 for their children, so it should not normally be necessary to call
 this function manually.
-
-# Parameters
-
 ## `sides`
 sides where rendered elements are visually connected to
  other elements
@@ -23760,9 +22818,6 @@ of properties.
 
 If you are using a `StyleContext` returned from
 `Widget::get_style_context`, the parent will be set for you.
-
-# Parameters
-
 ## `parent`
 the new parent or `None`
 <!-- impl StyleContext::fn set_path -->
@@ -23773,16 +22828,10 @@ the new given path.
 If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to call
 this yourself.
-
-# Parameters
-
 ## `path`
 a `WidgetPath`
 <!-- impl StyleContext::fn set_scale -->
 Sets the scale to use when getting image assets for the style .
-
-# Parameters
-
 ## `scale`
 scale
 <!-- impl StyleContext::fn set_screen -->
@@ -23794,17 +22843,11 @@ providers, such as the screens `Settings` instance.
 If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to
 call this yourself.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`
 <!-- impl StyleContext::fn set_state -->
 Sets the state to be used when rendering with any
 of the gtk_render_*() functions.
-
-# Parameters
-
 ## `flags`
 state to represent
 <!-- impl StyleContext::fn state_is_running -->
@@ -23820,9 +22863,6 @@ it’s being unset.
 # Deprecated
 
 This function always returns `false`
-
-# Parameters
-
 ## `state`
 a widget state
 ## `progress`
@@ -23841,7 +22881,7 @@ a delay. See `Switch::state-set` for details.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl Switch::fn new -->
 Creates a new `Switch` widget.
 
@@ -23862,9 +22902,6 @@ Gets the underlying state of the `Switch`.
 the underlying state
 <!-- impl Switch::fn set_active -->
 Changes the state of `self` to the desired one.
-
-# Parameters
-
 ## `is_active`
 `true` if `self` should be active, and `false` otherwise
 <!-- impl Switch::fn set_state -->
@@ -23875,9 +22912,6 @@ is set up for delayed state changes. This function is typically
 called from a `Switch::state-set` signal handler.
 
 See `Switch::state-set` for details.
-
-# Parameters
-
 ## `state`
 the new state
 <!-- struct TextBuffer -->
@@ -23885,15 +22919,8 @@ You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
 which gives an overview of all the objects and data
 types related to the text widget and how they work together.
-
-# Implements
-
-
 <!-- impl TextBuffer::fn new -->
 Creates a new text buffer.
-
-# Parameters
-
 ## `table`
 a tag table, or `None` to create a new one
 
@@ -23907,9 +22934,6 @@ be another mark in the buffer with the same name.
 
 Emits the `TextBuffer::mark-set` signal as notification of the mark's
 initial placement.
-
-# Parameters
-
 ## `mark`
 the mark to add
 ## `where_`
@@ -23918,18 +22942,12 @@ location to place mark
 Adds `clipboard` to the list of clipboards in which the selection
 contents of `self` are available. In most cases, `clipboard` will be
 the `Clipboard` of type `GDK_SELECTION_PRIMARY` for a view of `self`.
-
-# Parameters
-
 ## `clipboard`
 a `Clipboard`
 <!-- impl TextBuffer::fn apply_tag -->
 Emits the “apply-tag” signal on `self`. The default
 handler for the signal applies `tag` to the given range.
 `start` and `end` do not have to be in order.
-
-# Parameters
-
 ## `tag`
 a `TextTag`
 ## `start`
@@ -23939,9 +22957,6 @@ other bound of range to be tagged
 <!-- impl TextBuffer::fn apply_tag_by_name -->
 Calls `TextTagTable::lookup` on the buffer’s tag table to
 get a `TextTag`, then calls `TextBuffer::apply_tag`.
-
-# Parameters
-
 ## `name`
 name of a named `TextTag`
 ## `start`
@@ -23959,9 +22974,6 @@ are involved, less than one character will be deleted.
 Because the buffer is modified, all outstanding iterators become
 invalid after calling this function; however, the `iter` will be
 re-initialized to point to the location where text was deleted.
-
-# Parameters
-
 ## `iter`
 a position in `self`
 ## `interactive`
@@ -23992,9 +23004,6 @@ no need to add extra calls if you user action consists solely of a
 single call to one of those functions.
 <!-- impl TextBuffer::fn copy_clipboard -->
 Copies the currently-selected text to a clipboard.
-
-# Parameters
-
 ## `clipboard`
 the `Clipboard` object to copy to
 <!-- impl TextBuffer::fn create_child_anchor -->
@@ -24003,9 +23012,6 @@ with `TextChildAnchor::new` and inserts it into the buffer
 with `TextBuffer::insert_child_anchor`. The new anchor is
 owned by the buffer; no reference count is returned to
 the caller of `TextBuffer::create_child_anchor`.
-
-# Parameters
-
 ## `iter`
 location in the buffer
 
@@ -24030,9 +23036,6 @@ away when the buffer does.
 
 Emits the `TextBuffer::mark-set` signal as notification of the mark's
 initial placement.
-
-# Parameters
-
 ## `mark_name`
 name for mark, or `None`
 ## `where_`
@@ -24056,9 +23059,6 @@ exist in the tag table for this buffer.
 
 The `first_property_name` argument and subsequent arguments are a list
 of properties to set on the tag, as with `gobject::Object::set`.
-
-# Parameters
-
 ## `tag_name`
 name of the new tag, or `None`
 ## `first_property_name`
@@ -24070,9 +23070,6 @@ a new tag
 <!-- impl TextBuffer::fn cut_clipboard -->
 Copies the currently-selected text to a clipboard, then deletes
 said text if it’s editable.
-
-# Parameters
-
 ## `clipboard`
 the `Clipboard` object to cut to
 ## `default_editable`
@@ -24085,9 +23082,6 @@ the default handler of that signal deletes the text. Because the
 buffer is modified, all outstanding iterators become invalid after
 calling this function; however, the `start` and `end` will be
 re-initialized to point to the location where text was deleted.
-
-# Parameters
-
 ## `start`
 a position in `self`
 ## `end`
@@ -24098,9 +23092,6 @@ Calls `TextBuffer::delete` for each editable sub-range of
 [`start`,`end`). `start` and `end` are revalidated to point to
 the location of the last deleted range, or left untouched if
 no text was deleted.
-
-# Parameters
-
 ## `start_iter`
 start of range to delete
 ## `end_iter`
@@ -24121,17 +23112,11 @@ invalid, until it gets added to a buffer again with
 find out if a mark has been removed from its buffer.
 The `TextBuffer::mark-deleted` signal will be emitted as notification after
 the mark is deleted.
-
-# Parameters
-
 ## `mark`
 a `TextMark` in `self`
 <!-- impl TextBuffer::fn delete_mark_by_name -->
 Deletes the mark named `name`; the mark must exist. See
 `TextBuffer::delete_mark` for details.
-
-# Parameters
-
 ## `name`
 name of a mark in `self`
 <!-- impl TextBuffer::fn delete_selection -->
@@ -24139,9 +23124,6 @@ Deletes the range between the “insert” and “selection_bound” marks,
 that is, the currently-selected text. If `interactive` is `true`,
 the editability of the selection will be considered (users can’t delete
 uneditable text).
-
-# Parameters
-
 ## `interactive`
 whether the deletion is caused by user interaction
 ## `default_editable`
@@ -24157,9 +23139,6 @@ it at `iter`.
 `formats` to be used must be registered using
 `TextBuffer::register_deserialize_format` or
 `TextBuffer::register_deserialize_tagset` beforehand.
-
-# Parameters
-
 ## `content_buffer`
 the `TextBuffer` to deserialize into
 ## `format`
@@ -24177,9 +23156,6 @@ length of `data`
 <!-- impl TextBuffer::fn deserialize_get_can_create_tags -->
 This functions returns the value set with
 `TextBuffer::deserialize_set_can_create_tags`
-
-# Parameters
-
 ## `format`
 a `gdk::Atom` representing a registered rich text format
 
@@ -24204,9 +23180,6 @@ doing, e.g. if you defined a tagset name for your application
 suite’s text buffers and you know that it’s fine to receive new
 tags from these buffers, because you know that your application can
 handle the newly created tags.
-
-# Parameters
-
 ## `format`
 a `gdk::Atom` representing a registered rich text format
 ## `can_create_tags`
@@ -24217,9 +23190,6 @@ See that function for a full explanation.
 <!-- impl TextBuffer::fn get_bounds -->
 Retrieves the first and last iterators in the buffer, i.e. the
 entire buffer lies within the range [`start`,`end`).
-
-# Parameters
-
 ## `start`
 iterator to initialize with first position in the buffer
 ## `end`
@@ -24247,9 +23217,6 @@ the `TargetList`
 This function returns the rich text deserialize formats registered
 with `self` using `TextBuffer::register_deserialize_format` or
 `TextBuffer::register_deserialize_tagset`
-
-# Parameters
-
 ## `n_formats`
 return location for the number of formats
 
@@ -24264,9 +23231,6 @@ character in the text buffer. If dereferenced with
 The entire buffer lies in the range from the first position in
 the buffer (call `TextBuffer::get_start_iter` to get
 character position 0) to the end iterator.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 <!-- impl TextBuffer::fn get_has_selection -->
@@ -24286,9 +23250,6 @@ typing.
 insertion point mark
 <!-- impl TextBuffer::fn get_iter_at_child_anchor -->
 Obtains the location of `anchor` within `self`.
-
-# Parameters
-
 ## `iter`
 an iterator to be initialized
 ## `anchor`
@@ -24296,9 +23257,6 @@ a child anchor that appears in `self`
 <!-- impl TextBuffer::fn get_iter_at_line -->
 Initializes `iter` to the start of the given line. If `line_number` is greater
 than the number of lines in the `self`, the end iterator is returned.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 ## `line_number`
@@ -24308,9 +23266,6 @@ Obtains an iterator pointing to `byte_index` within the given line.
 `byte_index` must be the start of a UTF-8 character, and must not be
 beyond the end of the line. Note bytes, not
 characters; UTF-8 may encode one character as multiple bytes.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 ## `line_number`
@@ -24322,9 +23277,6 @@ Obtains an iterator pointing to `char_offset` within the given
 line. The `char_offset` must exist, offsets off the end of the line
 are not allowed. Note characters, not bytes;
 UTF-8 may encode one character as multiple bytes.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 ## `line_number`
@@ -24333,9 +23285,6 @@ line number counting from 0
 char offset from start of line
 <!-- impl TextBuffer::fn get_iter_at_mark -->
 Initializes `iter` with the current position of `mark`.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 ## `mark`
@@ -24345,9 +23294,6 @@ Initializes `iter` to a position `char_offset` chars from the start
 of the entire buffer. If `char_offset` is -1 or greater than the number
 of characters in the buffer, `iter` is initialized to the end iterator,
 the iterator one past the last valid character in the buffer.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 ## `char_offset`
@@ -24362,9 +23308,6 @@ number of lines in the buffer
 <!-- impl TextBuffer::fn get_mark -->
 Returns the mark named `name` in buffer `self`, or `None` if no such
 mark exists in the buffer.
-
-# Parameters
-
 ## `name`
 a mark name
 
@@ -24413,9 +23356,6 @@ then `start` and `end` are filled in with the same value).
 `start` and `end` will be in ascending order. If `start` and `end` are
 NULL, then they are not filled in, but the return value still indicates
 whether text is selected.
-
-# Parameters
-
 ## `start`
 iterator to initialize with selection start
 ## `end`
@@ -24428,9 +23368,6 @@ whether the selection has nonzero length
 This function returns the rich text serialize formats registered
 with `self` using `TextBuffer::register_serialize_format` or
 `TextBuffer::register_serialize_tagset`
-
-# Parameters
-
 ## `n_formats`
 return location for the number of formats
 
@@ -24449,9 +23386,6 @@ and character indexes into the buffer. Contrast with
 `TextBuffer::get_text`. Note that 0xFFFC can occur in normal
 text as well, so it is not a reliable indicator that a pixbuf or
 widget is in the buffer.
-
-# Parameters
-
 ## `start`
 start of a range
 ## `end`
@@ -24466,9 +23400,6 @@ an allocated UTF-8 string
 Initialized `iter` with the first position in the text buffer. This
 is the same as using `TextBuffer::get_iter_at_offset` to get
 the iter at character offset 0.
-
-# Parameters
-
 ## `iter`
 iterator to initialize
 <!-- impl TextBuffer::fn get_tag_table -->
@@ -24485,9 +23416,6 @@ representing embedded images, so byte and character indexes into
 the returned string do not correspond to byte
 and character indexes into the buffer. Contrast with
 `TextBuffer::get_slice`.
-
-# Parameters
-
 ## `start`
 start of a range
 ## `end`
@@ -24506,9 +23434,6 @@ in the default handler for the signal. `iter` is invalidated when
 insertion occurs (because the buffer contents change), but the
 default signal handler revalidates it to point to the end of the
 inserted text.
-
-# Parameters
-
 ## `iter`
 a position in the buffer
 ## `text`
@@ -24518,9 +23443,6 @@ length of text in bytes, or -1
 <!-- impl TextBuffer::fn insert_at_cursor -->
 Simply calls `TextBuffer::insert`, using the current
 cursor position as the insertion point.
-
-# Parameters
-
 ## `text`
 text in UTF-8 format
 ## `len`
@@ -24537,9 +23459,6 @@ not. E.g. see `TextBuffer::get_slice` and
 `TextBuffer::create_child_anchor` as a more convenient
 alternative to this function. The buffer will add a reference to
 the anchor, so you can unref it after insertion.
-
-# Parameters
-
 ## `iter`
 location to insert the anchor
 ## `anchor`
@@ -24553,9 +23472,6 @@ results from a user action (is interactive).
 `default_editable` indicates the editability of text that doesn't
 have a tag affecting editability applied to it. Typically the
 result of `TextView::get_editable` is appropriate here.
-
-# Parameters
-
 ## `iter`
 a position in `self`
 ## `text`
@@ -24575,9 +23491,6 @@ position.
 `default_editable` indicates the editability of text that doesn't
 have a tag affecting editability applied to it. Typically the
 result of `TextView::get_editable` is appropriate here.
-
-# Parameters
-
 ## `text`
 text in UTF-8 format
 ## `len`
@@ -24594,9 +23507,6 @@ in its entirety and must be nul-terminated and valid UTF-8. Emits the
 `TextBuffer::insert-text` signal, possibly multiple times; insertion
 actually occurs in the default handler for the signal. `iter` will point
 to the end of the inserted text on return.
-
-# Parameters
-
 ## `iter`
 location to insert the markup
 ## `markup`
@@ -24612,9 +23522,6 @@ variants for obtaining portions of the buffer as a string include
 this character for pixbufs, but the “text” variants do
 not. e.g. see `TextBuffer::get_slice` and
 `TextBuffer::get_text`.
-
-# Parameters
-
 ## `iter`
 location to insert the pixbuf
 ## `pixbuf`
@@ -24628,9 +23535,6 @@ images and tags. If `start` and `end` are in a different buffer from
 
 Implemented via emissions of the insert_text and apply_tag signals,
 so expect those.
-
-# Parameters
-
 ## `iter`
 a position in `self`
 ## `start`
@@ -24643,9 +23547,6 @@ insertion point isn’t editable. The `default_editable` parameter
 indicates whether the text is editable at `iter` if no tags
 enclosing `iter` affect editability. Typically the result of
 `TextView::get_editable` is appropriate here.
-
-# Parameters
-
 ## `iter`
 a position in `self`
 ## `start`
@@ -24664,9 +23565,6 @@ the newly-inserted text. The last tag specified must be `None` to
 terminate the list. Equivalent to calling `TextBuffer::insert`,
 then `TextBuffer::apply_tag` on the inserted text;
 `TextBuffer::insert_with_tags` is just a convenience function.
-
-# Parameters
-
 ## `iter`
 an iterator in `self`
 ## `text`
@@ -24678,9 +23576,6 @@ first tag to apply to `text`
 <!-- impl TextBuffer::fn insert_with_tags_by_name -->
 Same as `TextBuffer::insert_with_tags`, but allows you
 to pass in tag names instead of tag objects.
-
-# Parameters
-
 ## `iter`
 position in `self`
 ## `text`
@@ -24692,9 +23587,6 @@ name of a tag to apply to `text`
 <!-- impl TextBuffer::fn move_mark -->
 Moves `mark` to the new location `where_`. Emits the `TextBuffer::mark-set`
 signal as notification of the move.
-
-# Parameters
-
 ## `mark`
 a `TextMark`
 ## `where_`
@@ -24702,9 +23594,6 @@ new location for `mark` in `self`
 <!-- impl TextBuffer::fn move_mark_by_name -->
 Moves the mark named `name` (which must exist) to location `where_`.
 See `TextBuffer::move_mark` for details.
-
-# Parameters
-
 ## `name`
 name of a mark
 ## `where_`
@@ -24717,9 +23606,6 @@ will be replaced if the selection is non-empty.
 Note: pasting is asynchronous, that is, we’ll ask for the paste data and
 return, and at some point later after the main loop runs, the paste data will
 be inserted.
-
-# Parameters
-
 ## `clipboard`
 the `Clipboard` to paste from
 ## `override_location`
@@ -24734,17 +23620,11 @@ region in between their old and new locations, which can be pretty
 inefficient since the temporarily-selected region will force stuff
 to be recalculated. This function moves them as a unit, which can
 be optimized.
-
-# Parameters
-
 ## `where_`
 where to put the cursor
 <!-- impl TextBuffer::fn register_deserialize_format -->
 This function registers a rich text deserialization `function` along with
 its `mime_type` with the passed `self`.
-
-# Parameters
-
 ## `mime_type`
 the format’s mime-type
 ## `function`
@@ -24762,9 +23642,6 @@ the `gdk::Atom` that corresponds to the
 This function registers GTK+’s internal rich text serialization
 format with the passed `self`. See
 `TextBuffer::register_serialize_tagset` for details.
-
-# Parameters
-
 ## `tagset_name`
 an optional tagset name, on `None`
 
@@ -24775,9 +23652,6 @@ the `gdk::Atom` that corresponds to the
 <!-- impl TextBuffer::fn register_serialize_format -->
 This function registers a rich text serialization `function` along with
 its `mime_type` with the passed `self`.
-
-# Parameters
-
 ## `mime_type`
 the format’s mime-type
 ## `function`
@@ -24809,9 +23683,6 @@ to buffers with compatible sets of tags, in order to avoid unknown
 tags from being pasted. It is probably the common case to pass an
 identifier != `None` here, since the `None` tagset requires the
 receiving buffer to deal with with pasting of arbitrary tags.
-
-# Parameters
-
 ## `tagset_name`
 an optional tagset name, on `None`
 
@@ -24825,9 +23696,6 @@ with this function; it could remove tags added in code unrelated to
 the code you’re currently writing. That is, using this function is
 probably a bad idea if you have two or more unrelated code sections
 that add tags.
-
-# Parameters
-
 ## `start`
 one bound of range to be untagged
 ## `end`
@@ -24835,9 +23703,6 @@ other bound of range to be untagged
 <!-- impl TextBuffer::fn remove_selection_clipboard -->
 Removes a `Clipboard` added with
 `TextBuffer::add_selection_clipboard`.
-
-# Parameters
-
 ## `clipboard`
 a `Clipboard` added to `self` by
  `TextBuffer::add_selection_clipboard`
@@ -24845,9 +23710,6 @@ a `Clipboard` added to `self` by
 Emits the “remove-tag” signal. The default handler for the signal
 removes all occurrences of `tag` from the given range. `start` and
 `end` don’t have to be in order.
-
-# Parameters
-
 ## `tag`
 a `TextTag`
 ## `start`
@@ -24857,9 +23719,6 @@ other bound of range to be untagged
 <!-- impl TextBuffer::fn remove_tag_by_name -->
 Calls `TextTagTable::lookup` on the buffer’s tag table to
 get a `TextTag`, then calls `TextBuffer::remove_tag`.
-
-# Parameters
-
 ## `name`
 name of a `TextTag`
 ## `start`
@@ -24874,9 +23733,6 @@ region in between their old and new locations, which can be pretty
 inefficient since the temporarily-selected region will force stuff
 to be recalculated. This function moves them as a unit, which can
 be optimized.
-
-# Parameters
-
 ## `ins`
 where to put the “insert” mark
 ## `bound`
@@ -24888,9 +23744,6 @@ and `end` in the rich text format represented by `format`.
 `formats` to be used must be registered using
 `TextBuffer::register_serialize_format` or
 `TextBuffer::register_serialize_tagset` beforehand.
-
-# Parameters
-
 ## `content_buffer`
 the `TextBuffer` to serialize
 ## `format`
@@ -24912,17 +23765,11 @@ last time it was saved. Whenever the buffer is saved to disk, call
 gtk_text_buffer_set_modified (`self`, FALSE). When the buffer is modified,
 it will automatically toggled on the modified bit again. When the modified
 bit flips, the buffer emits the `TextBuffer::modified-changed` signal.
-
-# Parameters
-
 ## `setting`
 modification flag setting
 <!-- impl TextBuffer::fn set_text -->
 Deletes current contents of `self`, and inserts `text` instead. If
 `len` is -1, `text` must be nul-terminated. `text` must be valid UTF-8.
-
-# Parameters
-
 ## `text`
 UTF-8 text to insert
 ## `len`
@@ -24931,28 +23778,31 @@ length of `text` in bytes
 This function unregisters a rich text format that was previously
 registered using `TextBuffer::register_deserialize_format` or
 `TextBuffer::register_deserialize_tagset`.
-
-# Parameters
-
 ## `format`
 a `gdk::Atom` representing a registered rich text format.
 <!-- impl TextBuffer::fn unregister_serialize_format -->
 This function unregisters a rich text format that was previously
 registered using `TextBuffer::register_serialize_format` or
 `TextBuffer::register_serialize_tagset`
-
-# Parameters
-
 ## `format`
 a `gdk::Atom` representing a registered rich text format.
+<!-- enum TextBufferTargetInfo -->
+These values are used as “info” for the targets contained in the
+lists returned by `TextBuffer::get_copy_target_list` and
+`TextBuffer::get_paste_target_list`.
+
+The values counts down from `-1` to avoid clashes
+with application added drag destinations which usually start at 0.
+<!-- enum TextBufferTargetInfo::variant BufferContents -->
+Buffer contents
+<!-- enum TextBufferTargetInfo::variant RichText -->
+Rich text
+<!-- enum TextBufferTargetInfo::variant Text -->
+Text
 <!-- struct TextChildAnchor -->
 A `TextChildAnchor` is a spot in the buffer where child widgets can
 be “anchored” (inserted inline, as if they were characters). The anchor
 can have multiple widgets anchored, to allow for multiple views.
-
-# Implements
-
-
 <!-- impl TextChildAnchor::fn new -->
 Creates a new `TextChildAnchor`. Usually you would then insert
 it into a `TextBuffer` with `TextBuffer::insert_child_anchor`.
@@ -24980,6 +23830,966 @@ The returned list should be freed with `glib::List::free`.
 # Returns
 
 list of widgets anchored at `self`
+<!-- enum TextDirection -->
+Reading directions for text.
+<!-- enum TextDirection::variant None -->
+No direction.
+<!-- enum TextDirection::variant Ltr -->
+Left to right text direction.
+<!-- enum TextDirection::variant Rtl -->
+Right to left text direction.
+<!-- enum TextExtendSelection -->
+Granularity types that extend the text selection. Use the
+`TextView::extend-selection` signal to customize the selection.
+<!-- enum TextExtendSelection::variant Word -->
+Selects the current word. It is triggered by
+ a double-click for example.
+<!-- enum TextExtendSelection::variant Line -->
+Selects the current line. It is triggered by
+ a triple-click for example.
+<!-- struct TextIter -->
+You may wish to begin by reading the
+[text widget conceptual overview][TextWidget]
+which gives an overview of all the objects and data
+types related to the text widget and how they work together.
+<!-- impl TextIter::fn assign -->
+Assigns the value of `other` to `self`. This function
+is not useful in applications, because iterators can be assigned
+with `GtkTextIter i = j;`. The
+function is used by language bindings.
+## `other`
+another `TextIter`
+<!-- impl TextIter::fn backward_char -->
+Moves backward by one character offset. Returns `true` if movement
+was possible; if `self` was the first in the buffer (character
+offset 0), `TextIter::backward_char` returns `false` for convenience when
+writing loops.
+
+# Returns
+
+whether movement was possible
+<!-- impl TextIter::fn backward_chars -->
+Moves `count` characters backward, if possible (if `count` would move
+past the start or end of the buffer, moves to the start or end of
+the buffer). The return value indicates whether the iterator moved
+onto a dereferenceable position; if the iterator didn’t move, or
+moved onto the end iterator, then `false` is returned. If `count` is 0,
+the function does nothing and returns `false`.
+## `count`
+number of characters to move
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn backward_cursor_position -->
+Like `TextIter::forward_cursor_position`, but moves backward.
+
+# Returns
+
+`true` if we moved
+<!-- impl TextIter::fn backward_cursor_positions -->
+Moves up to `count` cursor positions. See
+`TextIter::forward_cursor_position` for details.
+## `count`
+number of positions to move
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn backward_find_char -->
+Same as `TextIter::forward_find_char`, but goes backward from `self`.
+## `pred`
+function to be called on each character
+## `user_data`
+user data for `pred`
+## `limit`
+search limit, or `None` for none
+
+# Returns
+
+whether a match was found
+<!-- impl TextIter::fn backward_line -->
+Moves `self` to the start of the previous line. Returns `true` if
+`self` could be moved; i.e. if `self` was at character offset 0, this
+function returns `false`. Therefore if `self` was already on line 0,
+but not at the start of the line, `self` is snapped to the start of
+the line and the function returns `true`. (Note that this implies that
+in a loop calling this function, the line number may not change on
+every iteration, if your first iteration is on line 0.)
+
+# Returns
+
+whether `self` moved
+<!-- impl TextIter::fn backward_lines -->
+Moves `count` lines backward, if possible (if `count` would move
+past the start or end of the buffer, moves to the start or end of
+the buffer). The return value indicates whether the iterator moved
+onto a dereferenceable position; if the iterator didn’t move, or
+moved onto the end iterator, then `false` is returned. If `count` is 0,
+the function does nothing and returns `false`. If `count` is negative,
+moves forward by 0 - `count` lines.
+## `count`
+number of lines to move backward
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn backward_search -->
+Same as `TextIter::forward_search`, but moves backward.
+
+`match_end` will never be set to a `TextIter` located after `self`, even if
+there is a possible `match_start` before or at `self`.
+## `str`
+search string
+## `flags`
+bitmask of flags affecting the search
+## `match_start`
+return location for start of match, or `None`
+## `match_end`
+return location for end of match, or `None`
+## `limit`
+location of last possible `match_start`, or `None` for start of buffer
+
+# Returns
+
+whether a match was found
+<!-- impl TextIter::fn backward_sentence_start -->
+Moves backward to the previous sentence start; if `self` is already at
+the start of a sentence, moves backward to the next one. Sentence
+boundaries are determined by Pango and should be correct for nearly
+any language (if not, the correct fix would be to the Pango text
+boundary algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn backward_sentence_starts -->
+Calls `TextIter::backward_sentence_start` up to `count` times,
+or until it returns `false`. If `count` is negative, moves forward
+instead of backward.
+## `count`
+number of sentences to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn backward_to_tag_toggle -->
+Moves backward to the next toggle (on or off) of the
+`TextTag` `tag`, or to the next toggle of any tag if
+`tag` is `None`. If no matching tag toggles are found,
+returns `false`, otherwise `true`. Does not return toggles
+located at `self`, only toggles before `self`. Sets `self`
+to the location of the toggle, or the start of the buffer
+if no toggle is found.
+## `tag`
+a `TextTag`, or `None`
+
+# Returns
+
+whether we found a tag toggle before `self`
+<!-- impl TextIter::fn backward_visible_cursor_position -->
+Moves `self` forward to the previous visible cursor position. See
+`TextIter::backward_cursor_position` for details.
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn backward_visible_cursor_positions -->
+Moves up to `count` visible cursor positions. See
+`TextIter::backward_cursor_position` for details.
+## `count`
+number of positions to move
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn backward_visible_line -->
+Moves `self` to the start of the previous visible line. Returns `true` if
+`self` could be moved; i.e. if `self` was at character offset 0, this
+function returns `false`. Therefore if `self` was already on line 0,
+but not at the start of the line, `self` is snapped to the start of
+the line and the function returns `true`. (Note that this implies that
+in a loop calling this function, the line number may not change on
+every iteration, if your first iteration is on line 0.)
+
+# Returns
+
+whether `self` moved
+<!-- impl TextIter::fn backward_visible_lines -->
+Moves `count` visible lines backward, if possible (if `count` would move
+past the start or end of the buffer, moves to the start or end of
+the buffer). The return value indicates whether the iterator moved
+onto a dereferenceable position; if the iterator didn’t move, or
+moved onto the end iterator, then `false` is returned. If `count` is 0,
+the function does nothing and returns `false`. If `count` is negative,
+moves forward by 0 - `count` lines.
+## `count`
+number of lines to move backward
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn backward_visible_word_start -->
+Moves backward to the previous visible word start. (If `self` is currently
+on a word start, moves backward to the next one after that.) Word breaks
+are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn backward_visible_word_starts -->
+Calls `TextIter::backward_visible_word_start` up to `count` times.
+## `count`
+number of times to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn backward_word_start -->
+Moves backward to the previous word start. (If `self` is currently on a
+word start, moves backward to the next one after that.) Word breaks
+are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn backward_word_starts -->
+Calls `TextIter::backward_word_start` up to `count` times.
+## `count`
+number of times to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn begins_tag -->
+Returns `true` if `tag` is toggled on at exactly this point. If `tag`
+is `None`, returns `true` if any tag is toggled on at this point.
+
+Note that if `TextIter::begins_tag` returns `true`, it means that `self` is
+at the beginning of the tagged range, and that the
+character at `self` is inside the tagged range. In other
+words, unlike `TextIter::ends_tag`, if `TextIter::begins_tag` returns
+`true`, `TextIter::has_tag` will also return `true` for the same
+parameters.
+## `tag`
+a `TextTag`, or `None`
+
+# Returns
+
+whether `self` is the start of a range tagged with `tag`
+<!-- impl TextIter::fn can_insert -->
+Considering the default editability of the buffer, and tags that
+affect editability, determines whether text inserted at `self` would
+be editable. If text inserted at `self` would be editable then the
+user should be allowed to insert text at `self`.
+`TextBuffer::insert_interactive` uses this function to decide
+whether insertions are allowed at a given position.
+## `default_editability`
+`true` if text is editable by default
+
+# Returns
+
+whether text inserted at `self` would be editable
+<!-- impl TextIter::fn compare -->
+A `qsort`-style function that returns negative if `self` is less than
+`rhs`, positive if `self` is greater than `rhs`, and 0 if they’re equal.
+Ordering is in character offset order, i.e. the first character in the buffer
+is less than the second character in the buffer.
+## `rhs`
+another `TextIter`
+
+# Returns
+
+-1 if `self` is less than `rhs`, 1 if `self` is greater, 0 if they are equal
+<!-- impl TextIter::fn copy -->
+Creates a dynamically-allocated copy of an iterator. This function
+is not useful in applications, because iterators can be copied with a
+simple assignment (`GtkTextIter i = j;`). The
+function is used by language bindings.
+
+# Returns
+
+a copy of the `self`, free with `TextIter::free`
+<!-- impl TextIter::fn editable -->
+Returns whether the character at `self` is within an editable region
+of text. Non-editable text is “locked” and can’t be changed by the
+user via `TextView`. This function is simply a convenience
+wrapper around `TextIter::get_attributes`. If no tags applied
+to this text affect editability, `default_setting` will be returned.
+
+You don’t want to use this function to decide whether text can be
+inserted at `self`, because for insertion you don’t want to know
+whether the char at `self` is inside an editable range, you want to
+know whether a new character inserted at `self` would be inside an
+editable range. Use `TextIter::can_insert` to handle this
+case.
+## `default_setting`
+`true` if text is editable by default
+
+# Returns
+
+whether `self` is inside an editable range
+<!-- impl TextIter::fn ends_line -->
+Returns `true` if `self` points to the start of the paragraph
+delimiter characters for a line (delimiters will be either a
+newline, a carriage return, a carriage return followed by a
+newline, or a Unicode paragraph separator character). Note that an
+iterator pointing to the \n of a \r\n pair will not be counted as
+the end of a line, the line ends before the \r. The end iterator is
+considered to be at the end of a line, even though there are no
+paragraph delimiter chars there.
+
+# Returns
+
+whether `self` is at the end of a line
+<!-- impl TextIter::fn ends_sentence -->
+Determines whether `self` ends a sentence. Sentence boundaries are
+determined by Pango and should be correct for nearly any language
+(if not, the correct fix would be to the Pango text boundary
+algorithms).
+
+# Returns
+
+`true` if `self` is at the end of a sentence.
+<!-- impl TextIter::fn ends_tag -->
+Returns `true` if `tag` is toggled off at exactly this point. If `tag`
+is `None`, returns `true` if any tag is toggled off at this point.
+
+Note that if `TextIter::ends_tag` returns `true`, it means that `self` is
+at the end of the tagged range, but that the character
+at `self` is outside the tagged range. In other words,
+unlike `TextIter::begins_tag`, if `TextIter::ends_tag` returns `true`,
+`TextIter::has_tag` will return `false` for the same parameters.
+## `tag`
+a `TextTag`, or `None`
+
+# Returns
+
+whether `self` is the end of a range tagged with `tag`
+<!-- impl TextIter::fn ends_word -->
+Determines whether `self` ends a natural-language word. Word breaks
+are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` is at the end of a word
+<!-- impl TextIter::fn equal -->
+Tests whether two iterators are equal, using the fastest possible
+mechanism. This function is very fast; you can expect it to perform
+better than e.g. getting the character offset for each iterator and
+comparing the offsets yourself. Also, it’s a bit faster than
+`TextIter::compare`.
+## `rhs`
+another `TextIter`
+
+# Returns
+
+`true` if the iterators point to the same place in the buffer
+<!-- impl TextIter::fn forward_char -->
+Moves `self` forward by one character offset. Note that images
+embedded in the buffer occupy 1 character slot, so
+`TextIter::forward_char` may actually move onto an image instead
+of a character, if you have images in your buffer. If `self` is the
+end iterator or one character before it, `self` will now point at
+the end iterator, and `TextIter::forward_char` returns `false` for
+convenience when writing loops.
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn forward_chars -->
+Moves `count` characters if possible (if `count` would move past the
+start or end of the buffer, moves to the start or end of the
+buffer). The return value indicates whether the new position of
+`self` is different from its original position, and dereferenceable
+(the last iterator in the buffer is not dereferenceable). If `count`
+is 0, the function does nothing and returns `false`.
+## `count`
+number of characters to move, may be negative
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn forward_cursor_position -->
+Moves `self` forward by a single cursor position. Cursor positions
+are (unsurprisingly) positions where the cursor can appear. Perhaps
+surprisingly, there may not be a cursor position between all
+characters. The most common example for European languages would be
+a carriage return/newline sequence. For some Unicode characters,
+the equivalent of say the letter “a” with an accent mark will be
+represented as two characters, first the letter then a "combining
+mark" that causes the accent to be rendered; so the cursor can’t go
+between those two characters. See also the `pango::LogAttr`-struct and
+`pango_break` function.
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn forward_cursor_positions -->
+Moves up to `count` cursor positions. See
+`TextIter::forward_cursor_position` for details.
+## `count`
+number of positions to move
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn forward_find_char -->
+Advances `self`, calling `pred` on each character. If
+`pred` returns `true`, returns `true` and stops scanning.
+If `pred` never returns `true`, `self` is set to `limit` if
+`limit` is non-`None`, otherwise to the end iterator.
+## `pred`
+a function to be called on each character
+## `user_data`
+user data for `pred`
+## `limit`
+search limit, or `None` for none
+
+# Returns
+
+whether a match was found
+<!-- impl TextIter::fn forward_line -->
+Moves `self` to the start of the next line. If the iter is already on the
+last line of the buffer, moves the iter to the end of the current line.
+If after the operation, the iter is at the end of the buffer and not
+dereferencable, returns `false`. Otherwise, returns `true`.
+
+# Returns
+
+whether `self` can be dereferenced
+<!-- impl TextIter::fn forward_lines -->
+Moves `count` lines forward, if possible (if `count` would move
+past the start or end of the buffer, moves to the start or end of
+the buffer). The return value indicates whether the iterator moved
+onto a dereferenceable position; if the iterator didn’t move, or
+moved onto the end iterator, then `false` is returned. If `count` is 0,
+the function does nothing and returns `false`. If `count` is negative,
+moves backward by 0 - `count` lines.
+## `count`
+number of lines to move forward
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn forward_search -->
+Searches forward for `str`. Any match is returned by setting
+`match_start` to the first character of the match and `match_end` to the
+first character after the match. The search will not continue past
+`limit`. Note that a search is a linear or O(n) operation, so you
+may wish to use `limit` to avoid locking up your UI on large
+buffers.
+
+`match_start` will never be set to a `TextIter` located before `self`, even if
+there is a possible `match_end` after or at `self`.
+## `str`
+a search string
+## `flags`
+flags affecting how the search is done
+## `match_start`
+return location for start of match, or `None`
+## `match_end`
+return location for end of match, or `None`
+## `limit`
+location of last possible `match_end`, or `None` for the end of the buffer
+
+# Returns
+
+whether a match was found
+<!-- impl TextIter::fn forward_sentence_end -->
+Moves forward to the next sentence end. (If `self` is at the end of
+a sentence, moves to the next end of sentence.) Sentence
+boundaries are determined by Pango and should be correct for nearly
+any language (if not, the correct fix would be to the Pango text
+boundary algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn forward_sentence_ends -->
+Calls `TextIter::forward_sentence_end` `count` times (or until
+`TextIter::forward_sentence_end` returns `false`). If `count` is
+negative, moves backward instead of forward.
+## `count`
+number of sentences to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn forward_to_end -->
+Moves `self` forward to the “end iterator,” which points one past the last
+valid character in the buffer. `TextIter::get_char` called on the
+end iterator returns 0, which is convenient for writing loops.
+<!-- impl TextIter::fn forward_to_line_end -->
+Moves the iterator to point to the paragraph delimiter characters,
+which will be either a newline, a carriage return, a carriage
+return/newline in sequence, or the Unicode paragraph separator
+character. If the iterator is already at the paragraph delimiter
+characters, moves to the paragraph delimiter characters for the
+next line. If `self` is on the last line in the buffer, which does
+not end in paragraph delimiters, moves to the end iterator (end of
+the last line), and returns `false`.
+
+# Returns
+
+`true` if we moved and the new location is not the end iterator
+<!-- impl TextIter::fn forward_to_tag_toggle -->
+Moves forward to the next toggle (on or off) of the
+`TextTag` `tag`, or to the next toggle of any tag if
+`tag` is `None`. If no matching tag toggles are found,
+returns `false`, otherwise `true`. Does not return toggles
+located at `self`, only toggles after `self`. Sets `self` to
+the location of the toggle, or to the end of the buffer
+if no toggle is found.
+## `tag`
+a `TextTag`, or `None`
+
+# Returns
+
+whether we found a tag toggle after `self`
+<!-- impl TextIter::fn forward_visible_cursor_position -->
+Moves `self` forward to the next visible cursor position. See
+`TextIter::forward_cursor_position` for details.
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn forward_visible_cursor_positions -->
+Moves up to `count` visible cursor positions. See
+`TextIter::forward_cursor_position` for details.
+## `count`
+number of positions to move
+
+# Returns
+
+`true` if we moved and the new position is dereferenceable
+<!-- impl TextIter::fn forward_visible_line -->
+Moves `self` to the start of the next visible line. Returns `true` if there
+was a next line to move to, and `false` if `self` was simply moved to
+the end of the buffer and is now not dereferenceable, or if `self` was
+already at the end of the buffer.
+
+# Returns
+
+whether `self` can be dereferenced
+<!-- impl TextIter::fn forward_visible_lines -->
+Moves `count` visible lines forward, if possible (if `count` would move
+past the start or end of the buffer, moves to the start or end of
+the buffer). The return value indicates whether the iterator moved
+onto a dereferenceable position; if the iterator didn’t move, or
+moved onto the end iterator, then `false` is returned. If `count` is 0,
+the function does nothing and returns `false`. If `count` is negative,
+moves backward by 0 - `count` lines.
+## `count`
+number of lines to move forward
+
+# Returns
+
+whether `self` moved and is dereferenceable
+<!-- impl TextIter::fn forward_visible_word_end -->
+Moves forward to the next visible word end. (If `self` is currently on a
+word end, moves forward to the next one after that.) Word breaks
+are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn forward_visible_word_ends -->
+Calls `TextIter::forward_visible_word_end` up to `count` times.
+## `count`
+number of times to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn forward_word_end -->
+Moves forward to the next word end. (If `self` is currently on a
+word end, moves forward to the next one after that.) Word breaks
+are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn forward_word_ends -->
+Calls `TextIter::forward_word_end` up to `count` times.
+## `count`
+number of times to move
+
+# Returns
+
+`true` if `self` moved and is not the end iterator
+<!-- impl TextIter::fn free -->
+Free an iterator allocated on the heap. This function
+is intended for use in language bindings, and is not
+especially useful for applications, because iterators can
+simply be allocated on the stack.
+<!-- impl TextIter::fn get_attributes -->
+Computes the effect of any tags applied to this spot in the
+text. The `values` parameter should be initialized to the default
+settings you wish to use if no tags are in effect. You’d typically
+obtain the defaults from `TextView::get_default_attributes`.
+
+`TextIter::get_attributes` will modify `values`, applying the
+effects of any tags present at `self`. If any tags affected `values`,
+the function returns `true`.
+## `values`
+a `TextAttributes` to be filled in
+
+# Returns
+
+`true` if `values` was modified
+<!-- impl TextIter::fn get_buffer -->
+Returns the `TextBuffer` this iterator is associated with.
+
+# Returns
+
+the buffer
+<!-- impl TextIter::fn get_bytes_in_line -->
+Returns the number of bytes in the line containing `self`,
+including the paragraph delimiters.
+
+# Returns
+
+number of bytes in the line
+<!-- impl TextIter::fn get_char -->
+The Unicode character at this iterator is returned. (Equivalent to
+operator* on a C++ iterator.) If the element at this iterator is a
+non-character element, such as an image embedded in the buffer, the
+Unicode “unknown” character 0xFFFC is returned. If invoked on
+the end iterator, zero is returned; zero is not a valid Unicode character.
+So you can write a loop which ends when `TextIter::get_char`
+returns 0.
+
+# Returns
+
+a Unicode character, or 0 if `self` is not dereferenceable
+<!-- impl TextIter::fn get_chars_in_line -->
+Returns the number of characters in the line containing `self`,
+including the paragraph delimiters.
+
+# Returns
+
+number of characters in the line
+<!-- impl TextIter::fn get_child_anchor -->
+If the location at `self` contains a child anchor, the
+anchor is returned (with no new reference count added). Otherwise,
+`None` is returned.
+
+# Returns
+
+the anchor at `self`
+<!-- impl TextIter::fn get_language -->
+A convenience wrapper around `TextIter::get_attributes`,
+which returns the language in effect at `self`. If no tags affecting
+language apply to `self`, the return value is identical to that of
+`gtk_get_default_language`.
+
+# Returns
+
+language in effect at `self`
+<!-- impl TextIter::fn get_line -->
+Returns the line number containing the iterator. Lines in
+a `TextBuffer` are numbered beginning with 0 for the first
+line in the buffer.
+
+# Returns
+
+a line number
+<!-- impl TextIter::fn get_line_index -->
+Returns the byte index of the iterator, counting
+from the start of a newline-terminated line.
+Remember that `TextBuffer` encodes text in
+UTF-8, and that characters can require a variable
+number of bytes to represent.
+
+# Returns
+
+distance from start of line, in bytes
+<!-- impl TextIter::fn get_line_offset -->
+Returns the character offset of the iterator,
+counting from the start of a newline-terminated line.
+The first character on the line has offset 0.
+
+# Returns
+
+offset from start of line
+<!-- impl TextIter::fn get_marks -->
+Returns a list of all `TextMark` at this location. Because marks
+are not iterable (they don’t take up any "space" in the buffer,
+they are just marks in between iterable locations), multiple marks
+can exist in the same place. The returned list is not in any
+meaningful order.
+
+# Returns
+
+list of `TextMark`
+<!-- impl TextIter::fn get_offset -->
+Returns the character offset of an iterator.
+Each character in a `TextBuffer` has an offset,
+starting with 0 for the first character in the buffer.
+Use `TextBuffer::get_iter_at_offset` to convert an
+offset back into an iterator.
+
+# Returns
+
+a character offset
+<!-- impl TextIter::fn get_pixbuf -->
+If the element at `self` is a pixbuf, the pixbuf is returned
+(with no new reference count added). Otherwise,
+`None` is returned.
+
+# Returns
+
+the pixbuf at `self`
+<!-- impl TextIter::fn get_slice -->
+Returns the text in the given range. A “slice” is an array of
+characters encoded in UTF-8 format, including the Unicode “unknown”
+character 0xFFFC for iterable non-character elements in the buffer,
+such as images. Because images are encoded in the slice, byte and
+character offsets in the returned array will correspond to byte
+offsets in the text buffer. Note that 0xFFFC can occur in normal
+text as well, so it is not a reliable indicator that a pixbuf or
+widget is in the buffer.
+## `end`
+iterator at end of a range
+
+# Returns
+
+slice of text from the buffer
+<!-- impl TextIter::fn get_tags -->
+Returns a list of tags that apply to `self`, in ascending order of
+priority (highest-priority tags are last). The `TextTag` in the
+list don’t have a reference added, but you have to free the list
+itself.
+
+# Returns
+
+list of `TextTag`
+<!-- impl TextIter::fn get_text -->
+Returns text in the given range. If the range
+contains non-text elements such as images, the character and byte
+offsets in the returned string will not correspond to character and
+byte offsets in the buffer. If you want offsets to correspond, see
+`TextIter::get_slice`.
+## `end`
+iterator at end of a range
+
+# Returns
+
+array of characters from the buffer
+<!-- impl TextIter::fn get_toggled_tags -->
+Returns a list of `TextTag` that are toggled on or off at this
+point. (If `toggled_on` is `true`, the list contains tags that are
+toggled on.) If a tag is toggled on at `self`, then some non-empty
+range of characters following `self` has that tag applied to it. If
+a tag is toggled off, then some non-empty range following `self`
+does not have the tag applied to it.
+## `toggled_on`
+`true` to get toggled-on tags
+
+# Returns
+
+tags toggled at this point
+<!-- impl TextIter::fn get_visible_line_index -->
+Returns the number of bytes from the start of the
+line to the given `self`, not counting bytes that
+are invisible due to tags with the “invisible” flag
+toggled on.
+
+# Returns
+
+byte index of `self` with respect to the start of the line
+<!-- impl TextIter::fn get_visible_line_offset -->
+Returns the offset in characters from the start of the
+line to the given `self`, not counting characters that
+are invisible due to tags with the “invisible” flag
+toggled on.
+
+# Returns
+
+offset in visible characters from the start of the line
+<!-- impl TextIter::fn get_visible_slice -->
+Like `TextIter::get_slice`, but invisible text is not included.
+Invisible text is usually invisible because a `TextTag` with the
+“invisible” attribute turned on has been applied to it.
+## `end`
+iterator at end of range
+
+# Returns
+
+slice of text from the buffer
+<!-- impl TextIter::fn get_visible_text -->
+Like `TextIter::get_text`, but invisible text is not included.
+Invisible text is usually invisible because a `TextTag` with the
+“invisible” attribute turned on has been applied to it.
+## `end`
+iterator at end of range
+
+# Returns
+
+string containing visible text in the
+range
+<!-- impl TextIter::fn has_tag -->
+Returns `true` if `self` points to a character that is part of a range tagged
+with `tag`. See also `TextIter::begins_tag` and `TextIter::ends_tag`.
+## `tag`
+a `TextTag`
+
+# Returns
+
+whether `self` is tagged with `tag`
+<!-- impl TextIter::fn in_range -->
+Checks whether `self` falls in the range [`start`, `end`).
+`start` and `end` must be in ascending order.
+## `start`
+start of range
+## `end`
+end of range
+
+# Returns
+
+`true` if `self` is in the range
+<!-- impl TextIter::fn inside_sentence -->
+Determines whether `self` is inside a sentence (as opposed to in
+between two sentences, e.g. after a period and before the first
+letter of the next sentence). Sentence boundaries are determined
+by Pango and should be correct for nearly any language (if not, the
+correct fix would be to the Pango text boundary algorithms).
+
+# Returns
+
+`true` if `self` is inside a sentence.
+<!-- impl TextIter::fn inside_word -->
+Determines whether the character pointed by `self` is part of a
+natural-language word (as opposed to say inside some whitespace). Word
+breaks are determined by Pango and should be correct for nearly any language
+(if not, the correct fix would be to the Pango word break algorithms).
+
+Note that if `TextIter::starts_word` returns `true`, then this function
+returns `true` too, since `self` points to the first character of the word.
+
+# Returns
+
+`true` if `self` is inside a word
+<!-- impl TextIter::fn is_cursor_position -->
+See `TextIter::forward_cursor_position` or `pango::LogAttr` or
+`pango_break` for details on what a cursor position is.
+
+# Returns
+
+`true` if the cursor can be placed at `self`
+<!-- impl TextIter::fn is_end -->
+Returns `true` if `self` is the end iterator, i.e. one past the last
+dereferenceable iterator in the buffer. `TextIter::is_end` is
+the most efficient way to check whether an iterator is the end
+iterator.
+
+# Returns
+
+whether `self` is the end iterator
+<!-- impl TextIter::fn is_start -->
+Returns `true` if `self` is the first iterator in the buffer, that is
+if `self` has a character offset of 0.
+
+# Returns
+
+whether `self` is the first in the buffer
+<!-- impl TextIter::fn order -->
+Swaps the value of `self` and `second` if `second` comes before
+`self` in the buffer. That is, ensures that `self` and `second` are
+in sequence. Most text buffer functions that take a range call this
+automatically on your behalf, so there’s no real reason to call it yourself
+in those cases. There are some exceptions, such as `TextIter::in_range`,
+that expect a pre-sorted range.
+## `second`
+another `TextIter`
+<!-- impl TextIter::fn set_line -->
+Moves iterator `self` to the start of the line `line_number`. If
+`line_number` is negative or larger than the number of lines in the
+buffer, moves `self` to the start of the last line in the buffer.
+## `line_number`
+line number (counted from 0)
+<!-- impl TextIter::fn set_line_index -->
+Same as `TextIter::set_line_offset`, but works with a
+byte index. The given byte index must be at
+the start of a character, it can’t be in the middle of a UTF-8
+encoded character.
+## `byte_on_line`
+a byte index relative to the start of `self`’s current line
+<!-- impl TextIter::fn set_line_offset -->
+Moves `self` within a line, to a new character
+(not byte) offset. The given character offset must be less than or
+equal to the number of characters in the line; if equal, `self`
+moves to the start of the next line. See
+`TextIter::set_line_index` if you have a byte index rather than
+a character offset.
+## `char_on_line`
+a character offset relative to the start of `self`’s current line
+<!-- impl TextIter::fn set_offset -->
+Sets `self` to point to `char_offset`. `char_offset` counts from the start
+of the entire text buffer, starting with 0.
+## `char_offset`
+a character number
+<!-- impl TextIter::fn set_visible_line_index -->
+Like `TextIter::set_line_index`, but the index is in visible
+bytes, i.e. text with a tag making it invisible is not counted
+in the index.
+## `byte_on_line`
+a byte index
+<!-- impl TextIter::fn set_visible_line_offset -->
+Like `TextIter::set_line_offset`, but the offset is in visible
+characters, i.e. text with a tag making it invisible is not
+counted in the offset.
+## `char_on_line`
+a character offset
+<!-- impl TextIter::fn starts_line -->
+Returns `true` if `self` begins a paragraph,
+i.e. if `TextIter::get_line_offset` would return 0.
+However this function is potentially more efficient than
+`TextIter::get_line_offset` because it doesn’t have to compute
+the offset, it just has to see whether it’s 0.
+
+# Returns
+
+whether `self` begins a line
+<!-- impl TextIter::fn starts_sentence -->
+Determines whether `self` begins a sentence. Sentence boundaries are
+determined by Pango and should be correct for nearly any language
+(if not, the correct fix would be to the Pango text boundary
+algorithms).
+
+# Returns
+
+`true` if `self` is at the start of a sentence.
+<!-- impl TextIter::fn starts_word -->
+Determines whether `self` begins a natural-language word. Word
+breaks are determined by Pango and should be correct for nearly any
+language (if not, the correct fix would be to the Pango word break
+algorithms).
+
+# Returns
+
+`true` if `self` is at the start of a word
+<!-- impl TextIter::fn toggles_tag -->
+This is equivalent to (`TextIter::begins_tag` ||
+`TextIter::ends_tag`), i.e. it tells you whether a range with
+`tag` applied to it begins or ends at `self`.
+## `tag`
+a `TextTag`, or `None`
+
+# Returns
+
+whether `tag` is toggled on or off at `self`
 <!-- struct TextMark -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -25010,10 +24820,6 @@ Marks optionally have names; these can be convenient to avoid passing the
 `TextMark` object around.
 
 Marks are typically created using the `TextBuffer::create_mark` function.
-
-# Implements
-
-
 <!-- impl TextMark::fn new -->
 Creates a text mark. Add it to a buffer using `TextBuffer::add_mark`.
 If `name` is `None`, the mark is anonymous; otherwise, the mark can be
@@ -25024,9 +24830,6 @@ right gravity (`left_gravity` = `false`), the mark will end up on the
 right of newly-inserted text. The standard left-to-right cursor is a
 mark with right gravity (when you type, the cursor stays on the right
 side of the text you’re typing).
-
-# Parameters
-
 ## `name`
 mark name or `None`
 ## `left_gravity`
@@ -25075,9 +24878,6 @@ visible, i.e. you can see it as a vertical bar. Also, the text
 widget uses a visible mark to indicate where a drop will occur when
 dragging-and-dropping text. Most other marks are not visible.
 Marks are not visible by default.
-
-# Parameters
-
 ## `setting`
 visibility of mark
 <!-- struct TextTag -->
@@ -25096,16 +24896,9 @@ For each property of `TextTag`, there is a “set” property, e.g.
 “font-set” corresponds to “font”. These “set” properties reflect
 whether a property has been set or not.
 They are maintained by GTK+ and you should not set them independently.
-
-# Implements
-
-
 <!-- impl TextTag::fn new -->
 Creates a `TextTag`. Configure the tag using object arguments,
 i.e. using `gobject::Object::set`.
-
-# Parameters
-
 ## `name`
 tag name, or `None`
 
@@ -25114,9 +24907,6 @@ tag name, or `None`
 a new `TextTag`
 <!-- impl TextTag::fn event -->
 Emits the “event” signal on the `TextTag`.
-
-# Parameters
-
 ## `event_object`
 object that received the event, such as a widget
 ## `event`
@@ -25145,9 +24935,6 @@ the table by default; so normally the precedence of a set of tags
 is the order in which they were added to the table, or created with
 `TextBuffer::create_tag`, which adds the tag to the buffer’s table
 automatically.
-
-# Parameters
-
 ## `priority`
 the new priority
 <!-- struct TextTagTable -->
@@ -25188,9 +24975,6 @@ in the table.
 
 `tag` must not be in a tag table already, and may not have
 the same name as an already-added tag.
-
-# Parameters
-
 ## `tag`
 a `TextTag`
 
@@ -25201,9 +24985,6 @@ a `TextTag`
 Calls `func` on each tag in `self`, with user data `data`.
 Note that the table may not be modified while iterating
 over it (you can’t add/remove tags).
-
-# Parameters
-
 ## `func`
 a function to call on each tag
 ## `data`
@@ -25216,9 +24997,6 @@ Returns the size of the table (number of tags)
 number of tags in `self`
 <!-- impl TextTagTable::fn lookup -->
 Look up a named tag.
-
-# Parameters
-
 ## `name`
 name of a tag
 
@@ -25230,9 +25008,6 @@ Remove a tag from the table. If a `TextBuffer` has `self` as its tag table,
 the tag is removed from the buffer. The table’s reference to the tag is
 removed, so the tag will end up destroyed if you don’t have a reference to
 it.
-
-# Parameters
-
 ## `tag`
 a `TextTag`
 <!-- struct TextView -->
@@ -25260,9 +25035,6 @@ Creates a new `TextView` widget displaying the buffer
 this function is equivalent to `TextView::new`. The
 text view adds its own reference count to the buffer; it does not
 take over an existing reference.
-
-# Parameters
-
 ## `buffer`
 a `TextBuffer`
 
@@ -25271,9 +25043,6 @@ a `TextBuffer`
 a new `TextView`.
 <!-- impl TextView::fn add_child_at_anchor -->
 Adds a child widget in the text buffer, at the given `anchor`.
-
-# Parameters
-
 ## `child`
 a `Widget`
 ## `anchor`
@@ -25289,9 +25058,6 @@ placing a child in `TextWindowType::Widget`, scrolling is
 irrelevant, the child floats above all scrollable areas. But when
 placing a child in one of the scrollable windows (border windows or
 text window) it will move with the scrolling as needed.
-
-# Parameters
-
 ## `child`
 a `Widget`
 ## `which_window`
@@ -25309,9 +25075,6 @@ wrapping is turned off, display lines and paragraphs will be the
 same. Display lines are divided differently for each view, since
 they depend on the view’s width; paragraphs are the same in all
 views, since they depend on the contents of the `TextBuffer`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 
@@ -25327,9 +25090,6 @@ wrapping is turned off, display lines and paragraphs will be the
 same. Display lines are divided differently for each view, since
 they depend on the view’s width; paragraphs are the same in all
 views, since they depend on the contents of the `TextBuffer`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 
@@ -25342,9 +25102,6 @@ Converts coordinate (`buffer_x`, `buffer_y`) to coordinates for the window
 
 Note that you can’t convert coordinates for a nonexisting window (see
 `TextView::set_border_window_size`).
-
-# Parameters
-
 ## `win`
 a `TextWindowType` except `TextWindowType::Private`
 ## `buffer_x`
@@ -25364,9 +25121,6 @@ wrapping is turned off, display lines and paragraphs will be the
 same. Display lines are divided differently for each view, since
 they depend on the view’s width; paragraphs are the same in all
 views, since they depend on the contents of the `TextBuffer`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 
@@ -25382,9 +25136,6 @@ wrapping is turned off, display lines and paragraphs will be the
 same. Display lines are divided differently for each view, since
 they depend on the view’s width; paragraphs are the same in all
 views, since they depend on the contents of the `TextBuffer`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 
@@ -25402,9 +25153,6 @@ Returns whether pressing the Tab key inserts a tab characters.
 <!-- impl TextView::fn get_border_window_size -->
 Gets the width of the specified border window. See
 `TextView::set_border_window_size`.
-
-# Parameters
-
 ## `type_`
 window to return size from
 
@@ -25439,9 +25187,6 @@ cursor’s offset within the preedit sequence.
 The rectangle position is in buffer coordinates; use
 `TextView::buffer_to_window_coords` to convert these
 coordinates to coordinates for one of the windows in the text view.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `strong`
@@ -25504,9 +25249,6 @@ coordinates are coordinates for the entire buffer, not just the
 currently-displayed portion. If you have coordinates from an
 event, you have to convert those to buffer coordinates with
 `TextView::window_to_buffer_coords`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `x`
@@ -25524,9 +25266,6 @@ those to buffer coordinates with
 Note that this is different from `TextView::get_iter_at_location`,
 which returns cursor locations, i.e. positions between
 characters.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `trailing`
@@ -25543,9 +25282,6 @@ Gets a rectangle which roughly contains the character at `iter`.
 The rectangle position is in buffer coordinates; use
 `TextView::buffer_to_window_coords` to convert these
 coordinates to coordinates for one of the windows in the text view.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `location`
@@ -25570,9 +25306,6 @@ the coordinate `y`. `y` is in buffer coordinates, convert from
 window coordinates with `TextView::window_to_buffer_coords`.
 If non-`None`, `line_top` will be filled with the coordinate of the top
 edge of the line.
-
-# Parameters
-
 ## `target_iter`
 a `TextIter`
 ## `y`
@@ -25583,9 +25316,6 @@ return location for top coordinate of the line
 Gets the y coordinate of the top of the line containing `iter`,
 and the height of the line. The coordinate is a buffer coordinate;
 convert to window coordinates with `TextView::buffer_to_window_coords`.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `y`
@@ -25653,9 +25383,6 @@ pointer to the vertical `Adjustment`
 Fills `visible_rect` with the currently-visible
 region of the buffer, in buffer coordinates. Convert to window coordinates
 with `TextView::buffer_to_window_coords`.
-
-# Parameters
-
 ## `visible_rect`
 rectangle to fill
 <!-- impl TextView::fn get_window -->
@@ -25665,9 +25392,6 @@ on the left, right, top, bottom, and the window that displays the
 text buffer. Windows are `None` and nonexistent if their width or
 height is 0, and are nonexistent before the widget has been
 realized.
-
-# Parameters
-
 ## `win`
 window to get
 
@@ -25679,9 +25403,6 @@ Usually used to find out which window an event corresponds to.
 If you connect to an event signal on `self`, this function
 should be called on `event-&gt;window` to
 see which window it was.
-
-# Parameters
-
 ## `window`
 a window type
 
@@ -25722,9 +25443,6 @@ gtk_foo_bar_key_press_event (GtkWidget   *widget,
   return GTK_WIDGET_CLASS (gtk_foo_bar_parent_class)->key_press_event (widget, event);
 }
 ```
-
-# Parameters
-
 ## `event`
 the key event
 
@@ -25733,9 +25451,6 @@ the key event
 `true` if the input method handled the key event.
 <!-- impl TextView::fn move_child -->
 Updates the position of a child, as for `TextView::add_child_in_window`.
-
-# Parameters
-
 ## `child`
 child widget already added to the text view
 ## `xpos`
@@ -25745,9 +25460,6 @@ new Y position in window coordinates
 <!-- impl TextView::fn move_mark_onscreen -->
 Moves a mark within the buffer so that it's
 located within the currently-visible text area.
-
-# Parameters
-
 ## `mark`
 a `TextMark`
 
@@ -25766,9 +25478,6 @@ In the presence of bi-directional text, the correspondence
 between logical and visual order will depend on the direction
 of the current run, and there may be jumps when the cursor
 is moved off of the end of a run.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `count`
@@ -25793,9 +25502,6 @@ would confuse on-going input method behavior.
 <!-- impl TextView::fn scroll_mark_onscreen -->
 Scrolls `self` the minimum distance such that `mark` is contained
 within the visible area of the widget.
-
-# Parameters
-
 ## `mark`
 a mark in the buffer for `self`
 <!-- impl TextView::fn scroll_to_iter -->
@@ -25813,9 +25519,6 @@ handler; so this function may not have the desired effect if it’s
 called before the height computations. To avoid oddness, consider
 using `TextView::scroll_to_mark` which saves a point to be
 scrolled to after line validation.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 ## `within_margin`
@@ -25839,9 +25542,6 @@ If `use_align` is `false`, the text scrolls the minimal distance to
 get the mark onscreen, possibly not scrolling at all. The effective
 screen for purposes of this function is reduced by a margin of size
 `within_margin`.
-
-# Parameters
-
 ## `mark`
 a `TextMark`
 ## `within_margin`
@@ -25858,9 +25558,6 @@ Sets the behavior of the text widget when the Tab key is pressed.
 If `accepts_tab` is `true`, a tab character is inserted. If `accepts_tab`
 is `false` the keyboard focus is moved to the next widget in the focus
 chain.
-
-# Parameters
-
 ## `accepts_tab`
 `true` if pressing the Tab key should insert a tab
  character, `false`, if pressing the Tab key should move the
@@ -25873,9 +25570,6 @@ to 0, and creates the window if the size is set to non-zero. This
 function can only be used for the “border windows,” it doesn’t work
 with `TextWindowType::Widget`, `TextWindowType::Text`, or
 `TextWindowType::Private`.
-
-# Parameters
-
 ## `type_`
 window to affect
 ## `size`
@@ -25886,142 +25580,91 @@ buffer displayed by the text view is unreferenced, and a reference is
 added to `buffer`. If you owned a reference to `buffer` before passing it
 to this function, you must remove that reference yourself; `TextView`
 will not “adopt” it.
-
-# Parameters
-
 ## `buffer`
 a `TextBuffer`
 <!-- impl TextView::fn set_cursor_visible -->
 Toggles whether the insertion point is displayed. A buffer with no editable
 text probably shouldn’t have a visible cursor, so you may want to turn
 the cursor off.
-
-# Parameters
-
 ## `setting`
 whether to show the insertion cursor
 <!-- impl TextView::fn set_editable -->
 Sets the default editability of the `TextView`. You can override
 this default setting with tags in the buffer, using the “editable”
 attribute of tags.
-
-# Parameters
-
 ## `setting`
 whether it’s editable
 <!-- impl TextView::fn set_indent -->
 Sets the default indentation for paragraphs in `self`.
 Tags in the buffer may override the default.
-
-# Parameters
-
 ## `indent`
 indentation in pixels
 <!-- impl TextView::fn set_input_hints -->
 Sets the `TextView:input-hints` property, which
 allows input methods to fine-tune their behaviour.
-
-# Parameters
-
 ## `hints`
 the hints
 <!-- impl TextView::fn set_input_purpose -->
 Sets the `TextView:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
-
-# Parameters
-
 ## `purpose`
 the purpose
 <!-- impl TextView::fn set_justification -->
 Sets the default justification of text in `self`.
 Tags in the view’s buffer may override the default.
-
-# Parameters
-
 ## `justification`
 justification
 <!-- impl TextView::fn set_left_margin -->
 Sets the default left margin for text in `self`.
 Tags in the buffer may override the default.
-
-# Parameters
-
 ## `left_margin`
 left margin in pixels
 <!-- impl TextView::fn set_monospace -->
 Sets the `TextView:monospace` property, which
 indicates that the text view should use monospace
 fonts.
-
-# Parameters
-
 ## `monospace`
 `true` to request monospace styling
 <!-- impl TextView::fn set_overwrite -->
 Changes the `TextView` overwrite mode.
-
-# Parameters
-
 ## `overwrite`
 `true` to turn on overwrite mode, `false` to turn it off
 <!-- impl TextView::fn set_pixels_above_lines -->
 Sets the default number of blank pixels above paragraphs in `self`.
 Tags in the buffer for `self` may override the defaults.
-
-# Parameters
-
 ## `pixels_above_lines`
 pixels above paragraphs
 <!-- impl TextView::fn set_pixels_below_lines -->
 Sets the default number of pixels of blank space
 to put below paragraphs in `self`. May be overridden
 by tags applied to `self`’s buffer.
-
-# Parameters
-
 ## `pixels_below_lines`
 pixels below paragraphs
 <!-- impl TextView::fn set_pixels_inside_wrap -->
 Sets the default number of pixels of blank space to leave between
 display/wrapped lines within a paragraph. May be overridden by
 tags in `self`’s buffer.
-
-# Parameters
-
 ## `pixels_inside_wrap`
 default number of pixels between wrapped lines
 <!-- impl TextView::fn set_right_margin -->
 Sets the default right margin for text in the text view.
 Tags in the buffer may override the default.
-
-# Parameters
-
 ## `right_margin`
 right margin in pixels
 <!-- impl TextView::fn set_tabs -->
 Sets the default tab stops for paragraphs in `self`.
 Tags in the buffer may override the default.
-
-# Parameters
-
 ## `tabs`
 tabs as a `pango::TabArray`
 <!-- impl TextView::fn set_wrap_mode -->
 Sets the line wrapping for the view.
-
-# Parameters
-
 ## `wrap_mode`
 a `WrapMode`
 <!-- impl TextView::fn starts_display_line -->
 Determines whether `iter` is at the start of a display line.
 See `TextView::forward_display_line` for an explanation of
 display lines vs. paragraphs.
-
-# Parameters
-
 ## `iter`
 a `TextIter`
 
@@ -26034,9 +25677,6 @@ coordinates, storing the result in (`buffer_x`,`buffer_y`).
 
 Note that you can’t convert coordinates for a nonexisting window (see
 `TextView::set_border_window_size`).
-
-# Parameters
-
 ## `win`
 a `TextWindowType` except `TextWindowType::Private`
 ## `window_x`
@@ -26047,6 +25687,27 @@ window y coordinate
 buffer x coordinate return location or `None`
 ## `buffer_y`
 buffer y coordinate return location or `None`
+<!-- enum TextViewLayer -->
+Used to reference the layers of `TextView` for the purpose of customized
+drawing with the ::draw_layer vfunc.
+<!-- enum TextViewLayer::variant Below -->
+The layer rendered below the text (but above the background).
+<!-- enum TextViewLayer::variant Above -->
+The layer rendered above the text.
+<!-- enum TextWindowType -->
+Used to reference the parts of `TextView`.
+<!-- enum TextWindowType::variant Widget -->
+Window that floats over scrolling areas.
+<!-- enum TextWindowType::variant Text -->
+Scrollable text window.
+<!-- enum TextWindowType::variant Left -->
+Left side border window.
+<!-- enum TextWindowType::variant Right -->
+Right side border window.
+<!-- enum TextWindowType::variant Top -->
+Top border window.
+<!-- enum TextWindowType::variant Bottom -->
+Bottom border window.
 <!-- struct ToggleButton -->
 A `ToggleButton` is a `Button` which will remain “pressed-in” when
 clicked. Clicking again will cause the toggle button to return to its
@@ -26104,9 +25765,13 @@ void make_toggles (void) {
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToggleButtonExt -->
 Trait containing all `ToggleButton` methods.
+
+# Implementors
+
+[`CheckButton`](struct.CheckButton.html), [`MenuButton`](struct.MenuButton.html), [`ToggleButton`](struct.ToggleButton.html)
 <!-- impl ToggleButton::fn new -->
 Creates a new toggle button. A widget should be packed into the button, as in `Button::new`.
 
@@ -26115,9 +25780,6 @@ Creates a new toggle button. A widget should be packed into the button, as in `B
 a new toggle button.
 <!-- impl ToggleButton::fn new_with_label -->
 Creates a new toggle button with a text label.
-
-# Parameters
-
 ## `label`
 a string containing the message to be placed in the toggle button.
 
@@ -26128,9 +25790,6 @@ a new toggle button.
 Creates a new `ToggleButton` containing a label. The label
 will be created using `Label::new_with_mnemonic`, so underscores
 in `label` indicate the mnemonic for the button.
-
-# Parameters
-
 ## `label`
 the text of the button, with an underscore in front of the
  mnemonic character
@@ -26164,9 +25823,6 @@ Sets the status of the toggle button. Set to `true` if you want the
 `ToggleButton` to be “pressed in”, and `false` to raise it.
 This action causes the `ToggleButton::toggled` signal and the
 `Button::clicked` signal to be emitted.
-
-# Parameters
-
 ## `is_active`
 `true` or `false`.
 <!-- trait ToggleButtonExt::fn set_inconsistent -->
@@ -26178,9 +25834,6 @@ display the toggle in an “in between” state. This function turns on
 state again if the user toggles the toggle button. This has to be
 done manually, `ToggleButtonExt::set_inconsistent` only affects
 visual appearance, it doesn’t affect the semantics of the button.
-
-# Parameters
-
 ## `setting`
 `true` if state is inconsistent
 <!-- trait ToggleButtonExt::fn set_mode -->
@@ -26191,9 +25844,6 @@ You can call this function on a checkbutton or a radiobutton with
 This function only affects instances of classes like `CheckButton`
 and `RadioButton` that derive from `ToggleButton`,
 not instances of `ToggleButton` itself.
-
-# Parameters
-
 ## `draw_indicator`
 if `true`, draw the button as a separate indicator
 and label; if `false`, draw the button like a normal button
@@ -26210,7 +25860,7 @@ Use `ToggleToolButton::new` to create a new
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl ToggleToolButton::fn new -->
 Returns a new `ToggleToolButton`
 
@@ -26227,9 +25877,6 @@ It is an error if `stock_id` is not a name of a stock item.
 # Deprecated
 
 Use `ToggleToolButton::new` instead.
-
-# Parameters
-
 ## `stock_id`
 the name of the stock item
 
@@ -26247,9 +25894,6 @@ Returns `true` if the toggle button is pressed in and `false` if it is raised.
 Sets the status of the toggle tool button. Set to `true` if you
 want the `ToggleButton` to be “pressed in”, and `false` to raise it.
 This action causes the toggled signal to be emitted.
-
-# Parameters
-
 ## `is_active`
 whether `self` should be active
 <!-- struct ToolButton -->
@@ -26274,15 +25918,16 @@ the button does not have a icon.
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToolButtonExt -->
 Trait containing all `ToolButton` methods.
+
+# Implementors
+
+[`MenuToolButton`](struct.MenuToolButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html)
 <!-- impl ToolButton::fn new -->
 Creates a new `ToolButton` using `icon_widget` as contents and `label` as
 label.
-
-# Parameters
-
 ## `icon_widget`
 a widget that will be used as the button contents, or `None`
 ## `label`
@@ -26301,9 +25946,6 @@ It is an error if `stock_id` is not a name of a stock item.
 # Deprecated
 
 Use `ToolButton::new` instead.
-
-# Parameters
-
 ## `stock_id`
 the name of the stock item
 
@@ -26367,18 +26009,12 @@ See the docs for `IconTheme` for more details.
 The “icon_name” property only has an effect if not
 overridden by non-`None` “label”, “icon_widget” and “stock_id”
 properties.
-
-# Parameters
-
 ## `icon_name`
 the name of the themed icon
 <!-- trait ToolButtonExt::fn set_icon_widget -->
 Sets `icon` as the widget used as icon on `self`. If `icon_widget` is
 `None` the icon is determined by the “stock_id” property. If the
 “stock_id” property is also `None`, `self` will not have an icon.
-
-# Parameters
-
 ## `icon_widget`
 the widget used as icon, or `None`
 <!-- trait ToolButtonExt::fn set_label -->
@@ -26387,9 +26023,6 @@ only has an effect if not overridden by a non-`None` “label_widget” property
 If both the “label_widget” and “label” properties are `None`, the label
 is determined by the “stock_id” property. If the “stock_id” property is also
 `None`, `self` will not have a label.
-
-# Parameters
-
 ## `label`
 a string that will be used as label, or `None`.
 <!-- trait ToolButtonExt::fn set_label_widget -->
@@ -26398,9 +26031,6 @@ for `self`. If `label_widget` is `None` the “label” property is used
 as label. If “label” is also `None`, the label in the stock item
 determined by the “stock_id” property is used as label. If
 “stock_id” is also `None`, `self` does not have a label.
-
-# Parameters
-
 ## `label_widget`
 the widget used as label, or `None`
 <!-- trait ToolButtonExt::fn set_stock_id -->
@@ -26411,9 +26041,6 @@ overridden by non-`None` “label” and “icon_widget” properties.
 # Deprecated
 
 Use `ToolButtonExt::set_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 a name of a stock item, or `None`
 <!-- trait ToolButtonExt::fn set_use_underline -->
@@ -26425,9 +26052,6 @@ menu will have an underlined “O”.
 
 Labels shown on tool buttons never have mnemonics on them; this property
 only affects the menu item on the overflow menu.
-
-# Parameters
-
 ## `use_underline`
 whether the button label has the form “_Open”
 <!-- struct ToolItem -->
@@ -26447,6 +26071,10 @@ See the `Toolbar` class for a description of the toolbar widget, and
 [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ToolItemExt -->
 Trait containing all `ToolItem` methods.
+
+# Implementors
+
+[`SeparatorToolItem`](struct.SeparatorToolItem.html), [`ToolButton`](struct.ToolButton.html), [`ToolItem`](struct.ToolItem.html)
 <!-- impl ToolItem::fn new -->
 Creates a new `ToolItem`
 
@@ -26510,9 +26138,6 @@ Custom subclasses of `ToolItem` should use this function to
 update their menu item when the `ToolItem` changes. That the
 `menu_item_ids` must match ensures that a `ToolItem`
 will not inadvertently change a menu item that they did not create.
-
-# Parameters
-
 ## `menu_item_id`
 a string used to identify the menu item
 
@@ -26619,18 +26244,12 @@ Sets whether `self` is allocated extra space when there
 is more room on the toolbar then needed for the items. The
 effect is that the item gets bigger when the toolbar gets bigger
 and smaller when the toolbar gets smaller.
-
-# Parameters
-
 ## `expand`
 Whether `self` is allocated extra space
 <!-- trait ToolItemExt::fn set_homogeneous -->
 Sets whether `self` is to be allocated the same size as other
 homogeneous items. The effect is that all homogeneous items will have
 the same width as the widest of the items.
-
-# Parameters
-
 ## `homogeneous`
 whether `self` is the same size as other homogeneous items
 <!-- trait ToolItemExt::fn set_is_important -->
@@ -26639,18 +26258,12 @@ class uses this property to determine whether to show or hide its label
 when the toolbar style is `ToolbarStyle::BothHoriz`. The result is that
 only tool buttons with the “is_important” property set have labels, an
 effect known as “priority text”
-
-# Parameters
-
 ## `is_important`
 whether the tool item should be considered important
 <!-- trait ToolItemExt::fn set_proxy_menu_item -->
 Sets the `MenuItem` used in the toolbar overflow menu. The
 `menu_item_id` is used to identify the caller of this function and
 should also be used with `ToolItemExt::get_proxy_menu_item`.
-
-# Parameters
-
 ## `menu_item_id`
 a string used to identify `menu_item`
 ## `menu_item`
@@ -26658,17 +26271,11 @@ a `MenuItem` to be used in the overflow menu
 <!-- trait ToolItemExt::fn set_tooltip_markup -->
 Sets the markup text to be displayed as tooltip on the item.
 See `Widget::set_tooltip_markup`.
-
-# Parameters
-
 ## `markup`
 markup text to be used as tooltip for `self`
 <!-- trait ToolItemExt::fn set_tooltip_text -->
 Sets the text to be displayed as tooltip on the item.
 See `Widget::set_tooltip_text`.
-
-# Parameters
-
 ## `text`
 text to be used as tooltip for `self`
 <!-- trait ToolItemExt::fn set_use_drag_window -->
@@ -26676,16 +26283,10 @@ Sets whether `self` has a drag window. When `true` the
 toolitem can be used as a drag source through `Widget::drag_source_set`.
 When `self` has a drag window it will intercept all events,
 even those that would otherwise be sent to a child of `self`.
-
-# Parameters
-
 ## `use_drag_window`
 Whether `self` has a drag window.
 <!-- trait ToolItemExt::fn set_visible_horizontal -->
 Sets whether `self` is visible when the toolbar is docked horizontally.
-
-# Parameters
-
 ## `visible_horizontal`
 Whether `self` is visible when in horizontal mode
 <!-- trait ToolItemExt::fn set_visible_vertical -->
@@ -26693,9 +26294,6 @@ Sets whether `self` is visible when the toolbar is docked
 vertically. Some tool items, such as text entries, are too wide to be
 useful on a vertically docked toolbar. If `visible_vertical` is `false`
 `self` will not appear on toolbars that are docked vertically.
-
-# Parameters
-
 ## `visible_vertical`
 whether `self` is visible when the toolbar
 is in vertical mode
@@ -26713,9 +26311,6 @@ categories and drag and drop support.
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
 <!-- impl ToolItemGroup::fn new -->
 Creates a new tool item group with label `label`.
-
-# Parameters
-
 ## `label`
 the label of the new group
 
@@ -26730,9 +26325,6 @@ Gets whether `self` is collapsed or expanded.
 `true` if `self` is collapsed, `false` if it is expanded
 <!-- impl ToolItemGroup::fn get_drop_item -->
 Gets the tool item at position (x, y).
-
-# Parameters
-
 ## `x`
 the x position
 ## `y`
@@ -26755,9 +26347,6 @@ Gets the relief mode of the header button of `self`.
 the `ReliefStyle`
 <!-- impl ToolItemGroup::fn get_item_position -->
 Gets the position of `item` in `self` as index.
-
-# Parameters
-
 ## `item`
 a `ToolItem`
 
@@ -26787,9 +26376,6 @@ Gets the number of tool items in `self`.
 the number of tool items in `self`
 <!-- impl ToolItemGroup::fn get_nth_item -->
 Gets the tool item at `index` in group.
-
-# Parameters
-
 ## `index`
 the index
 
@@ -26798,9 +26384,6 @@ the index
 the `ToolItem` at index
 <!-- impl ToolItemGroup::fn insert -->
 Inserts `item` at `position` in the list of children of `self`.
-
-# Parameters
-
 ## `item`
 the `ToolItem` to insert into `self`
 ## `position`
@@ -26808,31 +26391,19 @@ the position of `item` in `self`, starting with 0.
  The position -1 means end of list.
 <!-- impl ToolItemGroup::fn set_collapsed -->
 Sets whether the `self` should be collapsed or expanded.
-
-# Parameters
-
 ## `collapsed`
 whether the `self` should be collapsed or expanded
 <!-- impl ToolItemGroup::fn set_ellipsize -->
 Sets the ellipsization mode which should be used by labels in `self`.
-
-# Parameters
-
 ## `ellipsize`
 the `pango::EllipsizeMode` labels in `self` should use
 <!-- impl ToolItemGroup::fn set_header_relief -->
 Set the button relief of the group header.
 See `ButtonExt::set_relief` for details.
-
-# Parameters
-
 ## `style`
 the `ReliefStyle`
 <!-- impl ToolItemGroup::fn set_item_position -->
 Sets the position of `item` in the list of children of `self`.
-
-# Parameters
-
 ## `item`
 the `ToolItem` to move to a new position, should
  be a child of `self`.
@@ -26842,18 +26413,12 @@ the new position of `item` in `self`, starting with 0.
 <!-- impl ToolItemGroup::fn set_label -->
 Sets the label of the tool item group. The label is displayed in the header
 of the group.
-
-# Parameters
-
 ## `label`
 the new human-readable label of of the group
 <!-- impl ToolItemGroup::fn set_label_widget -->
 Sets the label of the tool item group.
 The label widget is displayed in the header of the group, in place
 of the usual label.
-
-# Parameters
-
 ## `label_widget`
 the widget to be displayed in place of the usual label
 <!-- struct ToolPalette -->
@@ -26950,9 +26515,6 @@ the `TargetEntry` for a dragged item.
 Sets `self` as drag source (see `ToolPalette::set_drag_source`)
 and sets `widget` as a drag destination for drags from `self`.
 See `Widget::drag_dest_set`.
-
-# Parameters
-
 ## `widget`
 a `Widget` which should be a drag destination for `self`
 ## `flags`
@@ -26966,9 +26528,6 @@ the ``GdkDragActions`` which the widget should suppport
 <!-- impl ToolPalette::fn get_drag_item -->
 Get the dragged item from the selection.
 This could be a `ToolItem` or a `ToolItemGroup`.
-
-# Parameters
-
 ## `selection`
 a `SelectionData`
 
@@ -26977,9 +26536,6 @@ a `SelectionData`
 the dragged item in selection
 <!-- impl ToolPalette::fn get_drop_group -->
 Gets the group at position (x, y).
-
-# Parameters
-
 ## `x`
 the x position
 ## `y`
@@ -26992,9 +26548,6 @@ the `ToolItemGroup` at position or `None`
 <!-- impl ToolPalette::fn get_drop_item -->
 Gets the item at position (x, y).
 See `ToolPalette::get_drop_group`.
-
-# Parameters
-
 ## `x`
 the x position
 ## `y`
@@ -27006,9 +26559,6 @@ the `ToolItem` at position or `None` if there is no such item
 <!-- impl ToolPalette::fn get_exclusive -->
 Gets whether `group` is exclusive or not.
 See `ToolPalette::set_exclusive`.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup` which is a child of palette
 
@@ -27018,9 +26568,6 @@ a `ToolItemGroup` which is a child of palette
 <!-- impl ToolPalette::fn get_expand -->
 Gets whether group should be given extra space.
 See `ToolPalette::set_expand`.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup` which is a child of palette
 
@@ -27030,9 +26577,6 @@ a `ToolItemGroup` which is a child of palette
 <!-- impl ToolPalette::fn get_group_position -->
 Gets the position of `group` in `self` as index.
 See `ToolPalette::set_group_position`.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup`
 
@@ -27077,27 +26621,18 @@ Sets the tool palette as a drag source.
 Enables all groups and items in the tool palette as drag sources
 on button 1 and button 3 press with copy and move actions.
 See `Widget::drag_source_set`.
-
-# Parameters
-
 ## `targets`
 the `ToolPaletteDragTargets`
  which the widget should support
 <!-- impl ToolPalette::fn set_exclusive -->
 Sets whether the group should be exclusive or not.
 If an exclusive group is expanded all other groups are collapsed.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup` which is a child of palette
 ## `exclusive`
 whether the group should be exclusive or not
 <!-- impl ToolPalette::fn set_expand -->
 Sets whether the group should be given extra space.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup` which is a child of palette
 ## `expand`
@@ -27106,26 +26641,17 @@ whether the group should be given extra space
 Sets the position of the group as an index of the tool palette.
 If position is 0 the group will become the first child, if position is
 -1 it will become the last child.
-
-# Parameters
-
 ## `group`
 a `ToolItemGroup` which is a child of palette
 ## `position`
 a new index for group
 <!-- impl ToolPalette::fn set_icon_size -->
 Sets the size of icons in the tool palette.
-
-# Parameters
-
 ## `icon_size`
 the `IconSize` that icons in the tool
  palette shall have
 <!-- impl ToolPalette::fn set_style -->
 Sets the style (text, icons or both) of items in the tool palette.
-
-# Parameters
-
 ## `style`
 the `ToolbarStyle` that items in the tool palette shall have
 <!-- impl ToolPalette::fn unset_icon_size -->
@@ -27140,9 +26666,13 @@ information when embedding `ToolItem` widgets.
 
 # Implements
 
-[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ToolShellExt -->
 Trait containing all `ToolShell` methods.
+
+# Implementors
+
+[`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolShell`](struct.ToolShell.html), [`Toolbar`](struct.Toolbar.html)
 <!-- trait ToolShellExt::fn get_ellipsize_mode -->
 Retrieves the current ellipsize mode for the tool shell. Tool items must not
 call this function directly, but rely on `ToolItemExt::get_ellipsize_mode`
@@ -27244,9 +26774,6 @@ this function returns the position a new item should be
 inserted.
 
 `x` and `y` are in `self` coordinates.
-
-# Parameters
-
 ## `x`
 x coordinate of a point on the toolbar
 ## `y`
@@ -27264,9 +26791,6 @@ the current icon size for the icons on the toolbar.
 <!-- impl Toolbar::fn get_item_index -->
 Returns the position of `item` on the toolbar, starting from 0.
 It is an error if `item` is not a child of the toolbar.
-
-# Parameters
-
 ## `item`
 a `ToolItem` that is a child of `self`
 
@@ -27282,9 +26806,6 @@ the number of items on the toolbar
 <!-- impl Toolbar::fn get_nth_item -->
 Returns the `n`'th item on `self`, or `None` if the
 toolbar does not contain an `n`'th item.
-
-# Parameters
-
 ## `n`
 A position on the toolbar
 
@@ -27317,9 +26838,6 @@ the current style of `self`
 Insert a `ToolItem` into the toolbar at position `pos`. If `pos` is
 0 the item is prepended to the start of the toolbar. If `pos` is
 negative, the item is appended to the end of the toolbar.
-
-# Parameters
-
 ## `item`
 a `ToolItem`
 ## `pos`
@@ -27334,9 +26852,6 @@ The `tool_item` passed to this function must not be part of any widget
 hierarchy. When an item is set as drop highlight item it can not
 added to any widget hierarchy or used as highlight item for another
 toolbar.
-
-# Parameters
-
 ## `tool_item`
 a `ToolItem`, or `None` to turn of highlighting
 ## `index_`
@@ -27350,9 +26865,6 @@ icon size.
 This should only be used for special-purpose toolbars, normal
 application toolbars should respect the user preferences for the
 size of icons.
-
-# Parameters
-
 ## `icon_size`
 The `IconSize` that stock icons in the toolbar shall have.
 <!-- impl Toolbar::fn set_show_arrow -->
@@ -27360,16 +26872,10 @@ Sets whether to show an overflow menu when
 `self` doesn’t have room for all items on it. If `true`,
 items that there are not room are available through an
 overflow menu.
-
-# Parameters
-
 ## `show_arrow`
 Whether to show an overflow menu
 <!-- impl Toolbar::fn set_style -->
 Alters the view of `self` to display either icons only, text only, or both.
-
-# Parameters
-
 ## `style`
 the new style for `self`.
 <!-- impl Toolbar::fn unset_icon_size -->
@@ -27378,6 +26884,48 @@ user preferences will be used to determine the icon size.
 <!-- impl Toolbar::fn unset_style -->
 Unsets a toolbar style set with `Toolbar::set_style`, so that
 user preferences will be used to determine the toolbar style.
+<!-- enum ToolbarSpaceStyle -->
+Whether spacers are vertical lines or just blank.
+<!-- enum ToolbarSpaceStyle::variant Empty -->
+Use blank spacers.
+<!-- enum ToolbarSpaceStyle::variant Line -->
+Use vertical lines for spacers.
+<!-- enum ToolbarStyle -->
+Used to customize the appearance of a `Toolbar`. Note that
+setting the toolbar style overrides the user’s preferences
+for the default toolbar style. Note that if the button has only
+a label set and GTK_TOOLBAR_ICONS is used, the label will be
+visible, and vice versa.
+<!-- enum ToolbarStyle::variant Icons -->
+Buttons display only icons in the toolbar.
+<!-- enum ToolbarStyle::variant Text -->
+Buttons display only text labels in the toolbar.
+<!-- enum ToolbarStyle::variant Both -->
+Buttons display text and icons in the toolbar.
+<!-- enum ToolbarStyle::variant BothHoriz -->
+Buttons display icons and text alongside each
+ other, rather than vertically stacked
+<!-- struct TreeIter -->
+The `TreeIter` is the primary structure
+for accessing a `TreeModel`. Models are expected to put a unique
+integer in the `stamp` member, and put
+model-specific data in the three `user_data`
+members.
+<!-- impl TreeIter::fn copy -->
+Creates a dynamically allocated tree iterator as a copy of `self`.
+
+This function is not intended for use in applications,
+because you can just copy the structs by value
+(`GtkTreeIter new_iter = iter;`).
+You must free this iter with `TreeIter::free`.
+
+# Returns
+
+a newly-allocated copy of `self`
+<!-- impl TreeIter::fn free -->
+Frees an iterator that has been allocated by `TreeIter::copy`.
+
+This function is mainly used for language bindings.
 <!-- struct TreeModel -->
 The `TreeModel` interface defines a generic tree interface for
 use by the `TreeView` widget. It is an abstract interface, and
@@ -27581,12 +27129,13 @@ into account:
 [`TreeModelExt`](trait.TreeModelExt.html)
 <!-- trait TreeModelExt -->
 Trait containing all `TreeModel` methods.
+
+# Implementors
+
+[`ListStore`](struct.ListStore.html), [`TreeModel`](struct.TreeModel.html), [`TreeSortable`](struct.TreeSortable.html), [`TreeStore`](struct.TreeStore.html)
 <!-- trait TreeModelExt::fn filter_new -->
 Creates a new `TreeModel`, with `self` as the child_model
 and `root` as the virtual root.
-
-# Parameters
-
 ## `root`
 A `TreePath` or `None`.
 
@@ -27598,9 +27147,6 @@ Calls func on each node in model in a depth-first fashion.
 
 If `func` returns `true`, then the tree ceases to be walked,
 and `TreeModel::foreach` returns.
-
-# Parameters
-
 ## `func`
 a function to be called on each row
 ## `user_data`
@@ -27618,16 +27164,10 @@ to be filled with the string.
 Returned values with type `G_TYPE_OBJECT` have to be unreferenced,
 values with type `G_TYPE_STRING` or `G_TYPE_BOXED` have to be freed.
 Other values are passed by value.
-
-# Parameters
-
 ## `iter`
 a row in `self`
 <!-- trait TreeModelExt::fn get_column_type -->
 Returns the type of the column.
-
-# Parameters
-
 ## `index_`
 the column index
 
@@ -27647,9 +27187,6 @@ the flags supported by this interface
 <!-- trait TreeModelExt::fn get_iter -->
 Sets `iter` to a valid iterator pointing to `path`. If `path` does
 not exist, `iter` is set to an invalid iterator and `false` is returned.
-
-# Parameters
-
 ## `iter`
 the uninitialized `TreeIter`-struct
 ## `path`
@@ -27662,9 +27199,6 @@ the `TreePath`-struct
 Initializes `iter` with the first iterator in the tree
 (the one at the path "0") and returns `true`. Returns
 `false` if the tree is empty.
-
-# Parameters
-
 ## `iter`
 the uninitialized `TreeIter`-struct
 
@@ -27674,9 +27208,6 @@ the uninitialized `TreeIter`-struct
 <!-- trait TreeModelExt::fn get_iter_from_string -->
 Sets `iter` to a valid iterator pointing to `path_string`, if it
 exists. Otherwise, `iter` is left invalid and `false` is returned.
-
-# Parameters
-
 ## `iter`
 an uninitialized `TreeIter`-struct
 ## `path_string`
@@ -27695,9 +27226,6 @@ the number of columns
 Returns a newly-created `TreePath`-struct referenced by `iter`.
 
 This path should be freed with `TreePath::free`.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
 
@@ -27710,9 +27238,6 @@ Generates a string representation of the iter.
 This string is a “:” separated list of numbers.
 For example, “4:10:0:3” would be an acceptable
 return value for this string.
-
-# Parameters
-
 ## `iter`
 a `TreeIter`-struct
 
@@ -27723,9 +27248,6 @@ a newly-allocated string.
 <!-- trait TreeModelExt::fn get_valist -->
 See `TreeModel::get`, this version takes a va_list
 for language bindings to use.
-
-# Parameters
-
 ## `iter`
 a row in `self`
 ## `var_args`
@@ -27735,9 +27257,6 @@ Initializes and sets `value` to that at `column`.
 
 When done with `value`, `gobject::Value::unset` needs to be called
 to free any allocated memory.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
 ## `column`
@@ -27753,9 +27272,6 @@ function has been called.
 
 If `parent` is `None` returns the first node, equivalent to
 `gtk_tree_model_get_iter_first (tree_model, iter);`
-
-# Parameters
-
 ## `iter`
 the new `TreeIter`-struct to be set to the child
 ## `parent`
@@ -27766,9 +27282,6 @@ the `TreeIter`-struct, or `None`
 `true`, if `child` has been set to the first child
 <!-- trait TreeModelExt::fn iter_has_child -->
 Returns `true` if `iter` has children, `false` otherwise.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct to test for children
 
@@ -27780,9 +27293,6 @@ Returns the number of children that `iter` has.
 
 As a special case, if `iter` is `None`, then the number
 of toplevel nodes is returned.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct, or `None`
 
@@ -27794,9 +27304,6 @@ Sets `iter` to point to the node following it at the current level.
 
 If there is no next `iter`, `false` is returned and `iter` is set
 to be invalid.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
 
@@ -27811,9 +27318,6 @@ The first index is 0. If `n` is too big, or `parent` has no children,
 will remain a valid node after this function has been called. As a
 special case, if `parent` is `None`, then the `n`-th root node
 is set.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct to set to the nth child
 ## `parent`
@@ -27831,9 +27335,6 @@ If `child` is at the toplevel, and doesn’t have a parent, then
 `iter` is set to an invalid iterator and `false` is returned.
 `child` will remain a valid node after this function has been
 called.
-
-# Parameters
-
 ## `iter`
 the new `TreeIter`-struct to set to the parent
 ## `child`
@@ -27847,9 +27348,6 @@ Sets `iter` to point to the previous node at the current level.
 
 If there is no previous `iter`, `false` is returned and `iter` is
 set to be invalid.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
 
@@ -27874,16 +27372,10 @@ every current view.
 
 A model should be expected to be able to get an iter independent
 of its reffed state.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
 <!-- trait TreeModelExt::fn row_changed -->
 Emits the `TreeModel::row-changed` signal on `self`.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the changed row
 ## `iter`
@@ -27897,9 +27389,6 @@ the row previously was at. It may not be a valid location anymore.
 
 Nodes that are deleted are not unreffed, this means that any
 outstanding references on the deleted node should not be released.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the previous location of
  the deleted row
@@ -27907,18 +27396,12 @@ a `TreePath`-struct pointing to the previous location of
 Emits the `TreeModel::row-has-child-toggled` signal on
 `self`. This should be called by models after the child
 state of a node changes.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the changed row
 ## `iter`
 a valid `TreeIter`-struct pointing to the changed row
 <!-- trait TreeModelExt::fn row_inserted -->
 Emits the `TreeModel::row-inserted` signal on `self`.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the inserted row
 ## `iter`
@@ -27928,9 +27411,6 @@ Emits the `TreeModel::rows-reordered` signal on `self`.
 
 This should be called by models when their rows have been
 reordered.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the tree node whose children
  have been reordered
@@ -27946,9 +27426,6 @@ Emits the `TreeModel::rows-reordered` signal on `self`.
 
 This should be called by models when their rows have been
 reordered.
-
-# Parameters
-
 ## `path`
 a `TreePath`-struct pointing to the tree node whose children
  have been reordered
@@ -27978,11 +27455,163 @@ primarily for performance reasons. For more information on what
 this means, see `TreeModel::ref_node`.
 
 Please note that nodes that are deleted are not unreffed.
-
-# Parameters
-
 ## `iter`
 the `TreeIter`-struct
+<!-- impl TreePath::fn new -->
+Creates a new `TreePath`-struct.
+This refers to a row.
+
+# Returns
+
+A newly created `TreePath`-struct.
+<!-- impl TreePath::fn new_first -->
+Creates a new `TreePath`-struct.
+
+The string representation of this path is “0”.
+
+# Returns
+
+A new `TreePath`-struct
+<!-- impl TreePath::fn new_from_indices -->
+Creates a new path with `first_index` and `varargs` as indices.
+## `first_index`
+first integer
+
+# Returns
+
+A newly created `TreePath`-struct
+<!-- impl TreePath::fn new_from_indicesv -->
+Creates a new path with the given `indices` array of `length`.
+## `indices`
+array of indices
+## `length`
+length of `indices` array
+
+# Returns
+
+A newly created `TreePath`-struct
+<!-- impl TreePath::fn new_from_string -->
+Creates a new `TreePath`-struct initialized to `path`.
+
+`path` is expected to be a colon separated list of numbers.
+For example, the string “10:4:0” would create a path of depth
+3 pointing to the 11th child of the root node, the 5th
+child of that 11th child, and the 1st child of that 5th child.
+If an invalid path string is passed in, `None` is returned.
+## `path`
+The string representation of a path
+
+# Returns
+
+A newly-created `TreePath`-struct, or `None`
+<!-- impl TreePath::fn append_index -->
+Appends a new index to a path.
+
+As a result, the depth of the path is increased.
+## `index_`
+the index
+<!-- impl TreePath::fn compare -->
+Compares two paths.
+
+If `self` appears before `b` in a tree, then -1 is returned.
+If `b` appears before `self`, then 1 is returned.
+If the two nodes are equal, then 0 is returned.
+## `b`
+a `TreePath`-struct to compare with
+
+# Returns
+
+the relative positions of `self` and `b`
+<!-- impl TreePath::fn copy -->
+Creates a new `TreePath`-struct as a copy of `self`.
+
+# Returns
+
+a new `TreePath`-struct
+<!-- impl TreePath::fn down -->
+Moves `self` to point to the first child of the current path.
+<!-- impl TreePath::fn free -->
+Frees `self`. If `self` is `None`, it simply returns.
+<!-- impl TreePath::fn get_depth -->
+Returns the current depth of `self`.
+
+# Returns
+
+The depth of `self`
+<!-- impl TreePath::fn get_indices -->
+Returns the current indices of `self`.
+
+This is an array of integers, each representing a node in a tree.
+This value should not be freed.
+
+The length of the array can be obtained with `TreePath::get_depth`.
+
+# Returns
+
+The current indices, or `None`
+<!-- impl TreePath::fn get_indices_with_depth -->
+Returns the current indices of `self`.
+
+This is an array of integers, each representing a node in a tree.
+It also returns the number of elements in the array.
+The array should not be freed.
+## `depth`
+return location for number of elements
+ returned in the integer array, or `None`
+
+# Returns
+
+The current
+ indices, or `None`
+<!-- impl TreePath::fn is_ancestor -->
+Returns `true` if `descendant` is a descendant of `self`.
+## `descendant`
+another `TreePath`-struct
+
+# Returns
+
+`true` if `descendant` is contained inside `self`
+<!-- impl TreePath::fn is_descendant -->
+Returns `true` if `self` is a descendant of `ancestor`.
+## `ancestor`
+another `TreePath`-struct
+
+# Returns
+
+`true` if `ancestor` contains `self` somewhere below it
+<!-- impl TreePath::fn next -->
+Moves the `self` to point to the next node at the current depth.
+<!-- impl TreePath::fn prepend_index -->
+Prepends a new index to a path.
+
+As a result, the depth of the path is increased.
+## `index_`
+the index
+<!-- impl TreePath::fn prev -->
+Moves the `self` to point to the previous node at the
+current depth, if it exists.
+
+# Returns
+
+`true` if `self` has a previous node, and
+ the move was made
+<!-- impl TreePath::fn to_string -->
+Generates a string representation of the path.
+
+This string is a “:” separated list of numbers.
+For example, “4:10:0:3” would be an acceptable
+return value for this string.
+
+# Returns
+
+A newly-allocated string.
+ Must be freed with `g_free`.
+<!-- impl TreePath::fn up -->
+Moves the `self` to point to its parent node, if it has a parent.
+
+# Returns
+
+`true` if `self` has a parent, and the move was made
 <!-- struct TreeSelection -->
 The `TreeSelection` object is a helper object to manage the selection
 for a `TreeView` widget. The `TreeSelection` object is
@@ -28007,10 +27636,6 @@ That is, it may only emit one signal when a range of rows is selected.
 Additionally, it may on occasion emit a `TreeSelection::changed` signal
 when nothing has happened (mostly as a result of programmers calling
 select_row on an already selected row).
-
-# Implements
-
-
 <!-- impl TreeSelection::fn count_selected_rows -->
 Returns the number of rows that have been selected in `tree`.
 
@@ -28036,9 +27661,6 @@ Sets `iter` to the currently selected node if `self` is set to
 just want to test if `self` has any selected nodes. `model` is filled
 with the current model as a convenience. This function will not work if you
 use `self` is `SelectionMode::Multiple`.
-
-# Parameters
-
 ## `model`
 A pointer to set to the `TreeModel`, or NULL.
 ## `iter`
@@ -28058,9 +27680,6 @@ To free the return value, use:
 ```C
 g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
 ```
-
-# Parameters
-
 ## `model`
 A pointer to set to the `TreeModel`, or `None`.
 
@@ -28081,9 +27700,6 @@ Returns the user data for the selection function.
 The user data.
 <!-- impl TreeSelection::fn iter_is_selected -->
 Returns `true` if the row at `iter` is currently selected.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter`
 
@@ -28093,9 +27709,6 @@ A valid `TreeIter`
 <!-- impl TreeSelection::fn path_is_selected -->
 Returns `true` if the row pointed to by `path` is currently selected. If `path`
 does not point to a valid location, `false` is returned
-
-# Parameters
-
 ## `path`
 A `TreePath` to check selection on.
 
@@ -28107,24 +27720,15 @@ Selects all the nodes. `self` must be set to `SelectionMode::Multiple`
 mode.
 <!-- impl TreeSelection::fn select_iter -->
 Selects the specified iterator.
-
-# Parameters
-
 ## `iter`
 The `TreeIter` to be selected.
 <!-- impl TreeSelection::fn select_path -->
 Select the row at `path`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be selected.
 <!-- impl TreeSelection::fn select_range -->
 Selects a range of nodes, determined by `start_path` and `end_path` inclusive.
 `self` must be set to `SelectionMode::Multiple` mode.
-
-# Parameters
-
 ## `start_path`
 The initial node of the range.
 ## `end_path`
@@ -28133,9 +27737,6 @@ The final node of the range.
 Calls a function for each selected node. Note that you cannot modify
 the tree or selection from within this function. As a result,
 `TreeSelection::get_selected_rows` might be more useful.
-
-# Parameters
-
 ## `func`
 The function to call for each selected node.
 ## `data`
@@ -28144,9 +27745,6 @@ user data to pass to the function.
 Sets the selection mode of the `self`. If the previous type was
 `SelectionMode::Multiple`, then the anchor is kept selected, if it was
 previously selected.
-
-# Parameters
-
 ## `type_`
 The selection mode
 <!-- impl TreeSelection::fn set_select_function -->
@@ -28156,9 +27754,6 @@ If set, this function is called before any node is selected or unselected,
 giving some control over which nodes are selected. The select function
 should return `true` if the state of the node may be toggled, and `false`
 if the state of the node should be left unchanged.
-
-# Parameters
-
 ## `func`
 The selection function. May be `None`
 ## `data`
@@ -28169,24 +27764,15 @@ The destroy function for user data. May be `None`
 Unselects all the nodes.
 <!-- impl TreeSelection::fn unselect_iter -->
 Unselects the specified iterator.
-
-# Parameters
-
 ## `iter`
 The `TreeIter` to be unselected.
 <!-- impl TreeSelection::fn unselect_path -->
 Unselects the row at `path`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be unselected.
 <!-- impl TreeSelection::fn unselect_range -->
 Unselects a range of nodes, determined by `start_path` and `end_path`
 inclusive.
-
-# Parameters
-
 ## `start_path`
 The initial node of the range.
 ## `end_path`
@@ -28201,14 +27787,15 @@ to sort the model.
 [`TreeSortableExt`](trait.TreeSortableExt.html), [`TreeModelExt`](trait.TreeModelExt.html)
 <!-- trait TreeSortableExt -->
 Trait containing all `TreeSortable` methods.
+
+# Implementors
+
+[`ListStore`](struct.ListStore.html), [`TreeSortable`](struct.TreeSortable.html), [`TreeStore`](struct.TreeStore.html)
 <!-- trait TreeSortableExt::fn get_sort_column_id -->
 Fills in `sort_column_id` and `order` with the current sort column and the
 order. It returns `true` unless the `sort_column_id` is
 `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID` or
 `GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID`.
-
-# Parameters
-
 ## `sort_column_id`
 The sort column id to be filled in
 ## `order`
@@ -28236,9 +27823,6 @@ If `sort_func` is `None`, then there will be no default comparison function.
 This means that once the model has been sorted, it can’t go back to the
 default state. In this case, when the current sort column id of `self`
 is `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID`, the model will be unsorted.
-
-# Parameters
-
 ## `sort_func`
 The comparison function
 ## `user_data`
@@ -28255,9 +27839,6 @@ a regular column id, or one of the following special values:
  will be used, if it is set
 
 - `GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID`: no sorting will occur
-
-# Parameters
-
 ## `sort_column_id`
 the sort column id to set
 ## `order`
@@ -28266,9 +27847,6 @@ The sort order of the column
 Sets the comparison function used when sorting to be `sort_func`. If the
 current sort column id of `self` is the same as `sort_column_id`, then
 the model will sort using this function.
-
-# Parameters
-
 ## `sort_column_id`
 the sort column id to set the function for
 ## `sort_func`
@@ -28318,9 +27896,6 @@ are supported.
 As an example, `gtk_tree_store_new (3, G_TYPE_INT, G_TYPE_STRING,
 GDK_TYPE_PIXBUF);` will create a new `TreeStore` with three columns, of type
 `gint`, `gchararray`, and `gdk_pixbuf::Pixbuf` respectively.
-
-# Parameters
-
 ## `n_columns`
 number of columns in the tree store
 
@@ -28329,9 +27904,6 @@ number of columns in the tree store
 a new `TreeStore`
 <!-- impl TreeStore::fn newv -->
 Non vararg creation function. Used primarily by language bindings.
-
-# Parameters
-
 ## `n_columns`
 number of columns in the tree store
 ## `types`
@@ -28346,9 +27918,6 @@ new row after the last child of `parent`, otherwise it will append a row to
 the top level. `iter` will be changed to point to this new row. The row will
 be empty after this function is called. To fill in values, you need to call
 `TreeStore::set` or `TreeStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the appended row
 ## `parent`
@@ -28363,9 +27932,6 @@ the new row will be inserted to the end of the list. `iter` will be changed
 to point to this new row. The row will be empty after this function is
 called. To fill in values, you need to call `TreeStore::set` or
 `TreeStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `parent`
@@ -28382,9 +27948,6 @@ set, then `parent` must be the parent of `sibling`. When `sibling` is set,
 `iter` will be changed to point to this new row. The row will be empty after
 this function is called. To fill in values, you need to call
 `TreeStore::set` or `TreeStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `parent`
@@ -28401,9 +27964,6 @@ set, then `parent` must be the parent of `sibling`. When `sibling` is set,
 `iter` will be changed to point to this new row. The row will be empty after
 this function is called. To fill in values, you need to call
 `TreeStore::set` or `TreeStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the new row
 ## `parent`
@@ -28430,9 +27990,6 @@ is sorted, rows_reordered. Since emitting the rows_reordered signal
 repeatedly can affect the performance of the program,
 `TreeStore::insert_with_values` should generally be preferred when
 inserting rows in a sorted tree store.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set the new row, or `None`.
 ## `parent`
@@ -28443,9 +28000,6 @@ position to insert the new row, or -1 to append after existing rows
 A variant of `TreeStore::insert_with_values` which takes
 the columns and values as two arrays, instead of varargs. This
 function is mainly intended for language bindings.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set the new row, or `None`.
 ## `parent`
@@ -28461,9 +28015,6 @@ the length of the `columns` and `values` arrays
 <!-- impl TreeStore::fn is_ancestor -->
 Returns `true` if `iter` is an ancestor of `descendant`. That is, `iter` is the
 parent (or grandparent or great-grandparent) of `descendant`.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter`
 ## `descendant`
@@ -28475,9 +28026,6 @@ A valid `TreeIter`
 <!-- impl TreeStore::fn iter_depth -->
 Returns the depth of `iter`. This will be 0 for anything on the root level, 1
 for anything down a level, etc.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter`
 
@@ -28489,9 +28037,6 @@ WARNING: This function is slow. Only use it for debugging and/or testing
 purposes.
 
 Checks if the given iter is a valid iter for this `TreeStore`.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 
@@ -28503,9 +28048,6 @@ Moves `iter` in `self` to the position after `position`. `iter` and
 `position` should be in the same level. Note that this function only
 works with unsorted stores. If `position` is `None`, `iter` will be moved
 to the start of the level.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 ## `position`
@@ -28515,9 +28057,6 @@ Moves `iter` in `self` to the position before `position`. `iter` and
 `position` should be in the same level. Note that this function only
 works with unsorted stores. If `position` is `None`, `iter` will be
 moved to the end of the level.
-
-# Parameters
-
 ## `iter`
 A `TreeIter`.
 ## `position`
@@ -28528,9 +28067,6 @@ the new row before the first child of `parent`, otherwise it will prepend a row
 to the top level. `iter` will be changed to point to this new row. The row
 will be empty after this function is called. To fill in values, you need to
 call `TreeStore::set` or `TreeStore::set_value`.
-
-# Parameters
-
 ## `iter`
 An unset `TreeIter` to set to the prepended row
 ## `parent`
@@ -28539,9 +28075,6 @@ A valid `TreeIter`, or `None`
 Removes `iter` from `self`. After being removed, `iter` is set to the
 next valid row at that level, or invalidated if it previously pointed to the
 last one.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter`
 
@@ -28552,9 +28085,6 @@ A valid `TreeIter`
 Reorders the children of `parent` in `self` to follow the order
 indicated by `new_order`. Note that this function only works with
 unsorted stores.
-
-# Parameters
-
 ## `parent`
 A `TreeIter`, or `None`
 ## `new_order`
@@ -28571,9 +28101,6 @@ The list is terminated by a -1. For example, to set column 0 with type
 
 The value will be referenced by the store if it is a `G_TYPE_OBJECT`, and it
 will be copied if it is a `G_TYPE_STRING` or `G_TYPE_BOXED`.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 <!-- impl TreeStore::fn set_column_types -->
@@ -28581,9 +28108,6 @@ This function is meant primarily for `GObjects` that inherit from
 `TreeStore`, and should only be used when constructing a new
 `TreeStore`. It will not function after a row has been added,
 or a method on the `TreeModel` interface is called.
-
-# Parameters
-
 ## `n_columns`
 Number of columns for the tree store
 ## `types`
@@ -28591,9 +28115,6 @@ An array of `glib::Type` types, one for each column
 <!-- impl TreeStore::fn set_valist -->
 See `TreeStore::set`; this version takes a va_list for
 use by language bindings.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `var_args`
@@ -28602,9 +28123,6 @@ va_list of column/value pairs
 Sets the data in the cell specified by `iter` and `column`.
 The type of `value` must be convertible to the type of the
 column.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `column`
@@ -28616,9 +28134,6 @@ A variant of `TreeStore::set_valist` which takes
 the columns and values as two arrays, instead of varargs. This
 function is mainly intended for language bindings or in case
 the number of columns to change is not known until run-time.
-
-# Parameters
-
 ## `iter`
 A valid `TreeIter` for the row being modified
 ## `columns`
@@ -28630,9 +28145,6 @@ the length of the `columns` and `values` arrays
 <!-- impl TreeStore::fn swap -->
 Swaps `a` and `b` in the same level of `self`. Note that this function
 only works with unsorted stores.
-
-# Parameters
-
 ## `a`
 A `TreeIter`.
 ## `b`
@@ -28707,9 +28219,6 @@ Creates a new `TreeView` widget.
 A newly created `TreeView` widget.
 <!-- impl TreeView::fn new_with_model -->
 Creates a new `TreeView` widget with the model initialized to `model`.
-
-# Parameters
-
 ## `model`
 the model.
 
@@ -28720,9 +28229,6 @@ A newly created `TreeView` widget.
 Appends `column` to the list of columns. If `self` has “fixed_height”
 mode enabled, then `column` must have its “sizing” property set to be
 GTK_TREE_VIEW_COLUMN_FIXED.
-
-# Parameters
-
 ## `column`
 The `TreeViewColumn` to add.
 
@@ -28733,9 +28239,6 @@ The number of columns in `self` after appending.
 Recursively collapses all visible, expanded nodes in `self`.
 <!-- impl TreeView::fn collapse_row -->
 Collapses a row (hides its child rows, if they exist).
-
-# Parameters
-
 ## `path`
 path to a row in the `self`
 
@@ -28748,9 +28251,6 @@ treeview has been realized.
 <!-- impl TreeView::fn convert_bin_window_to_tree_coords -->
 Converts bin_window coordinates to coordinates for the
 tree (the full scrollable area of the tree).
-
-# Parameters
-
 ## `bx`
 X coordinate relative to bin_window
 ## `by`
@@ -28762,9 +28262,6 @@ return location for tree Y coordinate
 <!-- impl TreeView::fn convert_bin_window_to_widget_coords -->
 Converts bin_window coordinates (see `TreeView::get_bin_window`)
 to widget relative coordinates.
-
-# Parameters
-
 ## `bx`
 bin_window X coordinate
 ## `by`
@@ -28776,9 +28273,6 @@ return location for widget Y coordinate
 <!-- impl TreeView::fn convert_tree_to_bin_window_coords -->
 Converts tree coordinates (coordinates in full scrollable area of the tree)
 to bin_window coordinates.
-
-# Parameters
-
 ## `tx`
 tree X coordinate
 ## `ty`
@@ -28790,9 +28284,6 @@ return location for Y coordinate relative to bin_window
 <!-- impl TreeView::fn convert_tree_to_widget_coords -->
 Converts tree coordinates (coordinates in full scrollable area of the tree)
 to widget coordinates.
-
-# Parameters
-
 ## `tx`
 X coordinate relative to the tree
 ## `ty`
@@ -28804,9 +28295,6 @@ return location for widget Y coordinate
 <!-- impl TreeView::fn convert_widget_to_bin_window_coords -->
 Converts widget coordinates to coordinates for the bin_window
 (see `TreeView::get_bin_window`).
-
-# Parameters
-
 ## `wx`
 X coordinate relative to the widget
 ## `wy`
@@ -28818,9 +28306,6 @@ return location for bin_window Y coordinate
 <!-- impl TreeView::fn convert_widget_to_tree_coords -->
 Converts widget coordinates to coordinates for the
 tree (the full scrollable area of the tree).
-
-# Parameters
-
 ## `wx`
 X coordinate relative to the widget
 ## `wy`
@@ -28832,9 +28317,6 @@ return location for tree Y coordinate
 <!-- impl TreeView::fn create_row_drag_icon -->
 Creates a `cairo::Surface` representation of the row at `path`.
 This image is used for a drag icon.
-
-# Parameters
-
 ## `path`
 a `TreePath` in `self`
 
@@ -28844,9 +28326,6 @@ a newly-allocated surface of the drag icon.
 <!-- impl TreeView::fn enable_model_drag_dest -->
 Turns `self` into a drop destination for automatic DND. Calling
 this method sets `TreeView:reorderable` to `false`.
-
-# Parameters
-
 ## `targets`
 the table of targets that
  the drag will support
@@ -28858,9 +28337,6 @@ the bitmask of possible actions for a drag from this
 <!-- impl TreeView::fn enable_model_drag_source -->
 Turns `self` into a drag source for automatic DND. Calling this
 method sets `TreeView:reorderable` to `false`.
-
-# Parameters
-
 ## `start_button_mask`
 Mask of allowed buttons to start drag
 ## `targets`
@@ -28874,9 +28350,6 @@ the bitmask of possible actions for a drag from this
 Recursively expands all nodes in the `self`.
 <!-- impl TreeView::fn expand_row -->
 Opens the row so its children are visible.
-
-# Parameters
-
 ## `path`
 path to a row
 ## `open_all`
@@ -28888,9 +28361,6 @@ whether to recursively expand, or just expand immediate children
 <!-- impl TreeView::fn expand_to_path -->
 Expands the row at `path`. This will also expand all parent rows of
 `path` as necessary.
-
-# Parameters
-
 ## `path`
 path to a row.
 <!-- impl TreeView::fn get_activate_on_single_click -->
@@ -28909,9 +28379,6 @@ fields will be filled with 0. The returned rectangle is equivalent to the
 areas tile to cover the entire bin window. Contrast with the `cell_area`,
 returned by `TreeView::get_cell_area`, which returns only the cell
 itself, excluding surrounding borders and the tree expander area.
-
-# Parameters
-
 ## `path`
 a `TreePath` for the row, or `None` to get only horizontal coordinates
 ## `column`
@@ -28937,9 +28404,6 @@ entire tree; there are extra pixels in between rows, for example. The
 returned rectangle is equivalent to the `cell_area` passed to
 `CellRendererExt::render`. This function is only valid if `self` is
 realized.
-
-# Parameters
-
 ## `path`
 a `TreePath` for the row, or `None` to get only horizontal coordinates
 ## `column`
@@ -28948,9 +28412,6 @@ a `TreeViewColumn` for the column, or `None` to get only vertical coordinates
 rectangle to fill with cell rect
 <!-- impl TreeView::fn get_column -->
 Gets the `TreeViewColumn` at the given position in the `tree_view`.
-
-# Parameters
-
 ## `n`
 The position of the column, counting from 0.
 
@@ -28972,9 +28433,6 @@ currently has focus, then *`focus_column` will be `None`.
 
 The returned `TreePath` must be freed with `TreePath::free` when
 you are done with it.
-
-# Parameters
-
 ## `path`
 A pointer to be
  filled with the current cursor path, or `None`
@@ -28986,9 +28444,6 @@ Determines the destination row for a given position. `drag_x` and
 `drag_y` are expected to be in widget coordinates. This function is only
 meaningful if `self` is realized. Therefore this function will always
 return `false` if `self` is not realized or does not have a model.
-
-# Parameters
-
 ## `drag_x`
 the position to determine the destination row for
 ## `drag_y`
@@ -29006,9 +28461,6 @@ whether there is a row at the given position, `true` if this
 is indeed the case.
 <!-- impl TreeView::fn get_drag_dest_row -->
 Gets information about the row that is highlighted for feedback.
-
-# Parameters
-
 ## `path`
 Return location for the path of the highlighted row, or `None`.
 ## `pos`
@@ -29122,9 +28574,6 @@ if `self` is not realized or does not have a model.
 For converting widget coordinates (eg. the ones you get from
 `Widget`::query-tooltip), please see
 `TreeView::convert_widget_to_bin_window_coords`.
-
-# Parameters
-
 ## `x`
 The x position to be identified (relative to bin_window).
 ## `y`
@@ -29231,9 +28680,6 @@ tooltips the row returned will be the cursor row. When `true`, then any of
 `model`, `path` and `iter` which have been provided will be set to point to
 that row and the corresponding model. `x` and `y` will always be converted
 to be relative to `self`’s bin_window if `keyboard_tooltip` is `false`.
-
-# Parameters
-
 ## `x`
 the x coordinate (relative to widget coordinates)
 ## `y`
@@ -29267,9 +28713,6 @@ Sets `start_path` and `end_path` to be the first and last visible path.
 Note that there may be invisible paths in between.
 
 The paths should be freed with `TreePath::free` after use.
-
-# Parameters
-
 ## `start_path`
 Return location for start of region,
  or `None`.
@@ -29285,9 +28728,6 @@ buffer, in tree coordinates. Convert to bin_window coordinates with
 `TreeView::convert_tree_to_bin_window_coords`.
 Tree coordinates start at 0,0 for row 0 of the tree, and cover the entire
 scrollable area of the tree.
-
-# Parameters
-
 ## `visible_rect`
 rectangle to fill
 <!-- impl TreeView::fn insert_column -->
@@ -29295,9 +28735,6 @@ This inserts the `column` into the `self` at `position`. If `position` is
 -1, then the column is inserted at the end. If `self` has
 “fixed_height” mode enabled, then `column` must have its “sizing” property
 set to be GTK_TREE_VIEW_COLUMN_FIXED.
-
-# Parameters
-
 ## `column`
 The `TreeViewColumn` to be inserted.
 ## `position`
@@ -29312,9 +28749,6 @@ Creates a new `TreeViewColumn` and inserts it into the `self` at
 the end. The column is initialized with the attributes given. If `self`
 has “fixed_height” mode enabled, then the new column will have its sizing
 property set to be GTK_TREE_VIEW_COLUMN_FIXED.
-
-# Parameters
-
 ## `position`
 The position to insert the new column in
 ## `title`
@@ -29332,9 +28766,6 @@ attributes (normally using data from the model). See also
 `TreeViewColumn::set_cell_data_func`, `TreeViewColumn::pack_start`.
 If `self` has “fixed_height” mode enabled, then the new column will have its
 “sizing” property set to be GTK_TREE_VIEW_COLUMN_FIXED.
-
-# Parameters
-
 ## `position`
 Position to insert, -1 for append
 ## `title`
@@ -29369,9 +28800,6 @@ For converting widget coordinates (eg. the ones you get from
 The `path`, `column`, `cell_x` and `cell_y` arguments will be filled in
 likewise as for `TreeView::get_path_at_pos`. Please see
 `TreeView::get_path_at_pos` for more information.
-
-# Parameters
-
 ## `x`
 The x position to be identified (relative to bin_window)
 ## `y`
@@ -29399,9 +28827,6 @@ in `self`.
 done in `self`.
 <!-- impl TreeView::fn map_expanded_rows -->
 Calls `func` on all expanded rows.
-
-# Parameters
-
 ## `func`
 A function to be called
 ## `data`
@@ -29409,18 +28834,12 @@ User data to be passed to the function.
 <!-- impl TreeView::fn move_column_after -->
 Moves `column` to be after to `base_column`. If `base_column` is `None`, then
 `column` is placed in the first position.
-
-# Parameters
-
 ## `column`
 The `TreeViewColumn` to be moved.
 ## `base_column`
 The `TreeViewColumn` to be moved relative to, or `None`.
 <!-- impl TreeView::fn remove_column -->
 Removes `column` from `self`.
-
-# Parameters
-
 ## `column`
 The `TreeViewColumn` to remove.
 
@@ -29429,18 +28848,12 @@ The `TreeViewColumn` to remove.
 The number of columns in `self` after removing.
 <!-- impl TreeView::fn row_activated -->
 Activates the cell determined by `path` and `column`.
-
-# Parameters
-
 ## `path`
 The `TreePath` to be activated.
 ## `column`
 The `TreeViewColumn` to be activated.
 <!-- impl TreeView::fn row_expanded -->
 Returns `true` if the node pointed to by `path` is expanded in `self`.
-
-# Parameters
-
 ## `path`
 A `TreePath` to test expansion state.
 
@@ -29464,9 +28877,6 @@ position. If the cell is currently visible on the screen, nothing is done.
 This function only works if the model is set, and `path` is a valid row on the
 model. If the model changes before the `self` is realized, the centered
 path will be modified to reflect this change.
-
-# Parameters
-
 ## `path`
 The path of the row to move to, or `None`.
 ## `column`
@@ -29485,9 +28895,6 @@ this function is called. If it isn't, you probably want to be
 using `TreeView::scroll_to_cell`.
 
 If either `tree_x` or `tree_y` are -1, then that direction isn’t scrolled.
-
-# Parameters
-
 ## `tree_x`
 X coordinate of new top-left pixel of visible area, or -1
 ## `tree_y`
@@ -29495,9 +28902,6 @@ Y coordinate of new top-left pixel of visible area, or -1
 <!-- impl TreeView::fn set_activate_on_single_click -->
 Cause the `TreeView::row-activated` signal to be emitted
 on a single click instead of a double click.
-
-# Parameters
-
 ## `single`
 `true` to emit row-activated on a single click
 <!-- impl TreeView::fn set_column_drag_function -->
@@ -29510,9 +28914,6 @@ dragged, the two `TreeViewColumn` s determining the drop spot, and
 are `None`, then they indicate an edge. If `func` is set to be `None`, then
 `self` reverts to the default behavior of allowing all columns to be
 dropped everywhere.
-
-# Parameters
-
 ## `func`
 A function to determine which columns are reorderable, or `None`.
 ## `user_data`
@@ -29531,9 +28932,6 @@ can only happen when the widget is realized.
 
 If `path` is invalid for `model`, the current cursor (if any) will be unset
 and the function will return without failing.
-
-# Parameters
-
 ## `path`
 A `TreePath`
 ## `focus_column`
@@ -29555,9 +28953,6 @@ realized.
 
 If `path` is invalid for `model`, the current cursor (if any) will be unset
 and the function will return without failing.
-
-# Parameters
-
 ## `path`
 A `TreePath`
 ## `focus_column`
@@ -29574,9 +28969,6 @@ user collapses a row, or a row is deleted.
 # Deprecated
 
 Accessibility does not need the function anymore.
-
-# Parameters
-
 ## `func`
 Function to be called when a view row is destroyed, or `None`
 ## `data`
@@ -29586,9 +28978,6 @@ Destroy notifier for `data`, or `None`
 <!-- impl TreeView::fn set_drag_dest_row -->
 Sets the row that is highlighted for feedback.
 If `path` is `None`, an existing highlight is removed.
-
-# Parameters
-
 ## `path`
 The path of the row to highlight, or `None`
 ## `pos`
@@ -29599,17 +28988,11 @@ the tree interactively (this is sometimes called "typeahead find").
 
 Note that even if this is `false`, the user can still initiate a search
 using the “start-interactive-search” key binding.
-
-# Parameters
-
 ## `enable_search`
 `true`, if the user can search interactively
 <!-- impl TreeView::fn set_enable_tree_lines -->
 Sets whether to draw lines interconnecting the expanders in `self`.
 This does not have any visible effects for lists.
-
-# Parameters
-
 ## `enabled`
 `true` to enable tree line drawing, `false` otherwise.
 <!-- impl TreeView::fn set_expander_column -->
@@ -29619,9 +29002,6 @@ visible column.
 
 If you do not want expander arrow to appear in your tree, set the
 expander column to a hidden column.
-
-# Parameters
-
 ## `column`
 `None`, or the column to draw the expander arrow at.
 <!-- impl TreeView::fn set_fixed_height_mode -->
@@ -29630,16 +29010,10 @@ Fixed height mode speeds up `TreeView` by assuming that all
 rows have the same height.
 Only enable this option if all rows are the same height and all
 columns are of type `TreeViewColumnSizing::Fixed`.
-
-# Parameters
-
 ## `enable`
 `true` to enable fixed height mode
 <!-- impl TreeView::fn set_grid_lines -->
 Sets which grid lines to draw in `self`.
-
-# Parameters
-
 ## `grid_lines`
 a `TreeViewGridLines` value indicating which grid lines to
 enable.
@@ -29649,32 +29023,20 @@ Sets the `Adjustment` for the current horizontal aspect.
 # Deprecated
 
 Use `Scrollable::set_hadjustment`
-
-# Parameters
-
 ## `adjustment`
 The `Adjustment` to set, or `None`
 <!-- impl TreeView::fn set_headers_clickable -->
 Allow the column title buttons to be clicked.
-
-# Parameters
-
 ## `setting`
 `true` if the columns are clickable.
 <!-- impl TreeView::fn set_headers_visible -->
 Sets the visibility state of the headers.
-
-# Parameters
-
 ## `headers_visible`
 `true` if the headers are visible
 <!-- impl TreeView::fn set_hover_expand -->
 Enables or disables the hover expansion mode of `self`.
 Hover expansion makes rows expand or collapse if the pointer
 moves over them.
-
-# Parameters
-
 ## `expand`
 `true` to enable hover selection mode
 <!-- impl TreeView::fn set_hover_selection -->
@@ -29682,9 +29044,6 @@ Enables or disables the hover selection mode of `self`.
 Hover selection makes the selected row follow the pointer.
 Currently, this works only for the selection modes
 `SelectionMode::Single` and `SelectionMode::Browse`.
-
-# Parameters
-
 ## `hover`
 `true` to enable hover selection mode
 <!-- impl TreeView::fn set_level_indentation -->
@@ -29693,18 +29052,12 @@ in addition to the default indentation. The value should be specified in
 pixels, a value of 0 disables this feature and in this case only the default
 indentation will be used.
 This does not have any visible effects for lists.
-
-# Parameters
-
 ## `indentation`
 the amount, in pixels, of extra indentation in `self`.
 <!-- impl TreeView::fn set_model -->
 Sets the model for a `TreeView`. If the `self` already has a model
 set, it will remove it before setting the new model. If `model` is `None`,
 then it will unset the old model.
-
-# Parameters
-
 ## `model`
 The model.
 <!-- impl TreeView::fn set_reorderable -->
@@ -29722,18 +29075,12 @@ other purpose.
 This function does not give you any degree of control over the order -- any
 reordering is allowed. If more control is needed, you should probably
 handle drag and drop manually.
-
-# Parameters
-
 ## `reorderable`
 `true`, if the tree can be reordered.
 <!-- impl TreeView::fn set_row_separator_func -->
 Sets the row separator function, which is used to determine
 whether a row should be drawn as a separator. If the row separator
 function is `None`, no separators are drawn. This is the default value.
-
-# Parameters
-
 ## `func`
 a ``GtkTreeViewRowSeparatorFunc``
 ## `data`
@@ -29744,9 +29091,6 @@ destroy notifier for `data`, or `None`
 Enables or disables rubber banding in `self`. If the selection mode
 is `SelectionMode::Multiple`, rubber banding will allow the user to select
 multiple rows by dragging the mouse.
-
-# Parameters
-
 ## `enable`
 `true` to enable rubber banding
 <!-- impl TreeView::fn set_rules_hint -->
@@ -29765,9 +29109,6 @@ themes. You should call this function only as a semantic hint to
 the theme engine that your tree makes alternating colors useful
 from a functional standpoint (since it has lots of columns,
 generally).
-
-# Parameters
-
 ## `setting`
 `true` if the tree requires reading across rows
 <!-- impl TreeView::fn set_search_column -->
@@ -29780,9 +29121,6 @@ whether simply typing text will also start an interactive search.
 
 Note that `column` refers to a column of the current model. The search
 column is reset to -1 when the model is changed.
-
-# Parameters
-
 ## `column`
 the column of the model to search in, or -1 to disable searching
 <!-- impl TreeView::fn set_search_entry -->
@@ -29791,18 +29129,12 @@ Sets the entry which the interactive search code will use for this
 in our interface at all time at a fixed position. Passing `None` for
 `entry` will make the interactive search code use the built-in popup
 entry again.
-
-# Parameters
-
 ## `entry`
 the entry the interactive search code of `self` should use or `None`
 <!-- impl TreeView::fn set_search_equal_func -->
 Sets the compare function for the interactive search capabilities; note
 that somewhat like `strcmp` returning 0 for equality
 ``GtkTreeViewSearchEqualFunc`` returns `false` on matches.
-
-# Parameters
-
 ## `search_equal_func`
 the compare function to use during the search
 ## `search_user_data`
@@ -29811,9 +29143,6 @@ user data to pass to `search_equal_func`, or `None`
 Destroy notifier for `search_user_data`, or `None`
 <!-- impl TreeView::fn set_search_position_func -->
 Sets the function to use when positioning the search dialog.
-
-# Parameters
-
 ## `func`
 the function to use to position the search dialog, or `None`
  to use the default search position function
@@ -29829,9 +29158,6 @@ note that hiding the expanders will disable the default indentation. You
 can set a custom indentation in this case using
 `TreeView::set_level_indentation`.
 This does not have any visible effects for lists.
-
-# Parameters
-
 ## `enabled`
 `true` to enable expander drawing, `false` otherwise.
 <!-- impl TreeView::fn set_tooltip_cell -->
@@ -29846,9 +29172,6 @@ position. In such cases `path` must be set to the current node under the
 mouse cursor for this function to operate correctly.
 
 See also `TreeView::set_tooltip_column` for a simpler alternative.
-
-# Parameters
-
 ## `tooltip`
 a `Tooltip`
 ## `path`
@@ -29868,18 +29191,12 @@ When enabled, `Widget:has-tooltip` will be set to `true` and
 
 Note that the signal handler sets the text with `Tooltip::set_markup`,
 so &, <, etc have to be escaped in the text.
-
-# Parameters
-
 ## `column`
 an integer, which is a valid column number for `self`’s model
 <!-- impl TreeView::fn set_tooltip_row -->
 Sets the tip area of `tooltip` to be the area covered by the row at `path`.
 See also `TreeView::set_tooltip_column` for a simpler alternative.
 See also `Tooltip::set_tip_area`.
-
-# Parameters
-
 ## `tooltip`
 a `Tooltip`
 ## `path`
@@ -29890,9 +29207,6 @@ Sets the `Adjustment` for the current vertical aspect.
 # Deprecated
 
 Use `Scrollable::set_vadjustment`
-
-# Parameters
-
 ## `adjustment`
 The `Adjustment` to set, or `None`
 <!-- impl TreeView::fn unset_rows_drag_dest -->
@@ -29923,9 +29237,6 @@ Creates a new `TreeViewColumn`.
 A newly created `TreeViewColumn`.
 <!-- impl TreeViewColumn::fn new_with_area -->
 Creates a new `TreeViewColumn` using `area` to render its cells.
-
-# Parameters
-
 ## `area`
 the `CellArea` that the newly created column should use to layout cells.
 
@@ -29954,9 +29265,6 @@ Here’s a simple example:
                                                       NULL);
  }
 ```
-
-# Parameters
-
 ## `title`
 The title to set the header to
 ## `cell`
@@ -29972,9 +29280,6 @@ parameter on `cell_renderer` to be set from the value. So for example
 if column 2 of the model contains strings, you could have the
 “text” attribute of a `CellRendererText` get its values from
 column 2.
-
-# Parameters
-
 ## `cell_renderer`
 the `CellRenderer` to set attributes on
 ## `attribute`
@@ -29985,9 +29290,6 @@ The column position on the model to get the attribute from.
 Obtains the horizontal position and size of a cell in a column. If the
 cell is not found in the column, `start_pos` and `width` are not changed and
 `false` is returned.
-
-# Parameters
-
 ## `cell_renderer`
 a `CellRenderer`
 ## `x_offset`
@@ -30003,9 +29305,6 @@ return location for the width of `cell`,
 <!-- impl TreeViewColumn::fn cell_get_size -->
 Obtains the width and height needed to render the column. This is used
 primarily by the `TreeView`.
-
-# Parameters
-
 ## `cell_area`
 The area a cell in the column will be allocated, or `None`
 ## `x_offset`
@@ -30029,9 +29328,6 @@ Sets the cell renderer based on the `tree_model` and `iter`. That is, for
 every attribute mapping in `self`, it will get a value from the set
 column on the `iter`, and use that value to set the attribute on the cell
 renderer. This is used primarily by the `TreeView`.
-
-# Parameters
-
 ## `tree_model`
 The `TreeModel` to to get the cell renderers attributes from.
 ## `iter`
@@ -30045,9 +29341,6 @@ Unsets all the mappings on all renderers on the `self`.
 <!-- impl TreeViewColumn::fn clear_attributes -->
 Clears all existing attributes previously set with
 `TreeViewColumn::set_attributes`.
-
-# Parameters
-
 ## `cell_renderer`
 a `CellRenderer` to clear the attribute mapping on.
 <!-- impl TreeViewColumn::fn clicked -->
@@ -30056,9 +29349,6 @@ Emits the “clicked” signal on the column. This function will only work if
 <!-- impl TreeViewColumn::fn focus_cell -->
 Sets the current keyboard focus to be at `cell`, if the column contains
 2 or more editable and activatable cells.
-
-# Parameters
-
 ## `cell`
 A `CellRenderer`
 <!-- impl TreeViewColumn::fn get_alignment -->
@@ -30199,9 +29489,6 @@ The current X offset of `self`.
 Adds the `cell` to end of the column. If `expand` is `false`, then the `cell`
 is allocated no more space than it needs. Any unused space is divided
 evenly between cells for which `expand` is `true`.
-
-# Parameters
-
 ## `cell`
 The `CellRenderer`.
 ## `expand`
@@ -30210,9 +29497,6 @@ The `CellRenderer`.
 Packs the `cell` into the beginning of the column. If `expand` is `false`, then
 the `cell` is allocated no more space than it needs. Any unused space is divided
 evenly between cells for which `expand` is `true`.
-
-# Parameters
-
 ## `cell`
 The `CellRenderer`.
 ## `expand`
@@ -30224,9 +29508,6 @@ their sizes renegotiated.
 Sets the alignment of the title or custom widget inside the column header.
 The alignment determines its location inside the button -- 0.0 for left, 0.5
 for center, 1.0 for right.
-
-# Parameters
-
 ## `xalign`
 The alignment, which is between [0.0 and 1.0] inclusive.
 <!-- impl TreeViewColumn::fn set_attributes -->
@@ -30234,9 +29515,6 @@ Sets the attributes in the list as the attributes of `self`.
 The attributes should be in attribute/column order, as in
 `TreeViewColumn::add_attribute`. All existing attributes
 are removed, and replaced with the new attributes.
-
-# Parameters
-
 ## `cell_renderer`
 the `CellRenderer` we’re setting the attributes of
 <!-- impl TreeViewColumn::fn set_cell_data_func -->
@@ -30245,9 +29523,6 @@ function is used instead of the standard attributes mapping for
 setting the column value, and should set the value of `self`'s
 cell renderer as appropriate. `func` may be `None` to remove an
 older one.
-
-# Parameters
-
 ## `cell_renderer`
 A `CellRenderer`
 ## `func`
@@ -30259,9 +29534,6 @@ The destroy notification for `func_data`
 <!-- impl TreeViewColumn::fn set_clickable -->
 Sets the header to be active if `clickable` is `true`. When the header is
 active, then it can take keyboard focus, and can be clicked.
-
-# Parameters
-
 ## `clickable`
 `true` if the header is active.
 <!-- impl TreeViewColumn::fn set_expand -->
@@ -30272,9 +29544,6 @@ column is created with this `false`.
 
 Along with “fixed-width”, the “expand” property changes when the column is
 resized by the user.
-
-# Parameters
-
 ## `expand`
 `true` if the column should expand to fill available space.
 <!-- impl TreeViewColumn::fn set_fixed_width -->
@@ -30289,9 +29558,6 @@ column may be greater or less than requested.
 
 Along with “expand”, the “fixed-width” property changes when the column is
 resized by the user.
-
-# Parameters
-
 ## `fixed_width`
 The new fixed width, in pixels, or -1.
 <!-- impl TreeViewColumn::fn set_max_width -->
@@ -30299,25 +29565,16 @@ Sets the maximum width of the `self`. If `max_width` is -1, then the
 maximum width is unset. Note, the column can actually be wider than max
 width if it’s the last column in a view. In this case, the column expands to
 fill any extra space.
-
-# Parameters
-
 ## `max_width`
 The maximum width of the column in pixels, or -1.
 <!-- impl TreeViewColumn::fn set_min_width -->
 Sets the minimum width of the `self`. If `min_width` is -1, then the
 minimum width is unset.
-
-# Parameters
-
 ## `min_width`
 The minimum width of the column in pixels, or -1.
 <!-- impl TreeViewColumn::fn set_reorderable -->
 If `reorderable` is `true`, then the column can be reordered by the end user
 dragging the header.
-
-# Parameters
-
 ## `reorderable`
 `true`, if the column can be reordered.
 <!-- impl TreeViewColumn::fn set_resizable -->
@@ -30325,24 +29582,15 @@ If `resizable` is `true`, then the user can explicitly resize the column by
 grabbing the outer edge of the column button. If resizable is `true` and
 sizing mode of the column is `TreeViewColumnSizing::Autosize`, then the sizing
 mode is changed to `TreeViewColumnSizing::GrowOnly`.
-
-# Parameters
-
 ## `resizable`
 `true`, if the column can be resized
 <!-- impl TreeViewColumn::fn set_sizing -->
 Sets the growth behavior of `self` to `type_`.
-
-# Parameters
-
 ## `type_`
 The `TreeViewColumnSizing`.
 <!-- impl TreeViewColumn::fn set_sort_column_id -->
 Sets the logical `sort_column_id` that this column sorts on when this column
 is selected for sorting. Doing so makes the column header clickable.
-
-# Parameters
-
 ## `sort_column_id`
 The `sort_column_id` of the model to sort on.
 <!-- impl TreeViewColumn::fn set_sort_indicator -->
@@ -30350,9 +29598,6 @@ Call this function with a `setting` of `true` to display an arrow in
 the header button indicating the column is sorted. Call
 `TreeViewColumn::set_sort_order` to change the direction of
 the arrow.
-
-# Parameters
-
 ## `setting`
 `true` to display an indicator that the column is sorted
 <!-- impl TreeViewColumn::fn set_sort_order -->
@@ -30367,42 +29612,67 @@ that. For custom models, the mechanism will vary.
 The sort indicator changes direction to indicate normal sort or reverse sort.
 Note that you must have the sort indicator enabled to see anything when
 calling this function; see `TreeViewColumn::set_sort_indicator`.
-
-# Parameters
-
 ## `order`
 sort order that the sort indicator should indicate
 <!-- impl TreeViewColumn::fn set_spacing -->
 Sets the spacing field of `self`, which is the number of pixels to
 place between cell renderers packed into it.
-
-# Parameters
-
 ## `spacing`
 distance between cell renderers in pixels.
 <!-- impl TreeViewColumn::fn set_title -->
 Sets the title of the `self`. If a custom widget has been set, then
 this value is ignored.
-
-# Parameters
-
 ## `title`
 The title of the `self`.
 <!-- impl TreeViewColumn::fn set_visible -->
 Sets the visibility of `self`.
-
-# Parameters
-
 ## `visible`
 `true` if the `self` is visible.
 <!-- impl TreeViewColumn::fn set_widget -->
 Sets the widget in the header to be `widget`. If widget is `None`, then the
 header button is set with a `Label` set to the title of `self`.
-
-# Parameters
-
 ## `widget`
 A child `Widget`, or `None`.
+<!-- enum TreeViewColumnSizing -->
+The sizing method the column uses to determine its width. Please note
+that `TreeViewColumnSizing::Autosize` are inefficient for large views, and
+can make columns appear choppy.
+<!-- enum TreeViewColumnSizing::variant GrowOnly -->
+Columns only get bigger in reaction to changes in the model
+<!-- enum TreeViewColumnSizing::variant Autosize -->
+Columns resize to be the optimal size everytime the model changes.
+<!-- enum TreeViewColumnSizing::variant Fixed -->
+Columns are a fixed numbers of pixels wide.
+<!-- enum TreeViewDropPosition -->
+An enum for determining where a dropped row goes.
+<!-- enum TreeViewDropPosition::variant Before -->
+dropped row is inserted before
+<!-- enum TreeViewDropPosition::variant After -->
+dropped row is inserted after
+<!-- enum TreeViewDropPosition::variant IntoOrBefore -->
+dropped row becomes a child or is inserted before
+<!-- enum TreeViewDropPosition::variant IntoOrAfter -->
+dropped row becomes a child or is inserted after
+<!-- enum TreeViewGridLines -->
+Used to indicate which grid lines to draw in a tree view.
+<!-- enum TreeViewGridLines::variant None -->
+No grid lines.
+<!-- enum TreeViewGridLines::variant Horizontal -->
+Horizontal grid lines.
+<!-- enum TreeViewGridLines::variant Vertical -->
+Vertical grid lines.
+<!-- enum TreeViewGridLines::variant Both -->
+Horizontal and vertical grid lines.
+<!-- enum Unit -->
+See also `PrintSettings::set_paper_width`.
+<!-- enum Unit::variant None -->
+No units.
+<!-- enum Unit::variant Points -->
+Dimensions in points.
+<!-- enum Unit::variant Inch -->
+Dimensions in inches.
+<!-- enum Unit::variant Mm -->
+Dimensions in millimeters
 <!-- struct Viewport -->
 The `Viewport` widget acts as an adaptor class, implementing
 scrollability for child widgets that lack their own scrolling
@@ -30426,9 +29696,6 @@ than the child widget’s minimum size in a given orientation.
 <!-- impl Viewport::fn new -->
 Creates a new `Viewport` with the given adjustments, or with default
 adjustments if none are given.
-
-# Parameters
-
 ## `hadjustment`
 horizontal adjustment
 ## `vadjustment`
@@ -30482,16 +29749,10 @@ Sets the horizontal adjustment of the viewport.
 # Deprecated
 
 Use `Scrollable::set_hadjustment`
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment`.
 <!-- impl Viewport::fn set_shadow_type -->
 Sets the shadow type of the viewport.
-
-# Parameters
-
 ## `type_`
 the new shadow type.
 <!-- impl Viewport::fn set_vadjustment -->
@@ -30500,9 +29761,6 @@ Sets the vertical adjustment of the viewport.
 # Deprecated
 
 Use `Scrollable::set_vadjustment`
-
-# Parameters
-
 ## `adjustment`
 a `Adjustment`.
 <!-- struct VolumeButton -->
@@ -30512,7 +29770,7 @@ icons, tooltips and accessible labels.
 
 # Implements
 
-[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ActionableExt`](trait.ActionableExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl VolumeButton::fn new -->
 Creates a `VolumeButton`, with a range between 0.0 and 1.0, with
 a stepping of 0.02. Volume values can be obtained and modified using
@@ -30809,6 +30067,10 @@ foo_widget_class_init (FooWidgetClass *klass)
 [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait WidgetExt -->
 Trait containing all `Widget` methods.
+
+# Implementors
+
+[`Actionable`](struct.Actionable.html), [`Calendar`](struct.Calendar.html), [`CellEditable`](struct.CellEditable.html), [`Container`](struct.Container.html), [`DrawingArea`](struct.DrawingArea.html), [`Entry`](struct.Entry.html), [`FileChooser`](struct.FileChooser.html), [`GLArea`](struct.GLArea.html), [`LevelBar`](struct.LevelBar.html), [`Misc`](struct.Misc.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`Separator`](struct.Separator.html), [`Spinner`](struct.Spinner.html), [`Switch`](struct.Switch.html), [`ToolShell`](struct.ToolShell.html), [`Widget`](struct.Widget.html)
 <!-- impl Widget::fn new -->
 This is a convenience function for creating a widget and setting
 its properties in one go. For example you might write:
@@ -30816,9 +30078,6 @@ its properties in one go. For example you might write:
 0.0, NULL)` to create a left-aligned label. Equivalent to
 `gobject::Object::new`, but returns a widget so you don’t have to
 cast the object yourself.
-
-# Parameters
-
 ## `type_`
 type ID of the widget to create
 ## `first_property_name`
@@ -30870,9 +30129,6 @@ we have a more complete mechanism for composite children, see `WidgetClass::set_
 <!-- impl Widget::fn set_default_direction -->
 Sets the default reading direction for widgets where the
 direction has not been explicitly set by `WidgetExt::set_direction`.
-
-# Parameters
-
 ## `dir`
 the new default direction. This cannot be
  `TextDirection::None`.
@@ -30894,9 +30150,6 @@ Accelerators added through this function are not user changeable during
 runtime. If you want to support accelerators that can be changed by the
 user, use `AccelMap::add_entry` and `WidgetExt::set_accel_path` or
 `MenuItemExt::set_accel_path` instead.
-
-# Parameters
-
 ## `accel_signal`
 widget signal to emit on accelerator activation
 ## `accel_group`
@@ -30910,9 +30163,6 @@ flag accelerators, e.g. `AccelFlags::Visible`
 <!-- trait WidgetExt::fn add_device_events -->
 Adds the device events in the bitfield `events` to the event mask for
 `self`. See `WidgetExt::set_device_events` for details.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 ## `events`
@@ -30921,9 +30171,6 @@ an event mask, see `gdk::EventMask`
 Adds the events in the bitfield `events` to the event mask for
 `self`. See `WidgetExt::set_events` and the
 [input handling overview][event-masks] for details.
-
-# Parameters
-
 ## `events`
 an event mask, see `gdk::EventMask`
 <!-- trait WidgetExt::fn add_mnemonic_label -->
@@ -30933,9 +30180,6 @@ list of mnemonic labels for the widget is cleared when the
 widget is destroyed, so the caller must make sure to update
 its internal state at this point as well, by using a connection
 to the `Widget::destroy` signal or a weak notifier.
-
-# Parameters
-
 ## `label`
 a `Widget` that acts as a mnemonic label for `self`
 <!-- trait WidgetExt::fn add_tick_callback -->
@@ -30959,9 +30203,6 @@ trying to display isolated frames at particular times.
 This is a more convenient alternative to connecting directly to the
 `gdk::FrameClock::update` signal of `gdk::FrameClock`, since you don't
 have to worry about when a `gdk::FrameClock` is assigned to a widget.
-
-# Parameters
-
 ## `callback`
 function to call for updating animations
 ## `user_data`
@@ -30981,9 +30222,6 @@ signal on `self`; if the signal isn’t overridden by a
 handler or in a derived widget, then the default check is
 that the widget must be sensitive, and the widget and all
 its ancestors mapped.
-
-# Parameters
-
 ## `signal_id`
 the ID of a signal installed on `self`
 
@@ -31010,9 +30248,6 @@ that widget, and `false` if moving in `direction` moved the focus
 outside the widget. If returning `true`, widgets normally
 call `WidgetExt::grab_focus` to place the focus accordingly;
 if returning `false`, they don’t modify the current focus location.
-
-# Parameters
-
 ## `direction`
 direction of focus movement
 
@@ -31027,9 +30262,6 @@ on `self`.
 This is the analogue of `gobject::Object::notify` for child properties.
 
 Also see `ContainerExt::child_notify`.
-
-# Parameters
-
 ## `child_property`
 the name of a child property installed on the
  class of `self`’s parent
@@ -31040,9 +30272,6 @@ never uses a custom name set with `WidgetExt::set_name`.
 # Deprecated
 
 Use `WidgetExt::get_path` instead
-
-# Parameters
-
 ## `path_length`
 location to store the length of the
  class path, or `None`
@@ -31064,9 +30293,6 @@ widgets are not expanded.
 The computed expand value uses either the expand setting explicitly
 set on the widget itself, or, if none has been explicitly set,
 the widget may expand if some of its children do.
-
-# Parameters
-
 ## `orientation`
 expand direction
 
@@ -31090,9 +30316,6 @@ If you keep a `pango::Layout` created in this way around, you need
 to re-create it when the widget `pango::Context` is replaced.
 This can be tracked by using the `Widget::screen-changed` signal
 on the widget.
-
-# Parameters
-
 ## `text`
 text to set on the layout (can be `None`)
 
@@ -31123,9 +30346,6 @@ as a signal handler, and pass the address of your widget variable
 as user data. Then when the widget is destroyed, the variable will
 be set to `None`. Useful for example to avoid multiple copies
 of the same dialog.
-
-# Parameters
-
 ## `widget_pointer`
 address of a variable that contains `self`
 <!-- trait WidgetExt::fn device_is_shadowed -->
@@ -31134,9 +30354,6 @@ device grab on another widget, so it would stop sending
 events to `self`. This may be used in the
 `Widget::grab-notify` signal to check for specific
 devices. See `gtk_device_grab_add`.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 
@@ -31151,9 +30368,6 @@ passing -1, -1 as coordinates.
 # Deprecated
 
 Use `WidgetExt::drag_begin_with_coordinates` instead
-
-# Parameters
-
 ## `targets`
 The targets (data formats) in which the
  source can provide the data
@@ -31193,9 +30407,6 @@ button is held down for some time. Try to save the last event that you got
 from the mouse, using `gdk_event_copy`, and pass it to this function
 (remember to free the event with `gdk_event_free` when you are done).
 If you can really not pass a real event, pass `None` instead.
-
-# Parameters
-
 ## `targets`
 The targets (data formats) in which the
  source can provide the data
@@ -31221,9 +30432,6 @@ the context for this drag
 Checks to see if a mouse drag starting at (`start_x`, `start_y`) and ending
 at (`current_x`, `current_y`) has passed the GTK+ drag threshold, and thus
 should trigger the beginning of a drag-and-drop operation.
-
-# Parameters
-
 ## `start_x`
 X coordinate of start of drag
 ## `start_y`
@@ -31262,9 +30470,6 @@ value from `WidgetExt::drag_dest_get_target_list`, but some widgets may
 have different valid targets for different parts of the widget; in
 that case, they will have to implement a drag_motion handler that
 passes the correct target list to this function.
-
-# Parameters
-
 ## `context`
 drag context
 ## `target_list`
@@ -31331,9 +30536,6 @@ drag_motion (GtkWidget *widget,
     gdk_drag_status (context, GDK_ACTION_MOVE, time);
 }
 ```
-
-# Parameters
-
 ## `flags`
 which types of default drag behavior to use
 ## `targets`
@@ -31347,9 +30549,6 @@ the number of entries in `targets`
 a bitmask of possible actions for a drop onto this `self`.
 <!-- trait WidgetExt::fn drag_dest_set_proxy -->
 Sets this widget as a proxy for drops to another window.
-
-# Parameters
-
 ## `proxy_window`
 the window to which to forward drag events
 ## `protocol`
@@ -31363,9 +30562,6 @@ If `true`, send the same coordinates to the
 Sets the target types that this widget can accept from drag-and-drop.
 The widget must first be made into a drag destination with
 `WidgetExt::drag_dest_set`.
-
-# Parameters
-
 ## `target_list`
 list of droppable targets, or `None` for none
 <!-- trait WidgetExt::fn drag_dest_set_track_motion -->
@@ -31375,9 +30571,6 @@ Tells the widget to emit `Widget::drag-motion` and
 
 This may be used when a widget wants to do generic
 actions regardless of the targets that the source offers.
-
-# Parameters
-
 ## `track_motion`
 whether to accept all targets
 <!-- trait WidgetExt::fn drag_dest_unset -->
@@ -31393,9 +30586,6 @@ signal parameter being negative. However, when `WidgetExt::drag_get_data`
 is called implicitely because the `DestDefaults::Drop` was set,
 then the widget will not receive notification of failed
 drops.
-
-# Parameters
-
 ## `context`
 the drag context
 ## `target`
@@ -31437,9 +30627,6 @@ the `TargetList`, or `None` if none
 <!-- trait WidgetExt::fn drag_source_set -->
 Sets up a widget so that GTK+ will start a drag operation when the user
 clicks and drags on the widget. The widget must have a window.
-
-# Parameters
-
 ## `start_button_mask`
 the bitmask of buttons that can start the drag
 ## `targets`
@@ -31452,26 +30639,17 @@ the bitmask of possible actions for a drag from this widget
 <!-- trait WidgetExt::fn drag_source_set_icon_gicon -->
 Sets the icon that will be used for drags from a particular source
 to `icon`. See the docs for `IconTheme` for more details.
-
-# Parameters
-
 ## `icon`
 A `gio::Icon`
 <!-- trait WidgetExt::fn drag_source_set_icon_name -->
 Sets the icon that will be used for drags from a particular source
 to a themed icon. See the docs for `IconTheme` for more details.
-
-# Parameters
-
 ## `icon_name`
 name of icon to use
 <!-- trait WidgetExt::fn drag_source_set_icon_pixbuf -->
 Sets the icon that will be used for drags from a particular widget
 from a `gdk_pixbuf::Pixbuf`. GTK+ retains a reference for `pixbuf` and will
 release it when it is no longer needed.
-
-# Parameters
-
 ## `pixbuf`
 the `gdk_pixbuf::Pixbuf` for the drag icon
 <!-- trait WidgetExt::fn drag_source_set_icon_stock -->
@@ -31481,18 +30659,12 @@ to a stock icon.
 # Deprecated
 
 Use `WidgetExt::drag_source_set_icon_name` instead.
-
-# Parameters
-
 ## `stock_id`
 the ID of the stock icon to use
 <!-- trait WidgetExt::fn drag_source_set_target_list -->
 Changes the target types that this widget offers for drag-and-drop.
 The widget must first be made into a drag source with
 `WidgetExt::drag_source_set`.
-
-# Parameters
-
 ## `target_list`
 list of draggable targets, or `None` for none
 <!-- trait WidgetExt::fn drag_source_unset -->
@@ -31518,9 +30690,6 @@ is fine to modify the context with `cairo_save` and
 Note that special-purpose widgets may contain special code for
 rendering to the screen and might appear differently on screen
 and when rendered using `WidgetExt::draw`.
-
-# Parameters
-
 ## `cr`
 a cairo context to draw to
 <!-- trait WidgetExt::fn ensure_style -->
@@ -31550,9 +30719,6 @@ instead, use `gtk_main_do_event` so the event will behave as if
 it were in the event queue. Don’t synthesize expose events; instead,
 use `gdk::Window::invalidate_rect` to invalidate a region of the
 window.
-
-# Parameters
-
 ## `event`
 a ``GdkEvent``
 
@@ -31589,9 +30755,6 @@ Retrieves the `gio::ActionGroup` that was registered using `prefix`. The resulti
 ancestry.
 
 If no action group was found matching `prefix`, then `None` is returned.
-
-# Parameters
-
 ## `prefix`
 The “prefix” of the action group.
 
@@ -31640,9 +30803,6 @@ but not that they have exactly the bounds the container assigned.
 There is no way to get the original allocation assigned by
 `WidgetExt::size_allocate`, since it isn’t stored; if a container
 implementation needs that information it will have to track it itself.
-
-# Parameters
-
 ## `allocation`
 a pointer to a `Allocation` to copy to
 <!-- trait WidgetExt::fn get_ancestor -->
@@ -31655,9 +30815,6 @@ about checking for a toplevel `Window` in the docs for
 
 Note that unlike `WidgetExt::is_ancestor`, `WidgetExt::get_ancestor`
 considers `self` to be an ancestor of itself.
-
-# Parameters
-
 ## `widget_type`
 ancestor type
 
@@ -31710,9 +30867,6 @@ implementations have this information; applications should use
 # Deprecated
 
 Use `WidgetExt::get_preferred_size` instead.
-
-# Parameters
-
 ## `requisition`
 a `Requisition` to be filled in
 <!-- trait WidgetExt::fn get_child_visible -->
@@ -31734,9 +30888,6 @@ happen. Other toolkits call it the bounding box.
 
 Historically, in GTK+ the clip area has been equal to the allocation
 retrieved via `WidgetExt::get_allocation`.
-
-# Parameters
-
 ## `clip`
 a pointer to a `Allocation` to copy to
 <!-- trait WidgetExt::fn get_clipboard -->
@@ -31744,9 +30895,6 @@ Returns the clipboard object for the given selection to
 be used with `self`. `self` must have a `gdk::Display`
 associated with it, so must be attached to a toplevel
 window.
-
-# Parameters
-
 ## `selection`
 a `gdk::Atom` which identifies the clipboard
  to use. `GDK_SELECTION_CLIPBOARD` gives the
@@ -31775,9 +30923,6 @@ the composite name of `self`, or `None` if `self` is not
 <!-- trait WidgetExt::fn get_device_enabled -->
 Returns whether `device` can interact with `self` and its
 children. See `WidgetExt::set_device_enabled`.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 
@@ -31787,9 +30932,6 @@ a `gdk::Device`
 <!-- trait WidgetExt::fn get_device_events -->
 Returns the events mask for the widget corresponding to an specific device. These
 are the events that the widget will receive when `device` operates on it.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 
@@ -31975,9 +31117,6 @@ Returns the modifier mask the `self`’s windowing system backend
 uses for a particular purpose.
 
 See `gdk::Keymap::get_modifier_mask`.
-
-# Parameters
-
 ## `intent`
 the use case for the modifier mask
 
@@ -32073,9 +31212,6 @@ defined as `self`->window coordinates for widgets that return `true` for
 # Deprecated
 
 Use `gdk::Window::get_device_position` instead.
-
-# Parameters
-
 ## `x`
 return location for the X coordinate, or `None`
 ## `y`
@@ -32090,9 +31226,6 @@ The returned request will be modified by the
 ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
-
-# Parameters
-
 ## `minimum_height`
 location to store the minimum height, or `None`
 ## `natural_height`
@@ -32107,9 +31240,6 @@ The returned request will be modified by the
 and by any ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
-
-# Parameters
-
 ## `width`
 the width which is available for allocation, or -1 if none
 ## `minimum_height`
@@ -32129,9 +31259,6 @@ The returned request will be modified by the
 ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
-
-# Parameters
-
 ## `width`
 the width which is available for allocation
 ## `minimum_height`
@@ -32154,9 +31281,6 @@ the minimum width.
 
 Use `WidgetExt::get_preferred_height_and_baseline_for_width` if you want to support
 baseline alignment.
-
-# Parameters
-
 ## `minimum_size`
 location for storing the minimum size, or `None`
 ## `natural_size`
@@ -32171,9 +31295,6 @@ The returned request will be modified by the
 ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
-
-# Parameters
-
 ## `minimum_width`
 location to store the minimum width, or `None`
 ## `natural_width`
@@ -32187,9 +31308,6 @@ The returned request will be modified by the
 ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
-
-# Parameters
-
 ## `height`
 the height which is available for allocation
 ## `minimum_width`
@@ -32240,9 +31358,6 @@ Normally, `WidgetExt::size_request` should be used.
 The `Requisition` cache on the widget was
 removed, If you need to cache sizes across requests and allocations,
 add an explicit cache to the widget in question instead.
-
-# Parameters
-
 ## `requisition`
 a pointer to a `Requisition` to copy to
 <!-- trait WidgetExt::fn get_root_window -->
@@ -32313,9 +31428,6 @@ and the natural requisition of the widget will be used intead. See
 `WidgetExt::set_size_request`. To get the size a widget will
 actually request, call `WidgetExt::get_preferred_size` instead of
 this function.
-
-# Parameters
-
 ## `width`
 return location for width, or `None`
 ## `height`
@@ -32373,9 +31485,6 @@ variants.
 This function is only meant to be called for code which is private to the `widget_type` which
 declared the child and is meant for language bindings which cannot easily make use
 of the GObject structure offsets.
-
-# Parameters
-
 ## `widget_type`
 The `glib::Type` to get a template child for
 ## `name`
@@ -32639,9 +31748,6 @@ should take precedence over properties set in the private template XML.
 Sets an input shape for this widget’s GDK window. This allows for
 windows which react to mouse click in a nonrectangular region, see
 `gdk::Window::input_shape_combine_region` for more information.
-
-# Parameters
-
 ## `region`
 shape to be added, or `None` to remove an existing shape
 <!-- trait WidgetExt::fn insert_action_group -->
@@ -32652,9 +31758,6 @@ setting their “action-name” to
 
 If `group` is `None`, a previously inserted group for `name` is removed
 from `self`.
-
-# Parameters
-
 ## `name`
 the prefix for actions in `group`
 ## `group`
@@ -32664,9 +31767,6 @@ Computes the intersection of a `self`’s area and `area`, storing
 the intersection in `intersection`, and returns `true` if there was
 an intersection. `intersection` may be `None` if you’re only
 interested in whether there was an intersection.
-
-# Parameters
-
 ## `area`
 a rectangle
 ## `intersection`
@@ -32678,9 +31778,6 @@ rectangle to store intersection of `self` and `area`
 <!-- trait WidgetExt::fn is_ancestor -->
 Determines whether `self` is somewhere inside `ancestor`, possibly with
 intermediate containers.
-
-# Parameters
-
 ## `ancestor`
 another `Widget`
 
@@ -32773,9 +31870,6 @@ A use case for providing an own implementation of ::keynav-failed
 `Entry` widgets where the user should be able to navigate the
 entire row with the cursor keys, as e.g. known from user interfaces
 that require entering license keys.
-
-# Parameters
-
 ## `direction`
 direction of focus movement
 
@@ -32829,9 +31923,6 @@ Emits the `Widget::mnemonic-activate` signal.
 The default handler for this signal activates the `self` if
 `group_cycling` is `false`, and just grabs the focus if `group_cycling`
 is `true`.
-
-# Parameters
-
 ## `group_cycling`
 `true` if there are other widgets with the same mnemonic
 
@@ -32858,9 +31949,6 @@ and `TextView`. See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_background_color` instead
-
-# Parameters
-
 ## `state`
 the state for which to set the base color
 ## `color`
@@ -32886,9 +31974,6 @@ See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_background_color` instead
-
-# Parameters
-
 ## `state`
 the state for which to set the background color
 ## `color`
@@ -32906,9 +31991,6 @@ See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_cursor` instead.
-
-# Parameters
-
 ## `primary`
 the color to use for primary cursor (does not
  need to be allocated), or `None` to undo the effect of previous
@@ -32926,9 +32008,6 @@ See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_color` instead
-
-# Parameters
-
 ## `state`
 the state for which to set the foreground color
 ## `color`
@@ -32944,9 +32023,6 @@ See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_font` instead
-
-# Parameters
-
 ## `font_desc`
 the font description to use, or `None`
  to undo the effect of previous calls to `WidgetExt::modify_font`
@@ -32973,9 +32049,6 @@ effect with the initial modifications.
 # Deprecated
 
 Use `StyleContext` with a custom `StyleProvider` instead
-
-# Parameters
-
 ## `style`
 the `RcStyle`-struct holding the style modifications
 <!-- trait WidgetExt::fn modify_text -->
@@ -32990,9 +32063,6 @@ See also `WidgetExt::modify_style`.
 # Deprecated
 
 Use `WidgetExt::override_color` instead
-
-# Parameters
-
 ## `state`
 the state for which to set the text color
 ## `color`
@@ -33013,9 +32083,6 @@ This function is not useful in the context of CSS-based
  `StyleProvider` and a CSS style class. You can also override the default
  drawing of a widget through the `Widget::draw` signal, and use Cairo to
  draw a specific color, regardless of the CSS style.
-
-# Parameters
-
 ## `state`
 the state for which to set the background color
 ## `color`
@@ -33052,9 +32119,6 @@ priority.
 # Deprecated
 
 Use a custom style provider and style classes instead
-
-# Parameters
-
 ## `state`
 the state for which to set the color
 ## `color`
@@ -33075,9 +32139,6 @@ This function is not useful in the context of CSS-based
  rendering. If you wish to change the color used to render the primary
  and seconday cursors you should use a custom CSS style, through an
  application-specific `StyleProvider` and a CSS style class.
-
-# Parameters
-
 ## `cursor`
 the color to use for primary cursor (does not need to be
  allocated), or `None` to undo the effect of previous calls to
@@ -33096,9 +32157,6 @@ This function is not useful in the context of CSS-based
  rendering. If you wish to change the font a widget uses to render its text
  you should use a custom CSS style, through an application-specific
  `StyleProvider` and a CSS style class.
-
-# Parameters
-
 ## `font_desc`
 the font descriptiong to use, or `None` to undo
  the effect of previous calls to `WidgetExt::override_font`
@@ -33115,9 +32173,6 @@ This function is not useful in the context of CSS-based
  rendering. If you wish to change the color used to render symbolic icons
  you should use a custom CSS style, through an application-specific
  `StyleProvider` and a CSS style class.
-
-# Parameters
-
 ## `name`
 the name of the symbolic color to modify
 ## `color`
@@ -33141,9 +32196,6 @@ of `self`’s outermost ancestor.
 # Deprecated
 
 Use `WidgetExt::get_path` instead
-
-# Parameters
-
 ## `path_length`
 location to store length of the path,
  or `None`
@@ -33174,9 +32226,6 @@ defined as `self`->window coordinates for widgets that return `true` for
 
 `width` or `height` may be 0, in this case this function does
 nothing. Negative values for `width` and `height` are not allowed.
-
-# Parameters
-
 ## `x`
 x coordinate of upper-left corner of rectangle to redraw
 ## `y`
@@ -33196,9 +32245,6 @@ invalidated.
 Normally you would only use this function in widget
 implementations. You might also use it to schedule a redraw of a
 `DrawingArea` or some portion thereof.
-
-# Parameters
-
 ## `region`
 region to draw
 <!-- trait WidgetExt::fn queue_resize -->
@@ -33243,9 +32289,6 @@ check.
 
 Use `WidgetExt::get_allocation` and
  `cairo_region_intersect_rectangle` to get the same behavior.
-
-# Parameters
-
 ## `region`
 a `cairo::Region`, in the same coordinate system as
  `self`->allocation. That is, relative to `self`->window
@@ -33265,17 +32308,11 @@ Before 3.8 you needed to call `gdk::Window::set_user_data` directly to set
 this up. This is now deprecated and you should use `WidgetExt::register_window`
 instead. Old code will keep working as is, although some new features like
 transparency might not work perfectly.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`
 <!-- trait WidgetExt::fn remove_accelerator -->
 Removes an accelerator from `self`, previously installed with
 `WidgetExt::add_accelerator`.
-
-# Parameters
-
 ## `accel_group`
 accel group for this widget
 ## `accel_key`
@@ -33291,18 +32328,12 @@ Removes a widget from the list of mnemonic labels for
 this widget. (See `WidgetExt::list_mnemonic_labels`). The widget
 must have previously been added to the list with
 `WidgetExt::add_mnemonic_label`.
-
-# Parameters
-
 ## `label`
 a `Widget` that was previously set as a mnemnic label for
  `self` with `WidgetExt::add_mnemonic_label`.
 <!-- trait WidgetExt::fn remove_tick_callback -->
 Removes a tick callback previously registered with
 `WidgetExt::add_tick_callback`.
-
-# Parameters
-
 ## `id`
 an id returned by `WidgetExt::add_tick_callback`
 <!-- trait WidgetExt::fn render_icon -->
@@ -33321,9 +32352,6 @@ freed after use with `gobject::Object::unref`.
 # Deprecated
 
 Use `WidgetExt::render_icon_pixbuf` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock ID
 ## `size`
@@ -33351,9 +32379,6 @@ after use with `gobject::Object::unref`.
 # Deprecated
 
 Use `IconTheme::load_icon` instead.
-
-# Parameters
-
 ## `stock_id`
 a stock ID
 ## `size`
@@ -33372,9 +32397,6 @@ count issues to avoid destroying the widget.
 # Deprecated
 
 Use `ContainerExt::remove` and `ContainerExt::add`.
-
-# Parameters
-
 ## `new_parent`
 a `Container` to move the widget into
 <!-- trait WidgetExt::fn reset_rc_styles -->
@@ -33403,9 +32425,6 @@ If you want to force an area of a window to be redrawn,
 use `gdk::Window::invalidate_rect` or `gdk::Window::invalidate_region`.
 To cause the redraw to be done immediately, follow that call
 with a call to `gdk::Window::process_updates`.
-
-# Parameters
-
 ## `event`
 a expose ``GdkEvent``
 
@@ -33438,9 +32457,6 @@ An example of its usage is:
 
   gdk_event_free (event);
 ```
-
-# Parameters
-
 ## `event`
 a ``GdkEvent`` of type GDK_FOCUS_CHANGE
 
@@ -33470,9 +32486,6 @@ provides a somewhat more convenient interface.
 Note that `accel_path` string will be stored in a `glib::Quark`. Therefore, if you
 pass a static string, you can save some memory by interning it first with
 `g_intern_static_string`.
-
-# Parameters
-
 ## `accel_path`
 path used to look up the accelerator
 ## `accel_group`
@@ -33487,9 +32500,6 @@ allocation. If you’re implementing a `Container`, you want to use
 The `WidgetClass`::adjust_size_allocation virtual method adjusts the
 allocation inside `WidgetExt::size_allocate` to create an adjusted
 allocation.
-
-# Parameters
-
 ## `allocation`
 a pointer to a `Allocation` to copy from
 <!-- trait WidgetExt::fn set_app_paintable -->
@@ -33504,27 +32514,18 @@ background. (Children of the widget will still be drawn.) The application
 is then entirely responsible for drawing the widget background.
 
 Note that the background is still drawn when the widget is mapped.
-
-# Parameters
-
 ## `app_paintable`
 `true` if the application will paint on the widget
 <!-- trait WidgetExt::fn set_can_default -->
 Specifies whether `self` can be a default widget. See
 `WidgetExt::grab_default` for details about the meaning of
 “default”.
-
-# Parameters
-
 ## `can_default`
 whether or not `self` can be a default widget.
 <!-- trait WidgetExt::fn set_can_focus -->
 Specifies whether `self` can own the input focus. See
 `WidgetExt::grab_focus` for actually setting the input focus on a
 widget.
-
-# Parameters
-
 ## `can_focus`
 whether or not `self` can own the input focus.
 <!-- trait WidgetExt::fn set_child_visible -->
@@ -33545,9 +32546,6 @@ can queue a resize itself.
 
 This function is only useful for container implementations and
 never should be called by an application.
-
-# Parameters
-
 ## `is_visible`
 if `true`, `self` should be mapped along with its parent.
 <!-- trait WidgetExt::fn set_clip -->
@@ -33561,9 +32559,6 @@ The clip set should be the area that `self` draws on. If `self` is a
 
 If this function is not called by `self` during a ::size-allocate handler,
 the clip will be set to `self`'s allocation.
-
-# Parameters
-
 ## `clip`
 a pointer to a `Allocation` to copy from
 <!-- trait WidgetExt::fn set_composite_name -->
@@ -33573,9 +32568,6 @@ a composite child of its parent; see `Widget::push_composite_child`.
 # Deprecated
 
 Use `WidgetClass::set_template`, or don’t use this API at all.
-
-# Parameters
-
 ## `name`
 the name to set
 <!-- trait WidgetExt::fn set_device_enabled -->
@@ -33585,9 +32577,6 @@ and all its children.
 It does so by descending through the `gdk::Window` hierarchy
 and enabling the same mask that is has for core events
 (i.e. the one that `gdk::Window::get_events` returns).
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 ## `enabled`
@@ -33604,9 +32593,6 @@ mask. This function can’t be used with windowless widgets (which return
 `false` from `WidgetExt::get_has_window`);
 to get events on those widgets, place them inside a `EventBox`
 and receive events on the event box.
-
-# Parameters
-
 ## `device`
 a `gdk::Device`
 ## `events`
@@ -33624,9 +32610,6 @@ visual rather than logical (such as buttons for text justification).
 
 If the direction is set to `TextDirection::None`, then the value
 set by `Widget::set_default_direction` will be used.
-
-# Parameters
-
 ## `dir`
 the new direction
 <!-- trait WidgetExt::fn set_double_buffered -->
@@ -33656,9 +32639,6 @@ windows.
 
 This does not work under non-X11 backends,
 and it should not be used in newly written code.
-
-# Parameters
-
 ## `double_buffered`
 `true` to double-buffer a widget
 <!-- trait WidgetExt::fn set_events -->
@@ -33673,25 +32653,16 @@ mask. This function can’t be used with widgets that have no window.
 (See `WidgetExt::get_has_window`). To get events on those widgets,
 place them inside a `EventBox` and receive events on the event
 box.
-
-# Parameters
-
 ## `events`
 event mask
 <!-- trait WidgetExt::fn set_halign -->
 Sets the horizontal alignment of `self`.
 See the `Widget:halign` property.
-
-# Parameters
-
 ## `align`
 the horizontal alignment
 <!-- trait WidgetExt::fn set_has_tooltip -->
 Sets the has-tooltip property on `self` to `has_tooltip`. See
 `Widget:has-tooltip` for more information.
-
-# Parameters
-
 ## `has_tooltip`
 whether or not `self` has a tooltip.
 <!-- trait WidgetExt::fn set_has_window -->
@@ -33705,9 +32676,6 @@ calling this function with `has_window` = `false`.
 
 This function should only be called by widget implementations,
 and they should call it in their `init` function.
-
-# Parameters
-
 ## `has_window`
 whether or not `self` has a window.
 <!-- trait WidgetExt::fn set_hexpand -->
@@ -33736,9 +32704,6 @@ regardless of children. The override occurs because
 `WidgetExt::set_hexpand` sets the hexpand-set property (see
 `WidgetExt::set_hexpand_set`) which causes the widget’s hexpand
 value to be used, rather than looking at children and widget state.
-
-# Parameters
-
 ## `expand`
 whether to expand
 <!-- trait WidgetExt::fn set_hexpand_set -->
@@ -33757,9 +32722,6 @@ children of the widget would like to expand.
 
 There are few reasons to use this function, but it’s here
 for completeness and consistency.
-
-# Parameters
-
 ## `set`
 value for hexpand-set property
 <!-- trait WidgetExt::fn set_mapped -->
@@ -33767,25 +32729,16 @@ Marks the widget as being realized.
 
 This function should only ever be called in a derived widget's
 “map” or “unmap” implementation.
-
-# Parameters
-
 ## `mapped`
 `true` to mark the widget as mapped
 <!-- trait WidgetExt::fn set_margin_bottom -->
 Sets the bottom margin of `self`.
 See the `Widget:margin-bottom` property.
-
-# Parameters
-
 ## `margin`
 the bottom margin
 <!-- trait WidgetExt::fn set_margin_end -->
 Sets the end margin of `self`.
 See the `Widget:margin-end` property.
-
-# Parameters
-
 ## `margin`
 the end margin
 <!-- trait WidgetExt::fn set_margin_left -->
@@ -33795,9 +32748,6 @@ See the `Widget:margin-left` property.
 # Deprecated
 
 Use `WidgetExt::set_margin_start` instead.
-
-# Parameters
-
 ## `margin`
 the left margin
 <!-- trait WidgetExt::fn set_margin_right -->
@@ -33807,25 +32757,16 @@ See the `Widget:margin-right` property.
 # Deprecated
 
 Use `WidgetExt::set_margin_end` instead.
-
-# Parameters
-
 ## `margin`
 the right margin
 <!-- trait WidgetExt::fn set_margin_start -->
 Sets the start margin of `self`.
 See the `Widget:margin-start` property.
-
-# Parameters
-
 ## `margin`
 the start margin
 <!-- trait WidgetExt::fn set_margin_top -->
 Sets the top margin of `self`.
 See the `Widget:margin-top` property.
-
-# Parameters
-
 ## `margin`
 the top margin
 <!-- trait WidgetExt::fn set_name -->
@@ -33838,9 +32779,6 @@ Note that the CSS syntax has certain special characters to delimit
 and represent elements in a selector (period, #, >, *...), so using
 these will make your widget impossible to match by name. Any combination
 of alphanumeric symbols, dashes and underscores will suffice.
-
-# Parameters
-
 ## `name`
 name for the widget
 <!-- trait WidgetExt::fn set_no_show_all -->
@@ -33849,9 +32787,6 @@ calls to `WidgetExt::show_all` will affect this widget.
 
 This is mostly for use in constructing widget hierarchies with externally
 controlled visibility, see `UIManager`.
-
-# Parameters
-
 ## `no_show_all`
 the new value for the “no-show-all” property
 <!-- trait WidgetExt::fn set_opacity -->
@@ -33869,9 +32804,6 @@ shown causes it to flicker once on Windows.
 
 For child widgets it doesn’t work if any affected widget has a native window, or
 disables double buffering.
-
-# Parameters
-
 ## `opacity`
 desired opacity, between 0 and 1
 <!-- trait WidgetExt::fn set_parent -->
@@ -33881,9 +32813,6 @@ Sets the container as the parent of `self`, and takes care of
 some details such as updating the state and style of the child
 to reflect its new location. The opposite function is
 `WidgetExt::unparent`.
-
-# Parameters
-
 ## `parent`
 parent container
 <!-- trait WidgetExt::fn set_parent_window -->
@@ -33895,9 +32824,6 @@ widgets.
 
 For `Window` classes, this needs to be called before the
 window is realized.
-
-# Parameters
-
 ## `parent_window`
 the new parent window.
 <!-- trait WidgetExt::fn set_realized -->
@@ -33907,9 +32833,6 @@ and registered.
 
 This function should only ever be called in a derived widget's
 “realize” or “unrealize” implementation.
-
-# Parameters
-
 ## `realized`
 `true` to mark the widget as realized
 <!-- trait WidgetExt::fn set_receives_default -->
@@ -33919,9 +32842,6 @@ is the default.
 
 See `WidgetExt::grab_default` for details about the meaning of
 “default”.
-
-# Parameters
-
 ## `receives_default`
 whether or not `self` can be a default widget.
 <!-- trait WidgetExt::fn set_redraw_on_allocate -->
@@ -33940,9 +32860,6 @@ does draw on `self`->window, you are
 responsible for invalidating both the old and new allocation of the
 widget when the widget is moved and responsible for invalidating
 regions newly when the widget increases size.
-
-# Parameters
-
 ## `redraw_on_allocate`
 if `true`, the entire widget will be redrawn
  when it is allocated to a new size. Otherwise, only the
@@ -33952,9 +32869,6 @@ Sets the sensitivity of a widget. A widget is sensitive if the user
 can interact with it. Insensitive widgets are “grayed out” and the
 user can’t interact with them. Insensitive widgets are known as
 “inactive”, “disabled”, or “ghosted” in some other toolkits.
-
-# Parameters
-
 ## `sensitive`
 `true` to make the widget sensitive
 <!-- trait WidgetExt::fn set_size_request -->
@@ -33988,9 +32902,6 @@ The size request set here does not include any margin from the
 `Widget` properties margin-left, margin-right, margin-top, and
 margin-bottom, but it does include pretty much all other padding
 or border properties set by any subclass of `Widget`.
-
-# Parameters
-
 ## `width`
 width `self` should request, or -1 to unset
 ## `height`
@@ -34003,9 +32914,6 @@ the state using wrapper functions such as `WidgetExt::set_sensitive`.
 # Deprecated
 
 Use `WidgetExt::set_state_flags` instead.
-
-# Parameters
-
 ## `state`
 new state for `self`
 <!-- trait WidgetExt::fn set_state_flags -->
@@ -34022,9 +32930,6 @@ will be propagated down to all non-internal children if `self` is a
 down to all `Container` children by different means than turning on the
 state flag down the hierarchy, both `WidgetExt::get_state_flags` and
 `WidgetExt::is_sensitive` will make use of these.
-
-# Parameters
-
 ## `flags`
 State flags to turn on
 ## `clear`
@@ -34036,9 +32941,6 @@ GTK 3, this function does nothing, the passed in style is ignored.
 # Deprecated
 
 Use `StyleContext` instead
-
-# Parameters
-
 ## `style`
 a `Style`, or `None` to remove the effect
  of a previous call to `WidgetExt::set_style` and go back to
@@ -34048,9 +32950,6 @@ Enables or disables multiple pointer awareness. If this setting is `true`,
 `self` will start receiving multiple, per device enter/leave events. Note
 that if custom ``GdkWindows`` are created in `Widget::realize`,
 `gdk::Window::set_support_multidevice` will have to be called manually on them.
-
-# Parameters
-
 ## `support_multidevice`
 `true` to support input from multiple devices.
 <!-- trait WidgetExt::fn set_tooltip_markup -->
@@ -34062,9 +32961,6 @@ and of the default handler for the `Widget::query-tooltip` signal.
 
 See also the `Widget:tooltip-markup` property and
 `Tooltip::set_markup`.
-
-# Parameters
-
 ## `markup`
 the contents of the tooltip for `self`, or `None`
 <!-- trait WidgetExt::fn set_tooltip_text -->
@@ -34073,9 +32969,6 @@ care of setting `Widget:has-tooltip` to `true` and of the default
 handler for the `Widget::query-tooltip` signal.
 
 See also the `Widget:tooltip-text` property and `Tooltip::set_text`.
-
-# Parameters
-
 ## `text`
 the contents of the tooltip for `self`
 <!-- trait WidgetExt::fn set_tooltip_window -->
@@ -34087,17 +32980,11 @@ tooltip window will be used.
 
 If the custom window should have the default theming it needs to
 have the name “gtk-tooltip”, see `WidgetExt::set_name`.
-
-# Parameters
-
 ## `custom_window`
 a `Window`, or `None`
 <!-- trait WidgetExt::fn set_valign -->
 Sets the vertical alignment of `self`.
 See the `Widget:valign` property.
-
-# Parameters
-
 ## `align`
 the vertical alignment
 <!-- trait WidgetExt::fn set_vexpand -->
@@ -34105,9 +32992,6 @@ Sets whether the widget would like any available extra vertical
 space.
 
 See `WidgetExt::set_hexpand` for more detail.
-
-# Parameters
-
 ## `expand`
 whether to expand
 <!-- trait WidgetExt::fn set_vexpand_set -->
@@ -34115,9 +32999,6 @@ Sets whether the vexpand flag (see `WidgetExt::get_vexpand`) will
 be used.
 
 See `WidgetExt::set_hexpand_set` for more detail.
-
-# Parameters
-
 ## `set`
 value for vexpand-set property
 <!-- trait WidgetExt::fn set_visible -->
@@ -34128,9 +33009,6 @@ Sets the visibility state of `self`. Note that setting this to
 This function simply calls `WidgetExt::show` or `WidgetExt::hide`
 but is nicer to use when the visibility of the widget depends on
 some condition.
-
-# Parameters
-
 ## `visible`
 whether the widget should be shown or not
 <!-- trait WidgetExt::fn set_visual -->
@@ -34141,9 +33019,6 @@ returned by `WidgetExt::get_screen`, so handling the
 
 Setting a new `visual` will not cause `self` to recreate its windows,
 so you should call this function before `self` is realized.
-
-# Parameters
-
 ## `visual`
 visual to be used or `None` to unset a previous one
 <!-- trait WidgetExt::fn set_window -->
@@ -34158,18 +33033,12 @@ by calling `WidgetExt::set_has_window`. This is usually done in the
 widget’s `init` function.
 
 Note that this function does not add any reference to `window`.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`
 <!-- trait WidgetExt::fn shape_combine_region -->
 Sets a shape for this widget’s GDK window. This allows for
 transparent windows etc., see `gdk::Window::shape_combine_region`
 for more information.
-
-# Parameters
-
 ## `region`
 shape to be added, or `None` to remove an existing shape
 <!-- trait WidgetExt::fn show -->
@@ -34205,9 +33074,6 @@ widget’s `Widget:halign` and `Widget:valign` properties.
 
 For baseline support in containers you need to use `WidgetExt::size_allocate_with_baseline`
 instead.
-
-# Parameters
-
 ## `allocation`
 position and size to be allocated to `self`
 <!-- trait WidgetExt::fn size_allocate_with_baseline -->
@@ -34224,9 +33090,6 @@ margins, and applying the widget’s `Widget:halign` and
 
 If the child widget does not have a valign of `Align::Baseline` the
 baseline argument is ignored and -1 is used instead.
-
-# Parameters
-
 ## `allocation`
 position and size to be allocated to `self`
 ## `baseline`
@@ -34248,9 +33111,6 @@ a widget will actually be allocated.
 # Deprecated
 
 Use `WidgetExt::get_preferred_size` instead.
-
-# Parameters
-
 ## `requisition`
 a `Requisition` to be filled in
 <!-- trait WidgetExt::fn style_attach -->
@@ -34272,16 +33132,10 @@ implementation which does not chain up to its parent class'
 This step is unnecessary with `StyleContext`.
 <!-- trait WidgetExt::fn style_get -->
 Gets the values of a multiple style properties of `self`.
-
-# Parameters
-
 ## `first_property_name`
 the name of the first property to get
 <!-- trait WidgetExt::fn style_get_property -->
 Gets the value of a style property of `self`.
-
-# Parameters
-
 ## `property_name`
 the name of a style property
 ## `value`
@@ -34289,9 +33143,6 @@ location to return the property value
 <!-- trait WidgetExt::fn style_get_valist -->
 Non-vararg variant of `WidgetExt::style_get`. Used primarily by language
 bindings.
-
-# Parameters
-
 ## `first_property_name`
 the name of the first property to get
 ## `var_args`
@@ -34307,9 +33158,6 @@ Translate coordinates relative to `self`’s allocation to coordinates
 relative to `dest_widget`’s allocations. In order to perform this
 operation, both widgets must be realized, and must share a common
 toplevel.
-
-# Parameters
-
 ## `dest_widget`
 a `Widget`
 ## `src_x`
@@ -34345,20 +33193,20 @@ associated with the widget, such as `self`->window).
 Unregisters a `gdk::Window` from the widget that was previously set up with
 `WidgetExt::register_window`. You need to call this when the window is
 no longer used by the widget, such as when you destroy it.
-
-# Parameters
-
 ## `window`
 a `gdk::Window`
 <!-- trait WidgetExt::fn unset_state_flags -->
 This function is for use in widget implementations. Turns off flag
 values for the current widget state (insensitive, prelighted, etc.).
 See `WidgetExt::set_state_flags`.
-
-# Parameters
-
 ## `flags`
 State flags to turn off
+<!-- enum WidgetHelpType -->
+Kinds of widget-specific help. Used by the ::show-help signal.
+<!-- enum WidgetHelpType::variant Tooltip -->
+Tooltip.
+<!-- enum WidgetHelpType::variant WhatsThis -->
+What’s this.
 <!-- struct Window -->
 A `Window` is a toplevel window which can contain other widgets.
 Windows normally have decorations that are under the control
@@ -34399,6 +33247,10 @@ attribute of a `<child>` element.
 [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait WindowExt -->
 Trait containing all `Window` methods.
+
+# Implementors
+
+[`Dialog`](struct.Dialog.html), [`Window`](struct.Window.html)
 <!-- impl Window::fn new -->
 Creates a new `Window`, which is a toplevel window that can
 contain other widgets. Nearly always, the type of the window should
@@ -34420,9 +33272,6 @@ the window internally, `Window::new` does not return a reference
 to the caller.
 
 To delete a `Window`, call `WidgetExt::destroy`.
-
-# Parameters
-
 ## `type_`
 type of window
 
@@ -34469,26 +33318,17 @@ until after your real main window has been shown, for example.
 In that example, you would disable startup notification
 temporarily, show your splash screen, then re-enable it so that
 showing the main window would automatically result in notification.
-
-# Parameters
-
 ## `setting`
 `true` to automatically do startup notification
 <!-- impl Window::fn set_default_icon -->
 Sets an icon to be used as fallback for windows that haven't
 had `WindowExt::set_icon` called on them from a pixbuf.
-
-# Parameters
-
 ## `icon`
 the icon
 <!-- impl Window::fn set_default_icon_from_file -->
 Sets an icon to be used as fallback for windows that haven't
 had `WindowExt::set_icon_list` called on them from a file
 on disk. Warns on failure if `err` is `None`.
-
-# Parameters
-
 ## `filename`
 location of icon file
 
@@ -34502,27 +33342,18 @@ window-specific icon list. This function allows you to set up the
 icon for all windows in your app at once.
 
 See `WindowExt::set_icon_list` for more details.
-
-# Parameters
-
 ## `list`
 a list of `gdk_pixbuf::Pixbuf`
 <!-- impl Window::fn set_default_icon_name -->
 Sets an icon to be used as fallback for windows that haven't
 had `WindowExt::set_icon_list` called on them from a named
 themed icon, see `WindowExt::set_icon_name`.
-
-# Parameters
-
 ## `name`
 the name of the themed icon
 <!-- impl Window::fn set_interactive_debugging -->
 Opens or closes the [interactive debugger][interactive-debugging],
 which offers access to the widget hierarchy of the application
 and to useful debugging tools.
-
-# Parameters
-
 ## `enable`
 `true` to enable interactive debugging
 <!-- trait WindowExt::fn activate_default -->
@@ -34545,9 +33376,6 @@ Activates mnemonics and accelerators for this `Window`. This is normally
 called by the default ::key_press_event handler for toplevel windows,
 however in some cases it may be useful to call this directly when
 overriding the standard key handling for a toplevel window.
-
-# Parameters
-
 ## `event`
 a `gdk::EventKey`
 
@@ -34558,16 +33386,10 @@ a `gdk::EventKey`
 Associate `accel_group` with `self`, such that calling
 `gtk_accel_groups_activate` on `self` will activate accelerators
 in `accel_group`.
-
-# Parameters
-
 ## `accel_group`
 a `AccelGroup`
 <!-- trait WindowExt::fn add_mnemonic -->
 Adds a mnemonic to this window.
-
-# Parameters
-
 ## `keyval`
 the mnemonic
 ## `target`
@@ -34579,9 +33401,6 @@ will be done using the standard mechanism for the
 [window manager][gtk-X11-arch] or windowing
 system. Otherwise, GDK will try to emulate window movement,
 potentially not all that well, depending on the windowing system.
-
-# Parameters
-
 ## `button`
 mouse button that initiated the drag
 ## `root_x`
@@ -34597,9 +33416,6 @@ will be done using the standard mechanism for the
 [window manager][gtk-X11-arch] or windowing
 system. Otherwise, GDK will try to emulate window resizing,
 potentially not all that well, depending on the windowing system.
-
-# Parameters
-
 ## `edge`
 position of the resize control
 ## `button`
@@ -34668,9 +33484,6 @@ Gets the default size of the window. A value of -1 for the width or
 height indicates that a default size has not been explicitly set
 for that dimension, so the “natural” size of the window will be
 used.
-
-# Parameters
-
 ## `width`
 location to store the default width, or `None`
 ## `height`
@@ -34846,9 +33659,6 @@ not have sufficient knowledge of window manager state. The Correct
 Mechanism is to support the session management protocol (see the
 “GnomeClient” object in the GNOME libraries for example) and allow
 the window manager to save your window sizes and positions.
-
-# Parameters
-
 ## `root_x`
 return location for X coordinate of
  gravity-determined reference point, or `None`
@@ -34868,9 +33678,6 @@ position, width and height into the specified `gdk::Rectangle`.
 # Deprecated
 
 Resize grips have been removed.
-
-# Parameters
-
 ## `rect`
 a pointer to a `gdk::Rectangle` which we should store
  the resize grip area
@@ -34939,9 +33746,6 @@ In any case, if you insist on application-specified window
 positioning, there’s still a better way than
 doing it yourself - `WindowExt::set_position` will frequently
 handle the details for you.
-
-# Parameters
-
 ## `width`
 return location for width, or `None`
 ## `height`
@@ -35072,9 +33876,6 @@ on `Widget`, or by listening to notifications on the
 `Window:is-maximized` property.
 <!-- trait WindowExt::fn mnemonic_activate -->
 Activates the targets associated with the mnemonic.
-
-# Parameters
-
 ## `keyval`
 the mnemonic
 ## `modifier`
@@ -35117,9 +33918,6 @@ The [Extended Window Manager Hints Specification](http://www.freedesktop.org/Sta
 has a nice table of gravities in the “implementation notes” section.
 
 The `WindowExt::get_position` documentation may also be relevant.
-
-# Parameters
-
 ## `x`
 X coordinate to move window to
 ## `y`
@@ -35197,9 +33995,6 @@ main (int argc, char *argv[])
   return 0;
 }
 ```
-
-# Parameters
-
 ## `geometry`
 geometry string
 
@@ -35227,9 +34022,6 @@ it is preferable to use `WindowExt::present_with_time`.
 Presents a window to the user in response to a user interaction.
 If you need to present a window without a timestamp, use
 `WindowExt::present`. See `WindowExt::present` for details.
-
-# Parameters
-
 ## `timestamp`
 the timestamp of the user interaction (typically a
  button or key press event) which triggered this call
@@ -35240,9 +34032,6 @@ This is normally called by the default ::key_press_event and
 ::key_release_event handlers for toplevel windows,
 however in some cases it may be useful to call this directly when
 overriding the standard key handling for a toplevel window.
-
-# Parameters
-
 ## `event`
 a `gdk::EventKey`
 
@@ -35251,16 +34040,10 @@ a `gdk::EventKey`
 `true` if a widget in the focus chain handled the event.
 <!-- trait WindowExt::fn remove_accel_group -->
 Reverses the effects of `WindowExt::add_accel_group`.
-
-# Parameters
-
 ## `accel_group`
 a `AccelGroup`
 <!-- trait WindowExt::fn remove_mnemonic -->
 Removes a mnemonic from this window.
-
-# Parameters
-
 ## `keyval`
 the mnemonic
 ## `target`
@@ -35287,9 +34070,6 @@ first time, it overrides any default size set with
 `WindowExt::set_default_size`.
 
 Windows may not be resized smaller than 1 by 1 pixels.
-
-# Parameters
-
 ## `width`
 width in pixels to resize the window to
 ## `height`
@@ -35308,9 +34088,6 @@ Resize grips have been removed.
 Like `WindowExt::resize`, but `width` and `height` are interpreted
 in terms of the base size and increment set with
 gtk_window_set_geometry_hints.
-
-# Parameters
-
 ## `width`
 width in resize increments to resize the window to
 ## `height`
@@ -35318,9 +34095,6 @@ height in resize increments to resize the window to
 <!-- trait WindowExt::fn set_accept_focus -->
 Windows may set a hint asking the desktop environment not to receive
 the input focus. This function sets this hint.
-
-# Parameters
-
 ## `setting`
 `true` to let this window receive input focus
 <!-- trait WindowExt::fn set_application -->
@@ -35328,9 +34102,6 @@ Sets or unsets the `Application` associated with the window.
 
 The application will be kept alive for at least as long as the window
 is open.
-
-# Parameters
-
 ## `application`
 a `Application`, or `None`
 <!-- trait WindowExt::fn set_attached_to -->
@@ -35348,9 +34119,6 @@ Note that this function should not be confused with
 between two toplevels instead.
 
 Passing `None` for `attach_widget` detaches the window.
-
-# Parameters
-
 ## `attach_widget`
 a `Widget`, or `None`
 <!-- trait WindowExt::fn set_decorated -->
@@ -35365,9 +34133,6 @@ already visible, so you should call it before calling `WidgetExt::show`.
 
 On Windows, this function always works, since there’s no window manager
 policy involved.
-
-# Parameters
-
 ## `setting`
 `true` to decorate the window
 <!-- trait WindowExt::fn set_default -->
@@ -35378,9 +34143,6 @@ than unsetting) the default widget it’s generally easier to call
 `WidgetExt::grab_default` on the widget. Before making a widget
 the default widget, you must call `WidgetExt::set_can_default` on
 the widget you’d like to make the default.
-
-# Parameters
-
 ## `default_widget`
 widget to be the default, or `None`
  to unset the default widget for the toplevel
@@ -35388,9 +34150,6 @@ widget to be the default, or `None`
 Like `WindowExt::set_default_size`, but `width` and `height` are interpreted
 in terms of the base size and increment set with
 gtk_window_set_geometry_hints.
-
-# Parameters
-
 ## `width`
 width in resize increments, or -1 to unset the default width
 ## `height`
@@ -35424,9 +34183,6 @@ it had prior to hiding, rather than using the default size.
 
 Windows can’t actually be 0x0 in size, they must be at least 1x1, but
 passing 0 for `width` and `height` is OK, resulting in a 1x1 default size.
-
-# Parameters
-
 ## `width`
 width in pixels, or -1 to unset the default width
 ## `height`
@@ -35442,9 +34198,6 @@ already visible, so you should call it before calling `WidgetExt::show`.
 
 On Windows, this function always works, since there’s no window manager
 policy involved.
-
-# Parameters
-
 ## `setting`
 `true` to decorate the window as deletable
 <!-- trait WindowExt::fn set_destroy_with_parent -->
@@ -35452,9 +34205,6 @@ If `setting` is `true`, then destroying the transient parent of `self`
 will also destroy `self` itself. This is useful for dialogs that
 shouldn’t persist beyond the lifetime of the main window they're
 associated with, for example.
-
-# Parameters
-
 ## `setting`
 whether to destroy `self` with its transient parent
 <!-- trait WindowExt::fn set_focus -->
@@ -35463,9 +34213,6 @@ it as the focus widget for the window. If `focus` is `None`, unsets
 the focus widget for this window. To set the focus to a particular
 widget in the toplevel, it is usually more convenient to use
 `WidgetExt::grab_focus` instead of this function.
-
-# Parameters
-
 ## `focus`
 widget to be the new focus widget, or `None` to unset
  any focus widget for the toplevel window.
@@ -35473,16 +34220,10 @@ widget to be the new focus widget, or `None` to unset
 Windows may set a hint asking the desktop environment not to receive
 the input focus when the window is mapped. This function sets this
 hint.
-
-# Parameters
-
 ## `setting`
 `true` to let this window receive input focus on map
 <!-- trait WindowExt::fn set_focus_visible -->
 Sets the `Window:focus-visible` property.
-
-# Parameters
-
 ## `setting`
 the new value
 <!-- trait WindowExt::fn set_geometry_hints -->
@@ -35490,9 +34231,6 @@ This function sets up hints about how a window can be resized by
 the user. You can set a minimum and maximum size; allowed resize
 increments (e.g. for xterm, you can only resize by the size of a
 character); aspect ratios; and more. See the `gdk::Geometry` struct.
-
-# Parameters
-
 ## `geometry_widget`
 widget the geometry hints will be applied to or `None`
 ## `geometry`
@@ -35506,9 +34244,6 @@ more details.
 
 The default window gravity is `gdk::Gravity::NorthWest` which will
 typically “do what you mean.”
-
-# Parameters
-
 ## `gravity`
 window gravity
 <!-- trait WindowExt::fn set_has_resize_grip -->
@@ -35522,9 +34257,6 @@ resize grip is currently shown.
 # Deprecated
 
 Resize grips have been removed.
-
-# Parameters
-
 ## `value`
 `true` to allow a resize grip
 <!-- trait WindowExt::fn set_has_user_ref_count -->
@@ -35535,9 +34267,6 @@ This function is only exported for the benefit of language
 bindings which may need to keep the window alive until their
 wrapper object is garbage collected. There is no justification
 for ever calling this function in an application.
-
-# Parameters
-
 ## `setting`
 the new value
 <!-- trait WindowExt::fn set_hide_titlebar_when_maximized -->
@@ -35551,9 +34280,6 @@ support the request, the setting will not have any effect.
 Note that custom titlebars set with `WindowExt::set_titlebar` are
 not affected by this. The application is in full control of their
 content and visibility anyway.
-
-# Parameters
-
 ## `setting`
 whether to hide the titlebar when `self` is maximized
 <!-- trait WindowExt::fn set_icon -->
@@ -35575,9 +34301,6 @@ with a 1-element list.
 
 See also `Window::set_default_icon_list` to set the icon
 for all windows in your application in one go.
-
-# Parameters
-
 ## `icon`
 icon image, or `None`
 <!-- trait WindowExt::fn set_icon_from_file -->
@@ -35586,9 +34309,6 @@ Warns on failure if `err` is `None`.
 
 This function is equivalent to calling `WindowExt::set_icon`
 with a pixbuf created by loading the image from `filename`.
-
-# Parameters
-
 ## `filename`
 location of icon file
 
@@ -35620,9 +34340,6 @@ Note that transient windows (those who have been set transient for another
 window using `WindowExt::set_transient_for`) will inherit their
 icon from their transient parent. So there’s no need to explicitly
 set the icon on transient windows.
-
-# Parameters
-
 ## `list`
 list of `gdk_pixbuf::Pixbuf`
 <!-- trait WindowExt::fn set_icon_name -->
@@ -35631,9 +34348,6 @@ the docs for `IconTheme` for more details.
 
 Note that this has nothing to do with the WM_ICON_NAME
 property which is mentioned in the ICCCM.
-
-# Parameters
-
 ## `name`
 the name of the themed icon
 <!-- trait WindowExt::fn set_keep_above -->
@@ -35657,9 +34371,6 @@ Note that, according to the
 the above state is mainly meant for user preferences and should not
 be used by applications e.g. for drawing attention to their
 dialogs.
-
-# Parameters
-
 ## `setting`
 whether to keep `self` above other windows
 <!-- trait WindowExt::fn set_keep_below -->
@@ -35683,24 +34394,15 @@ Note that, according to the
 the above state is mainly meant for user preferences and should not
 be used by applications e.g. for drawing attention to their
 dialogs.
-
-# Parameters
-
 ## `setting`
 whether to keep `self` below other windows
 <!-- trait WindowExt::fn set_mnemonic_modifier -->
 Sets the mnemonic modifier for this window.
-
-# Parameters
-
 ## `modifier`
 the modifier mask used to activate
  mnemonics on this window.
 <!-- trait WindowExt::fn set_mnemonics_visible -->
 Sets the `Window:mnemonics-visible` property.
-
-# Parameters
-
 ## `setting`
 the new value
 <!-- trait WindowExt::fn set_modal -->
@@ -35710,9 +34412,6 @@ on top of main application windows, use
 `WindowExt::set_transient_for` to make the dialog transient for the
 parent; most [window managers][gtk-X11-arch]
 will then disallow lowering the dialog below the parent.
-
-# Parameters
-
 ## `modal`
 whether the window is modal
 <!-- trait WindowExt::fn set_opacity -->
@@ -35729,26 +34428,17 @@ shown causes it to flicker once on Windows.
 # Deprecated
 
 Use gtk_widget_set_opacity instead.
-
-# Parameters
-
 ## `opacity`
 desired opacity, between 0 and 1
 <!-- trait WindowExt::fn set_position -->
 Sets a position constraint for this window. If the old or new
 constraint is `WindowPosition::CenterAlways`, this will also cause
 the window to be repositioned to satisfy the new constraint.
-
-# Parameters
-
 ## `position`
 a position constraint.
 <!-- trait WindowExt::fn set_resizable -->
 Sets whether the user can resize a window. Windows are user resizable
 by default.
-
-# Parameters
-
 ## `resizable`
 `true` if the user can resize this window
 <!-- trait WindowExt::fn set_role -->
@@ -35764,18 +34454,12 @@ the toolbox back in the same place.
 If a window already has a unique title, you don’t need to set the
 role, since the WM can use the title to identify the window when
 restoring the session.
-
-# Parameters
-
 ## `role`
 unique identifier for the window to be used when restoring a session
 <!-- trait WindowExt::fn set_screen -->
 Sets the `gdk::Screen` where the `self` is displayed; if
 the window is already mapped, it will be unmapped, and
 then remapped on the new screen.
-
-# Parameters
-
 ## `screen`
 a `gdk::Screen`.
 <!-- trait WindowExt::fn set_skip_pager_hint -->
@@ -35784,17 +34468,11 @@ the window in the pager. This function sets this hint.
 (A "pager" is any desktop navigation tool such as a workspace
 switcher that displays a thumbnail representation of the windows
 on the screen.)
-
-# Parameters
-
 ## `setting`
 `true` to keep this window from appearing in the pager
 <!-- trait WindowExt::fn set_skip_taskbar_hint -->
 Windows may set a hint asking the desktop environment not to display
 the window in the task bar. This function sets this hint.
-
-# Parameters
-
 ## `setting`
 `true` to keep this window from appearing in the task bar
 <!-- trait WindowExt::fn set_startup_id -->
@@ -35808,9 +34486,6 @@ function before calling `WindowExt::present` or any equivalent
 function generating a window map event.
 
 This function is only useful on X11, not with other GTK+ targets.
-
-# Parameters
-
 ## `startup_id`
 a string with startup-notification identifier
 <!-- trait WindowExt::fn set_title -->
@@ -35822,9 +34497,6 @@ according to a user’s exact configuration. The title should help a
 user distinguish this window from other windows they may have
 open. A good title might include the application name and current
 document filename, for example.
-
-# Parameters
-
 ## `title`
 title of the window
 <!-- trait WindowExt::fn set_titlebar -->
@@ -35835,9 +34507,6 @@ the window manager not to put its own titlebar on the window.
 Depending on the system, this function may not work for a window
 that is already visible, so you set the titlebar before calling
 `WidgetExt::show`.
-
-# Parameters
-
 ## `titlebar`
 the widget to use as titlebar
 <!-- trait WindowExt::fn set_transient_for -->
@@ -35853,9 +34522,6 @@ Passing `None` for `parent` unsets the current transient window.
 
 On Windows, this function puts the child window on top of the parent,
 much as the window manager would have done on X.
-
-# Parameters
-
 ## `parent`
 parent window, or `None`
 <!-- trait WindowExt::fn set_type_hint -->
@@ -35867,17 +34533,11 @@ This function should be called before the window becomes visible.
 
 `Dialog::new_with_buttons` and other convenience functions in GTK+
 will sometimes call `WindowExt::set_type_hint` on your behalf.
-
-# Parameters
-
 ## `hint`
 the window type
 <!-- trait WindowExt::fn set_urgency_hint -->
 Windows may set a hint asking the desktop environment to draw
 the users attention to the window. This function sets this hint.
-
-# Parameters
-
 ## `setting`
 `true` to mark this window as urgent
 <!-- trait WindowExt::fn set_wmclass -->
@@ -35889,9 +34549,6 @@ this function is sort of pointless. However, you may want to call
 `WindowExt::set_role` on each window in your application, for the
 benefit of the session manager. Setting the role allows the window
 manager to restore window positions when loading a saved session.
-
-# Parameters
-
 ## `wmclass_name`
 window name hint
 ## `wmclass_class`
@@ -35940,2289 +34597,21 @@ end up stuck. Just don’t write code that crashes if not.
 
 You can track stickiness via the “window-state-event” signal
 on `Widget`.
-<!-- struct Allocation -->
-A `Allocation`-struct of a widget represents region
-which has been allocated to the widget by its parent. It is a subregion
-of its parents allocation. See
-[`Widget`’s geometry management section][geometry-management] for
-more information.
-<!-- enum License -->
-The type of license for an application.
-
-This enumeration can be expanded at later date.
-<!-- enum License::variant unknown -->
-No license specified
-<!-- enum License::variant custom -->
-A license text is going to be specified by the
- developer
-<!-- enum License::variant gpl_2_0 -->
-The GNU General Public License, version 2.0 or later
-<!-- enum License::variant gpl_3_0 -->
-The GNU General Public License, version 3.0 or later
-<!-- enum License::variant lgpl_2_1 -->
-The GNU Lesser General Public License, version 2.1 or later
-<!-- enum License::variant lgpl_3_0 -->
-The GNU Lesser General Public License, version 3.0 or later
-<!-- enum License::variant bsd -->
-The BSD standard license
-<!-- enum License::variant mit_x11 -->
-The MIT/X11 standard license
-<!-- enum License::variant artistic -->
-The Artistic License, version 2.0
-<!-- enum License::variant gpl_2_0_only -->
-The GNU General Public License, version 2.0 only. Since 3.12.
-<!-- enum License::variant gpl_3_0_only -->
-The GNU General Public License, version 3.0 only. Since 3.12.
-<!-- enum License::variant lgpl_2_1_only -->
-The GNU Lesser General Public License, version 2.1 only. Since 3.12.
-<!-- enum License::variant lgpl_3_0_only -->
-The GNU Lesser General Public License, version 3.0 only. Since 3.12.
-<!-- fn AccelMapForeach -->
-
-# Parameters
-
-## `data`
-User data passed to `AccelMap::foreach` or
- `AccelMap::foreach_unfiltered`
-## `accel_path`
-Accel path of the current accelerator
-## `accel_key`
-Key of the current accelerator
-## `accel_mods`
-Modifiers of the current accelerator
-## `changed`
-Changed flag of the accelerator (if `true`, accelerator has changed
- during runtime and would need to be saved during an accelerator dump)
-<!-- fn TranslateFunc -->
-The function used to translate messages in e.g. `IconFactory`
-and `ActionGroup`.
-
-# Parameters
-
-## `path`
-The id of the message. In `ActionGroup` this will be a label
- or tooltip from a `ActionEntry`.
-## `func_data`
-user data passed in when registering the
- function
-
-# Returns
-
-the translated message
-<!-- enum Align -->
-Controls how a widget deals with extra space in a single (x or y)
-dimension.
-
-Alignment only matters if the widget receives a “too large” allocation,
-for example if you packed the widget with the `Widget:expand`
-flag inside a `Box`, then the widget might get extra space. If
-you have for example a 16x16 icon inside a 32x32 space, the icon
-could be scaled and stretched, it could be centered, or it could be
-positioned to one side of the space.
-
-Note that in horizontal context `Align::Start` and `Align::End`
-are interpreted relative to text direction.
-
-GTK_ALIGN_BASELINE support for it is optional for containers and widgets, and
-it is only supported for vertical alignment. When its not supported by
-a child or a container it is treated as `Align::Fill`.
-<!-- enum Align::variant fill -->
-stretch to fill all space if possible, center if
- no meaningful way to stretch
-<!-- enum Align::variant start -->
-snap to left or top side, leaving space on right
- or bottom
-<!-- enum Align::variant end -->
-snap to right or bottom side, leaving space on left
- or top
-<!-- enum Align::variant center -->
-center natural width of widget inside the
- allocation
-<!-- enum Align::variant baseline -->
-align the widget according to the baseline. Since 3.10.
-<!-- enum ArrowType -->
-Used to indicate the direction in which an arrow should point.
-<!-- enum ArrowType::variant up -->
-Represents an upward pointing arrow.
-<!-- enum ArrowType::variant down -->
-Represents a downward pointing arrow.
-<!-- enum ArrowType::variant left -->
-Represents a left pointing arrow.
-<!-- enum ArrowType::variant right -->
-Represents a right pointing arrow.
-<!-- enum ArrowType::variant none -->
-No arrow. Since 2.10.
-<!-- enum ShadowType -->
-Used to change the appearance of an outline typically provided by a `Frame`.
-
-Note that many themes do not differentiate the appearance of the
-various shadow types: Either their is no visible shadow (`ShadowType::None`),
-or there is (any other value).
-<!-- enum ShadowType::variant none -->
-No outline.
-<!-- enum ShadowType::variant in -->
-The outline is bevelled inwards.
-<!-- enum ShadowType::variant out -->
-The outline is bevelled outwards like a button.
-<!-- enum ShadowType::variant etched_in -->
-The outline has a sunken 3d appearance.
-<!-- enum ShadowType::variant etched_out -->
-The outline has a raised 3d appearance.
-<!-- enum ArrowPlacement -->
-Used to specify the placement of scroll arrows in scrolling menus.
-<!-- enum ArrowPlacement::variant both -->
-Place one arrow on each end of the menu.
-<!-- enum ArrowPlacement::variant start -->
-Place both arrows at the top of the menu.
-<!-- enum ArrowPlacement::variant end -->
-Place both arrows at the bottom of the menu.
-<!-- enum AssistantPageType -->
-An enum for determining the page role inside the `Assistant`. It's
-used to handle buttons sensitivity and visibility.
-
-Note that an assistant needs to end its page flow with a page of type
-`AssistantPageType::Confirm`, `AssistantPageType::Summary` or
-`AssistantPageType::Progress` to be correct.
-
-The Cancel button will only be shown if the page isn’t “committed”.
-See `Assistant::commit` for details.
-<!-- enum AssistantPageType::variant content -->
-The page has regular contents. Both the
- Back and forward buttons will be shown.
-<!-- enum AssistantPageType::variant intro -->
-The page contains an introduction to the
- assistant task. Only the Forward button will be shown if there is a
- next page.
-<!-- enum AssistantPageType::variant confirm -->
-The page lets the user confirm or deny the
- changes. The Back and Apply buttons will be shown.
-<!-- enum AssistantPageType::variant summary -->
-The page informs the user of the changes
- done. Only the Close button will be shown.
-<!-- enum AssistantPageType::variant progress -->
-Used for tasks that take a long time to
- complete, blocks the assistant until the page is marked as complete.
- Only the back button will be shown.
-<!-- enum AssistantPageType::variant custom -->
-Used for when other page types are not
- appropriate. No buttons will be shown, and the application must
- add its own buttons through `Assistant::add_action_widget`.
-<!-- fn AssistantPageFunc -->
-A function used by `Assistant::set_forward_page_func` to know which
-is the next page given a current one. It’s called both for computing the
-next page when the user presses the “forward” button and for handling
-the behavior of the “last” button.
-
-# Parameters
-
-## `current_page`
-The page number used to calculate the next page.
-## `data`
-user data.
-
-# Returns
-
-The next page number.
-<!-- enum BaselinePosition -->
-Whenever a container has some form of natural row it may align
-children in that row along a common typographical baseline. If
-the amount of verical space in the row is taller than the total
-requested height of the baseline-aligned children then it can use a
-`BaselinePosition` to select where to put the baseline inside the
-extra availible space.
-<!-- enum BaselinePosition::variant top -->
-Align the baseline at the top
-<!-- enum BaselinePosition::variant center -->
-Center the baseline
-<!-- enum BaselinePosition::variant bottom -->
-Align the baseline at the bottom
-<!-- enum PathType -->
-Widget path types.
-See also `BindingSet::add_path`.
-<!-- enum PathType::variant widget -->
-Deprecated
-<!-- enum PathType::variant widget_class -->
-Deprecated
-<!-- enum PathType::variant class -->
-Deprecated
-<!-- enum PathPriorityType -->
-Priorities for path lookups.
-See also `BindingSet::add_path`.
-<!-- enum PathPriorityType::variant lowest -->
-Deprecated
-<!-- enum PathPriorityType::variant gtk -->
-Deprecated
-<!-- enum PathPriorityType::variant application -->
-Deprecated
-<!-- enum PathPriorityType::variant theme -->
-Deprecated
-<!-- enum PathPriorityType::variant rc -->
-Deprecated
-<!-- enum PathPriorityType::variant highest -->
-Deprecated
-<!-- enum BorderStyle -->
-Describes how the border of a UI element should be rendered.
-<!-- enum BorderStyle::variant none -->
-No visible border
-<!-- enum BorderStyle::variant solid -->
-A single line segment
-<!-- enum BorderStyle::variant inset -->
-Looks as if the content is sunken into the canvas
-<!-- enum BorderStyle::variant outset -->
-Looks as if the content is coming out of the canvas
-<!-- enum BorderStyle::variant hidden -->
-Same as `BorderStyle::None`
-<!-- enum BorderStyle::variant dotted -->
-A series of round dots
-<!-- enum BorderStyle::variant dashed -->
-A series of square-ended dashes
-<!-- enum BorderStyle::variant double -->
-Two parallel lines with some space between them
-<!-- enum BorderStyle::variant groove -->
-Looks as if it were carved in the canvas
-<!-- enum BorderStyle::variant ridge -->
-Looks as if it were coming out of the canvas
-<!-- enum Orientation -->
-Represents the orientation of widgets and other objects which can be switched
-between horizontal and vertical orientation on the fly, like `Toolbar` or
-`GesturePan`.
-<!-- enum Orientation::variant horizontal -->
-The element is in horizontal orientation.
-<!-- enum Orientation::variant vertical -->
-The element is in vertical orientation.
-<!-- enum PackType -->
-Represents the packing location `Box` children. (See: `VBox`,
-`HBox`, and `ButtonBox`).
-<!-- enum PackType::variant start -->
-The child is packed into the start of the box
-<!-- enum PackType::variant end -->
-The child is packed into the end of the box
-<!-- fn BuilderConnectFunc -->
-This is the signature of a function used to connect signals. It is used
-by the `Builder::connect_signals` and `Builder::connect_signals_full`
-methods. It is mainly intended for interpreted language bindings, but
-could be useful where the programmer wants more control over the signal
-connection process. Note that this function can only be called once,
-subsequent calls will do nothing.
-
-# Parameters
-
-## `builder`
-a `Builder`
-## `object`
-object to connect a signal to
-## `signal_name`
-name of the signal
-## `handler_name`
-name of the handler
-## `connect_object`
-a `gobject::Object`, if non-`None`, use `g_signal_connect_object`
-## `flags`
-`gobject::ConnectFlags` to use
-## `user_data`
-user data
-<!-- enum BuilderError -->
-Error codes that identify various errors that can occur while using
-`Builder`.
-<!-- enum BuilderError::variant invalid_type_function -->
-A type-func attribute didn’t name
- a function that returns a `glib::Type`.
-<!-- enum BuilderError::variant unhandled_tag -->
-The input contained a tag that `Builder`
- can’t handle.
-<!-- enum BuilderError::variant missing_attribute -->
-An attribute that is required by
- `Builder` was missing.
-<!-- enum BuilderError::variant invalid_attribute -->
-`Builder` found an attribute that
- it doesn’t understand.
-<!-- enum BuilderError::variant invalid_tag -->
-`Builder` found a tag that
- it doesn’t understand.
-<!-- enum BuilderError::variant missing_property_value -->
-A required property value was
- missing.
-<!-- enum BuilderError::variant invalid_value -->
-`Builder` couldn’t parse
- some attribute value.
-<!-- enum BuilderError::variant version_mismatch -->
-The input file requires a newer version
- of GTK+.
-<!-- enum BuilderError::variant duplicate_id -->
-An object id occurred twice.
-<!-- enum BuilderError::variant object_type_refused -->
-A specified object type is of the same type or
- derived from the type of the composite class being extended with builder XML.
-<!-- enum BuilderError::variant template_mismatch -->
-The wrong type was specified in a composite class’s template XML
-<!-- enum BuilderError::variant invalid_property -->
-The specified property is unknown for the object class.
-<!-- enum BuilderError::variant invalid_signal -->
-The specified signal is unknown for the object class.
-<!-- enum PositionType -->
-Describes which edge of a widget a certain feature is positioned at, e.g. the
-tabs of a `Notebook`, the handle of a `HandleBox` or the label of a
-`Scale`.
-<!-- enum PositionType::variant left -->
-The feature is at the left edge.
-<!-- enum PositionType::variant right -->
-The feature is at the right edge.
-<!-- enum PositionType::variant top -->
-The feature is at the top edge.
-<!-- enum PositionType::variant bottom -->
-The feature is at the bottom edge.
-<!-- enum ReliefStyle -->
-Indicated the relief to be drawn around a `Button`.
-<!-- enum ReliefStyle::variant normal -->
-Draw a normal relief.
-<!-- enum ReliefStyle::variant half -->
-A half relief. Deprecated in 3.14, does the same as `ReliefStyle::Normal`
-<!-- enum ReliefStyle::variant none -->
-No relief.
-<!-- enum ButtonBoxStyle -->
-Used to dictate the style that a `ButtonBox` uses to layout the buttons it
-contains.
-<!-- enum ButtonBoxStyle::variant spread -->
-Buttons are evenly spread across the box.
-<!-- enum ButtonBoxStyle::variant edge -->
-Buttons are placed at the edges of the box.
-<!-- enum ButtonBoxStyle::variant start -->
-Buttons are grouped towards the start of the box,
- (on the left for a HBox, or the top for a VBox).
-<!-- enum ButtonBoxStyle::variant end -->
-Buttons are grouped towards the end of the box,
- (on the right for a HBox, or the bottom for a VBox).
-<!-- enum ButtonBoxStyle::variant center -->
-Buttons are centered in the box. Since 2.12.
-<!-- enum ButtonBoxStyle::variant expand -->
-Buttons expand to fill the box. Since 3.12.
-<!-- enum ButtonRole -->
-The role specifies the desired appearance of a `ModelButton`.
-<!-- enum ButtonRole::variant normal -->
-A plain button
-<!-- enum ButtonRole::variant check -->
-A check button
-<!-- enum ButtonRole::variant radio -->
-A radio button
-<!-- enum ButtonsType -->
-Prebuilt sets of buttons for the dialog. If
-none of these choices are appropriate, simply use `ButtonsType::None`
-then call `DialogExt::add_buttons`.
-
-> Please note that `ButtonsType::Ok`, `ButtonsType::YesNo`
-> and `ButtonsType::OkCancel` are discouraged by the
-> [GNOME Human Interface Guidelines](http://library.gnome.org/devel/hig-book/stable/).
-<!-- enum ButtonsType::variant none -->
-no buttons at all
-<!-- enum ButtonsType::variant ok -->
-an OK button
-<!-- enum ButtonsType::variant close -->
-a Close button
-<!-- enum ButtonsType::variant cancel -->
-a Cancel button
-<!-- enum ButtonsType::variant yes_no -->
-Yes and No buttons
-<!-- enum ButtonsType::variant ok_cancel -->
-OK and Cancel buttons
-<!-- fn CalendarDetailFunc -->
-This kind of functions provide Pango markup with detail information for the
-specified day. Examples for such details are holidays or appointments. The
-function returns `None` when no information is available.
-
-# Parameters
-
-## `calendar`
-a `Calendar`.
-## `year`
-the year for which details are needed.
-## `month`
-the month for which details are needed.
-## `day`
-the day of `month` for which details are needed.
-## `user_data`
-the data passed with `Calendar::set_detail_func`.
-
-# Returns
-
-Newly allocated string with Pango markup with details
-for the specified day, or `None`.
-<!-- fn Callback -->
-The type of the callback functions used for e.g. iterating over
-the children of a container, see `ContainerExt::foreach`.
-
-# Parameters
-
-## `widget`
-the widget to operate on
-## `data`
-user-supplied data
-<!-- fn CellAllocCallback -->
-The type of the callback functions used for iterating over the
-cell renderers and their allocated areas inside a `CellArea`,
-see `CellAreaExt::foreach_alloc`.
-
-# Parameters
-
-## `renderer`
-the cell renderer to operate on
-## `cell_area`
-the area allocated to `renderer` inside the rectangle
- provided to `CellAreaExt::foreach_alloc`.
-## `cell_background`
-the background area for `renderer` inside the
- background area provided to `CellAreaExt::foreach_alloc`.
-## `data`
-user-supplied data
-
-# Returns
-
-`true` to stop iterating over cells.
-<!-- enum DirectionType -->
-Focus movement types.
-<!-- enum DirectionType::variant tab_forward -->
-Move forward.
-<!-- enum DirectionType::variant tab_backward -->
-Move backward.
-<!-- enum DirectionType::variant up -->
-Move up.
-<!-- enum DirectionType::variant down -->
-Move down.
-<!-- enum DirectionType::variant left -->
-Move left.
-<!-- enum DirectionType::variant right -->
-Move right.
-<!-- fn CellCallback -->
-The type of the callback functions used for iterating over
-the cell renderers of a `CellArea`, see `CellAreaExt::foreach`.
-
-# Parameters
-
-## `renderer`
-the cell renderer to operate on
-## `data`
-user-supplied data
-
-# Returns
-
-`true` to stop iterating over cells.
-<!-- enum SizeRequestMode -->
-Specifies a preference for height-for-width or
-width-for-height geometry management.
-<!-- enum SizeRequestMode::variant height_for_width -->
-Prefer height-for-width geometry management
-<!-- enum SizeRequestMode::variant width_for_height -->
-Prefer width-for-height geometry management
-<!-- enum SizeRequestMode::variant constant_size -->
-Don’t trade height-for-width or width-for-height
-<!-- fn CellLayoutDataFunc -->
-A function which should set the value of `cell_layout`’s cell renderer(s)
-as appropriate.
-
-# Parameters
-
-## `cell_layout`
-a `CellLayout`
-## `cell`
-the cell renderer whose value is to be set
-## `tree_model`
-the model
-## `iter`
-a `TreeIter` indicating the row to set the value for
-## `data`
-user data passed to `CellLayout::set_cell_data_func`
-<!-- enum CellRendererAccelMode -->
-Determines if the edited accelerators are GTK+ accelerators. If
-they are, consumed modifiers are suppressed, only accelerators
-accepted by GTK+ are allowed, and the accelerators are rendered
-in the same way as they are in menus.
-<!-- enum CellRendererAccelMode::variant gtk -->
-GTK+ accelerators mode
-<!-- enum CellRendererAccelMode::variant other -->
-Other accelerator mode
-GTK_CELL_RENDERER_ACCEL_MODE_MODIFIER_TAP: Bare modifiers mode
-<!-- enum CellRendererMode -->
-Identifies how the user can interact with a particular cell.
-<!-- enum CellRendererMode::variant inert -->
-The cell is just for display
- and cannot be interacted with. Note that this doesn’t mean that eg. the
- row being drawn can’t be selected -- just that a particular element of
- it cannot be individually modified.
-<!-- enum CellRendererMode::variant activatable -->
-The cell can be clicked.
-<!-- enum CellRendererMode::variant editable -->
-The cell can be edited or otherwise modified.
-<!-- fn ClipboardReceivedFunc -->
-A function to be called when the results of `Clipboard::request_contents`
-are received, or when the request fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `selection_data`
-a `SelectionData` containing the data was received.
- If retrieving the data failed, then then length field
- of `selection_data` will be negative.
-## `data`
-the `user_data` supplied to
- `Clipboard::request_contents`.
-<!-- fn ClipboardImageReceivedFunc -->
-A function to be called when the results of `Clipboard::request_image`
-are received, or when the request fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `pixbuf`
-the received image
-## `data`
-the `user_data` supplied to
- `Clipboard::request_image`.
-<!-- fn ClipboardRichTextReceivedFunc -->
-A function to be called when the results of
-`Clipboard::request_rich_text` are received, or when the request
-fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `format`
-The format of the rich text
-## `text`
-the rich text received, as
- a UTF-8 encoded string, or `None` if retrieving the data failed.
-## `length`
-Length of the text.
-## `data`
-the `user_data` supplied to
- `Clipboard::request_rich_text`.
-<!-- fn ClipboardTargetsReceivedFunc -->
-A function to be called when the results of `Clipboard::request_targets`
-are received, or when the request fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `atoms`
-the supported targets,
- as array of `gdk::Atom`, or `None` if retrieving the data failed.
-## `n_atoms`
-the length of the `atoms` array.
-## `data`
-the `user_data` supplied to
- `Clipboard::request_targets`.
-<!-- fn ClipboardTextReceivedFunc -->
-A function to be called when the results of `Clipboard::request_text`
-are received, or when the request fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `text`
-the text received, as a UTF-8 encoded string, or
- `None` if retrieving the data failed.
-## `data`
-the `user_data` supplied to
- `Clipboard::request_text`.
-<!-- fn ClipboardURIReceivedFunc -->
-A function to be called when the results of
-`Clipboard::request_uris` are received, or when the request
-fails.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `uris`
-the received URIs
-## `data`
-the `user_data` supplied to
- `Clipboard::request_uris`.
-<!-- fn ClipboardGetFunc -->
-A function that will be called to provide the contents of the selection.
-If multiple types of data were advertised, the requested type can
-be determined from the `info` parameter or by checking the target field
-of `selection_data`. If the data could successfully be converted into
-then it should be stored into the `selection_data` object by
-calling `SelectionData::set` (or related functions such
-as `SelectionData::set_text`). If no data is set, the requestor
-will be informed that the attempt to get the data failed.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `selection_data`
-a `SelectionData` argument in which the requested
- data should be stored.
-## `info`
-the info field corresponding to the requested target from the
- `TargetEntry` array passed to `Clipboard::set_with_data` or
- `Clipboard::set_with_owner`.
-## `user_data_or_owner`
-the `user_data` argument passed to
- `Clipboard::set_with_data`, or the `owner` argument passed to
- `Clipboard::set_with_owner`
-<!-- fn ClipboardClearFunc -->
-A function that will be called when the contents of the clipboard are changed
-or cleared. Once this has called, the `user_data_or_owner` argument
-will not be used again.
-
-# Parameters
-
-## `clipboard`
-the `Clipboard`
-## `user_data_or_owner`
-the `user_data` argument passed to `Clipboard::set_with_data`,
- or the `owner` argument passed to `Clipboard::set_with_owner`
-<!-- fn ColorSelectionChangePaletteWithScreenFunc -->
-
-# Parameters
-
-## `colors`
-Array of colors
-## `n_colors`
-Number of colors in the array
-<!-- fn ColorSelectionChangePaletteFunc -->
-
-# Parameters
-
-## `colors`
-Array of colors
-## `n_colors`
-Number of colors in the array
-<!-- enum SensitivityType -->
-Determines how GTK+ handles the sensitivity of stepper arrows
-at the end of range widgets.
-<!-- enum SensitivityType::variant auto -->
-The arrow is made insensitive if the
- thumb is at the end
-<!-- enum SensitivityType::variant on -->
-The arrow is always sensitive
-<!-- enum SensitivityType::variant off -->
-The arrow is always insensitive
-<!-- fn TreeViewRowSeparatorFunc -->
-Function type for determining whether the row pointed to by `iter` should
-be rendered as a separator. A common way to implement this is to have a
-boolean column in the model, whose values the ``GtkTreeViewRowSeparatorFunc``
-returns.
-
-# Parameters
-
-## `model`
-the `TreeModel`
-## `iter`
-a `TreeIter` pointing at a row in `model`
-## `data`
-user data
-
-# Returns
-
-`true` if the row is a separator
-<!-- enum ResizeMode -->
-<!-- enum ResizeMode::variant parent -->
-Pass resize request to the parent
-<!-- enum ResizeMode::variant queue -->
-Queue resizes on this widget
-<!-- enum ResizeMode::variant immediate -->
-Resize immediately. Deprecated.
-<!-- enum CornerType -->
-Specifies which corner a child widget should be placed in when packed into
-a `ScrolledWindow`. This is effectively the opposite of where the scroll
-bars are placed.
-<!-- enum CornerType::variant top_left -->
-Place the scrollbars on the right and bottom of the
- widget (default behaviour).
-<!-- enum CornerType::variant bottom_left -->
-Place the scrollbars on the top and right of the
- widget.
-<!-- enum CornerType::variant top_right -->
-Place the scrollbars on the left and bottom of the
- widget.
-<!-- enum CornerType::variant bottom_right -->
-Place the scrollbars on the top and left of the
- widget.
-<!-- enum CssProviderError -->
-Error codes for `GTK_CSS_PROVIDER_ERROR`.
-<!-- enum CssProviderError::variant failed -->
-Failed.
-<!-- enum CssProviderError::variant syntax -->
-Syntax error.
-<!-- enum CssProviderError::variant import -->
-Import error.
-<!-- enum CssProviderError::variant name -->
-Name error.
-<!-- enum CssProviderError::variant deprecated -->
-Deprecation error.
-<!-- enum CssProviderError::variant unknown_value -->
-Unknown value.
-<!-- enum CssSectionType -->
-The different types of sections indicate parts of a CSS document as
-parsed by GTK’s CSS parser. They are oriented towards the
-[CSS Grammar](http://www.w3.org/TR/CSS21/grammar.html),
-but may contain extensions.
-
-More types might be added in the future as the parser incorporates
-more features.
-<!-- enum CssSectionType::variant document -->
-The section describes a complete document.
- This section time is the only one where `CssSection::get_parent`
- might return `None`.
-<!-- enum CssSectionType::variant import -->
-The section defines an import rule.
-<!-- enum CssSectionType::variant color_definition -->
-The section defines a color. This
- is a GTK extension to CSS.
-<!-- enum CssSectionType::variant binding_set -->
-The section defines a binding set. This
- is a GTK extension to CSS.
-<!-- enum CssSectionType::variant ruleset -->
-The section defines a CSS ruleset.
-<!-- enum CssSectionType::variant selector -->
-The section defines a CSS selector.
-<!-- enum CssSectionType::variant declaration -->
-The section defines the declaration of
- a CSS variable.
-<!-- enum CssSectionType::variant value -->
-The section defines the value of a CSS declaration.
-<!-- enum CssSectionType::variant keyframes -->
-The section defines keyframes. See [CSS
- Animations](http://dev.w3.org/csswg/css3-animations/`keyframes`) for details. Since 3.6
-<!-- enum DeleteType -->
-See also: `Entry::delete-from-cursor`.
-<!-- enum DeleteType::variant chars -->
-Delete characters.
-<!-- enum DeleteType::variant word_ends -->
-Delete only the portion of the word to the
- left/right of cursor if we’re in the middle of a word.
-<!-- enum DeleteType::variant words -->
-Delete words.
-<!-- enum DeleteType::variant display_lines -->
-Delete display-lines. Display-lines
- refers to the visible lines, with respect to to the current line
- breaks. As opposed to paragraphs, which are defined by line
- breaks in the input.
-<!-- enum DeleteType::variant display_line_ends -->
-Delete only the portion of the
- display-line to the left/right of cursor.
-<!-- enum DeleteType::variant paragraph_ends -->
-Delete to the end of the
- paragraph. Like C-k in Emacs (or its reverse).
-<!-- enum DeleteType::variant paragraphs -->
-Delete entire line. Like C-k in pico.
-<!-- enum DeleteType::variant whitespace -->
-Delete only whitespace. Like M-\ in Emacs.
-<!-- enum DragResult -->
-Gives an indication why a drag operation failed.
-The value can by obtained by connecting to the
-`Widget::drag-failed` signal.
-<!-- enum DragResult::variant success -->
-The drag operation was successful.
-<!-- enum DragResult::variant no_target -->
-No suitable drag target.
-<!-- enum DragResult::variant user_cancelled -->
-The user cancelled the drag operation.
-<!-- enum DragResult::variant timeout_expired -->
-The drag operation timed out.
-<!-- enum DragResult::variant grab_broken -->
-The pointer or keyboard grab used
- for the drag operation was broken.
-<!-- enum DragResult::variant error -->
-The drag operation failed due to some
- unspecified error.
-<!-- enum EntryIconPosition -->
-Specifies the side of the entry at which an icon is placed.
-<!-- enum EntryIconPosition::variant primary -->
-At the beginning of the entry (depending on the text direction).
-<!-- enum EntryIconPosition::variant secondary -->
-At the end of the entry (depending on the text direction).
-<!-- enum ImageType -->
-Describes the image data representation used by a `Image`. If you
-want to get the image from the widget, you can only get the
-currently-stored representation. e.g. if the
-`Image::get_storage_type` returns `ImageType::Pixbuf`, then you can
-call `Image::get_pixbuf` but not `Image::get_stock`. For empty
-images, you can request any storage type (call any of the "get"
-functions), but they will all return `None` values.
-<!-- enum ImageType::variant empty -->
-there is no image displayed by the widget
-<!-- enum ImageType::variant pixbuf -->
-the widget contains a `gdk_pixbuf::Pixbuf`
-<!-- enum ImageType::variant stock -->
-the widget contains a [stock item name][gtkstock]
-<!-- enum ImageType::variant icon_set -->
-the widget contains a `IconSet`
-<!-- enum ImageType::variant animation -->
-the widget contains a `gdk_pixbuf::PixbufAnimation`
-<!-- enum ImageType::variant icon_name -->
-the widget contains a named icon.
- This image type was added in GTK+ 2.6
-<!-- enum ImageType::variant gicon -->
-the widget contains a `gio::Icon`.
- This image type was added in GTK+ 2.14
-<!-- enum ImageType::variant surface -->
-the widget contains a `cairo::Surface`.
- This image type was added in GTK+ 3.10
-<!-- enum InputPurpose -->
-Describes primary purpose of the input widget. This information is
-useful for on-screen keyboards and similar input methods to decide
-which keys should be presented to the user.
-
-Note that the purpose is not meant to impose a totally strict rule
-about allowed characters, and does not replace input validation.
-It is fine for an on-screen keyboard to let the user override the
-character set restriction that is expressed by the purpose. The
-application is expected to validate the entry contents, even if
-it specified a purpose.
-
-The difference between `InputPurpose::Digits` and
-`InputPurpose::Number` is that the former accepts only digits
-while the latter also some punctuation (like commas or points, plus,
-minus) and “e” or “E” as in 3.14E+000.
-
-This enumeration may be extended in the future; input methods should
-interpret unknown values as “free form”.
-<!-- enum InputPurpose::variant free_form -->
-Allow any character
-<!-- enum InputPurpose::variant alpha -->
-Allow only alphabetic characters
-<!-- enum InputPurpose::variant digits -->
-Allow only digits
-<!-- enum InputPurpose::variant number -->
-Edited field expects numbers
-<!-- enum InputPurpose::variant phone -->
-Edited field expects phone number
-<!-- enum InputPurpose::variant url -->
-Edited field expects URL
-<!-- enum InputPurpose::variant email -->
-Edited field expects email address
-<!-- enum InputPurpose::variant name -->
-Edited field expects the name of a person
-<!-- enum InputPurpose::variant password -->
-Like `InputPurpose::FreeForm`, but characters are hidden
-<!-- enum InputPurpose::variant pin -->
-Like `InputPurpose::Digits`, but characters are hidden
-<!-- enum MovementStep -->
-<!-- enum MovementStep::variant logical_positions -->
-Move forward or back by graphemes
-<!-- enum MovementStep::variant visual_positions -->
-Move left or right by graphemes
-<!-- enum MovementStep::variant words -->
-Move forward or back by words
-<!-- enum MovementStep::variant display_lines -->
-Move up or down lines (wrapped lines)
-<!-- enum MovementStep::variant display_line_ends -->
-Move to either end of a line
-<!-- enum MovementStep::variant paragraphs -->
-Move up or down paragraphs (newline-ended lines)
-<!-- enum MovementStep::variant paragraph_ends -->
-Move to either end of a paragraph
-<!-- enum MovementStep::variant pages -->
-Move by pages
-<!-- enum MovementStep::variant buffer_ends -->
-Move to ends of the buffer
-<!-- enum MovementStep::variant horizontal_pages -->
-Move horizontally by pages
-<!-- fn EntryCompletionMatchFunc -->
-A function which decides whether the row indicated by `iter` matches
-a given `key`, and should be displayed as a possible completion for `key`.
-Note that `key` is normalized and case-folded (see `g_utf8_normalize`
-and `g_utf8_casefold`). If this is not appropriate, match functions
-have access to the unmodified key via
-`gtk_entry_get_text (GTK_ENTRY (gtk_entry_completion_get_entry ()))`.
-
-# Parameters
-
-## `completion`
-the `EntryCompletion`
-## `key`
-the string to match, normalized and case-folded
-## `iter`
-a `TreeIter` indicating the row to match
-## `user_data`
-user data given to `EntryCompletion::set_match_func`
-
-# Returns
-
-`true` if `iter` should be displayed as a possible completion
- for `key`
-<!-- enum PropagationPhase -->
-Describes the stage at which events are fed into a `EventController`.
-<!-- enum PropagationPhase::variant none -->
-Events are not delivered automatically. Those can be
- manually fed through `EventControllerExt::handle_event`. This should
- only be used when full control about when, or whether the controller
- handles the event is needed.
-<!-- enum PropagationPhase::variant capture -->
-Events are delivered in the capture phase. The
- capture phase happens before the bubble phase, runs from the toplevel down
- to the event widget. This option should only be used on containers that
- might possibly handle events before their children do.
-<!-- enum PropagationPhase::variant bubble -->
-Events are delivered in the bubble phase. The bubble
- phase happens after the capture phase, and before the default handlers
- are run. This phase runs from the event widget, up to the toplevel.
-<!-- enum PropagationPhase::variant target -->
-Events are delivered in the default widget event handlers,
- note that widget implementations must chain up on button, motion, touch and
- grab broken handlers for controllers in this phase to be run.
-<!-- enum EventSequenceState -->
-Describes the state of a `gdk::EventSequence` in a `Gesture`.
-<!-- enum EventSequenceState::variant none -->
-The sequence is handled, but not grabbed.
-<!-- enum EventSequenceState::variant claimed -->
-The sequence is handled and grabbed.
-<!-- enum EventSequenceState::variant denied -->
-The sequence is denied.
-<!-- enum ExpanderStyle -->
-Used to specify the style of the expanders drawn by a `TreeView`.
-<!-- enum ExpanderStyle::variant collapsed -->
-The style used for a collapsed subtree.
-<!-- enum ExpanderStyle::variant semi_collapsed -->
-Intermediate style used during animation.
-<!-- enum ExpanderStyle::variant semi_expanded -->
-Intermediate style used during animation.
-<!-- enum ExpanderStyle::variant expanded -->
-The style used for an expanded subtree.
-<!-- enum FileChooserAction -->
-Describes whether a `FileChooser` is being used to open existing files
-or to save to a possibly new file.
-<!-- enum FileChooserAction::variant open -->
-Indicates open mode. The file chooser
- will only let the user pick an existing file.
-<!-- enum FileChooserAction::variant save -->
-Indicates save mode. The file chooser
- will let the user pick an existing file, or type in a new
- filename.
-<!-- enum FileChooserAction::variant select_folder -->
-Indicates an Open mode for
- selecting folders. The file chooser will let the user pick an
- existing folder.
-<!-- enum FileChooserAction::variant create_folder -->
-Indicates a mode for creating a
- new folder. The file chooser will let the user name an existing or
- new folder.
-<!-- enum FileChooserConfirmation -->
-Used as a return value of handlers for the
-`FileChooser::confirm-overwrite` signal of a `FileChooser`. This
-value determines whether the file chooser will present the stock
-confirmation dialog, accept the user’s choice of a filename, or
-let the user choose another filename.
-<!-- enum FileChooserConfirmation::variant confirm -->
-The file chooser will present
- its stock dialog to confirm about overwriting an existing file.
-<!-- enum FileChooserConfirmation::variant accept_filename -->
-The file chooser will
- terminate and accept the user’s choice of a file name.
-<!-- enum FileChooserConfirmation::variant select_again -->
-The file chooser will
- continue running, so as to let the user select another file name.
-<!-- enum FileChooserError -->
-These identify the various errors that can occur while calling
-`FileChooser` functions.
-<!-- enum FileChooserError::variant nonexistent -->
-Indicates that a file does not exist.
-<!-- enum FileChooserError::variant bad_filename -->
-Indicates a malformed filename.
-<!-- enum FileChooserError::variant already_exists -->
-Indicates a duplicate path (e.g. when
- adding a bookmark).
-<!-- enum FileChooserError::variant incomplete_hostname -->
-Indicates an incomplete hostname (e.g. "http://foo" without a slash after that).
-<!-- fn FileFilterFunc -->
-The type of function that is used with custom filters, see
-`FileFilter::add_custom`.
-
-# Parameters
-
-## `filter_info`
-a `FileFilterInfo` that is filled according
- to the `needed` flags passed to `FileFilter::add_custom`
-## `data`
-user data passed to `FileFilter::add_custom`
-
-# Returns
-
-`true` if the file should be displayed
-<!-- enum SelectionMode -->
-Used to control what selections users are allowed to make.
-<!-- enum SelectionMode::variant none -->
-No selection is possible.
-<!-- enum SelectionMode::variant single -->
-Zero or one element may be selected.
-<!-- enum SelectionMode::variant browse -->
-Exactly one element is selected.
- In some circumstances, such as initially or during a search
- operation, it’s possible for no element to be selected with
- `SelectionMode::Browse`. What is really enforced is that the user
- can’t deselect a currently selected element except by selecting
- another element.
-<!-- enum SelectionMode::variant multiple -->
-Any number of elements may be selected.
- The Ctrl key may be used to enlarge the selection, and Shift
- key to select between the focus and the child pointed to.
- Some widgets may also allow Click-drag to select a range of elements.
-<!-- fn FlowBoxForeachFunc -->
-A function used by `FlowBox::selected_foreach`.
-It will be called on every selected child of the `box_`.
-
-# Parameters
-
-## `box_`
-a `FlowBox`
-## `child`
-a `FlowBoxChild`
-## `user_data`
-user data
-<!-- fn FlowBoxFilterFunc -->
-A function that will be called whenrever a child changes
-or is added. It lets you control if the child should be
-visible or not.
-
-# Parameters
-
-## `child`
-a `FlowBoxChild` that may be filtered
-## `user_data`
-user data
-
-# Returns
-
-`true` if the row should be visible, `false` otherwise
-<!-- fn FlowBoxSortFunc -->
-A function to compare two children to determine which
-should come first.
-
-# Parameters
-
-## `child1`
-the first child
-## `child2`
-the second child
-## `user_data`
-user data
-
-# Returns
-
-< 0 if `child1` should be before `child2`, 0 if
- the are equal, and > 0 otherwise
-<!-- fn FontFilterFunc -->
-The type of function that is used for deciding what fonts get
-shown in a `FontChooser`. See `FontChooser::set_filter_func`.
-
-# Parameters
-
-## `family`
-a `pango::FontFamily`
-## `face`
-a `pango::FontFace` belonging to `family`
-## `data`
-user data passed to `FontChooser::set_filter_func`
-
-# Returns
-
-`true` if the font should be displayed
-<!-- enum IMPreeditStyle -->
-Style for input method preedit. See also
-`Settings:gtk-im-preedit-style`
-<!-- enum IMPreeditStyle::variant nothing -->
-Deprecated
-<!-- enum IMPreeditStyle::variant callback -->
-Deprecated
-<!-- enum IMPreeditStyle::variant none -->
-Deprecated
-<!-- enum IMStatusStyle -->
-Style for input method status. See also
-`Settings:gtk-im-status-style`
-<!-- enum IMStatusStyle::variant nothing -->
-Deprecated
-<!-- enum IMStatusStyle::variant callback -->
-Deprecated
-<!-- enum IMStatusStyle::variant none -->
-Deprecated
-<!-- enum StateType -->
-This type indicates the current state of a widget; the state determines how
-the widget is drawn. The `StateType` enumeration is also used to
-identify different colors in a `Style` for drawing, so states can be
-used for subparts of a widget as well as entire widgets.
-
-# Deprecated
-
-All APIs that are using this enumeration have been deprecated
- in favor of alternatives using `StateFlags`.
-<!-- enum StateType::variant normal -->
-State during normal operation.
-<!-- enum StateType::variant active -->
-State of a currently active widget, such as a depressed button.
-<!-- enum StateType::variant prelight -->
-State indicating that the mouse pointer is over
- the widget and the widget will respond to mouse clicks.
-<!-- enum StateType::variant selected -->
-State of a selected item, such the selected row in a list.
-<!-- enum StateType::variant insensitive -->
-State indicating that the widget is
- unresponsive to user actions.
-<!-- enum StateType::variant inconsistent -->
-The widget is inconsistent, such as checkbuttons
- or radiobuttons that aren’t either set to `true` nor `false`,
- or buttons requiring the user attention.
-<!-- enum StateType::variant focused -->
-The widget has the keyboard focus.
-<!-- enum TextDirection -->
-Reading directions for text.
-<!-- enum TextDirection::variant none -->
-No direction.
-<!-- enum TextDirection::variant ltr -->
-Left to right text direction.
-<!-- enum TextDirection::variant rtl -->
-Right to left text direction.
-<!-- enum IconSize -->
-Built-in stock icon sizes.
-<!-- enum IconSize::variant invalid -->
-Invalid size.
-<!-- enum IconSize::variant menu -->
-Size appropriate for menus (16px).
-<!-- enum IconSize::variant small_toolbar -->
-Size appropriate for small toolbars (16px).
-<!-- enum IconSize::variant large_toolbar -->
-Size appropriate for large toolbars (24px)
-<!-- enum IconSize::variant button -->
-Size appropriate for buttons (16px)
-<!-- enum IconSize::variant dnd -->
-Size appropriate for drag and drop (32px)
-<!-- enum IconSize::variant dialog -->
-Size appropriate for dialogs (48px)
-<!-- enum IconThemeError -->
-Error codes for `IconTheme` operations.
-<!-- enum IconThemeError::variant not_found -->
-The icon specified does not exist in the theme
-<!-- enum IconThemeError::variant failed -->
-An unspecified error occurred.
-<!-- enum IconViewDropPosition -->
-An enum for determining where a dropped item goes.
-<!-- enum IconViewDropPosition::variant no_drop -->
-no drop possible
-<!-- enum IconViewDropPosition::variant drop_into -->
-dropped item replaces the item
-<!-- enum IconViewDropPosition::variant drop_left -->
-droppped item is inserted to the left
-<!-- enum IconViewDropPosition::variant drop_right -->
-dropped item is inserted to the right
-<!-- enum IconViewDropPosition::variant drop_above -->
-dropped item is inserted above
-<!-- enum IconViewDropPosition::variant drop_below -->
-dropped item is inserted below
-<!-- fn IconViewForeachFunc -->
-A function used by `IconView::selected_foreach` to map all
-selected rows. It will be called on every selected row in the view.
-
-# Parameters
-
-## `icon_view`
-a `IconView`
-## `path`
-The `TreePath` of a selected row
-## `data`
-user data
-<!-- enum MessageType -->
-The type of message being displayed in the dialog.
-<!-- enum MessageType::variant info -->
-Informational message
-<!-- enum MessageType::variant warning -->
-Non-fatal warning message
-<!-- enum MessageType::variant question -->
-Question requiring a choice
-<!-- enum MessageType::variant error -->
-Fatal error message
-<!-- enum MessageType::variant other -->
-None of the above
-<!-- enum Justification -->
-Used for justifying the text inside a `Label` widget. (See also
-`Alignment`).
-<!-- enum Justification::variant left -->
-The text is placed at the left edge of the label.
-<!-- enum Justification::variant right -->
-The text is placed at the right edge of the label.
-<!-- enum Justification::variant center -->
-The text is placed in the center of the label.
-<!-- enum Justification::variant fill -->
-The text is placed is distributed across the label.
-<!-- fn KeySnoopFunc -->
-Key snooper functions are called before normal event delivery.
-They can be used to implement custom key event handling.
-
-# Parameters
-
-## `grab_widget`
-the widget to which the event will be delivered
-## `event`
-the key event
-## `func_data`
-data supplied to `gtk_key_snooper_install`
-
-# Returns
-
-`true` to stop further processing of `event`, `false` to continue.
-<!-- enum LevelBarMode -->
-Describes how `LevelBar` contents should be rendered.
-Note that this enumeration could be extended with additional modes
-in the future.
-<!-- enum LevelBarMode::variant continuous -->
-the bar has a continuous mode
-<!-- enum LevelBarMode::variant discrete -->
-the bar has a discrete mode
-<!-- fn ListBoxCreateWidgetFunc -->
-Called for list boxes that are bound to a `gio::ListModel` with
-`ListBox::bind_model` for each item that gets added to the model.
-
-# Parameters
-
-## `item`
-the item from the model for which to create a widget for
-## `user_data`
-user data
-
-# Returns
-
-a `Widget` that represents `item`
-<!-- fn ListBoxForeachFunc -->
-A function used by `ListBox::selected_foreach`.
-It will be called on every selected child of the `box_`.
-
-# Parameters
-
-## `box_`
-a `ListBox`
-## `row`
-a `ListBoxRow`
-## `user_data`
-user data
-<!-- fn ListBoxFilterFunc -->
-Will be called whenever the row changes or is added and lets you control
-if the row should be visible or not.
-
-# Parameters
-
-## `row`
-the row that may be filtered
-## `user_data`
-user data
-
-# Returns
-
-`true` if the row should be visible, `false` otherwise
-<!-- fn ListBoxUpdateHeaderFunc -->
-Whenever `row` changes or which row is before `row` changes this
-is called, which lets you update the header on `row`. You may
-remove or set a new one via `ListBoxRow::set_header` or
-just change the state of the current header widget.
-
-# Parameters
-
-## `row`
-the row to update
-## `before`
-the row before `row`, or `None` if it is first
-## `user_data`
-user data
-<!-- fn ListBoxSortFunc -->
-Compare two rows to determine which should be first.
-
-# Parameters
-
-## `row1`
-the first row
-## `row2`
-the second row
-## `user_data`
-user data
-
-# Returns
-
-< 0 if `row1` should be before `row2`, 0 if they are
- equal and > 0 otherwise
-<!-- fn MenuDetachFunc -->
-A user function supplied when calling `Menu::attach_to_widget` which
-will be called when the menu is later detached from the widget.
-
-# Parameters
-
-## `attach_widget`
-the `Widget` that the menu is being detached from.
-## `menu`
-the `Menu` being detached.
-<!-- fn MenuPositionFunc -->
-A user function supplied when calling `Menu::popup` which
-controls the positioning of the menu when it is displayed. The
-function sets the `x` and `y` parameters to the coordinates where the
-menu is to be drawn. To make the menu appear on a different
-monitor than the mouse pointer, `Menu::set_monitor` must be
-called.
-
-# Parameters
-
-## `menu`
-a `Menu`.
-## `x`
-address of the `gint` representing the horizontal
- position where the menu shall be drawn.
-## `y`
-address of the `gint` representing the vertical position
- where the menu shall be drawn. This is an output parameter.
-## `push_in`
-This parameter controls how menus placed outside
- the monitor are handled. If this is set to `true` and part of
- the menu is outside the monitor then GTK+ pushes the window
- into the visible area, effectively modifying the popup
- position. Note that moving and possibly resizing the menu
- around will alter the scroll position to keep the menu items
- “in place”, i.e. at the same monitor position they would have
- been without resizing. In practice, this behavior is only
- useful for combobox popups or option menus and cannot be used
- to simply confine a menu to monitor boundaries. In that case,
- changing the scroll offset is not desirable.
-## `user_data`
-the data supplied by the user in the `Menu::popup`
- `data` parameter.
-<!-- enum PackDirection -->
-Determines how widgets should be packed inside menubars
-and menuitems contained in menubars.
-<!-- enum PackDirection::variant ltr -->
-Widgets are packed left-to-right
-<!-- enum PackDirection::variant rtl -->
-Widgets are packed right-to-left
-<!-- enum PackDirection::variant ttb -->
-Widgets are packed top-to-bottom
-<!-- enum PackDirection::variant btt -->
-Widgets are packed bottom-to-top
-<!-- enum MenuDirectionType -->
-An enumeration representing directional movements within a menu.
-<!-- enum MenuDirectionType::variant parent -->
-To the parent menu shell
-<!-- enum MenuDirectionType::variant child -->
-To the submenu, if any, associated with the item
-<!-- enum MenuDirectionType::variant next -->
-To the next menu item
-<!-- enum MenuDirectionType::variant prev -->
-To the previous menu item
-<!-- fn ModuleDisplayInitFunc -->
-A multihead-aware GTK+ module may have a `gtk_module_display_init` function
-with this prototype. GTK+ calls this function for each opened display.
-
-# Parameters
-
-## `display`
-an open `gdk::Display`
-<!-- fn ModuleInitFunc -->
-Each GTK+ module must have a function `gtk_module_init` with this prototype.
-This function is called after loading the module.
-
-# Parameters
-
-## `argc`
-GTK+ always passes `None` for this argument
-## `argv`
-GTK+ always passes `None` for this argument
-<!-- enum NotebookTab -->
-<!-- enum NumberUpLayout -->
-Used to determine the layout of pages on a sheet when printing
-multiple pages per sheet.
-<!-- enum NumberUpLayout::variant lrtb -->
-![](layout-lrtb.png)
-<!-- enum NumberUpLayout::variant lrbt -->
-![](layout-lrbt.png)
-<!-- enum NumberUpLayout::variant rltb -->
-![](layout-rltb.png)
-<!-- enum NumberUpLayout::variant rlbt -->
-![](layout-rlbt.png)
-<!-- enum NumberUpLayout::variant tblr -->
-![](layout-tblr.png)
-<!-- enum NumberUpLayout::variant tbrl -->
-![](layout-tbrl.png)
-<!-- enum NumberUpLayout::variant btlr -->
-![](layout-btlr.png)
-<!-- enum NumberUpLayout::variant btrl -->
-![](layout-btrl.png)
-<!-- enum PageOrientation -->
-See also `PrintSettings::set_orientation`.
-<!-- enum PageOrientation::variant portrait -->
-Portrait mode.
-<!-- enum PageOrientation::variant landscape -->
-Landscape mode.
-<!-- enum PageOrientation::variant reverse_portrait -->
-Reverse portrait mode.
-<!-- enum PageOrientation::variant reverse_landscape -->
-Reverse landscape mode.
-<!-- enum PageSet -->
-See also `gtk_print_job_set_page_set`.
-<!-- enum PageSet::variant all -->
-All pages.
-<!-- enum PageSet::variant even -->
-Even pages.
-<!-- enum PageSet::variant odd -->
-Odd pages.
-<!-- enum Unit -->
-See also `PrintSettings::set_paper_width`.
-<!-- enum Unit::variant none -->
-No units.
-<!-- enum Unit::variant points -->
-Dimensions in points.
-<!-- enum Unit::variant inch -->
-Dimensions in inches.
-<!-- enum Unit::variant mm -->
-Dimensions in millimeters
-<!-- fn PageSetupDoneFunc -->
-The type of function that is passed to
-`gtk_print_run_page_setup_dialog_async`.
-
-This function will be called when the page setup dialog
-is dismissed, and also serves as destroy notify for `data`.
-
-# Parameters
-
-## `page_setup`
-the `PageSetup` that has been
-## `data`
-user data that has been passed to
- `gtk_print_run_page_setup_dialog_async`
-<!-- enum PanDirection -->
-Describes the panning direction of a `GesturePan`
-<!-- enum PanDirection::variant left -->
-panned towards the left
-<!-- enum PanDirection::variant right -->
-panned towards the right
-<!-- enum PanDirection::variant up -->
-panned upwards
-<!-- enum PanDirection::variant down -->
-panned downwards
-<!-- enum ScrollType -->
-Scrolling types.
-<!-- enum ScrollType::variant none -->
-No scrolling.
-<!-- enum ScrollType::variant jump -->
-Jump to new location.
-<!-- enum ScrollType::variant step_backward -->
-Step backward.
-<!-- enum ScrollType::variant step_forward -->
-Step forward.
-<!-- enum ScrollType::variant page_backward -->
-Page backward.
-<!-- enum ScrollType::variant page_forward -->
-Page forward.
-<!-- enum ScrollType::variant step_up -->
-Step up.
-<!-- enum ScrollType::variant step_down -->
-Step down.
-<!-- enum ScrollType::variant page_up -->
-Page up.
-<!-- enum ScrollType::variant page_down -->
-Page down.
-<!-- enum ScrollType::variant step_left -->
-Step to the left.
-<!-- enum ScrollType::variant step_right -->
-Step to the right.
-<!-- enum ScrollType::variant page_left -->
-Page to the left.
-<!-- enum ScrollType::variant page_right -->
-Page to the right.
-<!-- enum ScrollType::variant start -->
-Scroll to start.
-<!-- enum ScrollType::variant end -->
-Scroll to end.
-<!-- enum PolicyType -->
-Determines how the size should be computed to achieve the one of the
-visibility mode for the scrollbars.
-<!-- enum PolicyType::variant always -->
-The scrollbar is always visible. The view size is
- independent of the content.
-<!-- enum PolicyType::variant automatic -->
-The scrollbar will appear and disappear as necessary.
- For example, when all of a `TreeView` can not be seen.
-<!-- enum PolicyType::variant never -->
-The scrollbar should never appear. In this mode the
- content determines the size.
-<!-- enum PolicyType::variant external -->
-Don't show a scrollbar, but don't force the
- size to follow the content. This can be used e.g. to make multiple
- scrolled windows share a scrollbar. Since: 3.16
-<!-- enum PrintDuplex -->
-See also `PrintSettings::set_duplex`.
-<!-- enum PrintDuplex::variant simplex -->
-No duplex.
-<!-- enum PrintDuplex::variant horizontal -->
-Horizontal duplex.
-<!-- enum PrintDuplex::variant vertical -->
-Vertical duplex.
-<!-- enum PrintError -->
-Error codes that identify various errors that can occur while
-using the GTK+ printing support.
-<!-- enum PrintError::variant general -->
-An unspecified error occurred.
-<!-- enum PrintError::variant internal_error -->
-An internal error occurred.
-<!-- enum PrintError::variant nomem -->
-A memory allocation failed.
-<!-- enum PrintError::variant invalid_file -->
-An error occurred while loading a page setup
- or paper size from a key file.
-<!-- enum PrintStatus -->
-The status gives a rough indication of the completion of a running
-print operation.
-<!-- enum PrintStatus::variant initial -->
-The printing has not started yet; this
- status is set initially, and while the print dialog is shown.
-<!-- enum PrintStatus::variant preparing -->
-This status is set while the begin-print
- signal is emitted and during pagination.
-<!-- enum PrintStatus::variant generating_data -->
-This status is set while the
- pages are being rendered.
-<!-- enum PrintStatus::variant sending_data -->
-The print job is being sent off to the
- printer.
-<!-- enum PrintStatus::variant pending -->
-The print job has been sent to the printer,
- but is not printed for some reason, e.g. the printer may be stopped.
-<!-- enum PrintStatus::variant pending_issue -->
-Some problem has occurred during
- printing, e.g. a paper jam.
-<!-- enum PrintStatus::variant printing -->
-The printer is processing the print job.
-<!-- enum PrintStatus::variant finished -->
-The printing has been completed successfully.
-<!-- enum PrintStatus::variant finished_aborted -->
-The printing has been aborted.
-<!-- enum PrintOperationResult -->
-A value of this type is returned by `PrintOperation::run`.
-<!-- enum PrintOperationResult::variant error -->
-An error has occured.
-<!-- enum PrintOperationResult::variant apply -->
-The print settings should be stored.
-<!-- enum PrintOperationResult::variant cancel -->
-The print operation has been canceled,
- the print settings should not be stored.
-<!-- enum PrintOperationResult::variant in_progress -->
-The print operation is not complete
- yet. This value will only be returned when running asynchronously.
-<!-- enum PrintOperationAction -->
-The `action` parameter to `PrintOperation::run`
-determines what action the print operation should perform.
-<!-- enum PrintOperationAction::variant print_dialog -->
-Show the print dialog.
-<!-- enum PrintOperationAction::variant print -->
-Start to print without showing
- the print dialog, based on the current print settings.
-<!-- enum PrintOperationAction::variant preview -->
-Show the print preview.
-<!-- enum PrintOperationAction::variant export -->
-Export to a file. This requires
- the export-filename property to be set.
-<!-- enum PrintPages -->
-See also `gtk_print_job_set_pages`
-<!-- enum PrintPages::variant all -->
-All pages.
-<!-- enum PrintPages::variant current -->
-Current page.
-<!-- enum PrintPages::variant ranges -->
-Range of pages.
-<!-- enum PrintPages::variant selection -->
-Selected pages.
-<!-- enum PrintQuality -->
-See also `PrintSettings::set_quality`.
-<!-- enum PrintQuality::variant low -->
-Low quality.
-<!-- enum PrintQuality::variant normal -->
-Normal quality.
-<!-- enum PrintQuality::variant high -->
-High quality.
-<!-- enum PrintQuality::variant draft -->
-Draft quality.
-<!-- enum RcTokenType -->
-The `RcTokenType` enumeration represents the tokens
-in the RC file. It is exposed so that theme engines
-can reuse these tokens when parsing the theme-engine
-specific portions of a RC file.
-
-# Deprecated
-
-Use `CssProvider` instead.
-<!-- enum RcTokenType::variant invalid -->
-Deprecated
-<!-- enum RcTokenType::variant include -->
-Deprecated
-<!-- enum RcTokenType::variant normal -->
-Deprecated
-<!-- enum RcTokenType::variant active -->
-Deprecated
-<!-- enum RcTokenType::variant prelight -->
-Deprecated
-<!-- enum RcTokenType::variant selected -->
-Deprecated
-<!-- enum RcTokenType::variant insensitive -->
-Deprecated
-<!-- enum RcTokenType::variant fg -->
-Deprecated
-<!-- enum RcTokenType::variant bg -->
-Deprecated
-<!-- enum RcTokenType::variant text -->
-Deprecated
-<!-- enum RcTokenType::variant base -->
-Deprecated
-<!-- enum RcTokenType::variant xthickness -->
-Deprecated
-<!-- enum RcTokenType::variant ythickness -->
-Deprecated
-<!-- enum RcTokenType::variant font -->
-Deprecated
-<!-- enum RcTokenType::variant fontset -->
-Deprecated
-<!-- enum RcTokenType::variant font_name -->
-Deprecated
-<!-- enum RcTokenType::variant bg_pixmap -->
-Deprecated
-<!-- enum RcTokenType::variant pixmap_path -->
-Deprecated
-<!-- enum RcTokenType::variant style -->
-Deprecated
-<!-- enum RcTokenType::variant binding -->
-Deprecated
-<!-- enum RcTokenType::variant bind -->
-Deprecated
-<!-- enum RcTokenType::variant widget -->
-Deprecated
-<!-- enum RcTokenType::variant widget_class -->
-Deprecated
-<!-- enum RcTokenType::variant class -->
-Deprecated
-<!-- enum RcTokenType::variant lowest -->
-Deprecated
-<!-- enum RcTokenType::variant gtk -->
-Deprecated
-<!-- enum RcTokenType::variant application -->
-Deprecated
-<!-- enum RcTokenType::variant theme -->
-Deprecated
-<!-- enum RcTokenType::variant rc -->
-Deprecated
-<!-- enum RcTokenType::variant highest -->
-Deprecated
-<!-- enum RcTokenType::variant engine -->
-Deprecated
-<!-- enum RcTokenType::variant module_path -->
-Deprecated
-<!-- enum RcTokenType::variant im_module_path -->
-Deprecated
-<!-- enum RcTokenType::variant im_module_file -->
-Deprecated
-<!-- enum RcTokenType::variant stock -->
-Deprecated
-<!-- enum RcTokenType::variant ltr -->
-Deprecated
-<!-- enum RcTokenType::variant rtl -->
-Deprecated
-<!-- enum RcTokenType::variant color -->
-Deprecated
-<!-- enum RcTokenType::variant unbind -->
-Deprecated
-<!-- enum RcTokenType::variant last -->
-Deprecated
-<!-- enum RecentSortType -->
-Used to specify the sorting method to be applyed to the recently
-used resource list.
-<!-- enum RecentSortType::variant none -->
-Do not sort the returned list of recently used
- resources.
-<!-- enum RecentSortType::variant mru -->
-Sort the returned list with the most recently used
- items first.
-<!-- enum RecentSortType::variant lru -->
-Sort the returned list with the least recently used
- items first.
-<!-- enum RecentSortType::variant custom -->
-Sort the returned list using a custom sorting
- function passed using `RecentChooser::set_sort_func`.
-<!-- enum RecentChooserError -->
-These identify the various errors that can occur while calling
-`RecentChooser` functions.
-<!-- enum RecentChooserError::variant not_found -->
-Indicates that a file does not exist
-<!-- enum RecentChooserError::variant invalid_uri -->
-Indicates a malformed URI
-<!-- fn RecentFilterFunc -->
-The type of function that is used with custom filters,
-see `RecentFilter::add_custom`.
-
-# Parameters
-
-## `filter_info`
-a `RecentFilterInfo` that is filled according
- to the `needed` flags passed to `RecentFilter::add_custom`
-## `user_data`
-user data passed to `RecentFilter::add_custom`
-
-# Returns
-
-`true` if the file should be displayed
-<!-- enum RecentManagerError -->
-Error codes for `RecentManager` operations
-<!-- enum RecentManagerError::variant not_found -->
-the URI specified does not exists in
- the recently used resources list.
-<!-- enum RecentManagerError::variant invalid_uri -->
-the URI specified is not valid.
-<!-- enum RecentManagerError::variant invalid_encoding -->
-the supplied string is not
- UTF-8 encoded.
-<!-- enum RecentManagerError::variant not_registered -->
-no application has registered
- the specified item.
-<!-- enum RecentManagerError::variant read -->
-failure while reading the recently used
- resources file.
-<!-- enum RecentManagerError::variant write -->
-failure while writing the recently used
- resources file.
-<!-- enum RecentManagerError::variant unknown -->
-unspecified error.
-<!-- enum ResponseType -->
-Predefined values for use as response ids in `DialogExt::add_button`.
-All predefined values are negative, GTK+ leaves positive values for
-application-defined response ids.
-<!-- enum ResponseType::variant none -->
-Returned if an action widget has no response id,
- or if the dialog gets programmatically hidden or destroyed
-<!-- enum ResponseType::variant reject -->
-Generic response id, not used by GTK+ dialogs
-<!-- enum ResponseType::variant accept -->
-Generic response id, not used by GTK+ dialogs
-<!-- enum ResponseType::variant delete_event -->
-Returned if the dialog is deleted
-<!-- enum ResponseType::variant ok -->
-Returned by OK buttons in GTK+ dialogs
-<!-- enum ResponseType::variant cancel -->
-Returned by Cancel buttons in GTK+ dialogs
-<!-- enum ResponseType::variant close -->
-Returned by Close buttons in GTK+ dialogs
-<!-- enum ResponseType::variant yes -->
-Returned by Yes buttons in GTK+ dialogs
-<!-- enum ResponseType::variant no -->
-Returned by No buttons in GTK+ dialogs
-<!-- enum ResponseType::variant apply -->
-Returned by Apply buttons in GTK+ dialogs
-<!-- enum ResponseType::variant help -->
-Returned by Help buttons in GTK+ dialogs
-<!-- enum RevealerTransitionType -->
-These enumeration values describe the possible transitions
-when the child of a `Revealer` widget is shown or hidden.
-<!-- enum RevealerTransitionType::variant none -->
-No transition
-<!-- enum RevealerTransitionType::variant crossfade -->
-Fade in
-<!-- enum RevealerTransitionType::variant slide_right -->
-Slide in from the left
-<!-- enum RevealerTransitionType::variant slide_left -->
-Slide in from the right
-<!-- enum RevealerTransitionType::variant slide_up -->
-Slide in from the bottom
-<!-- enum RevealerTransitionType::variant slide_down -->
-Slide in from the top
-<!-- enum ScrollStep -->
-<!-- enum ScrollStep::variant steps -->
-Scroll in steps.
-<!-- enum ScrollStep::variant pages -->
-Scroll by pages.
-<!-- enum ScrollStep::variant ends -->
-Scroll to ends.
-<!-- enum ScrollStep::variant horizontal_steps -->
-Scroll in horizontal steps.
-<!-- enum ScrollStep::variant horizontal_pages -->
-Scroll by horizontal pages.
-<!-- enum ScrollStep::variant horizontal_ends -->
-Scroll to the horizontal ends.
-<!-- enum ScrollablePolicy -->
-Defines the policy to be used in a scrollable widget when updating
-the scrolled window adjustments in a given orientation.
-<!-- enum ScrollablePolicy::variant minimum -->
-Scrollable adjustments are based on the minimum size
-<!-- enum ScrollablePolicy::variant natural -->
-Scrollable adjustments are based on the natural size
-<!-- enum SizeGroupMode -->
-The mode of the size group determines the directions in which the size
-group affects the requested sizes of its component widgets.
-<!-- enum SizeGroupMode::variant none -->
-group has no effect
-<!-- enum SizeGroupMode::variant horizontal -->
-group affects horizontal requisition
-<!-- enum SizeGroupMode::variant vertical -->
-group affects vertical requisition
-<!-- enum SizeGroupMode::variant both -->
-group affects both horizontal and vertical requisition
-<!-- enum SortType -->
-Determines the direction of a sort.
-<!-- enum SortType::variant ascending -->
-Sorting is in ascending order.
-<!-- enum SortType::variant descending -->
-Sorting is in descending order.
-<!-- enum SpinButtonUpdatePolicy -->
-The spin button update policy determines whether the spin button displays
-values even if they are outside the bounds of its adjustment.
-See `SpinButton::set_update_policy`.
-<!-- enum SpinButtonUpdatePolicy::variant always -->
-When refreshing your `SpinButton`, the value is
- always displayed
-<!-- enum SpinButtonUpdatePolicy::variant if_valid -->
-When refreshing your `SpinButton`, the value is
- only displayed if it is valid within the bounds of the spin button's
- adjustment
-<!-- enum SpinType -->
-The values of the `SpinType` enumeration are used to specify the
-change to make in `SpinButton::spin`.
-<!-- enum SpinType::variant step_forward -->
-Increment by the adjustments step increment.
-<!-- enum SpinType::variant step_backward -->
-Decrement by the adjustments step increment.
-<!-- enum SpinType::variant page_forward -->
-Increment by the adjustments page increment.
-<!-- enum SpinType::variant page_backward -->
-Decrement by the adjustments page increment.
-<!-- enum SpinType::variant home -->
-Go to the adjustments lower bound.
-<!-- enum SpinType::variant end -->
-Go to the adjustments upper bound.
-<!-- enum SpinType::variant user_defined -->
-Change by a specified amount.
-<!-- enum StackTransitionType -->
-These enumeration values describe the possible transitions
-between pages in a `Stack` widget.
-
-New values may be added to this enumeration over time.
-<!-- enum StackTransitionType::variant none -->
-No transition
-<!-- enum StackTransitionType::variant crossfade -->
-A cross-fade
-<!-- enum StackTransitionType::variant slide_right -->
-Slide from left to right
-<!-- enum StackTransitionType::variant slide_left -->
-Slide from right to left
-<!-- enum StackTransitionType::variant slide_up -->
-Slide from bottom up
-<!-- enum StackTransitionType::variant slide_down -->
-Slide from top down
-<!-- enum StackTransitionType::variant slide_left_right -->
-Slide from left or right according to the children order
-<!-- enum StackTransitionType::variant slide_up_down -->
-Slide from top down or bottom up according to the order
-<!-- enum StackTransitionType::variant over_up -->
-Cover the old page by sliding up. Since 3.12
-<!-- enum StackTransitionType::variant over_down -->
-Cover the old page by sliding down. Since: 3.12
-<!-- enum StackTransitionType::variant over_left -->
-Cover the old page by sliding to the left. Since: 3.12
-<!-- enum StackTransitionType::variant over_right -->
-Cover the old page by sliding to the right. Since: 3.12
-<!-- enum StackTransitionType::variant under_up -->
-Uncover the new page by sliding up. Since 3.12
-<!-- enum StackTransitionType::variant under_down -->
-Uncover the new page by sliding down. Since: 3.12
-<!-- enum StackTransitionType::variant under_left -->
-Uncover the new page by sliding to the left. Since: 3.12
-<!-- enum StackTransitionType::variant under_right -->
-Uncover the new page by sliding to the right. Since: 3.12
-<!-- enum StackTransitionType::variant over_up_down -->
-Cover the old page sliding up or uncover the new page sliding down, according to order. Since: 3.12
-<!-- enum StackTransitionType::variant over_down_up -->
-Cover the old page sliding down or uncover the new page sliding up, according to order. Since: 3.14
-<!-- enum StackTransitionType::variant over_left_right -->
-Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14
-<!-- enum StackTransitionType::variant over_right_left -->
-Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14
-<!-- enum WrapMode -->
-Describes a type of line wrapping.
-<!-- enum WrapMode::variant none -->
-do not wrap lines; just make the text area wider
-<!-- enum WrapMode::variant char -->
-wrap text, breaking lines anywhere the cursor can
- appear (between characters, usually - if you want to be technical,
- between graphemes, see `pango_get_log_attrs`)
-<!-- enum WrapMode::variant word -->
-wrap text, breaking lines in between words
-<!-- enum WrapMode::variant word_char -->
-wrap text, breaking lines in between words, or if
- that is not enough, also between graphemes
-<!-- fn TextBufferDeserializeFunc -->
-A function that is called to deserialize rich text that has been
-serialized with `TextBuffer::serialize`, and insert it at `iter`.
-
-# Parameters
-
-## `register_buffer`
-the `TextBuffer` the format is registered with
-## `content_buffer`
-the `TextBuffer` to deserialize into
-## `iter`
-insertion point for the deserialized text
-## `data`
-data to deserialize
-## `length`
-length of `data`
-## `create_tags`
-`true` if deserializing may create tags
-## `user_data`
-user data that was specified when registering the format
-
-# Returns
-
-`true` on success, `false` otherwise
-<!-- fn TextBufferSerializeFunc -->
-A function that is called to serialize the content of a text buffer.
-It must return the serialized form of the content.
-
-# Parameters
-
-## `register_buffer`
-the `TextBuffer` for which the format is registered
-## `content_buffer`
-the `TextBuffer` to serialize
-## `start`
-start of the block of text to serialize
-## `end`
-end of the block of text to serialize
-## `length`
-Return location for the length of the serialized data
-## `user_data`
-user data that was specified when registering the format
-
-# Returns
-
-a newly-allocated array of guint8 which contains the serialized
- data, or `None` if an error occurred
-<!-- enum TextBufferTargetInfo -->
-These values are used as “info” for the targets contained in the
-lists returned by `TextBuffer::get_copy_target_list` and
-`TextBuffer::get_paste_target_list`.
-
-The values counts down from `-1` to avoid clashes
-with application added drag destinations which usually start at 0.
-<!-- enum TextBufferTargetInfo::variant buffer_contents -->
-Buffer contents
-<!-- enum TextBufferTargetInfo::variant rich_text -->
-Rich text
-<!-- enum TextBufferTargetInfo::variant text -->
-Text
-<!-- enum TextExtendSelection -->
-Granularity types that extend the text selection. Use the
-`TextView::extend-selection` signal to customize the selection.
-<!-- enum TextExtendSelection::variant word -->
-Selects the current word. It is triggered by
- a double-click for example.
-<!-- enum TextExtendSelection::variant line -->
-Selects the current line. It is triggered by
- a triple-click for example.
-<!-- fn TextTagTableForeach -->
-
-# Parameters
-
-## `tag`
-the `TextTag`
-## `data`
-data passed to `TextTagTable::foreach`
-<!-- enum TextWindowType -->
-Used to reference the parts of `TextView`.
-<!-- enum TextWindowType::variant widget -->
-Window that floats over scrolling areas.
-<!-- enum TextWindowType::variant text -->
-Scrollable text window.
-<!-- enum TextWindowType::variant left -->
-Left side border window.
-<!-- enum TextWindowType::variant right -->
-Right side border window.
-<!-- enum TextWindowType::variant top -->
-Top border window.
-<!-- enum TextWindowType::variant bottom -->
-Bottom border window.
-<!-- enum TextViewLayer -->
-Used to reference the layers of `TextView` for the purpose of customized
-drawing with the ::draw_layer vfunc.
-<!-- enum TextViewLayer::variant below -->
-The layer rendered below the text (but above the background).
-<!-- enum TextViewLayer::variant above -->
-The layer rendered above the text.
-<!-- fn TickCallback -->
-Callback type for adding a function to update animations. See `WidgetExt::add_tick_callback`.
-
-# Parameters
-
-## `widget`
-the widget
-## `frame_clock`
-the frame clock for the widget (same as calling `WidgetExt::get_frame_clock`)
-## `user_data`
-user data passed to `WidgetExt::add_tick_callback`.
-
-# Returns
-
-`G_SOURCE_CONTINUE` if the tick callback should continue to be called,
- `G_SOURCE_REMOVE` if the tick callback should be removed.
-<!-- enum ToolbarStyle -->
-Used to customize the appearance of a `Toolbar`. Note that
-setting the toolbar style overrides the user’s preferences
-for the default toolbar style. Note that if the button has only
-a label set and GTK_TOOLBAR_ICONS is used, the label will be
-visible, and vice versa.
-<!-- enum ToolbarStyle::variant icons -->
-Buttons display only icons in the toolbar.
-<!-- enum ToolbarStyle::variant text -->
-Buttons display only text labels in the toolbar.
-<!-- enum ToolbarStyle::variant both -->
-Buttons display text and icons in the toolbar.
-<!-- enum ToolbarStyle::variant both_horiz -->
-Buttons display icons and text alongside each
- other, rather than vertically stacked
-<!-- enum ToolbarSpaceStyle -->
-Whether spacers are vertical lines or just blank.
-<!-- enum ToolbarSpaceStyle::variant empty -->
-Use blank spacers.
-<!-- enum ToolbarSpaceStyle::variant line -->
-Use vertical lines for spacers.
-<!-- fn TreeCellDataFunc -->
-A function to set the properties of a cell instead of just using the
-straight mapping between the cell and the model. This is useful for
-customizing the cell renderer. For example, a function might get an
-integer from the `tree_model`, and render it to the “text” attribute of
-“cell” by converting it to its written equivilent. This is set by
-calling `TreeViewColumn::set_cell_data_func`
-
-# Parameters
-
-## `tree_column`
-A `TreeViewColumn`
-## `cell`
-The `CellRenderer` that is being rendered by `tree_column`
-## `tree_model`
-The `TreeModel` being rendered
-## `iter`
-A `TreeIter` of the current row rendered
-## `data`
-user data
-<!-- fn TreeIterCompareFunc -->
-A `GtkTreeIterCompareFunc` should return a negative integer, zero, or a positive
-integer if `a` sorts before `b`, `a` sorts with `b`, or `a` sorts after `b`
-respectively. If two iters compare as equal, their order in the sorted model
-is undefined. In order to ensure that the `TreeSortable` behaves as
-expected, the `GtkTreeIterCompareFunc` must define a partial order on
-the model, i.e. it must be reflexive, antisymmetric and transitive.
-
-For example, if `model` is a product catalogue, then a compare function
-for the “price” column could be one which returns
-`price_of(@a) - price_of(@b)`.
-
-# Parameters
-
-## `model`
-The `TreeModel` the comparison is within
-## `a`
-A `TreeIter` in `model`
-## `b`
-Another `TreeIter` in `model`
-## `user_data`
-Data passed when the compare func is assigned e.g. by
- `TreeSortable::set_sort_func`
-
-# Returns
-
-a negative integer, zero or a positive integer depending on whether
- `a` sorts before, with or after `b`
-<!-- fn TreeModelForeachFunc -->
-Type of the callback passed to `TreeModel::foreach` to
-iterate over the rows in a tree model.
-
-# Parameters
-
-## `model`
-the `TreeModel` being iterated
-## `path`
-the current `TreePath`
-## `iter`
-the current `TreeIter`
-## `data`
-The user data passed to `TreeModel::foreach`
-
-# Returns
-
-`true` to stop iterating, `false` to continue
-<!-- fn TreeModelFilterModifyFunc -->
-A function which calculates display values from raw values in the model.
-It must fill `value` with the display value for the column `column` in the
-row indicated by `iter`.
-
-Since this function is called for each data access, it’s not a
-particularly efficient operation.
-
-# Parameters
-
-## `model`
-the `TreeModelFilter`
-## `iter`
-a `TreeIter` pointing to the row whose display values are determined
-## `value`
-A `gobject::Value` which is already initialized for
- with the correct type for the column `column`.
-## `column`
-the column whose display value is determined
-## `data`
-user data given to `TreeModelFilter::set_modify_func`
-<!-- fn TreeModelFilterVisibleFunc -->
-A function which decides whether the row indicated by `iter` is visible.
-
-# Parameters
-
-## `model`
-the child model of the `TreeModelFilter`
-## `iter`
-a `TreeIter` pointing to the row in `model` whose visibility
- is determined
-## `data`
-user data given to `TreeModelFilter::set_visible_func`
-
-# Returns
-
-Whether the row indicated by `iter` is visible.
-<!-- fn TreeSelectionFunc -->
-A function used by `TreeSelection::set_select_function` to filter
-whether or not a row may be selected. It is called whenever a row's
-state might change. A return value of `true` indicates to `selection`
-that it is okay to change the selection.
-
-# Parameters
-
-## `selection`
-A `TreeSelection`
-## `model`
-A `TreeModel` being viewed
-## `path`
-The `TreePath` of the row in question
-## `path_currently_selected`
-`true`, if the path is currently selected
-## `data`
-user data
-
-# Returns
-
-`true`, if the selection state of the row can be toggled
-<!-- fn TreeSelectionForeachFunc -->
-A function used by `TreeSelection::selected_foreach` to map all
-selected rows. It will be called on every selected row in the view.
-
-# Parameters
-
-## `model`
-The `TreeModel` being viewed
-## `path`
-The `TreePath` of a selected row
-## `iter`
-A `TreeIter` pointing to a selected row
-## `data`
-user data
-<!-- enum TreeViewDropPosition -->
-An enum for determining where a dropped row goes.
-<!-- enum TreeViewDropPosition::variant before -->
-dropped row is inserted before
-<!-- enum TreeViewDropPosition::variant after -->
-dropped row is inserted after
-<!-- enum TreeViewDropPosition::variant into_or_before -->
-dropped row becomes a child or is inserted before
-<!-- enum TreeViewDropPosition::variant into_or_after -->
-dropped row becomes a child or is inserted after
-<!-- enum TreeViewGridLines -->
-Used to indicate which grid lines to draw in a tree view.
-<!-- enum TreeViewGridLines::variant none -->
-No grid lines.
-<!-- enum TreeViewGridLines::variant horizontal -->
-Horizontal grid lines.
-<!-- enum TreeViewGridLines::variant vertical -->
-Vertical grid lines.
-<!-- enum TreeViewGridLines::variant both -->
-Horizontal and vertical grid lines.
-<!-- fn TreeViewSearchEqualFunc -->
-A function used for checking whether a row in `model` matches
-a search key string entered by the user. Note the return value
-is reversed from what you would normally expect, though it
-has some similarity to `strcmp` returning 0 for equal strings.
-
-# Parameters
-
-## `model`
-the `TreeModel` being searched
-## `column`
-the search column set by `TreeView::set_search_column`
-## `key`
-the key string to compare with
-## `iter`
-a `TreeIter` pointing the row of `model` that should be compared
- with `key`.
-## `search_data`
-user data from `TreeView::set_search_equal_func`
-
-# Returns
-
-`false` if the row matches, `true` otherwise.
-<!-- fn TreeViewMappingFunc -->
-Function used for `TreeView::map_expanded_rows`.
-
-# Parameters
-
-## `tree_view`
-A `TreeView`
-## `path`
-The path that’s expanded
-## `user_data`
-user data
-<!-- fn TreeViewColumnDropFunc -->
-Function type for determining whether `column` can be dropped in a
-particular spot (as determined by `prev_column` and `next_column`). In
-left to right locales, `prev_column` is on the left of the potential drop
-spot, and `next_column` is on the right. In right to left mode, this is
-reversed. This function should return `true` if the spot is a valid drop
-spot. Please note that returning `true` does not actually indicate that
-the column drop was made, but is meant only to indicate a possible drop
-spot to the user.
-
-# Parameters
-
-## `tree_view`
-A `TreeView`
-## `column`
-The `TreeViewColumn` being dragged
-## `prev_column`
-A `TreeViewColumn` on one side of `column`
-## `next_column`
-A `TreeViewColumn` on the other side of `column`
-## `data`
-user data
-
-# Returns
-
-`true`, if `column` can be dropped in this spot
-<!-- enum TreeViewColumnSizing -->
-The sizing method the column uses to determine its width. Please note
-that `TreeViewColumnSizing::Autosize` are inefficient for large views, and
-can make columns appear choppy.
-<!-- enum TreeViewColumnSizing::variant grow_only -->
-Columns only get bigger in reaction to changes in the model
-<!-- enum TreeViewColumnSizing::variant autosize -->
-Columns resize to be the optimal size everytime the model changes.
-<!-- enum TreeViewColumnSizing::variant fixed -->
-Columns are a fixed numbers of pixels wide.
-<!-- enum WidgetHelpType -->
-Kinds of widget-specific help. Used by the ::show-help signal.
-<!-- enum WidgetHelpType::variant tooltip -->
-Tooltip.
-<!-- enum WidgetHelpType::variant whats_this -->
-What’s this.
+<!-- enum WindowPosition -->
+Window placement can be influenced using this enumeration. Note that
+using `WindowPosition::CenterAlways` is almost always a bad idea.
+It won’t necessarily work well with all window managers or on all windowing systems.
+<!-- enum WindowPosition::variant None -->
+No influence is made on placement.
+<!-- enum WindowPosition::variant Center -->
+Windows should be placed in the center of the screen.
+<!-- enum WindowPosition::variant Mouse -->
+Windows should be placed at the current mouse position.
+<!-- enum WindowPosition::variant CenterAlways -->
+Keep window centered as it changes size, etc.
+<!-- enum WindowPosition::variant CenterOnParent -->
+Center the window on its transient
+ parent (see `WindowExt::set_transient_for`).
 <!-- enum WindowType -->
 A `Window` can be one of these types. Most things you’d consider a
 “window” should have type `WindowType::Toplevel`; windows with this type
@@ -38237,22 +34626,20 @@ widgets such as `Menu` or tooltips that you normally don’t think of
 as windows per se. Nearly all windows should be `WindowType::Toplevel`.
 In particular, do not use `WindowType::Popup` just to turn off
 the window borders; use `WindowExt::set_decorated` for that.
-<!-- enum WindowType::variant toplevel -->
+<!-- enum WindowType::variant Toplevel -->
 A regular window, such as a dialog.
-<!-- enum WindowType::variant popup -->
+<!-- enum WindowType::variant Popup -->
 A special window such as a tooltip.
-<!-- enum WindowPosition -->
-Window placement can be influenced using this enumeration. Note that
-using `WindowPosition::CenterAlways` is almost always a bad idea.
-It won’t necessarily work well with all window managers or on all windowing systems.
-<!-- enum WindowPosition::variant none -->
-No influence is made on placement.
-<!-- enum WindowPosition::variant center -->
-Windows should be placed in the center of the screen.
-<!-- enum WindowPosition::variant mouse -->
-Windows should be placed at the current mouse position.
-<!-- enum WindowPosition::variant center_always -->
-Keep window centered as it changes size, etc.
-<!-- enum WindowPosition::variant center_on_parent -->
-Center the window on its transient
- parent (see `WindowExt::set_transient_for`).
+<!-- enum WrapMode -->
+Describes a type of line wrapping.
+<!-- enum WrapMode::variant None -->
+do not wrap lines; just make the text area wider
+<!-- enum WrapMode::variant Char -->
+wrap text, breaking lines anywhere the cursor can
+ appear (between characters, usually - if you want to be technical,
+ between graphemes, see `pango_get_log_attrs`)
+<!-- enum WrapMode::variant Word -->
+wrap text, breaking lines in between words
+<!-- enum WrapMode::variant WordChar -->
+wrap text, breaking lines in between words, or if
+ that is not enough, also between graphemes
