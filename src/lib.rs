@@ -2,6 +2,7 @@ extern crate stripper_lib;
 
 pub const CAIRO_DOCS: &'static str = include_str!("../cairo.md");
 pub const GDK_DOCS: &'static str = include_str!("../gdk.md");
+pub const GDK_PIXBUF_DOCS: &'static str = include_str!("../gdk-pixbuf.md");
 pub const GLIB_DOCS: &'static str = include_str!("../glib.md");
 pub const GTK_DOCS: &'static str = include_str!("../gtk.md");
 pub const PANGO_DOCS: &'static str = include_str!("../pango.md");
