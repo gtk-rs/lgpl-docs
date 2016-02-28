@@ -297,7 +297,7 @@ Hint font metrics, since 1.0
 <!-- file_comment -->
 Bindings and wrappers for __Cairo__
 <!-- file patterns.rs -->
-<!-- file_comment -->
+<!-- trait Pattern -->
 Sources for drawing
 <!-- trait Pattern::fn status -->
 Checks whether an error has previously occurred for this pattern.
@@ -635,7 +635,7 @@ Gets path defining the patch patch_num for a mesh pattern.
 
 patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
 <!-- file context.rs -->
-<!-- file_comment -->
+<!-- struct Context -->
 The cairo drawing context
 <!-- impl Context::fn new -->
 Creates a new Context with all graphics state parameters set to default values
@@ -1365,11 +1365,8 @@ equivalent to Context::move_to(x + dx , y + dy ).
 
 It is an error to call this function with no current point. Doing so will
 cause self to shutdown with a status of Status::NoCurrenPoint.
-<!-- file paths.rs -->
-<!-- file_comment -->
-Creating paths and manipulating path data
 <!-- file matrices.rs -->
-<!-- file_comment -->
+<!-- trait MatrixTrait -->
 Generic matrix operations
 <!-- impl MatrixTrait for Matrix::fn null -->
 Creates a new Matrix filled with zeroes
@@ -1424,13 +1421,8 @@ transform to (x1 + dx2, y1 + dy2) for all values of x1 and x2 .
 <!-- impl MatrixTrait for Matrix::fn transform_point -->
 Transforms the point (x , y) by self.
 <!-- file fonts.rs -->
-<!-- file_comment -->
-FontOptions: How a font should be rendered.
-
-FontFace: Base class for font faces.
-
-ScaledFont: Font face at particular size and options.
-<!-- impl FontOptions -->
+<!-- struct FontOptions -->
+How a font should be rendered.
 The font options specify how fonts should be rendered. Most of the time the font options
 implied by a surface are just right and do not need any changes, but for pixel-based targets
 tweaking font options may result in superior output on a particular display.
@@ -1473,8 +1465,8 @@ documentation for HintMetrics for full details.
 <!-- impl FontOptions::fn get_hint_metrics -->
 Gets the metrics hinting mode for the font options object. See the documentation
 for HintMetrics for full details.
-<!-- impl PartialEq for FontOptions::fn eq -->
-Compares two font options objects for equality.
+<!-- struct FontFace -->
+Base class for font faces.
 <!-- impl FontFace::fn toy_create -->
 Creates a font face from a triplet of family, slant, and weight. These font faces
 are used in implementation of the the cairo "toy" font API.
@@ -1503,6 +1495,8 @@ destroyed until a matching call to FontFace drop trait is made.
 
 The number of references to a FontFace can be get using
 FontFace::get_reference_count().
+<!-- struct ScaledFont -->
+Font face at particular size and options.
 <!-- impl ScaledFont::fn new -->
 Creates a ScaledFont object from a font face and matrices that describe the
 size of the font and the environment in which it will be used.
