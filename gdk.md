@@ -24,7 +24,7 @@ g_object_unref (context);
 <!-- impl AppLaunchContext::fn new -->
 Creates a new `AppLaunchContext`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Display::get_app_launch_context` instead
 
@@ -46,7 +46,7 @@ the number of a workspace, or -1
 Sets the display on which applications will be launched when
 using this context. See also `AppLaunchContext::set_screen`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Display::get_app_launch_context` instead
 ## `display`
@@ -91,14 +91,6 @@ typing in another window. This is also known as 'focus stealing
 prevention'.
 ## `timestamp`
 a timestamp
-<!-- struct Atom -->
-An opaque type representing a string as an index into a table
-of strings on the X server.
-
-# Deprecated
-
-An opaque type representing a string as an index into a table
-of strings on the X server.
 <!-- enum AxisUse -->
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
@@ -163,7 +155,7 @@ See `Cursor::new_for_display`.
 
 To make the cursor invisible, use `CursorType::BlankCursor`.
 
-# Deprecated
+# Deprecated since 3.16
 
 Use `Cursor::new_for_display` instead.
 ## `cursor_type`
@@ -258,6 +250,9 @@ cursor sizes.
 
 On the X backend, support for RGBA cursors requires a
 sufficently new version of the X Render extension.
+
+Since: 3.10
+
 ## `display`
 the `Display` for which the cursor will be created
 ## `surface`
@@ -299,6 +294,9 @@ Returns a cairo image surface with the image used to display the cursor.
 Note that depending on the capabilities of the windowing system and
 on the cursor, GDK may not be able to obtain the image data. In this
 case, `None` is returned.
+
+Since: 3.10
+
 ## `x_hot`
 Location to store the hotspot x position,
  or `None`
@@ -313,7 +311,7 @@ a `cairo::Surface`
 <!-- impl Cursor::fn ref -->
 Adds a reference to `self`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `gobject::Object::ref` instead
 
@@ -324,7 +322,7 @@ Same `self` that was passed in
 Removes a reference from `self`, deallocating the cursor
 if no references remain.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `gobject::Object::unref` instead
 <!-- enum CursorType -->
@@ -507,7 +505,7 @@ the length of the array.
 Determines information about the current keyboard grab.
 This is not public API and must not be used by applications.
 
-# Deprecated
+# Deprecated since 3.16
 
 The symbol was never meant to be used outside
  of GTK+
@@ -645,6 +643,9 @@ has a pointer grab, or this application has a grab with owner_events = `false`,
 `None` may be returned even if the pointer is physically over one of this
 application's windows.
 
+Since: 3.12
+
+
 # Returns
 
 the last window the device
@@ -689,6 +690,9 @@ Gets the current location of `self` in double precision. As a slave device's
 coordinates are those of its master pointer, this function
 may not be called on devices of type `DeviceType::Slave`,
 unless there is an ongoing grab on them. See `Device::grab`.
+
+Since: 3.10
+
 ## `screen`
 location to store the `Screen`
  the `self` is on, or `None`.
@@ -700,6 +704,9 @@ location to store root window Y coordinate of `self`, or `None`.
 Returns the product ID of this device, or `None` if this information couldn't
 be obtained. This ID is retrieved from the device, and is thus constant for
 it. See `Device::get_vendor_id` for more information.
+
+Since: 3.16
+
 
 # Returns
 
@@ -750,6 +757,9 @@ compose `gio::Settings` paths to store settings for this device.
    return settings;
  }
 ```
+
+Since: 3.16
+
 
 # Returns
 
@@ -1109,7 +1119,7 @@ it. `gdk_parse_args` must have been called first. If the default
 display has previously been set, simply returns that. An internal
 function that should not be used by applications.
 
-# Deprecated
+# Deprecated since 3.16
 
 This symbol was never meant to be used outside
  of GTK+
@@ -1196,7 +1206,7 @@ the return location for the maximal cursor height
 <!-- impl Display::fn get_n_screens -->
 Gets the number of screen managed by the `self`.
 
-# Deprecated
+# Deprecated since 3.10
 
 The number of screens is always 1.
 
@@ -1214,7 +1224,7 @@ by GDK and should not be modified or freed.
 Gets the current location of the pointer and the current modifier
 mask for a given display.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::get_position` instead.
 ## `screen`
@@ -1240,7 +1250,7 @@ of the pointer in that window in `win_x`, `win_y` for `screen`. Returns `None`
 if the window under the mouse pointer is not known to GDK (for example,
 belongs to another application).
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::get_window_at_position` instead.
 ## `win_x`
@@ -1270,7 +1280,7 @@ Finds out if the display has been closed.
 <!-- impl Display::fn keyboard_ungrab -->
 Release any keyboard grab
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::ungrab`, together with `Device::grab`
  instead.
@@ -1280,7 +1290,7 @@ a timestap (e.g `GDK_CURRENT_TIME`).
 Returns the list of available input devices attached to `self`.
 The list is statically allocated and should not be freed.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `DeviceManager::list_devices` instead.
 
@@ -1313,7 +1323,7 @@ queue, or `None` if no events are in the queue. The returned
 <!-- impl Display::fn pointer_is_grabbed -->
 Test if the pointer is grabbed.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Display::device_is_grabbed` instead.
 
@@ -1323,7 +1333,7 @@ Use `Display::device_is_grabbed` instead.
 <!-- impl Display::fn pointer_ungrab -->
 Release any pointer grab.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::ungrab`, together with `Device::grab`
  instead.
@@ -1391,7 +1401,7 @@ to redirect drawing on the window using compositing.
 Currently this only works on X11 with XComposite and
 XDamage extensions available.
 
-# Deprecated
+# Deprecated since 3.16
 
 Compositing is an outdated technology that
  only ever worked on X11.
@@ -1460,7 +1470,7 @@ control of the user. This function was added to cover
 some rare use cases like keyboard navigation support
 for the color picker in the ``GtkColorSelectionDialog``.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::warp` instead.
 ## `screen`
@@ -1552,6 +1562,8 @@ a `Display`, or `None` if the
 Sets `display` as the default display.
 ## `display`
 a `Display`
+<!-- struct DragContext -->
+
 <!-- impl DragContext::fn get_actions -->
 Determines the bitmask of actions proposed by the source if
 `DragContext::get_suggested_action` returns `DragAction::Ask`.
@@ -1843,9 +1855,9 @@ A touch event sequence has been canceled. This event type
 <!-- enum EventType::variant EventLast -->
 marks the end of the `EventType` enumeration. Added in 2.18
 <!-- struct EventVisibility -->
-Generated when the window visibility status has changed.
+`[Deprecated since 3.12]` Generated when the window visibility status has changed.
 
-# Deprecated
+# Deprecated since 3.12
 
 Modern composited windowing systems with pervasive
  transparency make it impossible to track the visibility of a window
@@ -1896,6 +1908,8 @@ if different animations are timed by looking at the difference in
 time between an initial value from `FrameClock::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
+
+Since: 3.8
 <!-- impl FrameClock::fn begin_updating -->
 Starts updates for an animation. Until a matching call to
 `FrameClock::end_updating` is made, the frame clock will continually
@@ -1903,11 +1917,20 @@ request a new frame with the `FrameClockPhase::Update` phase.
 This function may be called multiple times and frames will be
 requested until `FrameClock::end_updating` is called the same
 number of times.
+
+Since: 3.8
+
 <!-- impl FrameClock::fn end_updating -->
 Stops updates for an animation. See the documentation for
 `FrameClock::begin_updating`.
+
+Since: 3.8
+
 <!-- impl FrameClock::fn get_current_timings -->
 Gets the frame timings for the current frame.
+
+Since: 3.8
+
 
 # Returns
 
@@ -1918,6 +1941,9 @@ the `FrameTimings` for the frame currently
 <!-- impl FrameClock::fn get_frame_counter -->
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
+
+Since: 3.8
+
 
 # Returns
 
@@ -1932,6 +1958,9 @@ the time of the conceptual “previous frame,” which may be either
 the actual previous frame time, or if that’s too old, an updated
 time.
 
+Since: 3.8
+
+
 # Returns
 
 a timestamp in microseconds, in the timescale of
@@ -1944,6 +1973,9 @@ is the set from the counter values given by
 `FrameClock::get_history_start` and
 `FrameClock::get_frame_counter`, inclusive.
 
+Since: 3.8
+
+
 # Returns
 
 the frame counter value for the oldest frame
@@ -1955,6 +1987,9 @@ known presentation time and refresh interval, and assuming that
 presentation times are separated by the refresh interval,
 predicts a presentation time that is a multiple of the refresh
 interval after the last presentation time, and later than `base_time`.
+
+Since: 3.8
+
 ## `base_time`
 base time for determining a presentaton time
 ## `refresh_interval_return`
@@ -1969,6 +2004,9 @@ a location to store the next
 Retrieves a `FrameTimings` object holding timing information
 for the current frame or a recent frame. The `FrameTimings`
 object may not yet be complete: see `FrameTimings::get_complete`.
+
+Since: 3.8
+
 ## `frame_counter`
 the frame counter value identifying the frame to
  be received.
@@ -1989,6 +2027,9 @@ content and want to continually request the
 you should use `FrameClock::begin_updating` instead, since
 this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
+
+Since: 3.8
+
 ## `phase`
 the phase that is requested
 <!-- struct FrameTimings -->
@@ -2009,6 +2050,9 @@ available at all. Once `FrameTimings::get_complete` returns
 `true` for a frame, you can be certain that no further values
 will become available and be stored in the `FrameTimings`.
 
+Since: 3.8
+
+
 # Returns
 
 `true` if all information that will be available
@@ -2016,6 +2060,9 @@ will become available and be stored in the `FrameTimings`.
 <!-- impl FrameTimings::fn get_frame_counter -->
 Gets the frame counter value of the `FrameClock` when this
 this frame was drawn.
+
+Since: 3.8
+
 
 # Returns
 
@@ -2040,6 +2087,9 @@ than this function, but this function is useful for applications
 that want exact control over latency. For example, a movie player
 may want this information for Audio/Video synchronization.
 
+Since: 3.8
+
+
 # Returns
 
 The predicted time at which the frame will be presented,
@@ -2048,6 +2098,9 @@ The predicted time at which the frame will be presented,
 <!-- impl FrameTimings::fn get_presentation_time -->
 Reurns the presentation time. This is the time at which the frame
 became visible to the user.
+
+Since: 3.8
+
 
 # Returns
 
@@ -2059,6 +2112,9 @@ Gets the natural interval between presentation times for
 the display that this frame was displayed on. Frame presentation
 usually happens during the “vertical blanking interval”.
 
+Since: 3.8
+
+
 # Returns
 
 the refresh interval of the display, in microseconds,
@@ -2067,12 +2123,18 @@ the refresh interval of the display, in microseconds,
 <!-- impl FrameTimings::fn ref -->
 Increases the reference count of `self`.
 
+Since: 3.8
+
+
 # Returns
 
 `self`
 <!-- impl FrameTimings::fn unref -->
 Decreases the reference count of `self`. If `self`
 is no longer referenced, it will be freed.
+
+Since: 3.8
+
 <!-- enum FullscreenMode -->
 Indicates which monitor (in a multi-head setup) a window should span over
 when in fullscreen mode.
@@ -2080,6 +2142,9 @@ when in fullscreen mode.
 Fullscreen on current monitor only.
 <!-- enum FullscreenMode::variant AllMonitors -->
 Span across all monitors when fullscreen.
+
+Since: 3.8
+
 <!-- struct GLContext -->
 `GLContext` is an object representing the platform-specific
 OpenGL drawing context.
@@ -2133,13 +2198,21 @@ You can now perform your drawing using OpenGL commands.
 You can check which `GLContext` is the current one by using
 `GLContext::get_current`; you can also unset any `GLContext`
 that is currently set by calling `GLContext::clear_current`.
+
+Since: 3.16
 <!-- impl GLContext::fn clear_current -->
 Clears the current `GLContext`.
 
 Any OpenGL call after this function returns will be ignored
 until `GLContext::make_current` is called.
+
+Since: 3.16
+
 <!-- impl GLContext::fn get_current -->
 Retrieves the current `GLContext`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -2147,11 +2220,17 @@ the current `GLContext`, or `None`
 <!-- impl GLContext::fn get_debug_enabled -->
 Retrieves the value set using `GLContext::set_debug_enabled`.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if debugging is enabled
 <!-- impl GLContext::fn get_display -->
 Retrieves the `Display` the `self` is created for
+
+Since: 3.16
+
 
 # Returns
 
@@ -2159,18 +2238,27 @@ a `Display` or `None`
 <!-- impl GLContext::fn get_forward_compatible -->
 Retrieves the value set using `GLContext::set_forward_compatible`.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if the context should be forward compatible
 <!-- impl GLContext::fn get_required_version -->
 Retrieves the major and minor version requested by calling
 `GLContext::set_required_version`.
+
+Since: 3.16
+
 ## `major`
 return location for the major version to request
 ## `minor`
 return location for the minor version to request
 <!-- impl GLContext::fn get_shared_context -->
 Retrieves the `GLContext` that this `self` share data with.
+
+Since: 3.16
+
 
 # Returns
 
@@ -2179,6 +2267,9 @@ a `GLContext` or `None`
 Retrieves the OpenGL version of the `self`.
 
 The `self` must be realized prior to calling this function.
+
+Since: 3.16
+
 ## `major`
 return location for the major version
 ## `minor`
@@ -2186,15 +2277,24 @@ return location for the minor version
 <!-- impl GLContext::fn get_window -->
 Retrieves the `Window` used by the `self`.
 
+Since: 3.16
+
+
 # Returns
 
 a `Window` or `None`
 <!-- impl GLContext::fn make_current -->
 Makes the `self` the current one.
+
+Since: 3.16
+
 <!-- impl GLContext::fn realize -->
 Realizes the given `GLContext`.
 
 It is safe to call this function on a realized `GLContext`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -2206,6 +2306,9 @@ additional overhead.
 
 The `GLContext` must not be realized or made current prior to
 calling this function.
+
+Since: 3.16
+
 ## `enabled`
 whether to enable debugging in the context
 <!-- impl GLContext::fn set_forward_compatible -->
@@ -2218,6 +2321,9 @@ non deprecated functionality.
 
 The `GLContext` must not be realized or made current prior to calling
 this function.
+
+Since: 3.16
+
 ## `compatible`
 whether the context should be forward compatible
 <!-- impl GLContext::fn set_required_version -->
@@ -2227,6 +2333,9 @@ Setting `major` and `minor` to zero will use the default values.
 
 The `GLContext` must not be realized or made current prior to calling
 this function.
+
+Since: 3.16
+
 ## `major`
 the major version to request
 ## `minor`
@@ -2239,6 +2348,9 @@ OpenGL support is not available
 The requested visual format is not supported
 <!-- enum GLError::variant UnsupportedProfile -->
 The requested profile is not supported
+
+Since: 3.16
+
 <!-- enum GrabOwnership -->
 Defines how device grabs interact with other devices.
 <!-- enum GrabOwnership::variant None -->
@@ -2398,9 +2510,6 @@ Specifies the type of a property change for a `EventProperty`.
 the property value was changed.
 <!-- enum PropertyState::variant Delete -->
 the property was deleted.
-<!-- struct Rectangle -->
-Defines the position and size of a rectangle. It is identical to
-`cairo::RectangleInt`.
 <!-- struct Screen -->
 `Screen` objects are the GDK representation of the screen on
 which windows can be displayed and on which the pointer moves.
@@ -2558,6 +2667,9 @@ on very high density outputs this can be a higher value (often 2).
 This can be used if you want to create pixel based data for a
 particula monitor, but most of the time you’re drawing to a window
 where it is better to use `Window::get_scale_factor` instead.
+
+Since: 3.10
+
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -2964,6 +3076,8 @@ Each pixel value contains red, green, and blue
  components as for `VisualType::TrueColor`, but the components are
  mapped via a color table into the final output table instead of
  being converted directly.
+<!-- struct Window -->
+
 <!-- impl Window::fn new -->
 Creates a new `Window` using the attributes from
 `attributes`. See `WindowAttr` and `WindowAttributesType` for
@@ -2991,7 +3105,7 @@ for it with `gdk_window_foreign_new`)
 NOTE: For multihead-aware widgets or applications use
 `Display::get_window_at_pointer` instead.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Device::get_window_at_position` instead.
 ## `win_x`
@@ -3175,7 +3289,7 @@ timestamp of mouse click that began the drag (use `gdk_event_get_time`)
 <!-- impl Window::fn configure_finished -->
 Does nothing, present only for compatiblity.
 
-# Deprecated
+# Deprecated since 3.8
 
 this function is no longer needed
 <!-- impl Window::fn coords_from_parent -->
@@ -3240,6 +3354,9 @@ If the creation of the `GLContext` failed, `error` will be set.
 Before using the returned `GLContext`, you will need to
 call `GLContext::make_current` or `GLContext::realize`.
 
+Since: 3.16
+
+
 # Returns
 
 the newly created `GLContext`, or
@@ -3250,6 +3367,9 @@ given `self`.
 
 Initially the surface contents are all 0 (transparent if contents
 have transparency, black otherwise.)
+
+Since: 3.10
+
 ## `format`
 the format for the new surface
 ## `width`
@@ -3310,7 +3430,7 @@ reaches zero. You must call this function yourself before that happens.
 <!-- impl Window::fn enable_synchronized_configure -->
 Does nothing, present only for compatiblity.
 
-# Deprecated
+# Deprecated since 3.8
 
 this function is no longer needed
 <!-- impl Window::fn end_paint -->
@@ -3335,6 +3455,9 @@ Some backends may not support native child windows.
 `true` if the window has a native window, `false` otherwise
 <!-- impl Window::fn flush -->
 This function does nothing.
+
+# Deprecated since 3.14
+
 <!-- impl Window::fn focus -->
 Sets keyboard focus to `self`. In most cases, `gtk_window_present`
 should be used on a ``GtkWindow``, rather than calling this function.
@@ -3352,7 +3475,7 @@ an equal number of times to begin processing exposes.
 This function is not part of the GDK public API and is only
 for use by GTK+.
 
-# Deprecated
+# Deprecated since 3.16
 
 This symbol was never meant to be used outside of GTK+
 <!-- impl Window::fn freeze_updates -->
@@ -3417,6 +3540,9 @@ list need not be.
 
 The list is returned in (relative) stacking order, i.e. the
 lowest window is first.
+
+Since: 3.10
+
 ## `user_data`
 user data to look for
 
@@ -3440,7 +3566,7 @@ Determines whether `self` is composited.
 
 See `Window::set_composited`.
 
-# Deprecated
+# Deprecated since 3.16
 
 Compositing is an outdated technology that
  only ever worked on X11.
@@ -3515,6 +3641,9 @@ window is not known to GDK.
 Obtains the current device position in doubles and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
+
+Since: 3.10
+
 ## `device`
 pointer `Device` to query to.
 ## `x`
@@ -3569,6 +3698,9 @@ the effective toplevel window containing `self`
 <!-- impl Window::fn get_event_compression -->
 Get the current event compression setting for this window.
 
+Since: 3.12
+
+
 # Returns
 
 `true` if motion events will be compressed
@@ -3592,6 +3724,9 @@ Gets the frame clock for the window. The frame clock for a window
 never changes unless the window is reparented to a new toplevel
 window.
 
+Since: 3.8
+
+
 # Returns
 
 the frame clock
@@ -3604,6 +3739,9 @@ the frame) in root window coordinates, use `Window::get_origin`.
 rectangle to fill with bounding box of the window frame
 <!-- impl Window::fn get_fullscreen_mode -->
 Obtains the `FullscreenMode` of the `self`.
+
+Since: 3.8
+
 
 # Returns
 
@@ -3694,7 +3832,7 @@ Obtains the current pointer position and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Window::get_device_position` instead.
 ## `x`
@@ -3757,6 +3895,9 @@ with higher resolution data.
 
 The scale of a window may change during runtime, if this happens
 a configure event will be sent to the toplevel window.
+
+Since: 3.10
+
 
 # Returns
 
@@ -4009,6 +4150,9 @@ of knowing when something paints over the GL-drawn regions.
 
 This is typically called automatically by GTK+ and you don't need
 to care about this.
+
+Since: 3.16
+
 ## `cr`
 a `cairo::Context`
 <!-- impl Window::fn maximize -->
@@ -4185,7 +4329,7 @@ custom widget.
 
 See also `Window::set_background_pattern`.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `Window::set_background_rgba` instead.
 ## `color`
@@ -4240,7 +4384,7 @@ You must call `Display::supports_composite` to check if
 setting a window as composited is supported before
 attempting to do so.
 
-# Deprecated
+# Deprecated since 3.16
 
 Compositing is an outdated technology that
  only ever worked on X11.
@@ -4307,6 +4451,9 @@ Some types of applications, e.g. paint programs, need to see all
 motion events and will benefit from turning off event compression.
 
 By default, event compression is enabled.
+
+Since: 3.12
+
 ## `event_compression`
 `true` if motion events should be compressed
 <!-- impl Window::fn set_events -->
@@ -4348,6 +4495,9 @@ has no effect.
 Not all window managers support this, so you can’t rely on the fullscreen
 window to span over the multiple monitors when `FullscreenMode::AllMonitors`
 is specified.
+
+Since: 3.8
+
 ## `mode`
 fullscreen mode
 <!-- impl Window::fn set_functions -->
@@ -4439,6 +4589,9 @@ useful if you are keeping an offscreen copy of some region
 and want to keep it up to date. You can also modify the
 invalidated region in case you’re doing some effect where
 e.g. a child widget appears in multiple places.
+
+Since: 3.10
+
 ## `handler`
 a ``GdkWindowInvalidateHandlerFunc`` callback function
 <!-- impl Window::fn set_keep_above -->
@@ -4511,6 +4664,9 @@ GTK+ will update this property automatically if
 the `self` background is opaque, as we know where the opaque regions
 are. If your window background is not opaque, please update this
 property in your ``GtkWidget`::style-updated` handler.
+
+Since: 3.10
+
 ## `region`
 a region, or `None`
 <!-- impl Window::fn set_override_redirect -->
@@ -4549,6 +4705,9 @@ don’t feel like windows are snapping against random invisible edges.
 Note that this property is automatically updated by GTK+, so this
 function should only be used by applications which do not use GTK+
 to create toplevel windows.
+
+Since: 3.12
+
 ## `left`
 The left extent
 ## `right`
@@ -4597,7 +4756,7 @@ it so all children get static subwindow gravity. This is used if you
 are implementing scary features that involve deep knowledge of the
 windowing system. Don’t worry about it.
 
-# Deprecated
+# Deprecated since 3.16
 
 static gravities haven't worked on anything but X11
  for a long time.
@@ -4701,6 +4860,9 @@ is the menu shown when right-clicking the titlebar on traditional
 windows managed by the window manager. This is useful for windows
 using client-side decorations, activating it with a right-click
 on the window decorations.
+
+Since: 3.14
+
 ## `event`
 a ``GdkEvent`` to show the menu for
 
@@ -4724,7 +4886,7 @@ Thaws a window frozen with
 This function is not part of the GDK public API and is only
 for use by GTK+.
 
-# Deprecated
+# Deprecated since 3.16
 
 This symbol was never meant to be used outside of GTK+
 <!-- impl Window::fn thaw_updates -->
@@ -4849,6 +5011,3 @@ windows in order to trap or filter the events. You can’t draw on
 window for graphics and events
 <!-- enum WindowWindowClass::variant InputOnly -->
 window for events only
-<!-- struct XEvent -->
-Used to represent native events (XEvents for the X11
-backend, MSGs for Win32).
