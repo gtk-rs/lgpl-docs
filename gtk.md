@@ -432,11 +432,16 @@ contains an internal centered box which is centered with respect to
 the full width of the box, even if the children at either side take
 up different amounts of space.
 
+Since: 3.12
+
 # Implements
 
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl ActionBar::fn new -->
 Creates a new `ActionBar` widget.
+
+Since: 3.12
+
 
 # Returns
 
@@ -444,21 +449,33 @@ a new `ActionBar`
 <!-- impl ActionBar::fn get_center_widget -->
 Retrieves the center bar widget of the bar.
 
+Since: 3.12
+
+
 # Returns
 
 the center `Widget`.
 <!-- impl ActionBar::fn pack_end -->
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
+
+Since: 3.12
+
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl ActionBar::fn pack_start -->
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
+
+Since: 3.12
+
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl ActionBar::fn set_center_widget -->
 Sets the center widget for the `ActionBar`.
+
+Since: 3.12
+
 ## `center_widget`
 a widget to use for the center
 <!-- struct Actionable -->
@@ -767,7 +784,7 @@ center natural width of widget inside the
 <!-- enum Align::variant Baseline -->
 align the widget according to the baseline. Since 3.10.
 <!-- struct Alignment -->
-The `Alignment` widget controls the alignment and size of its child widget.
+`[Deprecated since 3.14]` The `Alignment` widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
 
 The scale settings are used to specify how much the child widget should
@@ -791,7 +808,7 @@ child widget.
 <!-- impl Alignment::fn new -->
 Creates a new `Alignment`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties
 ## `xalign`
@@ -817,7 +834,7 @@ the new `Alignment`
 Gets the padding on the different sides of the widget.
 See gtk_alignment_set_padding ().
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties
 ## `padding_top`
@@ -835,7 +852,7 @@ location to store the padding
 <!-- impl Alignment::fn set -->
 Sets the `Alignment` values.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties
 ## `xalign`
@@ -859,7 +876,7 @@ The padding adds blank space to the sides of the widget. For instance,
 this can be used to indent the child widget towards the right by adding
 padding on the left.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties
 ## `padding_top`
@@ -870,12 +887,49 @@ the padding at the bottom of the widget
 the padding at the left of the widget
 ## `padding_right`
 the padding at the right of the widget.
-<!-- struct Allocation -->
-A `Allocation`-struct of a widget represents region
-which has been allocated to the widget by its parent. It is a subregion
-of its parents allocation. See
-[`Widget`’s geometry management section][geometry-management] for
-more information.
+<!-- struct AppChooser -->
+`AppChooser` is an interface that can be implemented by widgets which
+allow the user to choose an application (typically for the purpose of
+opening a file). The main objects that implement this interface are
+`AppChooserWidget`, `AppChooserDialog` and `AppChooserButton`.
+
+Applications are represented by GIO `gio::AppInfo` objects here.
+GIO has a concept of recommended and fallback applications for a
+given content type. Recommended applications are those that claim
+to handle the content type itself, while fallback also includes
+applications that handle a more generic content type. GIO also
+knows the default and last-used application for a given content
+type. The `AppChooserWidget` provides detailed control over
+whether the shown list of applications should include default,
+recommended or fallback applications.
+
+To obtain the application that has been selected in a `AppChooser`,
+use `AppChooser::get_app_info`.
+
+# Implements
+
+[`AppChooserExt`](trait.AppChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+<!-- trait AppChooserExt -->
+Trait containing all `AppChooser` methods.
+
+# Implementors
+
+[`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`AppChooser`](struct.AppChooser.html)
+<!-- trait AppChooserExt::fn get_app_info -->
+Returns the currently selected application.
+
+# Returns
+
+a `gio::AppInfo` for the currently selected
+ application, or `None` if none is selected. Free with `gobject::Object::unref`
+<!-- trait AppChooserExt::fn get_content_type -->
+Returns the current value of the `AppChooser:content-type` property.
+
+# Returns
+
+the content type of `self`. Free with `g_free`
+<!-- trait AppChooserExt::fn refresh -->
+Reloads the list of applications.
 <!-- struct AppChooserDialog -->
 `AppChooserDialog` shows a `AppChooserWidget` inside a `Dialog`.
 
@@ -889,7 +943,7 @@ use `AppChooserDialog::set_heading`.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- impl AppChooserDialog::fn new -->
 Creates a new `AppChooserDialog` for the provided `gio::File`,
 to allow the user to select an application for it.
@@ -955,7 +1009,7 @@ To keep track of the selected application, use the
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- impl AppChooserWidget::fn new -->
 Creates a new `AppChooserWidget` for applications
 that can handle content of the given type.
@@ -1038,7 +1092,7 @@ for the content type in a separate section.
 ## `setting`
 the new value for `AppChooserWidget:show-recommended`
 <!-- struct Arrow -->
-`Arrow` should be used to draw simple arrows that need to point in
+`[Deprecated since 3.14]` `Arrow` should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right). The
 style of the arrow can be one of shadow in, shadow out, etched in, or
 etched out. Note that these directions and style types may be
@@ -1066,7 +1120,7 @@ react to the text direction instead of “pan-left-symbolic“ and
 <!-- impl Arrow::fn new -->
 Creates a new `Arrow` widget.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use a `Image` with a suitable icon.
 ## `arrow_type`
@@ -1080,7 +1134,7 @@ the new `Arrow` widget.
 <!-- impl Arrow::fn set -->
 Sets the direction and style of the `Arrow`, `self`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use a `Image` with a suitable icon.
 ## `arrow_type`
@@ -1199,6 +1253,9 @@ Align the baseline at the top
 Center the baseline
 <!-- enum BaselinePosition::variant Bottom -->
 Align the baseline at the bottom
+
+Since: 3.10
+
 <!-- struct Bin -->
 The `Bin` widget is a container with just one child.
 It is not very useful itself, but it is useful for deriving subclasses,
@@ -1313,11 +1370,17 @@ a new `Box`.
 <!-- trait BoxExt::fn get_baseline_position -->
 Gets the value set by `BoxExt::set_baseline_position`.
 
+Since: 3.10
+
+
 # Returns
 
 the baseline position
 <!-- trait BoxExt::fn get_center_widget -->
 Retrieves the center widget of the box.
+
+Since: 3.12
+
 
 # Returns
 
@@ -1418,6 +1481,9 @@ child. If there is more vertical space available than requested,
 and the baseline is not allocated by the parent then
 `position` is used to allocate the baseline wrt the
 extra space available.
+
+Since: 3.10
+
 ## `position`
 a `BaselinePosition`
 <!-- trait BoxExt::fn set_center_widget -->
@@ -1425,6 +1491,9 @@ Sets a center widget; that is a child widget that will be
 centered with respect to the full width of the box, even
 if the children at either side take up different amounts
 of space.
+
+Since: 3.12
+
 ## `widget`
 the widget to center
 <!-- trait BoxExt::fn set_child_packing -->
@@ -1576,6 +1645,570 @@ value of property
 Sets the name of the `self` object.
 ## `name`
 name to set
+<!-- struct Builder -->
+A `Builder` is an auxiliary object that reads textual descriptions
+of a user interface and instantiates the described objects. To create
+a `Builder` from a user interface description, call
+`Builder::new_from_file`, `Builder::new_from_resource` or
+`Builder::new_from_string`.
+
+In the (unusual) case that you want to add user interface
+descriptions from multiple sources to the same `Builder` you can
+call `Builder::new` to get an empty builder and populate it by
+(multiple) calls to `Builder::add_from_file`,
+`Builder::add_from_resource` or `Builder::add_from_string`.
+
+A `Builder` holds a reference to all objects that it has constructed
+and drops these references when it is finalized. This finalization can
+cause the destruction of non-widget objects or widgets which are not
+contained in a toplevel window. For toplevel windows constructed by a
+builder, it is the responsibility of the user to call `Widget::destroy`
+to get rid of them and all the widgets they contain.
+
+The functions `Builder::get_object` and `Builder::get_objects`
+can be used to access the widgets in the interface by the names assigned
+to them inside the UI description. Toplevel windows returned by these
+functions will stay around until the user explicitly destroys them
+with `Widget::destroy`. Other widgets will either be part of a
+larger hierarchy constructed by the builder (in which case you should
+not have to worry about their lifecycle), or without a parent, in which
+case they have to be added to some container to make use of them.
+Non-widget objects need to be reffed with `gobject::Object::ref` to keep them
+beyond the lifespan of the builder.
+
+The function `Builder::connect_signals` and variants thereof can be
+used to connect handlers to the named signals in the description.
+
+# `Builder` UI Definitions # {`BUILDER`-UI}
+
+`Builder` parses textual descriptions of user interfaces which are
+specified in an XML format which can be roughly described by the
+RELAX NG schema below. We refer to these descriptions as “`Builder`
+UI definitions” or just “UI definitions” if the context is clear.
+Do not confuse `Builder` UI Definitions with
+[`UIManager` UI Definitions][XML-UI], which are more limited in scope.
+It is common to use `.ui` as the filename extension for files containing
+`Builder` UI definitions.
+
+[RELAX NG Compact Syntax](https://git.gnome.org/browse/gtk+/tree/gtk/gtkbuilder.rnc)
+
+The toplevel element is `<interface>`. It optionally takes a “domain”
+attribute, which will make the builder look for translated strings
+using `dgettext` in the domain specified. This can also be done by
+calling `Builder::set_translation_domain` on the builder.
+Objects are described by `<object>` elements, which can contain
+`<property>` elements to set properties, `<signal>` elements which
+connect signals to handlers, and `<child>` elements, which describe
+child objects (most often widgets inside a container, but also e.g.
+actions in an action group, or columns in a tree model). A `<child>`
+element contains an `<object>` element which describes the child object.
+The target toolkit version(s) are described by `<requires>` elements,
+the “lib” attribute specifies the widget library in question (currently
+the only supported value is “gtk+”) and the “version” attribute specifies
+the target version in the form “`<major>`.`<minor>`”. The builder will error
+out if the version requirements are not met.
+
+Typically, the specific kind of object represented by an `<object>`
+element is specified by the “class” attribute. If the type has not
+been loaded yet, GTK+ tries to find the `get_type` function from the
+class name by applying heuristics. This works in most cases, but if
+necessary, it is possible to specify the name of the `get_type` function
+explictly with the "type-func" attribute. As a special case, `Builder`
+allows to use an object that has been constructed by a `UIManager` in
+another part of the UI definition by specifying the id of the `UIManager`
+in the “constructor” attribute and the name of the object in the “id”
+attribute.
+
+Objects may be given a name with the “id” attribute, which allows the
+application to retrieve them from the builder with `Builder::get_object`.
+An id is also necessary to use the object as property value in other
+parts of the UI definition. GTK+ reserves ids starting and ending
+with ___ (3 underscores) for its own purposes.
+
+Setting properties of objects is pretty straightforward with the
+`<property>` element: the “name” attribute specifies the name of the
+property, and the content of the element specifies the value.
+If the “translatable” attribute is set to a true value, GTK+ uses
+`gettext` (or `dgettext` if the builder has a translation domain set)
+to find a translation for the value. This happens before the value
+is parsed, so it can be used for properties of any type, but it is
+probably most useful for string properties. It is also possible to
+specify a context to disambiguate short strings, and comments which
+may help the translators.
+
+`Builder` can parse textual representations for the most common
+property types: characters, strings, integers, floating-point numbers,
+booleans (strings like “TRUE”, “t”, “yes”, “y”, “1” are interpreted
+as `true`, strings like “FALSE”, “f”, “no”, “n”, “0” are interpreted
+as `false`), enumerations (can be specified by their name, nick or
+integer value), flags (can be specified by their name, nick, integer
+value, optionally combined with “|”, e.g. “GTK_VISIBLE|GTK_REALIZED”)
+and colors (in a format understood by `gdk::RGBA::parse`). Pixbufs can
+be specified as a filename of an image file to load. Objects can be
+referred to by their name and by default refer to objects declared
+in the local xml fragment and objects exposed via
+`Builder::expose_object`.
+
+In general, `Builder` allows forward references to objects —
+declared in the local xml; an object doesn’t have to be constructed
+before it can be referred to. The exception to this rule is that an
+object has to be constructed before it can be used as the value of
+a construct-only property.
+
+It is also possible to bind a property value to another object's
+property value using the attributes
+"bind-source" to specify the source object of the binding,
+"bind-property" to specify the source property and optionally
+"bind-flags" to specify the binding flags
+Internally builder implement this using GBinding objects.
+For more information see `gobject::Object::bind_property`
+
+Signal handlers are set up with the `<signal>` element. The “name”
+attribute specifies the name of the signal, and the “handler” attribute
+specifies the function to connect to the signal. By default, GTK+ tries
+to find the handler using `gmodule::Module::symbol`, but this can be changed by
+passing a custom ``GtkBuilderConnectFunc`` to
+`Builder::connect_signals_full`. The remaining attributes, “after”,
+“swapped” and “object”, have the same meaning as the corresponding
+parameters of the `g_signal_connect_object` or
+`g_signal_connect_data` functions. A “last_modification_time”
+attribute is also allowed, but it does not have a meaning to the
+builder.
+
+Sometimes it is necessary to refer to widgets which have implicitly
+been constructed by GTK+ as part of a composite widget, to set
+properties on them or to add further children (e.g. the `vbox` of
+a `Dialog`). This can be achieved by setting the “internal-child”
+propery of the `<child>` element to a true value. Note that `Builder`
+still requires an `<object>` element for the internal child, even if it
+has already been constructed.
+
+A number of widgets have different places where a child can be added
+(e.g. tabs vs. page content in notebooks). This can be reflected in
+a UI definition by specifying the “type” attribute on a `<child>`
+The possible values for the “type” attribute are described in the
+sections describing the widget-specific portions of UI definitions.
+
+# A `Builder` UI Definition
+
+
+```text
+<interface>
+  <object class="GtkDialog" id="dialog1">
+    <child internal-child="vbox">
+      <object class="GtkBox" id="vbox1">
+        <property name="border-width">10</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="hbuttonbox1">
+            <property name="border-width">20</property>
+            <child>
+              <object class="GtkButton" id="ok_button">
+                <property name="label">gtk-ok</property>
+                <property name="use-stock">TRUE</property>
+                <signal name="clicked" handler="ok_button_clicked"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
+```
+
+Beyond this general structure, several object classes define their
+own XML DTD fragments for filling in the ANY placeholders in the DTD
+above. Note that a custom element in a `<child>` element gets parsed by
+the custom tag handler of the parent object, while a custom element in
+an `<object>` element gets parsed by the custom tag handler of the object.
+
+These XML fragments are explained in the documentation of the
+respective objects.
+
+Additionally, since 3.10 a special `<template>` tag has been added
+to the format allowing one to define a widget class’s components.
+See the [`Widget` documentation][composite-templates] for details.
+<!-- impl Builder::fn new -->
+Creates a new empty builder object.
+
+This function is only useful if you intend to make multiple calls
+to `Builder::add_from_file`, `Builder::add_from_resource`
+or `Builder::add_from_string` in order to merge multiple UI
+descriptions into a single builder.
+
+Most users will probably want to use `Builder::new_from_file`,
+`Builder::new_from_resource` or `Builder::new_from_string`.
+
+# Returns
+
+a new (empty) `Builder` object
+<!-- impl Builder::fn new_from_file -->
+Builds the [`Builder` UI definition][BUILDER-UI]
+in the file `filename`.
+
+If there is an error opening the file or parsing the description then
+the program will be aborted. You should only ever attempt to parse
+user interface descriptions that are shipped as part of your program.
+
+Since: 3.10
+
+## `filename`
+filename of user interface description file
+
+# Returns
+
+a `Builder` containing the described interface
+<!-- impl Builder::fn new_from_resource -->
+Builds the [`Builder` UI definition][BUILDER-UI]
+at `resource_path`.
+
+If there is an error locating the resource or parsing the
+description, then the program will be aborted.
+
+Since: 3.10
+
+## `resource_path`
+a `gio::Resource` resource path
+
+# Returns
+
+a `Builder` containing the described interface
+<!-- impl Builder::fn new_from_string -->
+Builds the user interface described by `string` (in the
+[`Builder` UI definition][BUILDER-UI] format).
+
+If `string` is `None`-terminated, then `length` should be -1.
+If `length` is not -1, then it is the length of `string`.
+
+If there is an error parsing `string` then the program will be
+aborted. You should not attempt to parse user interface description
+from untrusted sources.
+
+Since: 3.10
+
+## `string`
+a user interface (XML) description
+## `length`
+the length of `string`, or -1
+
+# Returns
+
+a `Builder` containing the interface described by `string`
+<!-- impl Builder::fn add_callback_symbol -->
+Adds the `callback_symbol` to the scope of `self` under the given `callback_name`.
+
+Using this function overrides the behavior of `Builder::connect_signals`
+for any callback symbols that are added. Using this method allows for better
+encapsulation as it does not require that callback symbols be declared in
+the global namespace.
+
+Since: 3.10
+
+## `callback_name`
+The name of the callback, as expected in the XML
+## `callback_symbol`
+The callback pointer
+<!-- impl Builder::fn add_callback_symbols -->
+A convenience function to add many callbacks instead of calling
+`Builder::add_callback_symbol` for each symbol.
+
+Since: 3.10
+
+## `first_callback_name`
+The name of the callback, as expected in the XML
+## `first_callback_symbol`
+The callback pointer
+<!-- impl Builder::fn add_from_file -->
+Parses a file containing a [`Builder` UI definition][BUILDER-UI]
+and merges it with the current contents of `self`.
+
+Most users will probably want to use `Builder::new_from_file`.
+
+If an error occurs, 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or `G_FILE_ERROR`
+domain.
+
+It’s not really reasonable to attempt to handle failures of this
+call. You should not use this function with untrusted files (ie:
+files that are not part of your application). Broken `Builder`
+files can easily crash your program, and it’s possible that memory
+was leaked leading up to the reported failure. The only reasonable
+thing to do when an error is detected is to call `g_error`.
+## `filename`
+the name of the file to parse
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn add_from_resource -->
+Parses a resource file containing a [`Builder` UI definition][BUILDER-UI]
+and merges it with the current contents of `self`.
+
+Most users will probably want to use `Builder::new_from_resource`.
+
+If an error occurs, 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or `G_RESOURCE_ERROR`
+domain.
+
+It’s not really reasonable to attempt to handle failures of this
+call. The only reasonable thing to do when an error is detected is
+to call `g_error`.
+## `resource_path`
+the path of the resource file to parse
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn add_from_string -->
+Parses a string containing a [`Builder` UI definition][BUILDER-UI]
+and merges it with the current contents of `self`.
+
+Most users will probably want to use `Builder::new_from_string`.
+
+Upon errors 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or
+`G_VARIANT_PARSE_ERROR` domain.
+
+It’s not really reasonable to attempt to handle failures of this
+call. The only reasonable thing to do when an error is detected is
+to call `g_error`.
+## `buffer`
+the string to parse
+## `length`
+the length of `buffer` (may be -1 if `buffer` is nul-terminated)
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn add_objects_from_file -->
+Parses a file containing a [`Builder` UI definition][BUILDER-UI]
+building only the requested objects and merges
+them with the current contents of `self`.
+
+Upon errors 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or `G_FILE_ERROR`
+domain.
+
+If you are adding an object that depends on an object that is not
+its child (for instance a `TreeView` that depends on its
+`TreeModel`), you have to explicitly list all of them in `object_ids`.
+## `filename`
+the name of the file to parse
+## `object_ids`
+nul-terminated array of objects to build
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn add_objects_from_resource -->
+Parses a resource file containing a [`Builder` UI definition][BUILDER-UI]
+building only the requested objects and merges
+them with the current contents of `self`.
+
+Upon errors 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or `G_RESOURCE_ERROR`
+domain.
+
+If you are adding an object that depends on an object that is not
+its child (for instance a `TreeView` that depends on its
+`TreeModel`), you have to explicitly list all of them in `object_ids`.
+## `resource_path`
+the path of the resource file to parse
+## `object_ids`
+nul-terminated array of objects to build
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn add_objects_from_string -->
+Parses a string containing a [`Builder` UI definition][BUILDER-UI]
+building only the requested objects and merges
+them with the current contents of `self`.
+
+Upon errors 0 will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR` or `G_MARKUP_ERROR` domain.
+
+If you are adding an object that depends on an object that is not
+its child (for instance a `TreeView` that depends on its
+`TreeModel`), you have to explicitly list all of them in `object_ids`.
+## `buffer`
+the string to parse
+## `length`
+the length of `buffer` (may be -1 if `buffer` is nul-terminated)
+## `object_ids`
+nul-terminated array of objects to build
+
+# Returns
+
+A positive value on success, 0 if an error occurred
+<!-- impl Builder::fn connect_signals -->
+This method is a simpler variation of `Builder::connect_signals_full`.
+It uses symbols explicitly added to `self` with prior calls to
+`Builder::add_callback_symbol`. In the case that symbols are not
+explicitly added; it uses `gmodule::Module`’s introspective features (by opening the module `None`)
+to look at the application’s symbol table. From here it tries to match
+the signal handler names given in the interface description with
+symbols in the application and connects the signals. Note that this
+function can only be called once, subsequent calls will do nothing.
+
+Note that unless `Builder::add_callback_symbol` is called for
+all signal callbacks which are referenced by the loaded XML, this
+function will require that `gmodule::Module` be supported on the platform.
+
+If you rely on `gmodule::Module` support to lookup callbacks in the symbol table,
+the following details should be noted:
+
+When compiling applications for Windows, you must declare signal callbacks
+with `G_MODULE_EXPORT`, or they will not be put in the symbol table.
+On Linux and Unices, this is not necessary; applications should instead
+be compiled with the -Wl,--export-dynamic CFLAGS, and linked against
+gmodule-export-2.0.
+## `user_data`
+user data to pass back with all signals
+<!-- impl Builder::fn connect_signals_full -->
+This function can be thought of the interpreted language binding
+version of `Builder::connect_signals`, except that it does not
+require GModule to function correctly.
+## `func`
+the function used to connect the signals
+## `user_data`
+arbitrary data that will be passed to the connection function
+<!-- impl Builder::fn expose_object -->
+Add `object` to the `self` object pool so it can be referenced just like any
+other object built by builder.
+
+Since: 3.8
+
+## `name`
+the name of the object exposed to the builder
+## `object`
+the object to expose
+<!-- impl Builder::fn get_application -->
+Gets the `Application` associated with the builder.
+
+The `Application` is used for creating action proxies as requested
+from XML that the builder is loading.
+
+By default, the builder uses the default application: the one from
+`gio::Application::get_default`. If you want to use another application
+for constructing proxies, use `Builder::set_application`.
+
+Since: 3.10
+
+
+# Returns
+
+the application being used by the builder,
+ or `None`
+<!-- impl Builder::fn get_object -->
+Gets the object named `name`. Note that this function does not
+increment the reference count of the returned object.
+## `name`
+name of object to get
+
+# Returns
+
+the object named `name` or `None` if
+ it could not be found in the object tree.
+<!-- impl Builder::fn get_objects -->
+Gets all objects that have been constructed by `self`. Note that
+this function does not increment the reference counts of the returned
+objects.
+
+# Returns
+
+a newly-allocated `glib::SList` containing all the objects
+ constructed by the `Builder` instance. It should be freed by
+ `glib::SList::free`
+<!-- impl Builder::fn get_translation_domain -->
+Gets the translation domain of `self`.
+
+# Returns
+
+the translation domain. This string is owned
+by the builder object and must not be modified or freed.
+<!-- impl Builder::fn get_type_from_name -->
+Looks up a type by name, using the virtual function that
+`Builder` has for that purpose. This is mainly used when
+implementing the `Buildable` interface on a type.
+## `type_name`
+type name to lookup
+
+# Returns
+
+the `glib::Type` found for `type_name` or `G_TYPE_INVALID`
+ if no type was found
+<!-- impl Builder::fn lookup_callback_symbol -->
+Fetches a symbol previously added to `self`
+with `Builder::add_callback_symbols`
+
+This function is intended for possible use in language bindings
+or for any case that one might be cusomizing signal connections
+using `Builder::connect_signals_full`
+
+Since: 3.10
+
+## `callback_name`
+The name of the callback
+
+# Returns
+
+The callback symbol in `self` for `callback_name`, or `None`
+<!-- impl Builder::fn set_application -->
+Sets the application associated with `self`.
+
+You only need this function if there is more than one `gio::Application`
+in your process. `application` cannot be `None`.
+
+Since: 3.10
+
+## `application`
+a `Application`
+<!-- impl Builder::fn set_translation_domain -->
+Sets the translation domain of `self`.
+See `Builder:translation-domain`.
+## `domain`
+the translation domain or `None`
+<!-- impl Builder::fn value_from_string -->
+This function demarshals a value from a string. This function
+calls `gobject::Value::init` on the `value` argument, so it need not be
+initialised beforehand.
+
+This function can handle char, uchar, boolean, int, uint, long,
+ulong, enum, flags, float, double, string, `gdk::Color`, `gdk::RGBA` and
+`Adjustment` type values. Support for `Widget` type values is
+still to come.
+
+Upon errors `false` will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR` domain.
+## `pspec`
+the `gobject::ParamSpec` for the property
+## `string`
+the string representation of the value
+## `value`
+the `gobject::Value` to store the result in
+
+# Returns
+
+`true` on success
+<!-- impl Builder::fn value_from_string_type -->
+Like `Builder::value_from_string`, this function demarshals
+a value from a string, but takes a `glib::Type` instead of `gobject::ParamSpec`.
+This function calls `gobject::Value::init` on the `value` argument, so it
+need not be initialised beforehand.
+
+Upon errors `false` will be returned and `error` will be assigned a
+`glib::Error` from the `GTK_BUILDER_ERROR` domain.
+## `type_`
+the `glib::Type` of the value
+## `string`
+the string representation of the value
+## `value`
+the `gobject::Value` to store the result in
+
+# Returns
+
+`true` on success
 <!-- enum BuilderError -->
 Error codes that identify various errors that can occur while using
 `Builder`.
@@ -1648,6 +2281,9 @@ will be updated appropriately.
 
 This function is a convenience wrapper around `Button::new` and
 `ButtonExt::set_image`.
+
+Since: 3.10
+
 ## `icon_name`
 an icon name
 ## `size`
@@ -1664,7 +2300,7 @@ Some stock ids have preprocessor macros like `GTK_STOCK_OK` and
 If `stock_id` is unknown, then it will be treated as a mnemonic
 label (as for `Button::new_with_mnemonic`).
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Button::new_with_label` instead.
 ## `stock_id`
@@ -1701,13 +2337,13 @@ Emits a `Button::clicked` signal to the given `Button`.
 <!-- trait ButtonExt::fn enter -->
 Emits a `Button::enter` signal to the given `Button`.
 
-# Deprecated
+# Deprecated since 2.20
 
 Use the `Widget::enter-notify-event` signal.
 <!-- trait ButtonExt::fn get_alignment -->
 Gets the alignment of the child in the button.
 
-# Deprecated
+# Deprecated since 3.14
 
 Access the child widget directly if you need to control
 its alignment.
@@ -1718,6 +2354,9 @@ return location for vertical alignment
 <!-- trait ButtonExt::fn get_always_show_image -->
 Returns whether the button will ignore the `Settings:gtk-button-images`
 setting and always show the image, if available.
+
+Since: 3.6
+
 
 # Returns
 
@@ -1772,6 +2411,9 @@ The current `ReliefStyle`
 <!-- trait ButtonExt::fn get_use_stock -->
 Returns whether the button label is a stock item.
 
+# Deprecated since 3.10
+
+
 # Returns
 
 `true` if the button label is used to
@@ -1788,26 +2430,26 @@ mnemonic. See gtk_button_set_use_underline ().
 <!-- trait ButtonExt::fn leave -->
 Emits a `Button::leave` signal to the given `Button`.
 
-# Deprecated
+# Deprecated since 2.20
 
 Use the `Widget::leave-notify-event` signal.
 <!-- trait ButtonExt::fn pressed -->
 Emits a `Button::pressed` signal to the given `Button`.
 
-# Deprecated
+# Deprecated since 2.20
 
 Use the `Widget::button-press-event` signal.
 <!-- trait ButtonExt::fn released -->
 Emits a `Button::released` signal to the given `Button`.
 
-# Deprecated
+# Deprecated since 2.20
 
 Use the `Widget::button-release-event` signal.
 <!-- trait ButtonExt::fn set_alignment -->
 Sets the alignment of the child. This property has no effect unless
 the child is a `Misc` or a `Alignment`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Access the child widget directly if you need to control
 its alignment.
@@ -1823,6 +2465,9 @@ setting and always show the image, if available.
 
 Use this property if the button would be useless or hard to use
 without the image.
+
+Since: 3.6
+
 ## `always_show`
 `true` if the menuitem should always show the image
 <!-- trait ButtonExt::fn set_focus_on_click -->
@@ -1863,6 +2508,9 @@ The `ReliefStyle` as described above
 <!-- trait ButtonExt::fn set_use_stock -->
 If `true`, the label set on the button is used as a
 stock id to select the stock item for the button.
+
+# Deprecated since 3.10
+
 ## `use_stock`
 `true` if the button should use a stock item
 <!-- trait ButtonExt::fn set_use_underline -->
@@ -1870,6 +2518,12 @@ If true, an underline in the text of the button label indicates
 the next character should be used for the mnemonic accelerator key.
 ## `use_underline`
 `true` if underlines in the text indicate mnemonics
+<!-- struct ButtonBox -->
+
+
+# Implements
+
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl ButtonBox::fn new -->
 Creates a new `ButtonBox`.
 ## `orientation`
@@ -2520,6 +3174,9 @@ the attribute name
 <!-- trait CellAreaExt::fn attribute_get_column -->
 Returns the model column that an attribute has been mapped to,
 or -1 if the attribute is not mapped.
+
+Since: 3.14
+
 ## `renderer`
 a `CellRenderer`
 ## `attribute`
@@ -3516,7 +4173,7 @@ x and y offsets (if set) of the cell relative to this location.
 Please note that the values set in `width` and `height`, as well as those
 in `x_offset` and `y_offset` are inclusive of the xpad and ypad properties.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `CellRendererExt::get_preferred_size` instead.
 ## `widget`
@@ -4009,7 +4666,7 @@ It is suitable widget for selecting a color in a preference dialog.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorButton::fn new -->
 Creates a new color button.
 
@@ -4025,7 +4682,7 @@ a new color button
 <!-- impl ColorButton::fn new_with_color -->
 Creates a new color button.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorButton::new_with_rgba` instead.
 ## `color`
@@ -4045,7 +4702,7 @@ a new color button
 <!-- impl ColorButton::fn get_alpha -->
 Returns the current alpha value.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::get_rgba` instead.
 
@@ -4055,7 +4712,7 @@ an integer between 0 and 65535
 <!-- impl ColorButton::fn get_color -->
 Sets `color` to be the current color in the `ColorButton` widget.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::get_rgba` instead.
 ## `color`
@@ -4063,7 +4720,7 @@ a `gdk::Color` to fill in with the current color
 <!-- impl ColorButton::fn get_rgba -->
 Sets `rgba` to be the current color in the `ColorButton` widget.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::get_rgba` instead.
 ## `rgba`
@@ -4077,7 +4734,7 @@ An internal string, do not free the return value
 <!-- impl ColorButton::fn get_use_alpha -->
 Does the color selection dialog use the alpha channel ?
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::get_use_alpha` instead.
 
@@ -4087,7 +4744,7 @@ Use `ColorChooser::get_use_alpha` instead.
 <!-- impl ColorButton::fn set_alpha -->
 Sets the current opacity to be `alpha`.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::set_rgba` instead.
 ## `alpha`
@@ -4103,7 +4760,7 @@ A `gdk::Color` to set the current color with
 <!-- impl ColorButton::fn set_rgba -->
 Sets the current color to be `rgba`.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::set_rgba` instead.
 ## `rgba`
@@ -4115,18 +4772,81 @@ String containing new window title
 <!-- impl ColorButton::fn set_use_alpha -->
 Sets whether or not the color button should use the alpha channel.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `ColorChooser::set_use_alpha` instead.
 ## `use_alpha`
 `true` if color button should use alpha channel, `false` if not
+<!-- struct ColorChooser -->
+`ColorChooser` is an interface that is implemented by widgets
+for choosing colors. Depending on the situation, colors may be
+allowed to have alpha (translucency).
+
+In GTK+, the main widgets that implement this interface are
+`ColorChooserWidget`, `ColorChooserDialog` and `ColorButton`.
+
+# Implements
+
+[`ColorChooserExt`](trait.ColorChooserExt.html)
+<!-- trait ColorChooserExt -->
+Trait containing all `ColorChooser` methods.
+
+# Implementors
+
+[`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ColorChooser`](struct.ColorChooser.html)
+<!-- trait ColorChooserExt::fn add_palette -->
+Adds a palette to the color chooser. If `orientation` is horizontal,
+the colors are grouped in rows, with `colors_per_line` colors
+in each row. If `horizontal` is `false`, the colors are grouped
+in columns instead.
+
+The default color palette of `ColorChooserWidget` has
+27 colors, organized in columns of 3 colors. The default gray
+palette has 9 grays in a single row.
+
+The layout of the color chooser widget works best when the
+palettes have 9-10 columns.
+
+Calling this function for the first time has the
+side effect of removing the default color and gray palettes
+from the color chooser.
+
+If `colors` is `None`, removes all previously added palettes.
+## `orientation`
+`Orientation::Horizontal` if the palette should
+ be displayed in rows, `Orientation::Vertical` for columns
+## `colors_per_line`
+the number of colors to show in each row/column
+## `n_colors`
+the total number of elements in `colors`
+## `colors`
+the colors of the palette, or `None`
+<!-- trait ColorChooserExt::fn get_rgba -->
+Gets the currently-selected color.
+## `color`
+a `gdk::RGBA` to fill in with the current color
+<!-- trait ColorChooserExt::fn get_use_alpha -->
+Returns whether the color chooser shows the alpha channel.
+
+# Returns
+
+`true` if the color chooser uses the alpha channel,
+ `false` if not
+<!-- trait ColorChooserExt::fn set_rgba -->
+Sets the color.
+## `color`
+the new color
+<!-- trait ColorChooserExt::fn set_use_alpha -->
+Sets whether or not the color chooser should use the alpha channel.
+## `use_alpha`
+`true` if color chooser should use alpha channel, `false` if not
 <!-- struct ColorChooserDialog -->
 The `ColorChooserDialog` widget is a dialog for choosing
 a color. It implements the `ColorChooser` interface.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorChooserDialog::fn new -->
 Creates a new `ColorChooserDialog`.
 ## `title`
@@ -4157,7 +4877,7 @@ to provide a dialog for selecting colors.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorChooserWidget::fn new -->
 Creates a new `ColorChooserWidget`.
 
@@ -4283,6 +5003,9 @@ The uninitialized `TreeIter`
 <!-- trait ComboBoxExt::fn get_add_tearoffs -->
 Gets the current value of the :add-tearoffs property.
 
+# Deprecated since 3.10
+
+
 # Returns
 
 the current value of the :add-tearoffs property.
@@ -4371,6 +5094,9 @@ the row span column.
 Gets the current title of the menu in tearoff mode. See
 `ComboBoxExt::set_add_tearoffs`.
 
+# Deprecated since 3.10
+
+
 # Returns
 
 the menu’s title in tearoff mode. This is an internal copy of the
@@ -4427,6 +5153,9 @@ The `TreeIter`, or `None`
 <!-- trait ComboBoxExt::fn set_add_tearoffs -->
 Sets whether the popup menu should have a tearoff
 menu item.
+
+# Deprecated since 3.10
+
 ## `add_tearoffs`
 `true` to add tearoff menu items
 <!-- trait ComboBoxExt::fn set_button_sensitivity -->
@@ -4497,6 +5226,9 @@ an item should span.
 A column in the model passed during construction.
 <!-- trait ComboBoxExt::fn set_title -->
 Sets the menu’s title in tearoff mode.
+
+# Deprecated since 3.10
+
 ## `title`
 a title for the menu in tearoff mode
 <!-- trait ComboBoxExt::fn set_wrap_width -->
@@ -5021,7 +5753,7 @@ A newly created `WidgetPath`
 Returns the resize mode for the container. See
 gtk_container_set_resize_mode ().
 
-# Deprecated
+# Deprecated since 3.12
 
 Resize modes are deprecated. They aren’t necessary
  anymore since frame clocks and might introduce obscure bugs if
@@ -5065,6 +5797,9 @@ container and help break any circular reference count cycles.
 ## `widget`
 a current child of `self`
 <!-- trait ContainerExt::fn resize_children -->
+
+# Deprecated since 3.10
+
 <!-- trait ContainerExt::fn set_border_width -->
 Sets the border width of the container.
 
@@ -5132,7 +5867,7 @@ Sets the `reallocate_redraws` flag of the container to the given value.
 Containers requesting reallocation redraws get automatically
 redrawn if any of their children changed allocation.
 
-# Deprecated
+# Deprecated since 3.14
 
 Call `Widget::queue_draw` in your size_allocate handler.
 ## `needs_redraws`
@@ -5144,7 +5879,7 @@ The resize mode of a container determines whether a resize request
 will be passed to the container’s parent, queued for later execution
 or executed immediately.
 
-# Deprecated
+# Deprecated since 3.12
 
 Resize modes are deprecated. They aren’t necessary
  anymore since frame clocks and might introduce obscure bugs if
@@ -6421,6 +7156,9 @@ the `CssProvider`, clearing any previously loaded information.
 
 To track errors while loading CSS, connect to the
 `CssProvider::parsing-error` signal.
+
+Since: 3.16
+
 ## `resource_path`
 a `gio::Resource` resource path
 <!-- impl CssProvider::fn to_string -->
@@ -6724,7 +7462,7 @@ button text
 <!-- trait DialogExt::fn get_action_area -->
 Returns the action area of `self`.
 
-# Deprecated
+# Deprecated since 3.12
 
 Direct access to the action area
  is discouraged; use `DialogExt::add_button`, etc.
@@ -6742,6 +7480,9 @@ the content area `Box`.
 Returns the header bar of `self`. Note that the
 headerbar is only used by the dialog if the
 `Dialog:use-header-bar` property is `true`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -6860,7 +7601,7 @@ gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
                                          -1);
 ```
 
-# Deprecated
+# Deprecated since 3.10
 
 Deprecated
 ## `first_response_id`
@@ -6875,7 +7616,7 @@ See `DialogExt::set_alternative_button_order` for more information.
 
 This function is for use by language bindings.
 
-# Deprecated
+# Deprecated since 3.10
 
 Deprecated
 ## `n_params`
@@ -7250,6 +7991,9 @@ the alignment
 Gets the attribute list that was set on the entry using
 `EntryExt::set_attributes`, if any.
 
+Since: 3.6
+
+
 # Returns
 
 the attribute list, or `None`
@@ -7376,7 +8120,7 @@ Retrieves the stock id used for the icon, or `None` if there is
 no icon or if the icon was set by some other method (e.g., by
 pixbuf, icon name or gicon).
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `EntryExt::get_icon_name` instead.
 ## `icon_pos`
@@ -7420,7 +8164,7 @@ the tooltip text, or `None`. Free the returned
 This function returns the entry’s `Entry:inner-border` property. See
 `EntryExt::set_inner_border` for more information.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use the standard border and padding CSS properties (through
  objects like `StyleContext` and `CssProvider`); the value returned by
@@ -7432,8 +8176,14 @@ the entry’s `Border`, or
  `None` if none was set.
 <!-- trait EntryExt::fn get_input_hints -->
 Gets the value of the `Entry:input-hints` property.
+
+Since: 3.6
+
 <!-- trait EntryExt::fn get_input_purpose -->
 Gets the value of the `Entry:input-purpose` property.
+
+Since: 3.6
+
 <!-- trait EntryExt::fn get_invisible_char -->
 Retrieves the character displayed in place of the real characters
 for entries with visibility set to false. See `EntryExt::set_invisible_char`.
@@ -7502,6 +8252,9 @@ the maximum allowed number of characters
 Retrieves the desired maximum width of `self`, in characters.
 See `EntryExt::set_max_width_chars`.
 
+Since: 3.12
+
+
 # Returns
 
 the maximum width of the entry, in characters
@@ -7534,6 +8287,9 @@ a fraction from 0.0 to 1.0
 <!-- trait EntryExt::fn get_tabs -->
 Gets the tabstops that were set on the entry using `EntryExt::set_tabs`, if
 any.
+
+Since: 3.10
+
 
 # Returns
 
@@ -7604,6 +8360,9 @@ except that it doesn't select the contents of the entry.
 You only want to call this on some special entries
 which the user usually doesn't want to replace all text in,
 such as search-as-you-type entries.
+
+Since: 3.16
+
 <!-- trait EntryExt::fn im_context_filter_keypress -->
 Allow the `Entry` input method to internally handle key press
 and release events. If this function returns `true`, then no further
@@ -7665,6 +8424,9 @@ The horizontal alignment, from 0 (left) to 1 (right).
 <!-- trait EntryExt::fn set_attributes -->
 Sets a `pango::AttrList`; the attributes in the list are applied to the
 entry text.
+
+Since: 3.6
+
 ## `attrs`
 a `pango::AttrList`
 <!-- trait EntryExt::fn set_buffer -->
@@ -7757,7 +8519,7 @@ a stock image.
 
 If `stock_id` is `None`, no icon will be shown in the specified position.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `EntryExt::set_icon_from_icon_name` instead.
 ## `icon_pos`
@@ -7806,7 +8568,7 @@ Overriding the style-provided border is useful when you want to do
 in-place editing of some text in a canvas or list widget, where
 pixel-exact positioning of the entry is important.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use the standard border and padding CSS properties (through
  objects like `StyleContext` and `CssProvider`); the value set with
@@ -7816,12 +8578,18 @@ a `Border`, or `None`
 <!-- trait EntryExt::fn set_input_hints -->
 Sets the `Entry:input-hints` property, which
 allows input methods to fine-tune their behaviour.
+
+Since: 3.6
+
 ## `hints`
 the hints
 <!-- trait EntryExt::fn set_input_purpose -->
 Sets the `Entry:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
+
+Since: 3.6
+
 ## `purpose`
 the purpose
 <!-- trait EntryExt::fn set_invisible_char -->
@@ -7853,6 +8621,9 @@ the maximum length of the entry, or 0 for no maximum.
  be clamped to the range 0-65536.
 <!-- trait EntryExt::fn set_max_width_chars -->
 Sets the desired maximum width in characters of `self`.
+
+Since: 3.12
+
 ## `n_chars`
 the new desired maximum width, in characters
 <!-- trait EntryExt::fn set_overwrite_mode -->
@@ -7885,6 +8656,9 @@ fraction between 0.0 and 1.0
 <!-- trait EntryExt::fn set_tabs -->
 Sets a `pango::TabArray`; the tabstops in the array are applied to the entry
 text.
+
+Since: 3.10
+
 ## `tabs`
 a `pango::TabArray`
 <!-- trait EntryExt::fn set_text -->
@@ -8374,11 +9148,15 @@ descendant windows, not just at the same place on the screen.
 controllers. Those react to a series of ``GdkEvents``, and possibly trigger
 actions as a consequence of those.
 
+Since: 3.14
+
 # Implements
 
 [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait EventControllerExt -->
 Trait containing all `EventController` methods.
+
+Since: 3.14
 
 # Implementors
 
@@ -8386,11 +9164,17 @@ Trait containing all `EventController` methods.
 <!-- trait EventControllerExt::fn get_propagation_phase -->
 Gets the propagation phase at which `self` handles events.
 
+Since: 3.14
+
+
 # Returns
 
 the propagation phase
 <!-- trait EventControllerExt::fn get_widget -->
 Returns the `Widget` this controller relates to.
+
+Since: 3.14
+
 
 # Returns
 
@@ -8398,6 +9182,9 @@ a `Widget`
 <!-- trait EventControllerExt::fn handle_event -->
 Feeds an events into `self`, so it can be interpreted
 and the controller actions triggered.
+
+Since: 3.14
+
 ## `event`
 a ``GdkEvent``
 
@@ -8409,12 +9196,18 @@ a ``GdkEvent``
 Resets the `self` to a clean state. Every interaction
 the controller did through `EventController::handle-event`
 will be dropped at this point.
+
+Since: 3.14
+
 <!-- trait EventControllerExt::fn set_propagation_phase -->
 Sets the propagation phase at which a controller handles events.
 
 If `phase` is `PropagationPhase::None`, no automatic event handling will be
 performed, but other additional gesture maintenance will. In that phase,
 the events can be managed by calling `EventControllerExt::handle_event`.
+
+Since: 3.14
+
 ## `phase`
 a propagation phase
 <!-- enum EventSequenceState -->
@@ -8425,6 +9218,9 @@ The sequence is handled, but not grabbed.
 The sequence is handled and grabbed.
 <!-- enum EventSequenceState::variant Denied -->
 The sequence is denied.
+
+Since: 3.14
+
 <!-- struct Expander -->
 A `Expander` allows the user to hide or show its child by clicking
 on an expander triangle similar to the triangles used in a `TreeView`.
@@ -8880,6 +9676,9 @@ when the file itself does not exist yet. For example, an application that
 adds a custom extra widget to the file chooser for “file format” may want to
 change the extension of the typed filename based on the chosen format, say,
 from “.jpg” to “.png”.
+
+Since: 3.10
+
 
 # Returns
 
@@ -9882,11 +10681,16 @@ Also see `ListBox`.
 
 `FlowBox` was added in GTK+ 3.12.
 
+Since: 3.12
+
 # Implements
 
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl FlowBox::fn new -->
 Creates a `FlowBox`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -9894,12 +10698,18 @@ a new `FlowBox` container
 <!-- impl FlowBox::fn get_activate_on_single_click -->
 Returns whether children activate on single clicks.
 
+Since: 3.12
+
+
 # Returns
 
 `true` if children are activated on single click,
  `false` otherwise
 <!-- impl FlowBox::fn get_child_at_index -->
 Gets the nth child in the `self`.
+
+Since: 3.12
+
 ## `idx`
 the position of the child
 
@@ -9910,6 +10720,9 @@ the child widget, which will
 <!-- impl FlowBox::fn get_column_spacing -->
 Gets the horizontal spacing.
 
+Since: 3.12
+
+
 # Returns
 
 the horizontal spacing
@@ -9917,11 +10730,17 @@ the horizontal spacing
 Returns whether the box is homogeneous (all children are the
 same size). See `BoxExt::set_homogeneous`.
 
+Since: 3.12
+
+
 # Returns
 
 `true` if the box is homogeneous.
 <!-- impl FlowBox::fn get_max_children_per_line -->
 Gets the maximum number of children per line.
+
+Since: 3.12
+
 
 # Returns
 
@@ -9929,17 +10748,26 @@ the maximum number of children per line
 <!-- impl FlowBox::fn get_min_children_per_line -->
 Gets the minimum number of children per line.
 
+Since: 3.12
+
+
 # Returns
 
 the minimum number of children per line
 <!-- impl FlowBox::fn get_row_spacing -->
 Gets the vertical spacing.
 
+Since: 3.12
+
+
 # Returns
 
 the vertical spacing
 <!-- impl FlowBox::fn get_selected_children -->
 Creates a list of all selected children.
+
+Since: 3.12
+
 
 # Returns
 
@@ -9948,6 +10776,9 @@ Creates a list of all selected children.
  Free with `glib::List::free` when done.
 <!-- impl FlowBox::fn get_selection_mode -->
 Gets the selection mode of `self`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -9961,6 +10792,9 @@ as `ContainerExt::add`.
 
 If `position` is -1, or larger than the total number of children
 in the `self`, then the `widget` will be appended to the end.
+
+Since: 3.12
+
 ## `widget`
 the `Widget` to add
 ## `position`
@@ -9973,17 +10807,29 @@ function on the `self` is changed due ot an external
 factor. For instance, this would be used if the
 filter function just looked for a specific search
 term, and the entry with the string has changed.
+
+Since: 3.12
+
 <!-- impl FlowBox::fn invalidate_sort -->
 Updates the sorting for all children.
 
 Call this when the result of the sort function on
 `self` is changed due to an external factor.
+
+Since: 3.12
+
 <!-- impl FlowBox::fn select_all -->
 Select all children of `self`, if the selection
 mode allows it.
+
+Since: 3.12
+
 <!-- impl FlowBox::fn select_child -->
 Selects a single child of `self`, if the selection
 mode allows it.
+
+Since: 3.12
+
 ## `child`
 a child of `self`
 <!-- impl FlowBox::fn selected_foreach -->
@@ -9991,6 +10837,9 @@ Calls a function for each selected child.
 
 Note that the selection cannot be modified from within
 this function.
+
+Since: 3.12
+
 ## `func`
 the function to call for each selected child
 ## `data`
@@ -9998,11 +10847,17 @@ user data to pass to the function
 <!-- impl FlowBox::fn set_activate_on_single_click -->
 If `single` is `true`, children will be activated when you click
 on them, otherwise you need to double-click.
+
+Since: 3.12
+
 ## `single`
 `true` to emit child-activated on a single click
 <!-- impl FlowBox::fn set_column_spacing -->
 Sets the horizontal space to add between children.
 See the `FlowBox:column-spacing` property.
+
+Since: 3.12
+
 ## `spacing`
 the spacing to use
 <!-- impl FlowBox::fn set_filter_func -->
@@ -10014,6 +10869,9 @@ The `filter_func` will be called for each child after the call, and
 it will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) or when `FlowBox::invalidate_filter`
 is called.
+
+Since: 3.12
+
 ## `filter_func`
 callback that
  lets you filter which children to show
@@ -10032,6 +10890,9 @@ adjustment.
 The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
+
+Since: 3.12
+
 ## `adjustment`
 an adjustment which should be adjusted
  when the focus is moved among the descendents of `container`
@@ -10039,6 +10900,9 @@ an adjustment which should be adjusted
 Sets the `FlowBox:homogeneous` property of `self`, controlling
 whether or not all children of `self` are given equal space
 in the box.
+
+Since: 3.12
+
 ## `homogeneous`
 `true` to create equal allotments,
  `false` for variable allotments
@@ -10049,21 +10913,33 @@ allocate space for in `self`’s orientation.
 Setting the maximum number of children per line
 limits the overall natural size request to be no more
 than `n_children` children long in the given orientation.
+
+Since: 3.12
+
 ## `n_children`
 the maximum number of children per line
 <!-- impl FlowBox::fn set_min_children_per_line -->
 Sets the minimum number of children to line up
 in `self`’s orientation before flowing.
+
+Since: 3.12
+
 ## `n_children`
 the minimum number of children per line
 <!-- impl FlowBox::fn set_row_spacing -->
 Sets the vertical space to add between children.
 See the `FlowBox:row-spacing` property.
+
+Since: 3.12
+
 ## `spacing`
 the spacing to use
 <!-- impl FlowBox::fn set_selection_mode -->
 Sets how selection works in `self`.
 See `SelectionMode` for details.
+
+Since: 3.12
+
 ## `mode`
 the new selection mode
 <!-- impl FlowBox::fn set_sort_func -->
@@ -10075,6 +10951,9 @@ The `sort_func` will be called for each child after the call,
 and will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) and when `FlowBox::invalidate_sort`
 is called.
+
+Since: 3.12
+
 ## `sort_func`
 the sort function
 ## `user_data`
@@ -10092,20 +10971,40 @@ adjustment.
 The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
+
+Since: 3.12
+
 ## `adjustment`
 an adjustment which should be adjusted
  when the focus is moved among the descendents of `container`
 <!-- impl FlowBox::fn unselect_all -->
 Unselect all children of `self`, if the selection
 mode allows it.
+
+Since: 3.12
+
 <!-- impl FlowBox::fn unselect_child -->
 Unselects a single child of `self`, if the selection
 mode allows it.
+
+Since: 3.12
+
 ## `child`
 a child of `self`
+<!-- struct FlowBoxChild -->
+
+
+Since: 3.12
+
+# Implements
+
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl FlowBoxChild::fn new -->
 Creates a new `FlowBoxChild`, to be used as a child
 of a `FlowBox`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -10127,8 +11026,14 @@ model, you have to duplicate the data that affects the sorting
 and filtering functions into the widgets themselves. Another
 alternative is to call `FlowBox::invalidate_sort` on any
 model change, but that is more expensive.
+
+Since: 3.12
+
 <!-- impl FlowBoxChild::fn get_index -->
 Gets the current index of the `self` in its `FlowBox` container.
+
+Since: 3.12
+
 
 # Returns
 
@@ -10137,6 +11042,9 @@ the index of the `self`, or -1 if the `self` is not
 <!-- impl FlowBoxChild::fn is_selected -->
 Returns whether the `self` is currently selected in its
 `FlowBox` container.
+
+Since: 3.12
+
 
 # Returns
 
@@ -10608,11 +11516,16 @@ of how to safely initialize the GL state is:
 If you need to change the options for creating the `gdk::GLContext`
 you should use the `GLArea::create-context` signal.
 
+Since: 3.16
+
 # Implements
 
 [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl GLArea::fn new -->
 Creates a new `GLArea` widget.
+
+Since: 3.16
+
 
 # Returns
 
@@ -10625,8 +11538,14 @@ are created and bound to the frambuffer.
 This function is automatically called before emitting the
 `GLArea::render` signal, and doesn't normally need to be called
 by application code.
+
+Since: 3.16
+
 <!-- impl GLArea::fn get_auto_render -->
 Returns whether the area is in auto render mode or not.
+
+Since: 3.16
+
 
 # Returns
 
@@ -10634,11 +11553,17 @@ Returns whether the area is in auto render mode or not.
 <!-- impl GLArea::fn get_context -->
 Retrieves the `gdk::GLContext` used by `self`.
 
+Since: 3.16
+
+
 # Returns
 
 the `gdk::GLContext`
 <!-- impl GLArea::fn get_error -->
 Gets the current error set on the `self`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -10646,11 +11571,17 @@ the `glib::Error` or `None`
 <!-- impl GLArea::fn get_has_alpha -->
 Returns whether the area has an alpha component.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if the `self` has an alpha component, `false` otherwise
 <!-- impl GLArea::fn get_has_depth_buffer -->
 Returns whether the area has a depth buffer.
+
+Since: 3.16
+
 
 # Returns
 
@@ -10658,12 +11589,18 @@ Returns whether the area has a depth buffer.
 <!-- impl GLArea::fn get_has_stencil_buffer -->
 Returns whether the area has a stencil buffer.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if the `self` has a stencil buffer, `false` otherwise
 <!-- impl GLArea::fn get_required_version -->
 Retrieves the required version of OpenGL set
 using `GLArea::set_required_version`.
+
+Since: 3.16
+
 ## `major`
 return location for the required major version
 ## `minor`
@@ -10675,6 +11612,9 @@ the `GLArea`.
 This function is automatically called before emitting the
 `GLArea::render` signal, and doesn't normally need to be called
 by application code.
+
+Since: 3.16
+
 <!-- impl GLArea::fn queue_render -->
 Marks the currently rendered data (if any) as invalid, and queues
 a redraw of the widget, ensuring that the `GLArea::render` signal
@@ -10683,6 +11623,9 @@ is emitted during the draw.
 This is only needed when the `GLArea::set_auto_render` has
 been called with a `false` value. The default behaviour is to
 emit `GLArea::render` on each draw.
+
+Since: 3.16
+
 <!-- impl GLArea::fn set_auto_render -->
 If `auto_render` is `true` the `GLArea::render` signal will be
 emitted every time the widget draws. This is the default and is
@@ -10693,12 +11636,18 @@ around and will be used for drawing the widget the next time,
 unless the window is resized. In order to force a rendering
 `GLArea::queue_render` must be called. This mode is useful when
 the scene changes seldomly, but takes a long time to redraw.
+
+Since: 3.16
+
 ## `auto_render`
 a boolean
 <!-- impl GLArea::fn set_error -->
 Sets an error on the area which will be shown instead of the
 GL rendering. This is useful in the `GLArea::create-context`
 signal if GL context creation fails.
+
+Since: 3.16
+
 ## `error`
 a new `glib::Error`, or `None` to unset the error
 <!-- impl GLArea::fn set_has_alpha -->
@@ -10708,18 +11657,27 @@ result will be composited over whatever is below the widget.
 
 If `has_alpha` is `false` there will be no alpha channel, and the
 buffer will fully replace anything below the widget.
+
+Since: 3.16
+
 ## `has_alpha`
 `true` to add an alpha component
 <!-- impl GLArea::fn set_has_depth_buffer -->
 If `has_depth_buffer` is `true` the widget will allocate and
 enable a depth buffer for the target framebuffer. Otherwise
 there will be none.
+
+Since: 3.16
+
 ## `has_depth_buffer`
 `true` to add a depth buffer
 <!-- impl GLArea::fn set_has_stencil_buffer -->
 If `has_stencil_buffer` is `true` the widget will allocate and
 enable a stencil buffer for the target framebuffer. Otherwise
 there will be none.
+
+Since: 3.16
+
 ## `has_stencil_buffer`
 `true` to add a stencil buffer
 <!-- impl GLArea::fn set_required_version -->
@@ -10727,6 +11685,9 @@ Sets the required version of OpenGL to be used when creating the context
 for the widget.
 
 This function must be called before the area has been realized.
+
+Since: 3.16
+
 ## `major`
 the major version
 ## `minor`
@@ -10813,11 +11774,15 @@ again.
 Sequence states can't be changed freely, see `GestureExt::set_sequence_state`
 to know about the possible lifetimes of a `gdk::EventSequence`.
 
+Since: 3.14
+
 # Implements
 
 [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureExt -->
 Trait containing all `Gesture` methods.
+
+Since: 3.14
 
 # Implementors
 
@@ -10827,6 +11792,9 @@ If there are touch sequences being currently handled by `self`,
 this function returns `true` and fills in `rect` with the bounding
 box containing all active touches. Otherwise, `false` will be
 returned.
+
+Since: 3.14
+
 ## `rect`
 bounding box containing all active touches.
 
@@ -10838,6 +11806,9 @@ If there are touch sequences being currently handled by `self`,
 this function returns `true` and fills in `x` and `y` with the center
 of the bounding box containing all active touches. Otherwise, `false`
 will be returned.
+
+Since: 3.14
+
 ## `x`
 X coordinate for the bounding box center
 ## `y`
@@ -10850,11 +11821,17 @@ Y coordinate for the bounding box center
 Returns the master `gdk::Device` that is currently operating
 on `self`, or `None` if the gesture is not being interacted.
 
+Since: 3.14
+
+
 # Returns
 
 a `gdk::Device`, or `None`
 <!-- trait GestureExt::fn get_group -->
 Returns all gestures in the group of `self`
+
+Since: 3.14
+
 
 # Returns
 
@@ -10871,6 +11848,9 @@ The last event from `sequence`
 <!-- trait GestureExt::fn get_last_updated_sequence -->
 Returns the `gdk::EventSequence` that was last updated on `self`.
 
+Since: 3.14
+
+
 # Returns
 
 The last updated sequence
@@ -10879,6 +11859,9 @@ If `sequence` is currently being interpreted by `self`, this
 function returns `true` and fills in `x` and `y` with the last coordinates
 stored for that event sequence. The coordinates are always relative to the
 widget allocation.
+
+Since: 3.14
+
 ## `sequence`
 a `gdk::EventSequence`, or `None` for pointer events
 ## `x`
@@ -10891,6 +11874,9 @@ return location for Y axis of the sequence coordinates
 `true` if `sequence` is currently interpreted
 <!-- trait GestureExt::fn get_sequence_state -->
 Returns the `sequence` state, as seen by `self`.
+
+Since: 3.14
+
 ## `sequence`
 a `gdk::EventSequence`
 
@@ -10900,6 +11886,9 @@ The sequence state in `self`
 <!-- trait GestureExt::fn get_sequences -->
 Returns the list of ``GdkEventSequences`` currently being interpreted
 by `self`.
+
+Since: 3.14
+
 
 # Returns
 
@@ -10911,6 +11900,9 @@ A list
 Returns the user-defined window that receives the events
 handled by `self`. See `GestureExt::set_window` for more
 information.
+
+Since: 3.14
+
 
 # Returns
 
@@ -10927,11 +11919,17 @@ Groups also perform an "implicit grabbing" of sequences, if a
 `gdk::EventSequence` state is set to `EventSequenceState::Claimed` on one group,
 every other gesture group attached to the same `Widget` will switch the
 state for that sequence to `EventSequenceState::Denied`.
+
+Since: 3.14
+
 ## `gesture`
 a `Gesture`
 <!-- trait GestureExt::fn handles_sequence -->
 Returns `true` if `self` is currently handling events corresponding to
 `sequence`.
+
+Since: 3.14
+
 ## `sequence`
 a `gdk::EventSequence`
 
@@ -10943,11 +11941,17 @@ Returns `true` if the gesture is currently active.
 A gesture is active meanwhile there are touch sequences
 interacting with it.
 
+Since: 3.14
+
+
 # Returns
 
 `true` if gesture is active
 <!-- trait GestureExt::fn is_grouped_with -->
 Returns `true` if both gestures pertain to the same group.
+
+Since: 3.14
+
 ## `other`
 another `Gesture`
 
@@ -10959,6 +11963,9 @@ Returns `true` if the gesture is currently recognized.
 A gesture is recognized if there are as many interacting
 touch sequences as required by `self`, and `Gesture::check`
 returned `true` for the sequences being currently interpreted.
+
+Since: 3.14
+
 
 # Returns
 
@@ -11007,6 +12014,9 @@ If both gestures are in the same group, just set the state on
 the gesture emitting the event, the sequence will be already
 be initialized to the group's global state when the second
 gesture processes the event.
+
+Since: 3.14
+
 ## `sequence`
 a `gdk::EventSequence`
 ## `state`
@@ -11020,6 +12030,9 @@ the sequence state
 Sets the state of all sequences that `self` is currently
 interacting with. See `GestureExt::set_sequence_state`
 for more details on sequence states.
+
+Since: 3.14
+
 ## `state`
 the sequence state
 
@@ -11031,10 +12044,16 @@ the sequence state
 Sets a specific window to receive events about, so `self`
 will effectively handle only events targeting `window`, or
 a child of it. `window` must pertain to `EventControllerExt::get_widget`.
+
+Since: 3.14
+
 ## `window`
 a `gdk::Window`, or `None`
 <!-- trait GestureExt::fn ungroup -->
 Separates `self` into an isolated group.
+
+Since: 3.14
+
 <!-- struct GestureDrag -->
 `GestureDrag` is a `Gesture` implementation that recognizes drag
 operations. The drag operation itself can be tracked throught the
@@ -11043,17 +12062,24 @@ operations. The drag operation itself can be tracked throught the
 extracted through `GestureDragExt::get_offset` and
 `GestureDragExt::get_start_point`.
 
+Since: 3.14
+
 # Implements
 
 [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureDragExt -->
 Trait containing all `GestureDrag` methods.
 
+Since: 3.14
+
 # Implementors
 
 [`GestureDrag`](struct.GestureDrag.html), [`GesturePan`](struct.GesturePan.html)
 <!-- impl GestureDrag::fn new -->
 Returns a newly created `Gesture` that recognizes drags.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11064,6 +12090,9 @@ a newly created `GestureDrag`
 If the `self` is active, this function returns `true` and
 fills in `x` and `y` with the coordinates of the current point,
 as an offset to the starting drag point.
+
+Since: 3.14
+
 ## `x`
 X offset for the current point
 ## `y`
@@ -11076,6 +12105,9 @@ Y offset for the current point
 If the `self` is active, this function returns `true`
 and fills in `x` and `y` with the drag start coordinates,
 in window-relative coordinates.
+
+Since: 3.14
+
 ## `x`
 X coordinate for the drag start point
 ## `y`
@@ -11093,11 +12125,16 @@ If the touchpoint is lifted before the timeout passes, or if it drifts
 too far of the initial press point, the `GestureLongPress::cancelled`
 signal will be emitted.
 
+Since: 3.14
+
 # Implements
 
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureLongPress::fn new -->
 Returns a newly created `Gesture` that recognizes long presses.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11116,12 +12153,17 @@ touch/button press through `GestureMultiPress::set_area`, so any
 click happening outside that area is considered to be a first click of
 its own.
 
+Since: 3.14
+
 # Implements
 
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureMultiPress::fn new -->
 Returns a newly created `Gesture` that recognizes single and multiple
 presses.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11133,6 +12175,9 @@ If an area was set through `GestureMultiPress::set_area`,
 this function will return `true` and fill in `rect` with the
 press area. See `GestureMultiPress::set_area` for more
 details on what the press area represents.
+
+Since: 3.14
+
 ## `rect`
 return location for the press area
 
@@ -11149,6 +12194,9 @@ state.
 Note: The rectangle is only used to determine whether any
 non-first click falls within the expected area. This is not
 akin to an input shape.
+
+Since: 3.14
+
 ## `rect`
 rectangle to receive coordinates on
 <!-- struct GesturePan -->
@@ -11167,11 +12215,16 @@ Once a panning gesture along the expected axis is recognized,
 the `GesturePan::pan` signal will be emitted as input events
 are received, containing the offset in the given axis.
 
+Since: 3.14
+
 # Implements
 
 [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GesturePan::fn new -->
 Returns a newly created `Gesture` that recognizes pan gestures.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 ## `orientation`
@@ -11183,11 +12236,17 @@ a newly created `GesturePan`
 <!-- impl GesturePan::fn get_orientation -->
 Returns the orientation of the pan gestures that this `self` expects.
 
+Since: 3.14
+
+
 # Returns
 
 the expected orientation for pan gestures
 <!-- impl GesturePan::fn set_orientation -->
 Sets the orientation to be expected on pan gestures.
+
+Since: 3.14
+
 ## `orientation`
 expected orientation
 <!-- struct GestureRotate -->
@@ -11195,12 +12254,17 @@ expected orientation
 2-finger rotations, whenever the angle between both handled sequences
 changes, the `GestureRotate::angle-changed` signal is emitted.
 
+Since: 3.14
+
 # Implements
 
 [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureRotate::fn new -->
 Returns a newly created `Gesture` that recognizes 2-touch
 rotation gestures.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11211,6 +12275,9 @@ a newly created `GestureRotate`
 If `self` is active, this function returns the angle difference
 in radians since the gesture was first recognized. If `self` is
 not active, 0 is returned.
+
+Since: 3.14
+
 
 # Returns
 
@@ -11229,11 +12296,15 @@ to interact with through `GestureSingleExt::set_button`, or react to any
 mouse button by setting 0. While the gesture is active, the button being
 currently pressed can be known through `GestureSingleExt::get_current_button`.
 
+Since: 3.14
+
 # Implements
 
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- trait GestureSingleExt -->
 Trait containing all `GestureSingle` methods.
+
+Since: 3.14
 
 # Implementors
 
@@ -11242,12 +12313,18 @@ Trait containing all `GestureSingle` methods.
 Returns the button number `self` listens for, or 0 if `self`
 reacts to any button press.
 
+Since: 3.14
+
+
 # Returns
 
 The button number, or 0 for any button
 <!-- trait GestureSingleExt::fn get_current_button -->
 Returns the button number currently interacting with `self`, or 0 if there
 is none.
+
+Since: 3.14
+
 
 # Returns
 
@@ -11256,6 +12333,9 @@ The current button number
 Returns the event sequence currently interacting with `self`.
 This is only meaningful if `GestureExt::is_active` returns `true`.
 
+Since: 3.14
+
+
 # Returns
 
 the current sequence
@@ -11263,11 +12343,17 @@ the current sequence
 Gets whether a gesture is exclusive. For more information, see
 `GestureSingleExt::set_exclusive`.
 
+Since: 3.14
+
+
 # Returns
 
 Whether the gesture is exclusive
 <!-- trait GestureSingleExt::fn get_touch_only -->
 Returns `true` if the gesture is only triggered by touch events.
+
+Since: 3.14
+
 
 # Returns
 
@@ -11276,6 +12362,9 @@ Returns `true` if the gesture is only triggered by touch events.
 Sets the button number `self` listens to. If non-0, every
 button press from a different button number will be ignored.
 Touch events implicitly match with button 1.
+
+Since: 3.14
+
 ## `button`
 button number to listen to, or 0 for any button
 <!-- trait GestureSingleExt::fn set_exclusive -->
@@ -11283,12 +12372,18 @@ Sets whether `self` is exclusive. An exclusive gesture will
 only handle pointer and "pointer emulated" touch events, so at
 any given time, there is only one sequence able to interact with
 those.
+
+Since: 3.14
+
 ## `exclusive`
 `true` to make `self` exclusive
 <!-- trait GestureSingleExt::fn set_touch_only -->
 If `touch_only` is `true`, `self` will only handle events of type
 `gdk::EventType::TouchBegin`, `gdk::EventType::TouchUpdate` or `gdk::EventType::TouchEnd`. If `false`,
 mouse events will be handled too.
+
+Since: 3.14
+
 ## `touch_only`
 whether `self` handles only touch events
 <!-- struct GestureSwipe -->
@@ -11303,11 +12398,16 @@ If the velocity is desired in intermediate points,
 
 All velocities are reported in pixels/sec units.
 
+Since: 3.14
+
 # Implements
 
 [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureSwipe::fn new -->
 Returns a newly created `Gesture` that recognizes swipes.
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11318,6 +12418,9 @@ a newly created `GestureSwipe`
 If the gesture is recognized, this function returns `true` and fill in
 `velocity_x` and `velocity_y` with the recorded velocity, as per the
 last event(s) processed.
+
+Since: 3.14
+
 ## `velocity_x`
 return value for the velocity in the X axis, in pixels/sec
 ## `velocity_y`
@@ -11332,12 +12435,17 @@ pinch/zoom gestures, whenever the distance between both tracked
 sequences changes, the `GestureZoom::scale-changed` signal is
 emitted to report the scale factor.
 
+Since: 3.14
+
 # Implements
 
 [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
 <!-- impl GestureZoom::fn new -->
 Returns a newly created `Gesture` that recognizes zoom
 in/out gestures (usually known as pinch/zoom).
+
+Since: 3.14
+
 ## `widget`
 a `Widget`
 
@@ -11348,6 +12456,9 @@ a newly created `GestureZoom`
 If `self` is active, this function returns the zooming difference
 since the gesture was recognized (hence the starting point is
 considered 1:1). If `self` is not active, 1 is returned.
+
+Since: 3.14
+
 
 # Returns
 
@@ -11417,6 +12528,9 @@ the number of rows that `child` will span
 <!-- impl Grid::fn get_baseline_row -->
 Returns which row defines the global baseline of `self`.
 
+Since: 3.10
+
+
 # Returns
 
 the row index defining the global baseline
@@ -11447,6 +12561,9 @@ the column spacing of `self`
 Returns the baseline position of `row` as set
 by `Grid::set_row_baseline_position` or the default value
 `BaselinePosition::Center`.
+
+Since: 3.10
+
 ## `row`
 a row index
 
@@ -11500,6 +12617,9 @@ Children that are placed in this column are removed,
 spanning children that overlap this column have their
 width reduced by one, and children after the column
 are moved to the left.
+
+Since: 3.10
+
 ## `position`
 the position of the column to remove
 <!-- impl Grid::fn remove_row -->
@@ -11509,6 +12629,9 @@ Children that are placed in this row are removed,
 spanning children that overlap this row have their
 height reduced by one, and children below the row
 are moved up.
+
+Since: 3.10
+
 ## `position`
 the position of the row to remove
 <!-- impl Grid::fn set_baseline_row -->
@@ -11516,6 +12639,9 @@ Sets which row defines the global baseline for the entire grid.
 Each row in the grid can have its own local baseline, but only
 one of those is global, meaning it will be the baseline in the
 parent of the `self`.
+
+Since: 3.10
+
 ## `row`
 the row index
 
@@ -11533,6 +12659,9 @@ the amount of space to insert between columns
 <!-- impl Grid::fn set_row_baseline_position -->
 Sets how the baseline should be positioned on `row` of the
 grid, in case that row is assigned more space than is requested.
+
+Since: 3.10
+
 ## `row`
 a row index
 ## `pos`
@@ -11558,11 +12687,16 @@ can be turned off with `HeaderBar::set_has_subtitle`.
 `HeaderBar` can add typical window frame controls, such as minimize,
 maximize and close buttons, or the window icon.
 
+Since: 3.10
+
 # Implements
 
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl HeaderBar::fn new -->
 Creates a new `HeaderBar` widget.
+
+Since: 3.10
+
 
 # Returns
 
@@ -11570,6 +12704,9 @@ a new `HeaderBar`
 <!-- impl HeaderBar::fn get_custom_title -->
 Retrieves the custom title widget of the header. See
 `HeaderBar::set_custom_title`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -11579,12 +12716,18 @@ the custom title widget
 Gets the decoration layout set with
 `HeaderBar::set_decoration_layout`.
 
+Since: 3.12
+
+
 # Returns
 
 the decoration layout
 <!-- impl HeaderBar::fn get_has_subtitle -->
 Retrieves whether the header bar reserves space for
 a subtitle, regardless if one is currently set or not.
+
+Since: 3.12
+
 
 # Returns
 
@@ -11594,11 +12737,17 @@ a subtitle, regardless if one is currently set or not.
 Returns whether this header bar shows the standard window
 decorations.
 
+Since: 3.10
+
+
 # Returns
 
 `true` if the decorations are shown
 <!-- impl HeaderBar::fn get_subtitle -->
 Retrieves the subtitle of the header. See `HeaderBar::set_subtitle`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -11608,6 +12757,9 @@ the subtitle of the header, or `None` if none has
 <!-- impl HeaderBar::fn get_title -->
 Retrieves the title of the header. See `HeaderBar::set_title`.
 
+Since: 3.10
+
+
 # Returns
 
 the title of the header, or `None` if none has
@@ -11616,11 +12768,17 @@ the title of the header, or `None` if none has
 <!-- impl HeaderBar::fn pack_end -->
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
+
+Since: 3.10
+
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl HeaderBar::fn pack_start -->
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
+
+Since: 3.10
+
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl HeaderBar::fn set_custom_title -->
@@ -11634,6 +12792,9 @@ style classes.
 
 You should set the custom title to `None`, for the header title
 label to be visible again.
+
+Since: 3.10
+
 ## `title_widget`
 a custom widget to use for a title
 <!-- impl HeaderBar::fn set_decoration_layout -->
@@ -11654,17 +12815,26 @@ for the fallback app menu).
 
 For example, “menu:minimize,maximize,close” specifies a menu
 on the left, and minimize, maximize and close buttons on the right.
+
+Since: 3.12
+
 ## `layout`
 a decoration layout, or `None` to
  unset the layout
 <!-- impl HeaderBar::fn set_has_subtitle -->
 Sets whether the header bar should reserve space
 for a subtitle, even if none is currently set.
+
+Since: 3.12
+
 ## `setting`
 `true` to reserve space for a subtitle
 <!-- impl HeaderBar::fn set_show_close_button -->
 Sets whether this header bar shows the standard window decorations,
 including close, maximize, and minimize.
+
+Since: 3.10
+
 ## `setting`
 `true` to show standard widow decorations
 <!-- impl HeaderBar::fn set_subtitle -->
@@ -11674,17 +12844,26 @@ an additional detail to help him identify the current view.
 Note that `HeaderBar` by default reserves room for the subtitle,
 even if none is currently set. If this is not desired, set the
 `HeaderBar:has-subtitle` property to `false`.
+
+Since: 3.10
+
 ## `subtitle`
 a subtitle, or `None`
 <!-- impl HeaderBar::fn set_title -->
 Sets the title of the `HeaderBar`. The title should help a user
 identify the current view. A good title should not include the
 application name.
+
+Since: 3.10
+
 ## `title`
 a title, or `None`
 <!-- enum IMPreeditStyle -->
 Style for input method preedit. See also
 `Settings:gtk-im-preedit-style`
+
+# Deprecated since 3.10
+
 <!-- enum IMPreeditStyle::variant Nothing -->
 Deprecated
 <!-- enum IMPreeditStyle::variant Callback -->
@@ -11694,6 +12873,9 @@ Deprecated
 <!-- enum IMStatusStyle -->
 Style for input method status. See also
 `Settings:gtk-im-status-style`
+
+# Deprecated since 3.10
+
 <!-- enum IMStatusStyle::variant Nothing -->
 Deprecated
 <!-- enum IMStatusStyle::variant Callback -->
@@ -11808,6 +12990,9 @@ the bitmask of possible actions for a drag from this
 <!-- impl IconView::fn get_activate_on_single_click -->
 Gets the setting set by `IconView::set_activate_on_single_click`.
 
+Since: 3.8
+
+
 # Returns
 
 `true` if item-activated will be emitted on a single click
@@ -11816,6 +13001,9 @@ Fills the bounding rectangle in widget coordinates for the cell specified by
 `path` and `cell`. If `cell` is `None` the main cell area is used.
 
 This function is only valid if `self` is realized.
+
+Since: 3.6
+
 ## `path`
 a `TreePath`
 ## `cell`
@@ -12124,6 +13312,9 @@ User data to pass to the function.
 <!-- impl IconView::fn set_activate_on_single_click -->
 Causes the `IconView::item-activated` signal to be emitted on
 a single click instead of a double click.
+
+Since: 3.8
+
 ## `single`
 `true` to emit item-activated on a single click
 <!-- impl IconView::fn set_column_spacing -->
@@ -12464,7 +13655,7 @@ The `Image` does not assume a reference to the
 icon set; you still need to unref it if you own references.
 `Image` will add its own reference rather than adopting yours.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::new_from_icon_name` instead.
 ## `icon_set`
@@ -12521,7 +13712,7 @@ icon name isn’t known, the image will be empty.
 You can register your own stock icon names, see
 `IconFactory::add_default` and `IconFactory::add`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::new_from_icon_name` instead.
 ## `stock_id`
@@ -12537,6 +13728,9 @@ Creates a new `Image` displaying `surface`.
 The `Image` does not assume a reference to the
 surface; you still need to unref it if you own references.
 `Image` will add its own reference rather than adopting yours.
+
+Since: 3.10
+
 ## `surface`
 a `cairo::Surface`, or `None`
 
@@ -12585,7 +13779,7 @@ Gets the icon set and size being displayed by the `Image`.
 The storage type of the image must be `ImageType::Empty` or
 `ImageType::IconSet` (see `Image::get_storage_type`).
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::get_icon_name` instead.
 ## `icon_set`
@@ -12618,7 +13812,7 @@ The storage type of the image must be `ImageType::Empty` or
 The returned string is owned by the `Image` and should not
 be freed.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::get_icon_name` instead.
 ## `stock_id`
@@ -12659,7 +13853,7 @@ an icon size
 <!-- impl Image::fn set_from_icon_set -->
 See `Image::new_from_icon_set` for details.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::set_from_icon_name` instead.
 ## `icon_set`
@@ -12677,7 +13871,7 @@ a resource path or `None`
 <!-- impl Image::fn set_from_stock -->
 See `Image::new_from_stock` for details.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `Image::set_from_icon_name` instead.
 ## `stock_id`
@@ -12686,6 +13880,9 @@ a stock icon name
 a stock icon size
 <!-- impl Image::fn set_from_surface -->
 See `Image::new_from_surface` for details.
+
+Since: 3.10
+
 ## `surface`
 a cairo_surface_t
 <!-- impl Image::fn set_pixel_size -->
@@ -12862,6 +14059,9 @@ the message type of the message area.
 <!-- impl InfoBar::fn get_show_close_button -->
 Returns whether the widget will display a standard close button.
 
+Since: 3.10
+
+
 # Returns
 
 `true` if the widget displays standard close button
@@ -12895,6 +14095,9 @@ TRUE for sensitive
 <!-- impl InfoBar::fn set_show_close_button -->
 If true, a standard close button is shown. When clicked it emits
 the response `ResponseType::Close`.
+
+Since: 3.10
+
 ## `setting`
 `true` to include a close button
 <!-- enum InputPurpose -->
@@ -12936,6 +14139,9 @@ Edited field expects the name of a person
 Like `InputPurpose::FreeForm`, but characters are hidden
 <!-- enum InputPurpose::variant Pin -->
 Like `InputPurpose::Digits`, but characters are hidden
+
+Since: 3.6
+
 <!-- enum Justification -->
 Used for justifying the text inside a `Label` widget. (See also
 `Alignment`).
@@ -13207,6 +14413,9 @@ Returns line wrap mode used by the label. See `Label::set_line_wrap_mode`.
 Gets the number of lines to which an ellipsized, wrapping
 label should be limited. See `Label::set_lines`.
 
+Since: 3.10
+
+
 # Returns
 
 The number of lines
@@ -13298,11 +14507,17 @@ the width of the label in characters.
 <!-- impl Label::fn get_xalign -->
 Gets the `Label:xalign` property for `self`.
 
+Since: 3.16
+
+
 # Returns
 
 the xalign property
 <!-- impl Label::fn get_yalign -->
 Gets the `Label:yalign` property for `self`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -13380,6 +14595,9 @@ Sets the number of lines to which an ellipsized, wrapping label
 should be limited. This has no effect if the label is not wrapping
 or ellipsized. Set this to -1 if you don’t want to limit the
 number of lines.
+
+Since: 3.10
+
 ## `lines`
 the desired number of lines, or -1
 <!-- impl Label::fn set_markup -->
@@ -13485,10 +14703,16 @@ Sets the desired width in characters of `self` to `n_chars`.
 the new desired width, in characters.
 <!-- impl Label::fn set_xalign -->
 Sets the `Label:xalign` property for `self`.
+
+Since: 3.16
+
 ## `xalign`
 the new xalign value, between 0 and 1
 <!-- impl Label::fn set_yalign -->
 Sets the `Label:yalign` property for `self`.
+
+Since: 3.16
+
 ## `yalign`
 the new yalign value, between 0 and 1
 <!-- struct Layout -->
@@ -13533,7 +14757,7 @@ between the horizontal scrollbar and `self`.
 
 See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_hadjustment`
 
@@ -13558,7 +14782,7 @@ between the vertical scrollbar and `self`.
 
 See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_vadjustment`
 
@@ -13587,7 +14811,7 @@ Sets the horizontal scroll adjustment for the layout.
 
 See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_hadjustment`
 ## `adjustment`
@@ -13603,7 +14827,7 @@ Sets the vertical scroll adjustment for the layout.
 
 See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_vadjustment`
 ## `adjustment`
@@ -13673,11 +14897,16 @@ For instance, to build a bar rendered with five blocks, it’s sufficient to
 set the minimum value to 0 and the maximum value to 5 after changing the indicator
 mode to discrete.
 
+Since: 3.6
+
 # Implements
 
 [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl LevelBar::fn new -->
 Creates a new `LevelBar`.
+
+Since: 3.6
+
 
 # Returns
 
@@ -13685,6 +14914,9 @@ a `LevelBar`.
 <!-- impl LevelBar::fn new_for_interval -->
 Utility constructor that creates a new `LevelBar` for the specified
 interval.
+
+Since: 3.6
+
 ## `min_value`
 a positive value
 ## `max_value`
@@ -13701,6 +14933,9 @@ a style class named `level-``name` will be applied
 when rendering the level bar fill.
 If another offset marker named `name` exists, its value will be
 replaced by `value`.
+
+Since: 3.6
+
 ## `name`
 the name of the new offset
 ## `value`
@@ -13708,11 +14943,17 @@ the value for the new offset
 <!-- impl LevelBar::fn get_inverted -->
 Return the value of the `LevelBar:inverted` property.
 
+Since: 3.8
+
+
 # Returns
 
 `true` if the level bar is inverted
 <!-- impl LevelBar::fn get_max_value -->
 Returns the value of the `LevelBar:max-value` property.
+
+Since: 3.6
+
 
 # Returns
 
@@ -13720,11 +14961,17 @@ a positive value
 <!-- impl LevelBar::fn get_min_value -->
 Returns the value of the `LevelBar:min-value` property.
 
+Since: 3.6
+
+
 # Returns
 
 a positive value
 <!-- impl LevelBar::fn get_mode -->
 Returns the value of the `LevelBar:mode` property.
+
+Since: 3.6
+
 
 # Returns
 
@@ -13732,6 +14979,9 @@ a `LevelBarMode`
 <!-- impl LevelBar::fn get_offset_value -->
 Fetches the value specified for the offset marker `name` in `self`,
 returning `true` in case an offset named `name` was found.
+
+Since: 3.6
+
 ## `name`
 the name of an offset in the bar
 ## `value`
@@ -13743,6 +14993,9 @@ location where to store the value
 <!-- impl LevelBar::fn get_value -->
 Returns the value of the `LevelBar:value` property.
 
+Since: 3.6
+
+
 # Returns
 
 a value in the interval between
@@ -13750,26 +15003,44 @@ a value in the interval between
 <!-- impl LevelBar::fn remove_offset_value -->
 Removes an offset marker previously added with
 `LevelBar::add_offset_value`.
+
+Since: 3.6
+
 ## `name`
 the name of an offset in the bar
 <!-- impl LevelBar::fn set_inverted -->
 Sets the value of the `LevelBar:inverted` property.
+
+Since: 3.8
+
 ## `inverted`
 `true` to invert the level bar
 <!-- impl LevelBar::fn set_max_value -->
 Sets the value of the `LevelBar:max-value` property.
+
+Since: 3.6
+
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_min_value -->
 Sets the value of the `LevelBar:min-value` property.
+
+Since: 3.6
+
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_mode -->
 Sets the value of the `LevelBar:mode` property.
+
+Since: 3.6
+
 ## `mode`
 a `LevelBarMode`
 <!-- impl LevelBar::fn set_value -->
 Sets the value of the `LevelBar:value` property.
+
+Since: 3.6
+
 ## `value`
 a value in the interval between
  `LevelBar:min-value` and `LevelBar:max-value`
@@ -13781,6 +15052,9 @@ in the future.
 the bar has a continuous mode
 <!-- enum LevelBarMode::variant Discrete -->
 the bar has a discrete mode
+
+Since: 3.6
+
 <!-- enum License -->
 The type of license for an application.
 
@@ -13900,11 +15174,16 @@ as selected when the user tries to select it.
 
 The `ListBox` widget was added in GTK+ 3.10.
 
+Since: 3.10
+
 # Implements
 
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl ListBox::fn new -->
 Creates a new `ListBox` container.
+
+Since: 3.10
+
 
 # Returns
 
@@ -13922,6 +15201,9 @@ If `model` is `None`, `self` is left empty.
 It is undefined to add or remove widgets directly (for example, with
 `ListBox::insert` or `ContainerExt::add`) while `self` is bound to a
 model.
+
+Since: 3.16
+
 ## `model`
 the `gio::ListModel` to be bound to `self`
 ## `create_widget_func`
@@ -13937,13 +15219,22 @@ and any previously highlighted row will be unhighlighted.
 
 The row will also be unhighlighted when the widget gets
 a drag leave event.
+
+Since: 3.10
+
 ## `row`
 a `ListBoxRow`
 <!-- impl ListBox::fn drag_unhighlight_row -->
 If a row has previously been highlighted via `ListBox::drag_highlight_row`
 it will have the highlight removed.
+
+Since: 3.10
+
 <!-- impl ListBox::fn get_activate_on_single_click -->
 Returns whether rows activate on single clicks.
+
+Since: 3.10
+
 
 # Returns
 
@@ -13952,6 +15243,9 @@ Returns whether rows activate on single clicks.
 Gets the adjustment (if any) that the widget uses to
 for vertical scrolling.
 
+Since: 3.10
+
+
 # Returns
 
 the adjustment
@@ -13959,6 +15253,9 @@ the adjustment
 Gets the n-th child in the list (not counting headers).
 If `_index` is negative or larger than the number of items in the
 list, `None` is returned.
+
+Since: 3.10
+
 ## `index_`
 the index of the row
 
@@ -13967,6 +15264,9 @@ the index of the row
 the child `Widget` or `None`
 <!-- impl ListBox::fn get_row_at_y -->
 Gets the row at the `y` position.
+
+Since: 3.10
+
 ## `y`
 position
 
@@ -13980,11 +15280,17 @@ Note that the box may allow multiple selection, in which
 case you should use `ListBox::selected_foreach` to
 find all selected rows.
 
+Since: 3.10
+
+
 # Returns
 
 the selected row
 <!-- impl ListBox::fn get_selected_rows -->
 Creates a list of all selected children.
+
+Since: 3.14
+
 
 # Returns
 
@@ -13993,6 +15299,9 @@ Creates a list of all selected children.
  Free with `glib::List::free` when done.
 <!-- impl ListBox::fn get_selection_mode -->
 Gets the selection mode of the listbox.
+
+Since: 3.10
+
 
 # Returns
 
@@ -14004,6 +15313,9 @@ this function has the same effect of `ContainerExt::add`.
 
 If `position` is -1, or larger than the total number of items in the
 `self`, then the `child` will be appended to the end.
+
+Since: 3.10
+
 ## `child`
 the `Widget` to add
 ## `position`
@@ -14014,30 +15326,51 @@ of the filter function on the `self` is changed due
 to an external factor. For instance, this would be used
 if the filter function just looked for a specific search
 string and the entry with the search string has changed.
+
+Since: 3.10
+
 <!-- impl ListBox::fn invalidate_headers -->
 Update the separators for all rows. Call this when result
 of the header function on the `self` is changed due
 to an external factor.
+
+Since: 3.10
+
 <!-- impl ListBox::fn invalidate_sort -->
 Update the sorting for all rows. Call this when result
 of the sort function on the `self` is changed due
 to an external factor.
+
+Since: 3.10
+
 <!-- impl ListBox::fn prepend -->
 Prepend a widget to the list. If a sort function is set, the widget will
 actually be inserted at the calculated position and this function has the
 same effect of `ContainerExt::add`.
+
+Since: 3.10
+
 ## `child`
 the `Widget` to add
 <!-- impl ListBox::fn select_all -->
 Select all children of `self`, if the selection mode allows it.
+
+Since: 3.14
+
 <!-- impl ListBox::fn select_row -->
 Make `row` the currently selected row.
+
+Since: 3.10
+
 ## `row`
 The row to select or `None`
 <!-- impl ListBox::fn selected_foreach -->
 Calls a function for each selected child.
 
 Note that the selection cannot be modified from within this function.
+
+Since: 3.14
+
 ## `func`
 the function to call for each selected child
 ## `data`
@@ -14045,6 +15378,9 @@ user data to pass to the function
 <!-- impl ListBox::fn set_activate_on_single_click -->
 If `single` is `true`, rows will be activated when you click on them,
 otherwise you need to double-click.
+
+Since: 3.10
+
 ## `single`
 a boolean
 <!-- impl ListBox::fn set_adjustment -->
@@ -14056,6 +15392,9 @@ In the normal case when the `self` is packed inside
 a `ScrolledWindow` the adjustment from that will
 be picked up automatically, so there is no need
 to manually do that.
+
+Since: 3.10
+
 ## `adjustment`
 the adjustment, or `None`
 <!-- impl ListBox::fn set_filter_func -->
@@ -14066,6 +15405,9 @@ filters the original list to only show the matching rows.
 The `filter_func` will be called for each row after the call, and it will
 continue to be called each time a row changes (via `ListBoxRow::changed`) or
 when `ListBox::invalidate_filter` is called.
+
+Since: 3.10
+
 ## `filter_func`
 callback that lets you filter which rows to show
 ## `user_data`
@@ -14091,6 +15433,9 @@ continue to be called each time a row changes (via `ListBoxRow::changed`) and wh
 the row before changes (either by `ListBoxRow::changed` on the previous row, or when
 the previous row becomes a different row). It is also called for all rows when
 `ListBox::invalidate_headers` is called.
+
+Since: 3.10
+
 ## `update_header`
 callback that lets you add row headers
 ## `user_data`
@@ -14100,11 +15445,17 @@ destroy notifier for `user_data`
 <!-- impl ListBox::fn set_placeholder -->
 Sets the placeholder widget that is shown in the list when
 it doesn't display any visible children.
+
+Since: 3.10
+
 ## `placeholder`
 a `Widget` or `None`
 <!-- impl ListBox::fn set_selection_mode -->
 Sets how selection works in the listbox.
 See `SelectionMode` for details.
+
+Since: 3.10
+
 ## `mode`
 The `SelectionMode`
 <!-- impl ListBox::fn set_sort_func -->
@@ -14114,6 +15465,9 @@ of the list, based on the contents of the rows.
 The `sort_func` will be called for each row after the call, and will continue to
 be called each time a row changes (via `ListBoxRow::changed`) and when
 `ListBox::invalidate_sort` is called.
+
+Since: 3.10
+
 ## `sort_func`
 the sort function
 ## `user_data`
@@ -14122,12 +15476,29 @@ user data passed to `sort_func`
 destroy notifier for `user_data`
 <!-- impl ListBox::fn unselect_all -->
 Unselect all children of `self`, if the selection mode allows it.
+
+Since: 3.14
+
 <!-- impl ListBox::fn unselect_row -->
 Unselects a single row of `self`, if the selection mode allows it.
+
+Since: 3.14
+
 ## `row`
 the row to unselected
+<!-- struct ListBoxRow -->
+
+
+Since: 3.10
+
+# Implements
+
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl ListBoxRow::fn new -->
 Creates a new `ListBoxRow`, to be used as a child of a `ListBox`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -14149,9 +15520,15 @@ model you have to duplicate the data that affects the listbox
 row functions into the row widgets themselves. Another alternative
 is to call `ListBox::invalidate_sort` on any model change,
 but that is more expensive.
+
+Since: 3.10
+
 <!-- impl ListBoxRow::fn get_activatable -->
 Gets the value of the `ListBoxRow:activatable` property
 for this row.
+
+Since: 3.14
+
 
 # Returns
 
@@ -14161,11 +15538,17 @@ Returns the current header of the `self`. This can be used
 in a ``GtkListBoxUpdateHeaderFunc`` to see if there is a header
 set already, and if so to update the state of it.
 
+Since: 3.10
+
+
 # Returns
 
 the current header, or `None` if none
 <!-- impl ListBoxRow::fn get_index -->
 Gets the current index of the `self` in its `ListBox` container.
+
+Since: 3.10
+
 
 # Returns
 
@@ -14174,6 +15557,9 @@ the index of the `self`, or -1 if the `self` is not in a listbox
 Gets the value of the `ListBoxRow:selectable` property
 for this row.
 
+Since: 3.14
+
+
 # Returns
 
 `true` if the row is selectable
@@ -14181,21 +15567,33 @@ for this row.
 Returns whether the child is currently selected in its
 `ListBox` container.
 
+Since: 3.14
+
+
 # Returns
 
 `true` if `self` is selected
 <!-- impl ListBoxRow::fn set_activatable -->
 Set the `ListBoxRow:activatable` property for this row.
+
+Since: 3.14
+
 ## `activatable`
 `true` to mark the row as activatable
 <!-- impl ListBoxRow::fn set_header -->
 Sets the current header of the `self`. This is only allowed to be called
 from a ``GtkListBoxUpdateHeaderFunc``. It will replace any existing
 header in the row, and be shown in front of the row in the listbox.
+
+Since: 3.10
+
 ## `header`
 the header, or `None`
 <!-- impl ListBoxRow::fn set_selectable -->
 Set the `ListBoxRow:selectable` property for this row.
+
+Since: 3.14
+
 ## `selectable`
 `true` to mark the row as selectable
 <!-- struct ListStore -->
@@ -14727,11 +16125,17 @@ Whether the menu reserves toggle space
 Returns whether the menu is torn off.
 See `Menu::set_tearoff_state`.
 
+# Deprecated since 3.10
+
+
 # Returns
 
 `true` if the menu is currently torn off.
 <!-- impl Menu::fn get_title -->
 Returns the title of the menu. See `Menu::set_title`.
+
+# Deprecated since 3.10
+
 
 # Returns
 
@@ -14891,6 +16295,9 @@ Changes the tearoff state of the menu. A menu is normally
 displayed as drop down menu which persists as long as the menu is
 active. It can also be displayed as a tearoff menu which persists
 until it is closed or reattached.
+
+# Deprecated since 3.10
+
 ## `torn_off`
 If `true`, menu is displayed as a tearoff menu.
 <!-- impl Menu::fn set_title -->
@@ -14900,6 +16307,9 @@ The title is displayed when the menu is shown as a tearoff
 menu. If `title` is `None`, the menu will see if it is attached
 to a parent menu item, and if so it will try to use the same
 text as that menu item’s label.
+
+# Deprecated since 3.10
+
 ## `title`
 a string containing the title for the menu
 <!-- struct MenuButton -->
@@ -14982,6 +16392,8 @@ part of the menu offscreen, it is “pushed in”.
 
  ![](right-end.png)
 
+Since: 3.6
+
 # Implements
 
 [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
@@ -14990,11 +16402,17 @@ Creates a new `MenuButton` widget with downwards-pointing
 arrow as the only child. You can replace the child widget
 with another `Widget` should you wish to.
 
+Since: 3.6
+
+
 # Returns
 
 The newly created `MenuButton` widget
 <!-- impl MenuButton::fn get_align_widget -->
 Returns the parent `Widget` to use to line up with menu.
+
+Since: 3.6
+
 
 # Returns
 
@@ -15002,11 +16420,17 @@ a `Widget` value or `None`
 <!-- impl MenuButton::fn get_direction -->
 Returns the direction the popup will be pointing at when popped up.
 
+Since: 3.6
+
+
 # Returns
 
 a `ArrowType` value
 <!-- impl MenuButton::fn get_menu_model -->
 Returns the `gio::MenuModel` used to generate the popup.
+
+Since: 3.6
+
 
 # Returns
 
@@ -15016,6 +16440,9 @@ Returns the `Popover` that pops out of the button.
 If the button is not using a `Popover`, this function
 returns `None`.
 
+Since: 3.12
+
+
 # Returns
 
 a `Popover` or `None`
@@ -15024,12 +16451,18 @@ Returns the `Menu` that pops out of the button.
 If the button does not use a `Menu`, this function
 returns `None`.
 
+Since: 3.6
+
+
 # Returns
 
 a `Menu` or `None`
 <!-- impl MenuButton::fn get_use_popover -->
 Returns whether a `Popover` or a `Menu` will be constructed
 from the menu model.
+
+Since: 3.12
+
 
 # Returns
 
@@ -15043,6 +16476,9 @@ button itself.
 
 Note that this property is only used with menus currently,
 and not for popovers.
+
+Since: 3.6
+
 ## `align_widget`
 a `Widget`
 <!-- impl MenuButton::fn set_direction -->
@@ -15055,6 +16491,9 @@ GTK+ will its best to keep it inside the screen and fully visible.
 
 If you pass `ArrowType::None` for a `direction`, the popup will behave
 as if you passed `ArrowType::Down` (although you won’t see any arrows).
+
+Since: 3.6
+
 ## `direction`
 a `ArrowType`
 <!-- impl MenuButton::fn set_menu_model -->
@@ -15068,24 +16507,36 @@ actions will be connected as documented for these functions.
 
 If `MenuButton:popup` or `MenuButton:popover` are already set,
 their content will be lost and replaced by the newly created popup.
+
+Since: 3.6
+
 ## `menu_model`
 a `gio::MenuModel`
 <!-- impl MenuButton::fn set_popover -->
 Sets the `Popover` that will be popped up when the button is
 clicked, or `None` to disable the button. If `MenuButton:menu-model`
 or `MenuButton:popup` are set, they will be set to `None`.
+
+Since: 3.12
+
 ## `popover`
 a `Popover`
 <!-- impl MenuButton::fn set_popup -->
 Sets the `Menu` that will be popped up when the button is clicked,
 or `None` to disable the button. If `MenuButton:menu-model` or
 `MenuButton:popover` are set, they will be set to `None`.
+
+Since: 3.6
+
 ## `menu`
 a `Menu`
 <!-- impl MenuButton::fn set_use_popover -->
 Sets whether to construct a `Popover` instead of `Menu`
 when `MenuButton::set_menu_model` is called. Note that
 this property is only consulted when a new menu model is set.
+
+Since: 3.12
+
 ## `use_popover`
 `true` to construct a popover from the menu model
 <!-- enum MenuDirectionType -->
@@ -15202,7 +16653,7 @@ or not.
 Gets whether the menu item appears justified at the right
 side of the menu bar.
 
-# Deprecated
+# Deprecated since 3.2
 
 See `MenuItemExt::set_right_justified`
 
@@ -15270,7 +16721,7 @@ menu items, but is now considered a bad idea. (If the widget
 layout is reversed for a right-to-left language like Hebrew
 or Arabic, right-justified-menu-items appear at the left.)
 
-# Deprecated
+# Deprecated since 3.2
 
 If you insist on using it, use
  `Widget::set_hexpand` and `Widget::set_halign`.
@@ -15379,6 +16830,9 @@ For most cases you are probably better off using
 `Menu::new_from_model` or `MenuBar::new_from_model` or just
 directly passing the `gio::MenuModel` to `Application::set_app_menu` or
 `Application::set_menubar`.
+
+Since: 3.6
+
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
  binding
@@ -15518,7 +16972,7 @@ Creates a new `MenuToolButton`.
 The new `MenuToolButton` will contain an icon and label from
 the stock item indicated by `stock_id`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `MenuToolButton::new` instead.
 ## `stock_id`
@@ -15700,7 +17154,7 @@ Sets the secondary text of the message dialog to be `message_format`
 <!-- impl MessageDialog::fn get_image -->
 Gets the dialog’s image.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `Dialog` for dialogs with images
 
@@ -15721,7 +17175,7 @@ A `VBox` corresponding to the
 <!-- impl MessageDialog::fn set_image -->
 Sets the dialog’s image to `image`.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `Dialog` to create dialogs with images
 ## `image`
@@ -15744,7 +17198,7 @@ Fatal error message
 <!-- enum MessageType::variant Other -->
 None of the above
 <!-- struct Misc -->
-The `Misc` widget is an abstract widget which is not useful itself, but
+`[Deprecated since 3.14]` The `Misc` widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
 
 The horizontal and vertical padding attributes allows extra space to be
@@ -15764,7 +17218,7 @@ this fact, all `Misc` API has been deprecated.
 
 [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MiscExt -->
-Trait containing all `Misc` methods.
+`[Deprecated since 3.14]` Trait containing all `Misc` methods.
 
 # Implementors
 
@@ -15773,7 +17227,7 @@ Trait containing all `Misc` methods.
 Gets the X and Y alignment of the widget within its allocation.
 See `MiscExt::set_alignment`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties.
 ## `xalign`
@@ -15784,7 +17238,7 @@ location to store Y alignment of `self`, or `None`
 Gets the padding in the X and Y directions of the widget.
 See `MiscExt::set_padding`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties.
 ## `xpad`
@@ -15796,7 +17250,7 @@ location to store padding in the Y
 <!-- trait MiscExt::fn set_alignment -->
 Sets the alignment of the widget.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget`'s alignment (`Widget:halign` and `Widget:valign`) and margin properties or `Label`'s `Label:xalign` and `Label:yalign` properties.
 ## `xalign`
@@ -15806,7 +17260,7 @@ the vertical alignment, from 0 (top) to 1 (bottom).
 <!-- trait MiscExt::fn set_padding -->
 Sets the amount of space to add around the widget.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `Widget` alignment and margin properties.
 ## `xpad`
@@ -15926,6 +17380,9 @@ This function is very similar to `ContainerExt::remove`,
 but additionally informs the notebook that the removal
 is happening as part of a tab DND operation, which should
 not be cancelled.
+
+Since: 3.16
+
 ## `child`
 a child
 <!-- impl Notebook::fn get_action_widget -->
@@ -16022,7 +17479,7 @@ a child `Widget`
 <!-- impl Notebook::fn get_tab_hborder -->
 Returns the horizontal width of a tab border.
 
-# Deprecated
+# Deprecated since 3.4
 
 this function returns zero
 
@@ -16068,7 +17525,7 @@ a child `Widget`
 <!-- impl Notebook::fn get_tab_vborder -->
 Returns the vertical width of a tab border.
 
-# Deprecated
+# Deprecated since 3.4
 
 this function returns zero
 
@@ -16708,6 +18165,9 @@ panned towards the right
 panned upwards
 <!-- enum PanDirection::variant Down -->
 panned downwards
+
+Since: 3.14
+
 <!-- struct Paned -->
 `Paned` has two panes, arranged either
 horizontally or vertically. The division between
@@ -16811,6 +18271,9 @@ position of the divider
 <!-- impl Paned::fn get_wide_handle -->
 Gets the `Paned:wide-handle` property.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if the paned should have a wide handle
@@ -16837,6 +18300,9 @@ pixel position of divider, a negative value means that the position
  is unset.
 <!-- impl Paned::fn set_wide_handle -->
 Sets the `Paned:wide-handle` property.
+
+Since: 3.16
+
 ## `wide`
 the new value for the `Paned:wide-handle` property
 <!-- struct PaperSize -->
@@ -16890,6 +18356,9 @@ IPP information.
 If `ipp_name` is not a recognized paper name,
 `width` and `height` are used to
 construct a custom `PaperSize` object.
+
+Since: 3.16
+
 ## `ipp_name`
 an IPP paper name
 ## `width`
@@ -17067,6 +18536,9 @@ a newly allocated list of newly
 <!-- enum PathPriorityType -->
 Priorities for path lookups.
 See also `BindingSet::add_path`.
+
+# Deprecated since 3.0
+
 <!-- enum PathPriorityType::variant Lowest -->
 Deprecated
 <!-- enum PathPriorityType::variant Gtk -->
@@ -17082,6 +18554,9 @@ Deprecated
 <!-- enum PathType -->
 Widget path types.
 See also `BindingSet::add_path`.
+
+# Deprecated since 3.0
+
 <!-- enum PathType::variant Widget -->
 Deprecated
 <!-- enum PathType::variant WidgetClass -->
@@ -17112,6 +18587,8 @@ user selects in the sidebar a location to open. The application should also
 call `PlacesSidebar::set_location` when it changes the currently-viewed
 location.
 
+Since: 3.10
+
 # Implements
 
 [`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
@@ -17121,6 +18598,9 @@ Creates a new `PlacesSidebar` widget.
 The application should connect to at least the
 `PlacesSidebar::open-location` signal to be notified
 when the user makes a selection in the sidebar.
+
+Since: 3.10
+
 
 # Returns
 
@@ -17136,10 +18616,16 @@ shortcuts. The shortcuts are application-specific; they are not shared
 across applications, and they are not persistent. If this function
 is called multiple times with different locations, then they are added
 to the sidebar’s list in the same order as the function is called.
+
+Since: 3.10
+
 ## `location`
 location to add as an application-specific shortcut
 <!-- impl PlacesSidebar::fn get_local_only -->
 Returns the value previously set with `PlacesSidebar::set_local_only`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -17155,6 +18641,9 @@ connect to the `PlacesSidebar::populate-popup` signal, you can use this
 function to get the location that is being referred to during the callbacks
 for your menu items.
 
+Since: 3.10
+
+
 # Returns
 
 a GFile with the selected location, or `None` if nothing is visually
@@ -17163,6 +18652,9 @@ selected.
 This function queries the bookmarks added by the user to the places sidebar,
 and returns one of them. This function is used by `FileChooser` to implement
 the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the cooresponding bookmark.
+
+Since: 3.10
+
 ## `n`
 index of the bookmark to query
 
@@ -17174,11 +18666,17 @@ the file chooser starts them with the keyboard shortcut “Alt-1”.
 <!-- impl PlacesSidebar::fn get_open_flags -->
 Gets the open flags.
 
+Since: 3.10
+
+
 # Returns
 
 the `PlacesOpenFlags` of `self`
 <!-- impl PlacesSidebar::fn get_show_connect_to_server -->
 Returns the value previously set with `PlacesSidebar::set_show_connect_to_server`
+
+Since: 3.10
+
 
 # Returns
 
@@ -17186,17 +18684,26 @@ Returns the value previously set with `PlacesSidebar::set_show_connect_to_server
 <!-- impl PlacesSidebar::fn get_show_desktop -->
 Returns the value previously set with `PlacesSidebar::set_show_desktop`
 
+Since: 3.10
+
+
 # Returns
 
 `true` if the sidebar will display a builtin shortcut to the desktop folder.
 <!-- impl PlacesSidebar::fn get_show_enter_location -->
 Returns the value previously set with `PlacesSidebar::set_show_enter_location`
 
+Since: 3.14
+
+
 # Returns
 
 `true` if the sidebar will display an “Enter Location” item.
 <!-- impl PlacesSidebar::fn list_shortcuts -->
 Gets the list of shortcuts.
+
+Since: 3.10
+
 
 # Returns
 
@@ -17212,10 +18719,16 @@ g_slist_free_full (list, (GDestroyNotify) g_object_unref);
 Removes an application-specific shortcut that has been previously been
 inserted with `PlacesSidebar::add_shortcut`. If the `location` is not a
 shortcut in the sidebar, then nothing is done.
+
+Since: 3.10
+
 ## `location`
 location to remove
 <!-- impl PlacesSidebar::fn set_local_only -->
 Sets whether the `self` should only show local files.
+
+Since: 3.12
+
 ## `local_only`
 whether to show only local files
 <!-- impl PlacesSidebar::fn set_location -->
@@ -17224,6 +18737,9 @@ Sets the location that is being shown in the widgets surrounding the
 `self` will highlight that location if it is being shown in the list of
 places, or it will unhighlight everything if the `location` is not among the
 places in the list.
+
+Since: 3.10
+
 ## `location`
 location to select, or `None` for no current path
 <!-- impl PlacesSidebar::fn set_open_flags -->
@@ -17242,12 +18758,18 @@ argument will be set to one of the `flags` that was passed in
 
 Passing 0 for `flags` will cause `PlacesOpenFlags::Normal` to always be sent
 to callbacks for the “open-location” signal.
+
+Since: 3.10
+
 ## `flags`
 Bitmask of modes in which the calling application can open locations
 <!-- impl PlacesSidebar::fn set_show_connect_to_server -->
 Sets whether the `self` should show an item for connecting to a network server; this is off by default.
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
+
+Since: 3.10
+
 ## `show_connect_to_server`
 whether to show an item for the Connect to Server command
 <!-- impl PlacesSidebar::fn set_show_desktop -->
@@ -17255,12 +18777,18 @@ Sets whether the `self` should show an item for the Desktop folder.
 The default value for this option is determined by the desktop
 environment and the user’s configuration, but this function can be
 used to override it on a per-application basis.
+
+Since: 3.10
+
 ## `show_desktop`
 whether to show an item for the Desktop folder
 <!-- impl PlacesSidebar::fn set_show_enter_location -->
 Sets whether the `self` should show an item for connecting to a network server; this is off by default.
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
+
+Since: 3.14
+
 ## `show_enter_location`
 whether to show an item for the Connect to Server command
 <!-- enum PolicyType -->
@@ -17332,17 +18860,24 @@ with the ”verb-icon” attribute.
 </section>
 ```
 
+Since: 3.12
+
 # Implements
 
 [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait PopoverExt -->
 Trait containing all `Popover` methods.
 
+Since: 3.12
+
 # Implementors
 
 [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html)
 <!-- impl Popover::fn new -->
 Creates a new popover to point to `relative_to`
+
+Since: 3.12
+
 ## `relative_to`
 `Widget` the popover is related to
 
@@ -17360,6 +18895,9 @@ the ``GtkApplicationWindows`` widget hierarchy.
 
 Actions can also be added using `Widget::insert_action_group`
 on the menus attach widget or on any of its parent widgets.
+
+Since: 3.12
+
 ## `relative_to`
 `Widget` the popover is related to
 ## `model`
@@ -17393,6 +18931,9 @@ to attach your own action group to the widget hierarchy using
 group with a “quit” action and inserted it with the name “mygroup”
 then you would use the action name “mygroup.quit” in your
 `gio::MenuModel`.
+
+Since: 3.12
+
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
  binding
@@ -17401,6 +18942,9 @@ the namespace for actions in `model`
 <!-- trait PopoverExt::fn get_modal -->
 Returns whether the popover is modal, see gtk_popover_set_modal to
 see the implications of this.
+
+Since: 3.12
+
 
 # Returns
 
@@ -17425,11 +18969,17 @@ The preferred position.
 <!-- trait PopoverExt::fn get_relative_to -->
 Returns the widget `self` is currently attached to
 
+Since: 3.12
+
+
 # Returns
 
 a `Widget`
 <!-- trait PopoverExt::fn get_transitions_enabled -->
 Returns whether show/hide transitions are enabled on this popover.
+
+Since: 3.16
+
 
 # Returns
 
@@ -17440,12 +18990,18 @@ Sets whether `self` is modal, a modal popover will grab all input
 within the toplevel and grab the keyboard focus on it when being
 displayed. Clicking outside the popover area or pressing Esc will
 dismiss the popover and ungrab input.
+
+Since: 3.12
+
 ## `modal`
 `true` to make popover claim all input within the toplevel
 <!-- trait PopoverExt::fn set_pointing_to -->
 Sets the rectangle that `self` will point to, in the
 coordinate space of the widget `self` is attached to,
 see `PopoverExt::set_relative_to`.
+
+Since: 3.12
+
 ## `rect`
 rectangle to point to
 <!-- trait PopoverExt::fn set_position -->
@@ -17455,6 +19011,9 @@ is currently visible, it will be immediately updated.
 This preference will be respected where possible, although
 on lack of space (eg. if close to the window edges), the
 `Popover` may choose to appear on the opposite side
+
+Since: 3.12
+
 ## `position`
 preferred popover position
 <!-- trait PopoverExt::fn set_relative_to -->
@@ -17465,10 +19024,16 @@ Note: the ownership of popovers is always given to their `relative_to`
 widget, so if `relative_to` is set to `None` on an attached `self`, it
 will be detached from its previous widget, and consequently destroyed
 unless extra references are kept.
+
+Since: 3.12
+
 ## `relative_to`
 a `Widget`
 <!-- trait PopoverExt::fn set_transitions_enabled -->
 Sets whether show/hide transitions are enabled on this popover
+
+Since: 3.16
+
 ## `transitions_enabled`
 Whether transitions are enabled
 <!-- struct PopoverMenu -->
@@ -17542,11 +19107,16 @@ as the menu name.
 </object>
 ```
 
+Since: 3.16
+
 # Implements
 
 [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl PopoverMenu::fn new -->
 Creates a new popover menu.
+
+Since: 3.16
+
 
 # Returns
 
@@ -17561,6 +19131,9 @@ of `self` with `PopoverMenu:submenu`, or
 when the `ModelButton:menu-name` property is set,
 so this function is only needed when you are using
 other kinds of widgets to initiate menu changes.
+
+Since: 3.16
+
 ## `name`
 the name of the menu to switch to
 <!-- enum PositionType -->
@@ -18313,6 +19886,9 @@ Events are delivered in the bubble phase. The bubble
 Events are delivered in the default widget event handlers,
  note that widget implementations must chain up on button, motion, touch and
  grab broken handlers for controllers in this phase to be run.
+
+Since: 3.14
+
 <!-- struct RadioButton -->
 A single radio button performs the same basic function as a `CheckButton`,
 as its position in the object hierarchy reflects. It is only when multiple
@@ -18724,7 +20300,7 @@ in the RC file. It is exposed so that theme engines
 can reuse these tokens when parsing the theme-engine
 specific portions of a RC file.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `CssProvider` instead.
 <!-- enum RcTokenType::variant Invalid -->
@@ -19833,11 +21409,16 @@ setting.
 
 The `Revealer` widget was added in GTK+ 3.10.
 
+Since: 3.10
+
 # Implements
 
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl Revealer::fn new -->
 Creates a new `Revealer`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -19845,6 +21426,9 @@ a newly created `Revealer`
 <!-- impl Revealer::fn get_child_revealed -->
 Returns whether the child is fully revealed, ie wether
 the transition to the revealed state is completed.
+
+Since: 3.10
+
 
 # Returns
 
@@ -19858,6 +21442,9 @@ is to the revealed state is started. To learn whether
 the child is fully revealed (ie the transition is completed),
 use `Revealer::get_child_revealed`.
 
+Since: 3.10
+
+
 # Returns
 
 `true` if the child is revealed.
@@ -19865,12 +21452,18 @@ use `Revealer::get_child_revealed`.
 Returns the amount of time (in milliseconds) that
 transitions will take.
 
+Since: 3.10
+
+
 # Returns
 
 the transition duration
 <!-- impl Revealer::fn get_transition_type -->
 Gets the type of animation that will be used
 for transitions in `self`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -19880,16 +21473,25 @@ Tells the `Revealer` to reveal or conceal its child.
 
 The transition will be animated with the current
 transition type of `self`.
+
+Since: 3.10
+
 ## `reveal_child`
 `true` to reveal the child
 <!-- impl Revealer::fn set_transition_duration -->
 Sets the duration that transitions will take.
+
+Since: 3.10
+
 ## `duration`
 the new duration, in milliseconds
 <!-- impl Revealer::fn set_transition_type -->
 Sets the type of animation that will be used for
 transitions in `self`. Available types include
 various kinds of fades and slides.
+
+Since: 3.10
+
 ## `transition`
 the new transition type
 <!-- enum RevealerTransitionType -->
@@ -20231,6 +21833,9 @@ outside of the scrollable. An example for this would
 be treeview headers. GTK+ can use this information to
 display overlayed graphics, like the overshoot indication,
 at the right position.
+
+Since: 3.16
+
 ## `border`
 return location for the results
 
@@ -20412,7 +22017,7 @@ widgets with native scrolling support should not be used with the
 A widget supports scrolling natively if it implements the
 `Scrollable` interface.
 
-# Deprecated
+# Deprecated since 3.8
 
 `ContainerExt::add` will automatically add
 a `Viewport` if the child doesn’t implement `Scrollable`.
@@ -20459,6 +22064,9 @@ Gets the minimum content width of `self`, or -1 if not set.
 the minimum content width
 <!-- trait ScrolledWindowExt::fn get_overlay_scrolling -->
 Returns whether overlay scrolling is enabled for this scrolled window.
+
+Since: 3.16
+
 
 # Returns
 
@@ -20540,6 +22148,9 @@ size of the content.
 the minimal content width
 <!-- trait ScrolledWindowExt::fn set_overlay_scrolling -->
 Enables or disables overlay scrolling for this scrolled window.
+
+Since: 3.16
+
 ## `overlay_scrolling`
 whether to enable overlay scrolling
 <!-- trait ScrolledWindowExt::fn set_placement -->
@@ -20605,6 +22216,8 @@ entry.
 
 [A simple example](https://git.gnome.org/browse/gtk+/tree/examples/search-bar.c)
 
+Since: 3.10
+
 # Implements
 
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
@@ -20612,6 +22225,9 @@ entry.
 Creates a `SearchBar`. You will need to tell it about
 which widget is going to be your text entry using
 `SearchBar::connect_entry`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -20621,16 +22237,25 @@ Connects the `Entry` widget passed as the one to be used in
 this search bar. The entry should be a descendant of the search bar.
 This is only required if the entry isn’t the direct child of the
 search bar (as in our main example).
+
+Since: 3.10
+
 ## `entry`
 a `Entry`
 <!-- impl SearchBar::fn get_search_mode -->
 Returns whether the search mode is on or off.
+
+Since: 3.10
+
 
 # Returns
 
 whether search mode is toggled on
 <!-- impl SearchBar::fn get_show_close_button -->
 Returns whether the close button is shown.
+
+Since: 3.10
+
 
 # Returns
 
@@ -20666,6 +22291,9 @@ g_signal_connect (window,
                   G_CALLBACK (on_key_press_event),
                   search_bar);
 ```
+
+Since: 3.10
+
 ## `event`
 a ``GdkEvent`` containing key press events
 
@@ -20676,6 +22304,9 @@ a ``GdkEvent`` containing key press events
  the search bar if necessary), `GDK_EVENT_PROPAGATE` otherwise.
 <!-- impl SearchBar::fn set_search_mode -->
 Switches the search mode on or off.
+
+Since: 3.10
+
 ## `search_mode`
 the new state of the search mode
 <!-- impl SearchBar::fn set_show_close_button -->
@@ -20683,6 +22314,9 @@ Shows or hides the close button. Applications that
 already have a “search” toggle button should not show a close
 button in their search bar, as it duplicates the role of the
 toggle button.
+
+Since: 3.10
+
 ## `visible`
 whether the close button will be shown or not
 <!-- struct SearchEntry -->
@@ -20711,12 +22345,17 @@ Often, `SearchEntry` will be fed events by means of being
 placed inside a `SearchBar`. If that is not the case,
 you can use `SearchEntry::handle_event` to pass events.
 
+Since: 3.6
+
 # Implements
 
 [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- impl SearchEntry::fn new -->
 Creates a `SearchEntry`, with a find icon when the search field is
 empty, and a clear icon when it isn't.
+
+Since: 3.6
+
 
 # Returns
 
@@ -20733,6 +22372,9 @@ If the key event is handled by the search entry and starts
 or continues a search, `GDK_EVENT_STOP` will be returned.
 The caller should ensure that the entry is shown in this
 case, and not propagate the event further.
+
+Since: 3.16
+
 ## `event`
 a key event
 
@@ -21320,11 +22962,16 @@ setting.
 
 The `Stack` widget was added in GTK+ 3.10.
 
+Since: 3.10
+
 # Implements
 
 [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl Stack::fn new -->
 Creates a new `Stack` container.
+
+Since: 3.10
+
 
 # Returns
 
@@ -21332,6 +22979,9 @@ a new `Stack`
 <!-- impl Stack::fn add_named -->
 Adds a child to `self`.
 The child is identified by the `name`.
+
+Since: 3.10
+
 ## `child`
 the widget to add
 ## `name`
@@ -21341,6 +22991,9 @@ Adds a child to `self`.
 The child is identified by the `name`. The `title`
 will be used by `StackSwitcher` to represent
 `child` in a tab bar, so it should be short.
+
+Since: 3.10
+
 ## `child`
 the widget to add
 ## `name`
@@ -21351,6 +23004,9 @@ a human-readable title for `child`
 Finds the child of the `Stack` with the name given as
 the argument. Returns `None` if there is no child with this
 name.
+
+Since: 3.12
+
 ## `name`
 the name of the child to find
 
@@ -21361,12 +23017,18 @@ the requested child of the `Stack`
 Gets whether `self` is horizontally homogeneous.
 See `Stack::set_hhomogeneous`.
 
+Since: 3.16
+
+
 # Returns
 
 whether `self` is horizontally homogeneous.
 <!-- impl Stack::fn get_homogeneous -->
 Gets whether `self` is homogeneous.
 See `Stack::set_homogeneous`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -21375,12 +23037,18 @@ whether `self` is homogeneous.
 Returns the amount of time (in milliseconds) that
 transitions between pages in `self` will take.
 
+Since: 3.10
+
+
 # Returns
 
 the transition duration
 <!-- impl Stack::fn get_transition_running -->
 Returns whether the `self` is currently in a transition from one page to
 another.
+
+Since: 3.12
+
 
 # Returns
 
@@ -21389,12 +23057,18 @@ another.
 Gets the type of animation that will be used
 for transitions between pages in `self`.
 
+Since: 3.10
+
+
 # Returns
 
 the current transition type of `self`
 <!-- impl Stack::fn get_vhomogeneous -->
 Gets whether `self` is vertically homogeneous.
 See `Stack::set_vhomogeneous`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -21403,12 +23077,18 @@ whether `self` is vertically homogeneous.
 Gets the currently visible child of `self`, or `None` if
 there are no visible children.
 
+Since: 3.10
+
+
 # Returns
 
 the visible child of the `Stack`
 <!-- impl Stack::fn get_visible_child_name -->
 Returns the name of the currently visible child of `self`, or
 `None` if there is no visible child.
+
+Since: 3.10
+
 
 # Returns
 
@@ -21418,6 +23098,9 @@ Sets the `Stack` to be horizontally homogeneous or not.
 If it is homogeneous, the `Stack` will request the same
 width for all its children. If it isn't, the stack
 may change width when a different child becomes visible.
+
+Since: 3.16
+
 ## `hhomogeneous`
 `true` to make `self` horizontally homogeneous
 <!-- impl Stack::fn set_homogeneous -->
@@ -21429,11 +23112,17 @@ may change size when a different child becomes visible.
 Since 3.16, homogeneity can be controlled separately
 for horizontal and vertical size, with the
 `Stack:hhomogeneous` and `Stack:vhomogeneous`.
+
+Since: 3.10
+
 ## `homogeneous`
 `true` to make `self` homogeneous
 <!-- impl Stack::fn set_transition_duration -->
 Sets the duration that transitions between pages in `self`
 will take.
+
+Since: 3.10
+
 ## `duration`
 the new duration, in milliseconds
 <!-- impl Stack::fn set_transition_type -->
@@ -21444,6 +23133,9 @@ types include various kinds of fades and slides.
 The transition type can be changed without problems
 at runtime, so it is possible to change the animation
 based on the page that is about to become current.
+
+Since: 3.10
+
 ## `transition`
 the new transition type
 <!-- impl Stack::fn set_vhomogeneous -->
@@ -21451,6 +23143,9 @@ Sets the `Stack` to be vertically homogeneous or not.
 If it is homogeneous, the `Stack` will request the same
 height for all its children. If it isn't, the stack
 may change height when a different child becomes visible.
+
+Since: 3.16
+
 ## `vhomogeneous`
 `true` to make `self` vertically homogeneous
 <!-- impl Stack::fn set_visible_child -->
@@ -21464,6 +23159,9 @@ transition type of `self`.
 Note that the `child` widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
+
+Since: 3.10
+
 ## `child`
 a child of `self`
 <!-- impl Stack::fn set_visible_child_full -->
@@ -21472,6 +23170,9 @@ Makes the child with the given name visible.
 Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
+
+Since: 3.10
+
 ## `name`
 the name of the child to make visible
 ## `transition`
@@ -21487,6 +23188,9 @@ transition type of `self`.
 Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
+
+Since: 3.10
+
 ## `name`
 the name of the child to make visible
 <!-- struct StackSidebar -->
@@ -21498,11 +23202,16 @@ organize your UI flow, and add the sidebar to your sidebar area. You
 can use `StackSidebar::set_stack` to connect the `StackSidebar`
 to the `Stack`.
 
+Since: 3.16
+
 # Implements
 
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl StackSidebar::fn new -->
 Creates a new sidebar.
+
+Since: 3.16
+
 
 # Returns
 
@@ -21510,6 +23219,9 @@ the new `StackSidebar`
 <!-- impl StackSidebar::fn get_stack -->
 Retrieves the stack.
 See `StackSidebar::set_stack`.
+
+Since: 3.16
+
 
 # Returns
 
@@ -21520,6 +23232,9 @@ Set the `Stack` associated with this `StackSidebar`.
 
 The sidebar widget will automatically update according to the order
 (packing) and items within the given `Stack`.
+
+Since: 3.16
+
 ## `stack`
 a `Stack`
 <!-- struct StackSwitcher -->
@@ -21535,11 +23250,16 @@ with the same stack widget.
 
 The `StackSwitcher` widget was added in 3.10.
 
+Since: 3.10
+
 # Implements
 
 [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl StackSwitcher::fn new -->
 Create a new `StackSwitcher`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -21548,12 +23268,18 @@ a new `StackSwitcher`.
 Retrieves the stack.
 See `StackSwitcher::set_stack`.
 
+Since: 3.10
+
+
 # Returns
 
 the stack, or `None` if
  none has been set explicitly.
 <!-- impl StackSwitcher::fn set_stack -->
 Sets the stack to control.
+
+Since: 3.10
+
 ## `stack`
 a `Stack`
 <!-- enum StackTransitionType -->
@@ -21607,7 +23333,7 @@ the widget is drawn. The `StateType` enumeration is also used to
 identify different colors in a `Style` for drawing, so states can be
 used for subparts of a widget as well as entire widgets.
 
-# Deprecated
+# Deprecated since 3.14
 
 All APIs that are using this enumeration have been deprecated
  in favor of alternatives using `StateFlags`.
@@ -21630,7 +23356,7 @@ The widget is inconsistent, such as checkbuttons
 <!-- enum StateType::variant Focused -->
 The widget has the keyboard focus.
 <!-- struct StatusIcon -->
-The “system tray” or notification area is normally used for transient icons
+`[Deprecated since 3.14]` The “system tray” or notification area is normally used for transient icons
 that indicate some special state. For example, a system tray icon might
 appear to tell the user that they have new mail, or have an incoming instant
 message, or something along those lines. The basic idea is that creating an
@@ -21659,7 +23385,7 @@ the `gio::Notification` API which works well with `Application`. Also see this
 <!-- impl StatusIcon::fn new -->
 Creates an empty status icon object.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21672,7 +23398,7 @@ Creates a status icon displaying the file `filename`.
 The image will be scaled down to fit in the available
 space in the notification area, if necessary.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `filename`
@@ -21685,7 +23411,7 @@ a new `StatusIcon`
 Creates a status icon displaying a `gio::Icon`. If the icon is a
 themed icon, it will be updated when the theme changes.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `icon`
@@ -21699,7 +23425,7 @@ Creates a status icon displaying an icon from the current icon theme.
 If the current icon theme is changed, the icon will be updated
 appropriately.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `icon_name`
@@ -21714,7 +23440,7 @@ Creates a status icon displaying `pixbuf`.
 The image will be scaled down to fit in the available
 space in the notification area, if necessary.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `pixbuf`
@@ -21729,7 +23455,7 @@ names are `GTK_STOCK_OPEN`, `GTK_STOCK_QUIT`. You can register your
 own stock icon names, see `IconFactory::add_default` and
 `IconFactory::add`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `StatusIcon::new_from_icon_name` instead.
 ## `stock_id`
@@ -21742,7 +23468,7 @@ a new `StatusIcon`
 Menu positioning function to use with `Menu::popup`
 to position `menu` aligned to the status icon `user_data`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `menu`
@@ -21771,7 +23497,7 @@ the information is not reliable unless the status icon
 is embedded in a notification area, see
 `StatusIcon::is_embedded`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `screen`
@@ -21799,7 +23525,7 @@ returned `gio::Icon`.
 
 If this function fails, `icon` is left unchanged;
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21810,7 +23536,7 @@ the displayed icon, or `None` if the image is empty
 Returns the current value of the has-tooltip property.
 See `StatusIcon:has-tooltip` for more information.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21824,7 +23550,7 @@ The storage type of the status icon must be `ImageType::Empty` or
 The returned string is owned by the `StatusIcon` and should not
 be freed or modified.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21838,7 +23564,7 @@ The storage type of the status icon must be `ImageType::Empty` or
 The caller of this function does not own a reference to the
 returned pixbuf.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21849,7 +23575,7 @@ the displayed pixbuf,
 <!-- impl StatusIcon::fn get_screen -->
 Returns the `gdk::Screen` associated with `self`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21866,7 +23592,7 @@ react to size changes.
 Note that the returned size is only meaningful while the
 status icon is embedded (see `StatusIcon::is_embedded`).
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21880,7 +23606,7 @@ The storage type of the status icon must be `ImageType::Empty` or
 The returned string is owned by the `StatusIcon` and should not
 be freed or modified.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `StatusIcon::get_icon_name` instead.
 
@@ -21893,7 +23619,7 @@ Gets the type of representation being used by the `StatusIcon`
 to store image data. If the `StatusIcon` has no image data,
 the return value will be `ImageType::Empty`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21903,7 +23629,7 @@ the image representation being used
 <!-- impl StatusIcon::fn get_title -->
 Gets the title of this tray icon. See `StatusIcon::set_title`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21913,7 +23639,7 @@ the title of the status icon
 <!-- impl StatusIcon::fn get_tooltip_markup -->
 Gets the contents of the tooltip for `self`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21924,7 +23650,7 @@ the tooltip text, or `None`. You should free the
 <!-- impl StatusIcon::fn get_tooltip_text -->
 Gets the contents of the tooltip for `self`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21938,7 +23664,7 @@ Note that being visible does not guarantee that
 the user can actually see the icon, see also
 `StatusIcon::is_embedded`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21957,7 +23683,7 @@ This function is not intended for other use cases which are
 more likely to be met by one of the non-X11 specific methods, such
 as `StatusIcon::position_menu`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21969,7 +23695,7 @@ underlying X11 Window
 Returns whether the status icon is embedded in a notification
 area.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 
@@ -21981,7 +23707,7 @@ Use notifications
 Makes `self` display the file `filename`.
 See `StatusIcon::new_from_file` for details.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `filename`
@@ -21990,7 +23716,7 @@ a filename
 Makes `self` display the `gio::Icon`.
 See `StatusIcon::new_from_gicon` for details.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `icon`
@@ -22000,7 +23726,7 @@ Makes `self` display the icon named `icon_name` from the
 current icon theme.
 See `StatusIcon::new_from_icon_name` for details.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `icon_name`
@@ -22009,7 +23735,7 @@ an icon name
 Makes `self` display `pixbuf`.
 See `StatusIcon::new_from_pixbuf` for details.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `pixbuf`
@@ -22018,7 +23744,7 @@ a `gdk_pixbuf::Pixbuf` or `None`
 Makes `self` display the stock icon with the id `stock_id`.
 See `StatusIcon::new_from_stock` for details.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `StatusIcon::set_from_icon_name` instead.
 ## `stock_id`
@@ -22027,7 +23753,7 @@ a stock icon id
 Sets the has-tooltip property on `self` to `has_tooltip`.
 See `StatusIcon:has-tooltip` for more information.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `has_tooltip`
@@ -22038,7 +23764,7 @@ This should be a string identifying this icon. It is may be
 used for sorting the icons in the tray and will not be shown to
 the user.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `name`
@@ -22048,7 +23774,7 @@ Sets the `gdk::Screen` where `self` is displayed; if
 the icon is already mapped, it will be unmapped, and
 then remapped on the new screen.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `screen`
@@ -22059,7 +23785,7 @@ This should be a short, human-readable, localized string
 describing the tray icon. It may be used by tools like screen
 readers to render the tray icon.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `title`
@@ -22074,7 +23800,7 @@ and of the default handler for the `StatusIcon::query-tooltip` signal.
 See also the `StatusIcon:tooltip-markup` property and
 `Tooltip::set_markup`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `markup`
@@ -22089,7 +23815,7 @@ signal.
 See also the `StatusIcon:tooltip-text` property and
 `Tooltip::set_text`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `text`
@@ -22097,7 +23823,7 @@ the contents of the tooltip for `self`
 <!-- impl StatusIcon::fn set_visible -->
 Shows or hides a status icon.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use notifications
 ## `visible`
@@ -22370,6 +24096,9 @@ would apply to even and odd rows, respectively.
 
 Region names must only contain lowercase letters
 and “-”, starting always with a lowercase letter.
+
+# Deprecated since 3.14
+
 ## `region_name`
 region name to use in styling
 ## `flags`
@@ -22385,7 +24114,7 @@ in all circumstances you would expect all widget to be stopped,
 so this should be only used in complex widgets with different
 animatable regions.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function does nothing.
 ## `region_id`
@@ -22408,7 +24137,7 @@ to use the returned value to draw the background with it; the correct way to
 achieve this result is to use `gtk_render_background` instead, along with CSS
 style classes to modify the color to be rendered.
 
-# Deprecated
+# Deprecated since 3.16
 
 Use `gtk_render_background` instead.
 ## `state`
@@ -22425,7 +24154,7 @@ return value for the border settings
 <!-- impl StyleContext::fn get_border_color -->
 Gets the border color for a given state.
 
-# Deprecated
+# Deprecated since 3.16
 
 Use `gtk_render_border` instead.
 ## `state`
@@ -22441,7 +24170,7 @@ return value for the foreground color
 <!-- impl StyleContext::fn get_direction -->
 Returns the widget direction used for rendering.
 
-# Deprecated
+# Deprecated since 3.8
 
 Use `StyleContext::get_state` and
  check for `StateFlags::DirLtr` and
@@ -22455,7 +24184,7 @@ Returns the font description for a given state. The returned
 object is const and will remain valid until the
 `StyleContext::changed` signal happens.
 
-# Deprecated
+# Deprecated since 3.8
 
 Use `StyleContext::get` for "font" or
  subproperties instead.
@@ -22469,6 +24198,9 @@ the `pango::FontDescription` for the given
  freed.
 <!-- impl StyleContext::fn get_frame_clock -->
 Returns the `gdk::FrameClock` to which `self` is attached.
+
+Since: 3.8
+
 
 # Returns
 
@@ -22520,6 +24252,9 @@ state to retrieve the property value for
 return location for the style property value
 <!-- impl StyleContext::fn get_scale -->
 Returns the scale used for assets.
+
+Since: 3.10
+
 
 # Returns
 
@@ -22591,6 +24326,9 @@ a class name
 Returns `true` if `self` has the region defined.
 If `flags_return` is not `None`, it is set to the flags
 affecting the region.
+
+# Deprecated since 3.14
+
 ## `region_name`
 a region name
 ## `flags_return`
@@ -22604,7 +24342,7 @@ Invalidates `self` style information, so it will be reconstructed
 again. It is useful if you modify the `self` and need the new
 information immediately.
 
-# Deprecated
+# Deprecated since 3.12
 
 Style contexts are invalidated automatically.
 <!-- impl StyleContext::fn list_classes -->
@@ -22618,6 +24356,9 @@ a `glib::List` of
  itself with `glib::List::free` when you are done with it.
 <!-- impl StyleContext::fn list_regions -->
 Returns the list of regions currently defined in `self`.
+
+# Deprecated since 3.14
+
 
 # Returns
 
@@ -22640,7 +24381,7 @@ Looks up `stock_id` in the icon factories associated to `self` and
 the default icon factory, returning an icon set if found, otherwise
 `None`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `IconTheme::lookup_icon` instead.
 ## `stock_id`
@@ -22693,7 +24434,7 @@ the button.
 Note that `state` is used when finding the transition parameters, which
 is why the style places the transition under the :hover pseudo-class.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function does nothing.
 ## `window`
@@ -22710,7 +24451,7 @@ state to trigger transition for
 Pops an animatable region from `self`.
 See `StyleContext::push_animatable_region`.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function does nothing.
 <!-- impl StyleContext::fn push_animatable_region -->
@@ -22724,7 +24465,7 @@ changes.
 The `region_id` used must be unique in `self` so the themes
 can uniquely identify rendered elements subject to a state transition.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function does nothing.
 ## `region_id`
@@ -22739,6 +24480,9 @@ Removes `provider` from the style providers list in `self`.
 a `StyleProvider`
 <!-- impl StyleContext::fn remove_region -->
 Removes a region from `self`.
+
+# Deprecated since 3.14
+
 ## `region_name`
 region name to unset
 <!-- impl StyleContext::fn restore -->
@@ -22758,7 +24502,7 @@ should be called together with it so the invalidation
 areas for any ongoing animation are scrolled together
 with it.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function does nothing.
 ## `window`
@@ -22780,7 +24524,7 @@ If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to
 call this yourself.
 
-# Deprecated
+# Deprecated since 3.8
 
 Use `StyleContext::set_state` with
  `StateFlags::DirLtr` and `StateFlags::DirRtl`
@@ -22795,6 +24539,9 @@ The frame clock is used for the timing of animations.
 If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to
 call this yourself.
+
+Since: 3.8
+
 ## `frame_clock`
 a `gdk::FrameClock`
 <!-- impl StyleContext::fn set_junction_sides -->
@@ -22832,6 +24579,9 @@ this yourself.
 a `WidgetPath`
 <!-- impl StyleContext::fn set_scale -->
 Sets the scale to use when getting image assets for the style .
+
+Since: 3.10
+
 ## `scale`
 scale
 <!-- impl StyleContext::fn set_screen -->
@@ -22860,7 +24610,7 @@ it’s closest to being set. This means transition animation will
 run from 0 to 1 when `state` is being set and from 1 to 0 when
 it’s being unset.
 
-# Deprecated
+# Deprecated since 3.6
 
 This function always returns `false`
 ## `state`
@@ -22897,6 +24647,9 @@ Gets whether the `Switch` is in its “on” or “off” state.
 <!-- impl Switch::fn get_state -->
 Gets the underlying state of the `Switch`.
 
+Since: 3.14
+
+
 # Returns
 
 the underlying state
@@ -22912,8 +24665,45 @@ is set up for delayed state changes. This function is typically
 called from a `Switch::state-set` signal handler.
 
 See `Switch::state-set` for details.
+
+Since: 3.14
+
 ## `state`
 the new state
+<!-- struct TextAttributes -->
+Using `TextAttributes` directly should rarely be necessary.
+It’s primarily useful with `TextIter::get_attributes`.
+As with most GTK+ structs, the fields in this struct should only
+be read, never modified directly.
+<!-- impl TextAttributes::fn new -->
+Creates a `TextAttributes`, which describes
+a set of properties on some text.
+
+# Returns
+
+a new `TextAttributes`,
+ free with `TextAttributes::unref`.
+<!-- impl TextAttributes::fn copy -->
+Copies `self` and returns a new `TextAttributes`.
+
+# Returns
+
+a copy of `self`,
+ free with `TextAttributes::unref`
+<!-- impl TextAttributes::fn copy_values -->
+Copies the values from `self` to `dest` so that `dest` has
+the same values as `self`. Frees existing values in `dest`.
+## `dest`
+another `TextAttributes`
+<!-- impl TextAttributes::fn ref -->
+Increments the reference count on `self`.
+
+# Returns
+
+the `TextAttributes` that were passed in
+<!-- impl TextAttributes::fn unref -->
+Decrements the reference count on `self`, freeing the structure
+if the reference count reaches 0.
 <!-- struct TextBuffer -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -23507,6 +25297,9 @@ in its entirety and must be nul-terminated and valid UTF-8. Emits the
 `TextBuffer::insert-text` signal, possibly multiple times; insertion
 actually occurs in the default handler for the signal. `iter` will point
 to the end of the inserted text on return.
+
+Since: 3.16
+
 ## `iter`
 location to insert the markup
 ## `markup`
@@ -23847,6 +25640,9 @@ Selects the current word. It is triggered by
 <!-- enum TextExtendSelection::variant Line -->
 Selects the current line. It is triggered by
  a triple-click for example.
+
+Since: 3.16
+
 <!-- struct TextIter -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -25224,7 +27020,7 @@ whether text is editable by default
 <!-- impl TextView::fn get_hadjustment -->
 Gets the horizontal-scrolling `Adjustment`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_hadjustment`
 
@@ -25241,8 +27037,14 @@ The indentation may be negative.
 number of pixels of indentation
 <!-- impl TextView::fn get_input_hints -->
 Gets the value of the `TextView:input-hints` property.
+
+Since: 3.6
+
 <!-- impl TextView::fn get_input_purpose -->
 Gets the value of the `TextView:input-purpose` property.
+
+Since: 3.6
+
 <!-- impl TextView::fn get_iter_at_location -->
 Retrieves the iterator at buffer coordinates `x` and `y`. Buffer
 coordinates are coordinates for the entire buffer, not just the
@@ -25325,6 +27127,9 @@ return location for a height
 <!-- impl TextView::fn get_monospace -->
 Gets the value of the `TextView:monospace` property.
 
+Since: 3.16
+
+
 # Returns
 
 `true` if monospace fonts are desired
@@ -25372,7 +27177,7 @@ copy of default tab array, or `None` if “standard”
 <!-- impl TextView::fn get_vadjustment -->
 Gets the vertical-scrolling `Adjustment`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_vadjustment`
 
@@ -25602,12 +27407,18 @@ indentation in pixels
 <!-- impl TextView::fn set_input_hints -->
 Sets the `TextView:input-hints` property, which
 allows input methods to fine-tune their behaviour.
+
+Since: 3.6
+
 ## `hints`
 the hints
 <!-- impl TextView::fn set_input_purpose -->
 Sets the `TextView:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
+
+Since: 3.6
+
 ## `purpose`
 the purpose
 <!-- impl TextView::fn set_justification -->
@@ -25624,6 +27435,9 @@ left margin in pixels
 Sets the `TextView:monospace` property, which
 indicates that the text view should use monospace
 fonts.
+
+Since: 3.16
+
 ## `monospace`
 `true` to request monospace styling
 <!-- impl TextView::fn set_overwrite -->
@@ -25874,7 +27688,7 @@ and `GTK_STOCK_APPLY`.
 
 It is an error if `stock_id` is not a name of a stock item.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `ToggleToolButton::new` instead.
 ## `stock_id`
@@ -25943,7 +27757,7 @@ and `GTK_STOCK_APPLY`.
 
 It is an error if `stock_id` is not a name of a stock item.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `ToolButton::new` instead.
 ## `stock_id`
@@ -25988,7 +27802,7 @@ The widget used as label
 Returns the name of the stock item. See `ToolButtonExt::set_stock_id`.
 The returned string is owned by GTK+ and must not be freed or modifed.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `ToolButtonExt::get_icon_name` instead.
 
@@ -26038,7 +27852,7 @@ Sets the name of the stock item. See `ToolButton::new_from_stock`.
 The stock_id property only has an effect if not
 overridden by non-`None` “label” and “icon_widget” properties.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `ToolButtonExt::set_icon_name` instead.
 ## `stock_id`
@@ -26586,7 +28400,7 @@ the index of group or -1 if `group` is not a child of `self`
 <!-- impl ToolPalette::fn get_hadjustment -->
 Gets the horizontal adjustment of the tool palette.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_hadjustment`
 
@@ -26609,7 +28423,7 @@ the `ToolbarStyle` of items in the tool palette.
 <!-- impl ToolPalette::fn get_vadjustment -->
 Gets the vertical adjustment of the tool palette.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_vadjustment`
 
@@ -27426,6 +29240,9 @@ Emits the `TreeModel::rows-reordered` signal on `self`.
 
 This should be called by models when their rows have been
 reordered.
+
+Since: 3.10
+
 ## `path`
 a `TreePath`-struct pointing to the tree node whose children
  have been reordered
@@ -27457,6 +29274,7 @@ this means, see `TreeModel::ref_node`.
 Please note that nodes that are deleted are not unreffed.
 ## `iter`
 the `TreeIter`-struct
+<!-- struct TreePath -->
 <!-- impl TreePath::fn new -->
 Creates a new `TreePath`-struct.
 This refers to a row.
@@ -27482,6 +29300,9 @@ first integer
 A newly created `TreePath`-struct
 <!-- impl TreePath::fn new_from_indicesv -->
 Creates a new path with the given `indices` array of `length`.
+
+Since: 3.12
+
 ## `indices`
 array of indices
 ## `length`
@@ -28366,6 +30187,9 @@ path to a row.
 <!-- impl TreeView::fn get_activate_on_single_click -->
 Gets the setting set by `TreeView::set_activate_on_single_click`.
 
+Since: 3.8
+
+
 # Returns
 
 `true` if row-activated will be emitted on a single click
@@ -28502,7 +30326,7 @@ are enabled.
 <!-- impl TreeView::fn get_hadjustment -->
 Gets the `Adjustment` currently being used for the horizontal aspect.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_hadjustment`
 
@@ -28618,6 +30442,9 @@ user to select multiple rows by dragging the mouse.
 <!-- impl TreeView::fn get_rules_hint -->
 Gets the setting set by `TreeView::set_rules_hint`.
 
+# Deprecated since 3.14
+
+
 # Returns
 
 `true` if the hint is set
@@ -28700,7 +30527,7 @@ whether or not the given tooltip context points to a row.
 <!-- impl TreeView::fn get_vadjustment -->
 Gets the `Adjustment` currently being used for the vertical aspect.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_vadjustment`
 
@@ -28902,6 +30729,9 @@ Y coordinate of new top-left pixel of visible area, or -1
 <!-- impl TreeView::fn set_activate_on_single_click -->
 Cause the `TreeView::row-activated` signal to be emitted
 on a single click instead of a double click.
+
+Since: 3.8
+
 ## `single`
 `true` to emit row-activated on a single click
 <!-- impl TreeView::fn set_column_drag_function -->
@@ -28966,7 +30796,7 @@ This function should almost never be used. It is meant for private use by
 ATK for determining the number of visible children that are removed when the
 user collapses a row, or a row is deleted.
 
-# Deprecated
+# Deprecated since 3.4
 
 Accessibility does not need the function anymore.
 ## `func`
@@ -29020,7 +30850,7 @@ enable.
 <!-- impl TreeView::fn set_hadjustment -->
 Sets the `Adjustment` for the current horizontal aspect.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_hadjustment`
 ## `adjustment`
@@ -29109,6 +30939,9 @@ themes. You should call this function only as a semantic hint to
 the theme engine that your tree makes alternating colors useful
 from a functional standpoint (since it has lots of columns,
 generally).
+
+# Deprecated since 3.14
+
 ## `setting`
 `true` if the tree requires reading across rows
 <!-- impl TreeView::fn set_search_column -->
@@ -29204,7 +31037,7 @@ a `TreePath`
 <!-- impl TreeView::fn set_vadjustment -->
 Sets the `Adjustment` for the current vertical aspect.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_vadjustment`
 ## `adjustment`
@@ -29713,7 +31546,7 @@ a `gdk::Window`
 <!-- impl Viewport::fn get_hadjustment -->
 Returns the horizontal adjustment of the viewport.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_hadjustment`
 
@@ -29730,7 +31563,7 @@ the shadow type
 <!-- impl Viewport::fn get_vadjustment -->
 Returns the vertical adjustment of the viewport.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::get_vadjustment`
 
@@ -29746,7 +31579,7 @@ a `gdk::Window`
 <!-- impl Viewport::fn set_hadjustment -->
 Sets the horizontal adjustment of the viewport.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_hadjustment`
 ## `adjustment`
@@ -29758,7 +31591,7 @@ the new shadow type.
 <!-- impl Viewport::fn set_vadjustment -->
 Sets the vertical adjustment of the viewport.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `Scrollable::set_vadjustment`
 ## `adjustment`
@@ -30070,7 +31903,7 @@ Trait containing all `Widget` methods.
 
 # Implementors
 
-[`Actionable`](struct.Actionable.html), [`Calendar`](struct.Calendar.html), [`CellEditable`](struct.CellEditable.html), [`Container`](struct.Container.html), [`DrawingArea`](struct.DrawingArea.html), [`Entry`](struct.Entry.html), [`FileChooser`](struct.FileChooser.html), [`GLArea`](struct.GLArea.html), [`LevelBar`](struct.LevelBar.html), [`Misc`](struct.Misc.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`Separator`](struct.Separator.html), [`Spinner`](struct.Spinner.html), [`Switch`](struct.Switch.html), [`ToolShell`](struct.ToolShell.html), [`Widget`](struct.Widget.html)
+[`Actionable`](struct.Actionable.html), [`AppChooser`](struct.AppChooser.html), [`Calendar`](struct.Calendar.html), [`CellEditable`](struct.CellEditable.html), [`Container`](struct.Container.html), [`DrawingArea`](struct.DrawingArea.html), [`Entry`](struct.Entry.html), [`FileChooser`](struct.FileChooser.html), [`GLArea`](struct.GLArea.html), [`LevelBar`](struct.LevelBar.html), [`Misc`](struct.Misc.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`Separator`](struct.Separator.html), [`Spinner`](struct.Spinner.html), [`Switch`](struct.Switch.html), [`ToolShell`](struct.ToolShell.html), [`Widget`](struct.Widget.html)
 <!-- impl Widget::fn new -->
 This is a convenience function for creating a widget and setting
 its properties in one go. For example you might write:
@@ -30096,7 +31929,7 @@ the current default direction.
 <!-- impl Widget::fn get_default_style -->
 Returns the default style used by all widgets initially.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead, and
  `CssProvider::get_default` to obtain a `StyleProvider`
@@ -30109,7 +31942,7 @@ the default style. This `Style`
 <!-- impl Widget::fn pop_composite_child -->
 Cancels the effect of a previous call to `Widget::push_composite_child`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `WidgetClass::set_template`, or don’t use this API at all.
 <!-- impl Widget::fn push_composite_child -->
@@ -30122,7 +31955,7 @@ container. Composite children aren’t treated differently by GTK (but
 see `ContainerExt::foreach` vs. `ContainerExt::forall`), but e.g. GUI
 builders might want to treat them in a different way.
 
-# Deprecated
+# Deprecated since 3.10
 
 This API never really worked well and was mostly unused, now
 we have a more complete mechanism for composite children, see `WidgetClass::set_template`.
@@ -30203,6 +32036,9 @@ trying to display isolated frames at particular times.
 This is a more convenient alternative to connecting directly to the
 `gdk::FrameClock::update` signal of `gdk::FrameClock`, since you don't
 have to worry about when a `gdk::FrameClock` is assigned to a widget.
+
+Since: 3.8
+
 ## `callback`
 function to call for updating animations
 ## `user_data`
@@ -30269,7 +32105,7 @@ the name of a child property installed on the
 Same as `WidgetExt::path`, but always uses the name of a widget’s type,
 never uses a custom name set with `WidgetExt::set_name`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::get_path` instead
 ## `path_length`
@@ -30365,7 +32201,7 @@ a `gdk::Device`
 This function is equivalent to `WidgetExt::drag_begin_with_coordinates`,
 passing -1, -1 as coordinates.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `WidgetExt::drag_begin_with_coordinates` instead
 ## `targets`
@@ -30407,6 +32243,9 @@ button is held down for some time. Try to save the last event that you got
 from the mouse, using `gdk_event_copy`, and pass it to this function
 (remember to free the event with `gdk_event_free` when you are done).
 If you can really not pass a real event, pass `None` instead.
+
+Since: 3.10
+
 ## `targets`
 The targets (data formats) in which the
  source can provide the data
@@ -30656,7 +32495,7 @@ the `gdk_pixbuf::Pixbuf` for the drag icon
 Sets the icon that will be used for drags from a particular source
 to a stock icon.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `WidgetExt::drag_source_set_icon_name` instead.
 ## `stock_id`
@@ -30699,7 +32538,7 @@ Not a very useful function; most of the time, if you
 want the style, the widget is realized, and realized
 widgets are guaranteed to have a style already.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead
 <!-- trait WidgetExt::fn error_bell -->
@@ -30755,6 +32594,9 @@ Retrieves the `gio::ActionGroup` that was registered using `prefix`. The resulti
 ancestry.
 
 If no action group was found matching `prefix`, then `None` is returned.
+
+Since: 3.16
+
 ## `prefix`
 The “prefix” of the action group.
 
@@ -30766,6 +32608,9 @@ Returns the baseline that has currently been allocated to `self`.
 This function is intended to be used when implementing handlers
 for the `Widget::draw` function, and when allocating child
 widgets in `Widget::size_allocate`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -30864,7 +32709,7 @@ since the last time a resize was queued. In general, only container
 implementations have this information; applications should use
 `WidgetExt::size_request`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::get_preferred_size` instead.
 ## `requisition`
@@ -30888,6 +32733,9 @@ happen. Other toolkits call it the bounding box.
 
 Historically, in GTK+ the clip area has been equal to the allocation
 retrieved via `WidgetExt::get_allocation`.
+
+Since: 3.14
+
 ## `clip`
 a pointer to a `Allocation` to copy to
 <!-- trait WidgetExt::fn get_clipboard -->
@@ -30911,7 +32759,7 @@ the appropriate clipboard object. If no
 <!-- trait WidgetExt::fn get_composite_name -->
 Obtains the composite name of a widget.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `WidgetClass::set_template`, or don’t use this API at all.
 
@@ -31000,6 +32848,9 @@ change the widget’s frame clock.
 
 Unrealized widgets do not have a frame clock.
 
+Since: 3.8
+
+
 # Returns
 
 a `gdk::FrameClock` (or `None` if widget is unrealized)
@@ -31077,13 +32928,16 @@ The bottom margin of `self`
 <!-- trait WidgetExt::fn get_margin_end -->
 Gets the value of the `Widget:margin-end` property.
 
+Since: 3.12
+
+
 # Returns
 
 The end margin of `self`
 <!-- trait WidgetExt::fn get_margin_left -->
 Gets the value of the `Widget:margin-left` property.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `WidgetExt::get_margin_start` instead.
 
@@ -31093,7 +32947,7 @@ The left margin of `self`
 <!-- trait WidgetExt::fn get_margin_right -->
 Gets the value of the `Widget:margin-right` property.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `WidgetExt::get_margin_end` instead.
 
@@ -31102,6 +32956,9 @@ Use `WidgetExt::get_margin_end` instead.
 The right margin of `self`
 <!-- trait WidgetExt::fn get_margin_start -->
 Gets the value of the `Widget:margin-start` property.
+
+Since: 3.12
+
 
 # Returns
 
@@ -31137,7 +32994,7 @@ the passed-in style and sets the copy as the new modifier style,
 thus dropping any reference to the old modifier style. Add a reference
 to the modifier style if you want to keep it alive.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` with a custom `StyleProvider` instead
 
@@ -31166,6 +33023,9 @@ the current value of the “no-show-all” property.
 <!-- trait WidgetExt::fn get_opacity -->
 Fetches the requested opacity for this widget.
 See `WidgetExt::set_opacity`.
+
+Since: 3.8
+
 
 # Returns
 
@@ -31209,7 +33069,7 @@ defined as `self`->window coordinates for widgets that return `true` for
 `WidgetExt::get_has_window`; and are relative to `self`->allocation.x,
 `self`->allocation.y otherwise.
 
-# Deprecated
+# Deprecated since 3.4
 
 Use `gdk::Window::get_device_position` instead.
 ## `x`
@@ -31240,6 +33100,9 @@ The returned request will be modified by the
 and by any ``GtkSizeGroups`` that have been applied. That is, the returned request
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
+
+Since: 3.10
+
 ## `width`
 the width which is available for allocation, or -1 if none
 ## `minimum_height`
@@ -31353,7 +33216,7 @@ changed after some internal state change (so that they can call
 
 Normally, `WidgetExt::size_request` should be used.
 
-# Deprecated
+# Deprecated since 3.0
 
 The `Requisition` cache on the widget was
 removed, If you need to cache sizes across requests and allocations,
@@ -31370,7 +33233,7 @@ The root window is useful for such purposes as creating a popup
 create display specific resources when a widget has been realized,
 and you should free those resources when the widget is unrealized.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `gdk::Screen::get_root_window` instead
 
@@ -31383,6 +33246,9 @@ to the actual device pixels. On traditional systems this is 1, on
 high density outputs, it can be a higher value (typically 2).
 
 See `gdk::Window::get_scale_factor`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -31435,7 +33301,7 @@ return location for height, or `None`
 <!-- trait WidgetExt::fn get_state -->
 Returns the widget’s state. See `WidgetExt::set_state`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::get_state_flags` instead.
 
@@ -31454,7 +33320,7 @@ The state flags for widget
 <!-- trait WidgetExt::fn get_style -->
 Simply an accessor function that returns `self`->style.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead
 
@@ -31562,6 +33428,9 @@ the vertical alignment of `self`, ignoring baseline alignment
 <!-- trait WidgetExt::fn get_valign_with_baseline -->
 Gets the value of the `Widget:valign` property, including
 `Align::Baseline`.
+
+Since: 3.10
+
 
 # Returns
 
@@ -31672,7 +33541,7 @@ See also `WidgetExt::grab_add`.
 <!-- trait WidgetExt::fn has_rc_style -->
 Determines if the widget style has been looked up through the rc mechanism.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead
 
@@ -31744,6 +33613,9 @@ Another reason is that when calling `gobject::Object::new` on a widget with
 composite templates, it’s important to build the composite widgets
 before the construct properties are set. Properties passed to `gobject::Object::new`
 should take precedence over properties set in the private template XML.
+
+Since: 3.10
+
 <!-- trait WidgetExt::fn input_shape_combine_region -->
 Sets an input shape for this widget’s GDK window. This allows for
 windows which react to mouse click in a nonrectangular region, see
@@ -31758,6 +33630,9 @@ setting their “action-name” to
 
 If `group` is `None`, a previously inserted group for `name` is removed
 from `self`.
+
+Since: 3.6
+
 ## `name`
 the prefix for actions in `group`
 ## `group`
@@ -31839,6 +33714,9 @@ This function does not check if the widget is obscured in any way.
 
 See also `WidgetExt::get_visible` and `WidgetExt::set_visible`
 
+Since: 3.8
+
+
 # Returns
 
 `true` if the widget and all its parents are visible
@@ -31894,6 +33772,9 @@ by connecting to the `AccelGroup::accel-changed` signal of the
 Retrieves a `None`-terminated array of strings containing the prefixes of
 `gio::ActionGroup`'s available to `self`.
 
+Since: 3.16
+
+
 # Returns
 
 a `None`-terminated array of strings.
@@ -31946,7 +33827,7 @@ and `TextView`. See also `WidgetExt::modify_style`.
 > of a rectangular area around a label, try placing the label in
 > a `EventBox` widget and setting the base color on that.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_background_color` instead
 ## `state`
@@ -31971,7 +33852,7 @@ See also `WidgetExt::modify_style`.
 > of a rectangular area around a label, try placing the label in
 > a `EventBox` widget and setting the background color on that.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_background_color` instead
 ## `state`
@@ -31988,7 +33869,7 @@ style properties.
 All other style values are left untouched.
 See also `WidgetExt::modify_style`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_cursor` instead.
 ## `primary`
@@ -32005,7 +33886,7 @@ Sets the foreground color for a widget in a particular state.
 All other style values are left untouched.
 See also `WidgetExt::modify_style`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_color` instead
 ## `state`
@@ -32020,7 +33901,7 @@ Sets the font to use for a widget.
 All other style values are left untouched.
 See also `WidgetExt::modify_style`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_font` instead
 ## `font_desc`
@@ -32046,7 +33927,7 @@ if you first call `WidgetExt::modify_style`, subsequent calls
 to such functions `WidgetExt::modify_fg` will have a cumulative
 effect with the initial modifications.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` with a custom `StyleProvider` instead
 ## `style`
@@ -32060,7 +33941,7 @@ base color (see `WidgetExt::modify_base`) for widgets such
 as `Entry` and `TextView`.
 See also `WidgetExt::modify_style`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::override_color` instead
 ## `state`
@@ -32075,7 +33956,7 @@ Sets the background color to use for a widget.
 All other style values are left untouched.
 See `WidgetExt::override_color`.
 
-# Deprecated
+# Deprecated since 3.16
 
 This function is not useful in the context of CSS-based
  rendering. If you wish to change the way a widget renders its background
@@ -32116,7 +33997,7 @@ these cases it is better to fully style such widgets through a
 `CssProvider` with the `GTK_STYLE_PROVIDER_PRIORITY_APPLICATION`
 priority.
 
-# Deprecated
+# Deprecated since 3.16
 
 Use a custom style provider and style classes instead
 ## `state`
@@ -32133,7 +34014,7 @@ See also `WidgetExt::modify_style`.
 Note that the underlying properties have the `gdk::Color` type,
 so the alpha value in `primary` and `secondary` will be ignored.
 
-# Deprecated
+# Deprecated since 3.16
 
 This function is not useful in the context of CSS-based
  rendering. If you wish to change the color used to render the primary
@@ -32151,7 +34032,7 @@ the color to use for secondary cursor (does not
 Sets the font to use for a widget. All other style values are
 left untouched. See `WidgetExt::override_color`.
 
-# Deprecated
+# Deprecated since 3.16
 
 This function is not useful in the context of CSS-based
  rendering. If you wish to change the font a widget uses to render its text
@@ -32167,7 +34048,7 @@ All other style values are left untouched.
 See `WidgetExt::override_color` for overriding the foreground
 or background color.
 
-# Deprecated
+# Deprecated since 3.16
 
 This function is not useful in the context of CSS-based
  rendering. If you wish to change the color used to render symbolic icons
@@ -32193,7 +34074,7 @@ file. `path_reversed_p` fills in the path in reverse order,
 i.e. starting with `self`’s name instead of starting with the name
 of `self`’s outermost ancestor.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::get_path` instead
 ## `path_length`
@@ -32285,7 +34166,7 @@ Computes the intersection of a `self`’s area and `region`, returning
 the intersection. The result may be empty, use `cairo_region_is_empty` to
 check.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `WidgetExt::get_allocation` and
  `cairo_region_intersect_rectangle` to get the same behavior.
@@ -32308,6 +34189,9 @@ Before 3.8 you needed to call `gdk::Window::set_user_data` directly to set
 this up. This is now deprecated and you should use `WidgetExt::register_window`
 instead. Old code will keep working as is, although some new features like
 transparency might not work perfectly.
+
+Since: 3.8
+
 ## `window`
 a `gdk::Window`
 <!-- trait WidgetExt::fn remove_accelerator -->
@@ -32334,6 +34218,9 @@ a `Widget` that was previously set as a mnemnic label for
 <!-- trait WidgetExt::fn remove_tick_callback -->
 Removes a tick callback previously registered with
 `WidgetExt::add_tick_callback`.
+
+Since: 3.8
+
 ## `id`
 an id returned by `WidgetExt::add_tick_callback`
 <!-- trait WidgetExt::fn render_icon -->
@@ -32349,7 +34236,7 @@ The pixels in the returned `gdk_pixbuf::Pixbuf` are shared with the rest of
 the application and should not be modified. The pixbuf should be
 freed after use with `gobject::Object::unref`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::render_icon_pixbuf` instead.
 ## `stock_id`
@@ -32376,7 +34263,7 @@ The pixels in the returned `gdk_pixbuf::Pixbuf` are shared with the rest of
 the application and should not be modified. The pixbuf should be freed
 after use with `gobject::Object::unref`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `IconTheme::load_icon` instead.
 ## `stock_id`
@@ -32394,7 +34281,7 @@ a new pixbuf, or `None` if the
 Moves a widget from one `Container` to another, handling reference
 count issues to avoid destroying the widget.
 
-# Deprecated
+# Deprecated since 3.14
 
 Use `ContainerExt::remove` and `ContainerExt::add`.
 ## `new_parent`
@@ -32406,7 +34293,7 @@ for the currently loaded RC file settings.
 
 This function is not useful for applications.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead, and `WidgetExt::reset_style`
 <!-- trait WidgetExt::fn reset_style -->
@@ -32559,13 +34446,16 @@ The clip set should be the area that `self` draws on. If `self` is a
 
 If this function is not called by `self` during a ::size-allocate handler,
 the clip will be set to `self`'s allocation.
+
+Since: 3.14
+
 ## `clip`
 a pointer to a `Allocation` to copy from
 <!-- trait WidgetExt::fn set_composite_name -->
 Sets a widgets composite name. The widget must be
 a composite child of its parent; see `Widget::push_composite_child`.
 
-# Deprecated
+# Deprecated since 3.10
 
 Use `WidgetClass::set_template`, or don’t use this API at all.
 ## `name`
@@ -32635,7 +34525,7 @@ pixmap will not happen automatically (as it is done in
 Since 3.10 this function only works for widgets with native
 windows.
 
-# Deprecated
+# Deprecated since 3.14
 
 This does not work under non-X11 backends,
 and it should not be used in newly written code.
@@ -32739,13 +34629,16 @@ the bottom margin
 <!-- trait WidgetExt::fn set_margin_end -->
 Sets the end margin of `self`.
 See the `Widget:margin-end` property.
+
+Since: 3.12
+
 ## `margin`
 the end margin
 <!-- trait WidgetExt::fn set_margin_left -->
 Sets the left margin of `self`.
 See the `Widget:margin-left` property.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `WidgetExt::set_margin_start` instead.
 ## `margin`
@@ -32754,7 +34647,7 @@ the left margin
 Sets the right margin of `self`.
 See the `Widget:margin-right` property.
 
-# Deprecated
+# Deprecated since 3.12
 
 Use `WidgetExt::set_margin_end` instead.
 ## `margin`
@@ -32762,6 +34655,9 @@ the right margin
 <!-- trait WidgetExt::fn set_margin_start -->
 Sets the start margin of `self`.
 See the `Widget:margin-start` property.
+
+Since: 3.12
+
 ## `margin`
 the start margin
 <!-- trait WidgetExt::fn set_margin_top -->
@@ -32804,6 +34700,9 @@ shown causes it to flicker once on Windows.
 
 For child widgets it doesn’t work if any affected widget has a native window, or
 disables double buffering.
+
+Since: 3.8
+
 ## `opacity`
 desired opacity, between 0 and 1
 <!-- trait WidgetExt::fn set_parent -->
@@ -32911,7 +34810,7 @@ This function is for use in widget implementations. Sets the state
 of a widget (insensitive, prelighted, etc.) Usually you should set
 the state using wrapper functions such as `WidgetExt::set_sensitive`.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::set_state_flags` instead.
 ## `state`
@@ -32938,7 +34837,7 @@ Whether to clear state before turning on `flags`
 Used to set the `Style` for a widget (`self`->style). Since
 GTK 3, this function does nothing, the passed in style is ignored.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `StyleContext` instead
 ## `style`
@@ -33090,6 +34989,9 @@ margins, and applying the widget’s `Widget:halign` and
 
 If the child widget does not have a valign of `Align::Baseline` the
 baseline argument is ignored and -1 is used instead.
+
+Since: 3.10
+
 ## `allocation`
 position and size to be allocated to `self`
 ## `baseline`
@@ -33108,7 +35010,7 @@ needed. Multihead-aware applications should keep this in mind.
 Also remember that the size request is not necessarily the size
 a widget will actually be allocated.
 
-# Deprecated
+# Deprecated since 3.0
 
 Use `WidgetExt::get_preferred_size` instead.
 ## `requisition`
@@ -33127,7 +35029,7 @@ implementation which does not chain up to its parent class'
 “realize” implementation, because one of the parent classes
 (finally `Widget`) would attach the style itself.
 
-# Deprecated
+# Deprecated since 3.0
 
 This step is unnecessary with `StyleContext`.
 <!-- trait WidgetExt::fn style_get -->
@@ -33193,6 +35095,9 @@ associated with the widget, such as `self`->window).
 Unregisters a `gdk::Window` from the widget that was previously set up with
 `WidgetExt::register_window`. You need to call this when the window is
 no longer used by the widget, such as when you destroy it.
+
+Since: 3.8
+
 ## `window`
 a `gdk::Window`
 <!-- trait WidgetExt::fn unset_state_flags -->
@@ -33354,6 +35259,9 @@ the name of the themed icon
 Opens or closes the [interactive debugger][interactive-debugging],
 which offers access to the widget hierarchy of the application
 and to useful debugging tools.
+
+Since: 3.14
+
 ## `enable`
 `true` to enable interactive debugging
 <!-- trait WindowExt::fn activate_default -->
@@ -33432,6 +35340,9 @@ when a window manager close button is clicked.
 
 This function can be used with close buttons in custom
 titlebars.
+
+Since: 3.10
+
 <!-- trait WindowExt::fn deiconify -->
 Asks to deiconify (i.e. unminimize) the specified `self`. Note
 that you shouldn’t assume the window is definitely deiconified
@@ -33550,7 +35461,7 @@ the `WindowGroup` for a window or the default group
 <!-- trait WindowExt::fn get_has_resize_grip -->
 Determines whether the window may have a resize grip.
 
-# Deprecated
+# Deprecated since 3.14
 
 Resize grips have been removed.
 
@@ -33615,7 +35526,7 @@ Returns whether the window is modal. See `WindowExt::set_modal`.
 Fetches the requested opacity for this window. See
 `WindowExt::set_opacity`.
 
-# Deprecated
+# Deprecated since 3.8
 
 Use gtk_widget_get_opacity instead.
 
@@ -33675,7 +35586,7 @@ Gets the value set by `WindowExt::set_resizable`.
 If a window has a resize grip, this will retrieve the grip
 position, width and height into the specified `gdk::Rectangle`.
 
-# Deprecated
+# Deprecated since 3.14
 
 Resize grips have been removed.
 ## `rect`
@@ -33774,6 +35685,9 @@ the title of the window, or `None` if none has
 Returns the custom titlebar that has been set with
 `WindowExt::set_titlebar`.
 
+Since: 3.16
+
+
 # Returns
 
 the custom titlebar, or `None`
@@ -33854,6 +35768,9 @@ manager and happens asynchronously to an application request, you
 shouldn’t assume the return value of this function changing
 immediately (or at all), as an effect of calling
 `WindowExt::maximize` or `WindowExt::unmaximize`.
+
+Since: 3.12
+
 
 # Returns
 
@@ -34053,7 +35970,7 @@ Hides `self`, then reshows it, resetting the
 default size and position of the window. Used
 by GUI builders only.
 
-# Deprecated
+# Deprecated since 3.10
 
 GUI builders can call `WidgetExt::hide`,
  `WidgetExt::unrealize` and then `WidgetExt::show` on `self`
@@ -34077,7 +35994,7 @@ height in pixels to resize the window to
 <!-- trait WindowExt::fn resize_grip_is_visible -->
 Determines whether a resize grip is visible for the specified window.
 
-# Deprecated
+# Deprecated since 3.14
 
 Resize grips have been removed.
 
@@ -34254,7 +36171,7 @@ is actually resizable and not maximized. Use
 `WindowExt::resize_grip_is_visible` to find out if the
 resize grip is currently shown.
 
-# Deprecated
+# Deprecated since 3.14
 
 Resize grips have been removed.
 ## `value`
@@ -34425,7 +36342,7 @@ always.
 Note that setting a window’s opacity after the window has been
 shown causes it to flicker once on Windows.
 
-# Deprecated
+# Deprecated since 3.8
 
 Use gtk_widget_set_opacity instead.
 ## `opacity`
@@ -34507,6 +36424,9 @@ the window manager not to put its own titlebar on the window.
 Depending on the system, this function may not work for a window
 that is already visible, so you set the titlebar before calling
 `WidgetExt::show`.
+
+Since: 3.10
+
 ## `titlebar`
 the widget to use as titlebar
 <!-- trait WindowExt::fn set_transient_for -->

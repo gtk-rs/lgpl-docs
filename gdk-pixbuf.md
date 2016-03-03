@@ -66,6 +66,9 @@ A newly-created `Pixbuf` with a reference count of 1, or
 Creates a new `Pixbuf` out of in-memory readonly image data.
 Currently only RGB images with 8 bits per sample are supported.
 This is the `glib::Bytes` variant of `Pixbuf::new_from_data`.
+
+Since: 2.32
+
 ## `data`
 Image data in 8-bit/sample packed format inside a `glib::Bytes`
 ## `colorspace`
@@ -218,7 +221,7 @@ For non-const inline data, you could get out of memory. For untrusted
 inline data located at runtime, you could have corrupt inline data in
 addition.
 
-# Deprecated
+# Deprecated since 2.32
 
 Use `gio::Resource` instead.
 ## `data_length`
@@ -362,7 +365,7 @@ Converts a `Pixdata` to a `Pixbuf`. If `copy_pixels` is `true` or
 if the pixel data is run-length-encoded, the pixel data is copied into
 newly-allocated memory; otherwise it is reused.
 
-# Deprecated
+# Deprecated since 2.32
 
 Use `gio::Resource` instead.
 ## `pixdata`
@@ -401,6 +404,9 @@ version of this function.
 When the operation is finished, `callback` will be called in the
 main thread. You can then call `Pixbuf::get_file_info_finish` to
 get the result of the operation.
+
+Since: 2.32
+
 ## `filename`
 The name of the file to identify
 ## `cancellable`
@@ -412,6 +418,9 @@ the data to pass to the callback function
 <!-- impl Pixbuf::fn get_file_info_finish -->
 Finishes an asynchronous pixbuf parsing operation started with
 `Pixbuf::get_file_info_async`.
+
+Since: 2.32
+
 ## `async_result`
 a `gio::AsyncResult`
 ## `width`
@@ -728,6 +737,9 @@ attached by another function using `gdk_pixbuf_set_option`.
 
 See `Pixbuf::get_option` for more details.
 
+Since: 2.32
+
+
 # Returns
 
 a `glib::HashTable` of key/values
@@ -791,6 +803,9 @@ height of region in `self`
 a new pixbuf
 <!-- impl Pixbuf::fn read_pixel_bytes -->
 
+Since: 2.32
+
+
 # Returns
 
 A new reference to a read-only copy of
@@ -802,10 +817,13 @@ Returns a read-only pointer to the raw pixel data; must not be
 modified. This function allows skipping the implicit copy that
 must be made if `Pixbuf::get_pixels` is called on a read-only
 pixbuf.
+
+Since: 2.32
+
 <!-- impl Pixbuf::fn ref -->
 Adds a reference to a pixbuf.
 
-# Deprecated
+# Deprecated since 2.0
 
 Use `gobject::Object::ref`.
 
@@ -1117,7 +1135,7 @@ allocated for it.
 <!-- impl Pixbuf::fn unref -->
 Removes a reference from a pixbuf.
 
-# Deprecated
+# Deprecated since 2.0
 
 Use `gobject::Object::unref`.
 <!-- enum PixbufAlphaMode -->
@@ -1168,6 +1186,9 @@ Creates a new pixbuf animation by loading an image from an resource.
 
 The file format is detected automatically. If `None` is returned, then
 `error` will be set.
+
+Since: 2.28
+
 ## `resource_path`
 the path of the resource file
 
@@ -1187,6 +1208,9 @@ from another thread. If the operation was cancelled, the error
 the `GDK_PIXBUF_ERROR` and `G_IO_ERROR` domains.
 
 The stream is not closed.
+
+Since: 2.28
+
 ## `stream`
 a `gio::InputStream` to load the pixbuf from
 ## `cancellable`
@@ -1201,6 +1225,9 @@ the stream contained invalid data, or the operation was cancelled.
 <!-- impl PixbufAnimation::fn new_from_stream_finish -->
 Finishes an asynchronous pixbuf animation creation operation started with
 `PixbufAnimation::new_from_stream_async`.
+
+Since: 2.28
+
 ## `async_result`
 a `gio::AsyncResult`
 
@@ -1217,6 +1244,9 @@ version of this function.
 When the operation is finished, `callback` will be called in the main thread.
 You can then call `PixbufAnimation::new_from_stream_finish` to get the
 result of the operation.
+
+Since: 2.28
+
 ## `stream`
 a `gio::InputStream` from which to load the animation
 ## `cancellable`
@@ -1300,7 +1330,7 @@ the image.
 <!-- trait PixbufAnimationExt::fn ref -->
 Adds a reference to an animation.
 
-# Deprecated
+# Deprecated since 2.0
 
 Use `gobject::Object::ref`.
 
@@ -1310,7 +1340,7 @@ The same as the `self` argument.
 <!-- trait PixbufAnimationExt::fn unref -->
 Removes a reference from an animation.
 
-# Deprecated
+# Deprecated since 2.0
 
 Use `gobject::Object::unref`.
 <!-- struct PixbufAnimationIter -->
@@ -1398,6 +1428,7 @@ Don't know how to perform the
  given operation on the type of image at hand.
 <!-- enum PixbufError::variant Failed -->
 Generic failure code, something went wrong.
+<!-- struct PixbufFormat -->
 <!-- impl PixbufFormat::fn copy -->
 Creates a copy of `self`
 
@@ -1613,6 +1644,9 @@ returned, `error` will be set to an error from the `GDK_PIXBUF_ERROR`
 or `G_FILE_ERROR` domains.
 
 See also: `PixbufLoader::write`
+
+Since: 2.30
+
 ## `buffer`
 The image data as a `glib::Bytes`
 
