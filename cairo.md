@@ -1,4 +1,11 @@
 <!-- file enums.rs -->
+<!-- enum Status -->
+Status is used to indicate errors that can occur when using Cairo. In some cases it is
+returned directly by functions, but when using `Context`, the last error, if any, is
+stored in the context and can be retrieved with `Context::status()`.
+
+New entries may be added in future versions. Use `Context::status_to_string()` to get a
+human-readable representation of an error message.
 <!-- enum Status::variant Success -->
 no error has occurred (Since 1.0)
 <!-- enum Status::variant NoMemory, -->
@@ -84,6 +91,22 @@ this is a special value indicating the number of status values defined in this
 enumeration. When using this value, note that the version of cairo at run-time
 may have additional status values defined than the value of this symbol at
 compile-time. (Since 1.10)
+<!-- enum Antialias -->
+Specifies the type of antialiasing to do when rendering text or shapes.
+
+As it is not necessarily clear from the above what advantages a particular antialias method
+provides, since 1.12, there is also a set of hints:
+`Fast`: Allow the backend to degrade raster quality for speed.
+`Good`: A balance between speed and quality.
+`Best`: A high-fidelity, but potentially slow, raster mode.
+
+These make no guarantee on how the backend will perform its rasterisation (if it even
+rasterises!), nor that they have any differing effect other than to enable some form of
+antialiasing. In the case of glyph rendering, `Fast` and `Good` will be mapped to `Gray`, with
+`Best` being equivalent to `Subpixel`.
+
+The interpretation of `Default` is left entirely up to the backend, typically this will be
+similar to `Good`.
 <!-- enum Antialias::variant Default, -->
 Use the default antialiasing for the subsystem and target device, since 1.0
 <!-- enum Antialias::variant None, -->
@@ -102,6 +125,17 @@ The backend should balance quality against performance, since 1.12
 <!-- enum Antialias::variant Best -->
 Hint that the backend should render at the highest quality, sacrificing speed if
 necessary, since 1.12
+<!-- enum FillRule -->
+`FillRule` is used to select how paths are filled. For both fill rules, whether or not
+a point is included in the fill is determined by taking a ray from that point to infinity
+and looking at intersections with the path. The ray can be in any direction, as long as
+it doesn't pass through the end point of a segment or have a tricky intersection such as
+intersecting tangent to the path. (Note that filling is not actually implemented in this
+way. This is just a description of the rule that is applied.)
+
+The default fill rule is `Winding`.
+
+New entries may be added in future versions.
 <!-- enum FillRule::variant Winding, -->
 If the path crosses the ray from left-to-right, counts +1. If the path crosses the ray
 from right to left, counts -1. (Left and right are determined from the perspective of
@@ -110,12 +144,20 @@ will be filled. (Since 1.0)
 <!-- enum FillRule::variant EvenOdd -->
 Counts the total number of intersections, without regard to the orientation of the contour.
 If the total number of intersections is odd, the point will be filled. (Since 1.0)
+<!-- enum LineCap -->
+Specifies how to render the endpoints of the path when stroking.
+
+The default line cap style is `Butt`.
 <!-- enum LineCap::variant Butt, -->
 start(stop) the line exactly at the start(end) point (Since 1.0)
 <!-- enum LineCap::variant Round, -->
 use a round ending, the center of the circle is the end point (Since 1.0)
 <!-- enum LineCap::variant Square -->
 use squared ending, the center of the square is the end point (Since 1.0)
+<!-- enum LineJoin -->
+Specifies how to render the junction of two lines when stroking.
+
+The default line join style is `Miter`.
 <!-- enum LineJoin::variant Miter, -->
 use a sharp (angled) corner, see `Context::set_miter_limit()` (Since 1.0)
 <!-- enum LineJoin::variant Round, -->
@@ -123,6 +165,19 @@ use a rounded join, the center of the circle is the joint point (Since 1.0)
 <!-- enum LineJoin::variant nBevel -->
 use a cut-off join, the join is cut off at half the line width from the
 joint point (Since 1.0)
+<!-- enum Operator -->
+`Operator` is used to set the compositing operator for all cairo drawing operations.
+
+The default operator is `Over`.
+
+The operators marked as unbounded modify their destination even outside of the mask layer
+(that is, their effect is not bound by the mask layer). However, their effect can still be
+limited by way of clipping.
+
+To keep things simple, the operator descriptions here document the behavior for when both
+source and destination are either fully transparent or fully opaque. The actual implementation
+works for translucent layers too. For a more detailed explanation of the effects of each
+operator, including the mathematical definitions, see http:cairographics.org/operators/.
 <!-- enum Operator::variant Clear, -->
 clear destination layer (bounded) (Since 1.0)
 <!-- enum Operator::variant Source, -->
@@ -191,6 +246,9 @@ monochrome images or tinting color images. (Since 1.10)
 <!-- enum Operator::variant HslLuminosity -->
 Creates a color with the luminosity of the source and the hue and saturation of the
 target. This produces an inverse effect to `HslColor`. (Since 1.10)
+<!-- enum PathDataType -->
+`PathData` is used to describe the type of one portion of a path when represented as a `Path`.
+See `PathData` for details.
 <!-- enum PathDataType::variant MoveTo, -->
 A move-to operation, since 1.0
 <!-- enum PathDataType::variant LineTo, -->
@@ -199,12 +257,29 @@ A line-to operation, since 1.0
 A curve-to operation, since 1.0
 <!-- enum PathDataType::variant ClosePath -->
 A close-path operation, since 1.0
+<!-- enum Content -->
+`Content` is used to describe the content that a surface will contain, whether color
+information, alpha information (translucence vs. opacity), or both.
+
+Note: The large values here are designed to keep `Content` values distinct from `Format`
+values so that the implementation can detect the error if users confuse the two types.
 <!-- enum Content::variant Color -->
 The surface will hold color content only. (Since 1.0)
 <!-- enum Content::variant Alpha -->
 The surface will hold alpha content only. (Since 1.0)
 <!-- enum Content::variant ColorAlpha -->
 The surface will hold color and alpha content. (Since 1.0)
+<!-- enum Extend -->
+`Extend` is used to describe how pattern color/alpha will be determined for areas
+"outside" the pattern's natural area, (for example, outside the surface bounds or
+outside the gradient geometry).
+
+Mesh patterns are not affected by the extend mode.
+
+The default extend mode is `None` for surface patterns and `Pad` for gradient
+patterns.
+
+New entries may be added in future versions.
 <!-- enum Extend::variant None, -->
 pixels outside of the source pattern are fully transparent (Since 1.0)
 <!-- enum Extend::variant Repeat, -->
@@ -215,6 +290,10 @@ for surface patterns since 1.6)
 <!-- enum Extend::variant Pad -->
 pixels outside of the pattern copy the closest pixel from the source (Since 1.2;
 but only implemented for surface patterns since 1.6)
+<!-- enum Filter -->
+`Filter` is used to indicate what filtering should be applied when reading pixel values
+from patterns. See `Pattern::set_filter()` for indicating the desired filter to be used
+with a particular pattern.
 <!-- enum Filter::variant Fast, -->
 A high-performance filter, with quality similar to `Nearest` (Since 1.0)
 <!-- enum Filter::variant Good, -->
@@ -229,6 +308,22 @@ Linear interpolation in two dimensions (Since 1.0)
 <!-- enum Filter::variant Gaussian -->
 This filter value is currently unimplemented, and should not be used in current
 code. (Since 1.0)
+<!-- enum PatternType -->
+`PatternType` is used to describe the type of a given pattern.
+
+The type of a pattern is determined by the function used to create it. The
+`Pattern::create_rgb()` and `Pattern::create_rgba()` functions create `Solid` patterns.
+The remaining cairo_pattern_create functions map to pattern types in obvious ways.
+
+The pattern type can be queried with `Pattern::get_type()`.
+
+Most `Pattern` functions can be called with a pattern of any type, (though trying to
+change the extend or filter for a solid pattern will have no effect). A notable exception
+is `Pattern::add_color_stop_rgb()` and `Pattern::add_color_stop_rgba()` which must only be
+called with gradient patterns (either `Linear` or `Radial`). Otherwise the pattern will be
+shutdown and put into an error state.
+
+New entries may be added in future versions.
 <!-- enum PatternType::variant Solid, -->
 The pattern is a solid (uniform) color. It may be opaque or translucent, since 1.2.
 <!-- enum PatternType::variant Surface, -->
@@ -241,19 +336,48 @@ The pattern is a radial gradient, since 1.2.
 The pattern is a mesh, since 1.12.
 <!-- enum PatternType::variant RasterSource -->
 The pattern is a user pattern providing raster data, since 1.12.
+<!-- enum FontSlant -->
+Specifies variants of a font face based on their slant.
 <!-- enum FontSlant::variant Normal, -->
 Upright font style, since 1.0
 <!-- enum FontSlant::variant Italic, -->
 Italic font style, since 1.0
 <!-- enum FontSlant::variant Oblique -->
 Oblique font style, since 1.0
+<!-- enum FontWeight -->
+Specifies variants of a font face based on their weight.
 <!-- enum FontWeight::variant Normal, -->
 Normal font weight, since 1.0
 <!-- enum FontWeight::variant Bold -->
 Bold font weight, since 1.0
+<!-- enum TextClusterFlags -->
+Specifies properties of a text cluster mapping.
 <!-- enum TextClusterFlags::variant Backward -->
 The clusters in the cluster array map to glyphs in the glyph array from end
 to start. (Since 1.8)
+<!-- enum FontType -->
+`FontType` is used to describe the type of a given font face or scaled font. The
+font types are also known as "font backends" within cairo.
+
+The type of a font face is determined by the function used to create it, which will
+generally be of the form `Context::type_font_face_create()`. The font face type can
+be queried with `Context::font_face_get_type()`.
+
+The various cairo_font_face_t functions can be used with a font face of any type.
+
+The type of a scaled font is determined by the type of the font face passed to
+`Context::scaled_font_create()`. The scaled font type can be queried with
+`Context::scaled_font_get_type()`.
+
+The various `ScaledFont` functions can be used with scaled fonts of any type, but some
+font backends also provide type-specific functions that must only be called with a
+scaled font of the appropriate type. These functions have names that begin with
+`Context::type_scaled_font()` such as `Context::ft_scaled_font_lock_face()`.
+
+The behavior of calling a type-specific function with a scaled font of the wrong type
+is undefined.
+
+New entries may be added in future versions.
 <!-- enum FontType::variant FontTypeToy, -->
 The font was created using cairo's toy font api (Since: 1.2)
 <!-- enum FontType::variant FontTypeFt, -->
@@ -265,6 +389,9 @@ The font is of type Quartz (Since: 1.6, in 1.2 and 1.4 it was named
 CAIRO_FONT_TYPE_ATSUI)
 <!-- enum FontType::variant FontTypeUser -->
 The font was create using cairo's user font api (Since: 1.8)
+<!-- enum SubpixelOrder -->
+The subpixel order specifies the order of color elements within each pixel on the display
+device when rendering with an antialiasing mode of `Antialias::Subpixel`.
 <!-- enum SubpixelOrder::variant Default, -->
 Use the default subpixel order for for the target device, since 1.0
 <!-- enum SubpixelOrder::variant Rgb, -->
@@ -275,6 +402,13 @@ Subpixel elements are arranged horizontally with blue at the left, since 1.0
 Subpixel elements are arranged vertically with red at the top, since 1.0
 <!-- enum SubpixelOrder::variant Vbgr -->
 Subpixel elements are arranged vertically with blue at the top, since 1.0
+<!-- enum HintStyle -->
+Specifies the type of hinting to do on font outlines. Hinting is the process of fitting
+outlines to the pixel grid in order to improve the appearance of the result. Since hinting
+outlines involves distorting them, it also reduces the faithfulness to the original outline
+shapes. Not all of the outline hinting styles are supported by all font backends.
+
+New entries may be added in future versions.
 <!-- enum HintStyle::variant Default, -->
 Use the default hint style for font backend and target device, since 1.0
 <!-- enum HintStyle::variant None, -->
@@ -287,355 +421,19 @@ Hint outlines with medium strength giving a compromise between fidelity to the
 original shapes and contrast, since 1.0
 <!-- enum HintStyle::variant Full -->
 Hint outlines to maximize contrast, since 1.0
+<!-- enum HintMetrics -->
+Specifies whether to hint font metrics; hinting font metrics means quantizing them so
+that they are integer values in device space. Doing this improves the consistency of
+letter and line spacing, however it also means that text will be laid out differently
+at different zoom factors
 <!-- enum HintMetrics::variant Default, -->
 Hint metrics in the default manner for the font backend and target device, since 1.0
 <!-- enum HintMetrics::variant Off, -->
 Do not hint font metrics, since 1.0
 <!-- enum HintMetrics::variant On -->
 Hint font metrics, since 1.0
-<!-- file lib.rs -->
-<!-- file_comment -->
-Bindings and wrappers for __Cairo__
-<!-- file patterns.rs -->
-<!-- trait Pattern -->
-Sources for drawing
-<!-- trait Pattern::fn status -->
-Checks whether an error has previously occurred for this pattern.
-<!-- trait Pattern::fn get_reference_count -->
-Returns the current reference count of self.
-<!-- trait Pattern::fn set_extend -->
-Sets the mode to be used for drawing outside the area of a pattern. See cairo_extend_t for
-details on the semantics of each extend strategy.
-
-The default extend mode is Extend::None for surface patterns and Extend::Pad for gradient
-patterns.
-<!-- trait Pattern::fn get_extend -->
-Gets the current extend mode for a pattern. See Extend enum for details on the semantics
-of each extend strategy.
-<!-- trait Pattern::fn set_filter -->
-Sets the filter to be used for resizing when using this pattern. See Filter enum for
-details on each filter.
-
-Note that you might want to control filtering even when you do not have an explicit
-Pattern object, (for example when using cairo_set_source_surface()). In these
-cases, it is convenient to use cairo_get_source() to get access to the pattern that cairo
-creates implicitly. For example:
-
-```ignore
-Context::set_source_surface(image, x, y);
-p.set_filter(Filter::nearest);
-```
-<!-- trait Pattern::fn get_filter -->
-Gets the current filter for a pattern. See Filter enum for details on each filter.
-<!-- impl SolidPattern::fn from_rgb -->
-Creates a new SolidPattern corresponding to an opaque color. The color components
-are floating point numbers in the range 0 to 1.
-
-Note : If the values passed in are outside
-that range, they will be clamped.
-<!-- impl SolidPattern::fn from_rgba -->
-Creates a new SolidPattern corresponding to a translucent color. The color components
-are floating point numbers in the range 0 to
-
-Note : If the values passed in are outside that range, they will be clamped.
-<!-- impl SolidPattern::fn get_rgba -->
-Gets the solid color for a solid color pattern.
-<!-- trait Gradient::fn add_color_stop_rgb -->
-Adds an opaque color stop to a gradient pattern. The offset specifies the
-location along the gradient's control vector. For example, a linear gradient's
-control vector is from (x0,y0) to (x1,y1) while a radial gradient's control
-vector is from any point on the start circle to the corresponding point on the
-end circle.
-
-The color is specified in the same way as in Context::set_source_rgba().
-
-If two (or more) stops are specified with identical offset values, they will be
-sorted according to the order in which the stops are added, (stops added earlier
-will compare less than stops added later). This can be useful for reliably making
-sharp color transitions instead of the typical blend.
-
-Note: If the pattern is not a gradient pattern, (eg. a linear or radial pattern),
-then the pattern will be put into an error status with a status of
-StatusPattern::TypeMismatch.
-<!-- trait Gradient::fn add_color_stop_rgba -->
-Adds a translucent color stop to a gradient pattern. The offset specifies the
-location along the gradient's control vector. For example, a linear gradient's
-control vector is from (x0,y0) to (x1,y1) while a radial gradient's control vector
-is from any point on the start circle to the corresponding point on the end circle.
-
-The color is specified in the same way as in Context::set_source_rgba().
-
-If two (or more) stops are specified with identical offset values, they will be
-sorted according to the order in which the stops are added, (stops added earlier will
-compare less than stops added later). This can be useful for reliably making sharp
-color transitions instead of the typical blend.
-
-Note: If the pattern is not a gradient pattern, (eg. a linear or radial pattern), then
-the pattern will be put into an error status with a status of StatusPattern::TypeMismatch.
-<!-- trait Gradient::fn get_color_stop_count -->
-Gets the number of color stops specified in the given gradient pattern.
-<!-- trait Gradient::fn get_color_stop_rgba -->
-Gets the color and offset information at the given index for a gradient pattern.
-Values of index range from 0 to n-1 where n is the number returned by
-Pattern::get_color_stop_count().
-<!-- impl LinearGradient::fn new -->
-Create a new linear gradient Pattern object along the line defined by
-(x0, y0) and (x1, y1). Before using the gradient pattern, a number of color
-stops should be defined using Pattern::add_color_stop_rgb() or
-Pattern::add_color_stop_rgba().
-
-Note: The coordinates here are in pattern space. For a new pattern, pattern
-space is identical to user space, but the relationship between the spaces can
-be changed with Pattern::set_matrix().
-<!-- impl LinearGradient::fn get_linear_points -->
-Gets the gradient endpoints for a linear gradient.
-<!-- impl RadialGradient::fn new -->
-Creates a new radial gradient Pattern between the two circles
-defined by (cx0, cy0, radius0) and (cx1, cy1, radius1). Before
-using the gradient pattern, a number of color stops should be
-defined using Pattern::add_color_stop_rgb() or Pattern::add_color_stop_rgba().
-
-Note: The coordinates here are in pattern space. For a new pattern, pattern
-space is identical to user space, but the relationship between the spaces can
-be changed with Pattern::set_matrix().
-<!-- impl RadialGradient::fn get_radial_circles -->
-Gets the gradient endpoint circles for a radial gradient, each specified as a center
-coordinate and a radius.
-<!-- impl Mesh::fn new -->
-Create a new mesh pattern.
-
-Mesh patterns are tensor-product patch meshes (type 7 shadings in PDF). Mesh
-patterns may also be used to create other types of shadings that are special
-cases of tensor-product patch meshes such as Coons patch meshes (type 6 shading
-in PDF) and Gouraud-shaded triangle meshes (type 4 and 5 shadings in PDF).
-
-Mesh patterns consist of one or more tensor-product patches, which should be
-defined before using the mesh pattern. Using a mesh pattern with a partially
-defined patch as source or mask will put the context in an error status with
-a status of Status::InvalidMeshConstruction.
-
-A tensor-product patch is defined by 4 Bézier curves (side 0, 1, 2, 3) and by
-4 additional control points (P0, P1, P2, P3) that provide further control over
-the patch and complete the definition of the tensor-product patch. The corner
-C0 is the first point of the patch.
-
-Degenerate sides are permitted so straight lines may be used. A zero length
-line on one side may be used to create 3 sided patches.
-
-      C1     Side 1       C2
-       +---------------+
-       |               |
-       |  P1       P2  |
-       |               |
-Side 0 |               | Side 2
-       |               |
-       |               |
-       |  P0       P3  |
-       |               |
-       +---------------+
-    C0     Side 3        C3
-
-Each patch is constructed by first calling Mesh::begin_patch(),
-then Mesh::move_to() to specify the first point in the patch (C0).
-Then the sides are specified with calls to Mesh::curve_to() and
-cairo_mesh_pattern_line_to().
-
-The four additional control points (P0, P1, P2, P3) in a patch can
-be specified with Mesh::set_control_point().
-
-At each corner of the patch (C0, C1, C2, C3) a color may be specified with
-Mesh::set_corner_color_rgb() or Mesh::set_corner_color_rgba(). Any corner
-whose color is not explicitly specified defaults to transparent black.
-
-A Coons patch is a special case of the tensor-product patch where the control
-points are implicitly defined by the sides of the patch. The default value for
-any control point not specified is the implicit value for a Coons patch, i.e.
-if no control points are specified the patch is a Coons patch.
-
-A triangle is a special case of the tensor-product patch where the control points
-are implicitly defined by the sides of the patch, all the sides are lines and one
-of them has length 0, i.e. if the patch is specified using just 3 lines, it is a
-triangle. If the corners connected by the 0-length side have the same color, the
-patch is a Gouraud-shaded triangle.
-
-Patches may be oriented differently to the above diagram. For example the first
-point could be at the top left. The diagram only shows the relationship between
-the sides, corners and control points. Regardless of where the first point is
-located, when specifying colors, corner 0 will always be the first point, corner
-1 the point between side 0 and side 1 etc.
-
-Calling Mesh::end_patch() completes the current patch. If less than 4 sides have
-been defined, the first missing side is defined as a line from the current point
-to the first point of the patch (C0) and the other sides are degenerate lines from
-C0 to C0. The corners between the added sides will all be coincident with C0 of
-the patch and their color will be set to be the same as the color of C0.
-
-Additional patches may be added with additional calls to
-Mesh::begin_patch()/Mesh::end_patch().
-
-```ignore
-let mut pattern = Mesh::new();
-/* Add a Coons patch */
-pattern.begin_patch();
-pattern.move_to(0, 0);
-pattern.curve_to(30, -30,  60,  30, 100, 0);
-pattern.curve_to(60,  30, 130,  60, 100, 100);
-pattern.curve_to(60,  70,  30, 130,   0, 100);
-pattern.curve_to(30,  70, -30,  30,   0, 0);
-pattern.set_corner_color_rgb(0, 1, 0, 0);
-pattern.set_corner_color_rgb(1, 0, 1, 0);
-pattern.set_corner_color_rgb(2, 0, 0, 1);
-pattern.set_corner_color_rgb(3, 1, 1, 0);
-pattern.end_patch();
-
-/* Add a Gouraud-shaded triangle */
-pattern.begin_patch()
-pattern.move_to(100, 100);
-pattern.line_to(130, 130);
-pattern.line_to(130,  70);
-pattern.set_corner_color_rgb(0, 1, 0, 0);
-pattern.set_corner_color_rgb(1, 0, 1, 0);
-pattern.set_corner_color_rgb(2, 0, 0, 1);
-pattern.end_patch();
-```
-
-When two patches overlap, the last one that has been added is drawn over the first
-one.
-
-When a patch folds over itself, points are sorted depending on their parameter
-coordinates inside the patch. The v coordinate ranges from 0 to 1 when moving from
-side 3 to side 1; the u coordinate ranges from 0 to 1 when going from side 0 to side
-
-Points with higher v coordinate hide points with lower v coordinate. When two points
-have the same v coordinate, the one with higher u coordinate is above. This means
-that points nearer to side 1 are above points nearer to side 3; when this is not
-sufficient to decide which point is above (for example when both points belong to
-side 1 or side 3) points nearer to side 2 are above points nearer to side 0.
-
-For a complete definition of tensor-product patches, see the PDF specification (ISO32000),
-which describes the parametrization in detail.
-
-Note: The coordinates are always in pattern space. For a new pattern, pattern space is
-identical to user space, but the relationship between the spaces can be changed with
-Pattern::set_matrix().
-<!-- impl Mesh::fn begin_patch -->
-Begin a patch in a mesh pattern.
-
-After calling this function, the patch shape should be defined with Mesh::move_to(),
-Mesh::line_to() and Mesh::curve_to().
-
-After defining the patch, Mesh::end_patch() must be called before using pattern as
-a source or mask.
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status
-with a status of Status::PatternTypeMismatch. If pattern already has a current patch,
-it will be put into an error status with a status of Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn end_patch -->
-Indicates the end of the current patch in a mesh pattern.
-
-If the current patch has less than 4 sides, it is closed with a straight line from the
-current point to the first point of the patch as if Mesh::line_to() was used.
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status
-with a status of Status::PatternTypeMismatch. If pattern has no current patch or the
-current patch has no current point, pattern will be put into an error status with a
-status of Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn move_to -->
-Define the first point of the current patch in a mesh pattern.
-
-After this call the current point will be (x , y ).
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status with
-a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
-patch already has at least one side, pattern will be put into an error status with a status
-of Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn line_to -->
-Adds a line to the current patch from the current point to position (x , y ) in
-pattern-space coordinates.
-
-If there is no current point before the call to cairo_mesh_pattern_line_to() this function
-will behave as Mesh::move_to(pattern , x , y ).
-
-After this call the current point will be (x , y ).
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status with
-a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
-patch already has 4 sides, pattern will be put into an error status with a status of
-Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn curve_to -->
-Adds a cubic Bézier spline to the current patch from the current point to position
-(x3 , y3 ) in pattern-space coordinates, using (x1 , y1 ) and (x2 , y2 ) as the control
-points.
-
-If the current patch has no current point before the call to Mesh::curve_to(), this
-function will behave as if preceded by a call to Mesh::move_to(pattern , x1 , y1 ).
-
-After this call the current point will be (x3 , y3 ).
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status with
-a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
-patch already has 4 sides, pattern will be put into an error status with a status of
-Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn set_control_point -->
-Set an internal control point of the current patch.
-
-Valid values for point_num are from 0 to 3 and identify the control points as explained in
-Mesh::new().
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status with a
-status of Status::PatternTypeMismatch. If point_num is not valid, pattern will be put into
-an error status with a status of Status::InvalidIndex. If pattern has no current patch,
-pattern will be put into an error status with a status of Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn get_control_point -->
-Gets the control point point_num of patch patch_num for a mesh pattern.
-
-patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
-
-Valid values for point_num are from 0 to 3 and identify the control points as explained
-in Mesh::new().
-<!-- impl Mesh::fn set_corner_color_rgb -->
-Sets the color of a corner of the current patch in a mesh pattern.
-
-The color is specified in the same way as in Context::set_source_rgb().
-
-Valid values for corner_num are from 0 to 3 and identify the corners as explained in
-Mesh::new().
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status
-with a status of Status::PatternTypeMismatch. If corner_num is not valid, pattern will
-be put into an error status with a status of Status::InvalidIndex. If pattern has no
-current patch, pattern will be put into an error status with a status of
-Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn set_corner_color_rgba -->
-Sets the color of a corner of the current patch in a mesh pattern.
-
-The color is specified in the same way as in Context::set_source_rgba().
-
-Valid values for corner_num are from 0 to 3 and identify the corners as explained
-in Mesh::new().
-
-Note: If pattern is not a mesh pattern then pattern will be put into an error status with a
-status of Status::PatternTypeMismatch. If corner_num is not valid, pattern will be put into
-an error status with a status of Status::InvalidIndex. If pattern has no current patch,
-pattern will be put into an error status with a status of Status::InvalidMeshConstruction.
-<!-- impl Mesh::fn get_corner_color_rgba -->
-Gets the color information in corner corner_num of patch patch_num for a mesh pattern.
-
-patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
-
-Valid values for corner_num are from 0 to 3 and identify the corners as explained in
-Mesh::new().
-<!-- impl Mesh::fn get_patch_count -->
-Gets the number of patches specified in the given mesh pattern.
-
-The number only includes patches which have been finished by calling Mesh::end_patch().
-For example it will be 0 during the definition of the first patch.
-<!-- impl Mesh::fn get_path -->
-Gets path defining the patch patch_num for a mesh pattern.
-
-patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
 <!-- file context.rs -->
-<!-- struct Context -->
+<!-- file_comment -->
 The cairo drawing context
 <!-- impl Context::fn new -->
 Creates a new Context with all graphics state parameters set to default values
@@ -1365,8 +1163,120 @@ equivalent to Context::move_to(x + dx , y + dy ).
 
 It is an error to call this function with no current point. Doing so will
 cause self to shutdown with a status of Status::NoCurrenPoint.
+<!-- file fonts.rs -->
+<!-- file_comment -->
+FontOptions: How a font should be rendered.
+
+FontFace: Base class for font faces.
+
+ScaledFont: Font face at particular size and options.
+<!-- impl FontOptions -->
+The font options specify how fonts should be rendered. Most of the time the font options
+implied by a surface are just right and do not need any changes, but for pixel-based targets
+tweaking font options may result in superior output on a particular display.
+<!-- impl FontOptions::fn new -->
+Allocates a new font options object with all options initialized to default values.
+<!-- impl FontOptions::fn ensure_status -->
+Checks whether an error has previously occurred for this font options object.
+<!-- impl FontOptions::fn merge -->
+Merges non-default options from other into self, replacing existing values.
+This operation can be thought of as somewhat similar to compositing other onto
+self with the operation of Operator::Over.
+<!-- impl FontOptions::fn hash -->
+Compute a hash for the font options object; this value will be useful when
+storing an object containing a FontOptions in a hash table.
+<!-- impl FontOptions::fn set_antialias -->
+Sets the antialiasing mode for the font options object. This specifies the type
+of antialiasing to do when rendering text.
+<!-- impl FontOptions::fn get_antialias -->
+Gets the antialiasing mode for the font options object.
+<!-- impl FontOptions::fn set_subpixel_order -->
+Sets the subpixel order for the font options object. The subpixel order specifies
+the order of color elements within each pixel on the display device when rendering
+with an antialiasing mode of Antialias::Subpixel. See the documentation for
+SubpixelOrder for full details.
+<!-- impl FontOptions::fn get_subpixel_order -->
+Gets the subpixel order for the font options object. See the documentation for
+SubpixelOrder for full details.
+<!-- impl FontOptions::fn set_hint_style -->
+Sets the hint style for font outlines for the font options object. This controls
+whether to fit font outlines to the pixel grid, and if so, whether to optimize
+for fidelity or contrast. See the documentation for HintStyle for full
+details.
+<!-- impl FontOptions::fn get_hint_style -->
+Gets the hint style for font outlines for the font options object. See the
+documentation for HintStyle for full details.
+<!-- impl FontOptions::fn set_hint_metrics -->
+Sets the metrics hinting mode for the font options object. This controls
+whether metrics are quantized to integer values in device units. See the
+documentation for HintMetrics for full details.
+<!-- impl FontOptions::fn get_hint_metrics -->
+Gets the metrics hinting mode for the font options object. See the documentation
+for HintMetrics for full details.
+<!-- impl PartialEq for FontOptions::fn eq -->
+Compares two font options objects for equality.
+<!-- struct FontFace -->
+FontFace represents a particular font at a particular weight, slant, and other
+characteristic but no size, transformation, or size.
+
+Font faces are created using font-backend-specific constructors, typically of the
+form Context::backend_font_face_create(), or implicitly using the toy text API by
+way of Context::select_font_face(). The resulting face can be accessed using
+Context::get_font_face().
+<!-- impl FontFace::fn toy_create -->
+Creates a font face from a triplet of family, slant, and weight. These font faces
+are used in implementation of the the cairo "toy" font API.
+
+If family is the zero-length string "", the platform-specific default family is assumed.
+The default family then can be queried using FontFace::toy_get_family().
+
+The Context::select_font_face() function uses this to create font faces. See that
+function for limitations and other details of toy font faces.
+<!-- impl FontFace::fn toy_get_family -->
+Gets the familly name of a toy font.
+<!-- impl FontFace::fn toy_get_slant -->
+Gets the slant a toy font.
+<!-- impl FontFace::fn toy_get_weight -->
+Gets the weight a toy font.
+<!-- impl FontFace::fn ensure_status -->
+Checks whether an error has previously occurred for this font face.
+<!-- impl FontFace::fn get_type -->
+This function returns the type of the backend used to create a font face. See
+FontType for available types.
+<!-- impl FontFace::fn get_reference_count -->
+Returns the current reference count of self.
+<!-- impl FontFace::fn reference -->
+Increases the reference count on self by one. This prevents self from being
+destroyed until a matching call to FontFace drop trait is made.
+
+The number of references to a FontFace can be get using
+FontFace::get_reference_count().
+<!-- struct ScaledFont -->
+ScaledFont represents a realization of a font face at a particular size and
+transformation and a certain set of font options.
+<!-- impl ScaledFont::fn new -->
+Creates a ScaledFont object from a font face and matrices that describe the
+size of the font and the environment in which it will be used.
+<!-- impl ScaledFont::fn ensure_status -->
+Checks whether an error has previously occurred for this ScaledFont.
+<!-- impl ScaledFont::fn get_type -->
+This function returns the type of the backend used to create a scaled font.
+See FontType for available types. However, this function never returns
+FontType::Toy.
+<!-- impl ScaledFont::fn get_reference_count -->
+Returns the current reference count of self.
+<!-- impl ScaledFont::fn reference -->
+Increases the reference count on self by one. This prevents self from being
+destroyed until a matching call to ScaledFont drop trait is made.
+
+The number of references to a cairo_scaled_font_t can be get using
+ScaledFont::get_reference_count().
+<!-- file lib.rs -->
+<!-- file_comment -->
+
+
 <!-- file matrices.rs -->
-<!-- trait MatrixTrait -->
+<!-- file_comment -->
 Generic matrix operations
 <!-- impl MatrixTrait for Matrix::fn null -->
 Creates a new Matrix filled with zeroes
@@ -1420,97 +1330,346 @@ the same vector. If (x1 ,y1 ) transforms to (x2 ,y2 ) then (x1 +dx1 ,y1 +dy1 ) w
 transform to (x1 + dx2, y1 + dy2) for all values of x1 and x2 .
 <!-- impl MatrixTrait for Matrix::fn transform_point -->
 Transforms the point (x , y) by self.
-<!-- file fonts.rs -->
-<!-- struct FontOptions -->
-How a font should be rendered.
-The font options specify how fonts should be rendered. Most of the time the font options
-implied by a surface are just right and do not need any changes, but for pixel-based targets
-tweaking font options may result in superior output on a particular display.
-<!-- impl FontOptions::fn new -->
-Allocates a new font options object with all options initialized to default values.
-<!-- impl FontOptions::fn ensure_status -->
-Checks whether an error has previously occurred for this font options object.
-<!-- impl FontOptions::fn merge -->
-Merges non-default options from other into self, replacing existing values.
-This operation can be thought of as somewhat similar to compositing other onto
-self with the operation of Operator::Over.
-<!-- impl FontOptions::fn hash -->
-Compute a hash for the font options object; this value will be useful when
-storing an object containing a FontOptions in a hash table.
-<!-- impl FontOptions::fn set_antialias -->
-Sets the antialiasing mode for the font options object. This specifies the type
-of antialiasing to do when rendering text.
-<!-- impl FontOptions::fn get_antialias -->
-Gets the antialiasing mode for the font options object.
-<!-- impl FontOptions::fn set_subpixel_order -->
-Sets the subpixel order for the font options object. The subpixel order specifies
-the order of color elements within each pixel on the display device when rendering
-with an antialiasing mode of Antialias::Subpixel. See the documentation for
-SubpixelOrder for full details.
-<!-- impl FontOptions::fn get_subpixel_order -->
-Gets the subpixel order for the font options object. See the documentation for
-SubpixelOrder for full details.
-<!-- impl FontOptions::fn set_hint_style -->
-Sets the hint style for font outlines for the font options object. This controls
-whether to fit font outlines to the pixel grid, and if so, whether to optimize
-for fidelity or contrast. See the documentation for HintStyle for full
-details.
-<!-- impl FontOptions::fn get_hint_style -->
-Gets the hint style for font outlines for the font options object. See the
-documentation for HintStyle for full details.
-<!-- impl FontOptions::fn set_hint_metrics -->
-Sets the metrics hinting mode for the font options object. This controls
-whether metrics are quantized to integer values in device units. See the
-documentation for HintMetrics for full details.
-<!-- impl FontOptions::fn get_hint_metrics -->
-Gets the metrics hinting mode for the font options object. See the documentation
-for HintMetrics for full details.
-<!-- struct FontFace -->
-Base class for font faces.
-<!-- impl FontFace::fn toy_create -->
-Creates a font face from a triplet of family, slant, and weight. These font faces
-are used in implementation of the the cairo "toy" font API.
-
-If family is the zero-length string "", the platform-specific default family is assumed.
-The default family then can be queried using FontFace::toy_get_family().
-
-The Context::select_font_face() function uses this to create font faces. See that
-function for limitations and other details of toy font faces.
-<!-- impl FontFace::fn toy_get_family -->
-Gets the familly name of a toy font.
-<!-- impl FontFace::fn toy_get_slant -->
-Gets the slant a toy font.
-<!-- impl FontFace::fn toy_get_weight -->
-Gets the weight a toy font.
-<!-- impl FontFace::fn ensure_status -->
-Checks whether an error has previously occurred for this font face.
-<!-- impl FontFace::fn get_type -->
-This function returns the type of the backend used to create a font face. See
-FontType for available types.
-<!-- impl FontFace::fn get_reference_count -->
+<!-- file paths.rs -->
+<!-- file_comment -->
+Creating paths and manipulating path data
+<!-- struct Path -->
+Paths are the most basic drawing tools and are primarily used to implicitly generate simple masks.
+<!-- file patterns.rs -->
+<!-- file_comment -->
+Sources for drawing
+<!-- trait Pattern::fn status -->
+Checks whether an error has previously occurred for this pattern.
+<!-- trait Pattern::fn get_reference_count -->
 Returns the current reference count of self.
-<!-- impl FontFace::fn reference -->
-Increases the reference count on self by one. This prevents self from being
-destroyed until a matching call to FontFace drop trait is made.
+<!-- trait Pattern::fn set_extend -->
+Sets the mode to be used for drawing outside the area of a pattern. See cairo_extend_t for
+details on the semantics of each extend strategy.
 
-The number of references to a FontFace can be get using
-FontFace::get_reference_count().
-<!-- struct ScaledFont -->
-Font face at particular size and options.
-<!-- impl ScaledFont::fn new -->
-Creates a ScaledFont object from a font face and matrices that describe the
-size of the font and the environment in which it will be used.
-<!-- impl ScaledFont::fn ensure_status -->
-Checks whether an error has previously occurred for this ScaledFont.
-<!-- impl ScaledFont::fn get_type -->
-This function returns the type of the backend used to create a scaled font.
-See FontType for available types. However, this function never returns
-FontType::Toy.
-<!-- impl ScaledFont::fn get_reference_count -->
-Returns the current reference count of self.
-<!-- impl ScaledFont::fn reference -->
-Increases the reference count on self by one. This prevents self from being
-destroyed until a matching call to ScaledFont drop trait is made.
+The default extend mode is Extend::None for surface patterns and Extend::Pad for gradient
+patterns.
+<!-- trait Pattern::fn get_extend -->
+Gets the current extend mode for a pattern. See Extend enum for details on the semantics
+of each extend strategy.
+<!-- trait Pattern::fn set_filter -->
+Sets the filter to be used for resizing when using this pattern. See Filter enum for
+details on each filter.
 
-The number of references to a cairo_scaled_font_t can be get using
-ScaledFont::get_reference_count().
+Note that you might want to control filtering even when you do not have an explicit
+Pattern object, (for example when using cairo_set_source_surface()). In these
+cases, it is convenient to use cairo_get_source() to get access to the pattern that cairo
+creates implicitly. For example:
+
+```ignore
+Context::set_source_surface(image, x, y);
+p.set_filter(Filter::nearest);
+```
+<!-- trait Pattern::fn get_filter -->
+Gets the current filter for a pattern. See Filter enum for details on each filter.
+<!-- impl SolidPattern::fn from_rgb -->
+Creates a new SolidPattern corresponding to an opaque color. The color components
+are floating point numbers in the range 0 to 1.
+
+Note : If the values passed in are outside
+that range, they will be clamped.
+<!-- impl SolidPattern::fn from_rgba -->
+Creates a new SolidPattern corresponding to a translucent color. The color components
+are floating point numbers in the range 0 to
+
+Note : If the values passed in are outside that range, they will be clamped.
+<!-- impl SolidPattern::fn get_rgba -->
+Gets the solid color for a solid color pattern.
+<!-- trait Gradient::fn add_color_stop_rgb -->
+Adds an opaque color stop to a gradient pattern. The offset specifies the
+location along the gradient's control vector. For example, a linear gradient's
+control vector is from (x0,y0) to (x1,y1) while a radial gradient's control
+vector is from any point on the start circle to the corresponding point on the
+end circle.
+
+The color is specified in the same way as in Context::set_source_rgba().
+
+If two (or more) stops are specified with identical offset values, they will be
+sorted according to the order in which the stops are added, (stops added earlier
+will compare less than stops added later). This can be useful for reliably making
+sharp color transitions instead of the typical blend.
+
+Note: If the pattern is not a gradient pattern, (eg. a linear or radial pattern),
+then the pattern will be put into an error status with a status of
+StatusPattern::TypeMismatch.
+<!-- trait Gradient::fn add_color_stop_rgba -->
+Adds a translucent color stop to a gradient pattern. The offset specifies the
+location along the gradient's control vector. For example, a linear gradient's
+control vector is from (x0,y0) to (x1,y1) while a radial gradient's control vector
+is from any point on the start circle to the corresponding point on the end circle.
+
+The color is specified in the same way as in Context::set_source_rgba().
+
+If two (or more) stops are specified with identical offset values, they will be
+sorted according to the order in which the stops are added, (stops added earlier will
+compare less than stops added later). This can be useful for reliably making sharp
+color transitions instead of the typical blend.
+
+Note: If the pattern is not a gradient pattern, (eg. a linear or radial pattern), then
+the pattern will be put into an error status with a status of StatusPattern::TypeMismatch.
+<!-- trait Gradient::fn get_color_stop_count -->
+Gets the number of color stops specified in the given gradient pattern.
+<!-- trait Gradient::fn get_color_stop_rgba -->
+Gets the color and offset information at the given index for a gradient pattern.
+Values of index range from 0 to n-1 where n is the number returned by
+Pattern::get_color_stop_count().
+<!-- impl LinearGradient::fn new -->
+Create a new linear gradient Pattern object along the line defined by
+(x0, y0) and (x1, y1). Before using the gradient pattern, a number of color
+stops should be defined using Pattern::add_color_stop_rgb() or
+Pattern::add_color_stop_rgba().
+
+Note: The coordinates here are in pattern space. For a new pattern, pattern
+space is identical to user space, but the relationship between the spaces can
+be changed with Pattern::set_matrix().
+<!-- impl LinearGradient::fn get_linear_points -->
+Gets the gradient endpoints for a linear gradient.
+<!-- impl RadialGradient::fn new -->
+Creates a new radial gradient Pattern between the two circles
+defined by (cx0, cy0, radius0) and (cx1, cy1, radius1). Before
+using the gradient pattern, a number of color stops should be
+defined using Pattern::add_color_stop_rgb() or Pattern::add_color_stop_rgba().
+
+Note: The coordinates here are in pattern space. For a new pattern, pattern
+space is identical to user space, but the relationship between the spaces can
+be changed with Pattern::set_matrix().
+<!-- impl RadialGradient::fn get_radial_circles -->
+Gets the gradient endpoint circles for a radial gradient, each specified as a center
+coordinate and a radius.
+<!-- impl Mesh::fn new -->
+Create a new mesh pattern.
+
+Mesh patterns are tensor-product patch meshes (type 7 shadings in PDF). Mesh
+patterns may also be used to create other types of shadings that are special
+cases of tensor-product patch meshes such as Coons patch meshes (type 6 shading
+in PDF) and Gouraud-shaded triangle meshes (type 4 and 5 shadings in PDF).
+
+Mesh patterns consist of one or more tensor-product patches, which should be
+defined before using the mesh pattern. Using a mesh pattern with a partially
+defined patch as source or mask will put the context in an error status with
+a status of Status::InvalidMeshConstruction.
+
+A tensor-product patch is defined by 4 Bézier curves (side 0, 1, 2, 3) and by
+4 additional control points (P0, P1, P2, P3) that provide further control over
+the patch and complete the definition of the tensor-product patch. The corner
+C0 is the first point of the patch.
+
+Degenerate sides are permitted so straight lines may be used. A zero length
+line on one side may be used to create 3 sided patches.
+
+      C1     Side 1       C2
+       +---------------+
+       |               |
+       |  P1       P2  |
+       |               |
+Side 0 |               | Side 2
+       |               |
+       |               |
+       |  P0       P3  |
+       |               |
+       +---------------+
+    C0     Side 3        C3
+
+Each patch is constructed by first calling Mesh::begin_patch(),
+then Mesh::move_to() to specify the first point in the patch (C0).
+Then the sides are specified with calls to Mesh::curve_to() and
+cairo_mesh_pattern_line_to().
+
+The four additional control points (P0, P1, P2, P3) in a patch can
+be specified with Mesh::set_control_point().
+
+At each corner of the patch (C0, C1, C2, C3) a color may be specified with
+Mesh::set_corner_color_rgb() or Mesh::set_corner_color_rgba(). Any corner
+whose color is not explicitly specified defaults to transparent black.
+
+A Coons patch is a special case of the tensor-product patch where the control
+points are implicitly defined by the sides of the patch. The default value for
+any control point not specified is the implicit value for a Coons patch, i.e.
+if no control points are specified the patch is a Coons patch.
+
+A triangle is a special case of the tensor-product patch where the control points
+are implicitly defined by the sides of the patch, all the sides are lines and one
+of them has length 0, i.e. if the patch is specified using just 3 lines, it is a
+triangle. If the corners connected by the 0-length side have the same color, the
+patch is a Gouraud-shaded triangle.
+
+Patches may be oriented differently to the above diagram. For example the first
+point could be at the top left. The diagram only shows the relationship between
+the sides, corners and control points. Regardless of where the first point is
+located, when specifying colors, corner 0 will always be the first point, corner
+1 the point between side 0 and side 1 etc.
+
+Calling Mesh::end_patch() completes the current patch. If less than 4 sides have
+been defined, the first missing side is defined as a line from the current point
+to the first point of the patch (C0) and the other sides are degenerate lines from
+C0 to C0. The corners between the added sides will all be coincident with C0 of
+the patch and their color will be set to be the same as the color of C0.
+
+Additional patches may be added with additional calls to
+Mesh::begin_patch()/Mesh::end_patch().
+
+```ignore
+let mut pattern = Mesh::new();
+ Add a Coons patch 
+pattern.begin_patch();
+pattern.move_to(0, 0);
+pattern.curve_to(30, -30,  60,  30, 100, 0);
+pattern.curve_to(60,  30, 130,  60, 100, 100);
+pattern.curve_to(60,  70,  30, 130,   0, 100);
+pattern.curve_to(30,  70, -30,  30,   0, 0);
+pattern.set_corner_color_rgb(0, 1, 0, 0);
+pattern.set_corner_color_rgb(1, 0, 1, 0);
+pattern.set_corner_color_rgb(2, 0, 0, 1);
+pattern.set_corner_color_rgb(3, 1, 1, 0);
+pattern.end_patch();
+
+ Add a Gouraud-shaded triangle 
+pattern.begin_patch()
+pattern.move_to(100, 100);
+pattern.line_to(130, 130);
+pattern.line_to(130,  70);
+pattern.set_corner_color_rgb(0, 1, 0, 0);
+pattern.set_corner_color_rgb(1, 0, 1, 0);
+pattern.set_corner_color_rgb(2, 0, 0, 1);
+pattern.end_patch();
+```
+
+When two patches overlap, the last one that has been added is drawn over the first
+one.
+
+When a patch folds over itself, points are sorted depending on their parameter
+coordinates inside the patch. The v coordinate ranges from 0 to 1 when moving from
+side 3 to side 1; the u coordinate ranges from 0 to 1 when going from side 0 to side
+
+Points with higher v coordinate hide points with lower v coordinate. When two points
+have the same v coordinate, the one with higher u coordinate is above. This means
+that points nearer to side 1 are above points nearer to side 3; when this is not
+sufficient to decide which point is above (for example when both points belong to
+side 1 or side 3) points nearer to side 2 are above points nearer to side 0.
+
+For a complete definition of tensor-product patches, see the PDF specification (ISO32000),
+which describes the parametrization in detail.
+
+Note: The coordinates are always in pattern space. For a new pattern, pattern space is
+identical to user space, but the relationship between the spaces can be changed with
+Pattern::set_matrix().
+<!-- impl Mesh::fn begin_patch -->
+Begin a patch in a mesh pattern.
+
+After calling this function, the patch shape should be defined with Mesh::move_to(),
+Mesh::line_to() and Mesh::curve_to().
+
+After defining the patch, Mesh::end_patch() must be called before using pattern as
+a source or mask.
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status
+with a status of Status::PatternTypeMismatch. If pattern already has a current patch,
+it will be put into an error status with a status of Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn end_patch -->
+Indicates the end of the current patch in a mesh pattern.
+
+If the current patch has less than 4 sides, it is closed with a straight line from the
+current point to the first point of the patch as if Mesh::line_to() was used.
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status
+with a status of Status::PatternTypeMismatch. If pattern has no current patch or the
+current patch has no current point, pattern will be put into an error status with a
+status of Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn move_to -->
+Define the first point of the current patch in a mesh pattern.
+
+After this call the current point will be (x , y ).
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status with
+a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
+patch already has at least one side, pattern will be put into an error status with a status
+of Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn line_to -->
+Adds a line to the current patch from the current point to position (x , y ) in
+pattern-space coordinates.
+
+If there is no current point before the call to cairo_mesh_pattern_line_to() this function
+will behave as Mesh::move_to(pattern , x , y ).
+
+After this call the current point will be (x , y ).
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status with
+a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
+patch already has 4 sides, pattern will be put into an error status with a status of
+Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn curve_to -->
+Adds a cubic Bézier spline to the current patch from the current point to position
+(x3 , y3 ) in pattern-space coordinates, using (x1 , y1 ) and (x2 , y2 ) as the control
+points.
+
+If the current patch has no current point before the call to Mesh::curve_to(), this
+function will behave as if preceded by a call to Mesh::move_to(pattern , x1 , y1 ).
+
+After this call the current point will be (x3 , y3 ).
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status with
+a status of Status::PatternTypeMismatch. If pattern has no current patch or the current
+patch already has 4 sides, pattern will be put into an error status with a status of
+Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn set_control_point -->
+Set an internal control point of the current patch.
+
+Valid values for point_num are from 0 to 3 and identify the control points as explained in
+Mesh::new().
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status with a
+status of Status::PatternTypeMismatch. If point_num is not valid, pattern will be put into
+an error status with a status of Status::InvalidIndex. If pattern has no current patch,
+pattern will be put into an error status with a status of Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn get_control_point -->
+Gets the control point point_num of patch patch_num for a mesh pattern.
+
+patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
+
+Valid values for point_num are from 0 to 3 and identify the control points as explained
+in Mesh::new().
+<!-- impl Mesh::fn set_corner_color_rgb -->
+Sets the color of a corner of the current patch in a mesh pattern.
+
+The color is specified in the same way as in Context::set_source_rgb().
+
+Valid values for corner_num are from 0 to 3 and identify the corners as explained in
+Mesh::new().
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status
+with a status of Status::PatternTypeMismatch. If corner_num is not valid, pattern will
+be put into an error status with a status of Status::InvalidIndex. If pattern has no
+current patch, pattern will be put into an error status with a status of
+Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn set_corner_color_rgba -->
+Sets the color of a corner of the current patch in a mesh pattern.
+
+The color is specified in the same way as in Context::set_source_rgba().
+
+Valid values for corner_num are from 0 to 3 and identify the corners as explained
+in Mesh::new().
+
+Note: If pattern is not a mesh pattern then pattern will be put into an error status with a
+status of Status::PatternTypeMismatch. If corner_num is not valid, pattern will be put into
+an error status with a status of Status::InvalidIndex. If pattern has no current patch,
+pattern will be put into an error status with a status of Status::InvalidMeshConstruction.
+<!-- impl Mesh::fn get_corner_color_rgba -->
+Gets the color information in corner corner_num of patch patch_num for a mesh pattern.
+
+patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
+
+Valid values for corner_num are from 0 to 3 and identify the corners as explained in
+Mesh::new().
+<!-- impl Mesh::fn get_patch_count -->
+Gets the number of patches specified in the given mesh pattern.
+
+The number only includes patches which have been finished by calling Mesh::end_patch().
+For example it will be 0 during the definition of the first patch.
+<!-- impl Mesh::fn get_path -->
+Gets path defining the patch patch_num for a mesh pattern.
+
+patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
