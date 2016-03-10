@@ -1091,6 +1091,557 @@ Sets whether the app chooser should show recommended applications
 for the content type in a separate section.
 ## `setting`
 the new value for `AppChooserWidget:show-recommended`
+<!-- struct Application -->
+`Application` is a class that handles many important aspects
+of a GTK+ application in a convenient fashion, without enforcing
+a one-size-fits-all application model.
+
+Currently, `Application` handles GTK+ initialization, application
+uniqueness, session management, provides some basic scriptability and
+desktop shell integration by exporting actions and menus and manages a
+list of toplevel windows whose life-cycle is automatically tied to the
+life-cycle of your application.
+
+While `Application` works fine with plain ``GtkWindows``, it is recommended
+to use it together with `ApplicationWindow`.
+
+When GDK threads are enabled, `Application` will acquire the GDK
+lock when invoking actions that arrive from other processes. The GDK
+lock is not touched for local action invocations. In order to have
+actions invoked in a predictable context it is therefore recommended
+that the GDK lock be held while invoking actions locally with
+`gio::ActionGroup::activate_action`. The same applies to actions
+associated with `ApplicationWindow` and to the “activate” and
+“open” `gio::Application` methods.
+
+## Automatic resources ## {`automatic`-resources}
+
+`Application` will automatically load menus from the `Builder`
+file located at "gtk/menus.ui", relative to the application's
+resource base path (see `gio::Application::set_resource_base_path`). The
+menu with the ID "app-menu" is taken as the application's app menu
+and the menu with the ID "menubar" is taken as the application's
+menubar. Additional menus (most interesting submenus) can be named
+and accessed via `Application::get_menu_by_id` which allows for
+dynamic population of a part of the menu structure.
+
+If the files "gtk/menus-appmenu.ui" or "gtk/menus-traditional.ui" are
+present then these files will be used in preference, depending on the
+value of `Application::prefers_app_menu`.
+
+It is also possible to provide the menus manually using
+`Application::set_app_menu` and `Application::set_menubar`.
+
+`Application` will also automatically setup an icon search path for
+the default icon theme by appending "icons" to the resource base
+path. This allows your application to easily store its icons as
+resources. See `IconTheme::add_resource_path` for more
+information.
+
+## A simple application ## {`gtkapplication`}
+
+[A simple example](https://git.gnome.org/browse/gtk+/tree/examples/bp/bloatpad.c)
+
+`Application` optionally registers with a session manager
+of the users session (if you set the `Application:register-session`
+property) and offers various functionality related to the session
+life-cycle.
+
+An application can block various ways to end the session with
+the `Application::inhibit` function. Typical use cases for
+this kind of inhibiting are long-running, uninterruptible operations,
+such as burning a CD or performing a disk backup. The session
+manager may not honor the inhibitor, but it can be expected to
+inform the user about the negative consequences of ending the
+session while inhibitors are present.
+
+## See Also ## {`seealso`}
+[HowDoI: Using `Application`](https://wiki.gnome.org/HowDoI/`Application`),
+[Getting Started with GTK+: Basics](https://developer.gnome.org/gtk3/stable/gtk-getting-started.html`id`-1.2.3.3)
+<!-- impl Application::fn new -->
+Creates a new `Application` instance.
+
+When using `Application`, it is not necessary to call `gtk_init`
+manually. It is called as soon as the application gets registered as
+the primary instance.
+
+Concretely, `gtk_init` is called in the default handler for the
+`gio::Application::startup` signal. Therefore, `Application` subclasses should
+chain up in their `gio::Application::startup` handler before using any GTK+ API.
+
+Note that commandline arguments are not passed to `gtk_init`.
+All GTK+ functionality that is available via commandline arguments
+can also be achieved by setting suitable environment variables
+such as `G_DEBUG`, so this should not be a big
+problem. If you absolutely must support GTK+ commandline arguments,
+you can explicitly call `gtk_init` before creating the application
+instance.
+
+If non-`None`, the application ID must be valid. See
+`gio::Application::id_is_valid`.
+
+If no application ID is given then some features (most notably application
+uniqueness) will be disabled. A null application ID is only allowed with
+GTK+ 3.6 or later.
+## `application_id`
+The application ID.
+## `flags`
+the application flags
+
+# Returns
+
+a new `Application` instance
+<!-- impl Application::fn add_accelerator -->
+Installs an accelerator that will cause the named action
+to be activated when the key combination specificed by `accelerator`
+is pressed.
+
+`accelerator` must be a string that can be parsed by `gtk_accelerator_parse`,
+e.g. "`<Primary>`q" or “`<Control>``<Alt>`p”.
+
+`action_name` must be the name of an action as it would be used
+in the app menu, i.e. actions that have been added to the application
+are referred to with an “app.” prefix, and window-specific actions
+with a “win.” prefix.
+
+`Application` also extracts accelerators out of “accel” attributes
+in the `GMenuModels` passed to `Application::set_app_menu` and
+`Application::set_menubar`, which is usually more convenient
+than calling this function for each accelerator.
+
+# Deprecated since 3.14
+
+Use `Application::set_accels_for_action` instead
+## `accelerator`
+accelerator string
+## `action_name`
+the name of the action to activate
+## `parameter`
+parameter to pass when activating the action,
+ or `None` if the action does not accept an activation parameter
+<!-- impl Application::fn add_window -->
+Adds a window to `self`.
+
+This call is equivalent to setting the `Window:application`
+property of `window` to `self`.
+
+Normally, the connection between the application and the window
+will remain until the window is destroyed, but you can explicitly
+remove it with `Application::remove_window`.
+
+GTK+ will keep the application running as long as it has
+any windows.
+## `window`
+a `Window`
+<!-- impl Application::fn get_accels_for_action -->
+Gets the accelerators that are currently associated with
+the given action.
+
+Since: 3.12
+
+## `detailed_action_name`
+a detailed action name, specifying an action
+ and target to obtain accelerators for
+
+# Returns
+
+accelerators for `detailed_action_name`, as
+ a `None`-terminated array. Free with `g_strfreev` when no longer needed
+<!-- impl Application::fn get_actions_for_accel -->
+Returns the list of actions (possibly empty) that `accel` maps to.
+Each item in the list is a detailed action name in the usual form.
+
+This might be useful to discover if an accel already exists in
+order to prevent installation of a conflicting accelerator (from
+an accelerator editor or a plugin system, for example). Note that
+having more than one action per accelerator may not be a bad thing
+and might make sense in cases where the actions never appear in the
+same context.
+
+In case there are no actions for a given accelerator, an empty array
+is returned. `None` is never returned.
+
+It is a programmer error to pass an invalid accelerator string.
+If you are unsure, check it with `gtk_accelerator_parse` first.
+
+Since: 3.14
+
+## `accel`
+an accelerator that can be parsed by `gtk_accelerator_parse`
+
+# Returns
+
+a `None`-terminated array of actions for `accel`
+<!-- impl Application::fn get_active_window -->
+Gets the “active” window for the application.
+
+The active window is the one that was most recently focused (within
+the application). This window may not have the focus at the moment
+if another application has it — this is just the most
+recently-focused window within this application.
+
+Since: 3.6
+
+
+# Returns
+
+the active window
+<!-- impl Application::fn get_app_menu -->
+Returns the menu model that has been set with
+`Application::set_app_menu`.
+
+# Returns
+
+the application menu of `self`
+<!-- impl Application::fn get_menu_by_id -->
+Gets a menu from automatically loaded resources.
+See [Automatic resources][automatic-resources]
+for more information.
+
+Since: 3.14
+
+## `id`
+the id of the menu to look up
+
+# Returns
+
+Gets the menu with the
+ given id from the automatically loaded resources
+<!-- impl Application::fn get_menubar -->
+Returns the menu model that has been set with
+`Application::set_menubar`.
+
+# Returns
+
+the menubar for windows of `self`
+<!-- impl Application::fn get_window_by_id -->
+Returns the `ApplicationWindow` with the given ID.
+
+Since: 3.6
+
+## `id`
+an identifier number
+
+# Returns
+
+the window with ID `id`, or
+ `None` if there is no window with this ID
+<!-- impl Application::fn get_windows -->
+Gets a list of the ``GtkWindows`` associated with `self`.
+
+The list is sorted by most recently focused window, such that the first
+element is the currently focused window. (Useful for choosing a parent
+for a transient window.)
+
+The list that is returned should not be modified in any way. It will
+only remain valid until the next focus change or window creation or
+deletion.
+
+# Returns
+
+a `glib::List` of `Window`
+<!-- impl Application::fn inhibit -->
+Inform the session manager that certain types of actions should be
+inhibited. This is not guaranteed to work on all platforms and for
+all types of actions.
+
+Applications should invoke this method when they begin an operation
+that should not be interrupted, such as creating a CD or DVD. The
+types of actions that may be blocked are specified by the `flags`
+parameter. When the application completes the operation it should
+call `Application::uninhibit` to remove the inhibitor. Note that
+an application can have multiple inhibitors, and all of the must
+be individually removed. Inhibitors are also cleared when the
+application exits.
+
+Applications should not expect that they will always be able to block
+the action. In most cases, users will be given the option to force
+the action to take place.
+
+Reasons should be short and to the point.
+
+If `window` is given, the session manager may point the user to
+this window to find out more about why the action is inhibited.
+## `window`
+a `Window`, or `None`
+## `flags`
+what types of actions should be inhibited
+## `reason`
+a short, human-readable string that explains
+ why these operations are inhibited
+
+# Returns
+
+A non-zero cookie that is used to uniquely identify this
+ request. It should be used as an argument to `Application::uninhibit`
+ in order to remove the request. If the platform does not support
+ inhibiting or the request failed for some reason, 0 is returned.
+<!-- impl Application::fn is_inhibited -->
+Determines if any of the actions specified in `flags` are
+currently inhibited (possibly by another application).
+## `flags`
+what types of actions should be queried
+
+# Returns
+
+`true` if any of the actions specified in `flags` are inhibited
+<!-- impl Application::fn list_action_descriptions -->
+Lists the detailed action names which have associated accelerators.
+See `Application::set_accels_for_action`.
+
+Since: 3.12
+
+
+# Returns
+
+a `None`-terminated array of strings,
+ free with `g_strfreev` when done
+<!-- impl Application::fn prefers_app_menu -->
+Determines if the desktop environment in which the application is
+running would prefer an application menu be shown.
+
+If this function returns `true` then the application should call
+`Application::set_app_menu` with the contents of an application
+menu, which will be shown by the desktop environment. If it returns
+`false` then you should consider using an alternate approach, such as
+a menubar.
+
+The value returned by this function is purely advisory and you are
+free to ignore it. If you call `Application::set_app_menu` even
+if the desktop environment doesn't support app menus, then a fallback
+will be provided.
+
+Applications are similarly free not to set an app menu even if the
+desktop environment wants to show one. In that case, a fallback will
+also be created by the desktop environment (GNOME, for example, uses
+a menu with only a "Quit" item in it).
+
+The value returned by this function never changes. Once it returns a
+particular value, it is guaranteed to always return the same value.
+
+You may only call this function after the application has been
+registered and after the base startup handler has run. You're most
+likely to want to use this from your own startup handler. It may
+also make sense to consult this function while constructing UI (in
+activate, open or an action activation handler) in order to determine
+if you should show a gear menu or not.
+
+This function will return `false` on Mac OS and a default app menu
+will be created automatically with the "usual" contents of that menu
+typical to most Mac OS applications. If you call
+`Application::set_app_menu` anyway, then this menu will be
+replaced with your own.
+
+Since: 3.14
+
+
+# Returns
+
+`true` if you should set an app menu
+<!-- impl Application::fn remove_accelerator -->
+Removes an accelerator that has been previously added
+with `Application::add_accelerator`.
+
+# Deprecated since 3.14
+
+Use `Application::set_accels_for_action` instead
+## `action_name`
+the name of the action to activate
+## `parameter`
+parameter to pass when activating the action,
+ or `None` if the action does not accept an activation parameter
+<!-- impl Application::fn remove_window -->
+Remove a window from `self`.
+
+If `window` belongs to `self` then this call is equivalent to
+setting the `Window:application` property of `window` to
+`None`.
+
+The application may stop running as a result of a call to this
+function.
+## `window`
+a `Window`
+<!-- impl Application::fn set_accels_for_action -->
+Sets zero or more keyboard accelerators that will trigger the
+given action. The first item in `accels` will be the primary
+accelerator, which may be displayed in the UI.
+
+To remove all accelerators for an action, use an empty, zero-terminated
+array for `accels`.
+
+Since: 3.12
+
+## `detailed_action_name`
+a detailed action name, specifying an action
+ and target to associate accelerators with
+## `accels`
+a list of accelerators in the format
+ understood by `gtk_accelerator_parse`
+<!-- impl Application::fn set_app_menu -->
+Sets or unsets the application menu for `self`.
+
+This can only be done in the primary instance of the application,
+after it has been registered. `gio::Application::startup` is a good place
+to call this.
+
+The application menu is a single menu containing items that typically
+impact the application as a whole, rather than acting on a specific
+window or document. For example, you would expect to see
+“Preferences” or “Quit” in an application menu, but not “Save” or
+“Print”.
+
+If supported, the application menu will be rendered by the desktop
+environment.
+
+Use the base `gio::ActionMap` interface to add actions, to respond to the user
+selecting these menu items.
+## `app_menu`
+a `gio::MenuModel`, or `None`
+<!-- impl Application::fn set_menubar -->
+Sets or unsets the menubar for windows of `self`.
+
+This is a menubar in the traditional sense.
+
+This can only be done in the primary instance of the application,
+after it has been registered. `gio::Application::startup` is a good place
+to call this.
+
+Depending on the desktop environment, this may appear at the top of
+each window, or at the top of the screen. In some environments, if
+both the application menu and the menubar are set, the application
+menu will be presented as if it were the first item of the menubar.
+Other environments treat the two as completely separate — for example,
+the application menu may be rendered by the desktop shell while the
+menubar (if set) remains in each individual window.
+
+Use the base `gio::ActionMap` interface to add actions, to respond to the
+user selecting these menu items.
+## `menubar`
+a `gio::MenuModel`, or `None`
+<!-- impl Application::fn uninhibit -->
+Removes an inhibitor that has been established with `Application::inhibit`.
+Inhibitors are also cleared when the application exits.
+## `cookie`
+a cookie that was returned by `Application::inhibit`
+<!-- struct ApplicationWindow -->
+`ApplicationWindow` is a `Window` subclass that offers some
+extra functionality for better integration with `Application`
+features. Notably, it can handle both the application menu as well
+as the menubar. See `Application::set_app_menu` and
+`Application::set_menubar`.
+
+This class implements the `gio::ActionGroup` and `gio::ActionMap` interfaces,
+to let you add window-specific actions that will be exported by the
+associated `Application`, together with its application-wide
+actions. Window-specific actions are prefixed with the “win.”
+prefix and application-wide actions are prefixed with the “app.”
+prefix. Actions must be addressed with the prefixed name when
+referring to them from a `gio::MenuModel`.
+
+Note that widgets that are placed inside a `ApplicationWindow`
+can also activate these actions, if they implement the
+`Actionable` interface.
+
+As with `Application`, the GDK lock will be acquired when
+processing actions arriving from other processes and should therefore
+be held when activating actions locally (if GDK threads are enabled).
+
+The settings `Settings:gtk-shell-shows-app-menu` and
+`Settings:gtk-shell-shows-menubar` tell GTK+ whether the
+desktop environment is showing the application menu and menubar
+models outside the application as part of the desktop shell.
+For instance, on OS X, both menus will be displayed remotely;
+on Windows neither will be. gnome-shell (starting with version 3.4)
+will display the application menu, but not the menubar.
+
+If the desktop environment does not display the menubar, then
+`ApplicationWindow` will automatically show a `MenuBar` for it.
+(see the `Application` docs for some screenshots of how this
+looks on different platforms).
+This behaviour can be overridden with the `ApplicationWindow:show-menubar`
+property. If the desktop environment does not display the application
+menu, then it will automatically be included in the menubar. It can
+also be shown as part of client-side window decorations, e.g. by
+using `HeaderBar::set_show_close_button`.
+
+## A `ApplicationWindow` with a menubar
+
+
+```C
+app = gtk_application_new ();
+
+builder = gtk_builder_new_from_string (
+    "<interface>"
+    "  <menu id='menubar'>"
+    "    <submenu label='_Edit'>"
+    "      <item label='_Copy' action='win.copy'/>"
+    "      <item label='_Paste' action='win.paste'/>"
+    "    </submenu>"
+    "  </menu>"
+    "</interface>",
+    -1);
+
+menubar = G_MENU_MODEL (gtk_builder_get_object (builder,
+                                                "menubar"));
+gtk_application_set_menubar (G_APPLICATION (app), menubar);
+g_object_unref (builder);
+
+...
+
+window = gtk_application_window_new (app);
+```
+
+## Handling fallback yourself
+
+[A simple example](https://git.gnome.org/browse/gtk+/tree/examples/sunny.c)
+
+The XML format understood by `Builder` for `gio::MenuModel` consists
+of a toplevel `<menu>` element, which contains one or more `<item>`
+elements. Each `<item>` element contains `<attribute>` and `<link>`
+elements with a mandatory name attribute. `<link>` elements have the
+same content model as `<menu>`.
+
+Attribute values can be translated using gettext, like other `Builder`
+content. `<attribute>` elements can be marked for translation with a
+`translatable="yes"` attribute. It is also possible to specify message
+context and translator comments, using the context and comments attributes.
+To make use of this, the `Builder` must have been given the gettext
+domain to use.
+
+# Implements
+
+[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+<!-- impl ApplicationWindow::fn new -->
+Creates a new `ApplicationWindow`.
+## `application`
+a `Application`
+
+# Returns
+
+a newly created `ApplicationWindow`
+<!-- impl ApplicationWindow::fn get_id -->
+Returns the unique ID of the window. If the window has not yet been added to
+a `Application`, returns `0`.
+
+Since: 3.6
+
+
+# Returns
+
+the unique ID for `self`, or `0` if the window
+ has not yet been added to a `Application`
+<!-- impl ApplicationWindow::fn get_show_menubar -->
+Returns whether the window will display a menubar for the app menu
+and menubar as needed.
+
+# Returns
+
+`true` if `self` will display a menubar when needed
+<!-- impl ApplicationWindow::fn set_show_menubar -->
+Sets whether the window will display a menubar for the app menu
+and menubar as needed.
+## `show_menubar`
+whether to show a menubar when needed
 <!-- struct Arrow -->
 `[Deprecated since 3.14]` `Arrow` should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right). The
@@ -1542,7 +2093,7 @@ Trait containing all `Buildable` methods.
 
 # Implementors
 
-[`AboutDialog`](struct.AboutDialog.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`Notebook`](struct.Notebook.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`SizeGroup`](struct.SizeGroup.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+[`AboutDialog`](struct.AboutDialog.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`Notebook`](struct.Notebook.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`SizeGroup`](struct.SizeGroup.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
 <!-- trait BuildableExt::fn add_child -->
 Adds a child to `self`. `type_` is an optional string
 describing how the child should be added.
@@ -35155,7 +35706,7 @@ Trait containing all `Window` methods.
 
 # Implementors
 
-[`Dialog`](struct.Dialog.html), [`Window`](struct.Window.html)
+[`ApplicationWindow`](struct.ApplicationWindow.html), [`Dialog`](struct.Dialog.html), [`Window`](struct.Window.html)
 <!-- impl Window::fn new -->
 Creates a new `Window`, which is a toplevel window that can
 contain other widgets. Nearly always, the type of the window should
