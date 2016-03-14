@@ -10,5 +10,5 @@ license = "LGPL"
 [lib]
 name = "lgpl_docs"
 
-[dependencies.rustdoc-stripper]
-git = "https://github.com/GuillaumeGomez/rustdoc-stripper.git"
+[dependencies]
+rustdoc-stripper = "0.1.0"
