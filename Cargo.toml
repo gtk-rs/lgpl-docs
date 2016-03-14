@@ -12,4 +12,3 @@ name = "lgpl_docs"
 
 [dependencies.rustdoc-stripper]
 git = "https://github.com/GuillaumeGomez/rustdoc-stripper.git"
-rev = "af519742"
