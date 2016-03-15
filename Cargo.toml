@@ -5,7 +5,10 @@ authors = [
     "GTK+ Project Developers",
     "Gtk-rs Project Developers",
 ]
-license = "LGPL"
+license = "LGPL-2.0"
+description = "LGPL-licensed docs for Gtk-rs crates"
+repository = "https://github.com/gtk-rs/lgpl-docs"
+homepage = "http://gtk-rs.org/"
 
 [lib]
 name = "lgpl_docs"
