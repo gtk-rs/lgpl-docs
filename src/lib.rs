@@ -1,25 +1,5 @@
 extern crate stripper_lib;
 
-pub enum Library {
-    Cairo,
-    Gdk,
-    GdkPixbuf,
-    Glib,
-    Gtk,
-    Pango,
-}
-
-fn gir_docs(lib: Library) -> &'static str {
-    match lib {
-        Library::Cairo => include_str!("../cairo.md"),
-        Library::Gdk => include_str!("../gdk.md"),
-        Library::GdkPixbuf => include_str!("../gdk-pixbuf.md"),
-        Library::Glib => include_str!("../glib.md"),
-        Library::Gtk => include_str!("../gtk.md"),
-        Library::Pango => include_str!("../pango.md"),
-    }
-}
-
 use std::io;
 use std::path::Path;
 use stripper_lib::{
@@ -29,14 +9,53 @@ use stripper_lib::{
     strip_comments,
 };
 
+#[derive(Clone, Copy, Debug)]
+pub enum Library {
+    Cairo,
+    Gdk,
+    GdkPixbuf,
+    Glib,
+    Gio,
+    Gtk,
+    Pango,
+}
+
+fn docs(lib: Library) -> Option<&'static str> {
+    match lib {
+        Library::Cairo => Some(include_str!("../cairo/docs.md")),
+        Library::Gdk=> Some(include_str!("../gdk/docs.md")),
+        Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/docs.md")),
+        Library::Gtk=> Some(include_str!("../gtk/docs.md")),
+        _ => None,
+    }
+}
+
+fn vendor_docs(lib: Library) -> Option<&'static str> {
+    match lib {
+        Library::Gdk => Some(include_str!("../gdk/vendor.md")),
+        Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/vendor.md")),
+        Library::Gtk => Some(include_str!("../gtk/vendor.md")),
+        _ => None,
+    }
+}
+
 /// Embeds the docs.
 ///
 /// `path` is the root directory to process.
 ///
 /// `ignores` is the list of files to skip (relative to `path`).
 pub fn embed<P: AsRef<Path>>(library: Library, path: P, ignores: &[&str]) {
-    let mut infos = parse_cmts(gir_docs(library).lines(), true);
-    loop_over_files(path.as_ref(), &mut |w, s| regenerate_comments(w, s, &mut infos, true, true),
+    if let Some(docs) = docs(library) {
+        do_embed(docs, path.as_ref(), ignores);
+    }
+    if let Some(docs) = vendor_docs(library) {
+        do_embed(docs, path.as_ref(), ignores);
+    }
+}
+
+fn do_embed(docs: &str, path: &Path, ignores: &[&str]) {
+    let mut infos = parse_cmts(docs.lines(), true);
+    loop_over_files(path, &mut |w, s| regenerate_comments(w, s, &mut infos, true, true),
         &ignores, false);
 }
 
