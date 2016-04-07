@@ -1,6 +1,6 @@
 [package]
 name = "gtk-rs-lgpl-docs"
-version = "0.0.1"
+version = "0.1.0"
 authors = [
     "GTK+ Project Developers",
     "Gtk-rs Project Developers",
