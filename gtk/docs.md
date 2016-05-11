@@ -6,19 +6,16 @@ which gives an overview of all the objects and data
 types related to the text widget and how they work together.
 <!-- impl TextBuffer::fn insert_markup -->
 Inserts the text in `markup` at position `iter`. `markup` will be inserted
-in its entirety and must be nul-terminated and valid UTF-8. Emits the
-`TextBuffer::insert-text` signal, possibly multiple times; insertion
-actually occurs in the default handler for the signal. `iter` will point
-to the end of the inserted text on return.
+in its entirety. Emits the `TextBuffer::insert-text` signal, possibly
+multiple times; insertion actually occurs in the default handler for the
+signal. `iter` will point to the end of the inserted text on return.
 
 Since: 3.16
 
 ## `iter`
 location to insert the markup
 ## `markup`
-a nul-terminated UTF-8 string containing [Pango markup](https://developer.gnome.org/pygtk/stable/pango-markup-language.html)
-## `len`
-length of `markup` in bytes, or -1
+a string containing [Pango markup](https://developer.gnome.org/pygtk/stable/pango-markup-language.html)
 <!-- struct TextIter -->
 You may wish to begin by reading the
 [text widget conceptual overview](https://developer.gnome.org/gtk3/stable/TextWidget.html)
@@ -152,7 +149,7 @@ already inside:
     use gtk::Button;
 
     // Pressing Alt+H will activate this button
-    let button = Button::new_with_mnemonic(Some("_Hello"));
+    let button = Button::new_with_mnemonic("_Hello");
 ```
 
 To create a mnemonic for a widget alongside the label, such as a
@@ -189,7 +186,7 @@ Here’s how to create a label with a small font:
 tags in the Pango manual.)
 
 The markup passed to `Label::set_markup` must be valid; for example,
-literal <, > and & characters must be escaped as &lt;, &gt;, and &amp;.
+literal <, > and & characters must be escaped as `&lt;`, `&gt;`, and `&amp;`.
 If you pass text obtained from the user, file, or a network to
 `Label::set_markup`, you’ll want to escape it with
 `g_markup_escape_text` or `g_markup_printf_escaped`.
@@ -248,16 +245,15 @@ text. The “title“ attribute is displayed as a tooltip on the link.
 
 An example looks like this:
 
-
 ```no_run
     use gtk::Label;
 
     let label = Label::new(None);
     let text =
-"Go to the \
-<a href=\"http://www.gtk.org title="&lt;i&gt;Our&lt;/i&gt; website\"> \
-GTK+ website</a> for more...";
-    label_set_markup(text);
+r#"Go to the
+ <a href="http://www.gtk.org" title="&lt;i&gt;Our&lt;/i&gt; website">
+ GTK+ website</a> for more..."#;
+    label.set_markup(text);
 ```
 
 It is possible to implement custom handling for links and their tooltips with
@@ -269,7 +265,7 @@ the `Label::activate-link` signal and the `Label::get_current_uri` function.
 <!-- impl Label::fn get_use_markup -->
 Returns whether the label’s text is interpreted as marked up with
 the [Pango text markup language](https://developer.gnome.org/pygtk/stable/pango-markup-language.html).
-See gtk_label_set_use_markup ().
+See `Label::set_use_markup`.
 
 # Returns
 
