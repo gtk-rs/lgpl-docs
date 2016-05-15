@@ -40,7 +40,7 @@ the “Close” button returns the `ResponseType::Cancel` response id.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl AboutDialog::fn new -->
 Creates a new `AboutDialog`.
 
@@ -274,6 +274,10 @@ menu item. Mnemonics are shortcuts for GUI elements such as text
 entries or buttons; they appear as underlined characters. See
 `Label::new_with_mnemonic`. Menu items can have both accelerators
 and mnemonics, of course.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl AccelGroup::fn new -->
 Creates a new `AccelGroup`.
 
@@ -436,7 +440,7 @@ Since: 3.12
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl ActionBar::fn new -->
 Creates a new `ActionBar` widget.
 
@@ -494,13 +498,13 @@ or "`Application`, but other action groups that are added with
 
 # Implements
 
-[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait ActionableExt -->
 Trait containing all `Actionable` methods.
 
 # Implementors
 
-[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`LinkButton`](struct.LinkButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`RadioButton`](struct.RadioButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
+[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`LinkButton`](struct.LinkButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`RadioButton`](struct.RadioButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait ActionableExt::fn get_action_name -->
 Gets the action name for `self`.
 
@@ -593,6 +597,10 @@ The owner of the `Adjustment` typically calls the
 `Adjustment::value_changed` and `Adjustment::changed` functions
 after changing the value and its bounds. This results in the emission of the
 `Adjustment::value_changed` or `Adjustment::changed` signal respectively.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Adjustment::fn new -->
 Creates a new `Adjustment`.
 ## `value`
@@ -804,7 +812,7 @@ child widget.
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Alignment::fn new -->
 Creates a new `Alignment`.
 
@@ -908,7 +916,7 @@ use `AppChooser::get_app_info`.
 
 # Implements
 
-[`AppChooserExt`](trait.AppChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`AppChooserExt`](trait.AppChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait AppChooserExt -->
 Trait containing all `AppChooser` methods.
 
@@ -943,7 +951,7 @@ use `AppChooserDialog::set_heading`.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- impl AppChooserDialog::fn new -->
 Creates a new `AppChooserDialog` for the provided `gio::File`,
 to allow the user to select an application for it.
@@ -1009,7 +1017,7 @@ To keep track of the selected application, use the
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- impl AppChooserWidget::fn new -->
 Creates a new `AppChooserWidget` for applications
 that can handle content of the given type.
@@ -1158,6 +1166,10 @@ session while inhibitors are present.
 ## See Also ## {`seealso`}
 [HowDoI: Using `Application`](https://wiki.gnome.org/HowDoI/`Application`),
 [Getting Started with GTK+: Basics](https://developer.gnome.org/gtk3/stable/gtk-getting-started.html`id`-1.2.3.3)
+
+# Implements
+
+[`ApplicationExt`](trait.ApplicationExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
 <!-- impl Application::fn new -->
 Creates a new `Application` instance.
 
@@ -1610,7 +1622,7 @@ domain to use.
 
 # Implements
 
-[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
 <!-- impl ApplicationWindow::fn new -->
 Creates a new `ApplicationWindow`.
 ## `application`
@@ -1667,7 +1679,7 @@ react to the text direction instead of “pan-left-symbolic“ and
 
 # Implements
 
-[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Arrow::fn new -->
 Creates a new `Arrow` widget.
 
@@ -1723,7 +1735,7 @@ a frame around the child. The frame will be
 
 # Implements
 
-[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl AspectFrame::fn new -->
 Create a new `AspectFrame`.
 ## `label`
@@ -1817,7 +1829,7 @@ Many GTK+ widgets are subclasses of `Bin`, including `Window`,
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait BinExt -->
 Trait containing all `Bin` methods.
 
@@ -1901,7 +1913,7 @@ the same functionality as `Box`.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait BoxExt -->
 Trait containing all `Box` methods.
 
@@ -2071,131 +2083,6 @@ Sets the `Box:spacing` property of `self`, which is the
 number of pixels to place between children of `self`.
 ## `spacing`
 the number of pixels to put between children
-<!-- struct Buildable -->
-`Buildable` allows objects to extend and customize their deserialization
-from [`Builder` UI descriptions][BUILDER-UI].
-The interface includes methods for setting names and properties of objects,
-parsing custom tags and constructing child objects.
-
-The `Buildable` interface is implemented by all widgets and
-many of the non-widget objects that are provided by GTK+. The
-main user of this interface is `Builder`. There should be
-very little need for applications to call any of these functions directly.
-
-An object only needs to implement this interface if it needs to extend the
-`Builder` format or run any extra routines at deserialization time.
-
-# Implements
-
-[`BuildableExt`](trait.BuildableExt.html)
-<!-- trait BuildableExt -->
-Trait containing all `Buildable` methods.
-
-# Implementors
-
-[`AboutDialog`](struct.AboutDialog.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`Notebook`](struct.Notebook.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`SizeGroup`](struct.SizeGroup.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
-<!-- trait BuildableExt::fn add_child -->
-Adds a child to `self`. `type_` is an optional string
-describing how the child should be added.
-## `builder`
-a `Builder`
-## `child`
-child to add
-## `type_`
-kind of child or `None`
-<!-- trait BuildableExt::fn construct_child -->
-Constructs a child of `self` with the name `name`.
-
-`Builder` calls this function if a “constructor” has been
-specified in the UI definition.
-## `builder`
-`Builder` used to construct this object
-## `name`
-name of child to construct
-
-# Returns
-
-the constructed child
-<!-- trait BuildableExt::fn custom_finished -->
-This is similar to `Buildable::parser_finished` but is
-called once for each custom tag handled by the `self`.
-## `builder`
-a `Builder`
-## `child`
-child object or `None` for non-child tags
-## `tagname`
-the name of the tag
-## `data`
-user data created in custom_tag_start
-<!-- trait BuildableExt::fn custom_tag_end -->
-This is called at the end of each custom element handled by
-the buildable.
-## `builder`
-`Builder` used to construct this object
-## `child`
-child object or `None` for non-child tags
-## `tagname`
-name of tag
-## `data`
-user data that will be passed in to parser functions
-<!-- trait BuildableExt::fn custom_tag_start -->
-This is called for each unknown element under `<child>`.
-## `builder`
-a `Builder` used to construct this object
-## `child`
-child object or `None` for non-child tags
-## `tagname`
-name of tag
-## `parser`
-a `glib::MarkupParser` to fill in
-## `data`
-return location for user data that will be passed in
- to parser functions
-
-# Returns
-
-`true` if a object has a custom implementation, `false`
- if it doesn't.
-<!-- trait BuildableExt::fn get_internal_child -->
-Get the internal child called `childname` of the `self` object.
-## `builder`
-a `Builder`
-## `childname`
-name of child
-
-# Returns
-
-the internal child of the buildable object
-<!-- trait BuildableExt::fn get_name -->
-Gets the name of the `self` object.
-
-`Builder` sets the name based on the
-[`Builder` UI definition][BUILDER-UI]
-used to construct the `self`.
-
-# Returns
-
-the name set with `Buildable::set_name`
-<!-- trait BuildableExt::fn parser_finished -->
-Called when the builder finishes the parsing of a
-[`Builder` UI definition][BUILDER-UI].
-Note that this will be called once for each time
-`Builder::add_from_file` or `Builder::add_from_string`
-is called on a builder.
-## `builder`
-a `Builder`
-<!-- trait BuildableExt::fn set_buildable_property -->
-Sets the property name `name` to `value` on the `self` object.
-## `builder`
-a `Builder`
-## `name`
-name of property
-## `value`
-value of property
-<!-- trait BuildableExt::fn set_name -->
-Sets the name of the `self` object.
-## `name`
-name to set
 <!-- struct Builder -->
 A `Builder` is an auxiliary object that reads textual descriptions
 of a user interface and instantiates the described objects. To create
@@ -2379,6 +2266,10 @@ respective objects.
 Additionally, since 3.10 a special `<template>` tag has been added
 to the format allowing one to define a widget class’s components.
 See the [`Widget` documentation][composite-templates] for details.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Builder::fn new -->
 Creates a new empty builder object.
 
@@ -2809,7 +2700,7 @@ almost any other standard `Widget`. The most commonly used child is the
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ButtonExt -->
 Trait containing all `Button` methods.
 
@@ -3074,7 +2965,7 @@ the next character should be used for the mnemonic accelerator key.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl ButtonBox::fn new -->
 Creates a new `ButtonBox`.
 ## `orientation`
@@ -3204,7 +3095,7 @@ historically incorrect.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Calendar::fn new -->
 Creates a new calendar, with the current date being selected.
 
@@ -3618,14 +3509,14 @@ properties for a cell area class and `CellAreaClass::find_cell_property`
 or `CellAreaClass::list_cell_properties` to get information about
 existing cell properties.
 
-To set the value of a cell property, use `CellAreaExt::cell_set_property`,
+To set the value of a cell property, use `CellArea::cell_set_property`,
 `CellAreaExt::cell_set` or `CellAreaExt::cell_set_valist`. To obtain
-the value of a cell property, use `CellAreaExt::cell_get_property`,
+the value of a cell property, use `CellArea::cell_get_property`,
 `CellAreaExt::cell_get` or `CellAreaExt::cell_get_valist`.
 
 # Implements
 
-[`CellAreaExt`](trait.CellAreaExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`CellAreaExt`](trait.CellAreaExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait CellAreaExt -->
 Trait containing all `CellArea` methods.
 
@@ -4162,12 +4053,12 @@ side.
 
 Alignments of ``GtkCellRenderers`` rendered in adjacent rows can be
 configured by configuring the `CellAreaBox` align child cell property
-with `CellAreaExt::cell_set_property` or by specifying the "align"
+with `CellArea::cell_set_property` or by specifying the "align"
 argument to `CellAreaBox::pack_start` and `CellAreaBox::pack_end`.
 
 # Implements
 
-[`CellAreaExt`](trait.CellAreaExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`CellAreaExt`](trait.CellAreaExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl CellAreaBox::fn new -->
 Creates a new `CellAreaBox`.
 
@@ -4223,6 +4114,10 @@ request and render groups of data rows. However, it’s important that the
 same context which was used to request sizes for a given `TreeModel`
 row also be used for the same row when calling other `CellArea` APIs
 such as `CellAreaExt::render` and `CellAreaExt::event`.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellAreaContext::fn allocate -->
 Allocates a width and/or a height for all rows which are to be
 rendered with `self`.
@@ -4374,7 +4269,7 @@ when editing the contents of a `TreeView` cell.
 
 # Implements
 
-[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait CellEditableExt -->
 Trait containing all `CellEditable` methods.
 
@@ -4597,7 +4492,7 @@ has been set or not. You should not set them independently.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait CellRendererExt -->
 Trait containing all `CellRenderer` methods.
 
@@ -4846,7 +4741,7 @@ The `CellRendererAccel` cell renderer was added in GTK+ 2.10.
 
 # Implements
 
-[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererAccel::fn new -->
 Creates a new `CellRendererAccel`.
 
@@ -4879,7 +4774,7 @@ The `CellRendererCombo` cell renderer was added in GTK+ 2.6.
 
 # Implements
 
-[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererCombo::fn new -->
 Creates a new `CellRendererCombo`.
 Adjust how text is drawn using object properties.
@@ -4919,7 +4814,7 @@ pixbuf, it renders that one.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererPixbuf::fn new -->
 Creates a new `CellRendererPixbuf`. Adjust rendering
 parameters using object properties. Object properties can be set
@@ -4940,7 +4835,7 @@ The `CellRendererProgress` cell renderer was added in GTK+ 2.6.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl CellRendererProgress::fn new -->
 Creates a new `CellRendererProgress`.
 
@@ -4964,7 +4859,7 @@ The `CellRendererSpin` cell renderer was added in GTK+ 2.10.
 
 # Implements
 
-[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererSpin::fn new -->
 Creates a new `CellRendererSpin`.
 
@@ -4985,7 +4880,7 @@ for each cell is to bind them to columns in your tree model using e.g.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererSpinner::fn new -->
 Returns a new cell renderer which will show a spinner to indicate
 activity.
@@ -5003,7 +4898,7 @@ the `CellRendererText` allows to edit its text using an entry.
 
 # Implements
 
-[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait CellRendererTextExt -->
 Trait containing all `CellRendererText` methods.
 
@@ -5040,7 +4935,7 @@ When activated, it emits the `CellRendererToggle::toggled` signal.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl CellRendererToggle::fn new -->
 Creates a new `CellRendererToggle`. Adjust rendering
 parameters using object properties. Object properties can be set
@@ -5101,7 +4996,7 @@ The important signal ( `ToggleButton::toggled` ) is also inherited from
 
 # Implements
 
-[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait CheckButtonExt -->
 Trait containing all `CheckButton` methods.
 
@@ -5144,7 +5039,7 @@ toggles the value.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl CheckMenuItem::fn new -->
 Creates a new `CheckMenuItem`.
 
@@ -5210,6 +5105,482 @@ visual appearance, it doesn’t affect the semantics of the widget.
 `true` to display an “inconsistent” third state check
 <!-- impl CheckMenuItem::fn toggled -->
 Emits the `CheckMenuItem::toggled` signal.
+<!-- struct Clipboard -->
+The `Clipboard` object represents a clipboard of data shared
+between different processes or between different widgets in
+the same process. Each clipboard is identified by a name encoded as a
+`gdk::Atom`. (Conversion to and from strings can be done with
+`gdk::Atom_::intern` and `gdk::Atom_::name`.) The default clipboard
+corresponds to the “CLIPBOARD” atom; another commonly used clipboard
+is the “PRIMARY” clipboard, which, in X, traditionally contains
+the currently selected text.
+
+To support having a number of different formats on the clipboard
+at the same time, the clipboard mechanism allows providing
+callbacks instead of the actual data. When you set the contents
+of the clipboard, you can either supply the data directly (via
+functions like `Clipboard::set_text`), or you can supply a
+callback to be called at a later time when the data is needed (via
+`Clipboard::set_with_data` or `Clipboard::set_with_owner`.)
+Providing a callback also avoids having to make copies of the data
+when it is not needed.
+
+`Clipboard::set_with_data` and `Clipboard::set_with_owner`
+are quite similar; the choice between the two depends mostly on
+which is more convenient in a particular situation.
+The former is most useful when you want to have a blob of data
+with callbacks to convert it into the various data types that you
+advertise. When the `clear_func` you provided is called, you
+simply free the data blob. The latter is more useful when the
+contents of clipboard reflect the internal state of a `gobject::Object`
+(As an example, for the PRIMARY clipboard, when an entry widget
+provides the clipboard’s contents the contents are simply the
+text within the selected region.) If the contents change, the
+entry widget can call `Clipboard::set_with_owner` to update
+the timestamp for clipboard ownership, without having to worry
+about `clear_func` being called.
+
+Requesting the data from the clipboard is essentially
+asynchronous. If the contents of the clipboard are provided within
+the same process, then a direct function call will be made to
+retrieve the data, but if they are provided by another process,
+then the data needs to be retrieved from the other process, which
+may take some time. To avoid blocking the user interface, the call
+to request the selection, `Clipboard::request_contents` takes a
+callback that will be called when the contents are received (or
+when the request fails.) If you don’t want to deal with providing
+a separate callback, you can also use `Clipboard::wait_for_contents`.
+What this does is run the GLib main loop recursively waiting for
+the contents. This can simplify the code flow, but you still have
+to be aware that other callbacks in your program can be called
+while this recursive mainloop is running.
+
+Along with the functions to get the clipboard contents as an
+arbitrary data chunk, there are also functions to retrieve
+it as text, `Clipboard::request_text` and
+`Clipboard::wait_for_text`. These functions take care of
+determining which formats are advertised by the clipboard
+provider, asking for the clipboard in the best available format
+and converting the results into the UTF-8 encoding. (The standard
+form for representing strings in GTK+.)
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
+<!-- impl Clipboard::fn get -->
+Returns the clipboard object for the given selection.
+See `Clipboard::get_for_display` for complete details.
+## `selection`
+a `gdk::Atom` which identifies the clipboard to use
+
+# Returns
+
+the appropriate clipboard object. If no clipboard
+ already exists, a new one will be created. Once a clipboard
+ object has been created, it is persistent and, since it is
+ owned by GTK+, must not be freed or unreffed.
+<!-- impl Clipboard::fn get_default -->
+Returns the default clipboard object for use with cut/copy/paste menu items
+and keyboard shortcuts.
+
+Since: 3.16
+
+## `display`
+the `gdk::Display` for which the clipboard is to be retrieved.
+
+# Returns
+
+the default clipboard object.
+<!-- impl Clipboard::fn get_for_display -->
+Returns the clipboard object for the given selection.
+Cut/copy/paste menu items and keyboard shortcuts should use
+the default clipboard, returned by passing `GDK_SELECTION_CLIPBOARD` for `selection`.
+(`GDK_NONE` is supported as a synonym for GDK_SELECTION_CLIPBOARD
+for backwards compatibility reasons.)
+The currently-selected object or text should be provided on the clipboard
+identified by `GDK_SELECTION_PRIMARY`. Cut/copy/paste menu items
+conceptually copy the contents of the `GDK_SELECTION_PRIMARY` clipboard
+to the default clipboard, i.e. they copy the selection to what the
+user sees as the clipboard.
+
+(Passing `GDK_NONE` is the same as using `gdk_atom_intern
+("CLIPBOARD", FALSE)`.
+
+See the
+[FreeDesktop Clipboard Specification](http://www.freedesktop.org/Standards/clipboards-spec)
+for a detailed discussion of the “CLIPBOARD” vs. “PRIMARY”
+selections under the X window system. On Win32 the
+`GDK_SELECTION_PRIMARY` clipboard is essentially ignored.)
+
+It’s possible to have arbitrary named clipboards; if you do invent
+new clipboards, you should prefix the selection name with an
+underscore (because the ICCCM requires that nonstandard atoms are
+underscore-prefixed), and namespace it as well. For example,
+if your application called “Foo” has a special-purpose
+clipboard, you might call it “_FOO_SPECIAL_CLIPBOARD”.
+## `display`
+the `gdk::Display` for which the clipboard is to be retrieved or created.
+## `selection`
+a `gdk::Atom` which identifies the clipboard to use.
+
+# Returns
+
+the appropriate clipboard object. If no
+ clipboard already exists, a new one will be created. Once a clipboard
+ object has been created, it is persistent and, since it is owned by
+ GTK+, must not be freed or unrefd.
+<!-- impl Clipboard::fn clear -->
+Clears the contents of the clipboard. Generally this should only
+be called between the time you call `Clipboard::set_with_owner`
+or `Clipboard::set_with_data`,
+and when the `clear_func` you supplied is called. Otherwise, the
+clipboard may be owned by someone else.
+<!-- impl Clipboard::fn get_display -->
+Gets the `gdk::Display` associated with `self`
+
+# Returns
+
+the `gdk::Display` associated with `self`
+<!-- impl Clipboard::fn get_owner -->
+If the clipboard contents callbacks were set with
+`Clipboard::set_with_owner`, and the `Clipboard::set_with_data` or
+`Clipboard::clear` has not subsequently called, returns the owner set
+by `Clipboard::set_with_owner`.
+
+# Returns
+
+the owner of the clipboard, if any;
+ otherwise `None`.
+<!-- impl Clipboard::fn request_contents -->
+Requests the contents of clipboard as the given target.
+When the results of the result are later received the supplied callback
+will be called.
+## `target`
+an atom representing the form into which the clipboard
+ owner should convert the selection.
+## `callback`
+A function to call when the results are received
+ (or the retrieval fails). If the retrieval fails the length field of
+ `selection_data` will be negative.
+## `user_data`
+user data to pass to `callback`
+<!-- impl Clipboard::fn request_image -->
+Requests the contents of the clipboard as image. When the image is
+later received, it will be converted to a `gdk_pixbuf::Pixbuf`, and
+`callback` will be called.
+
+The `pixbuf` parameter to `callback` will contain the resulting
+`gdk_pixbuf::Pixbuf` if the request succeeded, or `None` if it failed. This
+could happen for various reasons, in particular if the clipboard
+was empty or if the contents of the clipboard could not be
+converted into an image.
+## `callback`
+a function to call when the image is received,
+ or the retrieval fails. (It will always be called one way or the other.)
+## `user_data`
+user data to pass to `callback`.
+<!-- impl Clipboard::fn request_rich_text -->
+Requests the contents of the clipboard as rich text. When the rich
+text is later received, `callback` will be called.
+
+The `text` parameter to `callback` will contain the resulting rich
+text if the request succeeded, or `None` if it failed. The `length`
+parameter will contain `text`’s length. This function can fail for
+various reasons, in particular if the clipboard was empty or if the
+contents of the clipboard could not be converted into rich text form.
+## `buffer`
+a `TextBuffer`
+## `callback`
+a function to call when the text is received,
+ or the retrieval fails. (It will always be called one way or the other.)
+## `user_data`
+user data to pass to `callback`.
+<!-- impl Clipboard::fn request_targets -->
+Requests the contents of the clipboard as list of supported targets.
+When the list is later received, `callback` will be called.
+
+The `targets` parameter to `callback` will contain the resulting targets if
+the request succeeded, or `None` if it failed.
+## `callback`
+a function to call when the targets are
+ received, or the retrieval fails. (It will always be called
+ one way or the other.)
+## `user_data`
+user data to pass to `callback`.
+<!-- impl Clipboard::fn request_text -->
+Requests the contents of the clipboard as text. When the text is
+later received, it will be converted to UTF-8 if necessary, and
+`callback` will be called.
+
+The `text` parameter to `callback` will contain the resulting text if
+the request succeeded, or `None` if it failed. This could happen for
+various reasons, in particular if the clipboard was empty or if the
+contents of the clipboard could not be converted into text form.
+## `callback`
+a function to call when the text is received,
+ or the retrieval fails. (It will always be called one way or the other.)
+## `user_data`
+user data to pass to `callback`.
+<!-- impl Clipboard::fn request_uris -->
+Requests the contents of the clipboard as URIs. When the URIs are
+later received `callback` will be called.
+
+The `uris` parameter to `callback` will contain the resulting array of
+URIs if the request succeeded, or `None` if it failed. This could happen
+for various reasons, in particular if the clipboard was empty or if the
+contents of the clipboard could not be converted into URI form.
+## `callback`
+a function to call when the URIs are received,
+ or the retrieval fails. (It will always be called one way or the other.)
+## `user_data`
+user data to pass to `callback`.
+<!-- impl Clipboard::fn set_can_store -->
+Hints that the clipboard data should be stored somewhere when the
+application exits or when gtk_clipboard_store () is called.
+
+This value is reset when the clipboard owner changes.
+Where the clipboard data is stored is platform dependent,
+see gdk_display_store_clipboard () for more information.
+## `targets`
+array containing
+ information about which forms should be stored or `None`
+ to indicate that all forms should be stored.
+## `n_targets`
+number of elements in `targets`
+<!-- impl Clipboard::fn set_image -->
+Sets the contents of the clipboard to the given `gdk_pixbuf::Pixbuf`.
+GTK+ will take responsibility for responding for requests
+for the image, and for converting the image into the
+requested format.
+## `pixbuf`
+a `gdk_pixbuf::Pixbuf`
+<!-- impl Clipboard::fn set_text -->
+Sets the contents of the clipboard to the given UTF-8 string. GTK+ will
+make a copy of the text and take responsibility for responding
+for requests for the text, and for converting the text into
+the requested format.
+## `text`
+a UTF-8 string.
+## `len`
+length of `text`, in bytes, or -1, in which case
+ the length will be determined with `strlen`.
+<!-- impl Clipboard::fn set_with_data -->
+Virtually sets the contents of the specified clipboard by providing
+a list of supported formats for the clipboard data and a function
+to call to get the actual data when it is requested.
+## `targets`
+array containing information
+ about the available forms for the clipboard data
+## `n_targets`
+number of elements in `targets`
+## `get_func`
+function to call to get the actual clipboard data
+## `clear_func`
+when the clipboard contents are set again,
+ this function will be called, and `get_func` will not be subsequently
+ called.
+## `user_data`
+user data to pass to `get_func` and `clear_func`.
+
+# Returns
+
+`true` if setting the clipboard data succeeded.
+ If setting the clipboard data failed the provided callback
+ functions will be ignored.
+<!-- impl Clipboard::fn set_with_owner -->
+Virtually sets the contents of the specified clipboard by providing
+a list of supported formats for the clipboard data and a function
+to call to get the actual data when it is requested.
+
+The difference between this function and `Clipboard::set_with_data`
+is that instead of an generic `user_data` pointer, a `gobject::Object` is passed
+in.
+## `targets`
+array containing information
+ about the available forms for the clipboard data
+## `n_targets`
+number of elements in `targets`
+## `get_func`
+function to call to get the actual clipboard data
+## `clear_func`
+when the clipboard contents are set again,
+ this function will be called, and `get_func` will not be subsequently
+ called
+## `owner`
+an object that “owns” the data. This object will be passed
+ to the callbacks when called
+
+# Returns
+
+`true` if setting the clipboard data succeeded.
+ If setting the clipboard data failed the provided callback
+ functions will be ignored.
+<!-- impl Clipboard::fn store -->
+Stores the current clipboard data somewhere so that it will stay
+around after the application has quit.
+<!-- impl Clipboard::fn wait_for_contents -->
+Requests the contents of the clipboard using the given target.
+This function waits for the data to be received using the main
+loop, so events, timeouts, etc, may be dispatched during the wait.
+## `target`
+an atom representing the form into which the clipboard
+ owner should convert the selection.
+
+# Returns
+
+a newly-allocated `SelectionData` object or `None`
+ if retrieving the given target failed. If non-`None`,
+ this value must be freed with `SelectionData::free`
+ when you are finished with it.
+<!-- impl Clipboard::fn wait_for_image -->
+Requests the contents of the clipboard as image and converts
+the result to a `gdk_pixbuf::Pixbuf`. This function waits for
+the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+# Returns
+
+a newly-allocated `gdk_pixbuf::Pixbuf`
+ object which must be disposed with `gobject::Object::unref`, or
+ `None` if retrieving the selection data failed. (This could
+ happen for various reasons, in particular if the clipboard
+ was empty or if the contents of the clipboard could not be
+ converted into an image.)
+<!-- impl Clipboard::fn wait_for_rich_text -->
+Requests the contents of the clipboard as rich text. This function
+waits for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+## `buffer`
+a `TextBuffer`
+## `format`
+return location for the format of the returned data
+## `length`
+return location for the length of the returned data
+
+# Returns
+
+a
+ newly-allocated binary block of data which must be
+ freed with `g_free`, or `None` if retrieving the
+ selection data failed. (This could happen for various
+ reasons, in particular if the clipboard was empty or
+ if the contents of the clipboard could not be
+ converted into text form.)
+<!-- impl Clipboard::fn wait_for_targets -->
+Returns a list of targets that are present on the clipboard, or `None`
+if there aren’t any targets available. The returned list must be
+freed with `g_free`.
+This function waits for the data to be received using the main
+loop, so events, timeouts, etc, may be dispatched during the wait.
+## `targets`
+location
+ to store an array of targets. The result stored here must
+ be freed with `g_free`.
+## `n_targets`
+location to store number of items in `targets`.
+
+# Returns
+
+`true` if any targets are present on the clipboard,
+ otherwise `false`.
+<!-- impl Clipboard::fn wait_for_text -->
+Requests the contents of the clipboard as text and converts
+the result to UTF-8 if necessary. This function waits for
+the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+# Returns
+
+a newly-allocated UTF-8 string which must
+ be freed with `g_free`, or `None` if retrieving
+ the selection data failed. (This could happen
+ for various reasons, in particular if the
+ clipboard was empty or if the contents of the
+ clipboard could not be converted into text form.)
+<!-- impl Clipboard::fn wait_for_uris -->
+Requests the contents of the clipboard as URIs. This function waits
+for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+# Returns
+
+
+ a newly-allocated `None`-terminated array of strings which must
+ be freed with `g_strfreev`, or `None` if retrieving the
+ selection data failed. (This could happen for various reasons,
+ in particular if the clipboard was empty or if the contents of
+ the clipboard could not be converted into URI form.)
+<!-- impl Clipboard::fn wait_is_image_available -->
+Test to see if there is an image available to be pasted
+This is done by requesting the TARGETS atom and checking
+if it contains any of the supported image targets. This function
+waits for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+This function is a little faster than calling
+`Clipboard::wait_for_image` since it doesn’t need to retrieve
+the actual image data.
+
+# Returns
+
+`true` is there is an image available, `false` otherwise.
+<!-- impl Clipboard::fn wait_is_rich_text_available -->
+Test to see if there is rich text available to be pasted
+This is done by requesting the TARGETS atom and checking
+if it contains any of the supported rich text targets. This function
+waits for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+This function is a little faster than calling
+`Clipboard::wait_for_rich_text` since it doesn’t need to retrieve
+the actual text.
+## `buffer`
+a `TextBuffer`
+
+# Returns
+
+`true` is there is rich text available, `false` otherwise.
+<!-- impl Clipboard::fn wait_is_target_available -->
+Checks if a clipboard supports pasting data of a given type. This
+function can be used to determine if a “Paste” menu item should be
+insensitive or not.
+
+If you want to see if there’s text available on the clipboard, use
+gtk_clipboard_wait_is_text_available () instead.
+## `target`
+A `gdk::Atom` indicating which target to look for.
+
+# Returns
+
+`true` if the target is available, `false` otherwise.
+<!-- impl Clipboard::fn wait_is_text_available -->
+Test to see if there is text available to be pasted
+This is done by requesting the TARGETS atom and checking
+if it contains any of the supported text targets. This function
+waits for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+This function is a little faster than calling
+`Clipboard::wait_for_text` since it doesn’t need to retrieve
+the actual text.
+
+# Returns
+
+`true` is there is text available, `false` otherwise.
+<!-- impl Clipboard::fn wait_is_uris_available -->
+Test to see if there is a list of URIs available to be pasted
+This is done by requesting the TARGETS atom and checking
+if it contains the URI targets. This function
+waits for the data to be received using the main loop, so events,
+timeouts, etc, may be dispatched during the wait.
+
+This function is a little faster than calling
+`Clipboard::wait_for_uris` since it doesn’t need to retrieve
+the actual URI data.
+
+# Returns
+
+`true` is there is an URI list available, `false` otherwise.
 <!-- struct ColorButton -->
 The `ColorButton` is a button which displays the currently selected
 color and allows to open a color selection dialog to change the color.
@@ -5217,7 +5588,7 @@ It is suitable widget for selecting a color in a preference dialog.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorButton::fn new -->
 Creates a new color button.
 
@@ -5397,7 +5768,7 @@ a color. It implements the `ColorChooser` interface.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorChooserDialog::fn new -->
 Creates a new `ColorChooserDialog`.
 ## `title`
@@ -5428,7 +5799,7 @@ to provide a dialog for selecting colors.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- impl ColorChooserWidget::fn new -->
 Creates a new `ColorChooserWidget`.
 
@@ -5462,7 +5833,7 @@ an entry.
 
 # Implements
 
-[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait ComboBoxExt -->
 Trait containing all `ComboBox` methods.
 
@@ -5830,7 +6201,7 @@ Here is a UI definition fragment specifying `ComboBoxText` items:
 
 # Implements
 
-[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- impl ComboBoxText::fn new -->
 Creates a new `ComboBoxText`, which is a `ComboBox` just displaying
 strings.
@@ -6072,10 +6443,10 @@ for a container class and `ContainerClass::find_child_property` or
 `ContainerClass::list_child_properties` to get information about existing
 child properties.
 
-To set the value of a child property, use `ContainerExt::child_set_property`,
+To set the value of a child property, use `Container::child_set_property`,
 `ContainerExt::child_set` or `ContainerExt::child_set_valist`.
 To obtain the value of a child property, use
-`ContainerExt::child_get_property`, `ContainerExt::child_get` or
+`Container::child_get_property`, `ContainerExt::child_get` or
 `ContainerExt::child_get_valist`. To emit notification about child property
 changes, use `Widget::child_notify`.
 
@@ -6115,7 +6486,7 @@ An example of these properties in UI definitions:
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait ContainerExt -->
 Trait containing all `Container` methods.
 
@@ -7635,6 +8006,10 @@ An example for using engine-specific style properties:
     -clearlooks-colorize-scrollbar: false;
 }
 ```
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
 <!-- impl CssProvider::fn new -->
 Returns a newly created `CssProvider`.
 
@@ -7917,7 +8292,7 @@ An example of a `Dialog` UI definition fragment:
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait DialogExt -->
 Trait containing all `Dialog` methods.
 
@@ -8302,7 +8677,7 @@ handler to decide whether to draw the focus indicator. See
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl DrawingArea::fn new -->
 Creates a new drawing area.
 
@@ -8505,7 +8880,7 @@ via the context menu of the entry.
 
 # Implements
 
-[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
+[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- trait EntryExt -->
 Trait containing all `Entry` methods.
 
@@ -8713,7 +9088,7 @@ the tooltip text, or `None`. Free the returned
  string with `g_free` when done.
 <!-- trait EntryExt::fn get_inner_border -->
 This function returns the entry’s `Entry:inner-border` property. See
-`EntryExt::set_inner_border` for more information.
+`Entry::set_inner_border` for more information.
 
 # Deprecated since 3.4
 
@@ -9270,6 +9645,10 @@ position, visibility attributes, icon etc.
 text to be stored in an alternate location, such as non-pageable memory,
 useful in the case of important passwords. Or a derived class could
 integrate with an application’s concept of undo/redo.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl EntryBuffer::fn new -->
 Create a new `EntryBuffer` object.
 
@@ -9429,7 +9808,7 @@ matching iter.
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- impl EntryCompletion::fn new -->
 Creates a new `EntryCompletion` object.
 
@@ -9625,7 +10004,7 @@ which do not have their own window.
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl EventBox::fn new -->
 Creates a new `EventBox`.
 
@@ -9703,7 +10082,7 @@ Since: 3.14
 
 # Implements
 
-[`EventControllerExt`](trait.EventControllerExt.html)
+[`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait EventControllerExt -->
 Trait containing all `EventController` methods.
 
@@ -9841,7 +10220,7 @@ An example of a UI definition fragment with `Expander`:
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Expander::fn new -->
 Creates a new expander using `label` as the text of the label.
 ## `label`
@@ -10119,7 +10498,7 @@ the whole extra widget.
 
 # Implements
 
-[`FileChooserExt`](trait.FileChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`FileChooserExt`](trait.FileChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait FileChooserExt -->
 Trait containing all `FileChooser` methods.
 
@@ -10968,7 +11347,7 @@ when you use `FileChooserDialog` to ensure proper operation.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- impl FileChooserDialog::fn new -->
 Creates a new `FileChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
@@ -11004,7 +11383,7 @@ widget.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- impl FileChooserWidget::fn new -->
 Creates a new `FileChooserWidget`. This is a file chooser widget that can
 be embedded in custom windows, and it is the same widget that is used by
@@ -11058,7 +11437,7 @@ rules:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html)
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl FileFilter::fn new -->
 Creates a new `FileFilter` with no rules added to it.
 Such a filter doesn’t accept any files, so is not
@@ -11184,7 +11563,7 @@ widget. But you should be aware of the tradeoffs.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Fixed::fn new -->
 Creates a new `Fixed`.
 
@@ -11236,7 +11615,7 @@ Since: 3.12
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl FlowBox::fn new -->
 Creates a `FlowBox`.
 
@@ -11549,7 +11928,7 @@ Since: 3.12
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl FlowBoxChild::fn new -->
 Creates a new `FlowBoxChild`, to be used as a child
 of a `FlowBox`.
@@ -11607,7 +11986,7 @@ It is suitable widget for selecting a font in a preference dialog.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontButton::fn new -->
 Creates a new font picker widget.
 
@@ -11820,7 +12199,7 @@ and “cancel_button”.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserDialog::fn new -->
 Creates a new `FontChooserDialog`.
 ## `title`
@@ -11848,7 +12227,7 @@ To change the text which is shown in the preview area, use
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserWidget::fn new -->
 Creates a new `FontChooserWidget`.
 
@@ -11884,7 +12263,7 @@ An example of a UI definition fragment with `Frame`:
 
 # Implements
 
-[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait FrameExt -->
 Trait containing all `Frame` methods.
 
@@ -12071,7 +12450,7 @@ Since: 3.16
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GLArea::fn new -->
 Creates a new `GLArea` widget.
 
@@ -12329,7 +12708,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait GestureExt -->
 Trait containing all `Gesture` methods.
 
@@ -12617,7 +12996,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait GestureDragExt -->
 Trait containing all `GestureDrag` methods.
 
@@ -12680,7 +13059,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GestureLongPress::fn new -->
 Returns a newly created `Gesture` that recognizes long presses.
 
@@ -12708,7 +13087,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GestureMultiPress::fn new -->
 Returns a newly created `Gesture` that recognizes single and multiple
 presses.
@@ -12770,7 +13149,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GesturePan::fn new -->
 Returns a newly created `Gesture` that recognizes pan gestures.
 
@@ -12809,7 +13188,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GestureRotate::fn new -->
 Returns a newly created `Gesture` that recognizes 2-touch
 rotation gestures.
@@ -12851,7 +13230,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait GestureSingleExt -->
 Trait containing all `GestureSingle` methods.
 
@@ -12953,7 +13332,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GestureSwipe::fn new -->
 Returns a newly created `Gesture` that recognizes swipes.
 
@@ -12990,7 +13369,7 @@ Since: 3.14
 
 # Implements
 
-[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl GestureZoom::fn new -->
 Returns a newly created `Gesture` that recognizes zoom
 in/out gestures (usually known as pinch/zoom).
@@ -13032,7 +13411,7 @@ by the `Orientable:orientation` property.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Grid::fn new -->
 Creates a new grid widget.
 
@@ -13242,7 +13621,7 @@ Since: 3.10
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl HeaderBar::fn new -->
 Creates a new `HeaderBar` widget.
 
@@ -13470,7 +13849,7 @@ ignore the tree’s branches.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl IconView::fn new -->
 Creates a new `IconView` widget
 
@@ -14121,7 +14500,7 @@ can then be loaded into a `gdk_pixbuf::Pixbuf` using
 
 # Implements
 
-[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Image::fn new -->
 Creates a new empty `Image` widget.
 
@@ -14442,6 +14821,176 @@ to a value != -1, it is used instead of the icon size set by
 `Image::set_from_icon_name`.
 ## `pixel_size`
 the new pixel size
+<!-- struct ImageMenuItem -->
+`[Deprecated since 3.10]` A `ImageMenuItem` is a menu item which has an icon next to the text label.
+
+This is functionally equivalent to:
+
+
+```C
+  GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+  GtkWidget *icon = gtk_image_new_from_icon_name ("folder-music-symbolic", GTK_ICON_SIZE_MENU);
+  GtkWidget *label = gtk_label_new ("Music");
+  GtkWidget *menu_item = gtk_menu_item_new ();
+
+  gtk_container_add (GTK_CONTAINER (box), icon);
+  gtk_container_add (GTK_CONTAINER (box), label);
+
+  gtk_container_add (GTK_CONTAINER (menu_item), box);
+
+  gtk_widget_show_all (menu_item);
+```
+
+Note that the user may disable display of menu icons using
+the `Settings:gtk-menu-images` setting, so make sure to still
+fill in the text label. If you want to ensure that your menu items
+show an icon you are strongly encouraged to use a `MenuItem`
+with a `Image` instead.
+
+`ImageMenuItem` has been deprecated since GTK+ 3.10. If you want to
+display an icon in a menu item, you should use `MenuItem` and pack a
+`Box` with a `Image` and a `Label` instead. You should also consider
+using `Builder` and the XML `gio::Menu` description for creating menus, by
+following the [GMenu guide][https://developer.gnome.org/GMenu/]. You should
+consider using icons in menu items only sparingly, and for "objects" (or
+"nouns") elements only, like bookmarks, files, and links; "actions" (or
+"verbs") should not have icons.
+
+# Implements
+
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+<!-- impl ImageMenuItem::fn new -->
+Creates a new `ImageMenuItem` with an empty label.
+
+# Deprecated since 3.10
+
+Use `MenuItem::new` instead.
+
+# Returns
+
+a new `ImageMenuItem`
+<!-- impl ImageMenuItem::fn new_from_stock -->
+Creates a new `ImageMenuItem` containing the image and text from a
+stock item. Some stock ids have preprocessor macros like `GTK_STOCK_OK`
+and `GTK_STOCK_APPLY`.
+
+If you want this menu item to have changeable accelerators, then pass in
+`None` for accel_group. Next call `MenuItem::set_accel_path` with an
+appropriate path for the menu item, use `gtk_stock_lookup` to look up the
+standard accelerator for the stock item, and if one is found, call
+`AccelMap::add_entry` to register it.
+
+# Deprecated since 3.10
+
+Use `MenuItem::new` instead.
+## `stock_id`
+the name of the stock item.
+## `accel_group`
+the `AccelGroup` to add the menu items
+ accelerator to, or `None`.
+
+# Returns
+
+a new `ImageMenuItem`.
+<!-- impl ImageMenuItem::fn new_with_label -->
+Creates a new `ImageMenuItem` containing a label.
+
+# Deprecated since 3.10
+
+Use `MenuItem::new_with_label` instead.
+## `label`
+the text of the menu item.
+
+# Returns
+
+a new `ImageMenuItem`.
+<!-- impl ImageMenuItem::fn new_with_mnemonic -->
+Creates a new `ImageMenuItem` containing a label. The label
+will be created using `Label::new_with_mnemonic`, so underscores
+in `label` indicate the mnemonic for the menu item.
+
+# Deprecated since 3.10
+
+Use `MenuItem::new_with_mnemonic` instead.
+## `label`
+the text of the menu item, with an underscore in front of the
+ mnemonic character
+
+# Returns
+
+a new `ImageMenuItem`
+<!-- impl ImageMenuItem::fn get_always_show_image -->
+Returns whether the menu item will ignore the `Settings:gtk-menu-images`
+setting and always show the image, if available.
+
+# Deprecated since 3.10
+
+
+# Returns
+
+`true` if the menu item will always show the image
+<!-- impl ImageMenuItem::fn get_image -->
+Gets the widget that is currently set as the image of `self`.
+See `ImageMenuItem::set_image`.
+
+# Deprecated since 3.10
+
+
+# Returns
+
+the widget set as image of `self`
+<!-- impl ImageMenuItem::fn get_use_stock -->
+Checks whether the label set in the menuitem is used as a
+stock id to select the stock item for the item.
+
+# Deprecated since 3.10
+
+
+# Returns
+
+`true` if the label set in the menuitem is used as a
+ stock id to select the stock item for the item
+<!-- impl ImageMenuItem::fn set_accel_group -->
+Specifies an `accel_group` to add the menu items accelerator to
+(this only applies to stock items so a stock item must already
+be set, make sure to call `ImageMenuItem::set_use_stock`
+and `MenuItem::set_label` with a valid stock item first).
+
+If you want this menu item to have changeable accelerators then
+you shouldnt need this (see `ImageMenuItem::new_from_stock`).
+
+# Deprecated since 3.10
+
+## `accel_group`
+the `AccelGroup`
+<!-- impl ImageMenuItem::fn set_always_show_image -->
+If `true`, the menu item will ignore the `Settings:gtk-menu-images`
+setting and always show the image, if available.
+
+Use this property if the menuitem would be useless or hard to use
+without the image.
+
+# Deprecated since 3.10
+
+## `always_show`
+`true` if the menuitem should always show the image
+<!-- impl ImageMenuItem::fn set_image -->
+Sets the image of `self` to the given widget.
+Note that it depends on the show-menu-images setting whether
+the image will be displayed or not.
+
+# Deprecated since 3.10
+
+## `image`
+a widget to set as the image for the menu item.
+<!-- impl ImageMenuItem::fn set_use_stock -->
+If `true`, the label set in the menuitem is used as a
+stock id to select the stock item for the item.
+
+# Deprecated since 3.10
+
+## `use_stock`
+`true` if the menuitem should use a stock item
 <!-- enum ImageType -->
 Describes the image data representation used by a `Image`. If you
 want to get the image from the widget, you can only get the
@@ -14537,7 +15086,7 @@ numeric response, and the content of the element is the id of widget
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl InfoBar::fn new -->
 Creates a new `InfoBar` object.
 
@@ -14837,7 +15386,7 @@ the `Label::activate-link` signal and the `Label::get_current_uri` function.
 
 # Implements
 
-[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Label::fn new -->
 Creates a new label with the given text inside it. You can
 pass `None` to get an empty label widget.
@@ -15281,7 +15830,7 @@ area.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl Layout::fn new -->
 Creates a new `Layout`. Unless you have a specific adjustment
 you’d like the layout to use for scrolling, pass `None` for
@@ -15452,7 +16001,7 @@ Since: 3.6
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl LevelBar::fn new -->
 Creates a new `LevelBar`.
 
@@ -15656,7 +16205,7 @@ signal handler.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl LinkButton::fn new -->
 Creates a new `LinkButton` with the URI as its text.
 ## `uri`
@@ -15729,7 +16278,7 @@ Since: 3.10
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl ListBox::fn new -->
 Creates a new `ListBox` container.
 
@@ -16044,7 +16593,7 @@ Since: 3.10
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl ListBoxRow::fn new -->
 Creates a new `ListBoxRow`, to be used as a child of a `ListBox`.
 
@@ -16288,7 +16837,7 @@ An example of a UI Definition fragment for a list store:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
+[`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
 <!-- impl ListStore::fn new -->
 Creates a new list store as with `n_columns` columns each of the types passed
 in. Note that only types derived from standard GObject fundamental types
@@ -16560,7 +17109,7 @@ my_popup_handler (GtkWidget *widget, GdkEvent *event)
 
 # Implements
 
-[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Menu::fn new -->
 Creates a new `Menu`
 
@@ -16863,6 +17412,56 @@ text as that menu item’s label.
 
 ## `title`
 a string containing the title for the menu
+<!-- struct MenuBar -->
+The `MenuBar` is a subclass of `MenuShell` which contains one or
+more ``GtkMenuItems``. The result is a standard menu bar which can hold
+many menu items.
+
+# Implements
+
+[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+<!-- impl MenuBar::fn new -->
+Creates a new `MenuBar`
+
+# Returns
+
+the new menu bar, as a `Widget`
+<!-- impl MenuBar::fn new_from_model -->
+Creates a new `MenuBar` and populates it with menu items
+and submenus according to `model`.
+
+The created menu items are connected to actions found in the
+`ApplicationWindow` to which the menu bar belongs - typically
+by means of being contained within the ``GtkApplicationWindows``
+widget hierarchy.
+## `model`
+a `gio::MenuModel`
+
+# Returns
+
+a new `MenuBar`
+<!-- impl MenuBar::fn get_child_pack_direction -->
+Retrieves the current child pack direction of the menubar.
+See `MenuBar::set_child_pack_direction`.
+
+# Returns
+
+the child pack direction
+<!-- impl MenuBar::fn get_pack_direction -->
+Retrieves the current pack direction of the menubar.
+See `MenuBar::set_pack_direction`.
+
+# Returns
+
+the pack direction
+<!-- impl MenuBar::fn set_child_pack_direction -->
+Sets how widgets should be packed inside the children of a menubar.
+## `child_pack_dir`
+a new `PackDirection`
+<!-- impl MenuBar::fn set_pack_direction -->
+Sets how items should be packed inside a menubar.
+## `pack_dir`
+a new `PackDirection`
 <!-- struct MenuButton -->
 The `MenuButton` widget is used to display a popup when clicked on.
 This popup can be provided either as a `Menu`, a `Popover` or an
@@ -16947,7 +17546,7 @@ Since: 3.6
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl MenuButton::fn new -->
 Creates a new `MenuButton` widget with downwards-pointing
 arrow as the only child. You can replace the child widget
@@ -17138,13 +17737,13 @@ An example of UI definition fragment with submenus:
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait MenuItemExt -->
 Trait containing all `MenuItem` methods.
 
 # Implementors
 
-[`CheckMenuItem`](struct.CheckMenuItem.html), [`MenuItem`](struct.MenuItem.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html)
+[`CheckMenuItem`](struct.CheckMenuItem.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`MenuItem`](struct.MenuItem.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html)
 <!-- impl MenuItem::fn new -->
 Creates a new `MenuItem`.
 
@@ -17206,7 +17805,7 @@ side of the menu bar.
 
 # Deprecated since 3.2
 
-See `MenuItemExt::set_right_justified`
+See `MenuItem::set_right_justified`
 
 # Returns
 
@@ -17328,13 +17927,13 @@ grab and receive all key presses.
 
 # Implements
 
-[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait MenuShellExt -->
 Trait containing all `MenuShell` methods.
 
 # Implementors
 
-[`MenuShell`](struct.MenuShell.html), [`Menu`](struct.Menu.html)
+[`MenuBar`](struct.MenuBar.html), [`MenuShell`](struct.MenuShell.html), [`Menu`](struct.Menu.html)
 <!-- trait MenuShellExt::fn activate_item -->
 Activates the menu item within the menu shell.
 ## `menu_item`
@@ -17506,7 +18105,7 @@ An example for a UI definition fragment with menus:
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl MenuToolButton::fn new -->
 Creates a new `MenuToolButton` using `icon_widget` as icon and
 `label` as label.
@@ -17614,7 +18213,7 @@ the message area as an internal child with the name “message_area”.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl MessageDialog::fn new -->
 Creates a new message dialog, which is a simple dialog with some text
 the user may want to see. When the user clicks a button a “response”
@@ -17767,7 +18366,7 @@ this fact, all `Misc` API has been deprecated.
 
 # Implements
 
-[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait MiscExt -->
 `[Deprecated since 3.14]` Trait containing all `Misc` methods.
 
@@ -17885,7 +18484,7 @@ An example of a UI definition fragment with `Notebook`:
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Notebook::fn new -->
 Creates a new `Notebook` widget with no pages.
 
@@ -18406,7 +19005,7 @@ the “type” attribute of a `<child>` element.
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Overlay::fn new -->
 Creates a new `Overlay`.
 
@@ -18504,6 +19103,10 @@ do_page_setup (void)
 ```
 
 Printing support was added in GTK+ 2.10.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl PageSetup::fn new -->
 Creates a new `PageSetup`.
 
@@ -18771,7 +19374,7 @@ gtk_widget_set_size_request (frame2, 50, -1);
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Paned::fn new -->
 Creates a new `Paned` widget.
 ## `orientation`
@@ -19142,7 +19745,7 @@ Since: 3.10
 
 # Implements
 
-[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl PlacesSidebar::fn new -->
 Creates a new `PlacesSidebar` widget.
 
@@ -19415,7 +20018,7 @@ Since: 3.12
 
 # Implements
 
-[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait PopoverExt -->
 Trait containing all `Popover` methods.
 
@@ -19662,7 +20265,7 @@ Since: 3.16
 
 # Implements
 
-[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl PopoverMenu::fn new -->
 Creates a new popover menu.
 
@@ -19777,6 +20380,10 @@ document. The predefined keys try to use shared values as much as possible
 so that moving such a document between systems still works.
 
 Printing support was added in GTK+ 2.10.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl PrintSettings::fn new -->
 Creates a new `PrintSettings` object.
 
@@ -20318,7 +20925,7 @@ the bar, and the step size used in activity mode can be set.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl ProgressBar::fn new -->
 Creates a new `ProgressBar`.
 
@@ -20508,7 +21115,7 @@ can be used to determine if the button has been selected or deselected.
 
 # Implements
 
-[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl RadioButton::fn new -->
 Creates a new `RadioButton`. To be of any practical value, a widget should
 then be packed into the radio button.
@@ -20630,7 +21237,7 @@ of the “steppers”. It also provides properties and methods for setting a
 
 # Implements
 
-[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait RangeExt -->
 Trait containing all `Range` methods.
 
@@ -21206,7 +21813,7 @@ Recently used files are supported since GTK+ 2.10.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
 <!-- impl RecentChooserDialog::fn new -->
 Creates a new `RecentChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
@@ -21257,7 +21864,7 @@ Recently used files are supported since GTK+ 2.10.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
 <!-- impl RecentChooserWidget::fn new -->
 Creates a new `RecentChooserWidget` object. This is an embeddable widget
 used to access the recently used resources list.
@@ -21330,7 +21937,7 @@ An example of a UI definition fragment specifying `RecentFilter` rules:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html)
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl RecentFilter::fn new -->
 Creates a new `RecentFilter` with no rules added to it.
 Such filter does not accept any recently used resources, so is not
@@ -21723,6 +22330,10 @@ controllable through the `Settings:gtk-recent-files-max-age`
 property.
 
 Recently used files are supported since GTK+ 2.10.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl RecentManager::fn new -->
 Creates a new recent manager object. Recent manager objects are used to
 handle the list of recently used resources. A `RecentManager` object
@@ -21964,7 +22575,7 @@ Since: 3.10
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Revealer::fn new -->
 Creates a new `Revealer`.
 
@@ -22084,7 +22695,7 @@ the mark. It can be translated with the usual ”translatable” and
 
 # Implements
 
-[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Scale::fn new -->
 Creates a new `Scale`.
 ## `orientation`
@@ -22217,7 +22828,7 @@ is tailored for this use case.
 
 # Implements
 
-[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ScaleButtonExt -->
 Trait containing all `ScaleButton` methods.
 
@@ -22461,7 +23072,7 @@ example the `Page Down` key).
 
 # Implements
 
-[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Scrollbar::fn new -->
 Creates a new scrollbar with the given orientation.
 ## `orientation`
@@ -22528,7 +23139,7 @@ property.
 
 # Implements
 
-[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait ScrolledWindowExt -->
 Trait containing all `ScrolledWindow` methods.
 
@@ -22771,7 +23382,7 @@ Since: 3.10
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl SearchBar::fn new -->
 Creates a `SearchBar`. You will need to tell it about
 which widget is going to be your text entry using
@@ -22900,7 +23511,7 @@ Since: 3.6
 
 # Implements
 
-[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
+[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- impl SearchEntry::fn new -->
 Creates a `SearchEntry`, with a find icon when the search field is
 empty, and a clear icon when it isn't.
@@ -22970,7 +23581,7 @@ into the interface.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Separator::fn new -->
 Creates a new `Separator` with the given orientation.
 ## `orientation`
@@ -22986,7 +23597,7 @@ make it appear sunken into the interface.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl SeparatorMenuItem::fn new -->
 Creates a new `SeparatorMenuItem`.
 
@@ -23006,7 +23617,7 @@ Use `SeparatorToolItem::new` to create a new `SeparatorToolItem`.
 
 # Implements
 
-[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl SeparatorToolItem::fn new -->
 Create a new `SeparatorToolItem`
 
@@ -23026,6 +23637,94 @@ Setting this to `false` along with `ToolItem::set_expand` is useful
 to create an item that forces following items to the end of the toolbar.
 ## `draw`
 whether `self` is drawn as a vertical line
+<!-- struct Settings -->
+`Settings` provide a mechanism to share global settings between
+applications.
+
+On the X window system, this sharing is realized by an
+[XSettings](http://www.freedesktop.org/wiki/Specifications/xsettings-spec)
+manager that is usually part of the desktop environment, along with
+utilities that let the user change these settings. In the absence of
+an Xsettings manager, GTK+ reads default values for settings from
+`settings.ini` files in
+`/etc/gtk-3.0`, `$XDG_CONFIG_DIRS/gtk-3.0`
+and `$XDG_CONFIG_HOME/gtk-3.0`.
+These files must be valid key files (see `glib::KeyFile`), and have
+a section called Settings. Themes can also provide default values
+for settings by installing a `settings.ini` file
+next to their `gtk.css` file.
+
+Applications can override system-wide settings by setting the property
+of the `Settings` object with `gobject::Object::set`. This should be restricted
+to special cases though; `Settings` are not meant as an application
+configuration facility. When doing so, you need to be aware that settings
+that are specific to individual widgets may not be available before the
+widget type has been realized at least once. The following example
+demonstrates a way to do this:
+
+```C
+  gtk_init (&argc, &argv);
+
+  // make sure the type is realized
+  g_type_class_unref (g_type_class_ref (GTK_TYPE_IMAGE_MENU_ITEM));
+
+  g_object_set (gtk_settings_get_default (), "gtk-enable-animations", FALSE, NULL);
+```
+
+There is one `Settings` instance per screen. It can be obtained with
+`Settings::get_for_screen`, but in many cases, it is more convenient
+to use `Widget::get_settings`. `Settings::get_default` returns the
+`Settings` instance for the default screen.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
+<!-- impl Settings::fn get_default -->
+Gets the `Settings` object for the default GDK screen, creating
+it if necessary. See `Settings::get_for_screen`.
+
+# Returns
+
+a `Settings` object. If there is no default
+ screen, then returns `None`.
+<!-- impl Settings::fn get_for_screen -->
+Gets the `Settings` object for `screen`, creating it if necessary.
+## `screen`
+a `gdk::Screen`.
+
+# Returns
+
+a `Settings` object.
+<!-- impl Settings::fn install_property -->
+
+# Deprecated since 3.16
+
+This function is not useful outside GTK+.
+<!-- impl Settings::fn install_property_parser -->
+
+# Deprecated since 3.16
+
+This function is not useful outside GTK+.
+<!-- impl Settings::fn set_double_property -->
+
+# Deprecated since 3.16
+
+Use `gobject::Object::set` instead.
+<!-- impl Settings::fn set_long_property -->
+
+# Deprecated since 3.16
+
+Use `gobject::Object::set` instead.
+<!-- impl Settings::fn set_property_value -->
+
+# Deprecated since 3.16
+
+Use `gobject::Object::set` instead.
+<!-- impl Settings::fn set_string_property -->
+
+# Deprecated since 3.16
+
+Use `gobject::Object::set` instead.
 <!-- enum ShadowType -->
 Used to change the appearance of an outline typically provided by a `Frame`.
 
@@ -23112,7 +23811,7 @@ An example of a UI definition fragment with `SizeGroup`:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html)
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl SizeGroup::fn new -->
 Create a new `SizeGroup`.
 ## `mode`
@@ -23277,7 +23976,7 @@ create_floating_spin_button (void)
 
 # Implements
 
-[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl SpinButton::fn new -->
 Creates a new `SpinButton`.
 ## `adjustment`
@@ -23488,7 +24187,7 @@ use `Spinner::stop`.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Spinner::fn new -->
 Returns a new spinner widget. Not yet started.
 
@@ -23517,7 +24216,7 @@ Since: 3.10
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl Stack::fn new -->
 Creates a new `Stack` container.
 
@@ -23757,7 +24456,7 @@ Since: 3.16
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- impl StackSidebar::fn new -->
 Creates a new sidebar.
 
@@ -23805,7 +24504,7 @@ Since: 3.10
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl StackSwitcher::fn new -->
 Create a new `StackSwitcher`.
 
@@ -23933,6 +24632,10 @@ on Win32 doesn’t allow to embed arbitrary widgets.
 notifications or more modern platform-specific APIs instead. GLib provides
 the `gio::Notification` API which works well with `Application`. Also see this
 [HowDoI](https://wiki.gnome.org/HowDoI/GNotification).
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl StatusIcon::fn new -->
 Creates an empty status icon object.
 
@@ -24412,7 +25115,7 @@ is done using `Statusbar::remove`.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Statusbar::fn new -->
 Creates a new `Statusbar` ready for messages.
 
@@ -24535,6 +25238,10 @@ priority, keep in mind that the user settings in
 `XDG_CONFIG_HOME/gtk-3.0/gtk.css` will
 still take precedence over your changes, as it uses the
 `GTK_STYLE_PROVIDER_PRIORITY_USER` priority.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl StyleContext::fn new -->
 Creates a standalone `StyleContext`, this style context
 won’t be attached to any widget, so you may want
@@ -25172,6 +25879,62 @@ return location for the transition progress
 # Returns
 
 `true` if there is a running transition animation for `state`.
+<!-- struct StyleProvider -->
+`StyleProvider` is an interface used to provide style information to a `StyleContext`.
+See `StyleContext::add_provider` and `StyleContext::add_provider_for_screen`.
+
+# Implements
+
+[`StyleProviderExt`](trait.StyleProviderExt.html)
+<!-- trait StyleProviderExt -->
+Trait containing all `StyleProvider` methods.
+
+# Implementors
+
+[`CssProvider`](struct.CssProvider.html), [`Settings`](struct.Settings.html), [`StyleProvider`](struct.StyleProvider.html)
+<!-- trait StyleProviderExt::fn get_icon_factory -->
+Returns the `IconFactory` defined to be in use for `path`, or `None` if none
+is defined.
+
+# Deprecated since 3.8
+
+Will always return `None` for all GTK-provided style providers.
+## `path`
+`WidgetPath` to query
+
+# Returns
+
+The icon factory to use for `path`, or `None`
+<!-- trait StyleProviderExt::fn get_style -->
+Returns the style settings affecting a widget defined by `path`, or `None` if
+`self` doesn’t contemplate styling `path`.
+
+# Deprecated since 3.8
+
+Will always return `None` for all GTK-provided style providers
+ as the interface cannot correctly work the way CSS is specified.
+## `path`
+`WidgetPath` to query
+
+# Returns
+
+a `StyleProperties` containing the
+style settings affecting `path`
+<!-- trait StyleProviderExt::fn get_style_property -->
+Looks up a widget style property as defined by `self` for
+the widget represented by `path`.
+## `path`
+`WidgetPath` to query
+## `state`
+state to query the style property for
+## `pspec`
+The `gobject::ParamSpec` to query
+## `value`
+return location for the property value
+
+# Returns
+
+`true` if the property was found and has a value, `false` otherwise
 <!-- struct Switch -->
 `Switch` is a widget that has two states: on or off. The user can control
 which state should be active by clicking the empty area, or by dragging the
@@ -25182,7 +25945,7 @@ a delay. See `Switch::state-set` for details.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl Switch::fn new -->
 Creates a new `Switch` widget.
 
@@ -25260,6 +26023,10 @@ You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
 which gives an overview of all the objects and data
 types related to the text widget and how they work together.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TextBuffer::fn new -->
 Creates a new text buffer.
 ## `table`
@@ -26147,6 +26914,10 @@ Text
 A `TextChildAnchor` is a spot in the buffer where child widgets can
 be “anchored” (inserted inline, as if they were characters). The anchor
 can have multiple widgets anchored, to allow for multiple views.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TextChildAnchor::fn new -->
 Creates a new `TextChildAnchor`. Usually you would then insert
 it into a `TextBuffer` with `TextBuffer::insert_child_anchor`.
@@ -27167,6 +27938,10 @@ Marks optionally have names; these can be convenient to avoid passing the
 `TextMark` object around.
 
 Marks are typically created using the `TextBuffer::create_mark` function.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TextMark::fn new -->
 Creates a text mark. Add it to a buffer using `TextBuffer::add_mark`.
 If `name` is `None`, the mark is anonymous; otherwise, the mark can be
@@ -27243,6 +28018,10 @@ For each property of `TextTag`, there is a “set” property, e.g.
 “font-set” corresponds to “font”. These “set” properties reflect
 whether a property has been set or not.
 They are maintained by GTK+ and you should not set them independently.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TextTag::fn new -->
 Creates a `TextTag`. Configure the tag using object arguments,
 i.e. using `gobject::Object::set`.
@@ -27308,7 +28087,7 @@ An example of a UI definition fragment specifying tags:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html)
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TextTagTable::fn new -->
 Creates a new `TextTagTable`. The table contains no tags by
 default.
@@ -27365,7 +28144,7 @@ types related to the text widget and how they work together.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl TextView::fn new -->
 Creates a new `TextView`. If you don’t call `TextView::set_buffer`
 before using the text view, an empty default buffer will be created
@@ -28130,7 +28909,7 @@ void make_toggles (void) {
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToggleButtonExt -->
 Trait containing all `ToggleButton` methods.
 
@@ -28225,7 +29004,7 @@ Use `ToggleToolButton::new` to create a new
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl ToggleToolButton::fn new -->
 Returns a new `ToggleToolButton`
 
@@ -28283,7 +29062,7 @@ the button does not have a icon.
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToolButtonExt -->
 Trait containing all `ToolButton` methods.
 
@@ -28433,7 +29212,7 @@ See the `Toolbar` class for a description of the toolbar widget, and
 
 # Implements
 
-[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait ToolItemExt -->
 Trait containing all `ToolItem` methods.
 
@@ -28673,7 +29452,7 @@ categories and drag and drop support.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
 <!-- impl ToolItemGroup::fn new -->
 Creates a new tool item group with label `label`.
 ## `label`
@@ -28857,7 +29636,7 @@ gtk_tool_palette_add_drag_dest (GTK_TOOL_PALETTE (palette), target,
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl ToolPalette::fn new -->
 Creates a new tool palette.
 
@@ -29031,7 +29810,7 @@ information when embedding `ToolItem` widgets.
 
 # Implements
 
-[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait ToolShellExt -->
 Trait containing all `ToolShell` methods.
 
@@ -29125,7 +29904,7 @@ the `Toolbar::popup-context-menu` signal.
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
 <!-- impl Toolbar::fn new -->
 Creates a new toolbar.
 
@@ -29270,6 +30049,116 @@ Buttons display text and icons in the toolbar.
 <!-- enum ToolbarStyle::variant BothHoriz -->
 Buttons display icons and text alongside each
  other, rather than vertically stacked
+<!-- struct Tooltip -->
+Basic tooltips can be realized simply by using `Widget::set_tooltip_text`
+or `Widget::set_tooltip_markup` without any explicit tooltip object.
+
+When you need a tooltip with a little more fancy contents, like adding an
+image, or you want the tooltip to have different contents per `TreeView`
+row or cell, you will have to do a little more work:
+
+- Set the `Widget:has-tooltip` property to `true`, this will make GTK+
+ monitor the widget for motion and related events which are needed to
+ determine when and where to show a tooltip.
+
+- Connect to the `Widget::query-tooltip` signal. This signal will be
+ emitted when a tooltip is supposed to be shown. One of the arguments passed
+ to the signal handler is a `Tooltip` object. This is the object that we
+ are about to display as a tooltip, and can be manipulated in your callback
+ using functions like `Tooltip::set_icon`. There are functions for setting
+ the tooltip’s markup, setting an image from a named icon, or even putting in
+ a custom widget.
+
+ Return `true` from your query-tooltip handler. This causes the tooltip to be
+ show. If you return `false`, it will not be shown.
+
+In the probably rare case where you want to have even more control over the
+tooltip that is about to be shown, you can set your own `Window` which
+will be used as tooltip window. This works as follows:
+
+- Set `Widget:has-tooltip` and connect to `Widget::query-tooltip` as before.
+ Use `Widget::set_tooltip_window` to set a `Window` created by you as
+ tooltip window.
+
+- In the `Widget::query-tooltip` callback you can access your window using
+ `Widget::get_tooltip_window` and manipulate as you wish. The semantics of
+ the return value are exactly as before, return `true` to show the window,
+ `false` to not show it.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
+<!-- impl Tooltip::fn trigger_tooltip_query -->
+Triggers a new tooltip query on `display`, in order to update the current
+visible tooltip, or to show/hide the current tooltip. This function is
+useful to call when, for example, the state of the widget changed by a
+key press.
+## `display`
+a `gdk::Display`
+<!-- impl Tooltip::fn set_custom -->
+Replaces the widget packed into the tooltip with
+`custom_widget`. `custom_widget` does not get destroyed when the tooltip goes
+away.
+By default a box with a `Image` and `Label` is embedded in
+the tooltip, which can be configured using `Tooltip::set_markup`
+and `Tooltip::set_icon`.
+## `custom_widget`
+a `Widget`, or `None` to unset the old custom widget.
+<!-- impl Tooltip::fn set_icon -->
+Sets the icon of the tooltip (which is in front of the text) to be
+`pixbuf`. If `pixbuf` is `None`, the image will be hidden.
+## `pixbuf`
+a `gdk_pixbuf::Pixbuf`, or `None`
+<!-- impl Tooltip::fn set_icon_from_gicon -->
+Sets the icon of the tooltip (which is in front of the text)
+to be the icon indicated by `gicon` with the size indicated
+by `size`. If `gicon` is `None`, the image will be hidden.
+## `gicon`
+a `gio::Icon` representing the icon, or `None`
+## `size`
+a stock icon size
+<!-- impl Tooltip::fn set_icon_from_icon_name -->
+Sets the icon of the tooltip (which is in front of the text) to be
+the icon indicated by `icon_name` with the size indicated
+by `size`. If `icon_name` is `None`, the image will be hidden.
+## `icon_name`
+an icon name, or `None`
+## `size`
+a stock icon size
+<!-- impl Tooltip::fn set_icon_from_stock -->
+Sets the icon of the tooltip (which is in front of the text) to be
+the stock item indicated by `stock_id` with the size indicated
+by `size`. If `stock_id` is `None`, the image will be hidden.
+
+# Deprecated since 3.10
+
+Use `Tooltip::set_icon_from_icon_name` instead.
+## `stock_id`
+a stock id, or `None`
+## `size`
+a stock icon size
+<!-- impl Tooltip::fn set_markup -->
+Sets the text of the tooltip to be `markup`, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+If `markup` is `None`, the label will be hidden.
+## `markup`
+a markup string (see [Pango markup format][PangoMarkupFormat]) or `None`
+<!-- impl Tooltip::fn set_text -->
+Sets the text of the tooltip to be `text`. If `text` is `None`, the label
+will be hidden. See also `Tooltip::set_markup`.
+## `text`
+a text string or `None`
+<!-- impl Tooltip::fn set_tip_area -->
+Sets the area of the widget, where the contents of this tooltip apply,
+to be `rect` (in widget coordinates). This is especially useful for
+properly setting tooltips on `TreeView` rows and cells, ``GtkIconViews``,
+etc.
+
+For setting tooltips on `TreeView`, please refer to the convenience
+functions for this: `TreeView::set_tooltip_row` and
+`TreeView::set_tooltip_cell`.
+## `rect`
+a `gdk::Rectangle`
 <!-- struct TreeIter -->
 The `TreeIter` is the primary structure
 for accessing a `TreeModel`. Models are expected to put a unique
@@ -29497,7 +30386,7 @@ Trait containing all `TreeModel` methods.
 
 # Implementors
 
-[`ListStore`](struct.ListStore.html), [`TreeModel`](struct.TreeModel.html), [`TreeSortable`](struct.TreeSortable.html), [`TreeStore`](struct.TreeStore.html)
+[`ListStore`](struct.ListStore.html), [`TreeModelFilter`](struct.TreeModelFilter.html), [`TreeModel`](struct.TreeModel.html), [`TreeSortable`](struct.TreeSortable.html), [`TreeStore`](struct.TreeStore.html)
 <!-- trait TreeModelExt::fn filter_new -->
 Creates a new `TreeModel`, with `self` as the child_model
 and `root` as the virtual root.
@@ -29825,6 +30714,209 @@ this means, see `TreeModel::ref_node`.
 Please note that nodes that are deleted are not unreffed.
 ## `iter`
 the `TreeIter`-struct
+<!-- struct TreeModelFilter -->
+A `TreeModelFilter` is a tree model which wraps another tree model,
+and can do the following things:
+
+- Filter specific rows, based on data from a “visible column”, a column
+ storing booleans indicating whether the row should be filtered or not,
+ or based on the return value of a “visible function”, which gets a
+ model, iter and user_data and returns a boolean indicating whether the
+ row should be filtered or not.
+
+- Modify the “appearance” of the model, using a modify function.
+ This is extremely powerful and allows for just changing some
+ values and also for creating a completely different model based
+ on the given child model.
+
+- Set a different root node, also known as a “virtual root”. You can pass
+ in a `TreePath` indicating the root node for the filter at construction
+ time.
+
+The basic API is similar to `TreeModelSort`. For an example on its usage,
+see the section on `TreeModelSort`.
+
+When using `TreeModelFilter`, it is important to realize that
+`TreeModelFilter` maintains an internal cache of all nodes which are
+visible in its clients. The cache is likely to be a subtree of the tree
+exposed by the child model. `TreeModelFilter` will not cache the entire
+child model when unnecessary to not compromise the caching mechanism
+that is exposed by the reference counting scheme. If the child model
+implements reference counting, unnecessary signals may not be emitted
+because of reference counting rule 3, see the `TreeModel`
+documentation. (Note that e.g. `TreeStore` does not implement
+reference counting and will always emit all signals, even when
+the receiving node is not visible).
+
+Because of this, limitations for possible visible functions do apply.
+In general, visible functions should only use data or properties from
+the node for which the visibility state must be determined, its siblings
+or its parents. Usually, having a dependency on the state of any child
+node is not possible, unless references are taken on these explicitly.
+When no such reference exists, no signals may be received for these child
+nodes (see reference couting rule number 3 in the `TreeModel` section).
+
+Determining the visibility state of a given node based on the state
+of its child nodes is a frequently occurring use case. Therefore,
+`TreeModelFilter` explicitly supports this. For example, when a node
+does not have any children, you might not want the node to be visible.
+As soon as the first row is added to the node’s child level (or the
+last row removed), the node’s visibility should be updated.
+
+This introduces a dependency from the node on its child nodes. In order
+to accommodate this, `TreeModelFilter` must make sure the necessary
+signals are received from the child model. This is achieved by building,
+for all nodes which are exposed as visible nodes to `TreeModelFilter`'s
+clients, the child level (if any) and take a reference on the first node
+in this level. Furthermore, for every row-inserted, row-changed or
+row-deleted signal (also these which were not handled because the node
+was not cached), `TreeModelFilter` will check if the visibility state
+of any parent node has changed.
+
+Beware, however, that this explicit support is limited to these two
+cases. For example, if you want a node to be visible only if two nodes
+in a child’s child level (2 levels deeper) are visible, you are on your
+own. In this case, either rely on `TreeStore` to emit all signals
+because it does not implement reference counting, or for models that
+do implement reference counting, obtain references on these child levels
+yourself.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html)
+<!-- impl TreeModelFilter::fn clear_cache -->
+This function should almost never be called. It clears the `self`
+of any cached iterators that haven’t been reffed with
+`TreeModel::ref_node`. This might be useful if the child model
+being filtered is static (and doesn’t change often) and there has been
+a lot of unreffed access to nodes. As a side effect of this function,
+all unreffed iters will be invalid.
+<!-- impl TreeModelFilter::fn convert_child_iter_to_iter -->
+Sets `filter_iter` to point to the row in `self` that corresponds to the
+row pointed at by `child_iter`. If `filter_iter` was not set, `false` is
+returned.
+## `filter_iter`
+An uninitialized `TreeIter`.
+## `child_iter`
+A valid `TreeIter` pointing to a row on the child model.
+
+# Returns
+
+`true`, if `filter_iter` was set, i.e. if `child_iter` is a
+valid iterator pointing to a visible row in child model.
+<!-- impl TreeModelFilter::fn convert_child_path_to_path -->
+Converts `child_path` to a path relative to `self`. That is, `child_path`
+points to a path in the child model. The rerturned path will point to the
+same row in the filtered model. If `child_path` isn’t a valid path on the
+child model or points to a row which is not visible in `self`, then `None`
+is returned.
+## `child_path`
+A `TreePath` to convert.
+
+# Returns
+
+A newly allocated `TreePath`, or `None`.
+<!-- impl TreeModelFilter::fn convert_iter_to_child_iter -->
+Sets `child_iter` to point to the row pointed to by `filter_iter`.
+## `child_iter`
+An uninitialized `TreeIter`.
+## `filter_iter`
+A valid `TreeIter` pointing to a row on `self`.
+<!-- impl TreeModelFilter::fn convert_path_to_child_path -->
+Converts `filter_path` to a path on the child model of `self`. That is,
+`filter_path` points to a location in `self`. The returned path will
+point to the same location in the model not being filtered. If `filter_path`
+does not point to a location in the child model, `None` is returned.
+## `filter_path`
+A `TreePath` to convert.
+
+# Returns
+
+A newly allocated `TreePath`, or `None`.
+<!-- impl TreeModelFilter::fn get_model -->
+Returns a pointer to the child model of `self`.
+
+# Returns
+
+A pointer to a `TreeModel`.
+<!-- impl TreeModelFilter::fn refilter -->
+Emits ::row_changed for each row in the child model, which causes
+the filter to re-evaluate whether a row is visible or not.
+<!-- impl TreeModelFilter::fn set_modify_func -->
+With the `n_columns` and `types` parameters, you give an array of column
+types for this model (which will be exposed to the parent model/view).
+The `func`, `data` and `destroy` parameters are for specifying the modify
+function. The modify function will get called for each
+data access, the goal of the modify function is to return the data which
+should be displayed at the location specified using the parameters of the
+modify function.
+
+Note that `TreeModelFilter::set_modify_func`
+can only be called once for a given filter model.
+## `n_columns`
+The number of columns in the filter model.
+## `types`
+The `GTypes` of the columns.
+## `func`
+A ``GtkTreeModelFilterModifyFunc``
+## `data`
+User data to pass to the modify function, or `None`.
+## `destroy`
+Destroy notifier of `data`, or `None`.
+<!-- impl TreeModelFilter::fn set_visible_column -->
+Sets `column` of the child_model to be the column where `self` should
+look for visibility information. `columns` should be a column of type
+`G_TYPE_BOOLEAN`, where `true` means that a row is visible, and `false`
+if not.
+
+Note that `TreeModelFilter::set_visible_func` or
+`TreeModelFilter::set_visible_column` can only be called
+once for a given filter model.
+## `column`
+A `gint` which is the column containing the visible information
+<!-- impl TreeModelFilter::fn set_visible_func -->
+Sets the visible function used when filtering the `self` to be `func`.
+The function should return `true` if the given row should be visible and
+`false` otherwise.
+
+If the condition calculated by the function changes over time (e.g.
+because it depends on some global parameters), you must call
+`TreeModelFilter::refilter` to keep the visibility information
+of the model up-to-date.
+
+Note that `func` is called whenever a row is inserted, when it may still
+be empty. The visible function should therefore take special care of empty
+rows, like in the example below.
+
+
+```C
+static gboolean
+visible_func (GtkTreeModel *model,
+              GtkTreeIter  *iter,
+              gpointer      data)
+{
+  // Visible if row is non-empty and first column is “HI”
+  gchar *str;
+  gboolean visible = FALSE;
+
+  gtk_tree_model_get (model, iter, 0, &str, -1);
+  if (str && strcmp (str, "HI") == 0)
+    visible = TRUE;
+  g_free (str);
+
+  return visible;
+}
+```
+
+Note that `TreeModelFilter::set_visible_func` or
+`TreeModelFilter::set_visible_column` can only be called
+once for a given filter model.
+## `func`
+A ``GtkTreeModelFilterVisibleFunc``, the visible function
+## `data`
+User data to pass to the visible function, or `None`
+## `destroy`
+Destroy notifier of `data`, or `None`
 <!-- struct TreePath -->
 <!-- impl TreePath::fn new -->
 Creates a new `TreePath`-struct.
@@ -30008,6 +31100,10 @@ That is, it may only emit one signal when a range of rows is selected.
 Additionally, it may on occasion emit a `TreeSelection::changed` signal
 when nothing has happened (mostly as a result of programmers calling
 select_row on an already selected row).
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
 <!-- impl TreeSelection::fn count_selected_rows -->
 Returns the number of rows that have been selected in `tree`.
 
@@ -30259,7 +31355,7 @@ An example of a UI Definition fragment for a tree store:
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
+[`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
 <!-- impl TreeStore::fn new -->
 Creates a new tree store as with `n_columns` columns each of the types passed
 in. Note that only types derived from standard GObject fundamental types
@@ -30582,7 +31678,7 @@ An example of a UI definition fragment with `TreeView`:
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl TreeView::fn new -->
 Creates a new `TreeView` widget.
 
@@ -31612,7 +32708,7 @@ they work together.
 
 # Implements
 
-[`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- impl TreeViewColumn::fn new -->
 Creates a new `TreeViewColumn`.
 
@@ -32076,7 +33172,7 @@ than the child widget’s minimum size in a given orientation.
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- impl Viewport::fn new -->
 Creates a new `Viewport` with the given adjustments, or with default
 adjustments if none are given.
@@ -32154,7 +33250,7 @@ icons, tooltips and accessible labels.
 
 # Implements
 
-[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl VolumeButton::fn new -->
 Creates a `VolumeButton`, with a range between 0.0 and 1.0, with
 a stepping of 0.02. Volume values can be obtained and modified using
@@ -32358,7 +33454,7 @@ look of applications without the need to write a theme engine in C.
 Use `WidgetClass::install_style_property` to install style properties for
 a widget class, `WidgetClass::find_style_property` or
 `WidgetClass::list_style_properties` to get information about existing
-style properties and `WidgetExt::style_get_property`, `WidgetExt::style_get` or
+style properties and `Widget::style_get_property`, `WidgetExt::style_get` or
 `WidgetExt::style_get_valist` to obtain the value of a style property.
 
 # `Widget` as `Buildable`
@@ -32448,7 +33544,7 @@ foo_widget_class_init (FooWidgetClass *klass)
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait WidgetExt -->
 Trait containing all `Widget` methods.
 
@@ -32653,7 +33749,7 @@ Also see `ContainerExt::child_notify`.
 the name of a child property installed on the
  class of `self`’s parent
 <!-- trait WidgetExt::fn class_path -->
-Same as `WidgetExt::path`, but always uses the name of a widget’s type,
+Same as `Widget::path`, but always uses the name of a widget’s type,
 never uses a custom name set with `WidgetExt::set_name`.
 
 # Deprecated since 3.0
@@ -33247,18 +34343,18 @@ geometry on the widget (e.g. with `WidgetExt::set_size_request`),
 in which case it returns that geometry instead of the widget's
 requisition.
 
-This function differs from `WidgetExt::size_request` in that
+This function differs from `Widget::size_request` in that
 it retrieves the last size request value from `self`->requisition,
-while `WidgetExt::size_request` actually calls the "size_request" method
+while `Widget::size_request` actually calls the "size_request" method
 on `self` to compute the size request and fill in `self`->requisition,
 and only then returns `self`->requisition.
 
 Because this function does not call the “size_request” method, it
 can only be used when you know that `self`->requisition is
-up-to-date, that is, `WidgetExt::size_request` has been called
+up-to-date, that is, `Widget::size_request` has been called
 since the last time a resize was queued. In general, only container
 implementations have this information; applications should use
-`WidgetExt::size_request`.
+`Widget::size_request`.
 
 # Deprecated since 3.0
 
@@ -33533,14 +34629,14 @@ the use case for the modifier mask
 the modifier mask used for `intent`.
 <!-- trait WidgetExt::fn get_modifier_style -->
 Returns the current modifier style for the widget. (As set by
-`WidgetExt::modify_style`.) If no style has previously set, a new
+`Widget::modify_style`.) If no style has previously set, a new
 `RcStyle` will be created with all values unset, and set as the
 modifier style for the widget. If you make changes to this rc
-style, you must call `WidgetExt::modify_style`, passing in the
+style, you must call `Widget::modify_style`, passing in the
 returned rc style, to make sure that your changes take effect.
 
-Caution: passing the style back to `WidgetExt::modify_style` will
-normally end up destroying it, because `WidgetExt::modify_style` copies
+Caution: passing the style back to `Widget::modify_style` will
+normally end up destroying it, because `Widget::modify_style` copies
 the passed-in style and sets the copy as the new modifier style,
 thus dropping any reference to the old modifier style. Add a reference
 to the modifier style if you want to keep it alive.
@@ -33765,7 +34861,7 @@ order to figure whether the widget’s requisition has actually
 changed after some internal state change (so that they can call
 `WidgetExt::queue_resize` instead of `WidgetExt::queue_draw`).
 
-Normally, `WidgetExt::size_request` should be used.
+Normally, `Widget::size_request` should be used.
 
 # Deprecated since 3.0
 
@@ -33850,7 +34946,7 @@ return location for width, or `None`
 ## `height`
 return location for height, or `None`
 <!-- trait WidgetExt::fn get_state -->
-Returns the widget’s state. See `WidgetExt::set_state`.
+Returns the widget’s state. See `Widget::set_state`.
 
 # Deprecated since 3.0
 
@@ -34365,8 +35461,8 @@ is `true`.
 Sets the base color for a widget in a particular state.
 All other style values are left untouched. The base color
 is the background color used along with the text color
-(see `WidgetExt::modify_text`) for widgets such as `Entry`
-and `TextView`. See also `WidgetExt::modify_style`.
+(see `Widget::modify_text`) for widgets such as `Entry`
+and `TextView`. See also `Widget::modify_style`.
 
 > Note that “no window” widgets (which have the `GTK_NO_WINDOW`
 > flag set) draw on their parent container’s window and thus may
@@ -34386,12 +35482,12 @@ the state for which to set the base color
 ## `color`
 the color to assign (does not need to
  be allocated), or `None` to undo the effect of previous
- calls to of `WidgetExt::modify_base`.
+ calls to of `Widget::modify_base`.
 <!-- trait WidgetExt::fn modify_bg -->
 Sets the background color for a widget in a particular state.
 
 All other style values are left untouched.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 > Note that “no window” widgets (which have the `GTK_NO_WINDOW`
 > flag set) draw on their parent container’s window and thus may
@@ -34411,14 +35507,14 @@ the state for which to set the background color
 ## `color`
 the color to assign (does not need
  to be allocated), or `None` to undo the effect of previous
- calls to of `WidgetExt::modify_bg`.
+ calls to of `Widget::modify_bg`.
 <!-- trait WidgetExt::fn modify_cursor -->
 Sets the cursor color to use in a widget, overriding the `Widget`
 cursor-color and secondary-cursor-color
 style properties.
 
 All other style values are left untouched.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 # Deprecated since 3.0
 
@@ -34426,16 +35522,16 @@ Use `WidgetExt::override_cursor` instead.
 ## `primary`
 the color to use for primary cursor (does not
  need to be allocated), or `None` to undo the effect of previous
- calls to of `WidgetExt::modify_cursor`.
+ calls to of `Widget::modify_cursor`.
 ## `secondary`
 the color to use for secondary cursor (does
  not need to be allocated), or `None` to undo the effect of
- previous calls to of `WidgetExt::modify_cursor`.
+ previous calls to of `Widget::modify_cursor`.
 <!-- trait WidgetExt::fn modify_fg -->
 Sets the foreground color for a widget in a particular state.
 
 All other style values are left untouched.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 # Deprecated since 3.0
 
@@ -34445,37 +35541,37 @@ the state for which to set the foreground color
 ## `color`
 the color to assign (does not need to be allocated),
  or `None` to undo the effect of previous calls to
- of `WidgetExt::modify_fg`.
+ of `Widget::modify_fg`.
 <!-- trait WidgetExt::fn modify_font -->
 Sets the font to use for a widget.
 
 All other style values are left untouched.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 # Deprecated since 3.0
 
 Use `WidgetExt::override_font` instead
 ## `font_desc`
 the font description to use, or `None`
- to undo the effect of previous calls to `WidgetExt::modify_font`
+ to undo the effect of previous calls to `Widget::modify_font`
 <!-- trait WidgetExt::fn modify_style -->
 Modifies style values on the widget.
 
 Modifications made using this technique take precedence over
 style values set via an RC file, however, they will be overridden
-if a style is explicitly set on the widget using `WidgetExt::set_style`.
+if a style is explicitly set on the widget using `Widget::set_style`.
 The `RcStyle`-struct is designed so each field can either be
 set or unset, so it is possible, using this function, to modify some
 style values and leave the others unchanged.
 
 Note that modifications made with this function are not cumulative
-with previous calls to `WidgetExt::modify_style` or with such
-functions as `WidgetExt::modify_fg`. If you wish to retain
-previous values, you must first call `WidgetExt::get_modifier_style`,
+with previous calls to `Widget::modify_style` or with such
+functions as `Widget::modify_fg`. If you wish to retain
+previous values, you must first call `Widget::get_modifier_style`,
 make your modifications to the returned style, then call
-`WidgetExt::modify_style` with that style. On the other hand,
-if you first call `WidgetExt::modify_style`, subsequent calls
-to such functions `WidgetExt::modify_fg` will have a cumulative
+`Widget::modify_style` with that style. On the other hand,
+if you first call `Widget::modify_style`, subsequent calls
+to such functions `Widget::modify_fg` will have a cumulative
 effect with the initial modifications.
 
 # Deprecated since 3.0
@@ -34488,9 +35584,9 @@ Sets the text color for a widget in a particular state.
 
 All other style values are left untouched.
 The text color is the foreground color used along with the
-base color (see `WidgetExt::modify_base`) for widgets such
+base color (see `Widget::modify_base`) for widgets such
 as `Entry` and `TextView`.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 # Deprecated since 3.0
 
@@ -34500,7 +35596,7 @@ the state for which to set the text color
 ## `color`
 the color to assign (does not need to
  be allocated), or `None` to undo the effect of previous
- calls to of `WidgetExt::modify_text`.
+ calls to of `Widget::modify_text`.
 <!-- trait WidgetExt::fn override_background_color -->
 Sets the background color to use for a widget.
 
@@ -34560,7 +35656,7 @@ the color to assign, or `None` to undo the effect
 Sets the cursor color to use in a widget, overriding the
 cursor-color and secondary-cursor-color
 style properties. All other style values are left untouched.
-See also `WidgetExt::modify_style`.
+See also `Widget::modify_style`.
 
 Note that the underlying properties have the `gdk::Color` type,
 so the alpha value in `primary` and `secondary` will be ignored.
@@ -35393,7 +36489,7 @@ GTK 3, this function does nothing, the passed in style is ignored.
 Use `StyleContext` instead
 ## `style`
 a `Style`, or `None` to remove the effect
- of a previous call to `WidgetExt::set_style` and go back to
+ of a previous call to `Widget::set_style` and go back to
  the default style
 <!-- trait WidgetExt::fn set_support_multidevice -->
 Enables or disables multiple pointer awareness. If this setting is `true`,
@@ -35700,7 +36796,7 @@ attribute of a `<child>` element.
 
 # Implements
 
-[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`BuildableExt`](trait.BuildableExt.html)
+[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
 <!-- trait WindowExt -->
 Trait containing all `Window` methods.
 
@@ -37068,6 +38164,63 @@ end up stuck. Just don’t write code that crashes if not.
 
 You can track stickiness via the “window-state-event” signal
 on `Widget`.
+<!-- struct WindowGroup -->
+A `WindowGroup` restricts the effect of grabs to windows
+in the same group, thereby making window groups almost behave
+like separate applications.
+
+A window can be a member in at most one window group at a time.
+Windows that have not been explicitly assigned to a group are
+implicitly treated like windows of the default window group.
+
+`WindowGroup` objects are referenced by each window in the group,
+so once you have added all windows to a `WindowGroup`, you can drop
+the initial reference to the window group with `gobject::Object::unref`. If the
+windows in the window group are subsequently destroyed, then they will
+be removed from the window group and drop their references on the window
+group; when all window have been removed, the window group will be
+freed.
+
+# Implements
+
+[`ObjectExt`](trait.ObjectExt.html)
+<!-- impl WindowGroup::fn new -->
+Creates a new `WindowGroup` object. Grabs added with
+`WidgetExt::grab_add` only affect windows within the same `WindowGroup`.
+
+# Returns
+
+a new `WindowGroup`.
+<!-- impl WindowGroup::fn add_window -->
+Adds a window to a `WindowGroup`.
+## `window`
+the `Window` to add
+<!-- impl WindowGroup::fn get_current_device_grab -->
+Returns the current grab widget for `device`, or `None` if none.
+## `device`
+a `gdk::Device`
+
+# Returns
+
+The grab widget, or `None`
+<!-- impl WindowGroup::fn get_current_grab -->
+Gets the current grab widget of the given group,
+see `WidgetExt::grab_add`.
+
+# Returns
+
+the current grab widget of the group
+<!-- impl WindowGroup::fn list_windows -->
+Returns a list of the ``GtkWindows`` that belong to `self`.
+
+# Returns
+
+A
+ newly-allocated list of windows inside the group.
+<!-- impl WindowGroup::fn remove_window -->
+Removes a window from a `WindowGroup`.
+## `window`
+the `Window` to remove
 <!-- enum WindowPosition -->
 Window placement can be influenced using this enumeration. Note that
 using `WindowPosition::CenterAlways` is almost always a bad idea.
