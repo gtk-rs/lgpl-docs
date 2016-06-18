@@ -67,7 +67,7 @@ Creates a new `Pixbuf` out of in-memory readonly image data.
 Currently only RGB images with 8 bits per sample are supported.
 This is the `glib::Bytes` variant of `Pixbuf::new_from_data`.
 
-Since: 2.32
+Feature: `v2_32`
 
 ## `data`
 Image data in 8-bit/sample packed format inside a `glib::Bytes`
@@ -405,7 +405,7 @@ When the operation is finished, `callback` will be called in the
 main thread. You can then call `Pixbuf::get_file_info_finish` to
 get the result of the operation.
 
-Since: 2.32
+Feature: `v2_32`
 
 ## `filename`
 The name of the file to identify
@@ -419,7 +419,7 @@ the data to pass to the callback function
 Finishes an asynchronous pixbuf parsing operation started with
 `Pixbuf::get_file_info_async`.
 
-Since: 2.32
+Feature: `v2_32`
 
 ## `async_result`
 a `gio::AsyncResult`
@@ -737,7 +737,7 @@ attached by another function using `gdk_pixbuf_set_option`.
 
 See `Pixbuf::get_option` for more details.
 
-Since: 2.32
+Feature: `v2_32`
 
 
 # Returns
@@ -803,7 +803,7 @@ height of region in `self`
 a new pixbuf
 <!-- impl Pixbuf::fn read_pixel_bytes -->
 
-Since: 2.32
+Feature: `v2_32`
 
 
 # Returns
@@ -818,7 +818,7 @@ modified. This function allows skipping the implicit copy that
 must be made if `Pixbuf::get_pixels` is called on a read-only
 pixbuf.
 
-Since: 2.32
+Feature: `v2_32`
 
 <!-- impl Pixbuf::fn ref -->
 Adds a reference to a pixbuf.
@@ -1187,7 +1187,7 @@ Creates a new pixbuf animation by loading an image from an resource.
 The file format is detected automatically. If `None` is returned, then
 `error` will be set.
 
-Since: 2.28
+Feature: `v2_28`
 
 ## `resource_path`
 the path of the resource file
@@ -1209,7 +1209,7 @@ the `GDK_PIXBUF_ERROR` and `G_IO_ERROR` domains.
 
 The stream is not closed.
 
-Since: 2.28
+Feature: `v2_28`
 
 ## `stream`
 a `gio::InputStream` to load the pixbuf from
@@ -1226,7 +1226,7 @@ the stream contained invalid data, or the operation was cancelled.
 Finishes an asynchronous pixbuf animation creation operation started with
 `PixbufAnimation::new_from_stream_async`.
 
-Since: 2.28
+Feature: `v2_28`
 
 ## `async_result`
 a `gio::AsyncResult`
@@ -1245,7 +1245,7 @@ When the operation is finished, `callback` will be called in the main thread.
 You can then call `PixbufAnimation::new_from_stream_finish` to get the
 result of the operation.
 
-Since: 2.28
+Feature: `v2_28`
 
 ## `stream`
 a `gio::InputStream` from which to load the animation
@@ -1645,7 +1645,7 @@ or `G_FILE_ERROR` domains.
 
 See also: `PixbufLoader::write`
 
-Since: 2.30
+Feature: `v2_30`
 
 ## `buffer`
 The image data as a `glib::Bytes`
