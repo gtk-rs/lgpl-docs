@@ -10,7 +10,7 @@ in its entirety. Emits the `TextBuffer::insert-text` signal, possibly
 multiple times; insertion actually occurs in the default handler for the
 signal. `iter` will point to the end of the inserted text on return.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `iter`
 location to insert the markup

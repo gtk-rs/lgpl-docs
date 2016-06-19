@@ -251,7 +251,7 @@ cursor sizes.
 On the X backend, support for RGBA cursors requires a
 sufficently new version of the X Render extension.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `display`
 the `Display` for which the cursor will be created
@@ -295,7 +295,7 @@ Note that depending on the capabilities of the windowing system and
 on the cursor, GDK may not be able to obtain the image data. In this
 case, `None` is returned.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `x_hot`
 Location to store the hotspot x position,
@@ -643,7 +643,7 @@ has a pointer grab, or this application has a grab with owner_events = `false`,
 `None` may be returned even if the pointer is physically over one of this
 application's windows.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -691,7 +691,7 @@ coordinates are those of its master pointer, this function
 may not be called on devices of type `DeviceType::Slave`,
 unless there is an ongoing grab on them. See `Device::grab`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `screen`
 location to store the `Screen`
@@ -705,7 +705,7 @@ Returns the product ID of this device, or `None` if this information couldn't
 be obtained. This ID is retrieved from the device, and is thus constant for
 it. See `Device::get_vendor_id` for more information.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -758,7 +758,7 @@ compose `gio::Settings` paths to store settings for this device.
  }
 ```
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -1909,7 +1909,7 @@ time between an initial value from `FrameClock::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
 
-Since: 3.8
+Feature: `v3_8`
 <!-- impl FrameClock::fn begin_updating -->
 Starts updates for an animation. Until a matching call to
 `FrameClock::end_updating` is made, the frame clock will continually
@@ -1918,18 +1918,18 @@ This function may be called multiple times and frames will be
 requested until `FrameClock::end_updating` is called the same
 number of times.
 
-Since: 3.8
+Feature: `v3_8`
 
 <!-- impl FrameClock::fn end_updating -->
 Stops updates for an animation. See the documentation for
 `FrameClock::begin_updating`.
 
-Since: 3.8
+Feature: `v3_8`
 
 <!-- impl FrameClock::fn get_current_timings -->
 Gets the frame timings for the current frame.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -1942,7 +1942,7 @@ the `FrameTimings` for the frame currently
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -1958,7 +1958,7 @@ the time of the conceptual “previous frame,” which may be either
 the actual previous frame time, or if that’s too old, an updated
 time.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -1973,7 +1973,7 @@ is the set from the counter values given by
 `FrameClock::get_history_start` and
 `FrameClock::get_frame_counter`, inclusive.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -1988,7 +1988,7 @@ presentation times are separated by the refresh interval,
 predicts a presentation time that is a multiple of the refresh
 interval after the last presentation time, and later than `base_time`.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `base_time`
 base time for determining a presentaton time
@@ -2005,7 +2005,7 @@ Retrieves a `FrameTimings` object holding timing information
 for the current frame or a recent frame. The `FrameTimings`
 object may not yet be complete: see `FrameTimings::get_complete`.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `frame_counter`
 the frame counter value identifying the frame to
@@ -2028,7 +2028,7 @@ you should use `FrameClock::begin_updating` instead, since
 this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `phase`
 the phase that is requested
@@ -2050,7 +2050,7 @@ available at all. Once `FrameTimings::get_complete` returns
 `true` for a frame, you can be certain that no further values
 will become available and be stored in the `FrameTimings`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2061,7 +2061,7 @@ Since: 3.8
 Gets the frame counter value of the `FrameClock` when this
 this frame was drawn.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2087,7 +2087,7 @@ than this function, but this function is useful for applications
 that want exact control over latency. For example, a movie player
 may want this information for Audio/Video synchronization.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2099,7 +2099,7 @@ The predicted time at which the frame will be presented,
 Reurns the presentation time. This is the time at which the frame
 became visible to the user.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2112,7 +2112,7 @@ Gets the natural interval between presentation times for
 the display that this frame was displayed on. Frame presentation
 usually happens during the “vertical blanking interval”.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2123,7 +2123,7 @@ the refresh interval of the display, in microseconds,
 <!-- impl FrameTimings::fn ref -->
 Increases the reference count of `self`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -2133,7 +2133,7 @@ Since: 3.8
 Decreases the reference count of `self`. If `self`
 is no longer referenced, it will be freed.
 
-Since: 3.8
+Feature: `v3_8`
 
 <!-- enum FullscreenMode -->
 Indicates which monitor (in a multi-head setup) a window should span over
@@ -2143,7 +2143,7 @@ Fullscreen on current monitor only.
 <!-- enum FullscreenMode::variant AllMonitors -->
 Span across all monitors when fullscreen.
 
-Since: 3.8
+Feature: `v3_8`
 
 <!-- struct GLContext -->
 `GLContext` is an object representing the platform-specific
@@ -2199,19 +2199,19 @@ You can check which `GLContext` is the current one by using
 `GLContext::get_current`; you can also unset any `GLContext`
 that is currently set by calling `GLContext::clear_current`.
 
-Since: 3.16
+Feature: `v3_16`
 <!-- impl GLContext::fn clear_current -->
 Clears the current `GLContext`.
 
 Any OpenGL call after this function returns will be ignored
 until `GLContext::make_current` is called.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- impl GLContext::fn get_current -->
 Retrieves the current `GLContext`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2220,7 +2220,7 @@ the current `GLContext`, or `None`
 <!-- impl GLContext::fn get_debug_enabled -->
 Retrieves the value set using `GLContext::set_debug_enabled`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2229,7 +2229,7 @@ Since: 3.16
 <!-- impl GLContext::fn get_display -->
 Retrieves the `Display` the `self` is created for
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2238,7 +2238,7 @@ a `Display` or `None`
 <!-- impl GLContext::fn get_forward_compatible -->
 Retrieves the value set using `GLContext::set_forward_compatible`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2248,7 +2248,7 @@ Since: 3.16
 Retrieves the major and minor version requested by calling
 `GLContext::set_required_version`.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `major`
 return location for the major version to request
@@ -2257,7 +2257,7 @@ return location for the minor version to request
 <!-- impl GLContext::fn get_shared_context -->
 Retrieves the `GLContext` that this `self` share data with.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2268,7 +2268,7 @@ Retrieves the OpenGL version of the `self`.
 
 The `self` must be realized prior to calling this function.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `major`
 return location for the major version
@@ -2277,7 +2277,7 @@ return location for the minor version
 <!-- impl GLContext::fn get_window -->
 Retrieves the `Window` used by the `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2286,14 +2286,14 @@ a `Window` or `None`
 <!-- impl GLContext::fn make_current -->
 Makes the `self` the current one.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- impl GLContext::fn realize -->
 Realizes the given `GLContext`.
 
 It is safe to call this function on a realized `GLContext`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -2307,7 +2307,7 @@ additional overhead.
 The `GLContext` must not be realized or made current prior to
 calling this function.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `enabled`
 whether to enable debugging in the context
@@ -2322,7 +2322,7 @@ non deprecated functionality.
 The `GLContext` must not be realized or made current prior to calling
 this function.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `compatible`
 whether the context should be forward compatible
@@ -2334,7 +2334,7 @@ Setting `major` and `minor` to zero will use the default values.
 The `GLContext` must not be realized or made current prior to calling
 this function.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `major`
 the major version to request
@@ -2349,7 +2349,7 @@ The requested visual format is not supported
 <!-- enum GLError::variant UnsupportedProfile -->
 The requested profile is not supported
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- enum GrabOwnership -->
 Defines how device grabs interact with other devices.
@@ -2668,7 +2668,7 @@ This can be used if you want to create pixel based data for a
 particula monitor, but most of the time you’re drawing to a window
 where it is better to use `Window::get_scale_factor` instead.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
@@ -3354,7 +3354,7 @@ If the creation of the `GLContext` failed, `error` will be set.
 Before using the returned `GLContext`, you will need to
 call `GLContext::make_current` or `GLContext::realize`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -3368,7 +3368,7 @@ given `self`.
 Initially the surface contents are all 0 (transparent if contents
 have transparency, black otherwise.)
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `format`
 the format for the new surface
@@ -3541,7 +3541,7 @@ list need not be.
 The list is returned in (relative) stacking order, i.e. the
 lowest window is first.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `user_data`
 user data to look for
@@ -3642,7 +3642,7 @@ Obtains the current device position in doubles and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `device`
 pointer `Device` to query to.
@@ -3698,7 +3698,7 @@ the effective toplevel window containing `self`
 <!-- impl Window::fn get_event_compression -->
 Get the current event compression setting for this window.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -3724,7 +3724,7 @@ Gets the frame clock for the window. The frame clock for a window
 never changes unless the window is reparented to a new toplevel
 window.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -3740,7 +3740,7 @@ rectangle to fill with bounding box of the window frame
 <!-- impl Window::fn get_fullscreen_mode -->
 Obtains the `FullscreenMode` of the `self`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -3896,7 +3896,7 @@ with higher resolution data.
 The scale of a window may change during runtime, if this happens
 a configure event will be sent to the toplevel window.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -4151,7 +4151,7 @@ of knowing when something paints over the GL-drawn regions.
 This is typically called automatically by GTK+ and you don't need
 to care about this.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `cr`
 a `cairo::Context`
@@ -4452,7 +4452,7 @@ motion events and will benefit from turning off event compression.
 
 By default, event compression is enabled.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `event_compression`
 `true` if motion events should be compressed
@@ -4496,7 +4496,7 @@ Not all window managers support this, so you can’t rely on the fullscreen
 window to span over the multiple monitors when `FullscreenMode::AllMonitors`
 is specified.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `mode`
 fullscreen mode
@@ -4590,7 +4590,7 @@ and want to keep it up to date. You can also modify the
 invalidated region in case you’re doing some effect where
 e.g. a child widget appears in multiple places.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `handler`
 a ``GdkWindowInvalidateHandlerFunc`` callback function
@@ -4665,7 +4665,7 @@ the `self` background is opaque, as we know where the opaque regions
 are. If your window background is not opaque, please update this
 property in your ``GtkWidget`::style-updated` handler.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `region`
 a region, or `None`
@@ -4706,7 +4706,7 @@ Note that this property is automatically updated by GTK+, so this
 function should only be used by applications which do not use GTK+
 to create toplevel windows.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `left`
 The left extent
@@ -4861,7 +4861,7 @@ windows managed by the window manager. This is useful for windows
 using client-side decorations, activating it with a right-click
 on the window decorations.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `event`
 a ``GdkEvent`` to show the menu for

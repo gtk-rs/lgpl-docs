@@ -436,7 +436,7 @@ contains an internal centered box which is centered with respect to
 the full width of the box, even if the children at either side take
 up different amounts of space.
 
-Since: 3.12
+Feature: `v3_12`
 
 # Implements
 
@@ -444,7 +444,7 @@ Since: 3.12
 <!-- impl ActionBar::fn new -->
 Creates a new `ActionBar` widget.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -453,7 +453,7 @@ a new `ActionBar`
 <!-- impl ActionBar::fn get_center_widget -->
 Retrieves the center bar widget of the bar.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -463,7 +463,7 @@ the center `Widget`.
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `child`
 the `Widget` to be added to `self`
@@ -471,14 +471,14 @@ the `Widget` to be added to `self`
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `child`
 the `Widget` to be added to `self`
 <!-- impl ActionBar::fn set_center_widget -->
 Sets the center widget for the `ActionBar`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `center_widget`
 a widget to use for the center
@@ -1249,7 +1249,7 @@ a `Window`
 Gets the accelerators that are currently associated with
 the given action.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `detailed_action_name`
 a detailed action name, specifying an action
@@ -1276,7 +1276,7 @@ is returned. `None` is never returned.
 It is a programmer error to pass an invalid accelerator string.
 If you are unsure, check it with `gtk_accelerator_parse` first.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `accel`
 an accelerator that can be parsed by `gtk_accelerator_parse`
@@ -1292,7 +1292,7 @@ the application). This window may not have the focus at the moment
 if another application has it — this is just the most
 recently-focused window within this application.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -1310,7 +1310,7 @@ Gets a menu from automatically loaded resources.
 See [Automatic resources][automatic-resources]
 for more information.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `id`
 the id of the menu to look up
@@ -1329,7 +1329,7 @@ the menubar for windows of `self`
 <!-- impl Application::fn get_window_by_id -->
 Returns the `ApplicationWindow` with the given ID.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `id`
 an identifier number
@@ -1401,7 +1401,7 @@ what types of actions should be queried
 Lists the detailed action names which have associated accelerators.
 See `Application::set_accels_for_action`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -1444,7 +1444,7 @@ typical to most Mac OS applications. If you call
 `Application::set_app_menu` anyway, then this menu will be
 replaced with your own.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -1481,7 +1481,7 @@ accelerator, which may be displayed in the UI.
 To remove all accelerators for an action, use an empty, zero-terminated
 array for `accels`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `detailed_action_name`
 a detailed action name, specifying an action
@@ -1635,7 +1635,7 @@ a newly created `ApplicationWindow`
 Returns the unique ID of the window. If the window has not yet been added to
 a `Application`, returns `0`.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -1817,7 +1817,7 @@ Center the baseline
 <!-- enum BaselinePosition::variant Bottom -->
 Align the baseline at the bottom
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- struct Bin -->
 The `Bin` widget is a container with just one child.
@@ -1933,7 +1933,7 @@ a new `Box`.
 <!-- trait BoxExt::fn get_baseline_position -->
 Gets the value set by `BoxExt::set_baseline_position`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -1942,7 +1942,7 @@ the baseline position
 <!-- trait BoxExt::fn get_center_widget -->
 Retrieves the center widget of the box.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -2045,7 +2045,7 @@ and the baseline is not allocated by the parent then
 `position` is used to allocate the baseline wrt the
 extra space available.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `position`
 a `BaselinePosition`
@@ -2055,7 +2055,7 @@ centered with respect to the full width of the box, even
 if the children at either side take up different amounts
 of space.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `widget`
 the widget to center
@@ -2292,7 +2292,7 @@ If there is an error opening the file or parsing the description then
 the program will be aborted. You should only ever attempt to parse
 user interface descriptions that are shipped as part of your program.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `filename`
 filename of user interface description file
@@ -2307,7 +2307,7 @@ at `resource_path`.
 If there is an error locating the resource or parsing the
 description, then the program will be aborted.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `resource_path`
 a `gio::Resource` resource path
@@ -2326,7 +2326,7 @@ If there is an error parsing `string` then the program will be
 aborted. You should not attempt to parse user interface description
 from untrusted sources.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `string`
 a user interface (XML) description
@@ -2344,7 +2344,7 @@ for any callback symbols that are added. Using this method allows for better
 encapsulation as it does not require that callback symbols be declared in
 the global namespace.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `callback_name`
 The name of the callback, as expected in the XML
@@ -2354,7 +2354,7 @@ The callback pointer
 A convenience function to add many callbacks instead of calling
 `Builder::add_callback_symbol` for each symbol.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `first_callback_name`
 The name of the callback, as expected in the XML
@@ -2519,7 +2519,7 @@ arbitrary data that will be passed to the connection function
 Add `object` to the `self` object pool so it can be referenced just like any
 other object built by builder.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `name`
 the name of the object exposed to the builder
@@ -2535,7 +2535,7 @@ By default, the builder uses the default application: the one from
 `gio::Application::get_default`. If you want to use another application
 for constructing proxies, use `Builder::set_application`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -2588,7 +2588,7 @@ This function is intended for possible use in language bindings
 or for any case that one might be cusomizing signal connections
 using `Builder::connect_signals_full`
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `callback_name`
 The name of the callback
@@ -2602,7 +2602,7 @@ Sets the application associated with `self`.
 You only need this function if there is more than one `gio::Application`
 in your process. `application` cannot be `None`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `application`
 a `Application`
@@ -2724,7 +2724,7 @@ will be updated appropriately.
 This function is a convenience wrapper around `Button::new` and
 `ButtonExt::set_image`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `icon_name`
 an icon name
@@ -2797,7 +2797,7 @@ return location for vertical alignment
 Returns whether the button will ignore the `Settings:gtk-button-images`
 setting and always show the image, if available.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -2908,7 +2908,7 @@ setting and always show the image, if available.
 Use this property if the button would be useless or hard to use
 without the image.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `always_show`
 `true` if the menuitem should always show the image
@@ -3617,7 +3617,7 @@ the attribute name
 Returns the model column that an attribute has been mapped to,
 or -1 if the attribute is not mapped.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `renderer`
 a `CellRenderer`
@@ -5183,7 +5183,7 @@ the appropriate clipboard object. If no clipboard
 Returns the default clipboard object for use with cut/copy/paste menu items
 and keyboard shortcuts.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `display`
 the `gdk::Display` for which the clipboard is to be retrieved.
@@ -8083,7 +8083,7 @@ the `CssProvider`, clearing any previously loaded information.
 To track errors while loading CSS, connect to the
 `CssProvider::parsing-error` signal.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `resource_path`
 a `gio::Resource` resource path
@@ -8113,6 +8113,88 @@ Name error.
 Deprecation error.
 <!-- enum CssProviderError::variant UnknownValue -->
 Unknown value.
+<!-- struct CssSection -->
+Defines a part of a CSS document. Because sections are nested into
+one another, you can use `CssSection::get_parent` to get the
+containing region.
+<!-- impl CssSection::fn get_end_line -->
+Returns the line in the CSS document where this section end.
+The line number is 0-indexed, so the first line of the document
+will return 0.
+This value may change in future invocations of this function if
+`self` is not yet parsed completely. This will for example
+happen in the `CssProvider`::parsing-error signal.
+The end position and line may be identical to the start
+position and line for sections which failed to parse anything
+successfully.
+
+# Returns
+
+the line number
+<!-- impl CssSection::fn get_end_position -->
+Returns the offset in bytes from the start of the current line
+returned via `CssSection::get_end_line`.
+This value may change in future invocations of this function if
+`self` is not yet parsed completely. This will for example
+happen in the `CssProvider`::parsing-error signal.
+The end position and line may be identical to the start
+position and line for sections which failed to parse anything
+successfully.
+
+# Returns
+
+the offset in bytes from the start of the line.
+<!-- impl CssSection::fn get_file -->
+Gets the file that `self` was parsed from. If no such file exists,
+for example because the CSS was loaded via
+`CssProvider::load_from_data`(), then `None` is returned.
+
+# Returns
+
+the `gio::File` that `self` was parsed from
+ or `None` if `self` was parsed from other data
+<!-- impl CssSection::fn get_parent -->
+Gets the parent section for the given `self`. The parent section is
+the section that contains this `self`. A special case are sections of
+type `CssSectionType::Document`. Their parent will either be `None`
+if they are the original CSS document that was loaded by
+`CssProvider::load_from_file` or a section of type
+`CssSectionType::Import` if it was loaded with an import rule from
+a different file.
+
+# Returns
+
+the parent section or `None` if none
+<!-- impl CssSection::fn get_section_type -->
+Gets the type of information that `self` describes.
+
+# Returns
+
+the type of `self`
+<!-- impl CssSection::fn get_start_line -->
+Returns the line in the CSS document where this section starts.
+The line number is 0-indexed, so the first line of the document
+will return 0.
+
+# Returns
+
+the line number
+<!-- impl CssSection::fn get_start_position -->
+Returns the offset in bytes from the start of the current line
+returned via `CssSection::get_start_line`.
+
+# Returns
+
+the offset in bytes from the start of the line.
+<!-- impl CssSection::fn ref -->
+Increments the reference count on `self`.
+
+# Returns
+
+`self` itself.
+<!-- impl CssSection::fn unref -->
+Decrements the reference count on `self`, freeing the
+structure if the reference count reaches 0.
 <!-- enum CssSectionType -->
 The different types of sections indicate parts of a CSS document as
 parsed by GTK’s CSS parser. They are oriented towards the
@@ -8407,7 +8489,7 @@ Returns the header bar of `self`. Note that the
 headerbar is only used by the dialog if the
 `Dialog:use-header-bar` property is `true`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -8917,7 +8999,7 @@ the alignment
 Gets the attribute list that was set on the entry using
 `EntryExt::set_attributes`, if any.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -9103,12 +9185,12 @@ the entry’s `Border`, or
 <!-- trait EntryExt::fn get_input_hints -->
 Gets the value of the `Entry:input-hints` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- trait EntryExt::fn get_input_purpose -->
 Gets the value of the `Entry:input-purpose` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- trait EntryExt::fn get_invisible_char -->
 Retrieves the character displayed in place of the real characters
@@ -9178,7 +9260,7 @@ the maximum allowed number of characters
 Retrieves the desired maximum width of `self`, in characters.
 See `EntryExt::set_max_width_chars`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -9214,7 +9296,7 @@ a fraction from 0.0 to 1.0
 Gets the tabstops that were set on the entry using `EntryExt::set_tabs`, if
 any.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -9287,7 +9369,7 @@ You only want to call this on some special entries
 which the user usually doesn't want to replace all text in,
 such as search-as-you-type entries.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- trait EntryExt::fn im_context_filter_keypress -->
 Allow the `Entry` input method to internally handle key press
@@ -9351,7 +9433,7 @@ The horizontal alignment, from 0 (left) to 1 (right).
 Sets a `pango::AttrList`; the attributes in the list are applied to the
 entry text.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `attrs`
 a `pango::AttrList`
@@ -9505,7 +9587,7 @@ a `Border`, or `None`
 Sets the `Entry:input-hints` property, which
 allows input methods to fine-tune their behaviour.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `hints`
 the hints
@@ -9514,7 +9596,7 @@ Sets the `Entry:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `purpose`
 the purpose
@@ -9548,7 +9630,7 @@ the maximum length of the entry, or 0 for no maximum.
 <!-- trait EntryExt::fn set_max_width_chars -->
 Sets the desired maximum width in characters of `self`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `n_chars`
 the new desired maximum width, in characters
@@ -9583,7 +9665,7 @@ fraction between 0.0 and 1.0
 Sets a `pango::TabArray`; the tabstops in the array are applied to the entry
 text.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `tabs`
 a `pango::TabArray`
@@ -10078,7 +10160,7 @@ descendant windows, not just at the same place on the screen.
 controllers. Those react to a series of ``GdkEvents``, and possibly trigger
 actions as a consequence of those.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -10086,7 +10168,7 @@ Since: 3.14
 <!-- trait EventControllerExt -->
 Trait containing all `EventController` methods.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implementors
 
@@ -10094,7 +10176,7 @@ Since: 3.14
 <!-- trait EventControllerExt::fn get_propagation_phase -->
 Gets the propagation phase at which `self` handles events.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -10103,7 +10185,7 @@ the propagation phase
 <!-- trait EventControllerExt::fn get_widget -->
 Returns the `Widget` this controller relates to.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -10113,7 +10195,7 @@ a `Widget`
 Feeds an events into `self`, so it can be interpreted
 and the controller actions triggered.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `event`
 a ``GdkEvent``
@@ -10127,7 +10209,7 @@ Resets the `self` to a clean state. Every interaction
 the controller did through `EventController::handle-event`
 will be dropped at this point.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- trait EventControllerExt::fn set_propagation_phase -->
 Sets the propagation phase at which a controller handles events.
@@ -10136,7 +10218,7 @@ If `phase` is `PropagationPhase::None`, no automatic event handling will be
 performed, but other additional gesture maintenance will. In that phase,
 the events can be managed by calling `EventControllerExt::handle_event`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `phase`
 a propagation phase
@@ -10149,7 +10231,7 @@ The sequence is handled and grabbed.
 <!-- enum EventSequenceState::variant Denied -->
 The sequence is denied.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- struct Expander -->
 A `Expander` allows the user to hide or show its child by clicking
@@ -10607,7 +10689,7 @@ adds a custom extra widget to the file chooser for “file format” may want to
 change the extension of the typed filename based on the chosen format, say,
 from “.jpg” to “.png”.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -11611,7 +11693,7 @@ Also see `ListBox`.
 
 `FlowBox` was added in GTK+ 3.12.
 
-Since: 3.12
+Feature: `v3_12`
 
 # Implements
 
@@ -11619,7 +11701,7 @@ Since: 3.12
 <!-- impl FlowBox::fn new -->
 Creates a `FlowBox`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11628,7 +11710,7 @@ a new `FlowBox` container
 <!-- impl FlowBox::fn get_activate_on_single_click -->
 Returns whether children activate on single clicks.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11638,7 +11720,7 @@ Since: 3.12
 <!-- impl FlowBox::fn get_child_at_index -->
 Gets the nth child in the `self`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `idx`
 the position of the child
@@ -11650,7 +11732,7 @@ the child widget, which will
 <!-- impl FlowBox::fn get_column_spacing -->
 Gets the horizontal spacing.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11660,7 +11742,7 @@ the horizontal spacing
 Returns whether the box is homogeneous (all children are the
 same size). See `BoxExt::set_homogeneous`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11669,7 +11751,7 @@ Since: 3.12
 <!-- impl FlowBox::fn get_max_children_per_line -->
 Gets the maximum number of children per line.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11678,7 +11760,7 @@ the maximum number of children per line
 <!-- impl FlowBox::fn get_min_children_per_line -->
 Gets the minimum number of children per line.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11687,7 +11769,7 @@ the minimum number of children per line
 <!-- impl FlowBox::fn get_row_spacing -->
 Gets the vertical spacing.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11696,7 +11778,7 @@ the vertical spacing
 <!-- impl FlowBox::fn get_selected_children -->
 Creates a list of all selected children.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11707,7 +11789,7 @@ Since: 3.12
 <!-- impl FlowBox::fn get_selection_mode -->
 Gets the selection mode of `self`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11723,7 +11805,7 @@ as `ContainerExt::add`.
 If `position` is -1, or larger than the total number of children
 in the `self`, then the `widget` will be appended to the end.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `widget`
 the `Widget` to add
@@ -11738,7 +11820,7 @@ factor. For instance, this would be used if the
 filter function just looked for a specific search
 term, and the entry with the string has changed.
 
-Since: 3.12
+Feature: `v3_12`
 
 <!-- impl FlowBox::fn invalidate_sort -->
 Updates the sorting for all children.
@@ -11746,19 +11828,19 @@ Updates the sorting for all children.
 Call this when the result of the sort function on
 `self` is changed due to an external factor.
 
-Since: 3.12
+Feature: `v3_12`
 
 <!-- impl FlowBox::fn select_all -->
 Select all children of `self`, if the selection
 mode allows it.
 
-Since: 3.12
+Feature: `v3_12`
 
 <!-- impl FlowBox::fn select_child -->
 Selects a single child of `self`, if the selection
 mode allows it.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `child`
 a child of `self`
@@ -11768,7 +11850,7 @@ Calls a function for each selected child.
 Note that the selection cannot be modified from within
 this function.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `func`
 the function to call for each selected child
@@ -11778,7 +11860,7 @@ user data to pass to the function
 If `single` is `true`, children will be activated when you click
 on them, otherwise you need to double-click.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `single`
 `true` to emit child-activated on a single click
@@ -11786,7 +11868,7 @@ Since: 3.12
 Sets the horizontal space to add between children.
 See the `FlowBox:column-spacing` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `spacing`
 the spacing to use
@@ -11800,7 +11882,7 @@ it will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) or when `FlowBox::invalidate_filter`
 is called.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `filter_func`
 callback that
@@ -11821,7 +11903,7 @@ The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `adjustment`
 an adjustment which should be adjusted
@@ -11831,7 +11913,7 @@ Sets the `FlowBox:homogeneous` property of `self`, controlling
 whether or not all children of `self` are given equal space
 in the box.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `homogeneous`
 `true` to create equal allotments,
@@ -11844,7 +11926,7 @@ Setting the maximum number of children per line
 limits the overall natural size request to be no more
 than `n_children` children long in the given orientation.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `n_children`
 the maximum number of children per line
@@ -11852,7 +11934,7 @@ the maximum number of children per line
 Sets the minimum number of children to line up
 in `self`’s orientation before flowing.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `n_children`
 the minimum number of children per line
@@ -11860,7 +11942,7 @@ the minimum number of children per line
 Sets the vertical space to add between children.
 See the `FlowBox:row-spacing` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `spacing`
 the spacing to use
@@ -11868,7 +11950,7 @@ the spacing to use
 Sets how selection works in `self`.
 See `SelectionMode` for details.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `mode`
 the new selection mode
@@ -11882,7 +11964,7 @@ and will continue to be called each time a child changes (via
 `FlowBoxChild::changed`) and when `FlowBox::invalidate_sort`
 is called.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `sort_func`
 the sort function
@@ -11902,7 +11984,7 @@ The adjustments have to be in pixel units and in the same
 coordinate system as the allocation for immediate children
 of the box.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `adjustment`
 an adjustment which should be adjusted
@@ -11911,20 +11993,20 @@ an adjustment which should be adjusted
 Unselect all children of `self`, if the selection
 mode allows it.
 
-Since: 3.12
+Feature: `v3_12`
 
 <!-- impl FlowBox::fn unselect_child -->
 Unselects a single child of `self`, if the selection
 mode allows it.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `child`
 a child of `self`
 <!-- struct FlowBoxChild -->
 
 
-Since: 3.12
+Feature: `v3_12`
 
 # Implements
 
@@ -11933,7 +12015,7 @@ Since: 3.12
 Creates a new `FlowBoxChild`, to be used as a child
 of a `FlowBox`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11957,12 +12039,12 @@ and filtering functions into the widgets themselves. Another
 alternative is to call `FlowBox::invalidate_sort` on any
 model change, but that is more expensive.
 
-Since: 3.12
+Feature: `v3_12`
 
 <!-- impl FlowBoxChild::fn get_index -->
 Gets the current index of the `self` in its `FlowBox` container.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -11973,7 +12055,7 @@ the index of the `self`, or -1 if the `self` is not
 Returns whether the `self` is currently selected in its
 `FlowBox` container.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -12446,7 +12528,7 @@ of how to safely initialize the GL state is:
 If you need to change the options for creating the `gdk::GLContext`
 you should use the `GLArea::create-context` signal.
 
-Since: 3.16
+Feature: `v3_16`
 
 # Implements
 
@@ -12454,7 +12536,7 @@ Since: 3.16
 <!-- impl GLArea::fn new -->
 Creates a new `GLArea` widget.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12469,12 +12551,12 @@ This function is automatically called before emitting the
 `GLArea::render` signal, and doesn't normally need to be called
 by application code.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- impl GLArea::fn get_auto_render -->
 Returns whether the area is in auto render mode or not.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12483,7 +12565,7 @@ Since: 3.16
 <!-- impl GLArea::fn get_context -->
 Retrieves the `gdk::GLContext` used by `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12492,7 +12574,7 @@ the `gdk::GLContext`
 <!-- impl GLArea::fn get_error -->
 Gets the current error set on the `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12501,7 +12583,7 @@ the `glib::Error` or `None`
 <!-- impl GLArea::fn get_has_alpha -->
 Returns whether the area has an alpha component.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12510,7 +12592,7 @@ Since: 3.16
 <!-- impl GLArea::fn get_has_depth_buffer -->
 Returns whether the area has a depth buffer.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12519,7 +12601,7 @@ Since: 3.16
 <!-- impl GLArea::fn get_has_stencil_buffer -->
 Returns whether the area has a stencil buffer.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -12529,7 +12611,7 @@ Since: 3.16
 Retrieves the required version of OpenGL set
 using `GLArea::set_required_version`.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `major`
 return location for the required major version
@@ -12543,7 +12625,7 @@ This function is automatically called before emitting the
 `GLArea::render` signal, and doesn't normally need to be called
 by application code.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- impl GLArea::fn queue_render -->
 Marks the currently rendered data (if any) as invalid, and queues
@@ -12554,7 +12636,7 @@ This is only needed when the `GLArea::set_auto_render` has
 been called with a `false` value. The default behaviour is to
 emit `GLArea::render` on each draw.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- impl GLArea::fn set_auto_render -->
 If `auto_render` is `true` the `GLArea::render` signal will be
@@ -12567,7 +12649,7 @@ unless the window is resized. In order to force a rendering
 `GLArea::queue_render` must be called. This mode is useful when
 the scene changes seldomly, but takes a long time to redraw.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `auto_render`
 a boolean
@@ -12576,7 +12658,7 @@ Sets an error on the area which will be shown instead of the
 GL rendering. This is useful in the `GLArea::create-context`
 signal if GL context creation fails.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `error`
 a new `glib::Error`, or `None` to unset the error
@@ -12588,7 +12670,7 @@ result will be composited over whatever is below the widget.
 If `has_alpha` is `false` there will be no alpha channel, and the
 buffer will fully replace anything below the widget.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `has_alpha`
 `true` to add an alpha component
@@ -12597,7 +12679,7 @@ If `has_depth_buffer` is `true` the widget will allocate and
 enable a depth buffer for the target framebuffer. Otherwise
 there will be none.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `has_depth_buffer`
 `true` to add a depth buffer
@@ -12606,7 +12688,7 @@ If `has_stencil_buffer` is `true` the widget will allocate and
 enable a stencil buffer for the target framebuffer. Otherwise
 there will be none.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `has_stencil_buffer`
 `true` to add a stencil buffer
@@ -12616,7 +12698,7 @@ for the widget.
 
 This function must be called before the area has been realized.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `major`
 the major version
@@ -12704,7 +12786,7 @@ again.
 Sequence states can't be changed freely, see `GestureExt::set_sequence_state`
 to know about the possible lifetimes of a `gdk::EventSequence`.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -12712,7 +12794,7 @@ Since: 3.14
 <!-- trait GestureExt -->
 Trait containing all `Gesture` methods.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implementors
 
@@ -12723,7 +12805,7 @@ this function returns `true` and fills in `rect` with the bounding
 box containing all active touches. Otherwise, `false` will be
 returned.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `rect`
 bounding box containing all active touches.
@@ -12737,7 +12819,7 @@ this function returns `true` and fills in `x` and `y` with the center
 of the bounding box containing all active touches. Otherwise, `false`
 will be returned.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `x`
 X coordinate for the bounding box center
@@ -12751,7 +12833,7 @@ Y coordinate for the bounding box center
 Returns the master `gdk::Device` that is currently operating
 on `self`, or `None` if the gesture is not being interacted.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12760,7 +12842,7 @@ a `gdk::Device`, or `None`
 <!-- trait GestureExt::fn get_group -->
 Returns all gestures in the group of `self`
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12778,7 +12860,7 @@ The last event from `sequence`
 <!-- trait GestureExt::fn get_last_updated_sequence -->
 Returns the `gdk::EventSequence` that was last updated on `self`.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12790,7 +12872,7 @@ function returns `true` and fills in `x` and `y` with the last coordinates
 stored for that event sequence. The coordinates are always relative to the
 widget allocation.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `sequence`
 a `gdk::EventSequence`, or `None` for pointer events
@@ -12805,7 +12887,7 @@ return location for Y axis of the sequence coordinates
 <!-- trait GestureExt::fn get_sequence_state -->
 Returns the `sequence` state, as seen by `self`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `sequence`
 a `gdk::EventSequence`
@@ -12817,7 +12899,7 @@ The sequence state in `self`
 Returns the list of ``GdkEventSequences`` currently being interpreted
 by `self`.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12831,7 +12913,7 @@ Returns the user-defined window that receives the events
 handled by `self`. See `GestureExt::set_window` for more
 information.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12850,7 +12932,7 @@ Groups also perform an "implicit grabbing" of sequences, if a
 every other gesture group attached to the same `Widget` will switch the
 state for that sequence to `EventSequenceState::Denied`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `gesture`
 a `Gesture`
@@ -12858,7 +12940,7 @@ a `Gesture`
 Returns `true` if `self` is currently handling events corresponding to
 `sequence`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `sequence`
 a `gdk::EventSequence`
@@ -12871,7 +12953,7 @@ Returns `true` if the gesture is currently active.
 A gesture is active meanwhile there are touch sequences
 interacting with it.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12880,7 +12962,7 @@ Since: 3.14
 <!-- trait GestureExt::fn is_grouped_with -->
 Returns `true` if both gestures pertain to the same group.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `other`
 another `Gesture`
@@ -12894,7 +12976,7 @@ A gesture is recognized if there are as many interacting
 touch sequences as required by `self`, and `Gesture::check`
 returned `true` for the sequences being currently interpreted.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -12945,7 +13027,7 @@ the gesture emitting the event, the sequence will be already
 be initialized to the group's global state when the second
 gesture processes the event.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `sequence`
 a `gdk::EventSequence`
@@ -12961,7 +13043,7 @@ Sets the state of all sequences that `self` is currently
 interacting with. See `GestureExt::set_sequence_state`
 for more details on sequence states.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `state`
 the sequence state
@@ -12975,14 +13057,14 @@ Sets a specific window to receive events about, so `self`
 will effectively handle only events targeting `window`, or
 a child of it. `window` must pertain to `EventControllerExt::get_widget`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `window`
 a `gdk::Window`, or `None`
 <!-- trait GestureExt::fn ungroup -->
 Separates `self` into an isolated group.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- struct GestureDrag -->
 `GestureDrag` is a `Gesture` implementation that recognizes drag
@@ -12992,7 +13074,7 @@ operations. The drag operation itself can be tracked throught the
 extracted through `GestureDragExt::get_offset` and
 `GestureDragExt::get_start_point`.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13000,7 +13082,7 @@ Since: 3.14
 <!-- trait GestureDragExt -->
 Trait containing all `GestureDrag` methods.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implementors
 
@@ -13008,7 +13090,7 @@ Since: 3.14
 <!-- impl GestureDrag::fn new -->
 Returns a newly created `Gesture` that recognizes drags.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13021,7 +13103,7 @@ If the `self` is active, this function returns `true` and
 fills in `x` and `y` with the coordinates of the current point,
 as an offset to the starting drag point.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `x`
 X offset for the current point
@@ -13036,7 +13118,7 @@ If the `self` is active, this function returns `true`
 and fills in `x` and `y` with the drag start coordinates,
 in window-relative coordinates.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `x`
 X coordinate for the drag start point
@@ -13055,7 +13137,7 @@ If the touchpoint is lifted before the timeout passes, or if it drifts
 too far of the initial press point, the `GestureLongPress::cancelled`
 signal will be emitted.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13063,7 +13145,7 @@ Since: 3.14
 <!-- impl GestureLongPress::fn new -->
 Returns a newly created `Gesture` that recognizes long presses.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13083,7 +13165,7 @@ touch/button press through `GestureMultiPress::set_area`, so any
 click happening outside that area is considered to be a first click of
 its own.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13092,7 +13174,7 @@ Since: 3.14
 Returns a newly created `Gesture` that recognizes single and multiple
 presses.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13106,7 +13188,7 @@ this function will return `true` and fill in `rect` with the
 press area. See `GestureMultiPress::set_area` for more
 details on what the press area represents.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `rect`
 return location for the press area
@@ -13125,7 +13207,7 @@ Note: The rectangle is only used to determine whether any
 non-first click falls within the expected area. This is not
 akin to an input shape.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `rect`
 rectangle to receive coordinates on
@@ -13145,7 +13227,7 @@ Once a panning gesture along the expected axis is recognized,
 the `GesturePan::pan` signal will be emitted as input events
 are received, containing the offset in the given axis.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13153,7 +13235,7 @@ Since: 3.14
 <!-- impl GesturePan::fn new -->
 Returns a newly created `Gesture` that recognizes pan gestures.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13166,7 +13248,7 @@ a newly created `GesturePan`
 <!-- impl GesturePan::fn get_orientation -->
 Returns the orientation of the pan gestures that this `self` expects.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13175,7 +13257,7 @@ the expected orientation for pan gestures
 <!-- impl GesturePan::fn set_orientation -->
 Sets the orientation to be expected on pan gestures.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `orientation`
 expected orientation
@@ -13184,7 +13266,7 @@ expected orientation
 2-finger rotations, whenever the angle between both handled sequences
 changes, the `GestureRotate::angle-changed` signal is emitted.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13193,7 +13275,7 @@ Since: 3.14
 Returns a newly created `Gesture` that recognizes 2-touch
 rotation gestures.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13206,7 +13288,7 @@ If `self` is active, this function returns the angle difference
 in radians since the gesture was first recognized. If `self` is
 not active, 0 is returned.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13226,7 +13308,7 @@ to interact with through `GestureSingleExt::set_button`, or react to any
 mouse button by setting 0. While the gesture is active, the button being
 currently pressed can be known through `GestureSingleExt::get_current_button`.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13234,7 +13316,7 @@ Since: 3.14
 <!-- trait GestureSingleExt -->
 Trait containing all `GestureSingle` methods.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implementors
 
@@ -13243,7 +13325,7 @@ Since: 3.14
 Returns the button number `self` listens for, or 0 if `self`
 reacts to any button press.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13253,7 +13335,7 @@ The button number, or 0 for any button
 Returns the button number currently interacting with `self`, or 0 if there
 is none.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13263,7 +13345,7 @@ The current button number
 Returns the event sequence currently interacting with `self`.
 This is only meaningful if `GestureExt::is_active` returns `true`.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13273,7 +13355,7 @@ the current sequence
 Gets whether a gesture is exclusive. For more information, see
 `GestureSingleExt::set_exclusive`.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13282,7 +13364,7 @@ Whether the gesture is exclusive
 <!-- trait GestureSingleExt::fn get_touch_only -->
 Returns `true` if the gesture is only triggered by touch events.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13293,7 +13375,7 @@ Sets the button number `self` listens to. If non-0, every
 button press from a different button number will be ignored.
 Touch events implicitly match with button 1.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `button`
 button number to listen to, or 0 for any button
@@ -13303,7 +13385,7 @@ only handle pointer and "pointer emulated" touch events, so at
 any given time, there is only one sequence able to interact with
 those.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `exclusive`
 `true` to make `self` exclusive
@@ -13312,7 +13394,7 @@ If `touch_only` is `true`, `self` will only handle events of type
 `gdk::EventType::TouchBegin`, `gdk::EventType::TouchUpdate` or `gdk::EventType::TouchEnd`. If `false`,
 mouse events will be handled too.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `touch_only`
 whether `self` handles only touch events
@@ -13328,7 +13410,7 @@ If the velocity is desired in intermediate points,
 
 All velocities are reported in pixels/sec units.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13336,7 +13418,7 @@ Since: 3.14
 <!-- impl GestureSwipe::fn new -->
 Returns a newly created `Gesture` that recognizes swipes.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13349,7 +13431,7 @@ If the gesture is recognized, this function returns `true` and fill in
 `velocity_x` and `velocity_y` with the recorded velocity, as per the
 last event(s) processed.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `velocity_x`
 return value for the velocity in the X axis, in pixels/sec
@@ -13365,7 +13447,7 @@ pinch/zoom gestures, whenever the distance between both tracked
 sequences changes, the `GestureZoom::scale-changed` signal is
 emitted to report the scale factor.
 
-Since: 3.14
+Feature: `v3_14`
 
 # Implements
 
@@ -13374,7 +13456,7 @@ Since: 3.14
 Returns a newly created `Gesture` that recognizes zoom
 in/out gestures (usually known as pinch/zoom).
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `widget`
 a `Widget`
@@ -13387,7 +13469,7 @@ If `self` is active, this function returns the zooming difference
 since the gesture was recognized (hence the starting point is
 considered 1:1). If `self` is not active, 1 is returned.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -13458,7 +13540,7 @@ the number of rows that `child` will span
 <!-- impl Grid::fn get_baseline_row -->
 Returns which row defines the global baseline of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13492,7 +13574,7 @@ Returns the baseline position of `row` as set
 by `Grid::set_row_baseline_position` or the default value
 `BaselinePosition::Center`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `row`
 a row index
@@ -13548,7 +13630,7 @@ spanning children that overlap this column have their
 width reduced by one, and children after the column
 are moved to the left.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `position`
 the position of the column to remove
@@ -13560,7 +13642,7 @@ spanning children that overlap this row have their
 height reduced by one, and children below the row
 are moved up.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `position`
 the position of the row to remove
@@ -13570,7 +13652,7 @@ Each row in the grid can have its own local baseline, but only
 one of those is global, meaning it will be the baseline in the
 parent of the `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `row`
 the row index
@@ -13590,7 +13672,7 @@ the amount of space to insert between columns
 Sets how the baseline should be positioned on `row` of the
 grid, in case that row is assigned more space than is requested.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `row`
 a row index
@@ -13617,7 +13699,7 @@ can be turned off with `HeaderBar::set_has_subtitle`.
 `HeaderBar` can add typical window frame controls, such as minimize,
 maximize and close buttons, or the window icon.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -13625,7 +13707,7 @@ Since: 3.10
 <!-- impl HeaderBar::fn new -->
 Creates a new `HeaderBar` widget.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13635,7 +13717,7 @@ a new `HeaderBar`
 Retrieves the custom title widget of the header. See
 `HeaderBar::set_custom_title`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13646,7 +13728,7 @@ the custom title widget
 Gets the decoration layout set with
 `HeaderBar::set_decoration_layout`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -13656,7 +13738,7 @@ the decoration layout
 Retrieves whether the header bar reserves space for
 a subtitle, regardless if one is currently set or not.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -13667,7 +13749,7 @@ Since: 3.12
 Returns whether this header bar shows the standard window
 decorations.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13676,7 +13758,7 @@ Since: 3.10
 <!-- impl HeaderBar::fn get_subtitle -->
 Retrieves the subtitle of the header. See `HeaderBar::set_subtitle`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13687,7 +13769,7 @@ the subtitle of the header, or `None` if none has
 <!-- impl HeaderBar::fn get_title -->
 Retrieves the title of the header. See `HeaderBar::set_title`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -13699,7 +13781,7 @@ the title of the header, or `None` if none has
 Adds `child` to `self`, packed with reference to the
 end of the `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the `Widget` to be added to `self`
@@ -13707,7 +13789,7 @@ the `Widget` to be added to `self`
 Adds `child` to `self`, packed with reference to the
 start of the `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the `Widget` to be added to `self`
@@ -13723,7 +13805,7 @@ style classes.
 You should set the custom title to `None`, for the header title
 label to be visible again.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `title_widget`
 a custom widget to use for a title
@@ -13746,7 +13828,7 @@ for the fallback app menu).
 For example, “menu:minimize,maximize,close” specifies a menu
 on the left, and minimize, maximize and close buttons on the right.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `layout`
 a decoration layout, or `None` to
@@ -13755,7 +13837,7 @@ a decoration layout, or `None` to
 Sets whether the header bar should reserve space
 for a subtitle, even if none is currently set.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `setting`
 `true` to reserve space for a subtitle
@@ -13763,7 +13845,7 @@ Since: 3.12
 Sets whether this header bar shows the standard window decorations,
 including close, maximize, and minimize.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `setting`
 `true` to show standard widow decorations
@@ -13775,7 +13857,7 @@ Note that `HeaderBar` by default reserves room for the subtitle,
 even if none is currently set. If this is not desired, set the
 `HeaderBar:has-subtitle` property to `false`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `subtitle`
 a subtitle, or `None`
@@ -13784,7 +13866,7 @@ Sets the title of the `HeaderBar`. The title should help a user
 identify the current view. A good title should not include the
 application name.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `title`
 a title, or `None`
@@ -13920,7 +14002,7 @@ the bitmask of possible actions for a drag from this
 <!-- impl IconView::fn get_activate_on_single_click -->
 Gets the setting set by `IconView::set_activate_on_single_click`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -13932,7 +14014,7 @@ Fills the bounding rectangle in widget coordinates for the cell specified by
 
 This function is only valid if `self` is realized.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `path`
 a `TreePath`
@@ -14243,7 +14325,7 @@ User data to pass to the function.
 Causes the `IconView::item-activated` signal to be emitted on
 a single click instead of a double click.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `single`
 `true` to emit item-activated on a single click
@@ -14659,7 +14741,7 @@ The `Image` does not assume a reference to the
 surface; you still need to unref it if you own references.
 `Image` will add its own reference rather than adopting yours.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `surface`
 a `cairo::Surface`, or `None`
@@ -14811,7 +14893,7 @@ a stock icon size
 <!-- impl Image::fn set_from_surface -->
 See `Image::new_from_surface` for details.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `surface`
 a cairo_surface_t
@@ -15159,7 +15241,7 @@ the message type of the message area.
 <!-- impl InfoBar::fn get_show_close_button -->
 Returns whether the widget will display a standard close button.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -15196,7 +15278,7 @@ TRUE for sensitive
 If true, a standard close button is shown. When clicked it emits
 the response `ResponseType::Close`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `setting`
 `true` to include a close button
@@ -15240,7 +15322,7 @@ Like `InputPurpose::FreeForm`, but characters are hidden
 <!-- enum InputPurpose::variant Pin -->
 Like `InputPurpose::Digits`, but characters are hidden
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- enum Justification -->
 Used for justifying the text inside a `Label` widget. (See also
@@ -15513,7 +15595,7 @@ Returns line wrap mode used by the label. See `Label::set_line_wrap_mode`.
 Gets the number of lines to which an ellipsized, wrapping
 label should be limited. See `Label::set_lines`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -15607,7 +15689,7 @@ the width of the label in characters.
 <!-- impl Label::fn get_xalign -->
 Gets the `Label:xalign` property for `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -15616,7 +15698,7 @@ the xalign property
 <!-- impl Label::fn get_yalign -->
 Gets the `Label:yalign` property for `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -15696,7 +15778,7 @@ should be limited. This has no effect if the label is not wrapping
 or ellipsized. Set this to -1 if you don’t want to limit the
 number of lines.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `lines`
 the desired number of lines, or -1
@@ -15804,14 +15886,14 @@ the new desired width, in characters.
 <!-- impl Label::fn set_xalign -->
 Sets the `Label:xalign` property for `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `xalign`
 the new xalign value, between 0 and 1
 <!-- impl Label::fn set_yalign -->
 Sets the `Label:yalign` property for `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `yalign`
 the new yalign value, between 0 and 1
@@ -15997,7 +16079,7 @@ For instance, to build a bar rendered with five blocks, it’s sufficient to
 set the minimum value to 0 and the maximum value to 5 after changing the indicator
 mode to discrete.
 
-Since: 3.6
+Feature: `v3_6`
 
 # Implements
 
@@ -16005,7 +16087,7 @@ Since: 3.6
 <!-- impl LevelBar::fn new -->
 Creates a new `LevelBar`.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -16015,7 +16097,7 @@ a `LevelBar`.
 Utility constructor that creates a new `LevelBar` for the specified
 interval.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `min_value`
 a positive value
@@ -16034,7 +16116,7 @@ when rendering the level bar fill.
 If another offset marker named `name` exists, its value will be
 replaced by `value`.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `name`
 the name of the new offset
@@ -16043,7 +16125,7 @@ the value for the new offset
 <!-- impl LevelBar::fn get_inverted -->
 Return the value of the `LevelBar:inverted` property.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -16052,7 +16134,7 @@ Since: 3.8
 <!-- impl LevelBar::fn get_max_value -->
 Returns the value of the `LevelBar:max-value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -16061,7 +16143,7 @@ a positive value
 <!-- impl LevelBar::fn get_min_value -->
 Returns the value of the `LevelBar:min-value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -16070,7 +16152,7 @@ a positive value
 <!-- impl LevelBar::fn get_mode -->
 Returns the value of the `LevelBar:mode` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -16080,7 +16162,7 @@ a `LevelBarMode`
 Fetches the value specified for the offset marker `name` in `self`,
 returning `true` in case an offset named `name` was found.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `name`
 the name of an offset in the bar
@@ -16093,7 +16175,7 @@ location where to store the value
 <!-- impl LevelBar::fn get_value -->
 Returns the value of the `LevelBar:value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -16104,42 +16186,42 @@ a value in the interval between
 Removes an offset marker previously added with
 `LevelBar::add_offset_value`.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `name`
 the name of an offset in the bar
 <!-- impl LevelBar::fn set_inverted -->
 Sets the value of the `LevelBar:inverted` property.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `inverted`
 `true` to invert the level bar
 <!-- impl LevelBar::fn set_max_value -->
 Sets the value of the `LevelBar:max-value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_min_value -->
 Sets the value of the `LevelBar:min-value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `value`
 a positive value
 <!-- impl LevelBar::fn set_mode -->
 Sets the value of the `LevelBar:mode` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `mode`
 a `LevelBarMode`
 <!-- impl LevelBar::fn set_value -->
 Sets the value of the `LevelBar:value` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `value`
 a value in the interval between
@@ -16153,7 +16235,7 @@ the bar has a continuous mode
 <!-- enum LevelBarMode::variant Discrete -->
 the bar has a discrete mode
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- enum License -->
 The type of license for an application.
@@ -16274,7 +16356,7 @@ as selected when the user tries to select it.
 
 The `ListBox` widget was added in GTK+ 3.10.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -16282,7 +16364,7 @@ Since: 3.10
 <!-- impl ListBox::fn new -->
 Creates a new `ListBox` container.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16302,7 +16384,7 @@ It is undefined to add or remove widgets directly (for example, with
 `ListBox::insert` or `ContainerExt::add`) while `self` is bound to a
 model.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `model`
 the `gio::ListModel` to be bound to `self`
@@ -16320,7 +16402,7 @@ and any previously highlighted row will be unhighlighted.
 The row will also be unhighlighted when the widget gets
 a drag leave event.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `row`
 a `ListBoxRow`
@@ -16328,12 +16410,12 @@ a `ListBoxRow`
 If a row has previously been highlighted via `ListBox::drag_highlight_row`
 it will have the highlight removed.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- impl ListBox::fn get_activate_on_single_click -->
 Returns whether rows activate on single clicks.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16343,7 +16425,7 @@ Since: 3.10
 Gets the adjustment (if any) that the widget uses to
 for vertical scrolling.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16354,7 +16436,7 @@ Gets the n-th child in the list (not counting headers).
 If `_index` is negative or larger than the number of items in the
 list, `None` is returned.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `index_`
 the index of the row
@@ -16365,7 +16447,7 @@ the child `Widget` or `None`
 <!-- impl ListBox::fn get_row_at_y -->
 Gets the row at the `y` position.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `y`
 position
@@ -16380,7 +16462,7 @@ Note that the box may allow multiple selection, in which
 case you should use `ListBox::selected_foreach` to
 find all selected rows.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16389,7 +16471,7 @@ the selected row
 <!-- impl ListBox::fn get_selected_rows -->
 Creates a list of all selected children.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -16400,7 +16482,7 @@ Since: 3.14
 <!-- impl ListBox::fn get_selection_mode -->
 Gets the selection mode of the listbox.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16414,7 +16496,7 @@ this function has the same effect of `ContainerExt::add`.
 If `position` is -1, or larger than the total number of items in the
 `self`, then the `child` will be appended to the end.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the `Widget` to add
@@ -16427,40 +16509,40 @@ to an external factor. For instance, this would be used
 if the filter function just looked for a specific search
 string and the entry with the search string has changed.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- impl ListBox::fn invalidate_headers -->
 Update the separators for all rows. Call this when result
 of the header function on the `self` is changed due
 to an external factor.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- impl ListBox::fn invalidate_sort -->
 Update the sorting for all rows. Call this when result
 of the sort function on the `self` is changed due
 to an external factor.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- impl ListBox::fn prepend -->
 Prepend a widget to the list. If a sort function is set, the widget will
 actually be inserted at the calculated position and this function has the
 same effect of `ContainerExt::add`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the `Widget` to add
 <!-- impl ListBox::fn select_all -->
 Select all children of `self`, if the selection mode allows it.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- impl ListBox::fn select_row -->
 Make `row` the currently selected row.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `row`
 The row to select or `None`
@@ -16469,7 +16551,7 @@ Calls a function for each selected child.
 
 Note that the selection cannot be modified from within this function.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `func`
 the function to call for each selected child
@@ -16479,7 +16561,7 @@ user data to pass to the function
 If `single` is `true`, rows will be activated when you click on them,
 otherwise you need to double-click.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `single`
 a boolean
@@ -16493,7 +16575,7 @@ a `ScrolledWindow` the adjustment from that will
 be picked up automatically, so there is no need
 to manually do that.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `adjustment`
 the adjustment, or `None`
@@ -16506,7 +16588,7 @@ The `filter_func` will be called for each row after the call, and it will
 continue to be called each time a row changes (via `ListBoxRow::changed`) or
 when `ListBox::invalidate_filter` is called.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `filter_func`
 callback that lets you filter which rows to show
@@ -16534,7 +16616,7 @@ the row before changes (either by `ListBoxRow::changed` on the previous row, or 
 the previous row becomes a different row). It is also called for all rows when
 `ListBox::invalidate_headers` is called.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `update_header`
 callback that lets you add row headers
@@ -16546,7 +16628,7 @@ destroy notifier for `user_data`
 Sets the placeholder widget that is shown in the list when
 it doesn't display any visible children.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `placeholder`
 a `Widget` or `None`
@@ -16554,7 +16636,7 @@ a `Widget` or `None`
 Sets how selection works in the listbox.
 See `SelectionMode` for details.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `mode`
 The `SelectionMode`
@@ -16566,7 +16648,7 @@ The `sort_func` will be called for each row after the call, and will continue to
 be called each time a row changes (via `ListBoxRow::changed`) and when
 `ListBox::invalidate_sort` is called.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `sort_func`
 the sort function
@@ -16577,19 +16659,19 @@ destroy notifier for `user_data`
 <!-- impl ListBox::fn unselect_all -->
 Unselect all children of `self`, if the selection mode allows it.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- impl ListBox::fn unselect_row -->
 Unselects a single row of `self`, if the selection mode allows it.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `row`
 the row to unselected
 <!-- struct ListBoxRow -->
 
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -16597,7 +16679,7 @@ Since: 3.10
 <!-- impl ListBoxRow::fn new -->
 Creates a new `ListBoxRow`, to be used as a child of a `ListBox`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16621,13 +16703,13 @@ row functions into the row widgets themselves. Another alternative
 is to call `ListBox::invalidate_sort` on any model change,
 but that is more expensive.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- impl ListBoxRow::fn get_activatable -->
 Gets the value of the `ListBoxRow:activatable` property
 for this row.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -16638,7 +16720,7 @@ Returns the current header of the `self`. This can be used
 in a ``GtkListBoxUpdateHeaderFunc`` to see if there is a header
 set already, and if so to update the state of it.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16647,7 +16729,7 @@ the current header, or `None` if none
 <!-- impl ListBoxRow::fn get_index -->
 Gets the current index of the `self` in its `ListBox` container.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -16657,7 +16739,7 @@ the index of the `self`, or -1 if the `self` is not in a listbox
 Gets the value of the `ListBoxRow:selectable` property
 for this row.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -16667,7 +16749,7 @@ Since: 3.14
 Returns whether the child is currently selected in its
 `ListBox` container.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -16676,7 +16758,7 @@ Since: 3.14
 <!-- impl ListBoxRow::fn set_activatable -->
 Set the `ListBoxRow:activatable` property for this row.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `activatable`
 `true` to mark the row as activatable
@@ -16685,14 +16767,14 @@ Sets the current header of the `self`. This is only allowed to be called
 from a ``GtkListBoxUpdateHeaderFunc``. It will replace any existing
 header in the row, and be shown in front of the row in the listbox.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `header`
 the header, or `None`
 <!-- impl ListBoxRow::fn set_selectable -->
 Set the `ListBoxRow:selectable` property for this row.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `selectable`
 `true` to mark the row as selectable
@@ -17542,7 +17624,7 @@ part of the menu offscreen, it is “pushed in”.
 
  ![](right-end.png)
 
-Since: 3.6
+Feature: `v3_6`
 
 # Implements
 
@@ -17552,7 +17634,7 @@ Creates a new `MenuButton` widget with downwards-pointing
 arrow as the only child. You can replace the child widget
 with another `Widget` should you wish to.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -17561,7 +17643,7 @@ The newly created `MenuButton` widget
 <!-- impl MenuButton::fn get_align_widget -->
 Returns the parent `Widget` to use to line up with menu.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -17570,7 +17652,7 @@ a `Widget` value or `None`
 <!-- impl MenuButton::fn get_direction -->
 Returns the direction the popup will be pointing at when popped up.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -17579,7 +17661,7 @@ a `ArrowType` value
 <!-- impl MenuButton::fn get_menu_model -->
 Returns the `gio::MenuModel` used to generate the popup.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -17590,7 +17672,7 @@ Returns the `Popover` that pops out of the button.
 If the button is not using a `Popover`, this function
 returns `None`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -17601,7 +17683,7 @@ Returns the `Menu` that pops out of the button.
 If the button does not use a `Menu`, this function
 returns `None`.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -17611,7 +17693,7 @@ a `Menu` or `None`
 Returns whether a `Popover` or a `Menu` will be constructed
 from the menu model.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -17627,7 +17709,7 @@ button itself.
 Note that this property is only used with menus currently,
 and not for popovers.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `align_widget`
 a `Widget`
@@ -17642,7 +17724,7 @@ GTK+ will its best to keep it inside the screen and fully visible.
 If you pass `ArrowType::None` for a `direction`, the popup will behave
 as if you passed `ArrowType::Down` (although you won’t see any arrows).
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `direction`
 a `ArrowType`
@@ -17658,7 +17740,7 @@ actions will be connected as documented for these functions.
 If `MenuButton:popup` or `MenuButton:popover` are already set,
 their content will be lost and replaced by the newly created popup.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `menu_model`
 a `gio::MenuModel`
@@ -17667,7 +17749,7 @@ Sets the `Popover` that will be popped up when the button is
 clicked, or `None` to disable the button. If `MenuButton:menu-model`
 or `MenuButton:popup` are set, they will be set to `None`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `popover`
 a `Popover`
@@ -17676,7 +17758,7 @@ Sets the `Menu` that will be popped up when the button is clicked,
 or `None` to disable the button. If `MenuButton:menu-model` or
 `MenuButton:popover` are set, they will be set to `None`.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `menu`
 a `Menu`
@@ -17685,7 +17767,7 @@ Sets whether to construct a `Popover` instead of `Menu`
 when `MenuButton::set_menu_model` is called. Note that
 this property is only consulted when a new menu model is set.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `use_popover`
 `true` to construct a popover from the menu model
@@ -17981,7 +18063,7 @@ For most cases you are probably better off using
 directly passing the `gio::MenuModel` to `Application::set_app_menu` or
 `Application::set_menubar`.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
@@ -18531,7 +18613,7 @@ but additionally informs the notebook that the removal
 is happening as part of a tab DND operation, which should
 not be cancelled.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `child`
 a child
@@ -19320,7 +19402,7 @@ panned upwards
 <!-- enum PanDirection::variant Down -->
 panned downwards
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- struct Paned -->
 `Paned` has two panes, arranged either
@@ -19425,7 +19507,7 @@ position of the divider
 <!-- impl Paned::fn get_wide_handle -->
 Gets the `Paned:wide-handle` property.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -19455,7 +19537,7 @@ pixel position of divider, a negative value means that the position
 <!-- impl Paned::fn set_wide_handle -->
 Sets the `Paned:wide-handle` property.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `wide`
 the new value for the `Paned:wide-handle` property
@@ -19511,7 +19593,7 @@ If `ipp_name` is not a recognized paper name,
 `width` and `height` are used to
 construct a custom `PaperSize` object.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `ipp_name`
 an IPP paper name
@@ -19741,7 +19823,7 @@ user selects in the sidebar a location to open. The application should also
 call `PlacesSidebar::set_location` when it changes the currently-viewed
 location.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -19753,7 +19835,7 @@ The application should connect to at least the
 `PlacesSidebar::open-location` signal to be notified
 when the user makes a selection in the sidebar.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19771,14 +19853,14 @@ across applications, and they are not persistent. If this function
 is called multiple times with different locations, then they are added
 to the sidebar’s list in the same order as the function is called.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `location`
 location to add as an application-specific shortcut
 <!-- impl PlacesSidebar::fn get_local_only -->
 Returns the value previously set with `PlacesSidebar::set_local_only`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -19795,7 +19877,7 @@ connect to the `PlacesSidebar::populate-popup` signal, you can use this
 function to get the location that is being referred to during the callbacks
 for your menu items.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19807,7 +19889,7 @@ This function queries the bookmarks added by the user to the places sidebar,
 and returns one of them. This function is used by `FileChooser` to implement
 the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the cooresponding bookmark.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `n`
 index of the bookmark to query
@@ -19820,7 +19902,7 @@ the file chooser starts them with the keyboard shortcut “Alt-1”.
 <!-- impl PlacesSidebar::fn get_open_flags -->
 Gets the open flags.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19829,7 +19911,7 @@ the `PlacesOpenFlags` of `self`
 <!-- impl PlacesSidebar::fn get_show_connect_to_server -->
 Returns the value previously set with `PlacesSidebar::set_show_connect_to_server`
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19838,7 +19920,7 @@ Since: 3.10
 <!-- impl PlacesSidebar::fn get_show_desktop -->
 Returns the value previously set with `PlacesSidebar::set_show_desktop`
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19847,7 +19929,7 @@ Since: 3.10
 <!-- impl PlacesSidebar::fn get_show_enter_location -->
 Returns the value previously set with `PlacesSidebar::set_show_enter_location`
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -19856,7 +19938,7 @@ Since: 3.14
 <!-- impl PlacesSidebar::fn list_shortcuts -->
 Gets the list of shortcuts.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -19874,14 +19956,14 @@ Removes an application-specific shortcut that has been previously been
 inserted with `PlacesSidebar::add_shortcut`. If the `location` is not a
 shortcut in the sidebar, then nothing is done.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `location`
 location to remove
 <!-- impl PlacesSidebar::fn set_local_only -->
 Sets whether the `self` should only show local files.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `local_only`
 whether to show only local files
@@ -19892,7 +19974,7 @@ Sets the location that is being shown in the widgets surrounding the
 places, or it will unhighlight everything if the `location` is not among the
 places in the list.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `location`
 location to select, or `None` for no current path
@@ -19913,7 +19995,7 @@ argument will be set to one of the `flags` that was passed in
 Passing 0 for `flags` will cause `PlacesOpenFlags::Normal` to always be sent
 to callbacks for the “open-location” signal.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `flags`
 Bitmask of modes in which the calling application can open locations
@@ -19922,7 +20004,7 @@ Sets whether the `self` should show an item for connecting to a network server; 
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `show_connect_to_server`
 whether to show an item for the Connect to Server command
@@ -19932,7 +20014,7 @@ The default value for this option is determined by the desktop
 environment and the user’s configuration, but this function can be
 used to override it on a per-application basis.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `show_desktop`
 whether to show an item for the Desktop folder
@@ -19941,7 +20023,7 @@ Sets whether the `self` should show an item for connecting to a network server; 
 An application may want to turn this on if it implements a way for the user to connect
 to network servers directly.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `show_enter_location`
 whether to show an item for the Connect to Server command
@@ -20014,7 +20096,7 @@ with the ”verb-icon” attribute.
 </section>
 ```
 
-Since: 3.12
+Feature: `v3_12`
 
 # Implements
 
@@ -20022,7 +20104,7 @@ Since: 3.12
 <!-- trait PopoverExt -->
 Trait containing all `Popover` methods.
 
-Since: 3.12
+Feature: `v3_12`
 
 # Implementors
 
@@ -20030,7 +20112,7 @@ Since: 3.12
 <!-- impl Popover::fn new -->
 Creates a new popover to point to `relative_to`
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `relative_to`
 `Widget` the popover is related to
@@ -20050,7 +20132,7 @@ the ``GtkApplicationWindows`` widget hierarchy.
 Actions can also be added using `Widget::insert_action_group`
 on the menus attach widget or on any of its parent widgets.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `relative_to`
 `Widget` the popover is related to
@@ -20086,7 +20168,7 @@ group with a “quit” action and inserted it with the name “mygroup”
 then you would use the action name “mygroup.quit” in your
 `gio::MenuModel`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `model`
 the `gio::MenuModel` to bind to or `None` to remove
@@ -20097,7 +20179,7 @@ the namespace for actions in `model`
 Returns whether the popover is modal, see gtk_popover_set_modal to
 see the implications of this.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -20123,7 +20205,7 @@ The preferred position.
 <!-- trait PopoverExt::fn get_relative_to -->
 Returns the widget `self` is currently attached to
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -20132,7 +20214,7 @@ a `Widget`
 <!-- trait PopoverExt::fn get_transitions_enabled -->
 Returns whether show/hide transitions are enabled on this popover.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -20145,7 +20227,7 @@ within the toplevel and grab the keyboard focus on it when being
 displayed. Clicking outside the popover area or pressing Esc will
 dismiss the popover and ungrab input.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `modal`
 `true` to make popover claim all input within the toplevel
@@ -20154,7 +20236,7 @@ Sets the rectangle that `self` will point to, in the
 coordinate space of the widget `self` is attached to,
 see `PopoverExt::set_relative_to`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `rect`
 rectangle to point to
@@ -20166,7 +20248,7 @@ This preference will be respected where possible, although
 on lack of space (eg. if close to the window edges), the
 `Popover` may choose to appear on the opposite side
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `position`
 preferred popover position
@@ -20179,14 +20261,14 @@ widget, so if `relative_to` is set to `None` on an attached `self`, it
 will be detached from its previous widget, and consequently destroyed
 unless extra references are kept.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `relative_to`
 a `Widget`
 <!-- trait PopoverExt::fn set_transitions_enabled -->
 Sets whether show/hide transitions are enabled on this popover
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `transitions_enabled`
 Whether transitions are enabled
@@ -20261,7 +20343,7 @@ as the menu name.
 </object>
 ```
 
-Since: 3.16
+Feature: `v3_16`
 
 # Implements
 
@@ -20269,7 +20351,7 @@ Since: 3.16
 <!-- impl PopoverMenu::fn new -->
 Creates a new popover menu.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -20286,7 +20368,7 @@ when the `ModelButton:menu-name` property is set,
 so this function is only needed when you are using
 other kinds of widgets to initiate menu changes.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `name`
 the name of the menu to switch to
@@ -21045,7 +21127,7 @@ Events are delivered in the default widget event handlers,
  note that widget implementations must chain up on button, motion, touch and
  grab broken handlers for controllers in this phase to be run.
 
-Since: 3.14
+Feature: `v3_14`
 
 <!-- struct RadioButton -->
 A single radio button performs the same basic function as a `CheckButton`,
@@ -22571,7 +22653,7 @@ setting.
 
 The `Revealer` widget was added in GTK+ 3.10.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -22579,7 +22661,7 @@ Since: 3.10
 <!-- impl Revealer::fn new -->
 Creates a new `Revealer`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -22589,7 +22671,7 @@ a newly created `Revealer`
 Returns whether the child is fully revealed, ie wether
 the transition to the revealed state is completed.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -22604,7 +22686,7 @@ is to the revealed state is started. To learn whether
 the child is fully revealed (ie the transition is completed),
 use `Revealer::get_child_revealed`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -22614,7 +22696,7 @@ Since: 3.10
 Returns the amount of time (in milliseconds) that
 transitions will take.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -22624,7 +22706,7 @@ the transition duration
 Gets the type of animation that will be used
 for transitions in `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -22636,14 +22718,14 @@ Tells the `Revealer` to reveal or conceal its child.
 The transition will be animated with the current
 transition type of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `reveal_child`
 `true` to reveal the child
 <!-- impl Revealer::fn set_transition_duration -->
 Sets the duration that transitions will take.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `duration`
 the new duration, in milliseconds
@@ -22652,7 +22734,7 @@ Sets the type of animation that will be used for
 transitions in `self`. Available types include
 various kinds of fades and slides.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `transition`
 the new transition type
@@ -22996,7 +23078,7 @@ be treeview headers. GTK+ can use this information to
 display overlayed graphics, like the overshoot indication,
 at the right position.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `border`
 return location for the results
@@ -23227,7 +23309,7 @@ the minimum content width
 <!-- trait ScrolledWindowExt::fn get_overlay_scrolling -->
 Returns whether overlay scrolling is enabled for this scrolled window.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -23311,7 +23393,7 @@ the minimal content width
 <!-- trait ScrolledWindowExt::fn set_overlay_scrolling -->
 Enables or disables overlay scrolling for this scrolled window.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `overlay_scrolling`
 whether to enable overlay scrolling
@@ -23378,7 +23460,7 @@ entry.
 
 [A simple example](https://git.gnome.org/browse/gtk+/tree/examples/search-bar.c)
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -23388,7 +23470,7 @@ Creates a `SearchBar`. You will need to tell it about
 which widget is going to be your text entry using
 `SearchBar::connect_entry`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -23400,14 +23482,14 @@ this search bar. The entry should be a descendant of the search bar.
 This is only required if the entry isn’t the direct child of the
 search bar (as in our main example).
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `entry`
 a `Entry`
 <!-- impl SearchBar::fn get_search_mode -->
 Returns whether the search mode is on or off.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -23416,7 +23498,7 @@ whether search mode is toggled on
 <!-- impl SearchBar::fn get_show_close_button -->
 Returns whether the close button is shown.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -23454,7 +23536,7 @@ g_signal_connect (window,
                   search_bar);
 ```
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `event`
 a ``GdkEvent`` containing key press events
@@ -23467,7 +23549,7 @@ a ``GdkEvent`` containing key press events
 <!-- impl SearchBar::fn set_search_mode -->
 Switches the search mode on or off.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `search_mode`
 the new state of the search mode
@@ -23477,7 +23559,7 @@ already have a “search” toggle button should not show a close
 button in their search bar, as it duplicates the role of the
 toggle button.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `visible`
 whether the close button will be shown or not
@@ -23507,7 +23589,7 @@ Often, `SearchEntry` will be fed events by means of being
 placed inside a `SearchBar`. If that is not the case,
 you can use `SearchEntry::handle_event` to pass events.
 
-Since: 3.6
+Feature: `v3_6`
 
 # Implements
 
@@ -23516,7 +23598,7 @@ Since: 3.6
 Creates a `SearchEntry`, with a find icon when the search field is
 empty, and a clear icon when it isn't.
 
-Since: 3.6
+Feature: `v3_6`
 
 
 # Returns
@@ -23535,7 +23617,7 @@ or continues a search, `GDK_EVENT_STOP` will be returned.
 The caller should ensure that the entry is shown in this
 case, and not propagate the event further.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `event`
 a key event
@@ -23545,6 +23627,201 @@ a key event
 `GDK_EVENT_STOP` if the key press event resulted
  in a search beginning or continuing, `GDK_EVENT_PROPAGATE`
  otherwise.
+<!-- struct SelectionData -->
+<!-- impl SelectionData::fn copy -->
+Makes a copy of a `SelectionData`-struct and its data.
+
+# Returns
+
+a pointer to a copy of `self`.
+<!-- impl SelectionData::fn free -->
+Frees a `SelectionData`-struct returned from
+`SelectionData::copy`.
+<!-- impl SelectionData::fn get_data -->
+Retrieves the raw data of the selection.
+
+# Returns
+
+the raw data of the selection.
+<!-- impl SelectionData::fn get_data_type -->
+Retrieves the data type of the selection.
+
+# Returns
+
+the data type of the selection.
+<!-- impl SelectionData::fn get_data_with_length -->
+Retrieves the raw data of the selection along with its length.
+## `length`
+return location for length of the data segment
+
+# Returns
+
+the raw data of the selection
+<!-- impl SelectionData::fn get_display -->
+Retrieves the display of the selection.
+
+# Returns
+
+the display of the selection.
+<!-- impl SelectionData::fn get_format -->
+Retrieves the format of the selection.
+
+# Returns
+
+the format of the selection.
+<!-- impl SelectionData::fn get_length -->
+Retrieves the length of the raw data of the selection.
+
+# Returns
+
+the length of the data of the selection.
+<!-- impl SelectionData::fn get_pixbuf -->
+Gets the contents of the selection data as a `gdk_pixbuf::Pixbuf`.
+
+# Returns
+
+if the selection data
+ contained a recognized image type and it could be converted to a
+ `gdk_pixbuf::Pixbuf`, a newly allocated pixbuf is returned, otherwise
+ `None`. If the result is non-`None` it must be freed with
+ `gobject::Object::unref`.
+<!-- impl SelectionData::fn get_selection -->
+Retrieves the selection `gdk::Atom` of the selection data.
+
+# Returns
+
+the selection `gdk::Atom` of the selection data.
+<!-- impl SelectionData::fn get_target -->
+Retrieves the target of the selection.
+
+# Returns
+
+the target of the selection.
+<!-- impl SelectionData::fn get_targets -->
+Gets the contents of `self` as an array of targets.
+This can be used to interpret the results of getting
+the standard TARGETS target that is always supplied for
+any selection.
+## `targets`
+
+ location to store an array of targets. The result stored
+ here must be freed with `g_free`.
+## `n_atoms`
+location to store number of items in `targets`.
+
+# Returns
+
+`true` if `self` contains a valid
+ array of targets, otherwise `false`.
+<!-- impl SelectionData::fn get_text -->
+Gets the contents of the selection data as a UTF-8 string.
+
+# Returns
+
+if the selection data contained a
+ recognized text type and it could be converted to UTF-8, a newly
+ allocated string containing the converted text, otherwise `None`.
+ If the result is non-`None` it must be freed with `g_free`.
+<!-- impl SelectionData::fn get_uris -->
+Gets the contents of the selection data as array of URIs.
+
+# Returns
+
+if
+ the selection data contains a list of
+ URIs, a newly allocated `None`-terminated string array
+ containing the URIs, otherwise `None`. If the result is
+ non-`None` it must be freed with `g_strfreev`.
+<!-- impl SelectionData::fn set -->
+Stores new data into a `SelectionData` object. Should
+only be called from a selection handler callback.
+Zero-terminates the stored data.
+## `type_`
+the type of selection data
+## `format`
+format (number of bits in a unit)
+## `data`
+pointer to the data (will be copied)
+## `length`
+length of the data
+<!-- impl SelectionData::fn set_pixbuf -->
+Sets the contents of the selection from a `gdk_pixbuf::Pixbuf`
+The pixbuf is converted to the form determined by
+`self`->target.
+## `pixbuf`
+a `gdk_pixbuf::Pixbuf`
+
+# Returns
+
+`true` if the selection was successfully set,
+ otherwise `false`.
+<!-- impl SelectionData::fn set_text -->
+Sets the contents of the selection from a UTF-8 encoded string.
+The string is converted to the form determined by
+`self`->target.
+## `str`
+a UTF-8 string
+## `len`
+the length of `str`, or -1 if `str` is nul-terminated.
+
+# Returns
+
+`true` if the selection was successfully set,
+ otherwise `false`.
+<!-- impl SelectionData::fn set_uris -->
+Sets the contents of the selection from a list of URIs.
+The string is converted to the form determined by
+`self`->target.
+## `uris`
+a `None`-terminated array of
+ strings holding URIs
+
+# Returns
+
+`true` if the selection was successfully set,
+ otherwise `false`.
+<!-- impl SelectionData::fn targets_include_image -->
+Given a `SelectionData` object holding a list of targets,
+determines if any of the targets in `targets` can be used to
+provide a `gdk_pixbuf::Pixbuf`.
+## `writable`
+whether to accept only targets for which GTK+ knows
+ how to convert a pixbuf into the format
+
+# Returns
+
+`true` if `self` holds a list of targets,
+ and a suitable target for images is included, otherwise `false`.
+<!-- impl SelectionData::fn targets_include_rich_text -->
+Given a `SelectionData` object holding a list of targets,
+determines if any of the targets in `targets` can be used to
+provide rich text.
+## `buffer`
+a `TextBuffer`
+
+# Returns
+
+`true` if `self` holds a list of targets,
+ and a suitable target for rich text is included,
+ otherwise `false`.
+<!-- impl SelectionData::fn targets_include_text -->
+Given a `SelectionData` object holding a list of targets,
+determines if any of the targets in `targets` can be used to
+provide text.
+
+# Returns
+
+`true` if `self` holds a list of targets,
+ and a suitable target for text is included, otherwise `false`.
+<!-- impl SelectionData::fn targets_include_uri -->
+Given a `SelectionData` object holding a list of targets,
+determines if any of the targets in `targets` can be used to
+provide a list or URIs.
+
+# Returns
+
+`true` if `self` holds a list of targets,
+ and a suitable target for URI lists is included, otherwise `false`.
 <!-- enum SelectionMode -->
 Used to control what selections users are allowed to make.
 <!-- enum SelectionMode::variant None -->
@@ -24212,7 +24489,7 @@ setting.
 
 The `Stack` widget was added in GTK+ 3.10.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -24220,7 +24497,7 @@ Since: 3.10
 <!-- impl Stack::fn new -->
 Creates a new `Stack` container.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24230,7 +24507,7 @@ a new `Stack`
 Adds a child to `self`.
 The child is identified by the `name`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the widget to add
@@ -24242,7 +24519,7 @@ The child is identified by the `name`. The `title`
 will be used by `StackSwitcher` to represent
 `child` in a tab bar, so it should be short.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 the widget to add
@@ -24255,7 +24532,7 @@ Finds the child of the `Stack` with the name given as
 the argument. Returns `None` if there is no child with this
 name.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `name`
 the name of the child to find
@@ -24267,7 +24544,7 @@ the requested child of the `Stack`
 Gets whether `self` is horizontally homogeneous.
 See `Stack::set_hhomogeneous`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -24277,7 +24554,7 @@ whether `self` is horizontally homogeneous.
 Gets whether `self` is homogeneous.
 See `Stack::set_homogeneous`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24287,7 +24564,7 @@ whether `self` is homogeneous.
 Returns the amount of time (in milliseconds) that
 transitions between pages in `self` will take.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24297,7 +24574,7 @@ the transition duration
 Returns whether the `self` is currently in a transition from one page to
 another.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -24307,7 +24584,7 @@ Since: 3.12
 Gets the type of animation that will be used
 for transitions between pages in `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24317,7 +24594,7 @@ the current transition type of `self`
 Gets whether `self` is vertically homogeneous.
 See `Stack::set_vhomogeneous`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -24327,7 +24604,7 @@ whether `self` is vertically homogeneous.
 Gets the currently visible child of `self`, or `None` if
 there are no visible children.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24337,7 +24614,7 @@ the visible child of the `Stack`
 Returns the name of the currently visible child of `self`, or
 `None` if there is no visible child.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24349,7 +24626,7 @@ If it is homogeneous, the `Stack` will request the same
 width for all its children. If it isn't, the stack
 may change width when a different child becomes visible.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `hhomogeneous`
 `true` to make `self` horizontally homogeneous
@@ -24363,7 +24640,7 @@ Since 3.16, homogeneity can be controlled separately
 for horizontal and vertical size, with the
 `Stack:hhomogeneous` and `Stack:vhomogeneous`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `homogeneous`
 `true` to make `self` homogeneous
@@ -24371,7 +24648,7 @@ Since: 3.10
 Sets the duration that transitions between pages in `self`
 will take.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `duration`
 the new duration, in milliseconds
@@ -24384,7 +24661,7 @@ The transition type can be changed without problems
 at runtime, so it is possible to change the animation
 based on the page that is about to become current.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `transition`
 the new transition type
@@ -24394,7 +24671,7 @@ If it is homogeneous, the `Stack` will request the same
 height for all its children. If it isn't, the stack
 may change height when a different child becomes visible.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `vhomogeneous`
 `true` to make `self` vertically homogeneous
@@ -24410,7 +24687,7 @@ Note that the `child` widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `child`
 a child of `self`
@@ -24421,7 +24698,7 @@ Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `name`
 the name of the child to make visible
@@ -24439,7 +24716,7 @@ Note that the child widget has to be visible itself
 (see `Widget::show`) in order to become the visible
 child of `self`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `name`
 the name of the child to make visible
@@ -24452,7 +24729,7 @@ organize your UI flow, and add the sidebar to your sidebar area. You
 can use `StackSidebar::set_stack` to connect the `StackSidebar`
 to the `Stack`.
 
-Since: 3.16
+Feature: `v3_16`
 
 # Implements
 
@@ -24460,7 +24737,7 @@ Since: 3.16
 <!-- impl StackSidebar::fn new -->
 Creates a new sidebar.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -24470,7 +24747,7 @@ the new `StackSidebar`
 Retrieves the stack.
 See `StackSidebar::set_stack`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -24483,7 +24760,7 @@ Set the `Stack` associated with this `StackSidebar`.
 The sidebar widget will automatically update according to the order
 (packing) and items within the given `Stack`.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `stack`
 a `Stack`
@@ -24500,7 +24777,7 @@ with the same stack widget.
 
 The `StackSwitcher` widget was added in 3.10.
 
-Since: 3.10
+Feature: `v3_10`
 
 # Implements
 
@@ -24508,7 +24785,7 @@ Since: 3.10
 <!-- impl StackSwitcher::fn new -->
 Create a new `StackSwitcher`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24518,7 +24795,7 @@ a new `StackSwitcher`.
 Retrieves the stack.
 See `StackSwitcher::set_stack`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -24528,7 +24805,7 @@ the stack, or `None` if
 <!-- impl StackSwitcher::fn set_stack -->
 Sets the stack to control.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `stack`
 a `Stack`
@@ -25457,7 +25734,7 @@ the `pango::FontDescription` for the given
 <!-- impl StyleContext::fn get_frame_clock -->
 Returns the `gdk::FrameClock` to which `self` is attached.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -25511,7 +25788,7 @@ return location for the style property value
 <!-- impl StyleContext::fn get_scale -->
 Returns the scale used for assets.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -25798,7 +26075,7 @@ If you are using a `StyleContext` returned from
 `Widget::get_style_context`, you do not need to
 call this yourself.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `frame_clock`
 a `gdk::FrameClock`
@@ -25838,7 +26115,7 @@ a `WidgetPath`
 <!-- impl StyleContext::fn set_scale -->
 Sets the scale to use when getting image assets for the style .
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `scale`
 scale
@@ -25961,7 +26238,7 @@ Gets whether the `Switch` is in its “on” or “off” state.
 <!-- impl Switch::fn get_state -->
 Gets the underlying state of the `Switch`.
 
-Since: 3.14
+Feature: `v3_14`
 
 
 # Returns
@@ -25980,7 +26257,7 @@ called from a `Switch::state-set` signal handler.
 
 See `Switch::state-set` for details.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `state`
 the new state
@@ -26616,7 +26893,7 @@ in its entirety and must be nul-terminated and valid UTF-8. Emits the
 actually occurs in the default handler for the signal. `iter` will point
 to the end of the inserted text on return.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `iter`
 location to insert the markup
@@ -26963,7 +27240,7 @@ Selects the current word. It is triggered by
 Selects the current line. It is triggered by
  a triple-click for example.
 
-Since: 3.16
+Feature: `v3_16`
 
 <!-- struct TextIter -->
 You may wish to begin by reading the
@@ -28368,12 +28645,12 @@ number of pixels of indentation
 <!-- impl TextView::fn get_input_hints -->
 Gets the value of the `TextView:input-hints` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- impl TextView::fn get_input_purpose -->
 Gets the value of the `TextView:input-purpose` property.
 
-Since: 3.6
+Feature: `v3_6`
 
 <!-- impl TextView::fn get_iter_at_location -->
 Retrieves the iterator at buffer coordinates `x` and `y`. Buffer
@@ -28457,7 +28734,7 @@ return location for a height
 <!-- impl TextView::fn get_monospace -->
 Gets the value of the `TextView:monospace` property.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -28738,7 +29015,7 @@ indentation in pixels
 Sets the `TextView:input-hints` property, which
 allows input methods to fine-tune their behaviour.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `hints`
 the hints
@@ -28747,7 +29024,7 @@ Sets the `TextView:input-purpose` property which
 can be used by on-screen keyboards and other input
 methods to adjust their behaviour.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `purpose`
 the purpose
@@ -28766,7 +29043,7 @@ Sets the `TextView:monospace` property, which
 indicates that the text view should use monospace
 fonts.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `monospace`
 `true` to request monospace styling
@@ -30681,7 +30958,7 @@ Emits the `TreeModel::rows-reordered` signal on `self`.
 This should be called by models when their rows have been
 reordered.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `path`
 a `TreePath`-struct pointing to the tree node whose children
@@ -30944,7 +31221,7 @@ A newly created `TreePath`-struct
 <!-- impl TreePath::fn new_from_indicesv -->
 Creates a new path with the given `indices` array of `length`.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `indices`
 array of indices
@@ -31834,7 +32111,7 @@ path to a row.
 <!-- impl TreeView::fn get_activate_on_single_click -->
 Gets the setting set by `TreeView::set_activate_on_single_click`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -32377,7 +32654,7 @@ Y coordinate of new top-left pixel of visible area, or -1
 Cause the `TreeView::row-activated` signal to be emitted
 on a single click instead of a double click.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `single`
 `true` to emit row-activated on a single click
@@ -33684,7 +33961,7 @@ This is a more convenient alternative to connecting directly to the
 `gdk::FrameClock::update` signal of `gdk::FrameClock`, since you don't
 have to worry about when a `gdk::FrameClock` is assigned to a widget.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `callback`
 function to call for updating animations
@@ -33891,7 +34168,7 @@ from the mouse, using `gdk_event_copy`, and pass it to this function
 (remember to free the event with `gdk_event_free` when you are done).
 If you can really not pass a real event, pass `None` instead.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `targets`
 The targets (data formats) in which the
@@ -34242,7 +34519,7 @@ ancestry.
 
 If no action group was found matching `prefix`, then `None` is returned.
 
-Since: 3.16
+Feature: `v3_16`
 
 ## `prefix`
 The “prefix” of the action group.
@@ -34256,7 +34533,7 @@ This function is intended to be used when implementing handlers
 for the `Widget::draw` function, and when allocating child
 widgets in `Widget::size_allocate`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -34381,7 +34658,7 @@ happen. Other toolkits call it the bounding box.
 Historically, in GTK+ the clip area has been equal to the allocation
 retrieved via `WidgetExt::get_allocation`.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `clip`
 a pointer to a `Allocation` to copy to
@@ -34495,7 +34772,7 @@ change the widget’s frame clock.
 
 Unrealized widgets do not have a frame clock.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -34575,7 +34852,7 @@ The bottom margin of `self`
 <!-- trait WidgetExt::fn get_margin_end -->
 Gets the value of the `Widget:margin-end` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -34604,7 +34881,7 @@ The right margin of `self`
 <!-- trait WidgetExt::fn get_margin_start -->
 Gets the value of the `Widget:margin-start` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -34671,7 +34948,7 @@ the current value of the “no-show-all” property.
 Fetches the requested opacity for this widget.
 See `WidgetExt::set_opacity`.
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -34748,7 +35025,7 @@ and by any ``GtkSizeGroups`` that have been applied. That is, the returned reque
 is the one that should be used for layout, not necessarily the one
 returned by the widget itself.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `width`
 the width which is available for allocation, or -1 if none
@@ -34894,7 +35171,7 @@ high density outputs, it can be a higher value (typically 2).
 
 See `gdk::Window::get_scale_factor`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -35076,7 +35353,7 @@ the vertical alignment of `self`, ignoring baseline alignment
 Gets the value of the `Widget:valign` property, including
 `Align::Baseline`.
 
-Since: 3.10
+Feature: `v3_10`
 
 
 # Returns
@@ -35261,7 +35538,7 @@ composite templates, it’s important to build the composite widgets
 before the construct properties are set. Properties passed to `gobject::Object::new`
 should take precedence over properties set in the private template XML.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- trait WidgetExt::fn input_shape_combine_region -->
 Sets an input shape for this widget’s GDK window. This allows for
@@ -35278,7 +35555,7 @@ setting their “action-name” to
 If `group` is `None`, a previously inserted group for `name` is removed
 from `self`.
 
-Since: 3.6
+Feature: `v3_6`
 
 ## `name`
 the prefix for actions in `group`
@@ -35361,7 +35638,7 @@ This function does not check if the widget is obscured in any way.
 
 See also `WidgetExt::get_visible` and `WidgetExt::set_visible`
 
-Since: 3.8
+Feature: `v3_8`
 
 
 # Returns
@@ -35419,7 +35696,7 @@ by connecting to the `AccelGroup::accel-changed` signal of the
 Retrieves a `None`-terminated array of strings containing the prefixes of
 `gio::ActionGroup`'s available to `self`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -35837,7 +36114,7 @@ this up. This is now deprecated and you should use `WidgetExt::register_window`
 instead. Old code will keep working as is, although some new features like
 transparency might not work perfectly.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `window`
 a `gdk::Window`
@@ -35866,7 +36143,7 @@ a `Widget` that was previously set as a mnemnic label for
 Removes a tick callback previously registered with
 `WidgetExt::add_tick_callback`.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `id`
 an id returned by `WidgetExt::add_tick_callback`
@@ -36094,7 +36371,7 @@ The clip set should be the area that `self` draws on. If `self` is a
 If this function is not called by `self` during a ::size-allocate handler,
 the clip will be set to `self`'s allocation.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `clip`
 a pointer to a `Allocation` to copy from
@@ -36277,7 +36554,7 @@ the bottom margin
 Sets the end margin of `self`.
 See the `Widget:margin-end` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `margin`
 the end margin
@@ -36303,7 +36580,7 @@ the right margin
 Sets the start margin of `self`.
 See the `Widget:margin-start` property.
 
-Since: 3.12
+Feature: `v3_12`
 
 ## `margin`
 the start margin
@@ -36348,7 +36625,7 @@ shown causes it to flicker once on Windows.
 For child widgets it doesn’t work if any affected widget has a native window, or
 disables double buffering.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `opacity`
 desired opacity, between 0 and 1
@@ -36637,7 +36914,7 @@ margins, and applying the widget’s `Widget:halign` and
 If the child widget does not have a valign of `Align::Baseline` the
 baseline argument is ignored and -1 is used instead.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `allocation`
 position and size to be allocated to `self`
@@ -36743,7 +37020,7 @@ Unregisters a `gdk::Window` from the widget that was previously set up with
 `WidgetExt::register_window`. You need to call this when the window is
 no longer used by the widget, such as when you destroy it.
 
-Since: 3.8
+Feature: `v3_8`
 
 ## `window`
 a `gdk::Window`
@@ -36907,7 +37184,7 @@ Opens or closes the [interactive debugger][interactive-debugging],
 which offers access to the widget hierarchy of the application
 and to useful debugging tools.
 
-Since: 3.14
+Feature: `v3_14`
 
 ## `enable`
 `true` to enable interactive debugging
@@ -36988,7 +37265,7 @@ when a window manager close button is clicked.
 This function can be used with close buttons in custom
 titlebars.
 
-Since: 3.10
+Feature: `v3_10`
 
 <!-- trait WindowExt::fn deiconify -->
 Asks to deiconify (i.e. unminimize) the specified `self`. Note
@@ -37332,7 +37609,7 @@ the title of the window, or `None` if none has
 Returns the custom titlebar that has been set with
 `WindowExt::set_titlebar`.
 
-Since: 3.16
+Feature: `v3_16`
 
 
 # Returns
@@ -37416,7 +37693,7 @@ shouldn’t assume the return value of this function changing
 immediately (or at all), as an effect of calling
 `WindowExt::maximize` or `WindowExt::unmaximize`.
 
-Since: 3.12
+Feature: `v3_12`
 
 
 # Returns
@@ -38072,7 +38349,7 @@ Depending on the system, this function may not work for a window
 that is already visible, so you set the titlebar before calling
 `WidgetExt::show`.
 
-Since: 3.10
+Feature: `v3_10`
 
 ## `titlebar`
 the widget to use as titlebar

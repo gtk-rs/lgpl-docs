@@ -379,16 +379,16 @@ is undefined.
 
 New entries may be added in future versions.
 <!-- enum FontType::variant FontTypeToy, -->
-The font was created using cairo's toy font api (Since: 1.2)
+The font was created using cairo's toy font api (Feature: `v1_2`)
 <!-- enum FontType::variant FontTypeFt, -->
-The font is of type FreeType (Since: 1.2)
+The font is of type FreeType (Feature: `v1_2`)
 <!-- enum FontType::variant FontTypeWin32, -->
-The font is of type Win32 (Since: 1.2)
+The font is of type Win32 (Feature: `v1_2`)
 <!-- enum FontType::variant FontTypeQuartz, -->
-The font is of type Quartz (Since: 1.6, in 1.2 and 1.4 it was named
+The font is of type Quartz (Feature: `v1_6`, in 1.2 and 1.4 it was named
 CAIRO_FONT_TYPE_ATSUI)
 <!-- enum FontType::variant FontTypeUser -->
-The font was create using cairo's user font api (Since: 1.8)
+The font was create using cairo's user font api (Feature: `v1_8`)
 <!-- enum SubpixelOrder -->
 The subpixel order specifies the order of color elements within each pixel on the display
 device when rendering with an antialiasing mode of `Antialias::Subpixel`.
