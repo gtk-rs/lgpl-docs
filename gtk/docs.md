@@ -177,6 +177,7 @@ Here’s how to create a label with a small font:
 
 ```no_run
     use gtk::Label;
+    use gtk::prelude::*;
 
     let label = Label::new(None);
     label.set_markup("<small>Small text</small>");
@@ -247,6 +248,7 @@ An example looks like this:
 
 ```no_run
     use gtk::Label;
+    use gtk::prelude::*;
 
     let label = Label::new(None);
     let text =
