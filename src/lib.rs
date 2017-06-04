@@ -18,6 +18,7 @@ pub enum Library {
     Gio,
     Gtk,
     Pango,
+    SourceView,
 }
 
 fn docs(lib: Library) -> Option<&'static str> {
