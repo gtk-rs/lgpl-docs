@@ -13,6 +13,13 @@ The docs for each library come from two files:
    docs found in [GIR definitions]. It serves as a fallback, the docs in it are
    tailored for C not Rust. This file should not be hand-edited.
 
+You can generate it as follows:
+
+```
+cd gir
+cargo run --release -- -c ../your-repo/Gir.toml -d ../gir-files/ -o ../your-repo/ -m doc
+```
+
 Cairo, which lacks GIR definitions, doesn't have a `vendor.rs` file.
 
 [GIR definitions]: https://github.com/gtk-rs/gir-files
