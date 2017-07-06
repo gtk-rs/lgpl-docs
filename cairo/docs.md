@@ -1312,9 +1312,56 @@ Applies rotation by radians to the transformation in self. The effect of the new
 transformation is to first rotate the coordinates by radians , then apply the original
 transformation to the coordinates.
 <!-- impl MatrixTrait for Matrix::fn invert -->
-Changes self to be the inverse of its original value. Not all transformation matrices
-have inverses; if the matrix collapses points together (it is degenerate), then it has
-no inverse and this function will fail.
+Inverts a matrix in-place.
+
+# Panics
+Panics if the matrix is not invertible: if the matrix
+collapses points together (it is degenerate), then it has no
+inverse and this function will panic.
+
+Normally a non-invertible matrix indicates a bug; all matrices
+that originate from your code should always be valid,
+invertible matrices.
+
+If you construct a matrix from untrusted data and need to validate
+it, you can use [`try_invert()`].
+
+[`try_invert()`]: #tymethod.try_invert
+
+# Example
+```ignore
+use cairo::{Matrix, MatrixTrait};
+
+let mut matrix = Matrix::identity();
+matrix.invert();
+assert!(matrix == Matrix::identity());
+```
+
+<!-- impl MatrixTrait for Matrix::fn try_invert -->
+Tries to invert a matrix, and returns the inverted result or an error
+if the matrix is not invertible.
+
+A matrix is not invertible if it collapses points together (it is
+degenerate).
+
+Normally, matrices that originate from your code should always
+be valid, invertible matrices.  You should use this function
+only to validate matrices that come from untrusted data.
+
+# Errors
+Non-invertible matrices yield an `Err(Status::InvalidMatrix)` error.
+
+# Example
+
+```ignore
+use cairo::{Matrix, MatrixTrait};
+
+let matrix = Matrix::identity();
+assert!(matrix.try_invert().unwrap() == Matrix::identity());
+
+let all_zeros_matrix = Matrix::null();
+assert!(all_zeros_matrix.try_invert().is_err());
+```
 <!-- impl MatrixTrait for Matrix::fn transform_distance -->
 Transforms the distance vector (dx, dy) by self. This is similar to
 Matrix::transform_point() except that the translation components of the transformation
