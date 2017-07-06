@@ -1413,6 +1413,33 @@ p.set_filter(Filter::nearest);
 ```
 <!-- trait Pattern::fn get_filter -->
 Gets the current filter for a pattern. See Filter enum for details on each filter.
+<!-- trait Pattern::fn set_matrix -->
+Sets the pattern's transformation matrix, which is a transformation
+from user space to pattern space.
+
+When a pattern is first created it always has the identity matrix for
+its transformation matrix, which means that pattern space is initially
+identical to user space.
+
+Note that the direction of this transformation matrix is from user
+space to pattern space.  This means that if you imagine the flow from
+a pattern to user space (and on to device space), then coordinates
+inthat flow will be transformed by the inverse of the pattern matrix.
+
+For example, if you want to make a pattern appear twice as large as it
+does by default, you should use this code:
+
+```ignore
+use cairo::{Matrix, MatrixTrait};
+
+let matrix = Matrix::identity().scale (0.5, 0.5);
+my_pattern.set_matrix (matrix);
+```
+<!-- trait Pattern::fn get_matrix -->
+Gets the current transformation matrix for a pattern.  See the
+documentation for [`set_matrix()`] for the details on this matrix.
+
+[`set_matrix()`]: #tymethod.set_matrix
 <!-- impl SolidPattern::fn from_rgb -->
 Creates a new SolidPattern corresponding to an opaque color. The color components
 are floating point numbers in the range 0 to 1.
