@@ -27,7 +27,6 @@ fn docs(lib: Library) -> Option<&'static str> {
         Library::Gdk => Some(include_str!("../gdk/docs.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/docs.md")),
         Library::Gtk => Some(include_str!("../gtk/docs.md")),
-        Library::SourceView => Some(include_str!("../gtksource/docs.md")),
         _ => None,
     }
 }
@@ -37,6 +36,7 @@ fn vendor_docs(lib: Library) -> Option<&'static str> {
         Library::Gdk => Some(include_str!("../gdk/vendor.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/vendor.md")),
         Library::Gtk => Some(include_str!("../gtk/vendor.md")),
+        Library::SourceView => Some(include_str!("../gtksource/vendor.md")),
         _ => None,
     }
 }

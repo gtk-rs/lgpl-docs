@@ -19,4 +19,4 @@ script:
   - ./build.sh
   - if [ "$GTK" = "3.18" ]; then FEAT="gtk_3_18"; fi
   - echo $FEAT
-  - cargo build --features "$FEAT gtk/embed-lgpl-docs"
+  - cargo build --features "$FEAT gtk/embed-lgpl-docs" --jobs 1
