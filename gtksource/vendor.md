@@ -42,9 +42,6 @@ according to the highlighting patterns in `language`.
 Moves `iter` to the position of the previous `Mark` of the given
 category. Returns `true` if `iter` was moved. If `category` is NULL, the
 previous source mark can be of any category.
-
-Feature: `v2_2`
-
 ## `iter`
 an iterator.
 ## `category`
@@ -99,9 +96,6 @@ the line when the user deletes the line they were in.
 
 Typical uses for a source mark are bookmarks, breakpoints, current
 executing instruction indication in a source file, etc..
-
-Feature: `v2_2`
-
 ## `name`
 the name of the mark, or `None`.
 ## `category`
@@ -162,9 +156,6 @@ end of the area to highlight.
 Moves `iter` to the position of the next `Mark` of the given
 `category`. Returns `true` if `iter` was moved. If `category` is NULL, the
 next source mark can be of any category.
-
-Feature: `v2_2`
-
 ## `iter`
 an iterator.
 ## `category`
@@ -177,9 +168,6 @@ whether `iter` was moved.
 Get all defined context classes at `iter`.
 
 See the `Buffer` description for the list of default context classes.
-
-Feature: `v2_10`
-
 ## `iter`
 a `gtk::TextIter`.
 
@@ -229,9 +217,6 @@ the maximum number of possible undo levels or -1 if no limit is set.
 <!-- trait BufferExt::fn get_source_marks_at_iter -->
 Returns the list of marks of the given category at `iter`. If `category`
 is `None` it returns all marks at `iter`.
-
-Feature: `v2_2`
-
 ## `iter`
 an iterator.
 ## `category`
@@ -244,15 +229,13 @@ a newly allocated `glib::SList`.
 <!-- trait BufferExt::fn get_source_marks_at_line -->
 Returns the list of marks of the given category at `line`.
 If `category` is `None`, all marks at `line` are returned.
-
-Feature: `v2_2`
-
 ## `line`
 a line number.
 ## `category`
 category to search for, or `None`
 
 # Returns
+
 
 a newly allocated `glib::SList`.
 <!-- trait BufferExt::fn get_style_scheme -->
@@ -281,9 +264,6 @@ Does not return toggles located at `iter`, only toggles after `iter`. Sets
 toggle is found.
 
 See the `Buffer` description for the list of default context classes.
-
-Feature: `v2_10`
-
 ## `iter`
 a `gtk::TextIter`.
 ## `context_class`
@@ -300,9 +280,6 @@ Does not return toggles located at `iter`, only toggles after `iter`. Sets
 toggle is found.
 
 See the `Buffer` description for the list of default context classes.
-
-Feature: `v2_10`
-
 ## `iter`
 a `gtk::TextIter`.
 ## `context_class`
@@ -315,9 +292,6 @@ whether we found a context class toggle after `iter`
 Check if the class `context_class` is set on `iter`.
 
 See the `Buffer` description for the list of default context classes.
-
-Feature: `v2_10`
-
 ## `iter`
 a `gtk::TextIter`.
 ## `context_class`
@@ -343,9 +317,6 @@ This function emits the `Buffer::redo` signal.
 <!-- trait BufferExt::fn remove_source_marks -->
 Remove all marks of `category` between `start` and `end` from the buffer.
 If `category` is NULL, all marks in the range will be removed.
-
-Feature: `v2_2`
-
 ## `start`
 a `gtk::TextIter`.
 ## `end`
@@ -1632,9 +1603,6 @@ the renderer at (x, y) or `None`.
 Get the `gdk::Window` of the gutter. The window will only be available when the
 gutter has at least one, non-zero width, cell renderer packed.
 
-Feature: `v2_8`
-
-
 # Deprecated since 3.12
 
 Use `gtk::TextViewExt::get_window` instead.
@@ -1647,9 +1615,6 @@ if the gutter has no window.
 Insert `renderer` into the gutter. If `renderer` is yet unowned then gutter
 claims its ownership. Otherwise just increases renderer's reference count.
 `renderer` cannot be already inserted to another gutter.
-
-Feature: `v3_0`
-
 ## `renderer`
 a gutter renderer (must inherit from `GutterRenderer`).
 ## `position`
@@ -1661,21 +1626,12 @@ the renderer position.
 <!-- trait GutterExt::fn queue_draw -->
 Invalidates the drawable area of the gutter. You can use this to force a
 redraw of the gutter if something has changed and needs to be redrawn.
-
-Feature: `v2_8`
-
 <!-- trait GutterExt::fn remove -->
 Removes `renderer` from `self`.
-
-Feature: `v2_8`
-
 ## `renderer`
 a `GutterRenderer`.
 <!-- trait GutterExt::fn reorder -->
 Reorders `renderer` in `self` to new `position`.
-
-Feature: `v2_8`
-
 ## `renderer`
 a `gtk::CellRenderer`.
 ## `position`
@@ -2194,9 +2150,6 @@ or
 
 etc. Use `LanguageExt::get_mime_types` and `LanguageExt::get_globs`
 if you need full control over file -> language mapping.
-
-Feature: `v2_4`
-
 ## `filename`
 a filename in Glib filename encoding, or `None`.
 ## `content_type`
@@ -2267,15 +2220,11 @@ a `View`
 <!-- struct Mark -->
 
 
-Feature: `v2_2`
-
 # Implements
 
 [`MarkExt`](trait.MarkExt.html), [`TextMarkExt`](trait.TextMarkExt.html)
 <!-- trait MarkExt -->
 Trait containing all `Mark` methods.
-
-Feature: `v2_2`
 
 # Implementors
 
@@ -2286,9 +2235,6 @@ If name is NULL, the mark is anonymous; otherwise, the mark can be retrieved
 by name using `gtk::TextBufferExt::get_mark`.
 Normally marks are created using the utility function
 `BufferExt::create_source_mark`.
-
-Feature: `v2_2`
-
 ## `name`
 Name of the `Mark`, can be NULL when not using a name
 ## `category`
@@ -2303,9 +2249,6 @@ a new `Mark` that can be added using `gtk::TextBufferExt::add_mark`.
 <!-- trait MarkExt::fn get_category -->
 Returns the mark category.
 
-Feature: `v2_2`
-
-
 # Returns
 
 the category of the `Mark`.
@@ -2314,9 +2257,6 @@ Returns the next `Mark` in the buffer or `None` if the mark
 was not added to a buffer. If there is no next mark, `None` will be returned.
 
 If `category` is `None`, looks for marks of any category.
-
-Feature: `v2_2`
-
 ## `category`
 a string specifying the mark category, or `None`.
 
@@ -2328,9 +2268,6 @@ Returns the previous `Mark` in the buffer or `None` if the mark
 was not added to a buffer. If there is no previous mark, `None` is returned.
 
 If `category` is `None`, looks for marks of any category
-
-Feature: `v2_2`
-
 ## `category`
 a string specifying the mark category, or `None`.
 
@@ -2340,15 +2277,11 @@ the previous `Mark`, or `None`.
 <!-- struct MarkAttributes -->
 
 
-Feature: `v2_2`
-
 # Implements
 
 [`MarkAttributesExt`](trait.MarkAttributesExt.html)
 <!-- trait MarkAttributesExt -->
 Trait containing all `MarkAttributes` methods.
-
-Feature: `v2_2`
 
 # Implementors
 
@@ -2489,9 +2422,6 @@ Trait containing all `PrintCompositor` methods.
 [`PrintCompositor`](struct.PrintCompositor.html)
 <!-- impl PrintCompositor::fn new -->
 Creates a new print compositor that can be used to print `buffer`.
-
-Feature: `v2_2`
-
 ## `buffer`
 the `Buffer` to print.
 
@@ -2506,9 +2436,6 @@ printed output match `view` as much as possible. The properties set are
 `PrintCompositor:tab-width`, `PrintCompositor:highlight-syntax`,
 `PrintCompositor:wrap-mode`, `PrintCompositor:body-font-name` and
 `PrintCompositor:print-line-numbers`.
-
-Feature: `v2_2`
-
 ## `view`
 a `View` to get configuration from.
 
@@ -2548,18 +2475,12 @@ the number of the page to print.
 Returns the name of the font used to print the text body. The returned string
 must be freed with `g_free`.
 
-Feature: `v2_2`
-
-
 # Returns
 
 a new string containing the name of the font used to print the
 text body.
 <!-- trait PrintCompositorExt::fn get_bottom_margin -->
 Gets the bottom margin in units of `unit`.
-
-Feature: `v2_2`
-
 ## `unit`
 the unit for the return value.
 
@@ -2571,18 +2492,12 @@ Gets the `Buffer` associated with the compositor. The returned
 object reference is owned by the compositor object and
 should not be unreferenced.
 
-Feature: `v2_2`
-
-
 # Returns
 
 the `Buffer` associated with the compositor.
 <!-- trait PrintCompositorExt::fn get_footer_font_name -->
 Returns the name of the font used to print the page footer.
 The returned string must be freed with `g_free`.
-
-Feature: `v2_2`
-
 
 # Returns
 
@@ -2591,9 +2506,6 @@ the page footer.
 <!-- trait PrintCompositorExt::fn get_header_font_name -->
 Returns the name of the font used to print the page header.
 The returned string must be freed with `g_free`.
-
-Feature: `v2_2`
-
 
 # Returns
 
@@ -2604,17 +2516,11 @@ Determines whether the printed text will be highlighted according to the
 buffer rules. Note that highlighting will happen
 only if the buffer to print has highlighting activated.
 
-Feature: `v2_2`
-
-
 # Returns
 
 `true` if the printed output will be highlighted.
 <!-- trait PrintCompositorExt::fn get_left_margin -->
 Gets the left margin in units of `unit`.
-
-Feature: `v2_2`
-
 ## `unit`
 the unit for the return value.
 
@@ -2625,9 +2531,6 @@ the left margin
 Returns the name of the font used to print line numbers on the left margin.
 The returned string must be freed with `g_free`.
 
-Feature: `v2_2`
-
-
 # Returns
 
 a new string containing the name of the font used to print
@@ -2636,18 +2539,12 @@ line numbers on the left margin.
 Returns the number of pages in the document or `<code>`-1`</code>` if the
 document has not been completely paginated.
 
-Feature: `v2_2`
-
-
 # Returns
 
 the number of pages in the document or `<code>`-1`</code>` if the
 document has not been completely paginated.
 <!-- trait PrintCompositorExt::fn get_pagination_progress -->
 Returns the current fraction of the document pagination that has been completed.
-
-Feature: `v2_2`
-
 
 # Returns
 
@@ -2658,9 +2555,6 @@ footer will be printed if this function returns `true`
 `<emphasis>`and`</emphasis>` some format strings have been specified
 with `PrintCompositorExt::set_footer_format`.
 
-Feature: `v2_2`
-
-
 # Returns
 
 `true` if the footer is set to be printed.
@@ -2670,9 +2564,6 @@ header will be printed if this function returns `true`
 `<emphasis>`and`</emphasis>` some format strings have been specified
 with `PrintCompositorExt::set_header_format`.
 
-Feature: `v2_2`
-
-
 # Returns
 
 `true` if the header is set to be printed.
@@ -2681,17 +2572,11 @@ Returns the interval used for line number printing. If the
 value is 0, no line numbers will be printed. The default value is
 1 (i.e. numbers printed in all lines).
 
-Feature: `v2_2`
-
-
 # Returns
 
 the interval of printed line numbers.
 <!-- trait PrintCompositorExt::fn get_right_margin -->
 Gets the right margin in units of `unit`.
-
-Feature: `v2_2`
-
 ## `unit`
 the unit for the return value.
 
@@ -2701,17 +2586,11 @@ the right margin.
 <!-- trait PrintCompositorExt::fn get_tab_width -->
 Returns the width of tabulation in characters for printed text.
 
-Feature: `v2_2`
-
-
 # Returns
 
 width of tab.
 <!-- trait PrintCompositorExt::fn get_top_margin -->
 Gets the top margin in units of `unit`.
-
-Feature: `v2_2`
-
 ## `unit`
 the unit for the return value.
 
@@ -2720,9 +2599,6 @@ the unit for the return value.
 the top margin.
 <!-- trait PrintCompositorExt::fn get_wrap_mode -->
 Gets the line wrapping mode for the printed text.
-
-Feature: `v2_2`
-
 
 # Returns
 
@@ -2788,9 +2664,6 @@ begin_print (`gtk::PrintOperation` *operation,
  gtk_print_operation_set_n_pages (operation, n_pages);
 }
 `</programlisting>``</informalexample>`
-
-Feature: `v2_2`
-
 ## `context`
 the `gtk::PrintContext` whose parameters (e.g. paper size, print margins, etc.)
 are used by the the `self` to paginate the document.
@@ -2808,16 +2681,10 @@ for a description of the format of the string representation.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `font_name`
 the name of the default font for the body text.
 <!-- trait PrintCompositorExt::fn set_bottom_margin -->
 Sets the bottom margin used by `self`.
-
-Feature: `v2_2`
-
 ## `margin`
 the new bottom margin in units of `unit`.
 ## `unit`
@@ -2834,17 +2701,11 @@ for a description of the format of the string representation.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `font_name`
 the name of the font for the footer text, or `None`.
 <!-- trait PrintCompositorExt::fn set_footer_format -->
 See `PrintCompositorExt::set_header_format` for more information
 about the parameters.
-
-Feature: `v2_2`
-
 ## `separator`
 `true` if you want a separator line to be printed.
 ## `left`
@@ -2865,9 +2726,6 @@ for a description of the format of the string representation.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `font_name`
 the name of the font for header text, or `None`.
 <!-- trait PrintCompositorExt::fn set_header_format -->
@@ -2892,9 +2750,6 @@ printing with `PrintCompositorExt::set_print_header`.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `separator`
 `true` if you want a separator line to be printed.
 ## `left`
@@ -2909,16 +2764,10 @@ buffer rules. Both color and font style are applied.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `highlight`
 whether syntax should be highlighted.
 <!-- trait PrintCompositorExt::fn set_left_margin -->
 Sets the left margin used by `self`.
-
-Feature: `v2_2`
-
 ## `margin`
 the new left margin in units of `unit`.
 ## `unit`
@@ -2935,9 +2784,6 @@ for a description of the format of the string representation.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `font_name`
 the name of the font for line numbers, or `None`.
 <!-- trait PrintCompositorExt::fn set_print_footer -->
@@ -2951,9 +2797,6 @@ empty it will not be printed, regardless of this setting.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `print`
 `true` if you want the footer to be printed.
 <!-- trait PrintCompositorExt::fn set_print_header -->
@@ -2967,9 +2810,6 @@ empty it will not be printed, regardless of this setting.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `print`
 `true` if you want the header to be printed.
 <!-- trait PrintCompositorExt::fn set_print_line_numbers -->
@@ -2981,16 +2821,10 @@ Maximum accepted value for `interval` is 100.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `interval`
 interval for printed line numbers.
 <!-- trait PrintCompositorExt::fn set_right_margin -->
 Sets the right margin used by `self`.
-
-Feature: `v2_2`
-
 ## `margin`
 the new right margin in units of `unit`.
 ## `unit`
@@ -3000,16 +2834,10 @@ Sets the width of tabulation in characters for printed text.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `width`
 width of tab in characters.
 <!-- trait PrintCompositorExt::fn set_top_margin -->
 Sets the top margin used by `self`.
-
-Feature: `v2_2`
-
 ## `margin`
 the new top margin in units of `unit`
 ## `unit`
@@ -3019,9 +2847,6 @@ Sets the line wrapping mode for the printed text.
 
 This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
-
-Feature: `v2_2`
-
 ## `wrap_mode`
 a `gtk::WrapMode`.
 <!-- struct SearchContext -->
@@ -3446,9 +3271,6 @@ Trait containing all `Style` methods.
 Creates a copy of `self`, that is a new `Style` instance which
 has the same attributes set.
 
-Feature: `v2_0`
-
-
 # Returns
 
 copy of `self`, call `gobject::Object::unref`
@@ -3456,23 +3278,16 @@ when you are done with it.
 <!-- struct StyleScheme -->
 
 
-Feature: `v2_0`
-
 # Implements
 
 [`StyleSchemeExt`](trait.StyleSchemeExt.html)
 <!-- trait StyleSchemeExt -->
 Trait containing all `StyleScheme` methods.
 
-Feature: `v2_0`
-
 # Implementors
 
 [`StyleScheme`](struct.StyleScheme.html)
 <!-- trait StyleSchemeExt::fn get_authors -->
-
-Feature: `v2_0`
-
 
 # Returns
 
@@ -3481,16 +3296,10 @@ a
 no author is specified by the style scheme.
 <!-- trait StyleSchemeExt::fn get_description -->
 
-Feature: `v2_0`
-
-
 # Returns
 
 `self` description (if defined), or `None`.
 <!-- trait StyleSchemeExt::fn get_filename -->
-
-Feature: `v2_0`
-
 
 # Returns
 
@@ -3498,24 +3307,15 @@ Feature: `v2_0`
 parsing a style scheme file or `None` in the other cases.
 <!-- trait StyleSchemeExt::fn get_id -->
 
-Feature: `v2_0`
-
-
 # Returns
 
 `self` id.
 <!-- trait StyleSchemeExt::fn get_name -->
 
-Feature: `v2_0`
-
-
 # Returns
 
 `self` name.
 <!-- trait StyleSchemeExt::fn get_style -->
-
-Feature: `v2_0`
-
 ## `style_id`
 id of the style to retrieve.
 
@@ -3663,15 +3463,11 @@ a new `Tag`.
 <!-- struct UndoManager -->
 
 
-Feature: `v2_10`
-
 # Implements
 
 [`UndoManagerExt`](trait.UndoManagerExt.html)
 <!-- trait UndoManagerExt -->
 Trait containing all `UndoManager` methods.
-
-Feature: `v2_10`
 
 # Implementors
 
@@ -3680,56 +3476,32 @@ Feature: `v2_10`
 Begin a not undoable action on the buffer. All changes between this call
 and the call to `UndoManager::end_not_undoable_action` cannot
 be undone. This function should be re-entrant.
-
-Feature: `v2_10`
-
 <!-- trait UndoManagerExt::fn can_redo -->
 Get whether there are redo operations available.
-
-Feature: `v2_10`
-
 
 # Returns
 
 `true` if there are redo operations available, `false` otherwise
 <!-- trait UndoManagerExt::fn can_redo_changed -->
 Emits the `UndoManager::can-redo-changed` signal.
-
-Feature: `v2_10`
-
 <!-- trait UndoManagerExt::fn can_undo -->
 Get whether there are undo operations available.
-
-Feature: `v2_10`
-
 
 # Returns
 
 `true` if there are undo operations available, `false` otherwise
 <!-- trait UndoManagerExt::fn can_undo_changed -->
 Emits the `UndoManager::can-undo-changed` signal.
-
-Feature: `v2_10`
-
 <!-- trait UndoManagerExt::fn end_not_undoable_action -->
 Ends a not undoable action on the buffer.
-
-Feature: `v2_10`
-
 <!-- trait UndoManagerExt::fn redo -->
 Perform a single redo. Calling this function when there are no redo operations
 available is an error. Use `UndoManager::can_redo` to find out
 if there are redo operations available.
-
-Feature: `v2_10`
-
 <!-- trait UndoManagerExt::fn undo -->
 Perform a single undo. Calling this function when there are no undo operations
 available is an error. Use `UndoManager::can_undo` to find out
 if there are undo operations available.
-
-Feature: `v2_10`
-
 <!-- struct View -->
 
 
@@ -3794,9 +3566,6 @@ Returns the `Gutter` object associated with `window_type` for `self`.
 Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported,
 respectively corresponding to the left and right gutter. The line numbers
 and mark category icons are rendered in the left gutter.
-
-Feature: `v2_8`
-
 ## `window_type`
 the gutter window type.
 
@@ -3849,9 +3618,6 @@ Gets the position of the right margin in the given `self`.
 the position of the right margin.
 <!-- trait ViewExt::fn get_show_line_marks -->
 Returns whether line marks are displayed beside the text.
-
-Feature: `v2_2`
-
 
 # Returns
 
@@ -3994,9 +3760,6 @@ Sets the position of the right margin in the given `self`.
 the width in characters where to position the right margin.
 <!-- trait ViewExt::fn set_show_line_marks -->
 If `true` line marks will be displayed beside the text.
-
-Feature: `v2_2`
-
 ## `show`
 whether line marks should be displayed.
 <!-- trait ViewExt::fn set_show_line_numbers -->

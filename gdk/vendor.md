@@ -21,17 +21,27 @@ if (!g_app_info_launch_default_for_uri ("http://www.gtk.org", context, &error))
 
 g_object_unref (context);
 ```
+
+# Implements
+
+[`AppLaunchContextExt`](trait.AppLaunchContextExt.html)
+<!-- trait AppLaunchContextExt -->
+Trait containing all `AppLaunchContext` methods.
+
+# Implementors
+
+[`AppLaunchContext`](struct.AppLaunchContext.html)
 <!-- impl AppLaunchContext::fn new -->
 Creates a new `AppLaunchContext`.
 
 # Deprecated since 3.0
 
-Use `Display::get_app_launch_context` instead
+Use `DisplayExt::get_app_launch_context` instead
 
 # Returns
 
 a new `AppLaunchContext`
-<!-- impl AppLaunchContext::fn set_desktop -->
+<!-- trait AppLaunchContextExt::fn set_desktop -->
 Sets the workspace on which applications will be launched when
 using this context when running under a window manager that
 supports multiple workspaces, as described in the
@@ -42,29 +52,29 @@ it is up to the window manager to pick one, typically it will
 be the current workspace.
 ## `desktop`
 the number of a workspace, or -1
-<!-- impl AppLaunchContext::fn set_display -->
+<!-- trait AppLaunchContextExt::fn set_display -->
 Sets the display on which applications will be launched when
-using this context. See also `AppLaunchContext::set_screen`.
+using this context. See also `AppLaunchContextExt::set_screen`.
 
 # Deprecated since 3.0
 
-Use `Display::get_app_launch_context` instead
+Use `DisplayExt::get_app_launch_context` instead
 ## `display`
 a `Display`
-<!-- impl AppLaunchContext::fn set_icon -->
+<!-- trait AppLaunchContextExt::fn set_icon -->
 Sets the icon for applications that are launched with this
 context.
 
 Window Managers can use this information when displaying startup
 notification.
 
-See also `AppLaunchContext::set_icon_name`.
+See also `AppLaunchContextExt::set_icon_name`.
 ## `icon`
 a `gio::Icon`, or `None`
-<!-- impl AppLaunchContext::fn set_icon_name -->
+<!-- trait AppLaunchContextExt::fn set_icon_name -->
 Sets the icon for applications that are launched with this context.
 The `icon_name` will be interpreted in the same way as the Icon field
-in desktop files. See also `AppLaunchContext::set_icon`.
+in desktop files. See also `AppLaunchContextExt::set_icon`.
 
 If both `icon` and `icon_name` are set, the `icon_name` takes priority.
 If neither `icon` or `icon_name` is set, the icon is taken from either
@@ -72,16 +82,16 @@ the file that is passed to launched application or from the `gio::AppInfo`
 for the launched application itself.
 ## `icon_name`
 an icon name, or `None`
-<!-- impl AppLaunchContext::fn set_screen -->
+<!-- trait AppLaunchContextExt::fn set_screen -->
 Sets the screen on which applications will be launched when
-using this context. See also `AppLaunchContext::set_display`.
+using this context. See also `AppLaunchContextExt::set_display`.
 
 If both `screen` and `display` are set, the `screen` takes priority.
 If neither `screen` or `display` are set, the default screen and
 display are used.
 ## `screen`
 a `Screen`
-<!-- impl AppLaunchContext::fn set_timestamp -->
+<!-- trait AppLaunchContextExt::fn set_timestamp -->
 Sets the timestamp of `self`. The timestamp should ideally
 be taken from the event that triggered the launch.
 
@@ -91,10 +101,55 @@ typing in another window. This is also known as 'focus stealing
 prevention'.
 ## `timestamp`
 a timestamp
+<!-- struct Atom_ -->
+An opaque type representing a string as an index into a table
+of strings on the X server.
+<!-- impl Atom_::fn name -->
+Determines the string corresponding to an atom.
+
+# Returns
+
+a newly-allocated string containing the string
+ corresponding to `self`. When you are done with the
+ return value, you should free it using `g_free`.
+<!-- impl Atom_::fn intern -->
+Finds or creates an atom corresponding to a given string.
+## `atom_name`
+a string.
+## `only_if_exists`
+if `true`, GDK is allowed to not create a new atom, but
+ just return `GDK_NONE` if the requested atom doesn’t already
+ exists. Currently, the flag is ignored, since checking the
+ existance of an atom is as expensive as creating it.
+
+# Returns
+
+the atom corresponding to `atom_name`.
+<!-- impl Atom_::fn intern_static_string -->
+Finds or creates an atom corresponding to a given string.
+
+Note that this function is identical to `Atom_::intern` except
+that if a new `Atom` is created the string itself is used rather
+than a copy. This saves memory, but can only be used if the string
+will always exist. It can be used with statically
+allocated strings in the main program, but not with statically
+allocated memory in dynamically loaded modules, if you expect to
+ever unload the module again (e.g. do not use this function in
+GTK+ theme engines).
+## `atom_name`
+a static string
+
+# Returns
+
+the atom corresponding to `atom_name`
 <!-- enum AxisUse -->
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
 types that GTK+ understands.
+
+Note that the X and Y axes are not really needed; pointer devices
+report their location via the x/y members of events regardless. Whether
+X and Y are present as axes depends on the GDK backend.
 <!-- enum AxisUse::variant Ignore -->
 the axis is ignored.
 <!-- enum AxisUse::variant X -->
@@ -109,6 +164,12 @@ the axis is used for x tilt information.
 the axis is used for y tilt information.
 <!-- enum AxisUse::variant Wheel -->
 the axis is used for wheel information.
+<!-- enum AxisUse::variant Distance -->
+the axis is used for pen/tablet distance information. (Since: 3.22)
+<!-- enum AxisUse::variant Rotation -->
+the axis is used for pen rotation information. (Since: 3.22)
+<!-- enum AxisUse::variant Slider -->
+the axis is used for pen slider information. (Since: 3.22)
 <!-- enum AxisUse::variant Last -->
 a constant equal to the numerically highest axis value.
 <!-- enum ByteOrder -->
@@ -149,6 +210,16 @@ crossing because of a device switch (i.e.
  is synthetic as the pointer didn’t leave the window.
 <!-- struct Cursor -->
 A `Cursor` represents a cursor. Its contents are private.
+
+# Implements
+
+[`CursorExt`](trait.CursorExt.html)
+<!-- trait CursorExt -->
+Trait containing all `Cursor` methods.
+
+# Implementors
+
+[`Cursor`](struct.Cursor.html)
 <!-- impl Cursor::fn new -->
 Creates a new cursor from the set of builtin cursors for the default display.
 See `Cursor::new_for_display`.
@@ -166,25 +237,6 @@ cursor to create
 a new `Cursor`
 <!-- impl Cursor::fn new_for_display -->
 Creates a new cursor from the set of builtin cursors.
-Some useful ones are:
-- ![](right_ptr.png) `CursorType::RightPtr` (right-facing arrow)
-- ![](crosshair.png) `CursorType::Crosshair` (crosshair)
-- ![](xterm.png) `CursorType::Xterm` (I-beam)
-- ![](watch.png) `CursorType::Watch` (busy)
-- ![](fleur.png) `CursorType::Fleur` (for moving objects)
-- ![](hand1.png) `CursorType::Hand1` (a right-pointing hand)
-- ![](hand2.png) `CursorType::Hand2` (a left-pointing hand)
-- ![](left_side.png) `CursorType::LeftSide` (resize left side)
-- ![](right_side.png) `CursorType::RightSide` (resize right side)
-- ![](top_left_corner.png) `CursorType::TopLeftCorner` (resize northwest corner)
-- ![](top_right_corner.png) `CursorType::TopRightCorner` (resize northeast corner)
-- ![](bottom_left_corner.png) `CursorType::BottomLeftCorner` (resize southwest corner)
-- ![](bottom_right_corner.png) `CursorType::BottomRightCorner` (resize southeast corner)
-- ![](top_side.png) `CursorType::TopSide` (resize top side)
-- ![](bottom_side.png) `CursorType::BottomSide` (resize bottom side)
-- ![](sb_h_double_arrow.png) `CursorType::SbHDoubleArrow` (move vertical splitter)
-- ![](sb_v_double_arrow.png) `CursorType::SbVDoubleArrow` (move horizontal splitter)
-- `CursorType::BlankCursor` (Blank cursor). Since 2.16
 ## `display`
 the `Display` for which the cursor will be created
 ## `cursor_type`
@@ -196,6 +248,44 @@ a new `Cursor`
 <!-- impl Cursor::fn new_from_name -->
 Creates a new cursor by looking up `name` in the current cursor
 theme.
+
+A recommended set of cursor names that will work across different
+platforms can be found in the CSS specification:
+- "none"
+- ![](default_cursor.png) "default"
+- ![](help_cursor.png) "help"
+- ![](pointer_cursor.png) "pointer"
+- ![](context_menu_cursor.png) "context-menu"
+- ![](progress_cursor.png) "progress"
+- ![](wait_cursor.png) "wait"
+- ![](cell_cursor.png) "cell"
+- ![](crosshair_cursor.png) "crosshair"
+- ![](text_cursor.png) "text"
+- ![](vertical_text_cursor.png) "vertical-text"
+- ![](alias_cursor.png) "alias"
+- ![](copy_cursor.png) "copy"
+- ![](no_drop_cursor.png) "no-drop"
+- ![](move_cursor.png) "move"
+- ![](not_allowed_cursor.png) "not-allowed"
+- ![](grab_cursor.png) "grab"
+- ![](grabbing_cursor.png) "grabbing"
+- ![](all_scroll_cursor.png) "all-scroll"
+- ![](col_resize_cursor.png) "col-resize"
+- ![](row_resize_cursor.png) "row-resize"
+- ![](n_resize_cursor.png) "n-resize"
+- ![](e_resize_cursor.png) "e-resize"
+- ![](s_resize_cursor.png) "s-resize"
+- ![](w_resize_cursor.png) "w-resize"
+- ![](ne_resize_cursor.png) "ne-resize"
+- ![](nw_resize_cursor.png) "nw-resize"
+- ![](sw_resize_cursor.png) "sw-resize"
+- ![](se_resize_cursor.png) "se-resize"
+- ![](ew_resize_cursor.png) "ew-resize"
+- ![](ns_resize_cursor.png) "ns-resize"
+- ![](nesw_resize_cursor.png) "nesw-resize"
+- ![](nwse_resize_cursor.png) "nwse-resize"
+- ![](zoom_in_cursor.png) "zoom-in"
+- ![](zoom_out_cursor.png) "zoom-out"
 ## `display`
 the `Display` for which the cursor will be created
 ## `name`
@@ -210,11 +300,11 @@ Creates a new cursor from a pixbuf.
 
 Not all GDK backends support RGBA cursors. If they are not
 supported, a monochrome approximation will be displayed.
-The functions `Display::supports_cursor_alpha` and
-`Display::supports_cursor_color` can be used to determine
+The functions `DisplayExt::supports_cursor_alpha` and
+`DisplayExt::supports_cursor_color` can be used to determine
 whether RGBA cursors are supported;
-`Display::get_default_cursor_size` and
-`Display::get_maximal_cursor_size` give information about
+`DisplayExt::get_default_cursor_size` and
+`DisplayExt::get_maximal_cursor_size` give information about
 cursor sizes.
 
 If `x` or `y` are `-1`, the pixbuf must have
@@ -241,11 +331,11 @@ Creates a new cursor from a cairo image surface.
 
 Not all GDK backends support RGBA cursors. If they are not
 supported, a monochrome approximation will be displayed.
-The functions `Display::supports_cursor_alpha` and
-`Display::supports_cursor_color` can be used to determine
+The functions `DisplayExt::supports_cursor_alpha` and
+`DisplayExt::supports_cursor_color` can be used to determine
 whether RGBA cursors are supported;
-`Display::get_default_cursor_size` and
-`Display::get_maximal_cursor_size` give information about
+`DisplayExt::get_default_cursor_size` and
+`DisplayExt::get_maximal_cursor_size` give information about
 cursor sizes.
 
 On the X backend, support for RGBA cursors requires a
@@ -265,19 +355,19 @@ the vertical offset of the “hotspot” of the cursor
 # Returns
 
 a new `Cursor`.
-<!-- impl Cursor::fn get_cursor_type -->
+<!-- trait CursorExt::fn get_cursor_type -->
 Returns the cursor type for this cursor.
 
 # Returns
 
 a `CursorType`
-<!-- impl Cursor::fn get_display -->
+<!-- trait CursorExt::fn get_display -->
 Returns the display on which the `Cursor` is defined.
 
 # Returns
 
 the `Display` associated to `self`
-<!-- impl Cursor::fn get_image -->
+<!-- trait CursorExt::fn get_image -->
 Returns a `gdk_pixbuf::Pixbuf` with the image used to display the cursor.
 
 Note that depending on the capabilities of the windowing system and
@@ -288,7 +378,7 @@ case, `None` is returned.
 
 a `gdk_pixbuf::Pixbuf` representing
  `self`, or `None`
-<!-- impl Cursor::fn get_surface -->
+<!-- trait CursorExt::fn get_surface -->
 Returns a cairo image surface with the image used to display the cursor.
 
 Note that depending on the capabilities of the windowing system and
@@ -308,7 +398,7 @@ Location to store the hotspot y position,
 
 a `cairo::Surface`
  representing `self`, or `None`
-<!-- impl Cursor::fn ref -->
+<!-- trait CursorExt::fn ref -->
 Adds a reference to `self`.
 
 # Deprecated since 3.0
@@ -318,7 +408,7 @@ Use `gobject::Object::ref` instead
 # Returns
 
 Same `self` that was passed in
-<!-- impl Cursor::fn unref -->
+<!-- trait CursorExt::fn unref -->
 Removes a reference from `self`, deallocating the cursor
 if no references remain.
 
@@ -326,7 +416,12 @@ if no references remain.
 
 Use `gobject::Object::unref` instead
 <!-- enum CursorType -->
-The standard cursors available.
+Predefined cursors.
+
+Note that these IDs are directly taken from the X cursor font, and many
+of these cursors are either not useful, or are not available on other platforms.
+
+The recommended way to create cursors is to use `Cursor::new_from_name`.
 <!-- enum CursorType::variant XCursor -->
 ![](X_cursor.png)
 <!-- enum CursorType::variant Arrow -->
@@ -495,8 +590,18 @@ as a keyboard, a mouse, a touchpad, etc.
 See the `DeviceManager` documentation for more information
 about the various kinds of master and slave devices, and their
 relationships.
+
+# Implements
+
+[`DeviceExt`](trait.DeviceExt.html)
+<!-- trait DeviceExt -->
+Trait containing all `Device` methods.
+
+# Implementors
+
+[`Device`](struct.Device.html)
 <!-- impl Device::fn free_history -->
-Frees an array of `TimeCoord` that was returned by `Device::get_history`.
+Frees an array of `TimeCoord` that was returned by `DeviceExt::get_history`.
 ## `events`
 an array of `TimeCoord`.
 ## `n_events`
@@ -524,7 +629,7 @@ location to store boolean indicating whether
 
 `true` if this application currently has the
  keyboard grabbed.
-<!-- impl Device::fn get_associated_device -->
+<!-- trait DeviceExt::fn get_associated_device -->
 Returns the associated device to `self`, if `self` is of type
 `DeviceType::Master`, it will return the paired pointer or
 keyboard.
@@ -539,7 +644,12 @@ returned, as there is no associated device.
 
 The associated device, or
  `None`
-<!-- impl Device::fn get_axis -->
+<!-- trait DeviceExt::fn get_axes -->
+Returns the axes currently available on the device.
+
+Feature: `v3_22`
+
+<!-- trait DeviceExt::fn get_axis -->
 Interprets an array of double as axis values for a given device,
 and locates the value in the array for a given axis use.
 ## `axes`
@@ -552,7 +662,7 @@ location to store the found value.
 # Returns
 
 `true` if the given axis use was found, otherwise `false`
-<!-- impl Device::fn get_axis_use -->
+<!-- trait DeviceExt::fn get_axis_use -->
 Returns the axis use for `index_`.
 ## `index_`
 the index of the axis.
@@ -560,10 +670,10 @@ the index of the axis.
 # Returns
 
 a `AxisUse` specifying how the axis is used.
-<!-- impl Device::fn get_axis_value -->
+<!-- trait DeviceExt::fn get_axis_value -->
 Interprets an array of double as axis values for a given device,
 and locates the value in the array for a given axis label, as returned
-by `Device::list_axes`
+by `DeviceExt::list_axes`
 ## `axes`
 pointer to an array of axes
 ## `axis_label`
@@ -574,27 +684,27 @@ location to store the found value.
 # Returns
 
 `true` if the given axis use was found, otherwise `false`.
-<!-- impl Device::fn get_device_type -->
+<!-- trait DeviceExt::fn get_device_type -->
 Returns the device type for `self`.
 
 # Returns
 
 the `DeviceType` for `self`.
-<!-- impl Device::fn get_display -->
+<!-- trait DeviceExt::fn get_display -->
 Returns the `Display` to which `self` pertains.
 
 # Returns
 
 a `Display`. This memory is owned
  by GTK+, and must not be freed or unreffed.
-<!-- impl Device::fn get_has_cursor -->
+<!-- trait DeviceExt::fn get_has_cursor -->
 Determines whether the pointer follows device motion.
 This is not meaningful for keyboard devices, which don't have a pointer.
 
 # Returns
 
 `true` if the pointer follows device motion
-<!-- impl Device::fn get_history -->
+<!-- trait DeviceExt::fn get_history -->
 Obtains the motion history for a pointer device; given a starting and
 ending timestamp, return all events in the motion history for
 the device in the given range of time. Some windowing systems
@@ -602,7 +712,7 @@ do not support motion history, in which case, `false` will
 be returned. (This is not distinguishable from the case where
 motion history is supported and no events were found.)
 
-Note that there is also `Window::set_event_compression` to get
+Note that there is also `WindowExt::set_event_compression` to get
 more motion events delivered directly, independent of the windowing
 system.
 ## `window`
@@ -623,7 +733,7 @@ location to store the length of
 
 `true` if the windowing system supports motion history and
  at least one event was found.
-<!-- impl Device::fn get_key -->
+<!-- trait DeviceExt::fn get_key -->
 If `index_` has a valid keyval, this function will return `true`
 and fill in `keyval` and `modifiers` with the keyval settings.
 ## `index_`
@@ -636,7 +746,7 @@ return value for modifiers.
 # Returns
 
 `true` if keyval is set for `index`.
-<!-- impl Device::fn get_last_event_window -->
+<!-- trait DeviceExt::fn get_last_event_window -->
 Gets information about which window the given pointer device is in, based on events
 that have been received so far from the display server. If another application
 has a pointer grab, or this application has a grab with owner_events = `false`,
@@ -649,35 +759,35 @@ Feature: `v3_12`
 # Returns
 
 the last window the device
-<!-- impl Device::fn get_mode -->
+<!-- trait DeviceExt::fn get_mode -->
 Determines the mode of the device.
 
 # Returns
 
 a `InputSource`
-<!-- impl Device::fn get_n_axes -->
+<!-- trait DeviceExt::fn get_n_axes -->
 Returns the number of axes the device currently has.
 
 # Returns
 
 the number of axes.
-<!-- impl Device::fn get_n_keys -->
+<!-- trait DeviceExt::fn get_n_keys -->
 Returns the number of keys the device currently has.
 
 # Returns
 
 the number of keys.
-<!-- impl Device::fn get_name -->
+<!-- trait DeviceExt::fn get_name -->
 Determines the name of the device.
 
 # Returns
 
 a name
-<!-- impl Device::fn get_position -->
+<!-- trait DeviceExt::fn get_position -->
 Gets the current location of `self`. As a slave device
 coordinates are those of its master pointer, This function
 may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them, see `Device::grab`.
+unless there is an ongoing grab on them, see `DeviceExt::grab`.
 ## `screen`
 location to store the `Screen`
  the `self` is on, or `None`.
@@ -685,11 +795,11 @@ location to store the `Screen`
 location to store root window X coordinate of `self`, or `None`.
 ## `y`
 location to store root window Y coordinate of `self`, or `None`.
-<!-- impl Device::fn get_position_double -->
+<!-- trait DeviceExt::fn get_position_double -->
 Gets the current location of `self` in double precision. As a slave device's
 coordinates are those of its master pointer, this function
 may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them. See `Device::grab`.
+unless there is an ongoing grab on them. See `DeviceExt::grab`.
 
 Feature: `v3_10`
 
@@ -700,10 +810,10 @@ location to store the `Screen`
 location to store root window X coordinate of `self`, or `None`.
 ## `y`
 location to store root window Y coordinate of `self`, or `None`.
-<!-- impl Device::fn get_product_id -->
+<!-- trait DeviceExt::fn get_product_id -->
 Returns the product ID of this device, or `None` if this information couldn't
 be obtained. This ID is retrieved from the device, and is thus constant for
-it. See `Device::get_vendor_id` for more information.
+it. See `DeviceExt::get_vendor_id` for more information.
 
 Feature: `v3_16`
 
@@ -711,17 +821,27 @@ Feature: `v3_16`
 # Returns
 
 the product ID, or `None`
-<!-- impl Device::fn get_source -->
+<!-- trait DeviceExt::fn get_seat -->
+Returns the `Seat` the device belongs to.
+
+Feature: `v3_20`
+
+
+# Returns
+
+A `Seat`. This memory is owned by GTK+ and
+ must not be freed.
+<!-- trait DeviceExt::fn get_source -->
 Determines the type of the device.
 
 # Returns
 
 a `InputSource`
-<!-- impl Device::fn get_state -->
+<!-- trait DeviceExt::fn get_state -->
 Gets the current state of a pointer device relative to `window`. As a slave
 device’s coordinates are those of its master pointer, this
 function may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them. See `Device::grab`.
+unless there is an ongoing grab on them. See `DeviceExt::grab`.
 ## `window`
 a `Window`.
 ## `axes`
@@ -729,12 +849,12 @@ an array of doubles to store the values of
 the axes of `self` in, or `None`.
 ## `mask`
 location to store the modifiers, or `None`.
-<!-- impl Device::fn get_vendor_id -->
+<!-- trait DeviceExt::fn get_vendor_id -->
 Returns the vendor ID of this device, or `None` if this information couldn't
 be obtained. This ID is retrieved from the device, and is thus constant for
 it.
 
-This function, together with `Device::get_product_id`, can be used to eg.
+This function, together with `DeviceExt::get_product_id`, can be used to eg.
 compose `gio::Settings` paths to store settings for this device.
 
 
@@ -764,13 +884,13 @@ Feature: `v3_16`
 # Returns
 
 the vendor ID, or `None`
-<!-- impl Device::fn get_window_at_position -->
+<!-- trait DeviceExt::fn get_window_at_position -->
 Obtains the window underneath `self`, returning the location of the device in `win_x` and `win_y`. Returns
 `None` if the window tree under `self` is not known to GDK (for example, belongs to another application).
 
 As a slave device coordinates are those of its master pointer, This
 function may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them, see `Device::grab`.
+unless there is an ongoing grab on them, see `DeviceExt::grab`.
 ## `win_x`
 return location for the X coordinate of the device location,
  relative to the window origin, or `None`.
@@ -782,14 +902,14 @@ return location for the Y coordinate of the device location,
 
 the `Window` under the
 device position, or `None`.
-<!-- impl Device::fn get_window_at_position_double -->
+<!-- trait DeviceExt::fn get_window_at_position_double -->
 Obtains the window underneath `self`, returning the location of the device in `win_x` and `win_y` in
 double precision. Returns `None` if the window tree under `self` is not known to GDK (for example,
 belongs to another application).
 
 As a slave device coordinates are those of its master pointer, This
 function may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them, see `Device::grab`.
+unless there is an ongoing grab on them, see `DeviceExt::grab`.
 ## `win_x`
 return location for the X coordinate of the device location,
  relative to the window origin, or `None`.
@@ -801,9 +921,9 @@ return location for the Y coordinate of the device location,
 
 the `Window` under the
  device position, or `None`.
-<!-- impl Device::fn grab -->
+<!-- trait DeviceExt::fn grab -->
 Grabs the device so that all events coming from this device are passed to
-this application until the device is ungrabbed with `Device::ungrab`,
+this application until the device is ungrabbed with `DeviceExt::ungrab`,
 or the window becomes unviewable. This overrides any previous grab on the device
 by this client.
 
@@ -823,6 +943,10 @@ It is equivalent to a pointer grab on the window with `owner_events` set to
 If you set up anything at the time you take the grab that needs to be
 cleaned up when the grab ends, you should handle the `EventGrabBroken`
 events that are emitted when the grab ends unvoluntarily.
+
+# Deprecated since 3.20
+
+Use `SeatExt::grab` instead.
 ## `window`
 the `Window` which will own the grab (the grab window)
 ## `grab_ownership`
@@ -850,7 +974,7 @@ the timestamp of the event which led to this pointer grab. This
 # Returns
 
 `GrabStatus::Success` if the grab was successful.
-<!-- impl Device::fn list_axes -->
+<!-- trait DeviceExt::fn list_axes -->
 Returns a `glib::List` of ``GdkAtoms``, containing the labels for
 the axes that `self` currently has.
 
@@ -858,7 +982,7 @@ the axes that `self` currently has.
 
 
  A `glib::List` of ``GdkAtoms``, free with `glib::List::free`.
-<!-- impl Device::fn list_slave_devices -->
+<!-- trait DeviceExt::fn list_slave_devices -->
 If the device if of type `DeviceType::Master`, it will return
 the list of slave devices attached to it, otherwise it will return
 `None`
@@ -869,13 +993,13 @@ the list of slave devices attached to it, otherwise it will return
  the list of slave devices, or `None`. The list must be
  freed with `glib::List::free`, the contents of the list are
  owned by GTK+ and should not be freed.
-<!-- impl Device::fn set_axis_use -->
+<!-- trait DeviceExt::fn set_axis_use -->
 Specifies how an axis of a device is used.
 ## `index_`
 the index of the axis
 ## `use_`
 specifies how the axis is used
-<!-- impl Device::fn set_key -->
+<!-- trait DeviceExt::fn set_key -->
 Specifies the X key event to generate when a macro button of a device
 is pressed.
 ## `index_`
@@ -884,7 +1008,7 @@ the index of the macro button to set
 the keyval to generate
 ## `modifiers`
 the modifiers to set
-<!-- impl Device::fn set_mode -->
+<!-- trait DeviceExt::fn set_mode -->
 Sets a the mode of an input device. The mode controls if the
 device is active and whether the device’s range is mapped to the
 entire screen or to a single window.
@@ -898,11 +1022,15 @@ the input mode.
 # Returns
 
 `true` if the mode was successfully changed.
-<!-- impl Device::fn ungrab -->
+<!-- trait DeviceExt::fn ungrab -->
 Release any grab on `self`.
+
+# Deprecated since 3.20
+
+Use `SeatExt::ungrab` instead.
 ## `time_`
 a timestap (e.g. `GDK_CURRENT_TIME`).
-<!-- impl Device::fn warp -->
+<!-- trait DeviceExt::fn warp -->
 Warps `self` in `display` to the point `x`,`y` on
 the screen `screen`, unless the device is confined
 to a window by a grab, in which case it will be moved
@@ -940,9 +1068,9 @@ There should rarely be a need to do that though, since GDK defaults
 to a compatibility mode in which it will emit just one enter/leave
 event pair for all devices on a window. To enable per-device
 enter/leave events and other multi-pointer interaction features,
-`Window::set_support_multidevice` must be called on
+`WindowExt::set_support_multidevice` must be called on
 ``GdkWindows`` (or `gtk_widget_set_support_multidevice` on widgets).
-window. See the `Window::set_support_multidevice` documentation
+window. See the `WindowExt::set_support_multidevice` documentation
 for more information.
 
 On X11, multi-device support is implemented through XInput 2.
@@ -954,7 +1082,7 @@ For simple applications that don’t have any special interest in
 input devices, the so-called “client pointer”
 provides a reasonable approximation to a simple setup with a single
 pointer and keyboard. The device that has been set as the client
-pointer can be accessed via `DeviceManager::get_client_pointer`.
+pointer can be accessed via `DeviceManagerExt::get_client_pointer`.
 
 Conceptually, in multidevice mode there are 2 device types. Virtual
 devices (or master devices) are represented by the pointer cursors
@@ -964,7 +1092,7 @@ devices, and thus have no visible cursor on the screen.
 
 Virtual devices are always paired, so there is a keyboard device for every
 pointer device. Associations between devices may be inspected through
-`Device::get_associated_device`.
+`DeviceExt::get_associated_device`.
 
 There may be several virtual devices, and several physical devices could
 be controlling each of these virtual devices. Physical devices may also
@@ -1013,26 +1141,40 @@ more permanently by user modifications to the device hierarchy.
 On certain application specific setups, it may make sense
 to detach a physical device from its master pointer, and mapping it to
 an specific window. This can be achieved by the combination of
-`Device::grab` and `Device::set_mode`.
+`DeviceExt::grab` and `DeviceExt::set_mode`.
 
 In order to listen for events coming from devices
-other than a virtual device, `Window::set_device_events` must be
+other than a virtual device, `WindowExt::set_device_events` must be
 called. Generally, this function can be used to modify the event mask
 for any given device.
 
 Input devices may also provide additional information besides X/Y.
 For example, graphics tablets may also provide pressure and X/Y tilt
 information. This information is device-dependent, and may be
-queried through `Device::get_axis`. In multidevice mode, virtual
+queried through `DeviceExt::get_axis`. In multidevice mode, virtual
 devices will change axes in order to always represent the physical
 device that is routing events through it. Whenever the physical device
 changes, the `Device:n-axes` property will be notified, and
-`Device::list_axes` will return the new device axes.
+`DeviceExt::list_axes` will return the new device axes.
 
 Devices may also have associated “keys” or
 macro buttons. Such keys can be globally set to map into normal X
-keyboard events. The mapping is set using `Device::set_key`.
-<!-- impl DeviceManager::fn get_client_pointer -->
+keyboard events. The mapping is set using `DeviceExt::set_key`.
+
+In GTK+ 3.20, a new `Seat` object has been introduced that
+supersedes `DeviceManager` and should be preferred in newly
+written code.
+
+# Implements
+
+[`DeviceManagerExt`](trait.DeviceManagerExt.html)
+<!-- trait DeviceManagerExt -->
+Trait containing all `DeviceManager` methods.
+
+# Implementors
+
+[`DeviceManager`](struct.DeviceManager.html)
+<!-- trait DeviceManagerExt::fn get_client_pointer -->
 Returns the client pointer, that is, the master pointer that acts as the core pointer
 for this application. In X11, window managers may change this depending on the interaction
 pattern under the presence of several pointers.
@@ -1040,11 +1182,15 @@ pattern under the presence of several pointers.
 You should use this function seldomly, only in code that isn’t triggered by a ``GdkEvent``
 and there aren’t other means to get a meaningful `Device` to operate on.
 
+# Deprecated since 3.20
+
+Use `SeatExt::get_pointer` instead.
+
 # Returns
 
 The client pointer. This memory is
  owned by GDK and must not be freed or unreferenced.
-<!-- impl DeviceManager::fn get_display -->
+<!-- trait DeviceManagerExt::fn get_display -->
 Gets the `Display` associated to `self`.
 
 # Returns
@@ -1052,9 +1198,14 @@ Gets the `Display` associated to `self`.
 the `Display` to which
  `self` is associated to, or `None`. This memory is
  owned by GDK and must not be freed or unreferenced.
-<!-- impl DeviceManager::fn list_devices -->
+<!-- trait DeviceManagerExt::fn list_devices -->
 Returns the list of devices of type `type_` currently attached to
 `self`.
+
+# Deprecated since 3.20
+
+, use `SeatExt::get_pointer`, `SeatExt::get_keyboard`
+ and `SeatExt::get_slaves` instead.
 ## `type_`
 device type to get.
 
@@ -1064,6 +1215,81 @@ a list of
  ``GdkDevices``. The returned list must be
  freed with g_list_free (). The list elements are owned by
  GTK+ and must not be freed or unreffed.
+<!-- struct DeviceTool -->
+
+
+Feature: `v3_22`
+
+# Implements
+
+[`DeviceToolExt`](trait.DeviceToolExt.html)
+<!-- trait DeviceToolExt -->
+Trait containing all `DeviceTool` methods.
+
+Feature: `v3_22`
+
+# Implementors
+
+[`DeviceTool`](struct.DeviceTool.html)
+<!-- trait DeviceToolExt::fn get_hardware_id -->
+Gets the hardware ID of this tool, or 0 if it's not known. When
+non-zero, the identificator is unique for the given tool model,
+meaning that two identical tools will share the same `hardware_id`,
+but will have different serial numbers (see `DeviceToolExt::get_serial`).
+
+This is a more concrete (and device specific) method to identify
+a `DeviceTool` than `DeviceToolExt::get_tool_type`, as a tablet
+may support multiple devices with the same `DeviceToolType`,
+but having different hardware identificators.
+
+Feature: `v3_22`
+
+
+# Returns
+
+The hardware identificator of this tool.
+<!-- trait DeviceToolExt::fn get_serial -->
+Gets the serial of this tool, this value can be used to identify a
+physical tool (eg. a tablet pen) across program executions.
+
+Feature: `v3_22`
+
+
+# Returns
+
+The serial ID for this tool
+<!-- trait DeviceToolExt::fn get_tool_type -->
+Gets the `DeviceToolType` of the tool.
+
+Feature: `v3_22`
+
+
+# Returns
+
+The physical type for this tool. This can be used to figure out what
+sort of pen is being used, such as an airbrush or a pencil.
+<!-- enum DeviceToolType -->
+Indicates the specific type of tool being used being a tablet. Such as an
+airbrush, pencil, etc.
+<!-- enum DeviceToolType::variant Unknown -->
+Tool is of an unknown type.
+<!-- enum DeviceToolType::variant Pen -->
+Tool is a standard tablet stylus.
+<!-- enum DeviceToolType::variant Eraser -->
+Tool is standard tablet eraser.
+<!-- enum DeviceToolType::variant Brush -->
+Tool is a brush stylus.
+<!-- enum DeviceToolType::variant Pencil -->
+Tool is a pencil stylus.
+<!-- enum DeviceToolType::variant Airbrush -->
+Tool is an airbrush stylus.
+<!-- enum DeviceToolType::variant Mouse -->
+Tool is a mouse.
+<!-- enum DeviceToolType::variant Lens -->
+Tool is a lens cursor.
+
+Feature: `v3_22`
+
 <!-- enum DeviceType -->
 Indicates the device type. See [above][`DeviceManager`.description]
 for more information about the meaning of these device types.
@@ -1093,7 +1319,17 @@ access the keyboard(s) and mouse pointer(s) of the display.
 Most of the input device handling has been factored out into
 the separate `DeviceManager` object. Every display has a
 device manager, which you can obtain using
-`Display::get_device_manager`.
+`DisplayExt::get_device_manager`.
+
+# Implements
+
+[`DisplayExt`](trait.DisplayExt.html)
+<!-- trait DisplayExt -->
+Trait containing all `Display` methods.
+
+# Implementors
+
+[`Display`](struct.Display.html)
 <!-- impl Display::fn get_default -->
 Gets the default `Display`. This is a convenience
 function for:
@@ -1128,12 +1364,12 @@ This symbol was never meant to be used outside
 
 the default display, if it
  could be opened, otherwise `None`.
-<!-- impl Display::fn beep -->
+<!-- trait DisplayExt::fn beep -->
 Emits a short beep on `self`
-<!-- impl Display::fn close -->
+<!-- trait DisplayExt::fn close -->
 Closes the connection to the windowing system for the given display,
 and cleans up associated resources.
-<!-- impl Display::fn device_is_grabbed -->
+<!-- trait DisplayExt::fn device_is_grabbed -->
 Returns `true` if there is an ongoing grab on `device` for `self`.
 ## `device`
 a `Device`
@@ -1141,7 +1377,7 @@ a `Device`
 # Returns
 
 `true` if there is a grab in effect for `device`.
-<!-- impl Display::fn flush -->
+<!-- trait DisplayExt::fn flush -->
 Flushes any requests queued for the windowing system; this happens automatically
 when the main loop blocks waiting for new events, but if your application
 is drawing without returning control to the main loop, you may need
@@ -1151,7 +1387,7 @@ from a thread other than the thread where the main loop is running.
 
 This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.
-<!-- impl Display::fn get_app_launch_context -->
+<!-- trait DisplayExt::fn get_app_launch_context -->
 Returns a `AppLaunchContext` suitable for launching
 applications on the given display.
 
@@ -1159,36 +1395,49 @@ applications on the given display.
 
 a new `AppLaunchContext` for `self`.
  Free with `gobject::Object::unref` when done
-<!-- impl Display::fn get_default_cursor_size -->
+<!-- trait DisplayExt::fn get_default_cursor_size -->
 Returns the default size to use for cursors on `self`.
 
 # Returns
 
 the default cursor size.
-<!-- impl Display::fn get_default_group -->
+<!-- trait DisplayExt::fn get_default_group -->
 Returns the default group leader window for all toplevel windows
 on `self`. This window is implicitly created by GDK.
-See `Window::set_group`.
+See `WindowExt::set_group`.
 
 # Returns
 
 The default group leader window
 for `self`
-<!-- impl Display::fn get_default_screen -->
+<!-- trait DisplayExt::fn get_default_screen -->
 Get the default `Screen` for `self`.
 
 # Returns
 
 the default `Screen` object for `self`
-<!-- impl Display::fn get_device_manager -->
+<!-- trait DisplayExt::fn get_default_seat -->
+Returns the default `Seat` for this display.
+
+Feature: `v3_20`
+
+
+# Returns
+
+the default seat.
+<!-- trait DisplayExt::fn get_device_manager -->
 Returns the `DeviceManager` associated to `self`.
+
+# Deprecated since 3.20
+
+Use `DisplayExt::get_default_seat` and `Seat` operations.
 
 # Returns
 
 A `DeviceManager`, or
  `None`. This memory is owned by GDK and must not be freed
  or unreferenced.
-<!-- impl Display::fn get_event -->
+<!-- trait DisplayExt::fn get_event -->
 Gets the next ``GdkEvent`` to be processed for `self`, fetching events from the
 windowing system if necessary.
 
@@ -1197,13 +1446,64 @@ windowing system if necessary.
 the next ``GdkEvent`` to be processed, or `None`
 if no events are pending. The returned ``GdkEvent`` should be freed
 with `gdk_event_free`.
-<!-- impl Display::fn get_maximal_cursor_size -->
+<!-- trait DisplayExt::fn get_maximal_cursor_size -->
 Gets the maximal size to use for cursors on `self`.
 ## `width`
 the return location for the maximal cursor width
 ## `height`
 the return location for the maximal cursor height
-<!-- impl Display::fn get_n_screens -->
+<!-- trait DisplayExt::fn get_monitor -->
+Gets a monitor associated with this display.
+
+Feature: `v3_22`
+
+## `monitor_num`
+number of the monitor
+
+# Returns
+
+the `Monitor`, or `None` if
+ `monitor_num` is not a valid monitor number
+<!-- trait DisplayExt::fn get_monitor_at_point -->
+Gets the monitor in which the point (`x`, `y`) is located,
+or a nearby monitor if the point is not in any monitor.
+
+Feature: `v3_22`
+
+## `x`
+the x coordinate of the point
+## `y`
+the y coordinate of the point
+
+# Returns
+
+the monitor containing the point
+<!-- trait DisplayExt::fn get_monitor_at_window -->
+Gets the monitor in which the largest area of `window`
+resides, or a monitor close to `window` if it is outside
+of all monitors.
+
+Feature: `v3_22`
+
+## `window`
+a `Window`
+
+# Returns
+
+the monitor with the largest overlap with `window`
+<!-- trait DisplayExt::fn get_n_monitors -->
+Gets the number of monitors that belong to `self`.
+
+The returned number is valid until the next emission of the
+`Display::monitor-added` or `Display::monitor-removed` signal.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the number of monitors
+<!-- trait DisplayExt::fn get_n_screens -->
 Gets the number of screen managed by the `self`.
 
 # Deprecated since 3.10
@@ -1213,20 +1513,20 @@ The number of screens is always 1.
 # Returns
 
 number of screens.
-<!-- impl Display::fn get_name -->
+<!-- trait DisplayExt::fn get_name -->
 Gets the name of the display.
 
 # Returns
 
 a string representing the display name. This string is owned
 by GDK and should not be modified or freed.
-<!-- impl Display::fn get_pointer -->
+<!-- trait DisplayExt::fn get_pointer -->
 Gets the current location of the pointer and the current modifier
 mask for a given display.
 
 # Deprecated since 3.0
 
-Use `Device::get_position` instead.
+Use `DeviceExt::get_position` instead.
 ## `screen`
 location to store the screen that the
  cursor is on, or `None`.
@@ -1236,15 +1536,34 @@ location to store root window X coordinate of pointer, or `None`.
 location to store root window Y coordinate of pointer, or `None`.
 ## `mask`
 location to store current modifier mask, or `None`
-<!-- impl Display::fn get_screen -->
+<!-- trait DisplayExt::fn get_primary_monitor -->
+Gets the primary monitor for the display.
+
+The primary monitor is considered the monitor where the “main desktop”
+lives. While normal application windows typically allow the window
+manager to place the windows, specialized desktop applications
+such as panels should place themselves on the primary monitor.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the primary monitor, or `None` if no primary
+ monitor is configured by the user
+<!-- trait DisplayExt::fn get_screen -->
 Returns a screen object for one of the screens of the display.
+
+# Deprecated since 3.20
+
+There is only one screen; use `DisplayExt::get_default_screen` to get it.
 ## `screen_num`
 the screen number
 
 # Returns
 
 the `Screen` object
-<!-- impl Display::fn get_window_at_pointer -->
+<!-- trait DisplayExt::fn get_window_at_pointer -->
 Obtains the window underneath the mouse pointer, returning the location
 of the pointer in that window in `win_x`, `win_y` for `screen`. Returns `None`
 if the window under the mouse pointer is not known to GDK (for example,
@@ -1252,7 +1571,7 @@ belongs to another application).
 
 # Deprecated since 3.0
 
-Use `Device::get_window_at_position` instead.
+Use `DeviceExt::get_window_at_position` instead.
 ## `win_x`
 return location for x coordinate of the pointer location relative
  to the window origin, or `None`
@@ -1264,41 +1583,51 @@ return location for y coordinate of the pointer location relative
 
 the window under the mouse
  pointer, or `None`
-<!-- impl Display::fn has_pending -->
+<!-- trait DisplayExt::fn has_pending -->
 Returns whether the display has events that are waiting
 to be processed.
 
 # Returns
 
 `true` if there are events ready to be processed.
-<!-- impl Display::fn is_closed -->
+<!-- trait DisplayExt::fn is_closed -->
 Finds out if the display has been closed.
 
 # Returns
 
 `true` if the display is closed.
-<!-- impl Display::fn keyboard_ungrab -->
+<!-- trait DisplayExt::fn keyboard_ungrab -->
 Release any keyboard grab
 
 # Deprecated since 3.0
 
-Use `Device::ungrab`, together with `Device::grab`
+Use `DeviceExt::ungrab`, together with `DeviceExt::grab`
  instead.
 ## `time_`
 a timestap (e.g `GDK_CURRENT_TIME`).
-<!-- impl Display::fn list_devices -->
+<!-- trait DisplayExt::fn list_devices -->
 Returns the list of available input devices attached to `self`.
 The list is statically allocated and should not be freed.
 
 # Deprecated since 3.0
 
-Use `DeviceManager::list_devices` instead.
+Use `DeviceManagerExt::list_devices` instead.
 
 # Returns
 
 
  a list of `Device`
-<!-- impl Display::fn notify_startup_complete -->
+<!-- trait DisplayExt::fn list_seats -->
+Returns the list of seats known to `self`.
+
+Feature: `v3_20`
+
+
+# Returns
+
+the
+ list of seats known to the `Display`
+<!-- trait DisplayExt::fn notify_startup_complete -->
 Indicates to the GUI environment that the application has
 finished loading, using a given identifier.
 
@@ -1309,7 +1638,7 @@ disable that feature.
 ## `startup_id`
 a startup-notification identifier, for which
  notification process should be completed
-<!-- impl Display::fn peek_event -->
+<!-- trait DisplayExt::fn peek_event -->
 Gets a copy of the first ``GdkEvent`` in the `self`’s event queue, without
 removing the event from the queue. (Note that this function will
 not get more events from the windowing system. It only checks the events
@@ -1320,31 +1649,31 @@ that have already been moved to the GDK event queue.)
 a copy of the first ``GdkEvent`` on the event
 queue, or `None` if no events are in the queue. The returned
 ``GdkEvent`` should be freed with `gdk_event_free`.
-<!-- impl Display::fn pointer_is_grabbed -->
+<!-- trait DisplayExt::fn pointer_is_grabbed -->
 Test if the pointer is grabbed.
 
 # Deprecated since 3.0
 
-Use `Display::device_is_grabbed` instead.
+Use `DisplayExt::device_is_grabbed` instead.
 
 # Returns
 
 `true` if an active X pointer grab is in effect
-<!-- impl Display::fn pointer_ungrab -->
+<!-- trait DisplayExt::fn pointer_ungrab -->
 Release any pointer grab.
 
 # Deprecated since 3.0
 
-Use `Device::ungrab`, together with `Device::grab`
+Use `DeviceExt::ungrab`, together with `DeviceExt::grab`
  instead.
 ## `time_`
 a timestap (e.g. `GDK_CURRENT_TIME`).
-<!-- impl Display::fn put_event -->
+<!-- trait DisplayExt::fn put_event -->
 Appends a copy of the given event onto the front of the event
 queue for `self`.
 ## `event`
 a ``GdkEvent``.
-<!-- impl Display::fn request_selection_notification -->
+<!-- trait DisplayExt::fn request_selection_notification -->
 Request `EventOwnerChange` events for ownership changes
 of the selection named by the given atom.
 ## `selection`
@@ -1355,22 +1684,22 @@ the `Atom` naming the selection for which
 
 whether `EventOwnerChange` events will
  be sent.
-<!-- impl Display::fn set_double_click_distance -->
+<!-- trait DisplayExt::fn set_double_click_distance -->
 Sets the double click distance (two clicks within this distance
 count as a double click and result in a `EventType::2buttonPress` event).
-See also `Display::set_double_click_time`.
+See also `DisplayExt::set_double_click_time`.
 Applications should not set this, it is a global
 user-configured setting.
 ## `distance`
 distance in pixels
-<!-- impl Display::fn set_double_click_time -->
+<!-- trait DisplayExt::fn set_double_click_time -->
 Sets the double click time (two clicks within this time interval
 count as a double click and result in a `EventType::2buttonPress` event).
 Applications should not set this, it is a global
 user-configured setting.
 ## `msec`
 double click time in milliseconds (thousandths of a second)
-<!-- impl Display::fn store_clipboard -->
+<!-- trait DisplayExt::fn store_clipboard -->
 Issues a request to the clipboard manager to store the
 clipboard data. On X11, this is a special program that works
 according to the
@@ -1385,7 +1714,7 @@ an array of targets
  if all available targets should be saved.
 ## `n_targets`
 length of the `targets` array
-<!-- impl Display::fn supports_clipboard_persistence -->
+<!-- trait DisplayExt::fn supports_clipboard_persistence -->
 Returns whether the speicifed display supports clipboard
 persistance; i.e. if it’s possible to store the clipboard data after an
 application has quit. On X11 this checks if a clipboard daemon is
@@ -1394,8 +1723,8 @@ running.
 # Returns
 
 `true` if the display supports clipboard persistance.
-<!-- impl Display::fn supports_composite -->
-Returns `true` if `Window::set_composited` can be used
+<!-- trait DisplayExt::fn supports_composite -->
+Returns `true` if `WindowExt::set_composited` can be used
 to redirect drawing on the window using compositing.
 
 Currently this only works on X11 with XComposite and
@@ -1409,7 +1738,7 @@ Compositing is an outdated technology that
 # Returns
 
 `true` if windows may be composited.
-<!-- impl Display::fn supports_cursor_alpha -->
+<!-- trait DisplayExt::fn supports_cursor_alpha -->
 Returns `true` if cursors can use an 8bit alpha channel
 on `self`. Otherwise, cursors are restricted to bilevel
 alpha (i.e. a mask).
@@ -1417,7 +1746,7 @@ alpha (i.e. a mask).
 # Returns
 
 whether cursors can have alpha channels.
-<!-- impl Display::fn supports_cursor_color -->
+<!-- trait DisplayExt::fn supports_cursor_color -->
 Returns `true` if multicolored cursors are supported
 on `self`. Otherwise, cursors have only a forground
 and a background color.
@@ -1425,14 +1754,14 @@ and a background color.
 # Returns
 
 whether cursors can have multiple colors.
-<!-- impl Display::fn supports_input_shapes -->
+<!-- trait DisplayExt::fn supports_input_shapes -->
 Returns `true` if `gdk_window_input_shape_combine_mask` can
 be used to modify the input shape of windows on `self`.
 
 # Returns
 
 `true` if windows with modified input shape are supported
-<!-- impl Display::fn supports_selection_notification -->
+<!-- trait DisplayExt::fn supports_selection_notification -->
 Returns whether `EventOwnerChange` events will be
 sent when the owner of a selection changes.
 
@@ -1440,24 +1769,24 @@ sent when the owner of a selection changes.
 
 whether `EventOwnerChange` events will
  be sent.
-<!-- impl Display::fn supports_shapes -->
+<!-- trait DisplayExt::fn supports_shapes -->
 Returns `true` if `gdk_window_shape_combine_mask` can
 be used to create shaped windows on `self`.
 
 # Returns
 
 `true` if shaped windows are supported
-<!-- impl Display::fn sync -->
+<!-- trait DisplayExt::fn sync -->
 Flushes any requests queued for the windowing system and waits until all
 requests have been handled. This is often used for making sure that the
 display is synchronized with the current state of the program. Calling
-`Display::sync` before `gdk_error_trap_pop` makes sure that any errors
+`DisplayExt::sync` before `gdk_error_trap_pop` makes sure that any errors
 generated from earlier requests are handled before the error trap is
 removed.
 
 This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.
-<!-- impl Display::fn warp_pointer -->
+<!-- trait DisplayExt::fn warp_pointer -->
 Warps the pointer of `self` to the point `x`,`y` on
 the screen `screen`, unless the pointer is confined
 to a window by a grab, in which case it will be moved
@@ -1472,7 +1801,7 @@ for the color picker in the ``GtkColorSelectionDialog``.
 
 # Deprecated since 3.0
 
-Use `Device::warp` instead.
+Use `DeviceExt::warp` instead.
 ## `screen`
 the screen of `self` to warp the pointer to
 ## `x`
@@ -1520,6 +1849,16 @@ macros like GDK_IS_X11_DISPLAY() to find out which backend is in use:
 #endif
   g_error ("Unsupported GDK backend");
 ```
+
+# Implements
+
+[`DisplayManagerExt`](trait.DisplayManagerExt.html)
+<!-- trait DisplayManagerExt -->
+Trait containing all `DisplayManager` methods.
+
+# Implementors
+
+[`DisplayManager`](struct.DisplayManager.html)
 <!-- impl DisplayManager::fn get -->
 Gets the singleton `DisplayManager` object.
 
@@ -1534,14 +1873,14 @@ to limit what backends can be used.
 The global `DisplayManager` singleton;
  `gdk_parse_args`, `gdk_init`, or `gdk_init_check` must have
  been called first.
-<!-- impl DisplayManager::fn get_default_display -->
+<!-- trait DisplayManagerExt::fn get_default_display -->
 Gets the default `Display`.
 
 # Returns
 
 a `Display`, or `None` if
  there is no default display.
-<!-- impl DisplayManager::fn list_displays -->
+<!-- trait DisplayManagerExt::fn list_displays -->
 List all currently open displays.
 
 # Returns
@@ -1549,7 +1888,7 @@ List all currently open displays.
 a newly
  allocated `glib::SList` of `Display` objects. Free with `glib::SList::free`
  when you are done with it.
-<!-- impl DisplayManager::fn open_display -->
+<!-- trait DisplayManagerExt::fn open_display -->
 Opens a display.
 ## `name`
 the name of the display to open
@@ -1558,66 +1897,140 @@ the name of the display to open
 
 a `Display`, or `None` if the
  display could not be opened
-<!-- impl DisplayManager::fn set_default_display -->
+<!-- trait DisplayManagerExt::fn set_default_display -->
 Sets `display` as the default display.
 ## `display`
 a `Display`
+<!-- enum DragCancelReason -->
+Used in `DragContext` to the reason of a cancelled DND operation.
+<!-- enum DragCancelReason::variant NoTarget -->
+There is no suitable drop target.
+<!-- enum DragCancelReason::variant UserCancelled -->
+Drag cancelled by the user
+<!-- enum DragCancelReason::variant Error -->
+Unspecified error.
+
+Feature: `v3_20`
+
 <!-- struct DragContext -->
 
-<!-- impl DragContext::fn get_actions -->
+
+# Implements
+
+[`DragContextExt`](trait.DragContextExt.html)
+<!-- trait DragContextExt -->
+Trait containing all `DragContext` methods.
+
+# Implementors
+
+[`DragContext`](struct.DragContext.html)
+<!-- trait DragContextExt::fn get_actions -->
 Determines the bitmask of actions proposed by the source if
-`DragContext::get_suggested_action` returns `DragAction::Ask`.
+`DragContextExt::get_suggested_action` returns `DragAction::Ask`.
 
 # Returns
 
 the `DragAction` flags
-<!-- impl DragContext::fn get_dest_window -->
+<!-- trait DragContextExt::fn get_dest_window -->
 Returns the destination windw for the DND operation.
 
 # Returns
 
 a `Window`
-<!-- impl DragContext::fn get_device -->
+<!-- trait DragContextExt::fn get_device -->
 Returns the `Device` associated to the drag context.
 
 # Returns
 
 The `Device` associated to `self`.
-<!-- impl DragContext::fn get_protocol -->
+<!-- trait DragContextExt::fn get_drag_window -->
+Returns the window on which the drag icon should be rendered
+during the drag operation. Note that the window may not be
+available until the drag operation has begun. GDK will move
+the window in accordance with the ongoing drag operation.
+The window is owned by `self` and will be destroyed when
+the drag operation is over.
+
+Feature: `v3_20`
+
+
+# Returns
+
+the drag window, or `None`
+<!-- trait DragContextExt::fn get_protocol -->
 Returns the drag protocol thats used by this context.
 
 # Returns
 
 the drag protocol
-<!-- impl DragContext::fn get_selected_action -->
+<!-- trait DragContextExt::fn get_selected_action -->
 Determines the action chosen by the drag destination.
 
 # Returns
 
 a `DragAction` value
-<!-- impl DragContext::fn get_source_window -->
+<!-- trait DragContextExt::fn get_source_window -->
 Returns the `Window` where the DND operation started.
 
 # Returns
 
 a `Window`
-<!-- impl DragContext::fn get_suggested_action -->
+<!-- trait DragContextExt::fn get_suggested_action -->
 Determines the suggested drag action of the context.
 
 # Returns
 
 a `DragAction` value
-<!-- impl DragContext::fn list_targets -->
+<!-- trait DragContextExt::fn list_targets -->
 Retrieves the list of targets of the context.
 
 # Returns
 
 a `glib::List` of targets
-<!-- impl DragContext::fn set_device -->
+<!-- trait DragContextExt::fn manage_dnd -->
+Requests the drag and drop operation to be managed by `self`.
+When a drag and drop operation becomes managed, the `DragContext`
+will internally handle all input and source-side `EventDND` events
+as required by the windowing system.
+
+Once the drag and drop operation is managed, the drag context will
+emit the following signals:
+- The `DragContext::action-changed` signal whenever the final action
+ to be performed by the drag and drop operation changes.
+- The `DragContext::drop-performed` signal after the user performs
+ the drag and drop gesture (typically by releasing the mouse button).
+- The `DragContext::dnd-finished` signal after the drag and drop
+ operation concludes (after all ``GdkSelection`` transfers happen).
+- The `DragContext::cancel` signal if the drag and drop operation is
+ finished but doesn't happen over an accepting destination, or is
+ cancelled through other means.
+
+Feature: `v3_20`
+
+## `ipc_window`
+Window to use for IPC messaging/events
+## `actions`
+the actions supported by the drag source
+
+# Returns
+
+`true` if the drag and drop operation is managed.
+<!-- trait DragContextExt::fn set_device -->
 Associates a `Device` to `self`, so all Drag and Drop events
 for `self` are emitted as if they came from this device.
 ## `device`
 a `Device`
+<!-- trait DragContextExt::fn set_hotspot -->
+Sets the position of the drag window that will be kept
+under the cursor hotspot. Initially, the hotspot is at the
+top left corner of the drag window.
+
+Feature: `v3_20`
+
+## `hot_x`
+x coordinate of the drag window hotspot
+## `hot_y`
+y coordinate of the drag window hotspot
 <!-- enum DragProtocol -->
 Used in `DragContext` to indicate the protocol according to
 which DND is done.
@@ -1638,6 +2051,74 @@ The complex OLE2 DND protocol (not implemented).
 Intra-application DND.
 <!-- enum DragProtocol::variant Wayland -->
 Wayland DND protocol.
+<!-- struct DrawingContext -->
+`DrawingContext` is an object that represents the current drawing
+state of a `Window`.
+
+It's possible to use a `DrawingContext` to draw on a `Window`
+via rendering API like Cairo or OpenGL.
+
+A `DrawingContext` can only be created by calling `WindowExt::begin_draw_frame`
+and will be valid until a call to `WindowExt::end_draw_frame`.
+
+`DrawingContext` is available since GDK 3.22
+
+Feature: `v3_22`
+
+# Implements
+
+[`DrawingContextExt`](trait.DrawingContextExt.html)
+<!-- trait DrawingContextExt -->
+Trait containing all `DrawingContext` methods.
+
+Feature: `v3_22`
+
+# Implementors
+
+[`DrawingContext`](struct.DrawingContext.html)
+<!-- trait DrawingContextExt::fn get_cairo_context -->
+Retrieves a Cairo context to be used to draw on the `Window`
+that created the `DrawingContext`.
+
+The returned context is guaranteed to be valid as long as the
+`DrawingContext` is valid, that is between a call to
+`WindowExt::begin_draw_frame` and `WindowExt::end_draw_frame`.
+
+Feature: `v3_22`
+
+
+# Returns
+
+a Cairo context to be used to draw
+ the contents of the `Window`. The context is owned by the
+ `DrawingContext` and should not be destroyed
+<!-- trait DrawingContextExt::fn get_clip -->
+Retrieves a copy of the clip region used when creating the `self`.
+
+Feature: `v3_22`
+
+
+# Returns
+
+a Cairo region
+<!-- trait DrawingContextExt::fn get_window -->
+Retrieves the window that created the drawing `self`.
+
+Feature: `v3_22`
+
+
+# Returns
+
+a `Window`
+<!-- trait DrawingContextExt::fn is_valid -->
+Checks whether the given `DrawingContext` is valid.
+
+Feature: `v3_22`
+
+
+# Returns
+
+`true` if the context is valid
 <!-- struct EventButton -->
 Used for button press and button release events. The
 `type` field will be one of `EventType::ButtonPress`,
@@ -1852,6 +2333,27 @@ A touch event sequence has finished. This event type
 <!-- enum EventType::variant TouchCancel -->
 A touch event sequence has been canceled. This event type
  was added in 3.4.
+<!-- enum EventType::variant TouchpadSwipe -->
+A touchpad swipe gesture event, the current state
+ is determined by its phase field. This event type was added in 3.18.
+<!-- enum EventType::variant TouchpadPinch -->
+A touchpad pinch gesture event, the current state
+ is determined by its phase field. This event type was added in 3.18.
+<!-- enum EventType::variant PadButtonPress -->
+A tablet pad button press event. This event type
+ was added in 3.22.
+<!-- enum EventType::variant PadButtonRelease -->
+A tablet pad button release event. This event type
+ was added in 3.22.
+<!-- enum EventType::variant PadRing -->
+A tablet pad axis event from a "ring". This event type was
+ added in 3.22.
+<!-- enum EventType::variant PadStrip -->
+A tablet pad axis event from a "strip". This event type was
+ added in 3.22.
+<!-- enum EventType::variant PadGroupMode -->
+A tablet pad group mode change. This event type was
+ added in 3.22.
 <!-- enum EventType::variant EventLast -->
 marks the end of the `EventType` enumeration. Added in 2.18
 <!-- struct EventVisibility -->
@@ -1865,15 +2367,6 @@ Modern composited windowing systems with pervasive
  information.
 <!-- struct EventWindowState -->
 Generated when the state of a toplevel window changes.
-<!-- enum FilterReturn -->
-Specifies the result of applying a ``GdkFilterFunc`` to a native event.
-<!-- enum FilterReturn::variant Continue -->
-event not handled, continue processing.
-<!-- enum FilterReturn::variant Translate -->
-native event translated into a GDK event and stored
- in the `event` structure that was passed in.
-<!-- enum FilterReturn::variant Remove -->
-event handled, terminate processing.
 <!-- struct FrameClock -->
 A `FrameClock` tells the application when to update and repaint a
 window. This may be synced to the vertical refresh rate of the
@@ -1889,44 +2382,56 @@ implementation or with mozRequestAnimationFrame in Firefox,
 for example.
 
 A frame clock is idle until someone requests a frame with
-`FrameClock::request_phase`. At some later point that makes
+`FrameClockExt::request_phase`. At some later point that makes
 sense for the synchronization being implemented, the clock will
 process a frame and emit signals for each phase that has been
 requested. (See the signals of the `FrameClock` class for
 documentation of the phases. `FrameClockPhase::Update` and the
 `FrameClock::update` signal are most interesting for application
 writers, and are used to update the animations, using the frame time
-given by `FrameClock::get_frame_time`.
+given by `FrameClockExt::get_frame_time`.
 
 The frame time is reported in microseconds and generally in the same
 timescale as `g_get_monotonic_time`, however, it is not the same
 as `g_get_monotonic_time`. The frame time does not advance during
 the time a frame is being painted, and outside of a frame, an attempt
-is made so that all calls to `FrameClock::get_frame_time` that
+is made so that all calls to `FrameClockExt::get_frame_time` that
 are called at a “similar” time get the same value. This means that
 if different animations are timed by looking at the difference in
-time between an initial value from `FrameClock::get_frame_time`
+time between an initial value from `FrameClockExt::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
 
 Feature: `v3_8`
-<!-- impl FrameClock::fn begin_updating -->
+
+# Implements
+
+[`FrameClockExt`](trait.FrameClockExt.html)
+<!-- trait FrameClockExt -->
+Trait containing all `FrameClock` methods.
+
+Feature: `v3_8`
+
+# Implementors
+
+[`FrameClock`](struct.FrameClock.html)
+<!-- trait FrameClockExt::fn begin_updating -->
 Starts updates for an animation. Until a matching call to
-`FrameClock::end_updating` is made, the frame clock will continually
+`FrameClockExt::end_updating` is made, the frame clock will continually
 request a new frame with the `FrameClockPhase::Update` phase.
 This function may be called multiple times and frames will be
-requested until `FrameClock::end_updating` is called the same
+requested until `FrameClockExt::end_updating` is called the same
 number of times.
 
 Feature: `v3_8`
 
-<!-- impl FrameClock::fn end_updating -->
+<!-- trait FrameClockExt::fn end_updating -->
 Stops updates for an animation. See the documentation for
-`FrameClock::begin_updating`.
+`FrameClockExt::begin_updating`.
 
 Feature: `v3_8`
 
-<!-- impl FrameClock::fn get_current_timings -->
+<!-- trait FrameClockExt::fn get_current_timings -->
 Gets the frame timings for the current frame.
 
 Feature: `v3_8`
@@ -1938,7 +2443,7 @@ the `FrameTimings` for the frame currently
  being processed, or even no frame is being processed, for the
  previous frame. Before any frames have been procesed, returns
  `None`.
-<!-- impl FrameClock::fn get_frame_counter -->
+<!-- trait FrameClockExt::fn get_frame_counter -->
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
 
@@ -1950,7 +2455,7 @@ Feature: `v3_8`
 inside frame processing, the value of the frame counter
  for the current frame. Outside of frame processing, the frame
  counter for the last frame.
-<!-- impl FrameClock::fn get_frame_time -->
+<!-- trait FrameClockExt::fn get_frame_time -->
 Gets the time that should currently be used for animations. Inside
 the processing of a frame, it’s the time used to compute the
 animation position of everything in a frame. Outside of a frame, it's
@@ -1965,13 +2470,13 @@ Feature: `v3_8`
 
 a timestamp in microseconds, in the timescale of
  of `g_get_monotonic_time`.
-<!-- impl FrameClock::fn get_history_start -->
+<!-- trait FrameClockExt::fn get_history_start -->
 `FrameClock` internally keeps a history of `FrameTimings`
 objects for recent frames that can be retrieved with
-`FrameClock::get_timings`. The set of stored frames
+`FrameClockExt::get_timings`. The set of stored frames
 is the set from the counter values given by
-`FrameClock::get_history_start` and
-`FrameClock::get_frame_counter`, inclusive.
+`FrameClockExt::get_history_start` and
+`FrameClockExt::get_frame_counter`, inclusive.
 
 Feature: `v3_8`
 
@@ -1981,7 +2486,7 @@ Feature: `v3_8`
 the frame counter value for the oldest frame
  that is available in the internal frame history of the
  `FrameClock`.
-<!-- impl FrameClock::fn get_refresh_info -->
+<!-- trait FrameClockExt::fn get_refresh_info -->
 Using the frame history stored in the frame clock, finds the last
 known presentation time and refresh interval, and assuming that
 presentation times are separated by the refresh interval,
@@ -2000,7 +2505,7 @@ a location to store the determined refresh
 a location to store the next
  candidate presentation time after the given base time.
  0 will be will be stored if no history is present.
-<!-- impl FrameClock::fn get_timings -->
+<!-- trait FrameClockExt::fn get_timings -->
 Retrieves a `FrameTimings` object holding timing information
 for the current frame or a recent frame. The `FrameTimings`
 object may not yet be complete: see `FrameTimings::get_complete`.
@@ -2015,16 +2520,16 @@ the frame counter value identifying the frame to
 
 the `FrameTimings` object for the specified
  frame, or `None` if it is not available. See
- `FrameClock::get_history_start`.
-<!-- impl FrameClock::fn request_phase -->
+ `FrameClockExt::get_history_start`.
+<!-- trait FrameClockExt::fn request_phase -->
 Asks the frame clock to run a particular phase. The signal
 corresponding the requested phase will be emitted the next
 time the frame clock processes. Multiple calls to
-`FrameClock::request_phase` will be combined together
+`FrameClockExt::request_phase` will be combined together
 and only one frame processed. If you are displaying animated
 content and want to continually request the
 `FrameClockPhase::Update` phase for a period of time,
-you should use `FrameClock::begin_updating` instead, since
+you should use `FrameClockExt::begin_updating` instead, since
 this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
 
@@ -2035,10 +2540,12 @@ the phase that is requested
 <!-- struct FrameTimings -->
 A `FrameTimings` object holds timing information for a single frame
 of the application’s displays. To retrieve `FrameTimings` objects,
-use `FrameClock::get_timings` or `FrameClock::get_current_timings`.
+use `FrameClockExt::get_timings` or `FrameClockExt::get_current_timings`.
 The information in `FrameTimings` is useful for precise synchronization
 of video with the event or audio streams, and for measuring
 quality metrics for the application’s display, such as latency and jitter.
+
+Feature: `v3_8`
 <!-- impl FrameTimings::fn get_complete -->
 The timing information in a `FrameTimings` is filled in
 incrementally as the frame as drawn and passed off to the
@@ -2070,7 +2577,7 @@ the frame counter value for this frame
 <!-- impl FrameTimings::fn get_frame_time -->
 Returns the frame time for the frame. This is the time value
 that is typically used to time animations for the frame. See
-`FrameClock::get_frame_time`.
+`FrameClockExt::get_frame_time`.
 
 # Returns
 
@@ -2082,7 +2589,7 @@ no predicted time may be available, if one is available, it will
 be available while the frame is being generated, in contrast to
 `FrameTimings::get_presentation_time`, which is only available
 after the frame has been presented. In general, if you are simply
-animating, you should use `FrameClock::get_frame_time` rather
+animating, you should use `FrameClockExt::get_frame_time` rather
 than this function, but this function is useful for applications
 that want exact control over latency. For example, a movie player
 may want this information for Audio/Video synchronization.
@@ -2150,7 +2657,7 @@ Feature: `v3_8`
 OpenGL drawing context.
 
 ``GdkGLContexts`` are created for a `Window` using
-`Window::create_gl_context`, and the context will match
+`WindowExt::create_gl_context`, and the context will match
 the `Visual` of the window.
 
 A `GLContext` is not tied to any particular normal framebuffer.
@@ -2172,11 +2679,11 @@ In order to create a new `GLContext` instance you need a
 `Window`, which you typically get during the realize call
 of a widget.
 
-A `GLContext` is not realized until either `GLContext::make_current`,
-or until it is realized using `GLContext::realize`. It is possible to
+A `GLContext` is not realized until either `GLContextExt::make_current`,
+or until it is realized using `GLContextExt::realize`. It is possible to
 specify details of the GL context like the OpenGL version to be used, or
 whether the GL context should have extra state validation enabled after
-calling `Window::create_gl_context` by calling `GLContext::realize`.
+calling `WindowExt::create_gl_context` by calling `GLContextExt::realize`.
 If the realization fails you have the option to change the settings of the
 `GLContext` and try again.
 
@@ -2200,11 +2707,23 @@ You can check which `GLContext` is the current one by using
 that is currently set by calling `GLContext::clear_current`.
 
 Feature: `v3_16`
+
+# Implements
+
+[`GLContextExt`](trait.GLContextExt.html)
+<!-- trait GLContextExt -->
+Trait containing all `GLContext` methods.
+
+Feature: `v3_16`
+
+# Implementors
+
+[`GLContext`](struct.GLContext.html)
 <!-- impl GLContext::fn clear_current -->
 Clears the current `GLContext`.
 
 Any OpenGL call after this function returns will be ignored
-until `GLContext::make_current` is called.
+until `GLContextExt::make_current` is called.
 
 Feature: `v3_16`
 
@@ -2217,8 +2736,8 @@ Feature: `v3_16`
 # Returns
 
 the current `GLContext`, or `None`
-<!-- impl GLContext::fn get_debug_enabled -->
-Retrieves the value set using `GLContext::set_debug_enabled`.
+<!-- trait GLContextExt::fn get_debug_enabled -->
+Retrieves the value set using `GLContextExt::set_debug_enabled`.
 
 Feature: `v3_16`
 
@@ -2226,7 +2745,7 @@ Feature: `v3_16`
 # Returns
 
 `true` if debugging is enabled
-<!-- impl GLContext::fn get_display -->
+<!-- trait GLContextExt::fn get_display -->
 Retrieves the `Display` the `self` is created for
 
 Feature: `v3_16`
@@ -2235,8 +2754,8 @@ Feature: `v3_16`
 # Returns
 
 a `Display` or `None`
-<!-- impl GLContext::fn get_forward_compatible -->
-Retrieves the value set using `GLContext::set_forward_compatible`.
+<!-- trait GLContextExt::fn get_forward_compatible -->
+Retrieves the value set using `GLContextExt::set_forward_compatible`.
 
 Feature: `v3_16`
 
@@ -2244,9 +2763,9 @@ Feature: `v3_16`
 # Returns
 
 `true` if the context should be forward compatible
-<!-- impl GLContext::fn get_required_version -->
+<!-- trait GLContextExt::fn get_required_version -->
 Retrieves the major and minor version requested by calling
-`GLContext::set_required_version`.
+`GLContextExt::set_required_version`.
 
 Feature: `v3_16`
 
@@ -2254,7 +2773,7 @@ Feature: `v3_16`
 return location for the major version to request
 ## `minor`
 return location for the minor version to request
-<!-- impl GLContext::fn get_shared_context -->
+<!-- trait GLContextExt::fn get_shared_context -->
 Retrieves the `GLContext` that this `self` share data with.
 
 Feature: `v3_16`
@@ -2263,7 +2782,16 @@ Feature: `v3_16`
 # Returns
 
 a `GLContext` or `None`
-<!-- impl GLContext::fn get_version -->
+<!-- trait GLContextExt::fn get_use_es -->
+Checks whether the `self` is using an OpenGL or OpenGL ES profile.
+
+Feature: `v3_22`
+
+
+# Returns
+
+`true` if the `GLContext` is using an OpenGL ES profile
+<!-- trait GLContextExt::fn get_version -->
 Retrieves the OpenGL version of the `self`.
 
 The `self` must be realized prior to calling this function.
@@ -2274,7 +2802,7 @@ Feature: `v3_16`
 return location for the major version
 ## `minor`
 return location for the minor version
-<!-- impl GLContext::fn get_window -->
+<!-- trait GLContextExt::fn get_window -->
 Retrieves the `Window` used by the `self`.
 
 Feature: `v3_16`
@@ -2283,12 +2811,36 @@ Feature: `v3_16`
 # Returns
 
 a `Window` or `None`
-<!-- impl GLContext::fn make_current -->
+<!-- trait GLContextExt::fn is_legacy -->
+Whether the `GLContext` is in legacy mode or not.
+
+The `GLContext` must be realized before calling this function.
+
+When realizing a GL context, GDK will try to use the OpenGL 3.2 core
+profile; this profile removes all the OpenGL API that was deprecated
+prior to the 3.2 version of the specification. If the realization is
+successful, this function will return `false`.
+
+If the underlying OpenGL implementation does not support core profiles,
+GDK will fall back to a pre-3.2 compatibility profile, and this function
+will return `true`.
+
+You can use the value returned by this function to decide which kind
+of OpenGL API to use, or whether to do extension discovery, or what
+kind of shader programs to load.
+
+Feature: `v3_20`
+
+
+# Returns
+
+`true` if the GL context is in legacy mode
+<!-- trait GLContextExt::fn make_current -->
 Makes the `self` the current one.
 
 Feature: `v3_16`
 
-<!-- impl GLContext::fn realize -->
+<!-- trait GLContextExt::fn realize -->
 Realizes the given `GLContext`.
 
 It is safe to call this function on a realized `GLContext`.
@@ -2299,7 +2851,7 @@ Feature: `v3_16`
 # Returns
 
 `true` if the context is realized
-<!-- impl GLContext::fn set_debug_enabled -->
+<!-- trait GLContextExt::fn set_debug_enabled -->
 Sets whether the `GLContext` should perform extra validations and
 run time checking. This is useful during development, but has
 additional overhead.
@@ -2311,7 +2863,7 @@ Feature: `v3_16`
 
 ## `enabled`
 whether to enable debugging in the context
-<!-- impl GLContext::fn set_forward_compatible -->
+<!-- trait GLContextExt::fn set_forward_compatible -->
 Sets whether the `GLContext` should be forward compatible.
 
 Forward compatibile contexts must not support OpenGL functionality that
@@ -2326,7 +2878,7 @@ Feature: `v3_16`
 
 ## `compatible`
 whether the context should be forward compatible
-<!-- impl GLContext::fn set_required_version -->
+<!-- trait GLContextExt::fn set_required_version -->
 Sets the major and minor version of OpenGL to request.
 
 Setting `major` and `minor` to zero will use the default values.
@@ -2340,6 +2892,25 @@ Feature: `v3_16`
 the major version to request
 ## `minor`
 the minor version to request
+<!-- trait GLContextExt::fn set_use_es -->
+Requests that GDK create a OpenGL ES context instead of an OpenGL one,
+if the platform and windowing system allows it.
+
+The `self` must not have been realized.
+
+By default, GDK will attempt to automatically detect whether the
+underlying GL implementation is OpenGL or OpenGL ES once the `self`
+is realized.
+
+You should check the return value of `GLContextExt::get_use_es` after
+calling `GLContextExt::realize` to decide whether to use the OpenGL or
+OpenGL ES API, extensions, or shaders.
+
+Feature: `v3_22`
+
+## `use_es`
+whether the context should use OpenGL ES instead of OpenGL,
+ or -1 to allow auto-detection
 <!-- enum GLError -->
 Error enumeration for `GLContext`.
 <!-- enum GLError::variant NotAvailable -->
@@ -2351,6 +2922,63 @@ The requested profile is not supported
 
 Feature: `v3_16`
 
+<!-- struct Geometry -->
+The `Geometry` struct gives the window manager information about
+a window’s geometry constraints. Normally you would set these on
+the GTK+ level using `gtk_window_set_geometry_hints`. ``GtkWindow``
+then sets the hints on the `Window` it creates.
+
+`WindowExt::set_geometry_hints` expects the hints to be fully valid already
+and simply passes them to the window manager; in contrast,
+`gtk_window_set_geometry_hints` performs some interpretation. For example,
+``GtkWindow`` will apply the hints to the geometry widget instead of the
+toplevel window, if you set a geometry widget. Also, the
+`min_width`/`min_height`/`max_width`/`max_height` fields may be set to -1, and
+``GtkWindow`` will substitute the size request of the window or geometry widget.
+If the minimum size hint is not provided, ``GtkWindow`` will use its requisition
+as the minimum size. If the minimum size is provided and a geometry widget is
+set, ``GtkWindow`` will take the minimum size as the minimum size of the
+geometry widget rather than the entire window. The base size is treated
+similarly.
+
+The canonical use-case for `gtk_window_set_geometry_hints` is to get a
+terminal widget to resize properly. Here, the terminal text area should be
+the geometry widget; ``GtkWindow`` will then automatically set the base size to
+the size of other widgets in the terminal window, such as the menubar and
+scrollbar. Then, the `width_inc` and `height_inc` fields should be set to the
+size of one character in the terminal. Finally, the base size should be set
+to the size of one character. The net effect is that the minimum size of the
+terminal will have a 1x1 character terminal area, and only terminal sizes on
+the “character grid” will be allowed.
+
+Here’s an example of how the terminal example would be implemented, assuming
+a terminal area widget called “terminal” and a toplevel window “toplevel”:
+
+
+```C
+    GdkGeometry hints;
+
+    hints.base_width = terminal->char_width;
+        hints.base_height = terminal->char_height;
+        hints.min_width = terminal->char_width;
+        hints.min_height = terminal->char_height;
+        hints.width_inc = terminal->char_width;
+        hints.height_inc = terminal->char_height;
+
+ gtk_window_set_geometry_hints (GTK_WINDOW (toplevel),
+                                GTK_WIDGET (terminal),
+                                &hints,
+                                GDK_HINT_RESIZE_INC |
+                                GDK_HINT_MIN_SIZE |
+                                GDK_HINT_BASE_SIZE);
+```
+
+The other useful fields are the `min_aspect` and `max_aspect` fields; these
+contain a width/height ratio as a floating point number. If a geometry widget
+is set, the aspect applies to the geometry widget rather than the entire
+window. The most common use of these hints is probably to set `min_aspect` and
+`max_aspect` to the same value, thus forcing the window to keep a constant
+aspect ratio.
 <!-- enum GrabOwnership -->
 Defines how device grabs interact with other devices.
 <!-- enum GrabOwnership::variant None -->
@@ -2360,7 +2988,7 @@ Other devices’ events are blocked for the grab window.
 <!-- enum GrabOwnership::variant Application -->
 Other devices’ events are blocked for the whole application.
 <!-- enum GrabStatus -->
-Returned by `Device::grab`, `gdk_pointer_grab` and `gdk_keyboard_grab` to
+Returned by `DeviceExt::grab`, `gdk_pointer_grab` and `gdk_keyboard_grab` to
 indicate success or the reason for the failure of the grab attempt.
 <!-- enum GrabStatus::variant Success -->
 the resource was successfully grabbed.
@@ -2375,7 +3003,7 @@ the grab window or the `confine_to` window are not
 <!-- enum GrabStatus::variant Frozen -->
 the resource is frozen by an active grab of another client.
 <!-- enum GrabStatus::variant Failed -->
-the grab failed for some other reason.
+the grab failed for some other reason. Since 3.16
 <!-- enum Gravity -->
 Defines the reference point of a window and the meaning of coordinates
 passed to `gtk_window_move`. See `gtk_window_move` and the "implementation
@@ -2435,6 +3063,13 @@ the device is a direct-input touch device, such
 <!-- enum InputSource::variant Touchpad -->
 the device is an indirect touch device, such
  as a touchpad. This device type has been added in 3.4.
+<!-- enum InputSource::variant Trackpoint -->
+the device is a trackpoint. This device type has been
+ added in 3.22
+<!-- enum InputSource::variant TabletPad -->
+the device is a "pad", a collection of buttons,
+ rings and strips found in drawing tablets. This device type has been
+ added in 3.22.
 <!-- enum ModifierIntent -->
 This enum is used with `Keymap::get_modifier_mask`
 in order to determine what modifiers the
@@ -2463,6 +3098,149 @@ when any of these modifiers is pressed, the
 <!-- enum ModifierIntent::variant ShiftGroup -->
 the modifier that switches between keyboard
  groups (AltGr on X11/Windows and Option/Alt on OS X).
+<!-- enum ModifierIntent::variant DefaultModMask -->
+The set of modifier masks accepted
+as modifiers in accelerators. Needed because Command is mapped to MOD2 on
+OSX, which is widely used, but on X11 MOD2 is NumLock and using that for a
+mod key is problematic at best.
+Ref: https://bugzilla.gnome.org/show_bug.cgi?id=736125.
+<!-- struct Monitor -->
+`Monitor` objects represent the individual outputs that are
+associated with a `Display`. `Display` has APIs to enumerate
+monitors with `gdk_display_get_monitors` and to find particular
+monitors with `DisplayExt::get_primary_monitor` or
+`DisplayExt::get_monitor_at_window`.
+
+`Monitor` was introduced in GTK+ 3.22 and supersedes earlier
+APIs in `Screen` to obtain monitor-related information.
+
+Feature: `v3_22`
+
+# Implements
+
+[`MonitorExt`](trait.MonitorExt.html)
+<!-- trait MonitorExt -->
+Trait containing all `Monitor` methods.
+
+Feature: `v3_22`
+
+# Implementors
+
+[`Monitor`](struct.Monitor.html)
+<!-- trait MonitorExt::fn get_display -->
+Gets the display that this monitor belongs to.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the display
+<!-- trait MonitorExt::fn get_geometry -->
+Retrieves the size and position of an individual monitor within the
+display coordinate space. The returned geometry is in ”application pixels”,
+not in ”device pixels” (see `MonitorExt::get_scale_factor`).
+
+Feature: `v3_22`
+
+## `geometry`
+a `Rectangle` to be filled wiht the monitor geometry
+<!-- trait MonitorExt::fn get_height_mm -->
+Gets the height in millimeters of the monitor.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the physical height of the monitor
+<!-- trait MonitorExt::fn get_manufacturer -->
+Gets the name of the monitor's manufacturer, if available.
+
+# Returns
+
+the name of the manufacturer, or `None`
+<!-- trait MonitorExt::fn get_model -->
+Gets the a string identifying the monitor model, if available.
+
+# Returns
+
+the monitor model, or `None`
+<!-- trait MonitorExt::fn get_refresh_rate -->
+Gets the refresh rate of the monitor, if available.
+
+The value is in milli-Hertz, so a refresh rate of 60Hz
+is returned as 60000.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the refresh rate in milli-Hertz, or 0
+<!-- trait MonitorExt::fn get_scale_factor -->
+Gets the internal scale factor that maps from monitor coordinates
+to the actual device pixels. On traditional systems this is 1, but
+on very high density outputs this can be a higher value (often 2).
+
+This can be used if you want to create pixel based data for a
+particular monitor, but most of the time you’re drawing to a window
+where it is better to use `WindowExt::get_scale_factor` instead.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the scale factor
+<!-- trait MonitorExt::fn get_subpixel_layout -->
+Gets information about the layout of red, green and blue
+primaries for each pixel in this monitor, if available.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the subpixel layout
+<!-- trait MonitorExt::fn get_width_mm -->
+Gets the width in millimeters of the monitor.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the physical width of the monitor
+<!-- trait MonitorExt::fn get_workarea -->
+Retrieves the size and position of the “work area” on a monitor
+within the display coordinate space. The returned geometry is in
+”application pixels”, not in ”device pixels” (see
+`MonitorExt::get_scale_factor`).
+
+The work area should be considered when positioning menus and
+similar popups, to avoid placing them below panels, docks or other
+desktop components.
+
+Note that not all backends may have a concept of workarea. This
+function will return the monitor geometry if a workarea is not
+available, or does not apply.
+
+Feature: `v3_22`
+
+## `workarea`
+a `Rectangle` to be filled with
+ the monitor workarea
+<!-- trait MonitorExt::fn is_primary -->
+Gets whether this monitor should be considered primary
+(see `DisplayExt::get_primary_monitor`).
+
+Feature: `v3_22`
+
+
+# Returns
+
+`true` if `self` is primary
 <!-- enum NotifyType -->
 Specifies the kind of crossing for `EventCrossing`.
 
@@ -2495,33 +3273,146 @@ some other app claimed the ownership
 the window was destroyed
 <!-- enum OwnerChange::variant Close -->
 the client was closed
-<!-- enum PropMode -->
-Describes how existing data is combined with new data when
-using `gdk_property_change`.
-<!-- enum PropMode::variant Replace -->
-the new data replaces the existing data.
-<!-- enum PropMode::variant Prepend -->
-the new data is prepended to the existing data.
-<!-- enum PropMode::variant Append -->
-the new data is appended to the existing data.
 <!-- enum PropertyState -->
 Specifies the type of a property change for a `EventProperty`.
 <!-- enum PropertyState::variant NewValue -->
 the property value was changed.
 <!-- enum PropertyState::variant Delete -->
 the property was deleted.
+<!-- struct RGBA -->
+A `RGBA` is used to represent a (possibly translucent)
+color, in a way that is compatible with cairos notion of color.
+<!-- impl RGBA::fn copy -->
+Makes a copy of a `RGBA`.
+
+The result must be freed through `RGBA::free`.
+
+# Returns
+
+A newly allocated `RGBA`, with the same contents as `self`
+<!-- impl RGBA::fn equal -->
+Compares two RGBA colors.
+## `p2`
+another `RGBA` pointer
+
+# Returns
+
+`true` if the two colors compare equal
+<!-- impl RGBA::fn free -->
+Frees a `RGBA` created with `RGBA::copy`
+<!-- impl RGBA::fn hash -->
+A hash function suitable for using for a hash
+table that stores ``GdkRGBAs``.
+
+# Returns
+
+The hash value for `self`
+<!-- impl RGBA::fn parse -->
+Parses a textual representation of a color, filling in
+the `red`, `green`, `blue` and `alpha` fields of the `self` `RGBA`.
+
+The string can be either one of:
+- A standard name (Taken from the X11 rgb.txt file).
+- A hexadecimal value in the form “\#rgb”, “\#rrggbb”,
+ “\#rrrgggbbb” or ”\#rrrrggggbbbb”
+- A RGB color in the form “rgb(r,g,b)” (In this case the color will
+ have full opacity)
+- A RGBA color in the form “rgba(r,g,b,a)”
+
+Where “r”, “g”, “b” and “a” are respectively the red, green, blue and
+alpha color values. In the last two cases, r g and b are either integers
+in the range 0 to 255 or precentage values in the range 0% to 100%, and
+a is a floating point value in the range 0 to 1.
+## `spec`
+the string specifying the color
+
+# Returns
+
+`true` if the parsing succeeded
+<!-- impl RGBA::fn to_string -->
+Returns a textual specification of `self` in the form
+`rgb (r, g, b)` or
+`rgba (r, g, b, a)`,
+where “r”, “g”, “b” and “a” represent the red, green,
+blue and alpha values respectively. r, g, and b are
+represented as integers in the range 0 to 255, and a
+is represented as floating point value in the range 0 to 1.
+
+These string forms are string forms those supported by
+the CSS3 colors module, and can be parsed by `RGBA::parse`.
+
+Note that this string representation may lose some
+precision, since r, g and b are represented as 8-bit
+integers. If this is a concern, you should use a
+different representation.
+
+# Returns
+
+A newly allocated text string
+<!-- struct Rectangle -->
+Defines the position and size of a rectangle. It is identical to
+`cairo::RectangleInt`.
+<!-- impl Rectangle::fn equal -->
+Checks if the two given rectangles are equal.
+
+Feature: `v3_20`
+
+## `rect2`
+a `Rectangle`
+
+# Returns
+
+`true` if the rectangles are equal.
+<!-- impl Rectangle::fn intersect -->
+Calculates the intersection of two rectangles. It is allowed for
+`dest` to be the same as either `self` or `src2`. If the rectangles
+do not intersect, `dest`’s width and height is set to 0 and its x
+and y values are undefined. If you are only interested in whether
+the rectangles intersect, but not in the intersecting area itself,
+pass `None` for `dest`.
+## `src2`
+a `Rectangle`
+## `dest`
+return location for the
+intersection of `self` and `src2`, or `None`
+
+# Returns
+
+`true` if the rectangles intersect.
+<!-- impl Rectangle::fn union -->
+Calculates the union of two rectangles.
+The union of rectangles `self` and `src2` is the smallest rectangle which
+includes both `self` and `src2` within it.
+It is allowed for `dest` to be the same as either `self` or `src2`.
+
+Note that this function does not ignore 'empty' rectangles (ie. with
+zero width or height).
+## `src2`
+a `Rectangle`
+## `dest`
+return location for the union of `self` and `src2`
 <!-- struct Screen -->
 `Screen` objects are the GDK representation of the screen on
 which windows can be displayed and on which the pointer moves.
 X originally identified screens with physical screens, but
 nowadays it is more common to have a single `Screen` which
-combines several physical monitors (see `Screen::get_n_monitors`).
+combines several physical monitors (see `ScreenExt::get_n_monitors`).
 
 `Screen` is used throughout GDK and GTK+ to specify which screen
 the top level windows are to be displayed on. it is also used to
 query the screen specification and default settings such as
-the default visual (`Screen::get_system_visual`), the dimensions
-of the physical monitors (`Screen::get_monitor_geometry`), etc.
+the default visual (`ScreenExt::get_system_visual`), the dimensions
+of the physical monitors (`ScreenExt::get_monitor_geometry`), etc.
+
+# Implements
+
+[`ScreenExt`](trait.ScreenExt.html)
+<!-- trait ScreenExt -->
+Trait containing all `Screen` methods.
+
+# Implementors
+
+[`Screen`](struct.Screen.html)
 <!-- impl Screen::fn get_default -->
 Gets the default screen for the default display. (See
 gdk_display_get_default ()).
@@ -2531,7 +3422,13 @@ gdk_display_get_default ()).
 a `Screen`, or `None` if
  there is no default display.
 <!-- impl Screen::fn height -->
-Returns the height of the default screen in pixels.
+Gets the height of the default screen in pixels. The returned
+size is in ”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
+
+# Deprecated since 3.22
+
+Use per-monitor information
 
 # Returns
 
@@ -2540,12 +3437,22 @@ the height of the default screen in pixels.
 Returns the height of the default screen in millimeters.
 Note that on many X servers this value will not be correct.
 
+# Deprecated since 3.22
+
+Use per-monitor information
+
 # Returns
 
 the height of the default screen in millimeters,
 though it is not always correct.
 <!-- impl Screen::fn width -->
-Returns the width of the default screen in pixels.
+Gets the width of the default screen in pixels. The returned
+size is in ”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
+
+# Deprecated since 3.22
+
+Use per-monitor information
 
 # Returns
 
@@ -2554,11 +3461,15 @@ the width of the default screen in pixels.
 Returns the width of the default screen in millimeters.
 Note that on many X servers this value will not be correct.
 
+# Deprecated since 3.22
+
+Use per-monitor information
+
 # Returns
 
 the width of the default screen in millimeters,
 though it is not always correct.
-<!-- impl Screen::fn get_active_window -->
+<!-- trait ScreenExt::fn get_active_window -->
 Returns the screen’s currently active window.
 
 On X11, this is done by inspecting the _NET_ACTIVE_WINDOW property
@@ -2574,38 +3485,58 @@ it is implementable on that platform.
 The returned window should be unrefed using `gobject::Object::unref` when
 no longer needed.
 
+# Deprecated since 3.22
+
+
 # Returns
 
 the currently active window,
  or `None`.
-<!-- impl Screen::fn get_display -->
+<!-- trait ScreenExt::fn get_display -->
 Gets the display to which the `self` belongs.
 
 # Returns
 
 the display to which `self` belongs
-<!-- impl Screen::fn get_font_options -->
-Gets any options previously set with `Screen::set_font_options`.
+<!-- trait ScreenExt::fn get_font_options -->
+Gets any options previously set with `ScreenExt::set_font_options`.
 
 # Returns
 
 the current font options, or `None` if no
  default font options have been set.
-<!-- impl Screen::fn get_height -->
-Gets the height of `self` in pixels
+<!-- trait ScreenExt::fn get_height -->
+Gets the height of `self` in pixels. The returned size is in
+”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
+
+# Deprecated since 3.22
+
+Use per-monitor information instead
 
 # Returns
 
 the height of `self` in pixels.
-<!-- impl Screen::fn get_height_mm -->
+<!-- trait ScreenExt::fn get_height_mm -->
 Returns the height of `self` in millimeters.
-Note that on some X servers this value will not be correct.
+
+Note that this value is somewhat ill-defined when the screen
+has multiple monitors of different resolution. It is recommended
+to use the monitor dimensions instead.
+
+# Deprecated since 3.22
+
+Use per-monitor information instead
 
 # Returns
 
 the heigth of `self` in millimeters.
-<!-- impl Screen::fn get_monitor_at_point -->
+<!-- trait ScreenExt::fn get_monitor_at_point -->
 Returns the monitor number in which the point (`x`,`y`) is located.
+
+# Deprecated since 3.22
+
+Use `DisplayExt::get_monitor_at_point` instead
 ## `x`
 the x coordinate in the virtual screen.
 ## `y`
@@ -2615,9 +3546,13 @@ the y coordinate in the virtual screen.
 
 the monitor number in which the point (`x`,`y`) lies, or
  a monitor close to (`x`,`y`) if the point is not in any monitor.
-<!-- impl Screen::fn get_monitor_at_window -->
+<!-- trait ScreenExt::fn get_monitor_at_window -->
 Returns the number of the monitor in which the largest area of the
 bounding rectangle of `window` resides.
+
+# Deprecated since 3.22
+
+Use `DisplayExt::get_monitor_at_window` instead
 ## `window`
 a `Window`
 
@@ -2626,32 +3561,46 @@ a `Window`
 the monitor number in which most of `window` is located,
  or if `window` does not intersect any monitors, a monitor,
  close to `window`.
-<!-- impl Screen::fn get_monitor_geometry -->
+<!-- trait ScreenExt::fn get_monitor_geometry -->
 Retrieves the `Rectangle` representing the size and position of
-the individual monitor within the entire screen area.
+the individual monitor within the entire screen area. The returned
+geometry is in ”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
 
 Monitor numbers start at 0. To obtain the number of monitors of
-`self`, use `Screen::get_n_monitors`.
+`self`, use `ScreenExt::get_n_monitors`.
 
 Note that the size of the entire screen area can be retrieved via
-`Screen::get_width` and `Screen::get_height`.
+`ScreenExt::get_width` and `ScreenExt::get_height`.
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_geometry` instead
 ## `monitor_num`
 the monitor number
 ## `dest`
 a `Rectangle` to be filled with
  the monitor geometry
-<!-- impl Screen::fn get_monitor_height_mm -->
+<!-- trait ScreenExt::fn get_monitor_height_mm -->
 Gets the height in millimeters of the specified monitor.
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_height_mm` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
 # Returns
 
 the height of the monitor, or -1 if not available
-<!-- impl Screen::fn get_monitor_plug_name -->
+<!-- trait ScreenExt::fn get_monitor_plug_name -->
 Returns the output name of the specified monitor.
 Usually something like VGA, DVI, or TV, not the actual
 product name of the display device.
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_model` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -2659,34 +3608,44 @@ number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
 a newly-allocated string containing the name
  of the monitor, or `None` if the name cannot be determined
-<!-- impl Screen::fn get_monitor_scale_factor -->
-Returns the internal scale factor that maps from monitor coordiantes
+<!-- trait ScreenExt::fn get_monitor_scale_factor -->
+Returns the internal scale factor that maps from monitor coordinates
 to the actual device pixels. On traditional systems this is 1, but
 on very high density outputs this can be a higher value (often 2).
 
 This can be used if you want to create pixel based data for a
-particula monitor, but most of the time you’re drawing to a window
-where it is better to use `Window::get_scale_factor` instead.
+particular monitor, but most of the time you’re drawing to a window
+where it is better to use `WindowExt::get_scale_factor` instead.
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_scale_factor` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
 # Returns
 
 the scale factor
-<!-- impl Screen::fn get_monitor_width_mm -->
+<!-- trait ScreenExt::fn get_monitor_width_mm -->
 Gets the width in millimeters of the specified monitor, if available.
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_width_mm` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
 # Returns
 
 the width of the monitor, or -1 if not available
-<!-- impl Screen::fn get_monitor_workarea -->
+<!-- trait ScreenExt::fn get_monitor_workarea -->
 Retrieves the `Rectangle` representing the size and position of
-the “work area” on a monitor within the entire screen area.
+the “work area” on a monitor within the entire screen area. The returned
+geometry is in ”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
 
 The work area should be considered when positioning menus and
 similar popups, to avoid placing them below panels, docks or other
@@ -2697,26 +3656,37 @@ function will return the monitor geometry if a workarea is not
 available, or does not apply.
 
 Monitor numbers start at 0. To obtain the number of monitors of
-`self`, use `Screen::get_n_monitors`.
+`self`, use `ScreenExt::get_n_monitors`.
+
+# Deprecated since 3.22
+
+Use `MonitorExt::get_workarea` instead
 ## `monitor_num`
 the monitor number
 ## `dest`
 a `Rectangle` to be filled with
  the monitor workarea
-<!-- impl Screen::fn get_n_monitors -->
+<!-- trait ScreenExt::fn get_n_monitors -->
 Returns the number of monitors which `self` consists of.
+
+# Deprecated since 3.22
+
+Use `DisplayExt::get_n_monitors` instead
 
 # Returns
 
 number of monitors which `self` consists of
-<!-- impl Screen::fn get_number -->
+<!-- trait ScreenExt::fn get_number -->
 Gets the index of `self` among the screens in the display
-to which it belongs. (See `Screen::get_display`)
+to which it belongs. (See `ScreenExt::get_display`)
+
+# Deprecated since 3.22
+
 
 # Returns
 
 the index
-<!-- impl Screen::fn get_primary_monitor -->
+<!-- trait ScreenExt::fn get_primary_monitor -->
 Gets the primary monitor for `self`. The primary monitor
 is considered the monitor where the “main desktop” lives.
 While normal application windows typically allow the window
@@ -2726,18 +3696,22 @@ such as panels should place themselves on the primary monitor.
 If no primary monitor is configured by the user, the return value
 will be 0, defaulting to the first monitor.
 
+# Deprecated since 3.22
+
+Use `DisplayExt::get_primary_monitor` instead
+
 # Returns
 
 An integer index for the primary monitor, or 0 if none is configured.
-<!-- impl Screen::fn get_resolution -->
+<!-- trait ScreenExt::fn get_resolution -->
 Gets the resolution for font handling on the screen; see
-`Screen::set_resolution` for full details.
+`ScreenExt::set_resolution` for full details.
 
 # Returns
 
 the current resolution, or -1 if no resolution
 has been set.
-<!-- impl Screen::fn get_rgba_visual -->
+<!-- trait ScreenExt::fn get_rgba_visual -->
 Gets a visual to use for creating windows with an alpha channel.
 The windowing system on which GTK+ is running
 may not support this capability, in which case `None` will
@@ -2750,20 +3724,20 @@ must be running to provide appropriate display.
 This functionality is not implemented in the Windows backend.
 
 For setting an overall opacity for a top-level window, see
-`Window::set_opacity`.
+`WindowExt::set_opacity`.
 
 # Returns
 
 a visual to use for windows
  with an alpha channel or `None` if the capability is not
  available.
-<!-- impl Screen::fn get_root_window -->
+<!-- trait ScreenExt::fn get_root_window -->
 Gets the root window of `self`.
 
 # Returns
 
 the root window
-<!-- impl Screen::fn get_setting -->
+<!-- trait ScreenExt::fn get_setting -->
 Retrieves a desktop-wide setting such as double-click time
 for the `Screen` `self`.
 
@@ -2778,7 +3752,7 @@ location to store the value of the setting
 
 `true` if the setting existed and a value was stored
  in `value`, `false` otherwise.
-<!-- impl Screen::fn get_system_visual -->
+<!-- trait ScreenExt::fn get_system_visual -->
 Get the system’s default visual for `self`.
 This is the visual for the root window of the display.
 The return value should not be freed.
@@ -2786,7 +3760,7 @@ The return value should not be freed.
 # Returns
 
 the system visual
-<!-- impl Screen::fn get_toplevel_windows -->
+<!-- trait ScreenExt::fn get_toplevel_windows -->
 Obtains a list of all toplevel windows known to GDK on the screen `self`.
 A toplevel window is a child of the root window (see
 `gdk_get_default_root_window`).
@@ -2798,20 +3772,33 @@ its elements need not be freed.
 
 
  list of toplevel windows, free with `glib::List::free`
-<!-- impl Screen::fn get_width -->
-Gets the width of `self` in pixels
+<!-- trait ScreenExt::fn get_width -->
+Gets the width of `self` in pixels. The returned size is in
+”application pixels”, not in ”device pixels” (see
+`ScreenExt::get_monitor_scale_factor`).
+
+# Deprecated since 3.22
+
+Use per-monitor information instead
 
 # Returns
 
 the width of `self` in pixels.
-<!-- impl Screen::fn get_width_mm -->
+<!-- trait ScreenExt::fn get_width_mm -->
 Gets the width of `self` in millimeters.
-Note that on some X servers this value will not be correct.
+
+Note that this value is somewhat ill-defined when the screen
+has multiple monitors of different resolution. It is recommended
+to use the monitor dimensions instead.
+
+# Deprecated since 3.22
+
+Use per-monitor information instead
 
 # Returns
 
 the width of `self` in millimeters.
-<!-- impl Screen::fn get_window_stack -->
+<!-- trait ScreenExt::fn get_window_stack -->
 Returns a `glib::List` of ``GdkWindows`` representing the current
 window stack.
 
@@ -2832,7 +3819,7 @@ its windows unrefed using `gobject::Object::unref` when no longer needed.
 
 a
  list of ``GdkWindows`` for the current window stack, or `None`.
-<!-- impl Screen::fn is_composited -->
+<!-- trait ScreenExt::fn is_composited -->
 Returns whether windows with an RGBA visual can reasonably
 be expected to have their alpha channel drawn correctly on
 the screen.
@@ -2844,7 +3831,7 @@ compositing `self`.
 
 Whether windows with RGBA visuals can reasonably be
 expected to have their alpha channels drawn correctly on the screen.
-<!-- impl Screen::fn list_visuals -->
+<!-- trait ScreenExt::fn list_visuals -->
 Lists the available visuals for the specified `self`.
 A visual describes a hardware image data format.
 For example, a visual might support 24-bit color, or 8-bit color,
@@ -2856,14 +3843,17 @@ Call `glib::List::free` on the return value when you’re finished with it.
 
 
  a list of visuals; the list must be freed, but not its contents
-<!-- impl Screen::fn make_display_name -->
+<!-- trait ScreenExt::fn make_display_name -->
 Determines the name to pass to `Display::open` to get
 a `Display` with this screen as the default screen.
+
+# Deprecated since 3.22
+
 
 # Returns
 
 a newly allocated string, free with `g_free`
-<!-- impl Screen::fn set_font_options -->
+<!-- trait ScreenExt::fn set_font_options -->
 Sets the default font options for the screen. These
 options will be set on any `pango::Context`’s newly created
 with `gdk_pango_context_get_for_screen`. Changing the
@@ -2872,7 +3862,7 @@ have already been created.
 ## `options`
 a `cairo::FontOptions`, or `None` to unset any
  previously set default font options.
-<!-- impl Screen::fn set_resolution -->
+<!-- trait ScreenExt::fn set_resolution -->
 Sets the resolution for font handling on the screen. This is a
 scale factor between points specified in a `pango::FontDescription`
 and cairo units. The default value is 96, meaning that a 10 point
@@ -2893,6 +3883,134 @@ the window is scrolled to the right.
 <!-- enum ScrollDirection::variant Smooth -->
 the scrolling is determined by the delta values
  in `EventScroll`. See `gdk_event_get_scroll_deltas`. Since: 3.4
+<!-- struct Seat -->
+The `Seat` object represents a collection of input devices
+that belong to a user.
+
+Feature: `v3_20`
+
+# Implements
+
+[`SeatExt`](trait.SeatExt.html)
+<!-- trait SeatExt -->
+Trait containing all `Seat` methods.
+
+Feature: `v3_20`
+
+# Implementors
+
+[`Seat`](struct.Seat.html)
+<!-- trait SeatExt::fn get_capabilities -->
+Returns the capabilities this `Seat` currently has.
+
+Feature: `v3_20`
+
+
+# Returns
+
+the seat capabilities
+<!-- trait SeatExt::fn get_display -->
+Returns the `Display` this seat belongs to.
+
+# Returns
+
+a `Display`. This object is owned by GTK+
+ and must not be freed.
+<!-- trait SeatExt::fn get_keyboard -->
+Returns the master device that routes keyboard events.
+
+Feature: `v3_20`
+
+
+# Returns
+
+a master `Device` with keyboard
+ capabilities. This object is owned by GTK+ and must not be freed.
+<!-- trait SeatExt::fn get_pointer -->
+Returns the master device that routes pointer events.
+
+Feature: `v3_20`
+
+
+# Returns
+
+a master `Device` with pointer
+ capabilities. This object is owned by GTK+ and must not be freed.
+<!-- trait SeatExt::fn get_slaves -->
+Returns the slave devices that match the given capabilities.
+
+Feature: `v3_20`
+
+## `capabilities`
+capabilities to get devices for
+
+# Returns
+
+A list of ``GdkDevices``.
+ The list must be freed with `glib::List::free`, the elements are owned
+ by GDK and must not be freed.
+<!-- trait SeatExt::fn grab -->
+Grabs the seat so that all events corresponding to the given `capabilities`
+are passed to this application until the seat is ungrabbed with `SeatExt::ungrab`,
+or the window becomes hidden. This overrides any previous grab on the
+seat by this client.
+
+As a rule of thumb, if a grab is desired over `SeatCapabilities::Pointer`,
+all other "pointing" capabilities (eg. `SeatCapabilities::Touch`) should
+be grabbed too, so the user is able to interact with all of those while
+the grab holds, you should thus use `SeatCapabilities::AllPointing` most
+commonly.
+
+Grabs are used for operations which need complete control over the
+events corresponding to the given capabilities. For example in GTK+ this
+is used for Drag and Drop operations, popup menus and such.
+
+Note that if the event mask of a `Window` has selected both button press
+and button release events, or touch begin and touch end, then a press event
+will cause an automatic grab until the button is released, equivalent to a
+grab on the window with `owner_events` set to `true`. This is done because most
+applications expect to receive paired press and release events.
+
+If you set up anything at the time you take the grab that needs to be
+cleaned up when the grab ends, you should handle the `EventGrabBroken`
+events that are emitted when the grab ends unvoluntarily.
+
+Feature: `v3_20`
+
+## `window`
+the `Window` which will own the grab
+## `capabilities`
+capabilities that will be grabbed
+## `owner_events`
+if `false` then all device events are reported with respect to
+ `window` and are only reported if selected by `event_mask`. If
+ `true` then pointer events for this application are reported
+ as normal, but pointer events outside this application are
+ reported with respect to `window` and only if selected by
+ `event_mask`. In either mode, unreported events are discarded.
+## `cursor`
+the cursor to display while the grab is active. If
+ this is `None` then the normal cursors are used for
+ `window` and its descendants, and the cursor for `window` is used
+ elsewhere.
+## `event`
+the event that is triggering the grab, or `None` if none
+ is available.
+## `prepare_func`
+function to
+ prepare the window to be grabbed, it can be `None` if `window` is
+ visible before this call.
+## `prepare_func_data`
+user data to pass to `prepare_func`
+
+# Returns
+
+`GrabStatus::Success` if the grab was successful.
+<!-- trait SeatExt::fn ungrab -->
+Releases a grab added through `SeatExt::grab`.
+
+Feature: `v3_20`
+
 <!-- enum SettingAction -->
 Specifies the kind of modification applied to a setting in a
 `EventSetting`.
@@ -2902,7 +4020,24 @@ a setting was added.
 a setting was changed.
 <!-- enum SettingAction::variant Deleted -->
 a setting was deleted.
-<!-- enum Status -->
+<!-- enum SubpixelLayout -->
+This enumeration describes how the red, green and blue components
+of physical pixels on an output device are laid out.
+<!-- enum SubpixelLayout::variant Unknown -->
+The layout is not known
+<!-- enum SubpixelLayout::variant None -->
+Not organized in this way
+<!-- enum SubpixelLayout::variant HorizontalRgb -->
+The layout is horizontal, the order is RGB
+<!-- enum SubpixelLayout::variant HorizontalBgr -->
+The layout is horizontal, the order is BGR
+<!-- enum SubpixelLayout::variant VerticalRgb -->
+The layout is vertical, the order is RGB
+<!-- enum SubpixelLayout::variant VerticalBgr -->
+The layout is vertical, the order is BGR
+
+Feature: `v3_22`
+
 <!-- enum VisibilityState -->
 Specifies the visiblity status of a window for a `EventVisibility`.
 <!-- enum VisibilityState::variant Unobscured -->
@@ -2914,6 +4049,16 @@ the window is not visible at all.
 <!-- struct Visual -->
 A `Visual` contains information about
 a particular visual.
+
+# Implements
+
+[`VisualExt`](trait.VisualExt.html)
+<!-- trait VisualExt -->
+Trait containing all `Visual` methods.
+
+# Implementors
+
+[`Visual`](struct.Visual.html)
 <!-- impl Visual::fn get_best -->
 Get the visual with the most available colors for the default
 GDK screen. The return value should not be freed.
@@ -2977,13 +4122,20 @@ The return value should not be freed.
 # Returns
 
 system visual
-<!-- impl Visual::fn get_bits_per_rgb -->
+<!-- trait VisualExt::fn get_bits_per_rgb -->
 Returns the number of significant bits per red, green and blue value.
+
+Not all GDK backend provide a meaningful value for this function.
+
+# Deprecated since 3.22
+
+Use `VisualExt::get_red_pixel_details` and its variants to
+ learn about the pixel layout of TrueColor and DirectColor visuals
 
 # Returns
 
 The number of significant bits per color value for `self`.
-<!-- impl Visual::fn get_blue_pixel_details -->
+<!-- trait VisualExt::fn get_blue_pixel_details -->
 Obtains values that are needed to calculate blue pixel values in TrueColor
 and DirectColor. The “mask” is the significant bits within the pixel.
 The “shift” is the number of bits left we must shift a primary for it
@@ -2995,25 +4147,40 @@ A pointer to a `guint32` to be filled in, or `None`
 A pointer to a `gint` to be filled in, or `None`
 ## `precision`
 A pointer to a `gint` to be filled in, or `None`
-<!-- impl Visual::fn get_byte_order -->
+<!-- trait VisualExt::fn get_byte_order -->
 Returns the byte order of this visual.
+
+The information returned by this function is only relevant
+when working with XImages, and not all backends return
+meaningful information for this.
+
+# Deprecated since 3.22
+
+This information is not useful
 
 # Returns
 
 A `ByteOrder` stating the byte order of `self`.
-<!-- impl Visual::fn get_colormap_size -->
+<!-- trait VisualExt::fn get_colormap_size -->
 Returns the size of a colormap for this visual.
+
+You have to use platform-specific APIs to manipulate colormaps.
+
+# Deprecated since 3.22
+
+This information is not useful, since GDK does not
+ provide APIs to operate on colormaps.
 
 # Returns
 
 The size of a colormap that is suitable for `self`.
-<!-- impl Visual::fn get_depth -->
+<!-- trait VisualExt::fn get_depth -->
 Returns the bit depth of this visual.
 
 # Returns
 
 The bit depth of this visual.
-<!-- impl Visual::fn get_green_pixel_details -->
+<!-- trait VisualExt::fn get_green_pixel_details -->
 Obtains values that are needed to calculate green pixel values in TrueColor
 and DirectColor. The “mask” is the significant bits within the pixel.
 The “shift” is the number of bits left we must shift a primary for it
@@ -3025,7 +4192,7 @@ A pointer to a `guint32` to be filled in, or `None`
 A pointer to a `gint` to be filled in, or `None`
 ## `precision`
 A pointer to a `gint` to be filled in, or `None`
-<!-- impl Visual::fn get_red_pixel_details -->
+<!-- trait VisualExt::fn get_red_pixel_details -->
 Obtains values that are needed to calculate red pixel values in TrueColor
 and DirectColor. The “mask” is the significant bits within the pixel.
 The “shift” is the number of bits left we must shift a primary for it
@@ -3037,13 +4204,13 @@ A pointer to a `guint32` to be filled in, or `None`
 A pointer to a `gint` to be filled in, or `None`
 ## `precision`
 A pointer to a `gint` to be filled in, or `None`
-<!-- impl Visual::fn get_screen -->
+<!-- trait VisualExt::fn get_screen -->
 Gets the screen to which this visual belongs
 
 # Returns
 
 the screen to which this visual belongs.
-<!-- impl Visual::fn get_visual_type -->
+<!-- trait VisualExt::fn get_visual_type -->
 Returns the type of visual this is (PseudoColor, TrueColor, etc).
 
 # Returns
@@ -3068,7 +4235,7 @@ Each pixel is an index into a color map that
  an application.
 <!-- enum VisualType::variant TrueColor -->
 Each pixel value directly contains red, green,
- and blue components. Use `Visual::get_red_pixel_details`, etc,
+ and blue components. Use `VisualExt::get_red_pixel_details`, etc,
  to obtain information about how the components are assembled into
  a pixel value.
 <!-- enum VisualType::variant DirectColor -->
@@ -3078,6 +4245,16 @@ Each pixel value contains red, green, and blue
  being converted directly.
 <!-- struct Window -->
 
+
+# Implements
+
+[`WindowExt`](trait.WindowExt.html)
+<!-- trait WindowExt -->
+Trait containing all `Window` methods.
+
+# Implementors
+
+[`Window`](struct.Window.html)
 <!-- impl Window::fn new -->
 Creates a new `Window` using the attributes from
 `attributes`. See `WindowAttr` and `WindowAttributesType` for
@@ -3103,11 +4280,11 @@ belongs to another application and a `Window` hasn’t been created
 for it with `gdk_window_foreign_new`)
 
 NOTE: For multihead-aware widgets or applications use
-`Display::get_window_at_pointer` instead.
+`DisplayExt::get_window_at_pointer` instead.
 
 # Deprecated since 3.0
 
-Use `Device::get_window_at_position` instead.
+Use `DeviceExt::get_window_at_position` instead.
 ## `win_x`
 return location for origin of the window under the pointer
 ## `win_y`
@@ -3132,14 +4309,14 @@ location to store resulting width
 ## `new_height`
 location to store resulting height
 <!-- impl Window::fn process_all_updates -->
-Calls `Window::process_updates` for all windows (see `Window`)
+Calls `WindowExt::process_updates` for all windows (see `Window`)
 in the application.
 <!-- impl Window::fn set_debug_updates -->
 With update debugging enabled, calls to
-`Window::invalidate_region` clear the invalidated region of the
+`WindowExt::invalidate_region` clear the invalidated region of the
 screen to a noticeable color, and GDK pauses for a short time
 before sending exposes to windows during
-`Window::process_updates`. The net effect is that you can see
+`WindowExt::process_updates`. The net effect is that you can see
 the invalid region for each window and watch redraws as they
 occur. This allows you to diagnose inefficiencies in your application.
 
@@ -3154,9 +4331,12 @@ enables this debug option at application startup time. That's
 usually more useful than calling `Window::set_debug_updates`
 yourself, though you might want to use this function to enable
 updates sometime after application startup time.
+
+# Deprecated since 3.22
+
 ## `setting`
 `true` to turn on update debugging
-<!-- impl Window::fn add_filter -->
+<!-- trait WindowExt::fn add_filter -->
 Adds an event filter to `self`, allowing you to intercept events
 before they reach GDK. This is a low-level operation and makes it
 easy to break GDK and/or GTK+, so you have to know what you're
@@ -3170,15 +4350,54 @@ XFreeEventData() must not be called within `function`.
 filter callback
 ## `data`
 data to pass to filter callback
-<!-- impl Window::fn beep -->
+<!-- trait WindowExt::fn beep -->
 Emits a short beep associated to `self` in the appropriate
 display, if supported. Otherwise, emits a short beep on
-the display just as `Display::beep`.
-<!-- impl Window::fn begin_move_drag -->
+the display just as `DisplayExt::beep`.
+<!-- trait WindowExt::fn begin_draw_frame -->
+Indicates that you are beginning the process of redrawing `region`
+on `self`, and provides you with a `DrawingContext`.
+
+If `self` is a top level `Window`, backed by a native window
+implementation, a backing store (offscreen buffer) large enough to
+contain `region` will be created. The backing store will be initialized
+with the background color or background surface for `self`. Then, all
+drawing operations performed on `self` will be diverted to the
+backing store. When you call `gdk_window_end_frame`, the contents of
+the backing store will be copied to `self`, making it visible
+on screen. Only the part of `self` contained in `region` will be
+modified; that is, drawing operations are clipped to `region`.
+
+The net result of all this is to remove flicker, because the user
+sees the finished product appear all at once when you call
+`WindowExt::end_draw_frame`. If you draw to `self` directly without
+calling `WindowExt::begin_draw_frame`, the user may see flicker
+as individual drawing operations are performed in sequence.
+
+When using GTK+, the widget system automatically places calls to
+`WindowExt::begin_draw_frame` and `WindowExt::end_draw_frame` around
+emissions of the `GtkWidget::draw` signal. That is, if you’re
+drawing the contents of the widget yourself, you can assume that the
+widget has a cleared background, is already set as the clip region,
+and already has a backing store. Therefore in most cases, application
+code in GTK does not need to call `WindowExt::begin_draw_frame`
+explicitly.
+
+Feature: `v3_22`
+
+## `region`
+a Cairo region
+
+# Returns
+
+a `DrawingContext` context that should be
+ used to draw the contents of the window; the returned context is owned
+ by GDK.
+<!-- trait WindowExt::fn begin_move_drag -->
 Begins a window move operation (for a toplevel window).
 
 This function assumes that the drag is controlled by the
-client pointer device, use `Window::begin_move_drag_for_device`
+client pointer device, use `WindowExt::begin_move_drag_for_device`
 to begin a drag with a different device.
 ## `button`
 the button being used to drag, or 0 for a keyboard-initiated drag
@@ -3188,7 +4407,7 @@ root window X coordinate of mouse click that began the drag
 root window Y coordinate of mouse click that began the drag
 ## `timestamp`
 timestamp of mouse click that began the drag
-<!-- impl Window::fn begin_move_drag_for_device -->
+<!-- trait WindowExt::fn begin_move_drag_for_device -->
 Begins a window move operation (for a toplevel window).
 You might use this function to implement a “window move grip,” for
 example. The function works best with window managers that support the
@@ -3204,58 +4423,66 @@ root window X coordinate of mouse click that began the drag
 root window Y coordinate of mouse click that began the drag
 ## `timestamp`
 timestamp of mouse click that began the drag
-<!-- impl Window::fn begin_paint_rect -->
-A convenience wrapper around `Window::begin_paint_region` which
+<!-- trait WindowExt::fn begin_paint_rect -->
+A convenience wrapper around `WindowExt::begin_paint_region` which
 creates a rectangular region for you. See
-`Window::begin_paint_region` for details.
+`WindowExt::begin_paint_region` for details.
+
+# Deprecated since 3.22
+
+Use `WindowExt::begin_draw_frame` instead
 ## `rectangle`
 rectangle you intend to draw to
-<!-- impl Window::fn begin_paint_region -->
+<!-- trait WindowExt::fn begin_paint_region -->
 Indicates that you are beginning the process of redrawing `region`.
 A backing store (offscreen buffer) large enough to contain `region`
 will be created. The backing store will be initialized with the
 background color or background surface for `self`. Then, all
 drawing operations performed on `self` will be diverted to the
-backing store. When you call `Window::end_paint`, the backing
+backing store. When you call `WindowExt::end_paint`, the backing
 store will be copied to `self`, making it visible onscreen. Only
 the part of `self` contained in `region` will be modified; that is,
 drawing operations are clipped to `region`.
 
 The net result of all this is to remove flicker, because the user
 sees the finished product appear all at once when you call
-`Window::end_paint`. If you draw to `self` directly without
-calling `Window::begin_paint_region`, the user may see flicker
+`WindowExt::end_paint`. If you draw to `self` directly without
+calling `WindowExt::begin_paint_region`, the user may see flicker
 as individual drawing operations are performed in sequence. The
 clipping and background-initializing features of
-`Window::begin_paint_region` are conveniences for the
+`WindowExt::begin_paint_region` are conveniences for the
 programmer, so you can avoid doing that work yourself.
 
 When using GTK+, the widget system automatically places calls to
-`Window::begin_paint_region` and `Window::end_paint` around
+`WindowExt::begin_paint_region` and `WindowExt::end_paint` around
 emissions of the expose_event signal. That is, if you’re writing an
 expose event handler, you can assume that the exposed area in
 `EventExpose` has already been cleared to the window background,
 is already set as the clip region, and already has a backing store.
 Therefore in most cases, application code need not call
-`Window::begin_paint_region`. (You can disable the automatic
+`WindowExt::begin_paint_region`. (You can disable the automatic
 calls around expose events on a widget-by-widget basis by calling
 `gtk_widget_set_double_buffered`.)
 
 If you call this function multiple times before calling the
-matching `Window::end_paint`, the backing stores are pushed onto
-a stack. `Window::end_paint` copies the topmost backing store
+matching `WindowExt::end_paint`, the backing stores are pushed onto
+a stack. `WindowExt::end_paint` copies the topmost backing store
 onscreen, subtracts the topmost region from all other regions in
 the stack, and pops the stack. All drawing operations affect only
 the topmost backing store in the stack. One matching call to
-`Window::end_paint` is required for each call to
-`Window::begin_paint_region`.
+`WindowExt::end_paint` is required for each call to
+`WindowExt::begin_paint_region`.
+
+# Deprecated since 3.22
+
+Use `WindowExt::begin_draw_frame` instead
 ## `region`
 region you intend to draw to
-<!-- impl Window::fn begin_resize_drag -->
+<!-- trait WindowExt::fn begin_resize_drag -->
 Begins a window resize operation (for a toplevel window).
 
 This function assumes that the drag is controlled by the
-client pointer device, use `Window::begin_resize_drag_for_device`
+client pointer device, use `WindowExt::begin_resize_drag_for_device`
 to begin a drag with a different device.
 ## `edge`
 the edge or corner from which the drag is started
@@ -3267,7 +4494,7 @@ root window X coordinate of mouse click that began the drag
 root window Y coordinate of mouse click that began the drag
 ## `timestamp`
 timestamp of mouse click that began the drag (use `gdk_event_get_time`)
-<!-- impl Window::fn begin_resize_drag_for_device -->
+<!-- trait WindowExt::fn begin_resize_drag_for_device -->
 Begins a window resize operation (for a toplevel window).
 You might use this function to implement a “window resize grip,” for
 example; in fact ``GtkStatusbar`` uses it. The function works best
@@ -3286,21 +4513,21 @@ root window X coordinate of mouse click that began the drag
 root window Y coordinate of mouse click that began the drag
 ## `timestamp`
 timestamp of mouse click that began the drag (use `gdk_event_get_time`)
-<!-- impl Window::fn configure_finished -->
+<!-- trait WindowExt::fn configure_finished -->
 Does nothing, present only for compatiblity.
 
 # Deprecated since 3.8
 
 this function is no longer needed
-<!-- impl Window::fn coords_from_parent -->
+<!-- trait WindowExt::fn coords_from_parent -->
 Transforms window coordinates from a parent window to a child
 window, where the parent window is the normal parent as returned by
-`Window::get_parent` for normal windows, and the window's
+`WindowExt::get_parent` for normal windows, and the window's
 embedder as returned by `gdk_offscreen_window_get_embedder` for
 offscreen windows.
 
 For normal windows, calling this function is equivalent to subtracting
-the return values of `Window::get_position` from the parent coordinates.
+the return values of `WindowExt::get_position` from the parent coordinates.
 For offscreen windows however (which can be arbitrarily transformed),
 this function calls the `Window`::from-embedder: signal to translate
 the coordinates.
@@ -3308,7 +4535,7 @@ the coordinates.
 You should always use this function when writing generic code that
 walks down a window hierarchy.
 
-See also: `Window::coords_to_parent`
+See also: `WindowExt::coords_to_parent`
 ## `parent_x`
 X coordinate in parent’s coordinate system
 ## `parent_y`
@@ -3317,15 +4544,15 @@ Y coordinate in parent’s coordinate system
 return location for X coordinate in child’s coordinate system
 ## `y`
 return location for Y coordinate in child’s coordinate system
-<!-- impl Window::fn coords_to_parent -->
+<!-- trait WindowExt::fn coords_to_parent -->
 Transforms window coordinates from a child window to its parent
 window, where the parent window is the normal parent as returned by
-`Window::get_parent` for normal windows, and the window's
+`WindowExt::get_parent` for normal windows, and the window's
 embedder as returned by `gdk_offscreen_window_get_embedder` for
 offscreen windows.
 
 For normal windows, calling this function is equivalent to adding
-the return values of `Window::get_position` to the child coordinates.
+the return values of `WindowExt::get_position` to the child coordinates.
 For offscreen windows however (which can be arbitrarily transformed),
 this function calls the `Window`::to-embedder: signal to translate
 the coordinates.
@@ -3333,7 +4560,7 @@ the coordinates.
 You should always use this function when writing generic code that
 walks up a window hierarchy.
 
-See also: `Window::coords_from_parent`
+See also: `WindowExt::coords_from_parent`
 ## `x`
 X coordinate in child’s coordinate system
 ## `y`
@@ -3344,7 +4571,7 @@ in parent’s coordinate system, or `None`
 ## `parent_y`
 return location for Y coordinate
 in parent’s coordinate system, or `None`
-<!-- impl Window::fn create_gl_context -->
+<!-- trait WindowExt::fn create_gl_context -->
 Creates a new `GLContext` matching the
 framebuffer format to the visual of the `Window`. The context
 is disconnected from any particular window or surface.
@@ -3352,7 +4579,7 @@ is disconnected from any particular window or surface.
 If the creation of the `GLContext` failed, `error` will be set.
 
 Before using the returned `GLContext`, you will need to
-call `GLContext::make_current` or `GLContext::realize`.
+call `GLContextExt::make_current` or `GLContextExt::realize`.
 
 Feature: `v3_16`
 
@@ -3361,12 +4588,32 @@ Feature: `v3_16`
 
 the newly created `GLContext`, or
 `None` on error
-<!-- impl Window::fn create_similar_image_surface -->
+<!-- trait WindowExt::fn create_similar_image_surface -->
 Create a new image surface that is efficient to draw on the
 given `self`.
 
 Initially the surface contents are all 0 (transparent if contents
 have transparency, black otherwise.)
+
+The `width` and `height` of the new surface are not affected by
+the scaling factor of the `self`, or by the `scale` argument; they
+are the size of the surface in device pixels. If you wish to create
+an image surface capable of holding the contents of `self` you can
+use:
+
+
+```C
+  int scale = gdk_window_get_scale_factor (window);
+  int width = gdk_window_get_width (window) * scale;
+  int height = gdk_window_get_height (window) * scale;
+
+  // format is set elsewhere
+  cairo_surface_t *surface =
+    gdk_window_create_similar_image_surface (window,
+                                             format,
+                                             width, height,
+                                             scale);
+```
 
 Feature: `v3_10`
 
@@ -3388,7 +4635,7 @@ with it.
 This function always returns a valid pointer, but it will return a
 pointer to a “nil” surface if `other` is already in an error state
 or any other error occurs.
-<!-- impl Window::fn create_similar_surface -->
+<!-- trait WindowExt::fn create_similar_surface -->
 Create a new surface that is as compatible as possible with the
 given `self`. For example the new surface will have the same
 fallback resolution and font options as `self`. Generally, the new
@@ -3414,35 +4661,48 @@ with it.
 This function always returns a valid pointer, but it will return a
 pointer to a “nil” surface if `other` is already in an error state
 or any other error occurs.
-<!-- impl Window::fn deiconify -->
+<!-- trait WindowExt::fn deiconify -->
 Attempt to deiconify (unminimize) `self`. On X11 the window manager may
 choose to ignore the request to deiconify. When using GTK+,
 use `gtk_window_deiconify` instead of the `Window` variant. Or better yet,
 you probably want to use `gtk_window_present`, which raises the window, focuses it,
 unminimizes it, and puts it on the current desktop.
-<!-- impl Window::fn destroy -->
+<!-- trait WindowExt::fn destroy -->
 Destroys the window system resources associated with `self` and decrements `self`'s
 reference count. The window system resources for all children of `self` are also
 destroyed, but the children’s reference counts are not decremented.
 
 Note that a window will not be destroyed automatically when its reference count
 reaches zero. You must call this function yourself before that happens.
-<!-- impl Window::fn enable_synchronized_configure -->
+<!-- trait WindowExt::fn enable_synchronized_configure -->
 Does nothing, present only for compatiblity.
 
 # Deprecated since 3.8
 
 this function is no longer needed
-<!-- impl Window::fn end_paint -->
-Indicates that the backing store created by the most recent call
-to `Window::begin_paint_region` should be copied onscreen and
-deleted, leaving the next-most-recent backing store or no backing
-store at all as the active paint region. See
-`Window::begin_paint_region` for full details.
+<!-- trait WindowExt::fn end_draw_frame -->
+Indicates that the drawing of the contents of `self` started with
+`gdk_window_begin_frame` has been completed.
+
+This function will take care of destroying the `DrawingContext`.
 
 It is an error to call this function without a matching
-`Window::begin_paint_region` first.
-<!-- impl Window::fn ensure_native -->
+`gdk_window_begin_frame` first.
+
+Feature: `v3_22`
+
+## `context`
+the `DrawingContext` created by `WindowExt::begin_draw_frame`
+<!-- trait WindowExt::fn end_paint -->
+Indicates that the backing store created by the most recent call
+to `WindowExt::begin_paint_region` should be copied onscreen and
+deleted, leaving the next-most-recent backing store or no backing
+store at all as the active paint region. See
+`WindowExt::begin_paint_region` for full details.
+
+It is an error to call this function without a matching
+`WindowExt::begin_paint_region` first.
+<!-- trait WindowExt::fn ensure_native -->
 Tries to ensure that there is a window-system native window for this
 `Window`. This may fail in some situations, returning `false`.
 
@@ -3453,23 +4713,23 @@ Some backends may not support native child windows.
 # Returns
 
 `true` if the window has a native window, `false` otherwise
-<!-- impl Window::fn flush -->
+<!-- trait WindowExt::fn flush -->
 This function does nothing.
 
 # Deprecated since 3.14
 
-<!-- impl Window::fn focus -->
+<!-- trait WindowExt::fn focus -->
 Sets keyboard focus to `self`. In most cases, `gtk_window_present`
 should be used on a ``GtkWindow``, rather than calling this function.
 ## `timestamp`
 timestamp of the event triggering the window focus
-<!-- impl Window::fn freeze_toplevel_updates_libgtk_only -->
+<!-- trait WindowExt::fn freeze_toplevel_updates_libgtk_only -->
 Temporarily freezes a window and all its descendants such that it won't
 receive expose events. The window will begin receiving expose events
-again when `Window::thaw_toplevel_updates_libgtk_only` is called. If
-`Window::freeze_toplevel_updates_libgtk_only`
+again when `WindowExt::thaw_toplevel_updates_libgtk_only` is called. If
+`WindowExt::freeze_toplevel_updates_libgtk_only`
 has been called more than once,
-`Window::thaw_toplevel_updates_libgtk_only` must be called
+`WindowExt::thaw_toplevel_updates_libgtk_only` must be called
 an equal number of times to begin processing exposes.
 
 This function is not part of the GDK public API and is only
@@ -3478,13 +4738,13 @@ for use by GTK+.
 # Deprecated since 3.16
 
 This symbol was never meant to be used outside of GTK+
-<!-- impl Window::fn freeze_updates -->
+<!-- trait WindowExt::fn freeze_updates -->
 Temporarily freezes a window such that it won’t receive expose
 events. The window will begin receiving expose events again when
-`Window::thaw_updates` is called. If `Window::freeze_updates`
-has been called more than once, `Window::thaw_updates` must be called
+`WindowExt::thaw_updates` is called. If `WindowExt::freeze_updates`
+has been called more than once, `WindowExt::thaw_updates` must be called
 an equal number of times to begin processing exposes.
-<!-- impl Window::fn fullscreen -->
+<!-- trait WindowExt::fn fullscreen -->
 Moves the window into fullscreen mode. This means the
 window covers the entire screen and is above any panels
 or task bars.
@@ -3498,27 +4758,38 @@ don’t have a concept of “fullscreen”; so you can’t rely on the
 fullscreenification actually happening. But it will happen with
 most standard window managers, and GDK makes a best effort to get
 it to happen.
-<!-- impl Window::fn geometry_changed -->
+<!-- trait WindowExt::fn fullscreen_on_monitor -->
+Moves the window into fullscreen mode on the given monitor. This means
+the window covers the entire screen and is above any panels or task bars.
+
+If the window was already fullscreen, then this function does nothing.
+## `monitor`
+Which monitor to display fullscreen on.
+<!-- trait WindowExt::fn geometry_changed -->
 This function informs GDK that the geometry of an embedded
 offscreen window has changed. This is necessary for GDK to keep
 track of which offscreen window the pointer is in.
-<!-- impl Window::fn get_accept_focus -->
+<!-- trait WindowExt::fn get_accept_focus -->
 Determines whether or not the desktop environment shuld be hinted that
 the window does not want to receive input focus.
 
 # Returns
 
 whether or not the window should receive input focus.
-<!-- impl Window::fn get_background_pattern -->
+<!-- trait WindowExt::fn get_background_pattern -->
 Gets the pattern used to clear the background on `self`. If `self`
 does not have its own background and reuses the parent's, `None` is
 returned and you’ll have to query it yourself.
+
+# Deprecated since 3.22
+
+Don't use this function
 
 # Returns
 
 The pattern to use for the
 background or `None` to use the parent’s background.
-<!-- impl Window::fn get_children -->
+<!-- trait WindowExt::fn get_children -->
 Gets the list of children of `self` known to GDK.
 This function only returns children created via GDK,
 so for example it’s useless when used with the root window;
@@ -3531,7 +4802,7 @@ list need not be.
 
 
  list of child windows inside `self`
-<!-- impl Window::fn get_children_with_user_data -->
+<!-- trait WindowExt::fn get_children_with_user_data -->
 Gets the list of children of `self` known to GDK with a
 particular `user_data` set on it.
 
@@ -3550,7 +4821,7 @@ user data to look for
 
 
  list of child windows inside `self`
-<!-- impl Window::fn get_clip_region -->
+<!-- trait WindowExt::fn get_clip_region -->
 Computes the region of a window that potentially can be written
 to by drawing primitives. This region may not take into account
 other factors such as if the window is obscured by other windows,
@@ -3561,10 +4832,10 @@ primitives.
 
 a `cairo::Region`. This must be freed with `cairo_region_destroy`
  when you are done.
-<!-- impl Window::fn get_composited -->
+<!-- trait WindowExt::fn get_composited -->
 Determines whether `self` is composited.
 
-See `Window::set_composited`.
+See `WindowExt::set_composited`.
 
 # Deprecated since 3.16
 
@@ -3574,7 +4845,7 @@ Compositing is an outdated technology that
 # Returns
 
 `true` if the window is composited.
-<!-- impl Window::fn get_cursor -->
+<!-- trait WindowExt::fn get_cursor -->
 Retrieves a `Cursor` pointer for the cursor currently set on the
 specified `Window`, or `None`. If the return value is `None` then
 there is no custom cursor set on the specified window, and it is
@@ -3584,18 +4855,18 @@ using the cursor for its parent window.
 
 a `Cursor`, or `None`. The
  returned object is owned by the `Window` and should not be
- unreferenced directly. Use `Window::set_cursor` to unset the
+ unreferenced directly. Use `WindowExt::set_cursor` to unset the
  cursor of the window
-<!-- impl Window::fn get_decorations -->
+<!-- trait WindowExt::fn get_decorations -->
 Returns the decorations set on the `Window` with
-`Window::set_decorations`.
+`WindowExt::set_decorations`.
 ## `decorations`
 The window decorations will be written here
 
 # Returns
 
 `true` if the window has decorations set, `false` otherwise.
-<!-- impl Window::fn get_device_cursor -->
+<!-- trait WindowExt::fn get_device_cursor -->
 Retrieves a `Cursor` pointer for the `device` currently set on the
 specified `Window`, or `None`. If the return value is `None` then
 there is no custom cursor set on the specified window, and it is
@@ -3607,9 +4878,9 @@ a master, pointer `Device`.
 
 a `Cursor`, or `None`. The
  returned object is owned by the `Window` and should not be
- unreferenced directly. Use `Window::set_cursor` to unset the
+ unreferenced directly. Use `WindowExt::set_cursor` to unset the
  cursor of the window
-<!-- impl Window::fn get_device_events -->
+<!-- trait WindowExt::fn get_device_events -->
 Returns the event mask for `self` corresponding to an specific device.
 ## `device`
 a `Device`.
@@ -3617,12 +4888,12 @@ a `Device`.
 # Returns
 
 device event mask for `self`
-<!-- impl Window::fn get_device_position -->
+<!-- trait WindowExt::fn get_device_position -->
 Obtains the current device position and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
 
-Use `Window::get_device_position_double` if you need subpixel precision.
+Use `WindowExt::get_device_position_double` if you need subpixel precision.
 ## `device`
 pointer `Device` to query to.
 ## `x`
@@ -3635,9 +4906,9 @@ return location for the modifier mask, or `None`.
 # Returns
 
 The window underneath `device`
-(as with `Device::get_window_at_position`), or `None` if the
+(as with `DeviceExt::get_window_at_position`), or `None` if the
 window is not known to GDK.
-<!-- impl Window::fn get_device_position_double -->
+<!-- trait WindowExt::fn get_device_position_double -->
 Obtains the current device position in doubles and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
@@ -3656,15 +4927,15 @@ return location for the modifier mask, or `None`.
 # Returns
 
 The window underneath `device`
-(as with `Device::get_window_at_position`), or `None` if the
+(as with `DeviceExt::get_window_at_position`), or `None` if the
 window is not known to GDK.
-<!-- impl Window::fn get_display -->
+<!-- trait WindowExt::fn get_display -->
 Gets the `Display` associated with a `Window`.
 
 # Returns
 
 the `Display` associated with `self`
-<!-- impl Window::fn get_drag_protocol -->
+<!-- trait WindowExt::fn get_drag_protocol -->
 Finds out the DND protocol supported by a window.
 ## `target`
 location of the window
@@ -3674,9 +4945,9 @@ location of the window
 # Returns
 
 the supported DND protocol.
-<!-- impl Window::fn get_effective_parent -->
+<!-- trait WindowExt::fn get_effective_parent -->
 Obtains the parent of `self`, as known to GDK. Works like
-`Window::get_parent` for normal windows, but returns the
+`WindowExt::get_parent` for normal windows, but returns the
 window’s embedder for offscreen windows.
 
 See also: `gdk_offscreen_window_get_embedder`
@@ -3684,18 +4955,18 @@ See also: `gdk_offscreen_window_get_embedder`
 # Returns
 
 effective parent of `self`
-<!-- impl Window::fn get_effective_toplevel -->
+<!-- trait WindowExt::fn get_effective_toplevel -->
 Gets the toplevel window that’s an ancestor of `self`.
 
-Works like `Window::get_toplevel`, but treats an offscreen window's
-embedder as its parent, using `Window::get_effective_parent`.
+Works like `WindowExt::get_toplevel`, but treats an offscreen window's
+embedder as its parent, using `WindowExt::get_effective_parent`.
 
 See also: `gdk_offscreen_window_get_embedder`
 
 # Returns
 
 the effective toplevel window containing `self`
-<!-- impl Window::fn get_event_compression -->
+<!-- trait WindowExt::fn get_event_compression -->
 Get the current event compression setting for this window.
 
 Feature: `v3_12`
@@ -3704,14 +4975,14 @@ Feature: `v3_12`
 # Returns
 
 `true` if motion events will be compressed
-<!-- impl Window::fn get_events -->
+<!-- trait WindowExt::fn get_events -->
 Gets the event mask for `self` for all master input devices. See
-`Window::set_events`.
+`WindowExt::set_events`.
 
 # Returns
 
 event mask for `self`
-<!-- impl Window::fn get_focus_on_map -->
+<!-- trait WindowExt::fn get_focus_on_map -->
 Determines whether or not the desktop environment should be hinted that the
 window does not want to receive input focus when it is mapped.
 
@@ -3719,7 +4990,7 @@ window does not want to receive input focus when it is mapped.
 
 whether or not the window wants to receive input focus when
 it is mapped.
-<!-- impl Window::fn get_frame_clock -->
+<!-- trait WindowExt::fn get_frame_clock -->
 Gets the frame clock for the window. The frame clock for a window
 never changes unless the window is reparented to a new toplevel
 window.
@@ -3730,14 +5001,14 @@ Feature: `v3_8`
 # Returns
 
 the frame clock
-<!-- impl Window::fn get_frame_extents -->
+<!-- trait WindowExt::fn get_frame_extents -->
 Obtains the bounding box of the window, including window manager
 titlebar/borders if any. The frame position is given in root window
 coordinates. To get the position of the window itself (rather than
-the frame) in root window coordinates, use `Window::get_origin`.
+the frame) in root window coordinates, use `WindowExt::get_origin`.
 ## `rect`
 rectangle to fill with bounding box of the window frame
-<!-- impl Window::fn get_fullscreen_mode -->
+<!-- trait WindowExt::fn get_fullscreen_mode -->
 Obtains the `FullscreenMode` of the `self`.
 
 Feature: `v3_8`
@@ -3746,7 +5017,7 @@ Feature: `v3_8`
 # Returns
 
 The `FullscreenMode` applied to the window when fullscreen.
-<!-- impl Window::fn get_geometry -->
+<!-- trait WindowExt::fn get_geometry -->
 Any of the return location arguments to this function may be `None`,
 if you aren’t interested in getting the value of that field.
 
@@ -3758,14 +5029,14 @@ root window (screen-size background window).
 On the X11 platform, the geometry is obtained from the X server,
 so reflects the latest position of `self`; this may be out-of-sync
 with the position of `self` delivered in the most-recently-processed
-`EventConfigure`. `Window::get_position` in contrast gets the
+`EventConfigure`. `WindowExt::get_position` in contrast gets the
 position from the most recent configure event.
 
 Note: If `self` is not a toplevel, it is much better
-to call `Window::get_position`, `Window::get_width` and
-`Window::get_height` instead, because it avoids the roundtrip to
+to call `WindowExt::get_position`, `WindowExt::get_width` and
+`WindowExt::get_height` instead, because it avoids the roundtrip to
 the X server and because these functions support the full 32-bit
-coordinate space, whereas `Window::get_geometry` is restricted to
+coordinate space, whereas `WindowExt::get_geometry` is restricted to
 the 16-bit coordinates of X11.
 ## `x`
 return location for X coordinate of window (relative to its parent)
@@ -3775,13 +5046,13 @@ return location for Y coordinate of window (relative to its parent)
 return location for width of window
 ## `height`
 return location for height of window
-<!-- impl Window::fn get_group -->
-Returns the group leader window for `self`. See `Window::set_group`.
+<!-- trait WindowExt::fn get_group -->
+Returns the group leader window for `self`. See `WindowExt::set_group`.
 
 # Returns
 
 the group leader window for `self`
-<!-- impl Window::fn get_height -->
+<!-- trait WindowExt::fn get_height -->
 Returns the height of the given `self`.
 
 On the X11 platform the returned size is the size reported in the
@@ -3791,17 +5062,17 @@ size on the X server.
 # Returns
 
 The height of `self`
-<!-- impl Window::fn get_modal_hint -->
+<!-- trait WindowExt::fn get_modal_hint -->
 Determines whether or not the window manager is hinted that `self`
 has modal behaviour.
 
 # Returns
 
 whether or not the window has the modal hint set.
-<!-- impl Window::fn get_origin -->
+<!-- trait WindowExt::fn get_origin -->
 Obtains the position of a window in root window coordinates.
-(Compare with `Window::get_position` and
-`Window::get_geometry` which return the position of a window
+(Compare with `WindowExt::get_position` and
+`WindowExt::get_geometry` which return the position of a window
 relative to its parent window.)
 ## `x`
 return location for X coordinate
@@ -3811,7 +5082,7 @@ return location for Y coordinate
 # Returns
 
 not meaningful, ignore
-<!-- impl Window::fn get_parent -->
+<!-- trait WindowExt::fn get_parent -->
 Obtains the parent of `self`, as known to GDK. Does not query the
 X server; thus this returns the parent as passed to `Window::new`,
 not the actual parent. This should never matter unless you’re using
@@ -3819,22 +5090,30 @@ Xlib calls mixed with GDK calls on the X11 platform. It may also
 matter for toplevel windows, because the window manager may choose
 to reparent them.
 
-Note that you should use `Window::get_effective_parent` when
+Note that you should use `WindowExt::get_effective_parent` when
 writing generic code that walks up a window hierarchy, because
-`Window::get_parent` will most likely not do what you expect if
+`WindowExt::get_parent` will most likely not do what you expect if
 there are offscreen windows in the hierarchy.
 
 # Returns
 
 parent of `self`
-<!-- impl Window::fn get_pointer -->
+<!-- trait WindowExt::fn get_pass_through -->
+Returns whether input to the window is passed through to the window
+below.
+
+See `WindowExt::set_pass_through` for details
+
+Feature: `v3_18`
+
+<!-- trait WindowExt::fn get_pointer -->
 Obtains the current pointer position and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
 
 # Deprecated since 3.0
 
-Use `Window::get_device_position` instead.
+Use `WindowExt::get_device_position` instead.
 ## `x`
 return location for X coordinate of pointer or `None` to not
  return the X coordinate
@@ -3850,10 +5129,10 @@ return location for modifier mask or `None` to not return the
 the window containing the
 pointer (as with `Window::at_pointer`), or `None` if the window
 containing the pointer isn’t known to GDK
-<!-- impl Window::fn get_position -->
+<!-- trait WindowExt::fn get_position -->
 Obtains the position of the window as reported in the
 most-recently-processed `EventConfigure`. Contrast with
-`Window::get_geometry` which queries the X server for the
+`WindowExt::get_geometry` which queries the X server for the
 current window position, regardless of which events have been
 received or processed.
 
@@ -3862,10 +5141,10 @@ The position coordinates are relative to the window’s parent window.
 X coordinate of window
 ## `y`
 Y coordinate of window
-<!-- impl Window::fn get_root_coords -->
+<!-- trait WindowExt::fn get_root_coords -->
 Obtains the position of a window position in root
 window coordinates. This is similar to
-`Window::get_origin` but allows you to pass
+`WindowExt::get_origin` but allows you to pass
 in any position in the window, not just the origin.
 ## `x`
 X coordinate in window
@@ -3875,14 +5154,14 @@ Y coordinate in window
 return location for X coordinate
 ## `root_y`
 return location for Y coordinate
-<!-- impl Window::fn get_root_origin -->
+<!-- trait WindowExt::fn get_root_origin -->
 Obtains the top-left corner of the window manager frame in root
 window coordinates.
 ## `x`
 return location for X position of window frame
 ## `y`
 return location for Y position of window frame
-<!-- impl Window::fn get_scale_factor -->
+<!-- trait WindowExt::fn get_scale_factor -->
 Returns the internal scale factor that maps from window coordiantes
 to the actual device pixels. On traditional systems this is 1, but
 on very high density outputs this can be a higher value (often 2).
@@ -3902,13 +5181,13 @@ Feature: `v3_10`
 # Returns
 
 the scale factor
-<!-- impl Window::fn get_screen -->
+<!-- trait WindowExt::fn get_screen -->
 Gets the `Screen` associated with a `Window`.
 
 # Returns
 
 the `Screen` associated with `self`
-<!-- impl Window::fn get_source_events -->
+<!-- trait WindowExt::fn get_source_events -->
 Returns the event mask for `self` corresponding to the device class specified
 by `source`.
 ## `source`
@@ -3917,58 +5196,58 @@ a `InputSource` to define the source class.
 # Returns
 
 source event mask for `self`
-<!-- impl Window::fn get_state -->
+<!-- trait WindowExt::fn get_state -->
 Gets the bitwise OR of the currently active window state flags,
 from the `WindowState` enumeration.
 
 # Returns
 
 window state bitfield
-<!-- impl Window::fn get_support_multidevice -->
+<!-- trait WindowExt::fn get_support_multidevice -->
 Returns `true` if the window is aware of the existence of multiple
 devices.
 
 # Returns
 
 `true` if the window handles multidevice features.
-<!-- impl Window::fn get_toplevel -->
+<!-- trait WindowExt::fn get_toplevel -->
 Gets the toplevel window that’s an ancestor of `self`.
 
 Any window type but `WindowType::Child` is considered a
 toplevel window, as is a `WindowType::Child` window that
 has a root window as parent.
 
-Note that you should use `Window::get_effective_toplevel` when
+Note that you should use `WindowExt::get_effective_toplevel` when
 you want to get to a window’s toplevel as seen on screen, because
-`Window::get_toplevel` will most likely not do what you expect
+`WindowExt::get_toplevel` will most likely not do what you expect
 if there are offscreen windows in the hierarchy.
 
 # Returns
 
 the toplevel window containing `self`
-<!-- impl Window::fn get_type_hint -->
+<!-- trait WindowExt::fn get_type_hint -->
 This function returns the type hint set for a window.
 
 # Returns
 
 The type hint set for `self`
-<!-- impl Window::fn get_update_area -->
+<!-- trait WindowExt::fn get_update_area -->
 Transfers ownership of the update area from `self` to the caller
 of the function. That is, after calling this function, `self` will
 no longer have an invalid/dirty region; the update area is removed
 from `self` and handed to you. If a window has no update area,
-`Window::get_update_area` returns `None`. You are responsible for
+`WindowExt::get_update_area` returns `None`. You are responsible for
 calling `cairo_region_destroy` on the returned region if it’s non-`None`.
 
 # Returns
 
 the update area for `self`
-<!-- impl Window::fn get_user_data -->
+<!-- trait WindowExt::fn get_user_data -->
 Retrieves the user data for `self`, which is normally the widget
-that `self` belongs to. See `Window::set_user_data`.
+that `self` belongs to. See `WindowExt::set_user_data`.
 ## `data`
 return location for user data
-<!-- impl Window::fn get_visible_region -->
+<!-- trait WindowExt::fn get_visible_region -->
 Computes the region of the `self` that is potentially visible.
 This does not necessarily take into account if the window is
 obscured by other windows, but no area outside of this region
@@ -3978,13 +5257,13 @@ is visible.
 
 a `cairo::Region`. This must be freed with `cairo_region_destroy`
  when you are done.
-<!-- impl Window::fn get_visual -->
+<!-- trait WindowExt::fn get_visual -->
 Gets the `Visual` describing the pixel format of `self`.
 
 # Returns
 
 a `Visual`
-<!-- impl Window::fn get_width -->
+<!-- trait WindowExt::fn get_width -->
 Returns the width of the given `self`.
 
 On the X11 platform the returned size is the size reported in the
@@ -3994,32 +5273,32 @@ size on the X server.
 # Returns
 
 The width of `self`
-<!-- impl Window::fn get_window_type -->
+<!-- trait WindowExt::fn get_window_type -->
 Gets the type of the window. See `WindowType`.
 
 # Returns
 
 type of window
-<!-- impl Window::fn has_native -->
+<!-- trait WindowExt::fn has_native -->
 Checks whether the window has a native window or not. Note that
-you can use `Window::ensure_native` if a native window is needed.
+you can use `WindowExt::ensure_native` if a native window is needed.
 
 # Returns
 
 `true` if the `self` has a native window, `false` otherwise.
-<!-- impl Window::fn hide -->
+<!-- trait WindowExt::fn hide -->
 For toplevel windows, withdraws them, so they will no longer be
 known to the window manager; for all windows, unmaps them, so
 they won’t be displayed. Normally done automatically as
 part of `gtk_widget_hide`.
-<!-- impl Window::fn iconify -->
+<!-- trait WindowExt::fn iconify -->
 Asks to iconify (minimize) `self`. The window manager may choose
 to ignore the request, but normally will honor it. Using
 `gtk_window_iconify` is preferred, if you have a ``GtkWindow`` widget.
 
 This function only makes sense when `self` is a toplevel window.
-<!-- impl Window::fn input_shape_combine_region -->
-Like `Window::shape_combine_region`, but the shape applies
+<!-- trait WindowExt::fn input_shape_combine_region -->
+Like `WindowExt::shape_combine_region`, but the shape applies
 only to event handling. Mouse events which happen while
 the pointer position corresponds to an unset bit in the
 mask will be passed on the window below `self`.
@@ -4041,10 +5320,10 @@ region of window to be non-transparent
 X position of `shape_region` in `self` coordinates
 ## `offset_y`
 Y position of `shape_region` in `self` coordinates
-<!-- impl Window::fn invalidate_maybe_recurse -->
+<!-- trait WindowExt::fn invalidate_maybe_recurse -->
 Adds `region` to the update area for `self`. The update area is the
 region that needs to be redrawn, or “dirty region.” The call
-`Window::process_updates` sends one or more expose events to the
+`WindowExt::process_updates` sends one or more expose events to the
 window, which together cover the entire update area. An
 application would normally redraw the contents of `self` in
 response to those expose events.
@@ -4065,19 +5344,19 @@ function to use to decide if to
  recurse to a child, `None` means never recurse.
 ## `user_data`
 data passed to `child_func`
-<!-- impl Window::fn invalidate_rect -->
-A convenience wrapper around `Window::invalidate_region` which
+<!-- trait WindowExt::fn invalidate_rect -->
+A convenience wrapper around `WindowExt::invalidate_region` which
 invalidates a rectangular region. See
-`Window::invalidate_region` for details.
+`WindowExt::invalidate_region` for details.
 ## `rect`
 rectangle to invalidate or `None` to invalidate the whole
  window
 ## `invalidate_children`
 whether to also invalidate child windows
-<!-- impl Window::fn invalidate_region -->
+<!-- trait WindowExt::fn invalidate_region -->
 Adds `region` to the update area for `self`. The update area is the
 region that needs to be redrawn, or “dirty region.” The call
-`Window::process_updates` sends one or more expose events to the
+`WindowExt::process_updates` sends one or more expose events to the
 window, which together cover the entire update area. An
 application would normally redraw the contents of `self` in
 response to those expose events.
@@ -4096,25 +5375,25 @@ fine grained control over which children are invalidated.
 a `cairo::Region`
 ## `invalidate_children`
 `true` to also invalidate child windows
-<!-- impl Window::fn is_destroyed -->
+<!-- trait WindowExt::fn is_destroyed -->
 Check to see if a window is destroyed..
 
 # Returns
 
 `true` if the window is destroyed
-<!-- impl Window::fn is_input_only -->
+<!-- trait WindowExt::fn is_input_only -->
 Determines whether or not the window is an input only window.
 
 # Returns
 
 `true` if `self` is input only
-<!-- impl Window::fn is_shaped -->
+<!-- trait WindowExt::fn is_shaped -->
 Determines whether or not the window is shaped.
 
 # Returns
 
 `true` if `self` is shaped
-<!-- impl Window::fn is_viewable -->
+<!-- trait WindowExt::fn is_viewable -->
 Check if the window and all ancestors of the window are
 mapped. (This is not necessarily "viewable" in the X sense, since
 we only check as far as we have GDK window parents, not to the root
@@ -4123,27 +5402,27 @@ window.)
 # Returns
 
 `true` if the window is viewable
-<!-- impl Window::fn is_visible -->
-Checks whether the window has been mapped (with `Window::show` or
-`Window::show_unraised`).
+<!-- trait WindowExt::fn is_visible -->
+Checks whether the window has been mapped (with `WindowExt::show` or
+`WindowExt::show_unraised`).
 
 # Returns
 
 `true` if the window is mapped
-<!-- impl Window::fn lower -->
+<!-- trait WindowExt::fn lower -->
 Lowers `self` to the bottom of the Z-order (stacking order), so that
 other windows with the same parent window appear above `self`.
 This is true whether or not the other windows are visible.
 
 If `self` is a toplevel, the window manager may choose to deny the
-request to move the window in the Z-order, `Window::lower` only
+request to move the window in the Z-order, `WindowExt::lower` only
 requests the restack, does not guarantee it.
 
-Note that `Window::show` raises the window again, so don’t call this
-function before `Window::show`. (Try `Window::show_unraised`.)
-<!-- impl Window::fn mark_paint_from_clip -->
-If you call this during a paint (e.g. between `Window::begin_paint_region`
-and `Window::end_paint` then GDK will mark the current clip region of the
+Note that `WindowExt::show` raises the window again, so don’t call this
+function before `WindowExt::show`. (Try `WindowExt::show_unraised`.)
+<!-- trait WindowExt::fn mark_paint_from_clip -->
+If you call this during a paint (e.g. between `WindowExt::begin_paint_region`
+and `WindowExt::end_paint` then GDK will mark the current clip region of the
 window as being drawn. This is required when mixing GL rendering via
 `gdk_cairo_draw_from_gl` and cairo rendering, as otherwise GDK has no way
 of knowing when something paints over the GL-drawn regions.
@@ -4155,7 +5434,7 @@ Feature: `v3_16`
 
 ## `cr`
 a `cairo::Context`
-<!-- impl Window::fn maximize -->
+<!-- trait WindowExt::fn maximize -->
 Maximizes the window. If the window was already maximized, then
 this function does nothing.
 
@@ -4167,38 +5446,38 @@ happening. But it will happen with most standard window managers,
 and GDK makes a best effort to get it to happen.
 
 On Windows, reliably maximizes the window.
-<!-- impl Window::fn merge_child_input_shapes -->
+<!-- trait WindowExt::fn merge_child_input_shapes -->
 Merges the input shape masks for any child windows into the
 input shape mask for `self`. i.e. the union of all input masks
 for `self` and its children will become the new input mask
-for `self`. See `Window::input_shape_combine_region`.
+for `self`. See `WindowExt::input_shape_combine_region`.
 
-This function is distinct from `Window::set_child_input_shapes`
+This function is distinct from `WindowExt::set_child_input_shapes`
 because it includes `self`’s input shape mask in the set of
 shapes to be merged.
-<!-- impl Window::fn merge_child_shapes -->
+<!-- trait WindowExt::fn merge_child_shapes -->
 Merges the shape masks for any child windows into the
 shape mask for `self`. i.e. the union of all masks
 for `self` and its children will become the new mask
-for `self`. See `Window::shape_combine_region`.
+for `self`. See `WindowExt::shape_combine_region`.
 
-This function is distinct from `Window::set_child_shapes`
+This function is distinct from `WindowExt::set_child_shapes`
 because it includes `self`’s shape mask in the set of shapes to
 be merged.
-<!-- impl Window::fn move -->
+<!-- trait WindowExt::fn move -->
 Repositions a window relative to its parent window.
 For toplevel windows, window managers may ignore or modify the move;
 you should probably use `gtk_window_move` on a ``GtkWindow`` widget
 anyway, instead of using GDK functions. For child windows,
 the move will reliably succeed.
 
-If you’re also planning to resize the window, use `Window::move_resize`
+If you’re also planning to resize the window, use `WindowExt::move_resize`
 to both move and resize simultaneously, for a nicer visual effect.
 ## `x`
 X coordinate relative to window’s parent
 ## `y`
 Y coordinate relative to window’s parent
-<!-- impl Window::fn move_region -->
+<!-- trait WindowExt::fn move_region -->
 Move the part of `self` indicated by `region` by `dy` pixels in the Y
 direction and `dx` pixels in the X direction. The portions of `region`
 that not covered by the new position of `region` are invalidated.
@@ -4210,11 +5489,11 @@ The `cairo::Region` to move
 Amount to move in the X direction
 ## `dy`
 Amount to move in the Y direction
-<!-- impl Window::fn move_resize -->
-Equivalent to calling `Window::move` and `Window::resize`,
+<!-- trait WindowExt::fn move_resize -->
+Equivalent to calling `WindowExt::move` and `WindowExt::resize`,
 except that both operations are performed at once, avoiding strange
 visual effects. (i.e. the user may be able to see the window first
-move, then resize, if you don’t use `Window::move_resize`.)
+move, then resize, if you don’t use `WindowExt::move_resize`.)
 ## `x`
 new X position relative to window’s parent
 ## `y`
@@ -4223,18 +5502,18 @@ new Y position relative to window’s parent
 new width
 ## `height`
 new height
-<!-- impl Window::fn peek_children -->
-Like `Window::get_children`, but does not copy the list of
+<!-- trait WindowExt::fn peek_children -->
+Like `WindowExt::get_children`, but does not copy the list of
 children, so the list does not need to be freed.
 
 # Returns
 
 
  a reference to the list of child windows in `self`
-<!-- impl Window::fn process_updates -->
+<!-- trait WindowExt::fn process_updates -->
 Sends one or more expose events to `self`. The areas in each
 expose event will cover the entire update area for the window (see
-`Window::invalidate_region` for details). Normally GDK calls
+`WindowExt::invalidate_region` for details). Normally GDK calls
 `Window::process_all_updates` on your behalf, so there’s no
 need to call this function unless you want to force expose events
 to be delivered immediately and synchronously (vs. the usual
@@ -4242,23 +5521,23 @@ case, where GDK delivers them in an idle handler). Occasionally
 this is useful to produce nicer scrolling behavior, for example.
 ## `update_children`
 whether to also process updates for child windows
-<!-- impl Window::fn raise -->
+<!-- trait WindowExt::fn raise -->
 Raises `self` to the top of the Z-order (stacking order), so that
 other windows with the same parent window appear below `self`.
 This is true whether or not the windows are visible.
 
 If `self` is a toplevel, the window manager may choose to deny the
-request to move the window in the Z-order, `Window::raise` only
+request to move the window in the Z-order, `WindowExt::raise` only
 requests the restack, does not guarantee it.
-<!-- impl Window::fn register_dnd -->
+<!-- trait WindowExt::fn register_dnd -->
 Registers a window as a potential drop destination.
-<!-- impl Window::fn remove_filter -->
-Remove a filter previously added with `Window::add_filter`.
+<!-- trait WindowExt::fn remove_filter -->
+Remove a filter previously added with `WindowExt::add_filter`.
 ## `function`
 previously-added filter function
 ## `data`
 user data for previously-added filter function
-<!-- impl Window::fn reparent -->
+<!-- trait WindowExt::fn reparent -->
 Reparents `self` into the given `new_parent`. The window being
 reparented will be unmapped as a side effect.
 ## `new_parent`
@@ -4267,20 +5546,20 @@ new parent to move `self` into
 X location inside the new parent
 ## `y`
 Y location inside the new parent
-<!-- impl Window::fn resize -->
+<!-- trait WindowExt::fn resize -->
 Resizes `self`; for toplevel windows, asks the window manager to resize
 the window. The window manager may not allow the resize. When using GTK+,
 use `gtk_window_resize` instead of this low-level GDK function.
 
 Windows may not be resized below 1x1.
 
-If you’re also planning to move the window, use `Window::move_resize`
+If you’re also planning to move the window, use `WindowExt::move_resize`
 to both move and resize simultaneously, for a nicer visual effect.
 ## `width`
 new width of the window
 ## `height`
 new height of the window
-<!-- impl Window::fn restack -->
+<!-- trait WindowExt::fn restack -->
 Changes the position of `self` in the Z-order (stacking order), so that
 it is above `sibling` (if `above` is `true`) or below `sibling` (if `above` is
 `false`).
@@ -4289,13 +5568,13 @@ If `sibling` is `None`, then this either raises (if `above` is `true`) or
 lowers the window.
 
 If `self` is a toplevel, the window manager may choose to deny the
-request to move the window in the Z-order, `Window::restack` only
+request to move the window in the Z-order, `WindowExt::restack` only
 requests the restack, does not guarantee it.
 ## `sibling`
 a `Window` that is a sibling of `self`, or `None`
 ## `above`
 a boolean
-<!-- impl Window::fn scroll -->
+<!-- trait WindowExt::fn scroll -->
 Scroll the contents of `self`, both pixels and children, by the
 given amount. `self` itself does not move. Portions of the window
 that the scroll operation brings in from offscreen areas are
@@ -4311,7 +5590,7 @@ artifacts and unnecessary invalidations.
 Amount to scroll in the X direction
 ## `dy`
 Amount to scroll in the Y direction
-<!-- impl Window::fn set_accept_focus -->
+<!-- trait WindowExt::fn set_accept_focus -->
 Setting `accept_focus` to `false` hints the desktop environment that the
 window doesn’t want to receive input focus.
 
@@ -4319,7 +5598,7 @@ On X, it is the responsibility of the window manager to interpret this
 hint. ICCCM-compliant window manager usually respect it.
 ## `accept_focus`
 `true` if the window should receive input focus
-<!-- impl Window::fn set_background -->
+<!-- trait WindowExt::fn set_background -->
 Sets the background color of `self`.
 
 However, when using GTK+, influence the background of a widget
@@ -4327,14 +5606,12 @@ using a style class or CSS — if you’re an application — or with
 `gtk_style_context_set_background` — if you're implementing a
 custom widget.
 
-See also `Window::set_background_pattern`.
-
 # Deprecated since 3.4
 
-Use `Window::set_background_rgba` instead.
+Don't use this function
 ## `color`
 a `Color`
-<!-- impl Window::fn set_background_pattern -->
+<!-- trait WindowExt::fn set_background_pattern -->
 Sets the background of `self`.
 
 A background of `None` means that the window will inherit its
@@ -4342,25 +5619,33 @@ background from its parent window.
 
 The windowing system will normally fill a window with its background
 when the window is obscured then exposed.
+
+# Deprecated since 3.22
+
+Don't use this function
 ## `pattern`
 a pattern to use, or `None`
-<!-- impl Window::fn set_background_rgba -->
+<!-- trait WindowExt::fn set_background_rgba -->
 Sets the background color of `self`.
 
-See also `Window::set_background_pattern`.
+See also `WindowExt::set_background_pattern`.
+
+# Deprecated since 3.22
+
+Don't use this function
 ## `rgba`
 a `RGBA` color
-<!-- impl Window::fn set_child_input_shapes -->
+<!-- trait WindowExt::fn set_child_input_shapes -->
 Sets the input shape mask of `self` to the union of input shape masks
 for all children of `self`, ignoring the input shape mask of `self`
-itself. Contrast with `Window::merge_child_input_shapes` which includes
+itself. Contrast with `WindowExt::merge_child_input_shapes` which includes
 the input shape mask of `self` in the masks to be merged.
-<!-- impl Window::fn set_child_shapes -->
+<!-- trait WindowExt::fn set_child_shapes -->
 Sets the shape mask of `self` to the union of shape masks
 for all children of `self`, ignoring the shape mask of `self`
-itself. Contrast with `Window::merge_child_shapes` which includes
+itself. Contrast with `WindowExt::merge_child_shapes` which includes
 the shape mask of `self` in the masks to be merged.
-<!-- impl Window::fn set_composited -->
+<!-- trait WindowExt::fn set_composited -->
 Sets a `Window` as composited, or unsets it. Composited
 windows do not automatically have their contents drawn to
 the screen. Drawing is redirected to an offscreen buffer
@@ -4370,7 +5655,7 @@ to manually merge the off-screen content onto the screen in
 whatever way it sees fit.
 
 It only makes sense for child windows to be composited; see
-`Window::set_opacity` if you need translucent toplevel
+`WindowExt::set_opacity` if you need translucent toplevel
 windows.
 
 An additional effect of this call is that the area of this
@@ -4380,7 +5665,7 @@ window are also no longer clipped by the child.
 
 This call is only supported on some systems (currently,
 only X11 with new enough Xcomposite and Xdamage extensions).
-You must call `Display::supports_composite` to check if
+You must call `DisplayExt::supports_composite` to check if
 setting a window as composited is supported before
 attempting to do so.
 
@@ -4390,19 +5675,19 @@ Compositing is an outdated technology that
  only ever worked on X11.
 ## `composited`
 `true` to set the window as composited
-<!-- impl Window::fn set_cursor -->
+<!-- trait WindowExt::fn set_cursor -->
 Sets the default mouse pointer for a `Window`.
 
 Note that `cursor` must be for the same display as `self`.
 
 Use `Cursor::new_for_display` or `Cursor::new_from_pixbuf` to
 create the cursor. To make the cursor invisible, use `CursorType::BlankCursor`.
-Passing `None` for the `cursor` argument to `Window::set_cursor` means
+Passing `None` for the `cursor` argument to `WindowExt::set_cursor` means
 that `self` will use the cursor of its parent window. Most windows
 should use this default.
 ## `cursor`
 a cursor
-<!-- impl Window::fn set_decorations -->
+<!-- trait WindowExt::fn set_decorations -->
 “Decorations” are the features the window manager adds to a toplevel `Window`.
 This function sets the traditional Motif window manager hints that tell the
 window manager which decorations you would like your window to have.
@@ -4419,18 +5704,18 @@ Most window managers honor a decorations hint of 0 to disable all decorations,
 but very few honor all possible combinations of bits.
 ## `decorations`
 decoration hint mask
-<!-- impl Window::fn set_device_cursor -->
+<!-- trait WindowExt::fn set_device_cursor -->
 Sets a specific `Cursor` for a given device when it gets inside `self`.
 Use `Cursor::new_for_display` or `Cursor::new_from_pixbuf` to create
 the cursor. To make the cursor invisible, use `CursorType::BlankCursor`. Passing
-`None` for the `cursor` argument to `Window::set_cursor` means that
+`None` for the `cursor` argument to `WindowExt::set_cursor` means that
 `self` will use the cursor of its parent window. Most windows should
 use this default.
 ## `device`
 a master, pointer `Device`
 ## `cursor`
 a `Cursor`
-<!-- impl Window::fn set_device_events -->
+<!-- trait WindowExt::fn set_device_events -->
 Sets the event mask for a given device (Normally a floating device, not
 attached to any visible pointer) to `self`. For example, an event mask
 including `EventMask::ButtonPressMask` means the window should report button
@@ -4442,7 +5727,7 @@ See the [input handling overview][event-masks] for details.
 `Device` to enable events for.
 ## `event_mask`
 event mask for `self`
-<!-- impl Window::fn set_event_compression -->
+<!-- trait WindowExt::fn set_event_compression -->
 Determines whether or not extra unprocessed motion events in
 the event queue can be discarded. If `true` only the most recent
 event will be delivered.
@@ -4456,7 +5741,7 @@ Feature: `v3_12`
 
 ## `event_compression`
 `true` if motion events should be compressed
-<!-- impl Window::fn set_events -->
+<!-- trait WindowExt::fn set_events -->
 The event mask for a window determines which events will be reported
 for that window from all master input devices. For example, an event mask
 including `EventMask::ButtonPressMask` means the window should report button
@@ -4466,7 +5751,7 @@ press events. The event mask is the bitwise OR of values from the
 See the [input handling overview][event-masks] for details.
 ## `event_mask`
 event mask for `self`
-<!-- impl Window::fn set_focus_on_map -->
+<!-- trait WindowExt::fn set_focus_on_map -->
 Setting `focus_on_map` to `false` hints the desktop environment that the
 window doesn’t want to receive input focus when it is mapped.
 focus_on_map should be turned off for windows that aren’t triggered
@@ -4477,7 +5762,7 @@ this hint. Window managers following the freedesktop.org window
 manager extension specification should respect it.
 ## `focus_on_map`
 `true` if the window should receive input focus when mapped
-<!-- impl Window::fn set_fullscreen_mode -->
+<!-- trait WindowExt::fn set_fullscreen_mode -->
 Specifies whether the `self` should span over all monitors (in a multi-head
 setup) or only the current monitor when in fullscreen mode.
 
@@ -4500,7 +5785,7 @@ Feature: `v3_8`
 
 ## `mode`
 fullscreen mode
-<!-- impl Window::fn set_functions -->
+<!-- trait WindowExt::fn set_functions -->
 Sets hints about the window management functions to make available
 via buttons on the window frame.
 
@@ -4516,7 +5801,7 @@ it doesn’t include `WMFunction::All`, it indicates which functions to
 enable.
 ## `functions`
 bitmask of operations to allow on `self`
-<!-- impl Window::fn set_geometry_hints -->
+<!-- trait WindowExt::fn set_geometry_hints -->
 Sets the geometry hints for `self`. Hints flagged in `geom_mask`
 are set, hints not flagged in `geom_mask` are unset.
 To unset all hints, use a `geom_mask` of 0 and a `geometry` of `None`.
@@ -4526,12 +5811,12 @@ acceptable sizes for a toplevel window. The purpose of
 this is to constrain user resizing, but the windowing system
 will typically (but is not required to) also constrain the
 current size of the window to the provided values and
-constrain programatic resizing via `Window::resize` or
-`Window::move_resize`.
+constrain programatic resizing via `WindowExt::resize` or
+`WindowExt::move_resize`.
 
 Note that on X11, this effect has no effect on windows
 of type `WindowType::Temp` or windows where override redirect
-has been turned on via `Window::set_override_redirect`
+has been turned on via `WindowExt::set_override_redirect`
 since these windows are not resizable by the user.
 
 Since you can’t count on the windowing system doing the
@@ -4542,7 +5827,7 @@ appropriate sizes.
 geometry hints
 ## `geom_mask`
 bitmask indicating fields of `geometry` to pay attention to
-<!-- impl Window::fn set_group -->
+<!-- trait WindowExt::fn set_group -->
 Sets the group leader window for `self`. By default,
 GDK sets the group leader for all toplevel windows
 to a global window implicitly created by GDK. With this function
@@ -4555,7 +5840,7 @@ application at once. You should only set a non-default group window
 if your application pretends to be multiple applications.
 ## `leader`
 group leader window, or `None` to restore the default group leader window
-<!-- impl Window::fn set_icon_list -->
+<!-- trait WindowExt::fn set_icon_list -->
 Sets a list of icons for the window. One of these will be used
 to represent the window when it has been iconified. The icon is
 usually shown in an icon box or some sort of task bar. Which icon
@@ -4563,23 +5848,27 @@ size is shown depends on the window manager. The window manager
 can scale the icon but setting several size icons can give better
 image quality since the window manager may only need to scale the
 icon by a small amount or not at all.
+
+Note that some platforms don't support window icons.
 ## `pixbufs`
 
  A list of pixbufs, of different sizes.
-<!-- impl Window::fn set_icon_name -->
+<!-- trait WindowExt::fn set_icon_name -->
 Windows may have a name used while minimized, distinct from the
 name they display in their titlebar. Most of the time this is a bad
 idea from a user interface standpoint. But you can set such a name
 with this function, if you like.
 
-After calling this with a non-`None` `name`, calls to `Window::set_title`
+After calling this with a non-`None` `name`, calls to `WindowExt::set_title`
 will not update the icon title.
 
 Using `None` for `name` unsets the icon title; further calls to
-`Window::set_title` will again update the icon title as well.
+`WindowExt::set_title` will again update the icon title as well.
+
+Note that some platforms don't support window icons.
 ## `name`
 name of window while iconified (minimized)
-<!-- impl Window::fn set_invalidate_handler -->
+<!-- trait WindowExt::fn set_invalidate_handler -->
 Registers an invalidate handler for a specific window. This
 will get called whenever a region in the window or its children
 is invalidated.
@@ -4594,7 +5883,7 @@ Feature: `v3_10`
 
 ## `handler`
 a ``GdkWindowInvalidateHandlerFunc`` callback function
-<!-- impl Window::fn set_keep_above -->
+<!-- trait WindowExt::fn set_keep_above -->
 Set if `self` must be kept above other windows. If the
 window was already above, then this function does nothing.
 
@@ -4606,7 +5895,7 @@ But it will happen with most standard window managers,
 and GDK makes a best effort to get it to happen.
 ## `setting`
 whether to keep `self` above other windows
-<!-- impl Window::fn set_keep_below -->
+<!-- trait WindowExt::fn set_keep_below -->
 Set if `self` must be kept below other windows. If the
 window was already below, then this function does nothing.
 
@@ -4618,17 +5907,17 @@ But it will happen with most standard window managers,
 and GDK makes a best effort to get it to happen.
 ## `setting`
 whether to keep `self` below other windows
-<!-- impl Window::fn set_modal_hint -->
+<!-- trait WindowExt::fn set_modal_hint -->
 The application can use this hint to tell the window manager
 that a certain window has modal behaviour. The window manager
 can use this information to handle modal windows in a special
 way.
 
 You should only use this on windows for which you have
-previously called `Window::set_transient_for`
+previously called `WindowExt::set_transient_for`
 ## `modal`
 `true` if the window is modal, `false` otherwise.
-<!-- impl Window::fn set_opacity -->
+<!-- trait WindowExt::fn set_opacity -->
 Set `self` to render as partially transparent,
 with opacity 0 being fully transparent and 1 fully opaque. (Values
 of the opacity parameter are clamped to the [0,1] range.)
@@ -4644,13 +5933,13 @@ for your widgets.
 
 For child windows this function only works for non-native windows.
 
-For setting up per-pixel alpha topelevels, see `Screen::get_rgba_visual`,
-and for non-toplevels, see `Window::set_composited`.
+For setting up per-pixel alpha topelevels, see `ScreenExt::get_rgba_visual`,
+and for non-toplevels, see `WindowExt::set_composited`.
 
 Support for non-toplevel windows was added in 3.8.
 ## `opacity`
 opacity
-<!-- impl Window::fn set_opaque_region -->
+<!-- trait WindowExt::fn set_opaque_region -->
 For optimisation purposes, compositing window managers may
 like to not draw obscured regions of windows, or turn off blending
 during for these regions. With RGB windows with no transparency,
@@ -4669,7 +5958,7 @@ Feature: `v3_10`
 
 ## `region`
 a region, or `None`
-<!-- impl Window::fn set_override_redirect -->
+<!-- trait WindowExt::fn set_override_redirect -->
 An override redirect window is not under the control of the window manager.
 This means it won’t have a titlebar, won’t be minimizable, etc. - it will
 be entirely under the control of the application. The window manager
@@ -4680,7 +5969,31 @@ windows, such as popup menus. ``GtkMenu`` uses an override redirect
 window in its implementation, for example.
 ## `override_redirect`
 `true` if window should be override redirect
-<!-- impl Window::fn set_role -->
+<!-- trait WindowExt::fn set_pass_through -->
+Sets whether input to the window is passed through to the window
+below.
+
+The default value of this is `false`, which means that pointer
+events that happen inside the window are send first to the window,
+but if the event is not selected by the event mask then the event
+is sent to the parent window, and so on up the hierarchy.
+
+If `pass_through` is `true` then such pointer events happen as if the
+window wasn't there at all, and thus will be sent first to any
+windows below `self`. This is useful if the window is used in a
+transparent fashion. In the terminology of the web this would be called
+"pointer-events: none".
+
+Note that a window with `pass_through` `true` can still have a subwindow
+without pass through, so you can get events on a subset of a window. And in
+that cases you would get the in-between related events such as the pointer
+enter/leave events on its way to the destination window.
+
+Feature: `v3_18`
+
+## `pass_through`
+a boolean
+<!-- trait WindowExt::fn set_role -->
 When using GTK+, typically you should use `gtk_window_set_role` instead
 of this low-level function.
 
@@ -4695,7 +6008,7 @@ you use for the role, as long as you have a different role for each
 non-interchangeable kind of window.
 ## `role`
 a string indicating its role
-<!-- impl Window::fn set_shadow_width -->
+<!-- trait WindowExt::fn set_shadow_width -->
 Newer GTK+ windows using client-side decorations use extra geometry
 around their frames for effects like shadows and invisible borders.
 Window managers that want to maximize windows or snap to edges need
@@ -4716,27 +6029,27 @@ The right extent
 The top extent
 ## `bottom`
 The bottom extent
-<!-- impl Window::fn set_skip_pager_hint -->
+<!-- trait WindowExt::fn set_skip_pager_hint -->
 Toggles whether a window should appear in a pager (workspace
 switcher, or other desktop utility program that displays a small
 thumbnail representation of the windows on the desktop). If a
-window’s semantic type as specified with `Window::set_type_hint`
+window’s semantic type as specified with `WindowExt::set_type_hint`
 already fully describes the window, this function should
 not be called in addition, instead you should
 allow the window to be treated according to standard policy for
 its semantic type.
 ## `skips_pager`
 `true` to skip the pager
-<!-- impl Window::fn set_skip_taskbar_hint -->
+<!-- trait WindowExt::fn set_skip_taskbar_hint -->
 Toggles whether a window should appear in a task list or window
 list. If a window’s semantic type as specified with
-`Window::set_type_hint` already fully describes the window, this
+`WindowExt::set_type_hint` already fully describes the window, this
 function should not be called in addition,
 instead you should allow the window to be treated according to
 standard policy for its semantic type.
 ## `skips_taskbar`
 `true` to skip the taskbar
-<!-- impl Window::fn set_source_events -->
+<!-- trait WindowExt::fn set_source_events -->
 Sets the event mask for any floating device (i.e. not attached to any
 visible pointer) that has the source defined as `source`. This event
 mask will be applied both to currently existing, newly added devices
@@ -4745,12 +6058,12 @@ after this call, and devices being attached/detached.
 a `InputSource` to define the source class.
 ## `event_mask`
 event mask for `self`
-<!-- impl Window::fn set_startup_id -->
+<!-- trait WindowExt::fn set_startup_id -->
 When using GTK+, typically you should use `gtk_window_set_startup_id`
 instead of this low-level function.
 ## `startup_id`
 a string with startup-notification identifier
-<!-- impl Window::fn set_static_gravities -->
+<!-- trait WindowExt::fn set_static_gravities -->
 Used to set the bit gravity of the given window to static, and flag
 it so all children get static subwindow gravity. This is used if you
 are implementing scary features that involve deep knowledge of the
@@ -4766,22 +6079,22 @@ static gravities haven't worked on anything but X11
 # Returns
 
 `false`
-<!-- impl Window::fn set_support_multidevice -->
+<!-- trait WindowExt::fn set_support_multidevice -->
 This function will enable multidevice features in `self`.
 
 Multidevice aware windows will need to handle properly multiple,
 per device enter/leave events, device grabs and grab ownerships.
 ## `support_multidevice`
 `true` to enable multidevice support in `self`.
-<!-- impl Window::fn set_title -->
+<!-- trait WindowExt::fn set_title -->
 Sets the title of a toplevel window, to be displayed in the titlebar.
 If you haven’t explicitly set the icon name for the window
-(using `Window::set_icon_name`), the icon name will be set to
+(using `WindowExt::set_icon_name`), the icon name will be set to
 `title` as well. `title` must be in UTF-8 encoding (as with all
 user-readable strings in GDK/GTK+). `title` may not be `None`.
 ## `title`
 title of `self`
-<!-- impl Window::fn set_transient_for -->
+<!-- trait WindowExt::fn set_transient_for -->
 Indicates to the window manager that `self` is a transient dialog
 associated with the application window `parent`. This allows the
 window manager to do things like center `self` on `parent` and
@@ -4791,7 +6104,7 @@ See `gtk_window_set_transient_for` if you’re using ``GtkWindow`` or
 ``GtkDialog``.
 ## `parent`
 another toplevel `Window`
-<!-- impl Window::fn set_type_hint -->
+<!-- trait WindowExt::fn set_type_hint -->
 The application can use this call to provide a hint to the window
 manager about the functionality of a window. The window manager
 can use this information when determining the decoration and behaviour
@@ -4800,12 +6113,12 @@ of the window.
 The hint must be set before the window is mapped.
 ## `hint`
 A hint of the function this window will have
-<!-- impl Window::fn set_urgency_hint -->
+<!-- trait WindowExt::fn set_urgency_hint -->
 Toggles whether a window needs the user's
 urgent attention.
 ## `urgent`
 `true` if the window is urgent
-<!-- impl Window::fn set_user_data -->
+<!-- trait WindowExt::fn set_user_data -->
 For most purposes this function is deprecated in favor of
 `gobject::Object::set_data`. However, for historical reasons GTK+ stores
 the ``GtkWidget`` that owns a `Window` as user data on the
@@ -4815,7 +6128,7 @@ and the user data for the window is non-`None`, GTK+ will assume the
 user data is a ``GtkWidget``, and forward the event to that widget.
 ## `user_data`
 user data
-<!-- impl Window::fn shape_combine_region -->
+<!-- trait WindowExt::fn shape_combine_region -->
 Makes pixels in `self` outside `shape_region` be transparent,
 so that the window may be nonrectangular.
 
@@ -4836,25 +6149,25 @@ region of window to be non-transparent
 X position of `shape_region` in `self` coordinates
 ## `offset_y`
 Y position of `shape_region` in `self` coordinates
-<!-- impl Window::fn show -->
-Like `Window::show_unraised`, but also raises the window to the
+<!-- trait WindowExt::fn show -->
+Like `WindowExt::show_unraised`, but also raises the window to the
 top of the window stack (moves the window to the front of the
 Z-order).
 
 This function maps a window so it’s visible onscreen. Its opposite
-is `Window::hide`.
+is `WindowExt::hide`.
 
 When implementing a ``GtkWidget``, you should call this function on the widget's
 `Window` as part of the “map” method.
-<!-- impl Window::fn show_unraised -->
+<!-- trait WindowExt::fn show_unraised -->
 Shows a `Window` onscreen, but does not modify its stacking
-order. In contrast, `Window::show` will raise the window
+order. In contrast, `WindowExt::show` will raise the window
 to the top of the window stack.
 
 On the X11 platform, in Xlib terms, this function calls
 XMapWindow() (it also updates some internal GDK state, which means
 that you can’t really use XMapWindow() directly on a GDK window).
-<!-- impl Window::fn show_window_menu -->
+<!-- trait WindowExt::fn show_window_menu -->
 Asks the windowing system to show the window menu. The window menu
 is the menu shown when right-clicking the titlebar on traditional
 windows managed by the window manager. This is useful for windows
@@ -4869,7 +6182,7 @@ a ``GdkEvent`` to show the menu for
 # Returns
 
 `true` if the window menu was shown and `false` otherwise.
-<!-- impl Window::fn stick -->
+<!-- trait WindowExt::fn stick -->
 “Pins” a window such that it’s on all workspaces and does not scroll
 with viewports, for window managers that have scrollable viewports.
 (When using ``GtkWindow``, `gtk_window_stick` may be more useful.)
@@ -4879,9 +6192,9 @@ support, so may have no effect with many window managers. However,
 GDK will do the best it can to convince the window manager to stick
 the window. For window managers that don’t support this operation,
 there’s nothing you can do to force it to happen.
-<!-- impl Window::fn thaw_toplevel_updates_libgtk_only -->
+<!-- trait WindowExt::fn thaw_toplevel_updates_libgtk_only -->
 Thaws a window frozen with
-`Window::freeze_toplevel_updates_libgtk_only`.
+`WindowExt::freeze_toplevel_updates_libgtk_only`.
 
 This function is not part of the GDK public API and is only
 for use by GTK+.
@@ -4889,9 +6202,9 @@ for use by GTK+.
 # Deprecated since 3.16
 
 This symbol was never meant to be used outside of GTK+
-<!-- impl Window::fn thaw_updates -->
-Thaws a window frozen with `Window::freeze_updates`.
-<!-- impl Window::fn unfullscreen -->
+<!-- trait WindowExt::fn thaw_updates -->
+Thaws a window frozen with `WindowExt::freeze_updates`.
+<!-- trait WindowExt::fn unfullscreen -->
 Moves the window out of fullscreen mode. If the window was not
 fullscreen, does nothing.
 
@@ -4902,7 +6215,7 @@ don’t have a concept of “fullscreen”; so you can’t rely on the
 unfullscreenification actually happening. But it will happen with
 most standard window managers, and GDK makes a best effort to get
 it to happen.
-<!-- impl Window::fn unmaximize -->
+<!-- trait WindowExt::fn unmaximize -->
 Unmaximizes the window. If the window wasn’t maximized, then this
 function does nothing.
 
@@ -4914,12 +6227,12 @@ actually happening. But it will happen with most standard window
 managers, and GDK makes a best effort to get it to happen.
 
 On Windows, reliably unmaximizes the window.
-<!-- impl Window::fn unstick -->
-Reverse operation for `Window::stick`; see `Window::stick`,
+<!-- trait WindowExt::fn unstick -->
+Reverse operation for `WindowExt::stick`; see `WindowExt::stick`,
 and `gtk_window_unstick`.
-<!-- impl Window::fn withdraw -->
+<!-- trait WindowExt::fn withdraw -->
 Withdraws a window (unmaps it and asks the window manager to forget about it).
-This function is not really useful as `Window::hide` automatically
+This function is not really useful as `WindowExt::hide` automatically
 withdraws toplevel windows before hiding them.
 <!-- enum WindowEdge -->
 Determines a window edge or corner.

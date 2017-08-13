@@ -23,20 +23,24 @@ pub enum Library {
 
 fn docs(lib: Library) -> Option<&'static str> {
     match lib {
+        Library::Glib => Some(include_str!("../glib/docs.md")),
         Library::Cairo => Some(include_str!("../cairo/docs.md")),
         Library::Gdk => Some(include_str!("../gdk/docs.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/docs.md")),
         Library::Gtk => Some(include_str!("../gtk/docs.md")),
-        Library::SourceView => Some(include_str!("../gtksource/docs.md")),
         _ => None,
     }
 }
 
 fn vendor_docs(lib: Library) -> Option<&'static str> {
     match lib {
+        Library::Glib => Some(include_str!("../glib/vendor.md")),
+        Library::Gio => Some(include_str!("../gio/vendor.md")),
+        Library::Pango => Some(include_str!("../pango/vendor.md")),
         Library::Gdk => Some(include_str!("../gdk/vendor.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/vendor.md")),
         Library::Gtk => Some(include_str!("../gtk/vendor.md")),
+        Library::SourceView => Some(include_str!("../gtksource/vendor.md")),
         _ => None,
     }
 }
