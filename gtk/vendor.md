@@ -267,7 +267,7 @@ whether to wrap the license
 <!-- struct AccelGroup -->
 A `AccelGroup` represents a group of keyboard accelerators,
 typically attached to a toplevel `Window` (with
-`WindowExt::add_accel_group`). Usually you won’t need to create a
+`GtkWindowExt::add_accel_group`). Usually you won’t need to create a
 `AccelGroup` directly; instead, when using `UIManager`, GTK+
 automatically sets up the accelerators for your menus in the ui
 manager’s `AccelGroup`.
@@ -7338,7 +7338,7 @@ has been set explicitly.
 <!-- trait ContainerExt::fn get_focus_child -->
 Returns the current focus child widget inside `self`. This is not the
 currently focused widget. That can be obtained by calling
-`WindowExt::get_focus`.
+`GtkWindowExt::get_focus`.
 
 # Returns
 
@@ -7822,7 +7822,7 @@ window can be accessed through `DialogExt::get_content_area` and
 `DialogExt::get_action_area`, as can be seen from the example below.
 
 A “modal” dialog (that is, one which freezes the rest of the application
-from user input), can be created by calling `WindowExt::set_modal` on the
+from user input), can be created by calling `GtkWindowExt::set_modal` on the
 dialog. Use the GTK_WINDOW() macro to cast the widget returned from
 `Dialog::new` into a `Window`. When using `Dialog::new_with_buttons`
 you can also pass the `DialogFlags::Modal` flag to make a dialog modal.
@@ -7941,8 +7941,8 @@ directly, but into the `vbox` and `action_area`, as described above.
 the new dialog as a `Widget`
 <!-- impl Dialog::fn new_with_buttons -->
 Creates a new `Dialog` with title `title` (or `None` for the default
-title; see `WindowExt::set_title`) and transient parent `parent` (or
-`None` for none; see `WindowExt::set_transient_for`). The `flags`
+title; see `GtkWindowExt::set_title`) and transient parent `parent` (or
+`None` for none; see `GtkWindowExt::set_transient_for`). The `flags`
 argument can be used to make the dialog modal (`DialogFlags::Modal`)
 and/or to have it destroyed along with its transient parent
 (`DialogFlags::DestroyWithParent`). After `flags`, button
@@ -9012,7 +9012,7 @@ the dialog box containing the entry will be closed, since the default
 widget is usually one of the dialog buttons.
 
 (For experts: if `setting` is `true`, the entry calls
-`WindowExt::activate_default` on the window containing the entry, in
+`GtkWindowExt::activate_default` on the window containing the entry, in
 the default handler for the `Entry::activate` signal.)
 ## `setting`
 `true` to activate window’s default widget on Enter keypress
@@ -19663,7 +19663,7 @@ Repositions the menu according to its position function.
 <!-- trait MenuExt::fn set_accel_group -->
 Set the `AccelGroup` which holds global accelerators for the
 menu. This accelerator group needs to also be added to all windows
-that this menu is being used in with `WindowExt::add_accel_group`,
+that this menu is being used in with `GtkWindowExt::add_accel_group`,
 in order for those windows to support all the accelerators
 contained in this group.
 ## `accel_group`
@@ -22885,7 +22885,7 @@ Feature: `v3_20`
 the new constraint
 <!-- trait PopoverExt::fn set_default_widget -->
 Sets the widget that should be set as default widget while
-the popover is shown (see `WindowExt::set_default`). `Popover`
+the popover is shown (see `GtkWindowExt::set_default`). `Popover`
 remembers the previous default widget and reestablishes it
 when the popover is dismissed.
 
@@ -37835,11 +37835,11 @@ minimum height contextual to that width using
 `WidgetExt::get_preferred_height_for_width`, which will also be a highly
 recursive operation. The minimum height for the minimum width is normally
 used to set the minimum size constraint on the toplevel
-(unless `WindowExt::set_geometry_hints` is explicitly used instead).
+(unless `GtkWindowExt::set_geometry_hints` is explicitly used instead).
 
 After the toplevel window has initially requested its size in both
 dimensions it can go on to allocate itself a reasonable size (or a size
-previously specified with `WindowExt::set_default_size`). During the
+previously specified with `GtkWindowExt::set_default_size`). During the
 recursive allocation process it’s important to note that request cycles
 will be recursively executed while container widgets allocate their children.
 Each container widget, once allocated a size, will go on to first share the
@@ -38158,7 +38158,7 @@ activatable, the function returns `false`.
 Installs an accelerator for this `self` in `accel_group` that causes
 `accel_signal` to be emitted if the accelerator is activated.
 The `accel_group` needs to be added to the widget’s toplevel via
-`WindowExt::add_accel_group`, and the signal must be of type `gobject::SignalFlags::Action`.
+`GtkWindowExt::add_accel_group`, and the signal must be of type `gobject::SignalFlags::Action`.
 Accelerators added through this function are not user changeable during
 runtime. If you want to support accelerators that can be changed by the
 user, use `AccelMap::add_entry` and `WidgetExt::set_accel_path` or
@@ -39817,7 +39817,7 @@ Determines if the widget should show a visible indication that
 it has the global input focus. This is a convenience function for
 use in ::draw handlers that takes into account whether focus
 indication should currently be shown in the toplevel window of
-`self`. See `WindowExt::get_focus_visible` for more information
+`self`. See `GtkWindowExt::get_focus_visible` for more information
 about focus indication.
 
 To find out if the widget has the global input focus, use
@@ -41079,12 +41079,12 @@ Sets the minimum size of a widget; that is, the widget’s size
 request will be at least `width` by `height`. You can use this
 function to force a widget to be larger than it normally would be.
 
-In most cases, `WindowExt::set_default_size` is a better choice for
+In most cases, `GtkWindowExt::set_default_size` is a better choice for
 toplevel windows than this function; setting the default size will
 still allow users to shrink the window. Setting the size request
 will force them to leave the window at least as large as the size
 request. When dealing with window sizes,
-`WindowExt::set_geometry_hints` can be a useful function as well.
+`GtkWindowExt::set_geometry_hints` can be a useful function as well.
 
 Note the inherent danger of setting any fixed size - themes,
 translations into other languages, different fonts, and user action
@@ -41427,7 +41427,7 @@ of the windowing system and allow the user to manipulate the window
 The `Window` implementation of the `Buildable` interface supports a
 custom `<accel-groups>` element, which supports any number of `<group>`
 elements representing the `AccelGroup` objects you want to add to
-your window (synonymous with `WindowExt::add_accel_group`.
+your window (synonymous with `GtkWindowExt::add_accel_group`.
 
 It also supports the `<initial-focus>` element, whose name property names
 the widget to receive the focus when the window is mapped.
@@ -41457,7 +41457,7 @@ widget that is added as a titlebar child.
 # Implements
 
 [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
-<!-- trait WindowExt -->
+<!-- trait GtkWindowExt -->
 Trait containing all `Window` methods.
 
 # Implementors
@@ -41475,7 +41475,7 @@ On X11, popup windows are not controlled by the
 [window manager][gtk-X11-arch].
 
 If you simply want an undecorated window (no window borders), use
-`WindowExt::set_decorated`, don’t use `WindowType::Popup`.
+`GtkWindowExt::set_decorated`, don’t use `WindowType::Popup`.
 
 All top-level windows created by `Window::new` are stored in
 an internal top-level window list. This list can be obtained from
@@ -41534,12 +41534,12 @@ showing the main window would automatically result in notification.
 `true` to automatically do startup notification
 <!-- impl Window::fn set_default_icon -->
 Sets an icon to be used as fallback for windows that haven't
-had `WindowExt::set_icon` called on them from a pixbuf.
+had `GtkWindowExt::set_icon` called on them from a pixbuf.
 ## `icon`
 the icon
 <!-- impl Window::fn set_default_icon_from_file -->
 Sets an icon to be used as fallback for windows that haven't
-had `WindowExt::set_icon_list` called on them from a file
+had `GtkWindowExt::set_icon_list` called on them from a file
 on disk. Warns on failure if `err` is `None`.
 ## `filename`
 location of icon file
@@ -41549,17 +41549,17 @@ location of icon file
 `true` if setting the icon succeeded.
 <!-- impl Window::fn set_default_icon_list -->
 Sets an icon list to be used as fallback for windows that haven't
-had `WindowExt::set_icon_list` called on them to set up a
+had `GtkWindowExt::set_icon_list` called on them to set up a
 window-specific icon list. This function allows you to set up the
 icon for all windows in your app at once.
 
-See `WindowExt::set_icon_list` for more details.
+See `GtkWindowExt::set_icon_list` for more details.
 ## `list`
 a list of `gdk_pixbuf::Pixbuf`
 <!-- impl Window::fn set_default_icon_name -->
 Sets an icon to be used as fallback for windows that haven't
-had `WindowExt::set_icon_list` called on them from a named
-themed icon, see `WindowExt::set_icon_name`.
+had `GtkWindowExt::set_icon_list` called on them from a named
+themed icon, see `GtkWindowExt::set_icon_name`.
 ## `name`
 the name of the themed icon
 <!-- impl Window::fn set_interactive_debugging -->
@@ -41571,7 +41571,7 @@ Feature: `v3_14`
 
 ## `enable`
 `true` to enable interactive debugging
-<!-- trait WindowExt::fn activate_default -->
+<!-- trait GtkWindowExt::fn activate_default -->
 Activates the default widget for the window, unless the current
 focused widget has been configured to receive the default action
 (see `WidgetExt::set_receives_default`), in which case the
@@ -41580,13 +41580,13 @@ focused widget is activated.
 # Returns
 
 `true` if a widget got activated.
-<!-- trait WindowExt::fn activate_focus -->
+<!-- trait GtkWindowExt::fn activate_focus -->
 Activates the current focused widget within the window.
 
 # Returns
 
 `true` if a widget got activated.
-<!-- trait WindowExt::fn activate_key -->
+<!-- trait GtkWindowExt::fn activate_key -->
 Activates mnemonics and accelerators for this `Window`. This is normally
 called by the default ::key_press_event handler for toplevel windows,
 however in some cases it may be useful to call this directly when
@@ -41597,19 +41597,19 @@ a `gdk::EventKey`
 # Returns
 
 `true` if a mnemonic or accelerator was found and activated.
-<!-- trait WindowExt::fn add_accel_group -->
+<!-- trait GtkWindowExt::fn add_accel_group -->
 Associate `accel_group` with `self`, such that calling
 `gtk_accel_groups_activate` on `self` will activate accelerators
 in `accel_group`.
 ## `accel_group`
 a `AccelGroup`
-<!-- trait WindowExt::fn add_mnemonic -->
+<!-- trait GtkWindowExt::fn add_mnemonic -->
 Adds a mnemonic to this window.
 ## `keyval`
 the mnemonic
 ## `target`
 the widget that gets activated by the mnemonic
-<!-- trait WindowExt::fn begin_move_drag -->
+<!-- trait GtkWindowExt::fn begin_move_drag -->
 Starts moving a window. This function is used if an application has
 window movement grips. When GDK can support it, the window movement
 will be done using the standard mechanism for the
@@ -41624,7 +41624,7 @@ X position where the user clicked to initiate the drag, in root window coordinat
 Y position where the user clicked to initiate the drag
 ## `timestamp`
 timestamp from the click event that initiated the drag
-<!-- trait WindowExt::fn begin_resize_drag -->
+<!-- trait GtkWindowExt::fn begin_resize_drag -->
 Starts resizing a window. This function is used if an application
 has window resizing controls. When GDK can support it, the resize
 will be done using the standard mechanism for the
@@ -41641,7 +41641,7 @@ X position where the user clicked to initiate the drag, in root window coordinat
 Y position where the user clicked to initiate the drag
 ## `timestamp`
 timestamp from the click event that initiated the drag
-<!-- trait WindowExt::fn close -->
+<!-- trait GtkWindowExt::fn close -->
 Requests that the window is closed, similar to what happens
 when a window manager close button is clicked.
 
@@ -41650,7 +41650,7 @@ titlebars.
 
 Feature: `v3_10`
 
-<!-- trait WindowExt::fn deiconify -->
+<!-- trait GtkWindowExt::fn deiconify -->
 Asks to deiconify (i.e. unminimize) the specified `self`. Note
 that you shouldn’t assume the window is definitely deiconified
 afterward, because other entities (e.g. the user or
@@ -41659,7 +41659,7 @@ again before your code which assumes deiconification gets to run.
 
 You can track iconification via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn fullscreen -->
+<!-- trait GtkWindowExt::fn fullscreen -->
 Asks to place `self` in the fullscreen state. Note that you
 shouldn’t assume the window is definitely full screen afterward,
 because other entities (e.g. the user or
@@ -41670,7 +41670,7 @@ don’t write code that crashes if not.
 
 You can track the fullscreen state via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn fullscreen_on_monitor -->
+<!-- trait GtkWindowExt::fn fullscreen_on_monitor -->
 Asks to place `self` in the fullscreen state. Note that you shouldn't assume
 the window is definitely full screen afterward.
 
@@ -41683,34 +41683,34 @@ Feature: `v3_18`
 a `gdk::Screen` to draw to
 ## `monitor`
 which monitor to go fullscreen on
-<!-- trait WindowExt::fn get_accept_focus -->
-Gets the value set by `WindowExt::set_accept_focus`.
+<!-- trait GtkWindowExt::fn get_accept_focus -->
+Gets the value set by `GtkWindowExt::set_accept_focus`.
 
 # Returns
 
 `true` if window should receive the input focus
-<!-- trait WindowExt::fn get_application -->
+<!-- trait GtkWindowExt::fn get_application -->
 Gets the `Application` associated with the window (if any).
 
 # Returns
 
 a `Application`, or `None`
-<!-- trait WindowExt::fn get_attached_to -->
+<!-- trait GtkWindowExt::fn get_attached_to -->
 Fetches the attach widget for this window. See
-`WindowExt::set_attached_to`.
+`GtkWindowExt::set_attached_to`.
 
 # Returns
 
 the widget where the window
 is attached, or `None` if the window is not attached to any widget.
-<!-- trait WindowExt::fn get_decorated -->
+<!-- trait GtkWindowExt::fn get_decorated -->
 Returns whether the window has been set to have decorations
-such as a title bar via `WindowExt::set_decorated`.
+such as a title bar via `GtkWindowExt::set_decorated`.
 
 # Returns
 
 `true` if the window has been set to have decorations
-<!-- trait WindowExt::fn get_default_size -->
+<!-- trait GtkWindowExt::fn get_default_size -->
 Gets the default size of the window. A value of -1 for the width or
 height indicates that a default size has not been explicitly set
 for that dimension, so the “natural” size of the window will be
@@ -41719,29 +41719,29 @@ used.
 location to store the default width, or `None`
 ## `height`
 location to store the default height, or `None`
-<!-- trait WindowExt::fn get_default_widget -->
+<!-- trait GtkWindowExt::fn get_default_widget -->
 Returns the default widget for `self`. See
-`WindowExt::set_default` for more details.
+`GtkWindowExt::set_default` for more details.
 
 # Returns
 
 the default widget, or `None`
 if there is none.
-<!-- trait WindowExt::fn get_deletable -->
+<!-- trait GtkWindowExt::fn get_deletable -->
 Returns whether the window has been set to have a close button
-via `WindowExt::set_deletable`.
+via `GtkWindowExt::set_deletable`.
 
 # Returns
 
 `true` if the window has been set to have a close button
-<!-- trait WindowExt::fn get_destroy_with_parent -->
+<!-- trait GtkWindowExt::fn get_destroy_with_parent -->
 Returns whether the window will be destroyed with its transient parent. See
 gtk_window_set_destroy_with_parent ().
 
 # Returns
 
 `true` if the window will be destroyed with its transient parent.
-<!-- trait WindowExt::fn get_focus -->
+<!-- trait GtkWindowExt::fn get_focus -->
 Retrieves the current focused widget within the window.
 Note that this is the widget that would have the focus
 if the toplevel window focused; if the toplevel window
@@ -41752,27 +41752,27 @@ not be `true` for the widget.
 
 the currently focused widget,
 or `None` if there is none.
-<!-- trait WindowExt::fn get_focus_on_map -->
-Gets the value set by `WindowExt::set_focus_on_map`.
+<!-- trait GtkWindowExt::fn get_focus_on_map -->
+Gets the value set by `GtkWindowExt::set_focus_on_map`.
 
 # Returns
 
 `true` if window should receive the input focus when
 mapped.
-<!-- trait WindowExt::fn get_focus_visible -->
+<!-- trait GtkWindowExt::fn get_focus_visible -->
 Gets the value of the `Window:focus-visible` property.
 
 # Returns
 
 `true` if “focus rectangles” are supposed to be visible
  in this window.
-<!-- trait WindowExt::fn get_gravity -->
-Gets the value set by `WindowExt::set_gravity`.
+<!-- trait GtkWindowExt::fn get_gravity -->
+Gets the value set by `GtkWindowExt::set_gravity`.
 
 # Returns
 
 window gravity
-<!-- trait WindowExt::fn get_group -->
+<!-- trait GtkWindowExt::fn get_group -->
 Returns the group for `self` or the default group, if
 `self` is `None` or if `self` does not have an explicit
 window group.
@@ -41780,7 +41780,7 @@ window group.
 # Returns
 
 the `WindowGroup` for a window or the default group
-<!-- trait WindowExt::fn get_has_resize_grip -->
+<!-- trait GtkWindowExt::fn get_has_resize_grip -->
 Determines whether the window may have a resize grip.
 
 # Deprecated since 3.14
@@ -41790,7 +41790,7 @@ Resize grips have been removed.
 # Returns
 
 `true` if the window has a resize grip
-<!-- trait WindowExt::fn get_hide_titlebar_when_maximized -->
+<!-- trait GtkWindowExt::fn get_hide_titlebar_when_maximized -->
 Returns whether the window has requested to have its titlebar hidden
 when maximized. See gtk_window_set_hide_titlebar_when_maximized ().
 
@@ -41798,55 +41798,55 @@ when maximized. See gtk_window_set_hide_titlebar_when_maximized ().
 
 `true` if the window has requested to have its titlebar
  hidden when maximized
-<!-- trait WindowExt::fn get_icon -->
-Gets the value set by `WindowExt::set_icon` (or if you've
-called `WindowExt::set_icon_list`, gets the first icon in
+<!-- trait GtkWindowExt::fn get_icon -->
+Gets the value set by `GtkWindowExt::set_icon` (or if you've
+called `GtkWindowExt::set_icon_list`, gets the first icon in
 the icon list).
 
 # Returns
 
 icon for window
-<!-- trait WindowExt::fn get_icon_list -->
-Retrieves the list of icons set by `WindowExt::set_icon_list`.
+<!-- trait GtkWindowExt::fn get_icon_list -->
+Retrieves the list of icons set by `GtkWindowExt::set_icon_list`.
 The list is copied, but the reference count on each
 member won’t be incremented.
 
 # Returns
 
 copy of window’s icon list
-<!-- trait WindowExt::fn get_icon_name -->
+<!-- trait GtkWindowExt::fn get_icon_name -->
 Returns the name of the themed icon for the window,
-see `WindowExt::set_icon_name`.
+see `GtkWindowExt::set_icon_name`.
 
 # Returns
 
 the icon name or `None` if the window has
 no themed icon
-<!-- trait WindowExt::fn get_mnemonic_modifier -->
+<!-- trait GtkWindowExt::fn get_mnemonic_modifier -->
 Returns the mnemonic modifier for this window. See
-`WindowExt::set_mnemonic_modifier`.
+`GtkWindowExt::set_mnemonic_modifier`.
 
 # Returns
 
 the modifier mask used to activate
  mnemonics on this window.
-<!-- trait WindowExt::fn get_mnemonics_visible -->
+<!-- trait GtkWindowExt::fn get_mnemonics_visible -->
 Gets the value of the `Window:mnemonics-visible` property.
 
 # Returns
 
 `true` if mnemonics are supposed to be visible
 in this window.
-<!-- trait WindowExt::fn get_modal -->
-Returns whether the window is modal. See `WindowExt::set_modal`.
+<!-- trait GtkWindowExt::fn get_modal -->
+Returns whether the window is modal. See `GtkWindowExt::set_modal`.
 
 # Returns
 
 `true` if the window is set to be modal and
  establishes a grab when shown
-<!-- trait WindowExt::fn get_opacity -->
+<!-- trait GtkWindowExt::fn get_opacity -->
 Fetches the requested opacity for this window. See
-`WindowExt::set_opacity`.
+`GtkWindowExt::set_opacity`.
 
 # Deprecated since 3.8
 
@@ -41855,11 +41855,11 @@ Use gtk_widget_get_opacity instead.
 # Returns
 
 the requested opacity for this window.
-<!-- trait WindowExt::fn get_position -->
+<!-- trait GtkWindowExt::fn get_position -->
 This function returns the position you need to pass to
-`WindowExt::move` to keep `self` in its current position.
+`GtkWindowExt::move` to keep `self` in its current position.
 This means that the meaning of the returned value varies with
-window gravity. See `WindowExt::move` for more details.
+window gravity. See `GtkWindowExt::move` for more details.
 
 The reliability of this function depends on the windowing system
 currently in use. Some windowing systems, such as Wayland, do not
@@ -41872,13 +41872,13 @@ moving even if you use the coordinates of the current position as
 returned by this function.
 
 If you haven’t changed the window gravity, its gravity will be
-`gdk::Gravity::NorthWest`. This means that `WindowExt::get_position`
+`gdk::Gravity::NorthWest`. This means that `GtkWindowExt::get_position`
 gets the position of the top-left corner of the window manager
-frame for the window. `WindowExt::move` sets the position of this
+frame for the window. `GtkWindowExt::move` sets the position of this
 same top-left corner.
 
 If a window has gravity `gdk::Gravity::Static` the window manager
-frame is not relevant, and thus `WindowExt::get_position` will
+frame is not relevant, and thus `GtkWindowExt::get_position` will
 always produce accurate results. However you can’t use static
 gravity to do things like place a window in a corner of the screen,
 because static gravity ignores the window manager decorations.
@@ -41898,13 +41898,13 @@ return location for X coordinate of
 ## `root_y`
 return location for Y coordinate of
  gravity-determined reference point, or `None`
-<!-- trait WindowExt::fn get_resizable -->
-Gets the value set by `WindowExt::set_resizable`.
+<!-- trait GtkWindowExt::fn get_resizable -->
+Gets the value set by `GtkWindowExt::set_resizable`.
 
 # Returns
 
 `true` if the user can resize the window
-<!-- trait WindowExt::fn get_resize_grip_area -->
+<!-- trait GtkWindowExt::fn get_resize_grip_area -->
 If a window has a resize grip, this will retrieve the grip
 position, width and height into the specified `gdk::Rectangle`.
 
@@ -41918,31 +41918,31 @@ a pointer to a `gdk::Rectangle` which we should store
 # Returns
 
 `true` if the resize grip’s area was retrieved
-<!-- trait WindowExt::fn get_role -->
-Returns the role of the window. See `WindowExt::set_role` for
+<!-- trait GtkWindowExt::fn get_role -->
+Returns the role of the window. See `GtkWindowExt::set_role` for
 further explanation.
 
 # Returns
 
 the role of the window if set, or `None`. The
 returned is owned by the widget and must not be modified or freed.
-<!-- trait WindowExt::fn get_screen -->
+<!-- trait GtkWindowExt::fn get_screen -->
 Returns the `gdk::Screen` associated with `self`.
 
 # Returns
 
 a `gdk::Screen`.
-<!-- trait WindowExt::fn get_size -->
+<!-- trait GtkWindowExt::fn get_size -->
 Obtains the current size of `self`.
 
 If `self` is not visible on screen, this function return the size GTK+
 will suggest to the [window manager][gtk-X11-arch] for the initial window
 size (but this is not reliably the same as the size the window manager
-will actually select). See: `WindowExt::set_default_size`.
+will actually select). See: `GtkWindowExt::set_default_size`.
 
 Depending on the windowing system and the window manager constraints,
 the size returned by this function may not match the size set using
-`WindowExt::resize`; additionally, since `WindowExt::resize` may be
+`GtkWindowExt::resize`; additionally, since `GtkWindowExt::resize` may be
 implemented as an asynchronous operation, GTK+ cannot guarantee in any
 way that this code:
 
@@ -41966,7 +41966,7 @@ the user preferences and that may not be visibile at the time you
 call this function.
 
 The dimensions returned by this function are suitable for being
-stored across sessions; use `WindowExt::set_default_size` to
+stored across sessions; use `GtkWindowExt::set_default_size` to
 restore them when before showing the window.
 
 To avoid potential race conditions, you should only call this
@@ -41995,9 +41995,9 @@ use.
 
 If you are getting a window size in order to position the window
 on the screen, you should, instead, simply set the window’s semantic
-type with `WindowExt::set_type_hint`, which allows the window manager
+type with `GtkWindowExt::set_type_hint`, which allows the window manager
 to e.g. center dialogs. Also, if you set the transient parent of
-dialogs with `WindowExt::set_transient_for` window managers will
+dialogs with `GtkWindowExt::set_transient_for` window managers will
 often center the dialog over its parent window. It's much preferred
 to let the window manager handle these cases rather than doing it
 yourself, because all apps will behave consistently and according to
@@ -42006,34 +42006,34 @@ the window manager can take into account the size of the window
 decorations and border that it may add, and of which GTK+ has no
 knowledge. Additionally, positioning windows in global screen coordinates
 may not be allowed by the windowing system. For more information,
-see: `WindowExt::set_position`.
+see: `GtkWindowExt::set_position`.
 ## `width`
 return location for width, or `None`
 ## `height`
 return location for height, or `None`
-<!-- trait WindowExt::fn get_skip_pager_hint -->
-Gets the value set by `WindowExt::set_skip_pager_hint`.
+<!-- trait GtkWindowExt::fn get_skip_pager_hint -->
+Gets the value set by `GtkWindowExt::set_skip_pager_hint`.
 
 # Returns
 
 `true` if window shouldn’t be in pager
-<!-- trait WindowExt::fn get_skip_taskbar_hint -->
-Gets the value set by `WindowExt::set_skip_taskbar_hint`
+<!-- trait GtkWindowExt::fn get_skip_taskbar_hint -->
+Gets the value set by `GtkWindowExt::set_skip_taskbar_hint`
 
 # Returns
 
 `true` if window shouldn’t be in taskbar
-<!-- trait WindowExt::fn get_title -->
-Retrieves the title of the window. See `WindowExt::set_title`.
+<!-- trait GtkWindowExt::fn get_title -->
+Retrieves the title of the window. See `GtkWindowExt::set_title`.
 
 # Returns
 
 the title of the window, or `None` if none has
 been set explicitly. The returned string is owned by the widget
 and must not be modified or freed.
-<!-- trait WindowExt::fn get_titlebar -->
+<!-- trait GtkWindowExt::fn get_titlebar -->
 Returns the custom titlebar that has been set with
-`WindowExt::set_titlebar`.
+`GtkWindowExt::set_titlebar`.
 
 Feature: `v3_16`
 
@@ -42041,33 +42041,33 @@ Feature: `v3_16`
 # Returns
 
 the custom titlebar, or `None`
-<!-- trait WindowExt::fn get_transient_for -->
+<!-- trait GtkWindowExt::fn get_transient_for -->
 Fetches the transient parent for this window. See
-`WindowExt::set_transient_for`.
+`GtkWindowExt::set_transient_for`.
 
 # Returns
 
 the transient parent for this
 window, or `None` if no transient parent has been set.
-<!-- trait WindowExt::fn get_type_hint -->
-Gets the type hint for this window. See `WindowExt::set_type_hint`.
+<!-- trait GtkWindowExt::fn get_type_hint -->
+Gets the type hint for this window. See `GtkWindowExt::set_type_hint`.
 
 # Returns
 
 the type hint for `self`.
-<!-- trait WindowExt::fn get_urgency_hint -->
-Gets the value set by `WindowExt::set_urgency_hint`
+<!-- trait GtkWindowExt::fn get_urgency_hint -->
+Gets the value set by `GtkWindowExt::set_urgency_hint`
 
 # Returns
 
 `true` if window is urgent
-<!-- trait WindowExt::fn get_window_type -->
+<!-- trait GtkWindowExt::fn get_window_type -->
 Gets the type of the window. See `WindowType`.
 
 # Returns
 
 the type of the window
-<!-- trait WindowExt::fn has_group -->
+<!-- trait GtkWindowExt::fn has_group -->
 Returns whether `self` has an explicit window group.
 
 # Returns
@@ -42075,15 +42075,15 @@ Returns whether `self` has an explicit window group.
 `true` if `self` has an explicit window group.
 
 Since 2.22
-<!-- trait WindowExt::fn has_toplevel_focus -->
+<!-- trait GtkWindowExt::fn has_toplevel_focus -->
 Returns whether the input focus is within this `Window`.
-For real toplevel windows, this is identical to `WindowExt::is_active`,
+For real toplevel windows, this is identical to `GtkWindowExt::is_active`,
 but for embedded windows, like `Plug`, the results will differ.
 
 # Returns
 
 `true` if the input focus is within this `Window`
-<!-- trait WindowExt::fn iconify -->
+<!-- trait GtkWindowExt::fn iconify -->
 Asks to iconify (i.e. minimize) the specified `self`. Note that
 you shouldn’t assume the window is definitely iconified afterward,
 because other entities (e.g. the user or
@@ -42098,26 +42098,26 @@ onscreen.
 
 You can track iconification via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn is_active -->
+<!-- trait GtkWindowExt::fn is_active -->
 Returns whether the window is part of the current active toplevel.
 (That is, the toplevel window receiving keystrokes.)
 The return value is `true` if the window is active toplevel
 itself, but also if it is, say, a `Plug` embedded in the active toplevel.
 You might use this function if you wanted to draw a widget
 differently in an active window from a widget in an inactive window.
-See `WindowExt::has_toplevel_focus`
+See `GtkWindowExt::has_toplevel_focus`
 
 # Returns
 
 `true` if the window part of the current active window.
-<!-- trait WindowExt::fn is_maximized -->
+<!-- trait GtkWindowExt::fn is_maximized -->
 Retrieves the current maximized state of `self`.
 
 Note that since maximization is ultimately handled by the window
 manager and happens asynchronously to an application request, you
 shouldn’t assume the return value of this function changing
 immediately (or at all), as an effect of calling
-`WindowExt::maximize` or `WindowExt::unmaximize`.
+`GtkWindowExt::maximize` or `GtkWindowExt::unmaximize`.
 
 Feature: `v3_12`
 
@@ -42125,7 +42125,7 @@ Feature: `v3_12`
 # Returns
 
 whether the window has a maximized state.
-<!-- trait WindowExt::fn maximize -->
+<!-- trait GtkWindowExt::fn maximize -->
 Asks to maximize `self`, so that it becomes full-screen. Note that
 you shouldn’t assume the window is definitely maximized afterward,
 because other entities (e.g. the user or
@@ -42141,7 +42141,7 @@ initially.
 You can track maximization via the “window-state-event” signal
 on `Widget`, or by listening to notifications on the
 `Window:is-maximized` property.
-<!-- trait WindowExt::fn mnemonic_activate -->
+<!-- trait GtkWindowExt::fn mnemonic_activate -->
 Activates the targets associated with the mnemonic.
 ## `keyval`
 the mnemonic
@@ -42151,7 +42151,7 @@ the modifiers
 # Returns
 
 `true` if the activation is done.
-<!-- trait WindowExt::fn move -->
+<!-- trait GtkWindowExt::fn move -->
 Asks the [window manager][gtk-X11-arch] to move
 `self` to the given position. Window managers are free to ignore
 this; most window managers ignore requests for initial window
@@ -42165,7 +42165,7 @@ coordinates; and second, which point on the window is positioned at
 the reference point.
 
 By default the gravity is `gdk::Gravity::NorthWest`, so the reference
-point is simply the `x`, `y` supplied to `WindowExt::move`. The
+point is simply the `x`, `y` supplied to `GtkWindowExt::move`. The
 top-left corner of the window decorations (aka window frame or
 border) will be placed at `x`, `y`. Therefore, to position a window
 at the top left of the screen, you want to use the default gravity
@@ -42184,31 +42184,31 @@ example does not take multi-head scenarios into account).
 The [Extended Window Manager Hints Specification](http://www.freedesktop.org/Standards/wm-spec)
 has a nice table of gravities in the “implementation notes” section.
 
-The `WindowExt::get_position` documentation may also be relevant.
+The `GtkWindowExt::get_position` documentation may also be relevant.
 ## `x`
 X coordinate to move window to
 ## `y`
 Y coordinate to move window to
-<!-- trait WindowExt::fn parse_geometry -->
+<!-- trait GtkWindowExt::fn parse_geometry -->
 Parses a standard X Window System geometry string - see the
 manual page for X (type “man X”) for details on this.
-`WindowExt::parse_geometry` does work on all GTK+ ports
+`GtkWindowExt::parse_geometry` does work on all GTK+ ports
 including Win32 but is primarily intended for an X environment.
 
 If either a size or a position can be extracted from the
-geometry string, `WindowExt::parse_geometry` returns `true`
-and calls `WindowExt::set_default_size` and/or `WindowExt::move`
+geometry string, `GtkWindowExt::parse_geometry` returns `true`
+and calls `GtkWindowExt::set_default_size` and/or `GtkWindowExt::move`
 to resize/move the window.
 
-If `WindowExt::parse_geometry` returns `true`, it will also
+If `GtkWindowExt::parse_geometry` returns `true`, it will also
 set the `gdk::WindowHints::UserPos` and/or `gdk::WindowHints::UserSize` hints
 indicating to the window manager that the size/position of
 the window was user-specified. This causes most window
 managers to honor the geometry.
 
-Note that for `WindowExt::parse_geometry` to work as expected, it has
+Note that for `GtkWindowExt::parse_geometry` to work as expected, it has
 to be called when the window has its “final” size, i.e. after calling
-`WidgetExt::show_all` on the contents and `WindowExt::set_geometry_hints`
+`WidgetExt::show_all` on the contents and `GtkWindowExt::set_geometry_hints`
 on the window.
 
 ```C
@@ -42272,7 +42272,7 @@ geometry string
 # Returns
 
 `true` if string was parsed successfully
-<!-- trait WindowExt::fn present -->
+<!-- trait GtkWindowExt::fn present -->
 Presents a window to the user. This may mean raising the window
 in the stacking order, deiconifying it, moving it to the current
 desktop, and/or giving it the keyboard focus, possibly dependent
@@ -42284,19 +42284,19 @@ as well.
 This function should be used when the user tries to open a window
 that’s already open. Say for example the preferences dialog is
 currently open, and the user chooses Preferences from the menu
-a second time; use `WindowExt::present` to move the already-open dialog
+a second time; use `GtkWindowExt::present` to move the already-open dialog
 where the user can see it.
 
 If you are calling this function in response to a user interaction,
-it is preferable to use `WindowExt::present_with_time`.
-<!-- trait WindowExt::fn present_with_time -->
+it is preferable to use `GtkWindowExt::present_with_time`.
+<!-- trait GtkWindowExt::fn present_with_time -->
 Presents a window to the user in response to a user interaction.
 If you need to present a window without a timestamp, use
-`WindowExt::present`. See `WindowExt::present` for details.
+`GtkWindowExt::present`. See `GtkWindowExt::present` for details.
 ## `timestamp`
 the timestamp of the user interaction (typically a
  button or key press event) which triggered this call
-<!-- trait WindowExt::fn propagate_key_event -->
+<!-- trait GtkWindowExt::fn propagate_key_event -->
 Propagate a key press or release event to the focus widget and
 up the focus container chain until a widget handles `event`.
 This is normally called by the default ::key_press_event and
@@ -42309,17 +42309,17 @@ a `gdk::EventKey`
 # Returns
 
 `true` if a widget in the focus chain handled the event.
-<!-- trait WindowExt::fn remove_accel_group -->
-Reverses the effects of `WindowExt::add_accel_group`.
+<!-- trait GtkWindowExt::fn remove_accel_group -->
+Reverses the effects of `GtkWindowExt::add_accel_group`.
 ## `accel_group`
 a `AccelGroup`
-<!-- trait WindowExt::fn remove_mnemonic -->
+<!-- trait GtkWindowExt::fn remove_mnemonic -->
 Removes a mnemonic from this window.
 ## `keyval`
 the mnemonic
 ## `target`
 the widget that gets activated by the mnemonic
-<!-- trait WindowExt::fn reshow_with_initial_size -->
+<!-- trait GtkWindowExt::fn reshow_with_initial_size -->
 Hides `self`, then reshows it, resetting the
 default size and position of the window. Used
 by GUI builders only.
@@ -42329,16 +42329,16 @@ by GUI builders only.
 GUI builders can call `WidgetExt::hide`,
  `WidgetExt::unrealize` and then `WidgetExt::show` on `self`
  themselves, if they still need this functionality.
-<!-- trait WindowExt::fn resize -->
+<!-- trait GtkWindowExt::fn resize -->
 Resizes the window as if the user had done so, obeying geometry
 constraints. The default geometry constraint is that windows may
 not be smaller than their size request; to override this
 constraint, call `WidgetExt::set_size_request` to set the window's
 request to a smaller value.
 
-If `WindowExt::resize` is called before showing a window for the
+If `GtkWindowExt::resize` is called before showing a window for the
 first time, it overrides any default size set with
-`WindowExt::set_default_size`.
+`GtkWindowExt::set_default_size`.
 
 Windows may not be resized smaller than 1 by 1 pixels.
 
@@ -42348,20 +42348,20 @@ requested size without the title bar, borders and shadows added for
 the client side decorations, but there is no garantee that the
 result will be totally accurate because these widgets added for
 client side decorations depend on the theme and may not be realized
-or visible at the time `WindowExt::resize` is issued.
+or visible at the time `GtkWindowExt::resize` is issued.
 
-Typically, `WindowExt::resize` will compensate for the `HeaderBar`
+Typically, `GtkWindowExt::resize` will compensate for the `HeaderBar`
 height only if it's known at the time the resulting `Window`
 configuration is issued.
 For example, if new widgets are added after the `Window` configuration
 and cause the `HeaderBar` to grow in height, this will result in a
-window content smaller that specified by `WindowExt::resize` and not
+window content smaller that specified by `GtkWindowExt::resize` and not
 a larger window.
 ## `width`
 width in pixels to resize the window to
 ## `height`
 height in pixels to resize the window to
-<!-- trait WindowExt::fn resize_grip_is_visible -->
+<!-- trait GtkWindowExt::fn resize_grip_is_visible -->
 Determines whether a resize grip is visible for the specified window.
 
 # Deprecated since 3.14
@@ -42371,32 +42371,32 @@ Resize grips have been removed.
 # Returns
 
 `true` if a resize grip exists and is visible
-<!-- trait WindowExt::fn resize_to_geometry -->
-Like `WindowExt::resize`, but `width` and `height` are interpreted
+<!-- trait GtkWindowExt::fn resize_to_geometry -->
+Like `GtkWindowExt::resize`, but `width` and `height` are interpreted
 in terms of the base size and increment set with
 gtk_window_set_geometry_hints.
 
 # Deprecated since 3.20
 
 This function does nothing. Use
- `WindowExt::resize` and compute the geometry yourself.
+ `GtkWindowExt::resize` and compute the geometry yourself.
 ## `width`
 width in resize increments to resize the window to
 ## `height`
 height in resize increments to resize the window to
-<!-- trait WindowExt::fn set_accept_focus -->
+<!-- trait GtkWindowExt::fn set_accept_focus -->
 Windows may set a hint asking the desktop environment not to receive
 the input focus. This function sets this hint.
 ## `setting`
 `true` to let this window receive input focus
-<!-- trait WindowExt::fn set_application -->
+<!-- trait GtkWindowExt::fn set_application -->
 Sets or unsets the `Application` associated with the window.
 
 The application will be kept alive for at least as long as the window
 is open.
 ## `application`
 a `Application`, or `None`
-<!-- trait WindowExt::fn set_attached_to -->
+<!-- trait GtkWindowExt::fn set_attached_to -->
 Marks `self` as attached to `attach_widget`. This creates a logical binding
 between the window and the widget it belongs to, which is used by GTK+ to
 propagate information such as styling or accessibility to `self` as if it
@@ -42407,13 +42407,13 @@ a `Menu` created by a `ComboBox`, a completion popup window
 created by `Entry` or a typeahead search entry created by `TreeView`.
 
 Note that this function should not be confused with
-`WindowExt::set_transient_for`, which specifies a window manager relation
+`GtkWindowExt::set_transient_for`, which specifies a window manager relation
 between two toplevels instead.
 
 Passing `None` for `attach_widget` detaches the window.
 ## `attach_widget`
 a `Widget`, or `None`
-<!-- trait WindowExt::fn set_decorated -->
+<!-- trait GtkWindowExt::fn set_decorated -->
 By default, windows are decorated with a title bar, resize
 controls, etc. Some [window managers][gtk-X11-arch]
 allow GTK+ to disable these decorations, creating a
@@ -42427,7 +42427,7 @@ On Windows, this function always works, since there’s no window manager
 policy involved.
 ## `setting`
 `true` to decorate the window
-<!-- trait WindowExt::fn set_default -->
+<!-- trait GtkWindowExt::fn set_default -->
 The default widget is the widget that’s activated when the user
 presses Enter in a dialog (for example). This function sets or
 unsets the default widget for a `Window`. When setting (rather
@@ -42438,24 +42438,24 @@ the widget you’d like to make the default.
 ## `default_widget`
 widget to be the default, or `None`
  to unset the default widget for the toplevel
-<!-- trait WindowExt::fn set_default_geometry -->
-Like `WindowExt::set_default_size`, but `width` and `height` are interpreted
+<!-- trait GtkWindowExt::fn set_default_geometry -->
+Like `GtkWindowExt::set_default_size`, but `width` and `height` are interpreted
 in terms of the base size and increment set with
 gtk_window_set_geometry_hints.
 
 # Deprecated since 3.20
 
 This function does nothing. If you want to set a default
- size, use `WindowExt::set_default_size` instead.
+ size, use `GtkWindowExt::set_default_size` instead.
 ## `width`
 width in resize increments, or -1 to unset the default width
 ## `height`
 height in resize increments, or -1 to unset the default height
-<!-- trait WindowExt::fn set_default_size -->
+<!-- trait GtkWindowExt::fn set_default_size -->
 Sets the default size of a window. If the window’s “natural” size
 (its size request) is larger than the default, the default will be
 ignored. More generally, if the default size does not obey the
-geometry hints for the window (`WindowExt::set_geometry_hints` can
+geometry hints for the window (`GtkWindowExt::set_geometry_hints` can
 be used to set these explicitly), the default size will be clamped
 to the nearest permitted size.
 
@@ -42467,11 +42467,11 @@ again as they normally would. Setting a default size of -1 means to
 use the “natural” default size (the size request of the window).
 
 For more control over a window’s initial size and how resizing works,
-investigate `WindowExt::set_geometry_hints`.
+investigate `GtkWindowExt::set_geometry_hints`.
 
-For some uses, `WindowExt::resize` is a more appropriate function.
-`WindowExt::resize` changes the current size of the window, rather
-than the size to be used on initial display. `WindowExt::resize` always
+For some uses, `GtkWindowExt::resize` is a more appropriate function.
+`GtkWindowExt::resize` changes the current size of the window, rather
+than the size to be used on initial display. `GtkWindowExt::resize` always
 affects the window itself, not the geometry widget.
 
 The default size of a window only affects the first time a window is
@@ -42483,13 +42483,13 @@ passing 0 for `width` and `height` is OK, resulting in a 1x1 default size.
 
 If you use this function to reestablish a previously saved window size,
 note that the appropriate size to save is the one returned by
-`WindowExt::get_size`. Using the window allocation directly will not
+`GtkWindowExt::get_size`. Using the window allocation directly will not
 work in all circumstances and can lead to growing or shrinking windows.
 ## `width`
 width in pixels, or -1 to unset the default width
 ## `height`
 height in pixels, or -1 to unset the default height
-<!-- trait WindowExt::fn set_deletable -->
+<!-- trait GtkWindowExt::fn set_deletable -->
 By default, windows have a close button in the window frame. Some
 [window managers][gtk-X11-arch] allow GTK+ to
 disable this button. If you set the deletable property to `false`
@@ -42502,14 +42502,14 @@ On Windows, this function always works, since there’s no window manager
 policy involved.
 ## `setting`
 `true` to decorate the window as deletable
-<!-- trait WindowExt::fn set_destroy_with_parent -->
+<!-- trait GtkWindowExt::fn set_destroy_with_parent -->
 If `setting` is `true`, then destroying the transient parent of `self`
 will also destroy `self` itself. This is useful for dialogs that
 shouldn’t persist beyond the lifetime of the main window they're
 associated with, for example.
 ## `setting`
 whether to destroy `self` with its transient parent
-<!-- trait WindowExt::fn set_focus -->
+<!-- trait GtkWindowExt::fn set_focus -->
 If `focus` is not the current focus widget, and is focusable, sets
 it as the focus widget for the window. If `focus` is `None`, unsets
 the focus widget for this window. To set the focus to a particular
@@ -42518,17 +42518,17 @@ widget in the toplevel, it is usually more convenient to use
 ## `focus`
 widget to be the new focus widget, or `None` to unset
  any focus widget for the toplevel window.
-<!-- trait WindowExt::fn set_focus_on_map -->
+<!-- trait GtkWindowExt::fn set_focus_on_map -->
 Windows may set a hint asking the desktop environment not to receive
 the input focus when the window is mapped. This function sets this
 hint.
 ## `setting`
 `true` to let this window receive input focus on map
-<!-- trait WindowExt::fn set_focus_visible -->
+<!-- trait GtkWindowExt::fn set_focus_visible -->
 Sets the `Window:focus-visible` property.
 ## `setting`
 the new value
-<!-- trait WindowExt::fn set_geometry_hints -->
+<!-- trait GtkWindowExt::fn set_geometry_hints -->
 This function sets up hints about how a window can be resized by
 the user. You can set a minimum and maximum size; allowed resize
 increments (e.g. for xterm, you can only resize by the size of a
@@ -42541,21 +42541,21 @@ widget the geometry hints used to be applied to
 struct containing geometry information or `None`
 ## `geom_mask`
 mask indicating which struct fields should be paid attention to
-<!-- trait WindowExt::fn set_gravity -->
+<!-- trait GtkWindowExt::fn set_gravity -->
 Window gravity defines the meaning of coordinates passed to
-`WindowExt::move`. See `WindowExt::move` and `gdk::Gravity` for
+`GtkWindowExt::move`. See `GtkWindowExt::move` and `gdk::Gravity` for
 more details.
 
 The default window gravity is `gdk::Gravity::NorthWest` which will
 typically “do what you mean.”
 ## `gravity`
 window gravity
-<!-- trait WindowExt::fn set_has_resize_grip -->
+<!-- trait GtkWindowExt::fn set_has_resize_grip -->
 Sets whether `self` has a corner resize grip.
 
 Note that the resize grip is only shown if the window
 is actually resizable and not maximized. Use
-`WindowExt::resize_grip_is_visible` to find out if the
+`GtkWindowExt::resize_grip_is_visible` to find out if the
 resize grip is currently shown.
 
 # Deprecated since 3.14
@@ -42563,7 +42563,7 @@ resize grip is currently shown.
 Resize grips have been removed.
 ## `value`
 `true` to allow a resize grip
-<!-- trait WindowExt::fn set_has_user_ref_count -->
+<!-- trait GtkWindowExt::fn set_has_user_ref_count -->
 Tells GTK+ whether to drop its extra reference to the window
 when `WidgetExt::destroy` is called.
 
@@ -42573,7 +42573,7 @@ wrapper object is garbage collected. There is no justification
 for ever calling this function in an application.
 ## `setting`
 the new value
-<!-- trait WindowExt::fn set_hide_titlebar_when_maximized -->
+<!-- trait GtkWindowExt::fn set_hide_titlebar_when_maximized -->
 If `setting` is `true`, then `self` will request that it’s titlebar
 should be hidden when maximized.
 This is useful for windows that don’t convey any information other
@@ -42581,12 +42581,12 @@ than the application name in the titlebar, to put the available
 screen space to better use. If the underlying window system does not
 support the request, the setting will not have any effect.
 
-Note that custom titlebars set with `WindowExt::set_titlebar` are
+Note that custom titlebars set with `GtkWindowExt::set_titlebar` are
 not affected by this. The application is in full control of their
 content and visibility anyway.
 ## `setting`
 whether to hide the titlebar when `self` is maximized
-<!-- trait WindowExt::fn set_icon -->
+<!-- trait GtkWindowExt::fn set_icon -->
 Sets up the icon representing a `Window`. This icon is used when
 the window is minimized (also known as iconified). Some window
 managers or desktop environments may also place it in the window
@@ -42599,20 +42599,20 @@ GTK+. Scaling is postponed until the last minute, when the desired
 final size is known, to allow best quality.
 
 If you have your icon hand-drawn in multiple sizes, use
-`WindowExt::set_icon_list`. Then the best size will be used.
+`GtkWindowExt::set_icon_list`. Then the best size will be used.
 
-This function is equivalent to calling `WindowExt::set_icon_list`
+This function is equivalent to calling `GtkWindowExt::set_icon_list`
 with a 1-element list.
 
 See also `Window::set_default_icon_list` to set the icon
 for all windows in your application in one go.
 ## `icon`
 icon image, or `None`
-<!-- trait WindowExt::fn set_icon_from_file -->
+<!-- trait GtkWindowExt::fn set_icon_from_file -->
 Sets the icon for `self`.
 Warns on failure if `err` is `None`.
 
-This function is equivalent to calling `WindowExt::set_icon`
+This function is equivalent to calling `GtkWindowExt::set_icon`
 with a pixbuf created by loading the image from `filename`.
 ## `filename`
 location of icon file
@@ -42620,14 +42620,14 @@ location of icon file
 # Returns
 
 `true` if setting the icon succeeded.
-<!-- trait WindowExt::fn set_icon_list -->
+<!-- trait GtkWindowExt::fn set_icon_list -->
 Sets up the icon representing a `Window`. The icon is used when
 the window is minimized (also known as iconified). Some window
 managers or desktop environments may also place it in the window
 frame, or display it in other contexts. On others, the icon is not
 used at all, so your mileage may vary.
 
-`WindowExt::set_icon_list` allows you to pass in the same icon in
+`GtkWindowExt::set_icon_list` allows you to pass in the same icon in
 several hand-drawn sizes. The list should contain the natural sizes
 your icon is available in; that is, don’t scale the image before
 passing it to GTK+. Scaling is postponed until the last minute,
@@ -42643,12 +42643,12 @@ See also `Window::set_default_icon_list` to set the icon
 for all windows in your application in one go.
 
 Note that transient windows (those who have been set transient for another
-window using `WindowExt::set_transient_for`) will inherit their
+window using `GtkWindowExt::set_transient_for`) will inherit their
 icon from their transient parent. So there’s no need to explicitly
 set the icon on transient windows.
 ## `list`
 list of `gdk_pixbuf::Pixbuf`
-<!-- trait WindowExt::fn set_icon_name -->
+<!-- trait GtkWindowExt::fn set_icon_name -->
 Sets the icon for the window from a named themed icon.
 See the docs for `IconTheme` for more details.
 On some platforms, the window icon is not used at all.
@@ -42657,7 +42657,7 @@ Note that this has nothing to do with the WM_ICON_NAME
 property which is mentioned in the ICCCM.
 ## `name`
 the name of the themed icon
-<!-- trait WindowExt::fn set_keep_above -->
+<!-- trait GtkWindowExt::fn set_keep_above -->
 Asks to keep `self` above, so that it stays on top. Note that
 you shouldn’t assume the window is definitely above afterward,
 because other entities (e.g. the user or
@@ -42680,7 +42680,7 @@ be used by applications e.g. for drawing attention to their
 dialogs.
 ## `setting`
 whether to keep `self` above other windows
-<!-- trait WindowExt::fn set_keep_below -->
+<!-- trait GtkWindowExt::fn set_keep_below -->
 Asks to keep `self` below, so that it stays in bottom. Note that
 you shouldn’t assume the window is definitely below afterward,
 because other entities (e.g. the user or
@@ -42703,25 +42703,25 @@ be used by applications e.g. for drawing attention to their
 dialogs.
 ## `setting`
 whether to keep `self` below other windows
-<!-- trait WindowExt::fn set_mnemonic_modifier -->
+<!-- trait GtkWindowExt::fn set_mnemonic_modifier -->
 Sets the mnemonic modifier for this window.
 ## `modifier`
 the modifier mask used to activate
  mnemonics on this window.
-<!-- trait WindowExt::fn set_mnemonics_visible -->
+<!-- trait GtkWindowExt::fn set_mnemonics_visible -->
 Sets the `Window:mnemonics-visible` property.
 ## `setting`
 the new value
-<!-- trait WindowExt::fn set_modal -->
+<!-- trait GtkWindowExt::fn set_modal -->
 Sets a window modal or non-modal. Modal windows prevent interaction
 with other windows in the same application. To keep modal dialogs
 on top of main application windows, use
-`WindowExt::set_transient_for` to make the dialog transient for the
+`GtkWindowExt::set_transient_for` to make the dialog transient for the
 parent; most [window managers][gtk-X11-arch]
 will then disallow lowering the dialog below the parent.
 ## `modal`
 whether the window is modal
-<!-- trait WindowExt::fn set_opacity -->
+<!-- trait GtkWindowExt::fn set_opacity -->
 Request the windowing system to make `self` partially transparent,
 with opacity 0 being fully transparent and 1 fully opaque. (Values
 of the opacity parameter are clamped to the [0,1] range.) On X11
@@ -42737,18 +42737,18 @@ shown causes it to flicker once on Windows.
 Use gtk_widget_set_opacity instead.
 ## `opacity`
 desired opacity, between 0 and 1
-<!-- trait WindowExt::fn set_position -->
+<!-- trait GtkWindowExt::fn set_position -->
 Sets a position constraint for this window. If the old or new
 constraint is `WindowPosition::CenterAlways`, this will also cause
 the window to be repositioned to satisfy the new constraint.
 ## `position`
 a position constraint.
-<!-- trait WindowExt::fn set_resizable -->
+<!-- trait GtkWindowExt::fn set_resizable -->
 Sets whether the user can resize a window. Windows are user resizable
 by default.
 ## `resizable`
 `true` if the user can resize this window
-<!-- trait WindowExt::fn set_role -->
+<!-- trait GtkWindowExt::fn set_role -->
 This function is only useful on X11, not with other GTK+ targets.
 
 In combination with the window title, the window role allows a
@@ -42763,13 +42763,13 @@ role, since the WM can use the title to identify the window when
 restoring the session.
 ## `role`
 unique identifier for the window to be used when restoring a session
-<!-- trait WindowExt::fn set_screen -->
+<!-- trait GtkWindowExt::fn set_screen -->
 Sets the `gdk::Screen` where the `self` is displayed; if
 the window is already mapped, it will be unmapped, and
 then remapped on the new screen.
 ## `screen`
 a `gdk::Screen`.
-<!-- trait WindowExt::fn set_skip_pager_hint -->
+<!-- trait GtkWindowExt::fn set_skip_pager_hint -->
 Windows may set a hint asking the desktop environment not to display
 the window in the pager. This function sets this hint.
 (A "pager" is any desktop navigation tool such as a workspace
@@ -42777,25 +42777,25 @@ switcher that displays a thumbnail representation of the windows
 on the screen.)
 ## `setting`
 `true` to keep this window from appearing in the pager
-<!-- trait WindowExt::fn set_skip_taskbar_hint -->
+<!-- trait GtkWindowExt::fn set_skip_taskbar_hint -->
 Windows may set a hint asking the desktop environment not to display
 the window in the task bar. This function sets this hint.
 ## `setting`
 `true` to keep this window from appearing in the task bar
-<!-- trait WindowExt::fn set_startup_id -->
+<!-- trait GtkWindowExt::fn set_startup_id -->
 Startup notification identifiers are used by desktop environment to
 track application startup, to provide user feedback and other
 features. This function changes the corresponding property on the
 underlying `gdk::Window`. Normally, startup identifier is managed
 automatically and you should only use this function in special cases
 like transferring focus from other processes. You should use this
-function before calling `WindowExt::present` or any equivalent
+function before calling `GtkWindowExt::present` or any equivalent
 function generating a window map event.
 
 This function is only useful on X11, not with other GTK+ targets.
 ## `startup_id`
 a string with startup-notification identifier
-<!-- trait WindowExt::fn set_title -->
+<!-- trait GtkWindowExt::fn set_title -->
 Sets the title of the `Window`. The title of a window will be
 displayed in its title bar; on the X Window System, the title bar
 is rendered by the [window manager][gtk-X11-arch],
@@ -42806,7 +42806,7 @@ open. A good title might include the application name and current
 document filename, for example.
 ## `title`
 title of the window
-<!-- trait WindowExt::fn set_titlebar -->
+<!-- trait GtkWindowExt::fn set_titlebar -->
 Sets a custom titlebar for `self`.
 
 If you set a custom titlebar, GTK+ will do its best to convince
@@ -42819,14 +42819,14 @@ Feature: `v3_10`
 
 ## `titlebar`
 the widget to use as titlebar
-<!-- trait WindowExt::fn set_transient_for -->
+<!-- trait GtkWindowExt::fn set_transient_for -->
 Dialog windows should be set transient for the main application
 window they were spawned from. This allows
 [window managers][gtk-X11-arch] to e.g. keep the
 dialog on top of the main window, or center the dialog over the
 main window. `Dialog::new_with_buttons` and other convenience
 functions in GTK+ will sometimes call
-`WindowExt::set_transient_for` on your behalf.
+`GtkWindowExt::set_transient_for` on your behalf.
 
 Passing `None` for `parent` unsets the current transient window.
 
@@ -42840,7 +42840,7 @@ On Windows, this function puts the child window on top of the parent,
 much as the window manager would have done on X.
 ## `parent`
 parent window, or `None`
-<!-- trait WindowExt::fn set_type_hint -->
+<!-- trait GtkWindowExt::fn set_type_hint -->
 By setting the type hint for the window, you allow the window
 manager to decorate and handle the window in a way which is
 suitable to the function of the window in your application.
@@ -42848,21 +42848,21 @@ suitable to the function of the window in your application.
 This function should be called before the window becomes visible.
 
 `Dialog::new_with_buttons` and other convenience functions in GTK+
-will sometimes call `WindowExt::set_type_hint` on your behalf.
+will sometimes call `GtkWindowExt::set_type_hint` on your behalf.
 ## `hint`
 the window type
-<!-- trait WindowExt::fn set_urgency_hint -->
+<!-- trait GtkWindowExt::fn set_urgency_hint -->
 Windows may set a hint asking the desktop environment to draw
 the users attention to the window. This function sets this hint.
 ## `setting`
 `true` to mark this window as urgent
-<!-- trait WindowExt::fn set_wmclass -->
+<!-- trait GtkWindowExt::fn set_wmclass -->
 Don’t use this function. It sets the X Window System “class” and
 “name” hints for a window. According to the ICCCM, you should
 always set these to the same value for all windows in an
 application, and GTK+ sets them to that value by default, so calling
 this function is sort of pointless. However, you may want to call
-`WindowExt::set_role` on each window in your application, for the
+`GtkWindowExt::set_role` on each window in your application, for the
 benefit of the session manager. Setting the role allows the window
 manager to restore window positions when loading a saved session.
 
@@ -42872,7 +42872,7 @@ manager to restore window positions when loading a saved session.
 window name hint
 ## `wmclass_class`
 window class hint
-<!-- trait WindowExt::fn stick -->
+<!-- trait GtkWindowExt::fn stick -->
 Asks to stick `self`, which means that it will appear on all user
 desktops. Note that you shouldn’t assume the window is definitely
 stuck afterward, because other entities (e.g. the user or
@@ -42885,7 +42885,7 @@ It’s permitted to call this function before showing a window.
 
 You can track stickiness via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn unfullscreen -->
+<!-- trait GtkWindowExt::fn unfullscreen -->
 Asks to toggle off the fullscreen state for `self`. Note that you
 shouldn’t assume the window is definitely not full screen
 afterward, because other entities (e.g. the user or
@@ -42896,7 +42896,7 @@ state. Just don’t write code that crashes if not.
 
 You can track the fullscreen state via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn unmaximize -->
+<!-- trait GtkWindowExt::fn unmaximize -->
 Asks to unmaximize `self`. Note that you shouldn’t assume the
 window is definitely unmaximized afterward, because other entities
 (e.g. the user or [window manager][gtk-X11-arch])
@@ -42906,7 +42906,7 @@ end up unmaximized. Just don’t write code that crashes if not.
 
 You can track maximization via the “window-state-event” signal
 on `Widget`.
-<!-- trait WindowExt::fn unstick -->
+<!-- trait GtkWindowExt::fn unstick -->
 Asks to unstick `self`, which means that it will appear on only
 one of the user’s desktops. Note that you shouldn’t assume the
 window is definitely unstuck afterward, because other entities
@@ -42993,12 +42993,12 @@ Windows should be placed at the current mouse position.
 Keep window centered as it changes size, etc.
 <!-- enum WindowPosition::variant CenterOnParent -->
 Center the window on its transient
- parent (see `WindowExt::set_transient_for`).
+ parent (see `GtkWindowExt::set_transient_for`).
 <!-- enum WindowType -->
 A `Window` can be one of these types. Most things you’d consider a
 “window” should have type `WindowType::Toplevel`; windows with this type
 are managed by the window manager and have a frame by default (call
-`WindowExt::set_decorated` to toggle the frame). Windows with type
+`GtkWindowExt::set_decorated` to toggle the frame). Windows with type
 `WindowType::Popup` are ignored by the window manager; window manager
 keybindings won’t work on them, the window manager won’t decorate the
 window with a frame, many GTK+ features that rely on the window
@@ -43007,7 +43007,7 @@ maximization/minimization). `WindowType::Popup` is used to implement
 widgets such as `Menu` or tooltips that you normally don’t think of
 as windows per se. Nearly all windows should be `WindowType::Toplevel`.
 In particular, do not use `WindowType::Popup` just to turn off
-the window borders; use `WindowExt::set_decorated` for that.
+the window borders; use `GtkWindowExt::set_decorated` for that.
 <!-- enum WindowType::variant Toplevel -->
 A regular window, such as a dialog.
 <!-- enum WindowType::variant Popup -->
