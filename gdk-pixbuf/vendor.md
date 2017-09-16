@@ -1,48 +1,20 @@
 <!-- file * -->
-<!-- enum Colorspace -->
-This enumeration defines the color spaces that are supported by
-the gdk-pixbuf library. Currently only RGB is supported.
-<!-- enum Colorspace::variant Rgb -->
-Indicates a red/green/blue additive color space.
-<!-- enum InterpType -->
-This enumeration describes the different interpolation modes that
- can be used with the scaling functions. `InterpType::Nearest` is
- the fastest scaling method, but has horrible quality when
- scaling down. `InterpType::Bilinear` is the best choice if you
- aren't sure what to choose, it has a good speed/quality balance.
-
- `<note>`
-    Cubic filtering is missing from the list; hyperbolic
-    interpolation is just as fast and results in higher quality.
- `</note>`
-<!-- enum InterpType::variant Nearest -->
-Nearest neighbor sampling; this is the fastest
- and lowest quality mode. Quality is normally unacceptable when scaling
- down, but may be OK when scaling up.
-<!-- enum InterpType::variant Tiles -->
-This is an accurate simulation of the PostScript
- image operator without any interpolation enabled. Each pixel is
- rendered as a tiny parallelogram of solid color, the edges of which
- are implemented with antialiasing. It resembles nearest neighbor for
- enlargement, and bilinear for reduction.
-<!-- enum InterpType::variant Bilinear -->
-Best quality/speed balance; use this mode by
- default. Bilinear interpolation. For enlargement, it is
- equivalent to point-sampling the ideal bilinear-interpolated image.
- For reduction, it is equivalent to laying down small tiles and
- integrating over the coverage area.
-<!-- enum InterpType::variant Hyper -->
-This is the slowest and highest quality
- reconstruction function. It is derived from the hyperbolic filters in
- Wolberg's "Digital Image Warping", and is formally defined as the
- hyperbolic-filter sampling the ideal hyperbolic-filter interpolated
- image (the filter is designed to be idempotent for 1:1 pixel mapping).
 <!-- struct Pixbuf -->
 This is the main structure in the gdk-pixbuf library. It is
 used to represent images. It contains information about the
 image's pixel data, its color space, bits per sample, width and
 height, and the rowstride (the number of bytes between the start of
 one row and the start of the next).
+
+# Implements
+
+[`PixbufExt`](trait.PixbufExt.html)
+<!-- trait PixbufExt -->
+Trait containing all `Pixbuf` methods.
+
+# Implementors
+
+[`Pixbuf`](struct.Pixbuf.html)
 <!-- impl Pixbuf::fn new -->
 Creates a new `Pixbuf` structure and allocates a buffer for it. The
 buffer has an optimal rowstride. Note that the buffer is not cleared;
@@ -412,7 +384,7 @@ The name of the file to identify
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
 ## `callback`
-a `GAsyncReadyCallback` to call when the the pixbuf is loaded
+a `GAsyncReadyCallback` to call when the file info is available
 ## `user_data`
 the data to pass to the callback function
 <!-- impl Pixbuf::fn get_file_info_finish -->
@@ -457,7 +429,7 @@ a `gio::InputStream` from which to load the pixbuf
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
 ## `callback`
-a `GAsyncReadyCallback` to call when the the pixbuf is loaded
+a `GAsyncReadyCallback` to call when the pixbuf is loaded
 ## `user_data`
 the data to pass to the callback function
 <!-- impl Pixbuf::fn new_from_stream_at_scale_async -->
@@ -479,19 +451,19 @@ the height the image should have or -1 to not constrain the height
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
 ## `callback`
-a `GAsyncReadyCallback` to call when the the pixbuf is loaded
+a `GAsyncReadyCallback` to call when the pixbuf is loaded
 ## `user_data`
 the data to pass to the callback function
 <!-- impl Pixbuf::fn save_to_stream_finish -->
 Finishes an asynchronous pixbuf save operation started with
-`Pixbuf::save_to_stream_async`.
+`PixbufExt::save_to_stream_async`.
 ## `async_result`
 a `gio::AsyncResult`
 
 # Returns
 
 `true` if the pixbuf was saved successfully, `false` if an error was set.
-<!-- impl Pixbuf::fn add_alpha -->
+<!-- trait PixbufExt::fn add_alpha -->
 Takes an existing pixbuf and adds an alpha channel to it.
 If the existing pixbuf already had an alpha channel, the channel
 values are copied from the original; otherwise, the alpha channel
@@ -513,7 +485,7 @@ Blue value to substitute.
 # Returns
 
 A newly-created pixbuf with a reference count of 1.
-<!-- impl Pixbuf::fn apply_embedded_orientation -->
+<!-- trait PixbufExt::fn apply_embedded_orientation -->
 Takes an existing pixbuf and checks for the presence of an
 associated "orientation" option, which may be provided by the
 jpeg loader (which reads the exif orientation tag) or the
@@ -525,14 +497,15 @@ is oriented correctly.
 
 # Returns
 
-A newly-created pixbuf, or a reference to the
+A newly-created pixbuf, `None` if
+not enough memory could be allocated for it, or a reference to the
 input pixbuf (with an increased reference count).
-<!-- impl Pixbuf::fn composite -->
+<!-- trait PixbufExt::fn composite -->
 Creates a transformation of the source image `self` by scaling by
 `scale_x` and `scale_y` then translating by `offset_x` and `offset_y`.
 This gives an image in the coordinates of the destination pixbuf.
 The rectangle (`dest_x`, `dest_y`, `dest_width`, `dest_height`)
-is then composited onto the corresponding rectangle of the
+is then alpha blended onto the corresponding rectangle of the
 original destination image.
 
 When the destination rectangle contains parts not in the source
@@ -562,15 +535,18 @@ the scale factor in the Y direction
 the interpolation type for the transformation.
 ## `overall_alpha`
 overall alpha for source image (0..255)
-<!-- impl Pixbuf::fn composite_color -->
+<!-- trait PixbufExt::fn composite_color -->
 Creates a transformation of the source image `self` by scaling by
 `scale_x` and `scale_y` then translating by `offset_x` and `offset_y`,
-then composites the rectangle (`dest_x` ,`dest_y`, `dest_width`,
+then alpha blends the rectangle (`dest_x` ,`dest_y`, `dest_width`,
 `dest_height`) of the resulting image with a checkboard of the
 colors `color1` and `color2` and renders it onto the destination
 image.
 
-See `Pixbuf::composite_color_simple` for a simpler variant of this
+If the source image has no alpha channel, and `overall_alpha` is 255, a fast
+path is used which omits the alpha blending and just performs the scaling.
+
+See `PixbufExt::composite_color_simple` for a simpler variant of this
 function suitable for many tasks.
 ## `dest`
 the `Pixbuf` into which to render the results
@@ -604,9 +580,9 @@ the size of checks in the checkboard (must be a power of two)
 the color of check at upper left
 ## `color2`
 the color of the other check
-<!-- impl Pixbuf::fn composite_color_simple -->
+<!-- trait PixbufExt::fn composite_color_simple -->
 Creates a new `Pixbuf` by scaling `self` to `dest_width` x
-`dest_height` and compositing the result with a checkboard of colors
+`dest_height` and alpha blending the result with a checkboard of colors
 `color1` and `color2`.
 ## `dest_width`
 the width of destination image
@@ -627,15 +603,16 @@ the color of the other check
 
 the new `Pixbuf`, or `None` if not enough memory could be
 allocated for it.
-<!-- impl Pixbuf::fn copy -->
+<!-- trait PixbufExt::fn copy -->
 Creates a new `Pixbuf` with a copy of the information in the specified
-`self`.
+`self`. Note that this does not copy the options set on the original `Pixbuf`,
+use `PixbufExt::copy_options` for this.
 
 # Returns
 
 A newly-created pixbuf with a reference count of 1, or `None` if
 not enough memory could be allocated.
-<!-- impl Pixbuf::fn copy_area -->
+<!-- trait PixbufExt::fn copy_area -->
 Copies a rectangular area from `self` to `dest_pixbuf`. Conversion of
 pixbuf formats is done automatically.
 
@@ -656,14 +633,28 @@ Destination pixbuf.
 X coordinate within `dest_pixbuf`.
 ## `dest_y`
 Y coordinate within `dest_pixbuf`.
-<!-- impl Pixbuf::fn fill -->
+<!-- trait PixbufExt::fn copy_options -->
+Copy the key/value pair options attached to a `Pixbuf` to another.
+This is useful to keep original metadata after having manipulated
+a file. However be careful to remove metadata which you've already
+applied, such as the "orientation" option after rotating the image.
+
+Feature: `v2_36`
+
+## `dest_pixbuf`
+the `Pixbuf` to copy options to
+
+# Returns
+
+`true` on success.
+<!-- trait PixbufExt::fn fill -->
 Clears a pixbuf to the given RGBA value, converting the RGBA value into
 the pixbuf's pixel format. The alpha will be ignored if the pixbuf
 doesn't have an alpha channel.
 ## `pixel`
 RGBA pixel to clear to
  (0xffffffff is opaque white, 0x00000000 transparent black)
-<!-- impl Pixbuf::fn flip -->
+<!-- trait PixbufExt::fn flip -->
 Flips a pixbuf horizontally or vertically and returns the
 result in a new pixbuf.
 ## `horizontal`
@@ -673,46 +664,46 @@ result in a new pixbuf.
 
 the new `Pixbuf`, or `None`
 if not enough memory could be allocated for it.
-<!-- impl Pixbuf::fn get_bits_per_sample -->
+<!-- trait PixbufExt::fn get_bits_per_sample -->
 Queries the number of bits per color sample in a pixbuf.
 
 # Returns
 
 Number of bits per color sample.
-<!-- impl Pixbuf::fn get_byte_length -->
+<!-- trait PixbufExt::fn get_byte_length -->
 Returns the length of the pixel data, in bytes.
 
 # Returns
 
 The length of the pixel data.
-<!-- impl Pixbuf::fn get_colorspace -->
+<!-- trait PixbufExt::fn get_colorspace -->
 Queries the color space of a pixbuf.
 
 # Returns
 
 Color space.
-<!-- impl Pixbuf::fn get_has_alpha -->
+<!-- trait PixbufExt::fn get_has_alpha -->
 Queries whether a pixbuf has an alpha channel (opacity information).
 
 # Returns
 
 `true` if it has an alpha channel, `false` otherwise.
-<!-- impl Pixbuf::fn get_height -->
+<!-- trait PixbufExt::fn get_height -->
 Queries the height of a pixbuf.
 
 # Returns
 
 Height in pixels.
-<!-- impl Pixbuf::fn get_n_channels -->
+<!-- trait PixbufExt::fn get_n_channels -->
 Queries the number of channels of a pixbuf.
 
 # Returns
 
 Number of channels.
-<!-- impl Pixbuf::fn get_option -->
+<!-- trait PixbufExt::fn get_option -->
 Looks up `key` in the list of options that may have been attached to the
 `self` when it was loaded, or that may have been attached by another
-function using `gdk_pixbuf_set_option`.
+function using `PixbufExt::set_option`.
 
 For instance, the ANI loader provides "Title" and "Artist" options.
 The ICO, XBM, and XPM loaders provide "x_hot" and "y_hot" hot-spot
@@ -730,12 +721,12 @@ a nul-terminated string.
 
 the value associated with `key`. This is a nul-terminated
 string that should not be freed or `None` if `key` was not found.
-<!-- impl Pixbuf::fn get_options -->
+<!-- trait PixbufExt::fn get_options -->
 Returns a `glib::HashTable` with a list of all the options that may have been
 attached to the `self` when it was loaded, or that may have been
-attached by another function using `gdk_pixbuf_set_option`.
+attached by another function using `PixbufExt::set_option`.
 
-See `Pixbuf::get_option` for more details.
+See `PixbufExt::get_option` for more details.
 
 Feature: `v2_32`
 
@@ -743,7 +734,7 @@ Feature: `v2_32`
 # Returns
 
 a `glib::HashTable` of key/values
-<!-- impl Pixbuf::fn get_pixels -->
+<!-- trait PixbufExt::fn get_pixels -->
 Queries a pointer to the pixel data of a pixbuf.
 
 # Returns
@@ -754,7 +745,7 @@ about how the pixel data is stored in memory.
 
 This function will cause an implicit copy of the pixbuf data if the
 pixbuf was created from read-only data.
-<!-- impl Pixbuf::fn get_pixels_with_length -->
+<!-- trait PixbufExt::fn get_pixels_with_length -->
 Queries a pointer to the pixel data of a pixbuf.
 ## `length`
 The length of the binary data.
@@ -767,20 +758,20 @@ for information about how the pixel data is stored in memory.
 
 This function will cause an implicit copy of the pixbuf data if the
 pixbuf was created from read-only data.
-<!-- impl Pixbuf::fn get_rowstride -->
+<!-- trait PixbufExt::fn get_rowstride -->
 Queries the rowstride of a pixbuf, which is the number of bytes between
 the start of a row and the start of the next row.
 
 # Returns
 
 Distance between row starts.
-<!-- impl Pixbuf::fn get_width -->
+<!-- trait PixbufExt::fn get_width -->
 Queries the width of a pixbuf.
 
 # Returns
 
 Width in pixels.
-<!-- impl Pixbuf::fn new_subpixbuf -->
+<!-- trait PixbufExt::fn new_subpixbuf -->
 Creates a new pixbuf which represents a sub-region of `self`.
 The new pixbuf shares its pixels with the original pixbuf, so
 writing to one affects both. The new pixbuf holds a reference to
@@ -801,7 +792,7 @@ height of region in `self`
 # Returns
 
 a new pixbuf
-<!-- impl Pixbuf::fn read_pixel_bytes -->
+<!-- trait PixbufExt::fn read_pixel_bytes -->
 
 Feature: `v2_32`
 
@@ -812,15 +803,15 @@ A new reference to a read-only copy of
 the pixel data. Note that for mutable pixbufs, this function will
 incur a one-time copy of the pixel data for conversion into the
 returned `glib::Bytes`.
-<!-- impl Pixbuf::fn read_pixels -->
+<!-- trait PixbufExt::fn read_pixels -->
 Returns a read-only pointer to the raw pixel data; must not be
 modified. This function allows skipping the implicit copy that
-must be made if `Pixbuf::get_pixels` is called on a read-only
+must be made if `PixbufExt::get_pixels` is called on a read-only
 pixbuf.
 
 Feature: `v2_32`
 
-<!-- impl Pixbuf::fn ref -->
+<!-- trait PixbufExt::fn ref -->
 Adds a reference to a pixbuf.
 
 # Deprecated since 2.0
@@ -830,9 +821,22 @@ Use `gobject::Object::ref`.
 # Returns
 
 The same as the `self` argument.
-<!-- impl Pixbuf::fn rotate_simple -->
+<!-- trait PixbufExt::fn remove_option -->
+Remove the key/value pair option attached to a `Pixbuf`.
+
+Feature: `v2_36`
+
+## `key`
+a nul-terminated string representing the key to remove.
+
+# Returns
+
+`true` if an option was removed, `false` if not.
+<!-- trait PixbufExt::fn rotate_simple -->
 Rotates a pixbuf by a multiple of 90 degrees, and returns the
 result in a new pixbuf.
+
+If `angle` is 0, a copy of `self` is returned, avoiding any rotation.
 ## `angle`
 the angle to rotate by
 
@@ -840,7 +844,7 @@ the angle to rotate by
 
 the new `Pixbuf`, or `None`
 if not enough memory could be allocated for it.
-<!-- impl Pixbuf::fn saturate_and_pixelate -->
+<!-- trait PixbufExt::fn saturate_and_pixelate -->
 Modifies saturation and optionally pixelates `self`, placing the result in
 `dest`. `self` and `dest` may be the same pixbuf with no ill effects. If
 `saturation` is 1.0 then saturation is not changed. If it's less than 1.0,
@@ -855,7 +859,7 @@ place to write modified version of `self`
 saturation factor
 ## `pixelate`
 whether to pixelate
-<!-- impl Pixbuf::fn save -->
+<!-- trait PixbufExt::fn save -->
 Saves pixbuf to a file in format `type_`. By default, "jpeg", "png", "ico"
 and "bmp" are possible file formats to save in, but more formats may be
 installed. The list of all writable formats can be determined in the
@@ -932,16 +936,16 @@ return location for error, or `None`
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn save_to_buffer -->
+<!-- trait PixbufExt::fn save_to_buffer -->
 Saves pixbuf to a new buffer in format `type_`, which is currently "jpeg",
 "png", "tiff", "ico" or "bmp". This is a convenience function that uses
-`Pixbuf::save_to_callback` to do the real work. Note that the buffer
+`PixbufExt::save_to_callback` to do the real work. Note that the buffer
 is not nul-terminated and may contain embedded nuls.
 If `error` is set, `false` will be returned and `buffer` will be set to
 `None`. Possible errors include those in the `GDK_PIXBUF_ERROR`
 domain.
 
-See `Pixbuf::save` for more details.
+See `PixbufExt::save` for more details.
 ## `buffer`
 location to receive a pointer
  to the new buffer.
@@ -955,9 +959,9 @@ return location for error, or `None`
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn save_to_bufferv -->
+<!-- trait PixbufExt::fn save_to_bufferv -->
 Saves pixbuf to a new buffer in format `type_`, which is currently "jpeg",
-"tiff", "png", "ico" or "bmp". See `Pixbuf::save_to_buffer`
+"tiff", "png", "ico" or "bmp". See `PixbufExt::save_to_buffer`
 for more details.
 ## `buffer`
 
@@ -974,7 +978,7 @@ values for named options
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn save_to_callback -->
+<!-- trait PixbufExt::fn save_to_callback -->
 Saves pixbuf in format `type_` by feeding the produced data to a
 callback. Can be used when you want to store the image to something
 other than a file, such as an in-memory buffer or a socket.
@@ -982,7 +986,7 @@ If `error` is set, `false` will be returned. Possible errors
 include those in the `GDK_PIXBUF_ERROR` domain and whatever the save
 function generates.
 
-See `Pixbuf::save` for more details.
+See `PixbufExt::save` for more details.
 ## `save_func`
 a function that is called to save each block of data that
  the save routine generates.
@@ -996,7 +1000,7 @@ return location for error, or `None`
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn save_to_callbackv -->
+<!-- trait PixbufExt::fn save_to_callbackv -->
 Saves pixbuf to a callback in format `type_`, which is currently "jpeg",
 "png", "tiff", "ico" or "bmp". If `error` is set, `false` will be returned. See
 gdk_pixbuf_save_to_callback () for more details.
@@ -1015,11 +1019,11 @@ values for named options
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn save_to_stream -->
+<!-- trait PixbufExt::fn save_to_stream -->
 Saves `self` to an output stream.
 
 Supported file formats are currently "jpeg", "tiff", "png", "ico" or
-"bmp". See `Pixbuf::save_to_buffer` for more details.
+"bmp". See `PixbufExt::save_to_buffer` for more details.
 
 The `cancellable` can be used to abort the operation from another
 thread. If the operation was cancelled, the error `gio::IOErrorEnum::Cancelled`
@@ -1040,10 +1044,10 @@ return location for error, or `None`
 
 `true` if the pixbuf was saved successfully, `false` if an
  error was set.
-<!-- impl Pixbuf::fn save_to_stream_async -->
+<!-- trait PixbufExt::fn save_to_stream_async -->
 Saves `self` to an output stream asynchronously.
 
-For more details see `Pixbuf::save_to_stream`, which is the synchronous
+For more details see `PixbufExt::save_to_stream`, which is the synchronous
 version of this function.
 
 When the operation is finished, `callback` will be called in the main thread.
@@ -1055,10 +1059,58 @@ name of file format
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
 ## `callback`
-a `GAsyncReadyCallback` to call when the the pixbuf is loaded
+a `GAsyncReadyCallback` to call when the pixbuf is saved
 ## `user_data`
 the data to pass to the callback function
-<!-- impl Pixbuf::fn savev -->
+<!-- trait PixbufExt::fn save_to_streamv -->
+Saves `self` to an output stream.
+
+Supported file formats are currently "jpeg", "tiff", "png", "ico" or
+"bmp". See `PixbufExt::save_to_stream` for more details.
+
+Feature: `v2_36`
+
+## `stream`
+a `gio::OutputStream` to save the pixbuf to
+## `type_`
+name of file format
+## `option_keys`
+name of options to set, `None`-terminated
+## `option_values`
+values for named options
+## `cancellable`
+optional `gio::Cancellable` object, `None` to ignore
+
+# Returns
+
+`true` if the pixbuf was saved successfully, `false` if an
+ error was set.
+<!-- trait PixbufExt::fn save_to_streamv_async -->
+Saves `self` to an output stream asynchronously.
+
+For more details see `PixbufExt::save_to_streamv`, which is the synchronous
+version of this function.
+
+When the operation is finished, `callback` will be called in the main thread.
+You can then call `Pixbuf::save_to_stream_finish` to get the result of the operation.
+
+Feature: `v2_36`
+
+## `stream`
+a `gio::OutputStream` to which to save the pixbuf
+## `type_`
+name of file format
+## `option_keys`
+name of options to set, `None`-terminated
+## `option_values`
+values for named options
+## `cancellable`
+optional `gio::Cancellable` object, `None` to ignore
+## `callback`
+a `GAsyncReadyCallback` to call when the pixbuf is saved
+## `user_data`
+the data to pass to the callback function
+<!-- trait PixbufExt::fn savev -->
 Saves pixbuf to a file in `type_`, which is currently "jpeg", "png", "tiff", "ico" or "bmp".
 If `error` is set, `false` will be returned.
 See gdk_pixbuf_save () for more details.
@@ -1074,16 +1126,16 @@ values for named options
 # Returns
 
 whether an error was set
-<!-- impl Pixbuf::fn scale -->
+<!-- trait PixbufExt::fn scale -->
 Creates a transformation of the source image `self` by scaling by
 `scale_x` and `scale_y` then translating by `offset_x` and `offset_y`,
 then renders the rectangle (`dest_x`, `dest_y`, `dest_width`,
 `dest_height`) of the resulting image onto the destination image
 replacing the previous contents.
 
-Try to use `Pixbuf::scale_simple` first, this function is
+Try to use `PixbufExt::scale_simple` first, this function is
 the industrial-strength power tool you can fall back to if
-`Pixbuf::scale_simple` isn't powerful enough.
+`PixbufExt::scale_simple` isn't powerful enough.
 
 If the source rectangle overlaps the destination rectangle on the
 same pixbuf, it will be overwritten during the scaling which
@@ -1108,7 +1160,7 @@ the scale factor in the X direction
 the scale factor in the Y direction
 ## `interp_type`
 the interpolation type for the transformation.
-<!-- impl Pixbuf::fn scale_simple -->
+<!-- trait PixbufExt::fn scale_simple -->
 Create a new `Pixbuf` containing a copy of `self` scaled to
 `dest_width` x `dest_height`. Leaves `self` unaffected. `interp_type`
 should be `InterpType::Nearest` if you want maximum speed (but when
@@ -1117,10 +1169,13 @@ default `interp_type` should be `InterpType::Bilinear` which offers
 reasonable quality and speed.
 
 You can scale a sub-portion of `self` by creating a sub-pixbuf
-pointing into `self`; see `Pixbuf::new_subpixbuf`.
+pointing into `self`; see `PixbufExt::new_subpixbuf`.
 
-For more complicated scaling/compositing see `Pixbuf::scale`
-and `Pixbuf::composite`.
+If `dest_width` and `dest_height` are equal to the `self` width and height, a
+copy of `self` is returned, avoiding any scaling.
+
+For more complicated scaling/alpha blending see `PixbufExt::scale`
+and `PixbufExt::composite`.
 ## `dest_width`
 the width of destination image
 ## `dest_height`
@@ -1132,29 +1187,44 @@ the interpolation type for the transformation.
 
 the new `Pixbuf`, or `None` if not enough memory could be
 allocated for it.
-<!-- impl Pixbuf::fn unref -->
+<!-- trait PixbufExt::fn set_option -->
+Attaches a key/value pair as an option to a `Pixbuf`. If `key` already
+exists in the list of options attached to `self`, the new value is
+ignored and `false` is returned.
+## `key`
+a nul-terminated string.
+## `value`
+a nul-terminated string.
+
+# Returns
+
+`true` on success.
+<!-- trait PixbufExt::fn unref -->
 Removes a reference from a pixbuf.
 
 # Deprecated since 2.0
 
 Use `gobject::Object::unref`.
-<!-- enum PixbufAlphaMode -->
-These values can be passed to
-`gdk_pixbuf_render_to_drawable_alpha` to control how the alpha
-channel of an image should be handled. This function can create a
-bilevel clipping mask (black and white) and use it while painting
-the image. In the future, when the X Window System gets an alpha
-channel extension, it will be possible to do full alpha
-compositing onto arbitrary drawables. For now both cases fall
-back to a bilevel clipping mask.
-<!-- enum PixbufAlphaMode::variant Bilevel -->
-A bilevel clipping mask (black and white)
- will be created and used to draw the image. Pixels below 0.5 opacity
- will be considered fully transparent, and all others will be
- considered fully opaque.
-<!-- enum PixbufAlphaMode::variant Full -->
-For now falls back to `PixbufAlphaMode::Bilevel`.
- In the future it will do full alpha compositing.
+<!-- trait PixbufExt::fn get_property_bits-per-sample -->
+The number of bits per sample.
+Currently only 8 bit per sample are supported.
+<!-- trait PixbufExt::fn set_property_bits-per-sample -->
+The number of bits per sample.
+Currently only 8 bit per sample are supported.
+<!-- trait PixbufExt::fn get_property_n-channels -->
+The number of samples per pixel.
+Currently, only 3 or 4 samples per pixel are supported.
+<!-- trait PixbufExt::fn set_property_n-channels -->
+The number of samples per pixel.
+Currently, only 3 or 4 samples per pixel are supported.
+<!-- trait PixbufExt::fn get_property_rowstride -->
+The number of bytes between the start of a row and
+the start of the next row. This number must (obviously)
+be at least as large as the width of the pixbuf.
+<!-- trait PixbufExt::fn set_property_rowstride -->
+The number of bytes between the start of a row and
+the start of the next row. This number must (obviously)
+be at least as large as the width of the pixbuf.
 <!-- struct PixbufAnimation -->
 An opaque struct representing an animation.
 
@@ -1252,7 +1322,7 @@ a `gio::InputStream` from which to load the animation
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
 ## `callback`
-a `GAsyncReadyCallback` to call when the the pixbuf is loaded
+a `GAsyncReadyCallback` to call when the pixbuf is loaded
 ## `user_data`
 the data to pass to the callback function
 <!-- trait PixbufAnimationExt::fn get_height -->
@@ -1263,16 +1333,16 @@ Queries the height of the bounding box of a pixbuf animation.
 Height of the bounding box of the animation.
 <!-- trait PixbufAnimationExt::fn get_iter -->
 Get an iterator for displaying an animation. The iterator provides
-the frames that should be displayed at a given time.
-It should be freed after use with `gobject::Object::unref`.
+the frames that should be displayed at a given time. It should be
+freed after use with `gobject::Object::unref`.
 
-`start_time` would normally come from `g_get_current_time`, and
-marks the beginning of animation playback. After creating an
-iterator, you should immediately display the pixbuf returned by
-`PixbufAnimationIter::get_pixbuf`. Then, you should install a
-timeout (with `g_timeout_add`) or by some other mechanism ensure
+`start_time` would normally come from `g_get_current_time`, and marks
+the beginning of animation playback. After creating an iterator, you
+should immediately display the pixbuf returned by
+`PixbufAnimationIterExt::get_pixbuf`. Then, you should install
+a timeout (with `g_timeout_add`) or by some other mechanism ensure
 that you'll update the image after
-`PixbufAnimationIter::get_delay_time` milliseconds. Each time
+`PixbufAnimationIterExt::get_delay_time` milliseconds. Each time
 the image is updated, you should reinstall the timeout with the new,
 possibly-changed delay time.
 
@@ -1280,13 +1350,13 @@ As a shortcut, if `start_time` is `None`, the result of
 `g_get_current_time` will be used automatically.
 
 To update the image (i.e. possibly change the result of
-`PixbufAnimationIter::get_pixbuf` to a new frame of the animation),
-call `PixbufAnimationIter::advance`.
+`PixbufAnimationIterExt::get_pixbuf` to a new frame of the animation),
+call `PixbufAnimationIterExt::advance`.
 
 If you're using `PixbufLoader`, in addition to updating the image
 after the delay time, you should also update it whenever you
 receive the area_updated signal and
-`PixbufAnimationIter::on_currently_loading_frame` returns
+`PixbufAnimationIterExt::on_currently_loading_frame` returns
 `true`. In this case, the frame currently being fed into the loader
 has received new data, so needs to be refreshed. The delay time for
 a frame may also be modified after an area_updated signal, for
@@ -1319,9 +1389,9 @@ Queries the width of the bounding box of a pixbuf animation.
 
 Width of the bounding box of the animation.
 <!-- trait PixbufAnimationExt::fn is_static_image -->
-If you load a file with `PixbufAnimation::new_from_file` and it turns
-out to be a plain, unanimated image, then this function will return
-`true`. Use `PixbufAnimationExt::get_static_image` to retrieve
+If you load a file with `PixbufAnimation::new_from_file` and it
+turns out to be a plain, unanimated image, then this function will
+return `true`. Use `PixbufAnimationExt::get_static_image` to retrieve
 the image.
 
 # Returns
@@ -1346,14 +1416,24 @@ Use `gobject::Object::unref`.
 <!-- struct PixbufAnimationIter -->
 An opaque struct representing an iterator which points to a
 certain position in an animation.
-<!-- impl PixbufAnimationIter::fn advance -->
+
+# Implements
+
+[`PixbufAnimationIterExt`](trait.PixbufAnimationIterExt.html)
+<!-- trait PixbufAnimationIterExt -->
+Trait containing all `PixbufAnimationIter` methods.
+
+# Implementors
+
+[`PixbufAnimationIter`](struct.PixbufAnimationIter.html)
+<!-- trait PixbufAnimationIterExt::fn advance -->
 Possibly advances an animation to a new frame. Chooses the frame based
 on the start time passed to `PixbufAnimationExt::get_iter`.
 
 `current_time` would normally come from `g_get_current_time`, and
 must be greater than or equal to the time passed to
 `PixbufAnimationExt::get_iter`, and must increase or remain
-unchanged each time `PixbufAnimationIter::get_pixbuf` is
+unchanged each time `PixbufAnimationIterExt::get_pixbuf` is
 called. That is, you can't go backward in time; animations only
 play forward.
 
@@ -1364,7 +1444,7 @@ at double speed.
 
 If this function returns `false`, there's no need to update the animation
 display, assuming the display had been rendered prior to advancing;
-if `true`, you need to call `PixbufAnimationIter::get_pixbuf`
+if `true`, you need to call `PixbufAnimationIterExt::get_pixbuf`
 and update the display with the new pixbuf.
 ## `current_time`
 current time
@@ -1372,7 +1452,7 @@ current time
 # Returns
 
 `true` if the image may need updating
-<!-- impl PixbufAnimationIter::fn get_delay_time -->
+<!-- trait PixbufAnimationIterExt::fn get_delay_time -->
 Gets the number of milliseconds the current pixbuf should be displayed,
 or -1 if the current pixbuf should be displayed forever. `g_timeout_add`
 conveniently takes a timeout in milliseconds, so you can use a timeout
@@ -1385,23 +1465,23 @@ for GIF images is currently 20 milliseconds.
 # Returns
 
 delay time in milliseconds (thousandths of a second)
-<!-- impl PixbufAnimationIter::fn get_pixbuf -->
+<!-- trait PixbufAnimationIterExt::fn get_pixbuf -->
 Gets the current pixbuf which should be displayed; the pixbuf might not
 be the same size as the animation itself
 (`PixbufAnimationExt::get_width`, `PixbufAnimationExt::get_height`).
 This pixbuf should be displayed for
-`PixbufAnimationIter::get_delay_time` milliseconds. The caller
+`PixbufAnimationIterExt::get_delay_time` milliseconds. The caller
 of this function does not own a reference to the returned pixbuf;
 the returned pixbuf will become invalid when the iterator advances
 to the next frame, which may happen anytime you call
-`PixbufAnimationIter::advance`. Copy the pixbuf to keep it
+`PixbufAnimationIterExt::advance`. Copy the pixbuf to keep it
 (don't just add a reference), as it may get recycled as you advance
 the iterator.
 
 # Returns
 
 the pixbuf to be displayed
-<!-- impl PixbufAnimationIter::fn on_currently_loading_frame -->
+<!-- trait PixbufAnimationIterExt::fn on_currently_loading_frame -->
 Used to determine how to respond to the area_updated signal on
 `PixbufLoader` when loading an animation. area_updated is emitted
 for an area of the frame currently streaming in to the loader. So if
@@ -1411,23 +1491,6 @@ the updated area.
 # Returns
 
 `true` if the frame we're on is partially loaded, or the last frame
-<!-- enum PixbufError -->
-An error code in the `GDK_PIXBUF_ERROR` domain. Many gdk-pixbuf
-operations can cause errors in this domain, or in the `G_FILE_ERROR`
-domain.
-<!-- enum PixbufError::variant CorruptImage -->
-An image file was broken somehow.
-<!-- enum PixbufError::variant InsufficientMemory -->
-Not enough memory.
-<!-- enum PixbufError::variant BadOption -->
-A bad option was passed to a pixbuf save module.
-<!-- enum PixbufError::variant UnknownType -->
-Unknown image type.
-<!-- enum PixbufError::variant UnsupportedOperation -->
-Don't know how to perform the
- given operation on the type of image at hand.
-<!-- enum PixbufError::variant Failed -->
-Generic failure code, something went wrong.
 <!-- struct PixbufFormat -->
 <!-- impl PixbufFormat::fn copy -->
 Creates a copy of `self`
@@ -1482,6 +1545,19 @@ Returns whether this image format is disabled. See
 # Returns
 
 whether this image format is disabled.
+<!-- impl PixbufFormat::fn is_save_option_supported -->
+Returns `true` if the save option specified by `option_key` is supported when
+saving a pixbuf using the module implementing `self`.
+See `PixbufExt::save` for more information about option keys.
+
+Feature: `v2_36`
+
+## `option_key`
+the name of an option
+
+# Returns
+
+`true` if the specified option is supported
 <!-- impl PixbufFormat::fn is_scalable -->
 Returns whether this image format is scalable. If a file is in a
 scalable format, it is preferable to load it at the desired size,
@@ -1507,6 +1583,16 @@ with an inappropriate license, see `PixbufFormat::get_license`.
 <!-- struct PixbufLoader -->
 The `PixbufLoader` struct contains only private
 fields.
+
+# Implements
+
+[`PixbufLoaderExt`](trait.PixbufLoaderExt.html)
+<!-- trait PixbufLoaderExt -->
+Trait containing all `PixbufLoader` methods.
+
+# Implementors
+
+[`PixbufLoader`](struct.PixbufLoader.html)
 <!-- impl PixbufLoader::fn new -->
 Creates a new pixbuf loader object.
 
@@ -1552,9 +1638,9 @@ name of the image format to be loaded with the image
 # Returns
 
 A newly-created pixbuf loader.
-<!-- impl PixbufLoader::fn close -->
+<!-- trait PixbufLoaderExt::fn close -->
 Informs a pixbuf loader that no further writes with
-`PixbufLoader::write` will occur, so that it can free its
+`PixbufLoaderExt::write` will occur, so that it can free its
 internal loading structures. Also, tries to parse any data that
 hasn't yet been parsed; if the remaining data is partial or
 corrupt, an error will be returned. If `false` is returned, `error`
@@ -1570,7 +1656,7 @@ use it anymore, please `gobject::Object::unref` it.
 
 `true` if all image data written so far was successfully
  passed out via the update_area signal
-<!-- impl PixbufLoader::fn get_animation -->
+<!-- trait PixbufLoaderExt::fn get_animation -->
 Queries the `PixbufAnimation` that a pixbuf loader is currently creating.
 In general it only makes sense to call this function after the "area-prepared"
 signal has been emitted by the loader. If the loader doesn't have enough
@@ -1580,8 +1666,8 @@ return `None`.
 # Returns
 
 The `PixbufAnimation` that the loader is loading, or `None` if
- not enough data has been read to determine the information.
-<!-- impl PixbufLoader::fn get_format -->
+not enough data has been read to determine the information.
+<!-- trait PixbufLoaderExt::fn get_format -->
 Obtains the available information about the format of the
 currently loading image file.
 
@@ -1590,13 +1676,13 @@ currently loading image file.
 A `PixbufFormat` or
 `None`. The return value is owned by `Pixbuf` and should not be
 freed.
-<!-- impl PixbufLoader::fn get_pixbuf -->
+<!-- trait PixbufLoaderExt::fn get_pixbuf -->
 Queries the `Pixbuf` that a pixbuf loader is currently creating.
 In general it only makes sense to call this function after the
 "area-prepared" signal has been emitted by the loader; this means
 that enough data has been read to know the size of the image that
 will be allocated. If the loader has not received enough data via
-`PixbufLoader::write`, then this function returns `None`. The
+`PixbufLoaderExt::write`, then this function returns `None`. The
 returned pixbuf will be the same in all future calls to the loader,
 so simply calling `gobject::Object::ref` should be sufficient to continue
 using it. Additionally, if the loader is an animation, it will
@@ -1607,10 +1693,10 @@ return the "static image" of the animation
 
 The `Pixbuf` that the loader is creating, or `None` if not
 enough data has been read to determine how to create the image buffer.
-<!-- impl PixbufLoader::fn set_size -->
+<!-- trait PixbufLoaderExt::fn set_size -->
 Causes the image to be scaled while it is loaded. The desired
 image size can be determined relative to the original size of
-the image by calling `PixbufLoader::set_size` from a
+the image by calling `PixbufLoaderExt::set_size` from a
 signal handler for the ::size-prepared signal.
 
 Attempts to set the desired image size are ignored after the
@@ -1619,7 +1705,7 @@ emission of the ::size-prepared signal.
 The desired width of the image being loaded.
 ## `height`
 The desired height of the image being loaded.
-<!-- impl PixbufLoader::fn write -->
+<!-- trait PixbufLoaderExt::fn write -->
 This will cause a pixbuf loader to parse the next `count` bytes of
 an image. It will return `true` if the data was loaded successfully,
 and `false` if an error occurred. In the latter case, the loader
@@ -1635,7 +1721,7 @@ Length of the `buf` buffer in bytes.
 
 `true` if the write was successful, or `false` if the loader
 cannot parse the buffer.
-<!-- impl PixbufLoader::fn write_bytes -->
+<!-- trait PixbufLoaderExt::fn write_bytes -->
 This will cause a pixbuf loader to parse a buffer inside a `glib::Bytes`
 for an image. It will return `true` if the data was loaded successfully,
 and `false` if an error occurred. In the latter case, the loader
@@ -1643,7 +1729,7 @@ will be closed, and will not accept further writes. If `false` is
 returned, `error` will be set to an error from the `GDK_PIXBUF_ERROR`
 or `G_FILE_ERROR` domains.
 
-See also: `PixbufLoader::write`
+See also: `PixbufLoaderExt::write`
 
 Feature: `v2_30`
 
@@ -1654,23 +1740,52 @@ The image data as a `glib::Bytes`
 
 `true` if the write was successful, or `false` if the loader
 cannot parse the buffer.
-<!-- enum PixbufRotation -->
-The possible rotations which can be passed to `Pixbuf::rotate_simple`.
-To make them easier to use, their numerical values are the actual degrees.
-<!-- enum PixbufRotation::variant None -->
-No rotation.
-<!-- enum PixbufRotation::variant Counterclockwise -->
-Rotate by 90 degrees.
-<!-- enum PixbufRotation::variant Upsidedown -->
-Rotate by 180 degrees.
-<!-- enum PixbufRotation::variant Clockwise -->
-Rotate by 270 degrees.
+<!-- trait PixbufLoaderExt::fn connect_area_prepared -->
+This signal is emitted when the pixbuf loader has allocated the
+pixbuf in the desired size. After this signal is emitted,
+applications can call `PixbufLoaderExt::get_pixbuf` to fetch
+the partially-loaded pixbuf.
+<!-- trait PixbufLoaderExt::fn connect_area_updated -->
+This signal is emitted when a significant area of the image being
+loaded has been updated. Normally it means that a complete
+scanline has been read in, but it could be a different area as
+well. Applications can use this signal to know when to repaint
+areas of an image that is being loaded.
+## `x`
+X offset of upper-left corner of the updated area.
+## `y`
+Y offset of upper-left corner of the updated area.
+## `width`
+Width of updated area.
+## `height`
+Height of updated area.
+<!-- trait PixbufLoaderExt::fn connect_closed -->
+This signal is emitted when `PixbufLoaderExt::close` is called.
+It can be used by different parts of an application to receive
+notification when an image loader is closed by the code that
+drives it.
+<!-- trait PixbufLoaderExt::fn connect_size_prepared -->
+This signal is emitted when the pixbuf loader has been fed the
+initial amount of data that is required to figure out the size
+of the image that it will create. Applications can call
+`PixbufLoaderExt::set_size` in response to this signal to set
+the desired size to which the image should be scaled.
+## `width`
+the original width of the image
+## `height`
+the original height of the image
 <!-- struct PixbufSimpleAnim -->
 An opaque struct representing a simple animation.
 
 # Implements
 
-[`PixbufAnimationExt`](trait.PixbufAnimationExt.html)
+[`PixbufSimpleAnimExt`](trait.PixbufSimpleAnimExt.html), [`PixbufAnimationExt`](trait.PixbufAnimationExt.html)
+<!-- trait PixbufSimpleAnimExt -->
+Trait containing all `PixbufSimpleAnim` methods.
+
+# Implementors
+
+[`PixbufSimpleAnim`](struct.PixbufSimpleAnim.html)
 <!-- impl PixbufSimpleAnim::fn new -->
 Creates a new, empty animation.
 ## `width`
@@ -1683,19 +1798,23 @@ the speed of the animation, in frames per second
 # Returns
 
 a newly allocated `PixbufSimpleAnim`
-<!-- impl PixbufSimpleAnim::fn add_frame -->
+<!-- trait PixbufSimpleAnimExt::fn add_frame -->
 Adds a new frame to `self`. The `pixbuf` must
 have the dimensions specified when the animation
 was constructed.
 ## `pixbuf`
 the pixbuf to add
-<!-- impl PixbufSimpleAnim::fn get_loop -->
+<!-- trait PixbufSimpleAnimExt::fn get_loop -->
 Gets whether `self` should loop indefinitely when it reaches the end.
 
 # Returns
 
 `true` if the animation loops forever, `false` otherwise
-<!-- impl PixbufSimpleAnim::fn set_loop -->
+<!-- trait PixbufSimpleAnimExt::fn set_loop -->
 Sets whether `self` should loop indefinitely when it reaches the end.
 ## `loop_`
 whether to loop the animation
+<!-- trait PixbufSimpleAnimExt::fn get_property_loop -->
+Whether the animation should loop when it reaches the end.
+<!-- trait PixbufSimpleAnimExt::fn set_property_loop -->
+Whether the animation should loop when it reaches the end.

@@ -220,6 +220,23 @@ will return `None` and you must not call `Action::change_state`.
 # Returns
 
 the state type, if the action is stateful
+<!-- trait ActionExt::fn get_property_enabled -->
+If `action` is currently enabled.
+
+If the action is disabled then calls to `Action::activate` and
+`Action::change_state` have no effect.
+<!-- trait ActionExt::fn get_property_name -->
+The name of the action. This is mostly meaningful for identifying
+the action once it has been added to a `ActionGroup`. It is immutable.
+<!-- trait ActionExt::fn get_property_parameter-type -->
+The type of the parameter that must be given when activating the
+action. This is immutable, and may be `None` if no parameter is needed when
+activating the action.
+<!-- trait ActionExt::fn get_property_state -->
+The state of the action, or `None` if the action is stateless.
+<!-- trait ActionExt::fn get_property_state-type -->
+The `glib::VariantType` of the state that the action has, or `None` if the
+action is stateless. This is immutable.
 <!-- struct ActionGroup -->
 `ActionGroup` represents a group of actions. Actions can be used to
 expose functionality in a structured way, either from one part of a
@@ -487,6 +504,30 @@ the current state, or `None` if stateless
 # Returns
 
 `true` if the action exists, else `false`
+<!-- trait ActionGroupExt::fn connect_action_added -->
+Signals that a new action was just added to the group.
+This signal is emitted after the action has been added
+and is now visible.
+## `action_name`
+the name of the action in `action_group`
+<!-- trait ActionGroupExt::fn connect_action_enabled_changed -->
+Signals that the enabled status of the named action has changed.
+## `action_name`
+the name of the action in `action_group`
+## `enabled`
+whether the action is enabled or not
+<!-- trait ActionGroupExt::fn connect_action_removed -->
+Signals that an action is just about to be removed from the group.
+This signal is emitted before the action is removed, so the action
+is still visible and can be queried from the signal handler.
+## `action_name`
+the name of the action in `action_group`
+<!-- trait ActionGroupExt::fn connect_action_state_changed -->
+Signals that the state of the named action has changed.
+## `action_name`
+the name of the action in `action_group`
+## `value`
+the new value of the state
 <!-- struct ActionMap -->
 The GActionMap interface is implemented by `ActionGroup`
 implementations that operate by containing a number of
@@ -818,6 +859,10 @@ Creates a duplicate of a `AppInfo`.
 a duplicate of `self`.
 <!-- trait AppInfoExt::fn equal -->
 Checks if two `GAppInfos` are equal.
+
+Note that the check `<em>`may not`</em>` compare each individual field, and
+only does an identity check. In case detecting changes in the contents
+is needed, program code must additionally compare relevant fields.
 ## `appinfo2`
 the second `AppInfo`.
 
@@ -1079,6 +1124,28 @@ Arranges for `variable` to be unset in the child's environment
 when `self` is used to launch an application.
 ## `variable`
 the environment variable to remove
+<!-- trait AppLaunchContextExt::fn connect_launch_failed -->
+The ::launch-failed signal is emitted when a `AppInfo` launch
+fails. The startup notification id is provided, so that the launcher
+can cancel the startup notification.
+
+Feature: `v2_36`
+
+## `startup_notify_id`
+the startup notification id for the failed launch
+<!-- trait AppLaunchContextExt::fn connect_launched -->
+The ::launched signal is emitted when a `AppInfo` is successfully
+launched. The `platform_data` is an GVariant dictionary mapping
+strings to variants (ie a{sv}), which contains additional,
+platform-specific data about this launch. On UNIX, at least the
+"pid" and "startup-notification-id" keys will be present.
+
+Feature: `v2_36`
+
+## `info`
+the `AppInfo` that was just launched
+## `platform_data`
+additional platform-specific data for this launch
 <!-- struct Application -->
 A `Application` is the foundation of an application. It wraps some
 low-level platform-specific services and is intended to act as the
@@ -1120,7 +1187,7 @@ examples below.
 
 If used, the expected form of an application identifier is very close
 to that of of a
-[DBus bus name](http://dbus.freedesktop.org/doc/dbus-specification.html`message`-protocol-names-interface).
+[D-Bus bus name](http://dbus.freedesktop.org/doc/dbus-specification.html`message`-protocol-names-interface).
 Examples include: "com.example.MyApp", "org.example.internal-apps.Calculator".
 For details on valid application identifiers, see `Application::id_is_valid`.
 
@@ -1858,6 +1925,96 @@ Feature: `v2_40`
 
 ## `id`
 id of a previously sent notification
+<!-- trait ApplicationExt::fn connect_activate -->
+The ::activate signal is emitted on the primary instance when an
+activation occurs. See `ApplicationExt::activate`.
+<!-- trait ApplicationExt::fn connect_command_line -->
+The ::command-line signal is emitted on the primary instance when
+a commandline is not handled locally. See `ApplicationExt::run` and
+the `ApplicationCommandLine` documentation for more information.
+## `command_line`
+a `ApplicationCommandLine` representing the
+ passed commandline
+
+# Returns
+
+An integer that is set as the exit status for the calling
+ process. See `ApplicationCommandLine::set_exit_status`.
+<!-- trait ApplicationExt::fn connect_handle_local_options -->
+The ::handle-local-options signal is emitted on the local instance
+after the parsing of the commandline options has occurred.
+
+You can add options to be recognised during commandline option
+parsing using `ApplicationExt::add_main_option_entries` and
+`ApplicationExt::add_option_group`.
+
+Signal handlers can inspect `options` (along with values pointed to
+from the `arg_data` of an installed `GOptionEntrys`) in order to
+decide to perform certain actions, including direct local handling
+(which may be useful for options like --version).
+
+In the event that the application is marked
+`ApplicationFlags::HandlesCommandLine` the "normal processing" will
+send the `options` dictionary to the primary instance where it can be
+read with `ApplicationCommandLine::get_options_dict`. The signal
+handler can modify the dictionary before returning, and the
+modified dictionary will be sent.
+
+In the event that `ApplicationFlags::HandlesCommandLine` is not set,
+"normal processing" will treat the remaining uncollected command
+line arguments as filenames or URIs. If there are no arguments,
+the application is activated by `ApplicationExt::activate`. One or
+more arguments results in a call to `ApplicationExt::open`.
+
+If you want to handle the local commandline arguments for yourself
+by converting them to calls to `ApplicationExt::open` or
+`ActionGroup::activate_action` then you must be sure to register
+the application first. You should probably not call
+`ApplicationExt::activate` for yourself, however: just return -1 and
+allow the default handler to do it for you. This will ensure that
+the `--gapplication-service` switch works properly (i.e. no activation
+in that case).
+
+Note that this signal is emitted from the default implementation of
+`local_command_line`. If you override that function and don't
+chain up then this signal will never be emitted.
+
+You can override `local_command_line` if you need more powerful
+capabilities than what is provided here, but this should not
+normally be required.
+
+Feature: `v2_40`
+
+## `options`
+the options dictionary
+
+# Returns
+
+an exit code. If you have handled your options and want
+to exit the process, return a non-negative option, 0 for success,
+and a positive value for failure. To continue, return -1 to let
+the default option processing continue.
+<!-- trait ApplicationExt::fn connect_open -->
+The ::open signal is emitted on the primary instance when there are
+files to open. See `ApplicationExt::open` for more information.
+## `files`
+an array of `GFiles`
+## `n_files`
+the length of `files`
+## `hint`
+a hint provided by the calling instance
+<!-- trait ApplicationExt::fn connect_shutdown -->
+The ::shutdown signal is emitted only on the registered primary instance
+immediately after the main loop terminates.
+<!-- trait ApplicationExt::fn connect_startup -->
+The ::startup signal is emitted on the primary instance immediately
+after registration. See `ApplicationExt::register`.
+<!-- trait ApplicationExt::fn get_property_is-busy -->
+Whether the application is currently marked as busy through
+`ApplicationExt::mark_busy` or `ApplicationExt::bind_busy_property`.
+
+Feature: `v2_44`
+
 <!-- struct Cancellable -->
 GCancellable is a thread-safe operation cancellation stack used
 throughout GIO to allow for cancellation of synchronous and
@@ -2063,6 +2220,59 @@ The new `glib::Source` will hold a reference to the `Cancellable`.
 # Returns
 
 the new `glib::Source`.
+<!-- trait CancellableExt::fn connect_cancelled -->
+Emitted when the operation has been cancelled.
+
+Can be used by implementations of cancellable operations. If the
+operation is cancelled from another thread, the signal will be
+emitted in the thread that cancelled the operation, not the
+thread that is running the operation.
+
+Note that disconnecting from this signal (or any signal) in a
+multi-threaded program is prone to race conditions. For instance
+it is possible that a signal handler may be invoked even after
+a call to `g_signal_handler_disconnect` for that handler has
+already returned.
+
+There is also a problem when cancellation happens right before
+connecting to the signal. If this happens the signal will
+unexpectedly not be emitted, and checking before connecting to
+the signal leaves a race condition where this is still happening.
+
+In order to make it safe and easy to connect handlers there
+are two helper functions: `CancellableExt::connect` and
+`CancellableExt::disconnect` which protect against problems
+like this.
+
+An example of how to us this:
+
+```C
+    // Make sure we don't do unnecessary work if already cancelled
+    if (g_cancellable_set_error_if_cancelled (cancellable, error))
+      return;
+
+    // Set up all the data needed to be able to handle cancellation
+    // of the operation
+    my_data = my_data_new (...);
+
+    id = 0;
+    if (cancellable)
+      id = g_cancellable_connect (cancellable,
+                      G_CALLBACK (cancelled_handler)
+                      data, NULL);
+
+    // cancellable operation here...
+
+    g_cancellable_disconnect (cancellable, id);
+
+    // cancelled_handler is never called after this, it is now safe
+    // to free the data
+    my_data_free (my_data);
+```
+
+Note that the cancelled signal is emitted in the thread that
+the user cancelled from, which may be the main thread. So, the
+cancellable signal should not do something that can block.
 <!-- struct File -->
 `File` is a high level abstraction for manipulating files on a
 virtual file system. `GFiles` are lightweight, immutable objects
@@ -6160,6 +6370,33 @@ the index of the item
 # Returns
 
 a new `MenuLinkIter`
+<!-- trait MenuModelExt::fn connect_items_changed -->
+Emitted when a change has occured to the menu.
+
+The only changes that can occur to a menu is that items are removed
+or added. Items may not change (except by being removed and added
+back in the same location). This signal is capable of describing
+both of those changes (at the same time).
+
+The signal means that starting at the index `position`, `removed`
+items were removed and `added` items were added in their place. If
+`removed` is zero then only items were added. If `added` is zero
+then only items were removed.
+
+As an example, if the menu contains items a, b, c, d (in that
+order) and the signal (2, 1, 3) occurs then the new composition of
+the menu will be a, b, _, _, _, d (with each _ representing some
+new item).
+
+Signal handlers may query the model (particularly the added items)
+and expect to see the results of the modification that is being
+reported. The signal is emitted after the modification.
+## `position`
+the position of the change
+## `removed`
+the number of items removed
+## `added`
+the number of items added
 <!-- struct Notification -->
 `Notification` is a mechanism for creating a notification to be shown
 to the user -- typically as a pop-up notification presented by the
@@ -6522,6 +6759,15 @@ the `AsyncResult` given to the `GAsyncReadyCallback`
 # Returns
 
 `true` if the permission was successfully released
+<!-- trait PermissionExt::fn get_property_allowed -->
+`true` if the caller currently has permission to perform the action that
+`permission` represents the permission to perform.
+<!-- trait PermissionExt::fn get_property_can-acquire -->
+`true` if it is generally possible to acquire the permission by calling
+`PermissionExt::acquire`.
+<!-- trait PermissionExt::fn get_property_can-release -->
+`true` if it is generally possible to release the permission by calling
+`PermissionExt::release`.
 <!-- struct Resource -->
 Applications and libraries often contain binary or textual data that is
 really part of the application, rather than user data. For instance
@@ -7192,8 +7438,7 @@ a list of `Settings`
  schemas that are available. The list must not be modified or
  freed.
 <!-- impl Settings::fn sync -->
-Ensures that all pending operations for the given are complete for
-the default backend.
+Ensures that all pending operations are complete for the default backend.
 
 Writes made to a `Settings` are handled asynchronously. For this
 reason, it is very unlikely that the changes have it to disk by the
@@ -7913,6 +8158,143 @@ a `glib::Variant` of the correct type
 
 `true` if setting the key succeeded,
  `false` if the key was not writable
+<!-- trait SettingsExt::fn connect_change_event -->
+The "change-event" signal is emitted once per change event that
+affects this settings object. You should connect to this signal
+only if you are interested in viewing groups of changes before they
+are split out into multiple emissions of the "changed" signal.
+For most use cases it is more appropriate to use the "changed" signal.
+
+In the event that the change event applies to one or more specified
+keys, `keys` will be an array of `glib::Quark` of length `n_keys`. In the
+event that the change event applies to the `Settings` object as a
+whole (ie: potentially every key has been changed) then `keys` will
+be `None` and `n_keys` will be 0.
+
+The default handler for this signal invokes the "changed" signal
+for each affected key. If any other connected handler returns
+`true` then this default functionality will be suppressed.
+## `keys`
+
+ an array of `GQuarks` for the changed keys, or `None`
+## `n_keys`
+the length of the `keys` array, or 0
+
+# Returns
+
+`true` to stop other handlers from being invoked for the
+ event. FALSE to propagate the event further.
+<!-- trait SettingsExt::fn connect_changed -->
+The "changed" signal is emitted when a key has potentially changed.
+You should call one of the `SettingsExt::get` calls to check the new
+value.
+
+This signal supports detailed connections. You can connect to the
+detailed signal "changed::x" in order to only receive callbacks
+when key "x" changes.
+
+Note that `settings` only emits this signal if you have read `key` at
+least once while a signal handler was already connected for `key`.
+## `key`
+the name of the key that changed
+<!-- trait SettingsExt::fn connect_writable_change_event -->
+The "writable-change-event" signal is emitted once per writability
+change event that affects this settings object. You should connect
+to this signal if you are interested in viewing groups of changes
+before they are split out into multiple emissions of the
+"writable-changed" signal. For most use cases it is more
+appropriate to use the "writable-changed" signal.
+
+In the event that the writability change applies only to a single
+key, `key` will be set to the `glib::Quark` for that key. In the event
+that the writability change affects the entire settings object,
+`key` will be 0.
+
+The default handler for this signal invokes the "writable-changed"
+and "changed" signals for each affected key. This is done because
+changes in writability might also imply changes in value (if for
+example, a new mandatory setting is introduced). If any other
+connected handler returns `true` then this default functionality
+will be suppressed.
+## `key`
+the quark of the key, or 0
+
+# Returns
+
+`true` to stop other handlers from being invoked for the
+ event. FALSE to propagate the event further.
+<!-- trait SettingsExt::fn connect_writable_changed -->
+The "writable-changed" signal is emitted when the writability of a
+key has potentially changed. You should call
+`SettingsExt::is_writable` in order to determine the new status.
+
+This signal supports detailed connections. You can connect to the
+detailed signal "writable-changed::x" in order to only receive
+callbacks when the writability of "x" changes.
+## `key`
+the key
+<!-- trait SettingsExt::fn get_property_delay-apply -->
+Whether the `Settings` object is in 'delay-apply' mode. See
+`SettingsExt::delay` for details.
+<!-- trait SettingsExt::fn get_property_has-unapplied -->
+If this property is `true`, the `Settings` object has outstanding
+changes that will be applied when `SettingsExt::apply` is called.
+<!-- trait SettingsExt::fn get_property_path -->
+The path within the backend where the settings are stored.
+<!-- trait SettingsExt::fn set_property_path -->
+The path within the backend where the settings are stored.
+<!-- trait SettingsExt::fn get_property_schema -->
+The name of the schema that describes the types of keys
+for this `Settings` object.
+
+The type of this property is *not* `SettingsSchema`.
+`SettingsSchema` has only existed since version 2.32 and
+unfortunately this name was used in previous versions to refer to
+the schema ID rather than the schema itself. Take care to use the
+'settings-schema' property if you wish to pass in a
+`SettingsSchema`.
+
+# Deprecated since 2.32
+
+Use the 'schema-id' property instead. In a future
+version, this property may instead refer to a `SettingsSchema`.
+<!-- trait SettingsExt::fn set_property_schema -->
+The name of the schema that describes the types of keys
+for this `Settings` object.
+
+The type of this property is *not* `SettingsSchema`.
+`SettingsSchema` has only existed since version 2.32 and
+unfortunately this name was used in previous versions to refer to
+the schema ID rather than the schema itself. Take care to use the
+'settings-schema' property if you wish to pass in a
+`SettingsSchema`.
+
+# Deprecated since 2.32
+
+Use the 'schema-id' property instead. In a future
+version, this property may instead refer to a `SettingsSchema`.
+<!-- trait SettingsExt::fn get_property_schema-id -->
+The name of the schema that describes the types of keys
+for this `Settings` object.
+<!-- trait SettingsExt::fn set_property_schema-id -->
+The name of the schema that describes the types of keys
+for this `Settings` object.
+<!-- trait SettingsExt::fn get_property_settings-schema -->
+The `SettingsSchema` describing the types of keys for this
+`Settings` object.
+
+Ideally, this property would be called 'schema'. `SettingsSchema`
+has only existed since version 2.32, however, and before then the
+'schema' property was used to refer to the ID of the schema rather
+than the schema itself. Take care.
+<!-- trait SettingsExt::fn set_property_settings-schema -->
+The `SettingsSchema` describing the types of keys for this
+`Settings` object.
+
+Ideally, this property would be called 'schema'. `SettingsSchema`
+has only existed since version 2.32, however, and before then the
+'schema' property was used to refer to the ID of the schema rather
+than the schema itself. Take care.
 <!-- struct SimpleAction -->
 A `SimpleAction` is the obvious simple implementation of the `Action`
 interface. This is the easiest way to create an action for purposes of
@@ -7991,6 +8373,85 @@ Feature: `v2_44`
 
 ## `state_hint`
 a `glib::Variant` representing the state hint
+<!-- trait SimpleActionExt::fn connect_activate -->
+Indicates that the action was just activated.
+
+`parameter` will always be of the expected type. In the event that
+an incorrect type was given, no signal will be emitted.
+
+Since GLib 2.40, if no handler is connected to this signal then the
+default behaviour for boolean-stated actions with a `None` parameter
+type is to toggle them via the `SimpleAction::change-state` signal.
+For stateful actions where the state type is equal to the parameter
+type, the default is to forward them directly to
+`SimpleAction::change-state`. This should allow almost all users
+of `SimpleAction` to connect only one handler or the other.
+## `parameter`
+the parameter to the activation
+<!-- trait SimpleActionExt::fn connect_change_state -->
+Indicates that the action just received a request to change its
+state.
+
+`value` will always be of the correct state type. In the event that
+an incorrect type was given, no signal will be emitted.
+
+If no handler is connected to this signal then the default
+behaviour is to call `SimpleActionExt::set_state` to set the state
+to the requested value. If you connect a signal handler then no
+default action is taken. If the state should change then you must
+call `SimpleActionExt::set_state` from the handler.
+
+An example of a 'change-state' handler:
+
+```C
+static void
+change_volume_state (GSimpleAction *action,
+                     GVariant      *value,
+                     gpointer       user_data)
+{
+  gint requested;
+
+  requested = g_variant_get_int32 (value);
+
+  // Volume only goes from 0 to 10
+  if (0 <= requested && requested <= 10)
+    g_simple_action_set_state (action, value);
+}
+```
+
+The handler need not set the state to the requested value.
+It could set it to any value at all, or take some other action.
+## `value`
+the requested value for the state
+<!-- trait SimpleActionExt::fn get_property_enabled -->
+If `action` is currently enabled.
+
+If the action is disabled then calls to `Action::activate` and
+`Action::change_state` have no effect.
+<!-- trait SimpleActionExt::fn set_property_enabled -->
+If `action` is currently enabled.
+
+If the action is disabled then calls to `Action::activate` and
+`Action::change_state` have no effect.
+<!-- trait SimpleActionExt::fn get_property_name -->
+The name of the action. This is mostly meaningful for identifying
+the action once it has been added to a `SimpleActionGroup`.
+<!-- trait SimpleActionExt::fn set_property_name -->
+The name of the action. This is mostly meaningful for identifying
+the action once it has been added to a `SimpleActionGroup`.
+<!-- trait SimpleActionExt::fn get_property_parameter-type -->
+The type of the parameter that must be given when activating the
+action.
+<!-- trait SimpleActionExt::fn set_property_parameter-type -->
+The type of the parameter that must be given when activating the
+action.
+<!-- trait SimpleActionExt::fn get_property_state -->
+The state of the action, or `None` if the action is stateless.
+<!-- trait SimpleActionExt::fn set_property_state -->
+The state of the action, or `None` if the action is stateless.
+<!-- trait SimpleActionExt::fn get_property_state-type -->
+The `glib::VariantType` of the state that the action has, or `None` if the
+action is stateless.
 <!-- struct SimpleActionGroup -->
 `SimpleActionGroup` is a hash table filled with `Action` objects,
 implementing the `ActionGroup` and `ActionMap` interfaces.
@@ -8160,6 +8621,46 @@ Note that doing so invalidates the hash computed by prior calls
 to `Icon::hash`.
 ## `iconname`
 name of icon to prepend to list of icons from within `self`.
+<!-- trait ThemedIconExt::fn set_property_name -->
+The icon name.
+<!-- trait ThemedIconExt::fn get_property_names -->
+A `None`-terminated array of icon names.
+<!-- trait ThemedIconExt::fn set_property_names -->
+A `None`-terminated array of icon names.
+<!-- trait ThemedIconExt::fn get_property_use-default-fallbacks -->
+Whether to use the default fallbacks found by shortening the icon name
+at '-' characters. If the "names" array has more than one element,
+ignores any past the first.
+
+For example, if the icon name was "gnome-dev-cdrom-audio", the array
+would become
+
+```C
+{
+  "gnome-dev-cdrom-audio",
+  "gnome-dev-cdrom",
+  "gnome-dev",
+  "gnome",
+  NULL
+};
+```
+<!-- trait ThemedIconExt::fn set_property_use-default-fallbacks -->
+Whether to use the default fallbacks found by shortening the icon name
+at '-' characters. If the "names" array has more than one element,
+ignores any past the first.
+
+For example, if the icon name was "gnome-dev-cdrom-audio", the array
+would become
+
+```C
+{
+  "gnome-dev-cdrom-audio",
+  "gnome-dev-cdrom",
+  "gnome-dev",
+  "gnome",
+  NULL
+};
+```
 <!-- struct TlsCertificate -->
 A certificate used for TLS authentication and encryption.
 This can represent either a certificate only (eg, the certificate
@@ -8309,3 +8810,50 @@ the certificate of a trusted authority
 # Returns
 
 the appropriate `TlsCertificateFlags`
+<!-- trait TlsCertificateExt::fn get_property_certificate -->
+The DER (binary) encoded representation of the certificate.
+This property and the `TlsCertificate:certificate-pem` property
+represent the same data, just in different forms.
+<!-- trait TlsCertificateExt::fn set_property_certificate -->
+The DER (binary) encoded representation of the certificate.
+This property and the `TlsCertificate:certificate-pem` property
+represent the same data, just in different forms.
+<!-- trait TlsCertificateExt::fn get_property_certificate-pem -->
+The PEM (ASCII) encoded representation of the certificate.
+This property and the `TlsCertificate:certificate`
+property represent the same data, just in different forms.
+<!-- trait TlsCertificateExt::fn set_property_certificate-pem -->
+The PEM (ASCII) encoded representation of the certificate.
+This property and the `TlsCertificate:certificate`
+property represent the same data, just in different forms.
+<!-- trait TlsCertificateExt::fn get_property_issuer -->
+A `TlsCertificate` representing the entity that issued this
+certificate. If `None`, this means that the certificate is either
+self-signed, or else the certificate of the issuer is not
+available.
+<!-- trait TlsCertificateExt::fn set_property_issuer -->
+A `TlsCertificate` representing the entity that issued this
+certificate. If `None`, this means that the certificate is either
+self-signed, or else the certificate of the issuer is not
+available.
+<!-- trait TlsCertificateExt::fn set_property_private-key -->
+The DER (binary) encoded representation of the certificate's
+private key, in either PKCS`1` format or unencrypted PKCS`8`
+format. This property (or the `TlsCertificate:private-key-pem`
+property) can be set when constructing a key (eg, from a file),
+but cannot be read.
+
+PKCS`8` format is supported since 2.32; earlier releases only
+support PKCS`1`. You can use the `openssl rsa`
+tool to convert PKCS`8` keys to PKCS`1`.
+<!-- trait TlsCertificateExt::fn set_property_private-key-pem -->
+The PEM (ASCII) encoded representation of the certificate's
+private key in either PKCS`1` format ("`BEGIN RSA PRIVATE
+KEY`") or unencrypted PKCS`8` format ("`BEGIN
+PRIVATE KEY`"). This property (or the
+`TlsCertificate:private-key` property) can be set when
+constructing a key (eg, from a file), but cannot be read.
+
+PKCS`8` format is supported since 2.32; earlier releases only
+support PKCS`1`. You can use the `openssl rsa`
+tool to convert PKCS`8` keys to PKCS`1`.

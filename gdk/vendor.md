@@ -1048,6 +1048,102 @@ the screen to warp `self` to.
 the X coordinate of the destination.
 ## `y`
 the Y coordinate of the destination.
+<!-- trait DeviceExt::fn connect_changed -->
+The ::changed signal is emitted either when the `Device`
+has changed the number of either axes or keys. For example
+In X this will normally happen when the slave device routing
+events through the master device changes (for example, user
+switches from the USB mouse to a tablet), in that case the
+master device will change to reflect the new slave device
+axes and keys.
+<!-- trait DeviceExt::fn connect_tool_changed -->
+The ::tool-changed signal is emitted on pen/eraser
+``GdkDevices`` whenever tools enter or leave proximity.
+
+Feature: `v3_22`
+
+## `tool`
+The new current tool
+<!-- trait DeviceExt::fn get_property_associated-device -->
+Associated pointer or keyboard with this device, if any. Devices of type `DeviceType::Master`
+always come in keyboard/pointer pairs. Other device types will have a `None` associated device.
+<!-- trait DeviceExt::fn get_property_axes -->
+The axes currently available for this device.
+
+Feature: `v3_22`
+
+<!-- trait DeviceExt::fn get_property_device-manager -->
+The `DeviceManager` the `Device` pertains to.
+<!-- trait DeviceExt::fn set_property_device-manager -->
+The `DeviceManager` the `Device` pertains to.
+<!-- trait DeviceExt::fn get_property_display -->
+The `Display` the `Device` pertains to.
+<!-- trait DeviceExt::fn set_property_display -->
+The `Display` the `Device` pertains to.
+<!-- trait DeviceExt::fn get_property_has-cursor -->
+Whether the device is represented by a cursor on the screen. Devices of type
+`DeviceType::Master` will have `true` here.
+<!-- trait DeviceExt::fn set_property_has-cursor -->
+Whether the device is represented by a cursor on the screen. Devices of type
+`DeviceType::Master` will have `true` here.
+<!-- trait DeviceExt::fn get_property_input-source -->
+Source type for the device.
+<!-- trait DeviceExt::fn set_property_input-source -->
+Source type for the device.
+<!-- trait DeviceExt::fn get_property_n-axes -->
+Number of axes in the device.
+<!-- trait DeviceExt::fn get_property_name -->
+The device name.
+<!-- trait DeviceExt::fn set_property_name -->
+The device name.
+<!-- trait DeviceExt::fn get_property_num-touches -->
+The maximal number of concurrent touches on a touch device.
+Will be 0 if the device is not a touch device or if the number
+of touches is unknown.
+
+Feature: `v3_20`
+
+<!-- trait DeviceExt::fn set_property_num-touches -->
+The maximal number of concurrent touches on a touch device.
+Will be 0 if the device is not a touch device or if the number
+of touches is unknown.
+
+Feature: `v3_20`
+
+<!-- trait DeviceExt::fn get_property_product-id -->
+Product ID of this device, see `DeviceExt::get_product_id`.
+
+Feature: `v3_16`
+
+<!-- trait DeviceExt::fn set_property_product-id -->
+Product ID of this device, see `DeviceExt::get_product_id`.
+
+Feature: `v3_16`
+
+<!-- trait DeviceExt::fn get_property_seat -->
+`Seat` of this device.
+
+Feature: `v3_20`
+
+<!-- trait DeviceExt::fn set_property_seat -->
+`Seat` of this device.
+
+Feature: `v3_20`
+
+<!-- trait DeviceExt::fn get_property_type -->
+Device role in the device manager.
+<!-- trait DeviceExt::fn set_property_type -->
+Device role in the device manager.
+<!-- trait DeviceExt::fn get_property_vendor-id -->
+Vendor ID of this device, see `DeviceExt::get_vendor_id`.
+
+Feature: `v3_16`
+
+<!-- trait DeviceExt::fn set_property_vendor-id -->
+Vendor ID of this device, see `DeviceExt::get_vendor_id`.
+
+Feature: `v3_16`
+
 <!-- struct DeviceManager -->
 In addition to a single pointer and keyboard for user interface input,
 GDK contains support for a variety of input devices, including graphics
@@ -1215,6 +1311,31 @@ a list of
  ``GdkDevices``. The returned list must be
  freed with g_list_free (). The list elements are owned by
  GTK+ and must not be freed or unreffed.
+<!-- trait DeviceManagerExt::fn connect_device_added -->
+The ::device-added signal is emitted either when a new master
+pointer is created, or when a slave (Hardware) input device
+is plugged in.
+## `device`
+the newly added `Device`.
+<!-- trait DeviceManagerExt::fn connect_device_changed -->
+The ::device-changed signal is emitted whenever a device
+has changed in the hierarchy, either slave devices being
+disconnected from their master device or connected to
+another one, or master devices being added or removed
+a slave device.
+
+If a slave device is detached from all master devices
+(`DeviceExt::get_associated_device` returns `None`), its
+`DeviceType` will change to `DeviceType::Floating`,
+if it's attached, it will change to `DeviceType::Slave`.
+## `device`
+the `Device` that changed.
+<!-- trait DeviceManagerExt::fn connect_device_removed -->
+The ::device-removed signal is emitted either when a master
+pointer is removed, or when a slave (Hardware) input device
+is unplugged.
+## `device`
+the just removed `Device`.
 <!-- struct DeviceTool -->
 
 
@@ -1808,6 +1929,46 @@ the screen of `self` to warp the pointer to
 the x coordinate of the destination
 ## `y`
 the y coordinate of the destination
+<!-- trait DisplayExt::fn connect_closed -->
+The ::closed signal is emitted when the connection to the windowing
+system for `display` is closed.
+## `is_error`
+`true` if the display was closed due to an error
+<!-- trait DisplayExt::fn connect_monitor_added -->
+The ::monitor-added signal is emitted whenever a monitor is
+added.
+
+Feature: `v3_22`
+
+## `monitor`
+the monitor that was just added
+<!-- trait DisplayExt::fn connect_monitor_removed -->
+The ::monitor-removed signal is emitted whenever a monitor is
+removed.
+
+Feature: `v3_22`
+
+## `monitor`
+the monitor that was just removed
+<!-- trait DisplayExt::fn connect_opened -->
+The ::opened signal is emitted when the connection to the windowing
+system for `display` is opened.
+<!-- trait DisplayExt::fn connect_seat_added -->
+The ::seat-added signal is emitted whenever a new seat is made
+known to the windowing system.
+
+Feature: `v3_20`
+
+## `seat`
+the seat that was just added
+<!-- trait DisplayExt::fn connect_seat_removed -->
+The ::seat-removed signal is emitted whenever a seat is removed
+by the windowing system.
+
+Feature: `v3_20`
+
+## `seat`
+the seat that was just removed
 <!-- struct DisplayManager -->
 The purpose of the `DisplayManager` singleton object is to offer
 notification when displays appear or disappear or the default display
@@ -1901,6 +2062,10 @@ a `Display`, or `None` if the
 Sets `display` as the default display.
 ## `display`
 a `Display`
+<!-- trait DisplayManagerExt::fn connect_display_opened -->
+The ::display-opened signal is emitted when a display is opened.
+## `display`
+the opened display
 <!-- enum DragCancelReason -->
 Used in `DragContext` to the reason of a cancelled DND operation.
 <!-- enum DragCancelReason::variant NoTarget -->
@@ -2031,6 +2196,50 @@ Feature: `v3_20`
 x coordinate of the drag window hotspot
 ## `hot_y`
 y coordinate of the drag window hotspot
+<!-- trait DragContextExt::fn connect_action_changed -->
+A new action is being chosen for the drag and drop operation.
+
+This signal will only be emitted if the `DragContext` manages
+the drag and drop operation. See `DragContextExt::manage_dnd`
+for more information.
+
+Feature: `v3_20`
+
+## `action`
+The action currently chosen
+<!-- trait DragContextExt::fn connect_cancel -->
+The drag and drop operation was cancelled.
+
+This signal will only be emitted if the `DragContext` manages
+the drag and drop operation. See `DragContextExt::manage_dnd`
+for more information.
+
+Feature: `v3_20`
+
+## `reason`
+The reason the context was cancelled
+<!-- trait DragContextExt::fn connect_dnd_finished -->
+The drag and drop operation was finished, the drag destination
+finished reading all data. The drag source can now free all
+miscellaneous data.
+
+This signal will only be emitted if the `DragContext` manages
+the drag and drop operation. See `DragContextExt::manage_dnd`
+for more information.
+
+Feature: `v3_20`
+
+<!-- trait DragContextExt::fn connect_drop_performed -->
+The drag and drop operation was performed on an accepting client.
+
+This signal will only be emitted if the `DragContext` manages
+the drag and drop operation. See `DragContextExt::manage_dnd`
+for more information.
+
+Feature: `v3_20`
+
+## `time`
+the time at which the drop happened.
 <!-- enum DragProtocol -->
 Used in `DragContext` to indicate the protocol according to
 which DND is done.
@@ -2119,6 +2328,26 @@ Feature: `v3_22`
 # Returns
 
 `true` if the context is valid
+<!-- trait DrawingContextExt::fn get_property_clip -->
+The clip region applied to the drawing context.
+
+Feature: `v3_22`
+
+<!-- trait DrawingContextExt::fn set_property_clip -->
+The clip region applied to the drawing context.
+
+Feature: `v3_22`
+
+<!-- trait DrawingContextExt::fn get_property_window -->
+The `Window` that created the drawing context.
+
+Feature: `v3_22`
+
+<!-- trait DrawingContextExt::fn set_property_window -->
+The `Window` that created the drawing context.
+
+Feature: `v3_22`
+
 <!-- struct EventButton -->
 Used for button press and button release events. The
 `type` field will be one of `EventType::ButtonPress`,
@@ -2537,6 +2766,38 @@ Feature: `v3_8`
 
 ## `phase`
 the phase that is requested
+<!-- trait FrameClockExt::fn connect_after_paint -->
+This signal ends processing of the frame. Applications
+should generally not handle this signal.
+<!-- trait FrameClockExt::fn connect_before_paint -->
+This signal begins processing of the frame. Applications
+should generally not handle this signal.
+<!-- trait FrameClockExt::fn connect_flush_events -->
+This signal is used to flush pending motion events that
+are being batched up and compressed together. Applications
+should not handle this signal.
+<!-- trait FrameClockExt::fn connect_layout -->
+This signal is emitted as the second step of toolkit and
+application processing of the frame. Any work to update
+sizes and positions of application elements should be
+performed. GTK+ normally handles this internally.
+<!-- trait FrameClockExt::fn connect_paint -->
+This signal is emitted as the third step of toolkit and
+application processing of the frame. The frame is
+repainted. GDK normally handles this internally and
+produces expose events, which are turned into GTK+
+``GtkWidget`::draw` signals.
+<!-- trait FrameClockExt::fn connect_resume_events -->
+This signal is emitted after processing of the frame is
+finished, and is handled internally by GTK+ to resume normal
+event processing. Applications should not handle this signal.
+<!-- trait FrameClockExt::fn connect_update -->
+This signal is emitted as the first step of toolkit and
+application processing of the frame. Animations should
+be updated using `FrameClockExt::get_frame_time`.
+Applications can connect directly to this signal, or
+use `gtk_widget_add_tick_callback` as a more convenient
+interface.
 <!-- struct FrameTimings -->
 A `FrameTimings` object holds timing information for a single frame
 of the application’s displays. To retrieve `FrameTimings` objects,
@@ -2911,6 +3172,36 @@ Feature: `v3_22`
 ## `use_es`
 whether the context should use OpenGL ES instead of OpenGL,
  or -1 to allow auto-detection
+<!-- trait GLContextExt::fn get_property_display -->
+The `Display` used to create the `GLContext`.
+
+Feature: `v3_16`
+
+<!-- trait GLContextExt::fn set_property_display -->
+The `Display` used to create the `GLContext`.
+
+Feature: `v3_16`
+
+<!-- trait GLContextExt::fn get_property_shared-context -->
+The `GLContext` that this context is sharing data with, or `None`
+
+Feature: `v3_16`
+
+<!-- trait GLContextExt::fn set_property_shared-context -->
+The `GLContext` that this context is sharing data with, or `None`
+
+Feature: `v3_16`
+
+<!-- trait GLContextExt::fn get_property_window -->
+The `Window` the gl context is bound to.
+
+Feature: `v3_16`
+
+<!-- trait GLContextExt::fn set_property_window -->
+The `Window` the gl context is bound to.
+
+Feature: `v3_16`
+
 <!-- enum GLError -->
 Error enumeration for `GLContext`.
 <!-- enum GLError::variant NotAvailable -->
@@ -3321,7 +3612,7 @@ The string can be either one of:
 
 Where “r”, “g”, “b” and “a” are respectively the red, green, blue and
 alpha color values. In the last two cases, r g and b are either integers
-in the range 0 to 255 or precentage values in the range 0% to 100%, and
+in the range 0 to 255 or percentage values in the range 0% to 100%, and
 a is a floating point value in the range 0 to 1.
 ## `spec`
 the string specifying the color
@@ -3870,6 +4161,18 @@ font will be 13 units high. (10 * 96. / 72. = 13.3).
 ## `dpi`
 the resolution in “dots per inch”. (Physical inches aren’t actually
  involved; the terminology is conventional.)
+<!-- trait ScreenExt::fn connect_composited_changed -->
+The ::composited-changed signal is emitted when the composited
+status of the screen changes
+<!-- trait ScreenExt::fn connect_monitors_changed -->
+The ::monitors-changed signal is emitted when the number, size
+or position of the monitors attached to the screen change.
+
+Only for X11 and OS X for now. A future implementation for Win32
+may be a possibility.
+<!-- trait ScreenExt::fn connect_size_changed -->
+The ::size-changed signal is emitted when the pixel width or
+height of a screen changes.
 <!-- enum ScrollDirection -->
 Specifies the direction for `EventScroll`.
 <!-- enum ScrollDirection::variant Up -->
@@ -4011,6 +4314,52 @@ Releases a grab added through `SeatExt::grab`.
 
 Feature: `v3_20`
 
+<!-- trait SeatExt::fn connect_device_added -->
+The ::device-added signal is emitted when a new input
+device is related to this seat.
+
+Feature: `v3_20`
+
+## `device`
+the newly added `Device`.
+<!-- trait SeatExt::fn connect_device_removed -->
+The ::device-removed signal is emitted when an
+input device is removed (e.g. unplugged).
+
+Feature: `v3_20`
+
+## `device`
+the just removed `Device`.
+<!-- trait SeatExt::fn connect_tool_added -->
+The ::tool-added signal is emitted whenever a new tool
+is made known to the seat. The tool may later be assigned
+to a device (i.e. on proximity with a tablet). The device
+will emit the `Device::tool-changed` signal accordingly.
+
+A same tool may be used by several devices.
+
+Feature: `v3_22`
+
+## `tool`
+the new `DeviceTool` known to the seat
+<!-- trait SeatExt::fn connect_tool_removed -->
+This signal is emitted whenever a tool is no longer known
+to this `seat`.
+
+Feature: `v3_22`
+
+## `tool`
+the just removed `DeviceTool`
+<!-- trait SeatExt::fn get_property_display -->
+`Display` of this seat.
+
+Feature: `v3_20`
+
+<!-- trait SeatExt::fn set_property_display -->
+`Display` of this seat.
+
+Feature: `v3_20`
+
 <!-- enum SettingAction -->
 Specifies the kind of modification applied to a setting in a
 `EventSetting`.
@@ -4063,6 +4412,11 @@ Trait containing all `Visual` methods.
 Get the visual with the most available colors for the default
 GDK screen. The return value should not be freed.
 
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
+
 # Returns
 
 best visual
@@ -4071,11 +4425,21 @@ Get the best available depth for the default GDK screen. “Best”
 means “largest,” i.e. 32 preferred over 24 preferred over 8 bits
 per pixel.
 
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
+
 # Returns
 
 best available depth
 <!-- impl Visual::fn get_best_type -->
 Return the best available visual type for the default GDK screen.
+
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
 
 # Returns
 
@@ -4083,6 +4447,11 @@ best visual type
 <!-- impl Visual::fn get_best_with_both -->
 Combines `Visual::get_best_with_depth` and
 `Visual::get_best_with_type`.
+
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
 ## `depth`
 a bit depth
 ## `visual_type`
@@ -4097,6 +4466,11 @@ Get the best visual with depth `depth` for the default GDK screen.
 Color visuals and visuals with mutable colormaps are preferred
 over grayscale or fixed-colormap visuals. The return value should
 not be freed. `None` may be returned if no visual supports `depth`.
+
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
 ## `depth`
 a bit depth
 
@@ -4108,6 +4482,11 @@ Get the best visual of the given `visual_type` for the default GDK screen.
 Visuals with higher color depths are considered better. The return value
 should not be freed. `None` may be returned if no visual has type
 `visual_type`.
+
+# Deprecated since 3.22
+
+Visual selection should be done using
+ `ScreenExt::get_system_visual` and `ScreenExt::get_rgba_visual`
 ## `visual_type`
 a visual type
 
@@ -4118,6 +4497,10 @@ best visual of the given type
 Get the system’s default visual for the default GDK screen.
 This is the visual for the root window of the display.
 The return value should not be freed.
+
+# Deprecated since 3.22
+
+Use gdk_screen_get_system_visual (gdk_screen_get_default ()).
 
 # Returns
 
@@ -4311,6 +4694,9 @@ location to store resulting height
 <!-- impl Window::fn process_all_updates -->
 Calls `WindowExt::process_updates` for all windows (see `Window`)
 in the application.
+
+# Deprecated since 3.22
+
 <!-- impl Window::fn set_debug_updates -->
 With update debugging enabled, calls to
 `WindowExt::invalidate_region` clear the invalidated region of the
@@ -4614,6 +5000,10 @@ use:
                                              width, height,
                                              scale);
 ```
+
+Note that unlike `cairo_surface_create_similar_image`, the new
+surface's device scale is set to `scale`, or to the scale factor of
+`self` if `scale` is 0.
 
 Feature: `v3_10`
 
@@ -5519,6 +5909,9 @@ need to call this function unless you want to force expose events
 to be delivered immediately and synchronously (vs. the usual
 case, where GDK delivers them in an idle handler). Occasionally
 this is useful to produce nicer scrolling behavior, for example.
+
+# Deprecated since 3.22
+
 ## `update_children`
 whether to also process updates for child windows
 <!-- trait WindowExt::fn raise -->
@@ -6234,6 +6627,98 @@ and `gtk_window_unstick`.
 Withdraws a window (unmaps it and asks the window manager to forget about it).
 This function is not really useful as `WindowExt::hide` automatically
 withdraws toplevel windows before hiding them.
+<!-- trait WindowExt::fn connect_create_surface -->
+The ::create-surface signal is emitted when an offscreen window
+needs its surface (re)created, which happens either when the
+window is first drawn to, or when the window is being
+resized. The first signal handler that returns a non-`None`
+surface will stop any further signal emission, and its surface
+will be used.
+
+Note that it is not possible to access the window's previous
+surface from within any callback of this signal. Calling
+`gdk_offscreen_window_get_surface` will lead to a crash.
+## `width`
+the width of the offscreen surface to create
+## `height`
+the height of the offscreen surface to create
+
+# Returns
+
+the newly created `cairo::Surface` for the offscreen window
+<!-- trait WindowExt::fn connect_from_embedder -->
+The ::from-embedder signal is emitted to translate coordinates
+in the embedder of an offscreen window to the offscreen window.
+
+See also `Window::to-embedder`.
+## `embedder_x`
+x coordinate in the embedder window
+## `embedder_y`
+y coordinate in the embedder window
+## `offscreen_x`
+return location for the x
+ coordinate in the offscreen window
+## `offscreen_y`
+return location for the y
+ coordinate in the offscreen window
+<!-- trait WindowExt::fn connect_moved_to_rect -->
+Emitted when the position of `window` is finalized after being moved to a
+destination rectangle.
+
+`window` might be flipped over the destination rectangle in order to keep
+it on-screen, in which case `flipped_x` and `flipped_y` will be set to `true`
+accordingly.
+
+`flipped_rect` is the ideal position of `window` after any possible
+flipping, but before any possible sliding. `final_rect` is `flipped_rect`,
+but possibly translated in the case that flipping is still ineffective in
+keeping `window` on-screen.
+
+Feature: `v3_22`
+
+## `flipped_rect`
+the position of `window` after any possible
+ flipping or `None` if the backend can't obtain it
+## `final_rect`
+the final position of `window` or `None` if the
+ backend can't obtain it
+## `flipped_x`
+`true` if the anchors were flipped horizontally
+## `flipped_y`
+`true` if the anchors were flipped vertically
+<!-- trait WindowExt::fn connect_pick_embedded_child -->
+The ::pick-embedded-child signal is emitted to find an embedded
+child at the given position.
+## `x`
+x coordinate in the window
+## `y`
+y coordinate in the window
+
+# Returns
+
+the `Window` of the
+ embedded child at `x`, `y`, or `None`
+<!-- trait WindowExt::fn connect_to_embedder -->
+The ::to-embedder signal is emitted to translate coordinates
+in an offscreen window to its embedder.
+
+See also `Window::from-embedder`.
+## `offscreen_x`
+x coordinate in the offscreen window
+## `offscreen_y`
+y coordinate in the offscreen window
+## `embedder_x`
+return location for the x
+ coordinate in the embedder window
+## `embedder_y`
+return location for the y
+ coordinate in the embedder window
+<!-- trait WindowExt::fn get_property_cursor -->
+The mouse pointer for a `Window`. See `WindowExt::set_cursor` and
+`WindowExt::get_cursor` for details.
+<!-- trait WindowExt::fn set_property_cursor -->
+The mouse pointer for a `Window`. See `WindowExt::set_cursor` and
+`WindowExt::get_cursor` for details.
 <!-- enum WindowEdge -->
 Determines a window edge or corner.
 <!-- enum WindowEdge::variant NorthWest -->
