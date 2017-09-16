@@ -331,12 +331,15 @@ closing bracket character will be highlighted.
 ## `highlight`
 `true` if you want matching brackets highlighted.
 <!-- trait BufferExt::fn set_highlight_syntax -->
-Controls whether syntax is highlighted in the buffer. If `highlight`
-is `true`, the text will be highlighted according to the syntax
-patterns specified in the language set with
-`BufferExt::set_language`. If `highlight` is `false`, syntax highlighting
-is disabled and all the `gtk::TextTag` objects that have been added by the
-syntax highlighting engine are removed from the buffer.
+Controls whether syntax is highlighted in the buffer.
+
+If `highlight` is `true`, the text will be highlighted according to the syntax
+patterns specified in the `Language` set with
+`BufferExt::set_language`.
+
+If `highlight` is `false`, syntax highlighting is disabled and all the
+`gtk::TextTag` objects that have been added by the syntax highlighting engine
+are removed from the buffer.
 ## `highlight`
 `true` to enable syntax highlighting, `false` to disable it.
 <!-- trait BufferExt::fn set_implicit_trailing_newline -->
@@ -361,11 +364,11 @@ Feature: `v3_14`
 ## `implicit_trailing_newline`
 the new value.
 <!-- trait BufferExt::fn set_language -->
-Associate a `Language` with the buffer. If `language` is
-not-`None` and syntax highlighting is enabled (see `BufferExt::set_highlight_syntax`),
-the syntax patterns defined in `language` will be used to highlight the text
-contained in the buffer. If `language` is `None`, the text contained in the
-buffer is not highlighted.
+Associates a `Language` with the buffer.
+
+Note that a `Language` affects not only the syntax highlighting, but
+also the [context classes][context-classes]. If you want to disable just the
+syntax highlighting, see `BufferExt::set_highlight_syntax`.
 
 The buffer holds a reference to `language`.
 ## `language`
@@ -381,8 +384,19 @@ If `max_undo_levels` is 0, the undo/redo is disabled.
 ## `max_undo_levels`
 the desired maximum number of undo levels.
 <!-- trait BufferExt::fn set_style_scheme -->
-Sets style scheme used by the buffer. If `scheme` is `None` no
-style scheme is used.
+Sets a `StyleScheme` to be used by the buffer and the view.
+
+Note that a `StyleScheme` affects not only the syntax highlighting,
+but also other `View` features such as highlighting the current line,
+matching brackets, the line numbers, etc.
+
+Instead of setting a `None` `scheme`, it is better to disable syntax
+highlighting with `BufferExt::set_highlight_syntax`, and setting the
+`StyleScheme` with the "classic" or "tango" ID, because those two
+style schemes follow more closely the GTK+ theme (for example for the
+background color).
+
+The buffer holds a reference to `scheme`.
 ## `scheme`
 a `StyleScheme` or `None`.
 <!-- trait BufferExt::fn set_undo_manager -->
@@ -409,6 +423,71 @@ Undoes the last user action which modified the buffer. Use
 function will have any effect.
 
 This function emits the `Buffer::undo` signal.
+<!-- trait BufferExt::fn connect_bracket_matched -->
+`iter` is set to a valid iterator pointing to the matching bracket
+if `state` is `BracketMatchType::Found`. Otherwise `iter` is
+meaningless.
+
+The signal is emitted only when the `state` changes, typically when
+the cursor moves.
+
+A use-case for this signal is to show messages in a `gtk::Statusbar`.
+## `iter`
+if found, the location of the matching bracket.
+## `state`
+state of bracket matching.
+<!-- trait BufferExt::fn connect_highlight_updated -->
+The ::highlight-updated signal is emitted when the syntax
+highlighting and [context classes][context-classes] are updated in a
+certain region of the `buffer`.
+## `start`
+the start of the updated region
+## `end`
+the end of the updated region
+<!-- trait BufferExt::fn connect_redo -->
+The ::redo signal is emitted to redo the last undo operation.
+<!-- trait BufferExt::fn connect_source_mark_updated -->
+The ::source-mark-updated signal is emitted each time
+a mark is added to, moved or removed from the `buffer`.
+## `mark`
+the `Mark`
+<!-- trait BufferExt::fn connect_undo -->
+The ::undo signal is emitted to undo the last user action which
+modified the buffer.
+<!-- trait BufferExt::fn get_property_highlight-matching-brackets -->
+Whether to highlight matching brackets in the buffer.
+<!-- trait BufferExt::fn set_property_highlight-matching-brackets -->
+Whether to highlight matching brackets in the buffer.
+<!-- trait BufferExt::fn get_property_highlight-syntax -->
+Whether to highlight syntax in the buffer.
+<!-- trait BufferExt::fn set_property_highlight-syntax -->
+Whether to highlight syntax in the buffer.
+<!-- trait BufferExt::fn get_property_implicit-trailing-newline -->
+Whether the buffer has an implicit trailing newline. See
+`BufferExt::set_implicit_trailing_newline`.
+
+Feature: `v3_14`
+
+<!-- trait BufferExt::fn set_property_implicit-trailing-newline -->
+Whether the buffer has an implicit trailing newline. See
+`BufferExt::set_implicit_trailing_newline`.
+
+Feature: `v3_14`
+
+<!-- trait BufferExt::fn get_property_max-undo-levels -->
+Number of undo levels for the buffer. -1 means no limit. This property
+will only affect the default undo manager.
+<!-- trait BufferExt::fn set_property_max-undo-levels -->
+Number of undo levels for the buffer. -1 means no limit. This property
+will only affect the default undo manager.
+<!-- trait BufferExt::fn get_property_style-scheme -->
+Style scheme. It contains styles for syntax highlighting, optionally
+foreground, background, cursor color, current line color, and matching
+brackets style.
+<!-- trait BufferExt::fn set_property_style-scheme -->
+Style scheme. It contains styles for syntax highlighting, optionally
+foreground, background, cursor color, current line color, and matching
+brackets style.
 <!-- enum ChangeCaseType -->
 <!-- enum ChangeCaseType::variant Lower -->
 change case to lowercase.
@@ -488,8 +567,8 @@ destroyed.
 
 # Returns
 
-
-The `View` associated with `self`, or `None`.
+The `View` associated with
+`self`, or `None`.
 <!-- trait CompletionExt::fn hide -->
 Hides the completion if it is active (visible).
 <!-- trait CompletionExt::fn move_window -->
@@ -533,6 +612,138 @@ with which to start the completion.
 Unblock interactive completion. This can be used after using
 `CompletionExt::block_interactive` to enable interactive completion
 again.
+<!-- trait CompletionExt::fn connect_activate_proposal -->
+The `Completion::activate-proposal` signal is a
+keybinding signal which gets emitted when the user initiates
+a proposal activation.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the proposal
+activation programmatically.
+<!-- trait CompletionExt::fn connect_hide -->
+Emitted when the completion window is hidden. The default handler
+will actually hide the window.
+<!-- trait CompletionExt::fn connect_move_cursor -->
+The `Completion::move-cursor` signal is a keybinding
+signal which gets emitted when the user initiates a cursor
+movement.
+
+The `<keycap>`Up`</keycap>`, `<keycap>`Down`</keycap>`,
+`<keycap>`PageUp`</keycap>`, `<keycap>`PageDown`</keycap>`,
+`<keycap>`Home`</keycap>` and `<keycap>`End`</keycap>` keys are bound to the
+normal behavior expected by those keys.
+
+When `step` is equal to `gtk::ScrollStep::Pages`, the page size is defined by
+the `Completion:proposal-page-size` property. It is used for
+the `<keycap>`PageDown`</keycap>` and `<keycap>`PageUp`</keycap>` keys.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+## `step`
+The `gtk::ScrollStep` by which to move the cursor
+## `num`
+The amount of steps to move the cursor
+<!-- trait CompletionExt::fn connect_move_page -->
+The `Completion::move-page` signal is a keybinding
+signal which gets emitted when the user initiates a page
+movement (i.e. switches between provider pages).
+
+`<keycombo>``<keycap>`Control`</keycap>``<keycap>`Left`</keycap>``</keycombo>`
+is for going to the previous provider.
+`<keycombo>``<keycap>`Control`</keycap>``<keycap>`Right`</keycap>``</keycombo>`
+is for going to the next provider.
+`<keycombo>``<keycap>`Control`</keycap>``<keycap>`Home`</keycap>``</keycombo>`
+is for displaying all the providers.
+`<keycombo>``<keycap>`Control`</keycap>``<keycap>`End`</keycap>``</keycombo>`
+is for going to the last provider.
+
+When `step` is equal to `gtk::ScrollStep::Pages`, the page size is defined by
+the `Completion:provider-page-size` property.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the page selection
+programmatically.
+## `step`
+The `gtk::ScrollStep` by which to move the page
+## `num`
+The amount of steps to move the page
+<!-- trait CompletionExt::fn connect_populate_context -->
+Emitted just before starting to populate the completion with providers.
+You can use this signal to add additional attributes in the context.
+## `context`
+The `CompletionContext` for the current completion
+<!-- trait CompletionExt::fn connect_show -->
+Emitted when the completion window is shown. The default handler
+will actually show the window.
+<!-- trait CompletionExt::fn get_property_accelerators -->
+Number of keyboard accelerators to show for the first proposals. For
+example, to activate the first proposal, the user can press
+`<keycombo>``<keycap>`Alt`</keycap>``<keycap>`1`</keycap>``</keycombo>`.
+<!-- trait CompletionExt::fn set_property_accelerators -->
+Number of keyboard accelerators to show for the first proposals. For
+example, to activate the first proposal, the user can press
+`<keycombo>``<keycap>`Alt`</keycap>``<keycap>`1`</keycap>``</keycombo>`.
+<!-- trait CompletionExt::fn get_property_auto-complete-delay -->
+Determines the popup delay (in milliseconds) at which the completion
+will be shown for interactive completion.
+<!-- trait CompletionExt::fn set_property_auto-complete-delay -->
+Determines the popup delay (in milliseconds) at which the completion
+will be shown for interactive completion.
+<!-- trait CompletionExt::fn get_property_proposal-page-size -->
+The scroll page size of the proposals in the completion window. In
+other words, when `<keycap>`PageDown`</keycap>` or
+`<keycap>`PageUp`</keycap>` is pressed, the selected
+proposal becomes the one which is located one page size backward or
+forward.
+
+See also the `Completion::move-cursor` signal.
+<!-- trait CompletionExt::fn set_property_proposal-page-size -->
+The scroll page size of the proposals in the completion window. In
+other words, when `<keycap>`PageDown`</keycap>` or
+`<keycap>`PageUp`</keycap>` is pressed, the selected
+proposal becomes the one which is located one page size backward or
+forward.
+
+See also the `Completion::move-cursor` signal.
+<!-- trait CompletionExt::fn get_property_provider-page-size -->
+The scroll page size of the provider pages in the completion window.
+
+See the `Completion::move-page` signal.
+<!-- trait CompletionExt::fn set_property_provider-page-size -->
+The scroll page size of the provider pages in the completion window.
+
+See the `Completion::move-page` signal.
+<!-- trait CompletionExt::fn get_property_remember-info-visibility -->
+Determines whether the visibility of the info window should be
+saved when the completion is hidden, and restored when the completion
+is shown again.
+<!-- trait CompletionExt::fn set_property_remember-info-visibility -->
+Determines whether the visibility of the info window should be
+saved when the completion is hidden, and restored when the completion
+is shown again.
+<!-- trait CompletionExt::fn get_property_select-on-show -->
+Determines whether the first proposal should be selected when the
+completion is first shown.
+<!-- trait CompletionExt::fn set_property_select-on-show -->
+Determines whether the first proposal should be selected when the
+completion is first shown.
+<!-- trait CompletionExt::fn get_property_show-headers -->
+Determines whether provider headers should be shown in the proposal
+list. It can be useful to disable when there is only one provider.
+<!-- trait CompletionExt::fn set_property_show-headers -->
+Determines whether provider headers should be shown in the proposal
+list. It can be useful to disable when there is only one provider.
+<!-- trait CompletionExt::fn get_property_show-icons -->
+Determines whether provider and proposal icons should be shown in
+the completion popup.
+<!-- trait CompletionExt::fn set_property_show-icons -->
+Determines whether provider and proposal icons should be shown in
+the completion popup.
+<!-- trait CompletionExt::fn get_property_view -->
+The `View` bound to the completion object.
+<!-- trait CompletionExt::fn set_property_view -->
+The `View` bound to the completion object.
 <!-- struct CompletionContext -->
 
 
@@ -573,6 +784,22 @@ a `gtk::TextIter`.
 # Returns
 
 `true` if `iter` is correctly set, `false` otherwise.
+<!-- trait CompletionContextExt::fn connect_cancelled -->
+Emitted when the current population of proposals has been cancelled.
+Providers adding proposals asynchronously should connect to this signal
+to know when to cancel running proposal queries.
+<!-- trait CompletionContextExt::fn get_property_activation -->
+The completion activation
+<!-- trait CompletionContextExt::fn set_property_activation -->
+The completion activation
+<!-- trait CompletionContextExt::fn get_property_completion -->
+The `Completion` associated with the context.
+<!-- trait CompletionContextExt::fn set_property_completion -->
+The `Completion` associated with the context.
+<!-- trait CompletionContextExt::fn get_property_iter -->
+The `gtk::TextIter` at which the completion is invoked.
+<!-- trait CompletionContextExt::fn set_property_iter -->
+The `gtk::TextIter` at which the completion is invoked.
 <!-- struct CompletionInfo -->
 
 
@@ -620,6 +847,14 @@ Use `gtk::Container::add` instead. If there is already a child
 widget, remove it with `gtk::Container::remove`.
 ## `widget`
 a `gtk::Widget`.
+<!-- trait CompletionInfoExt::fn connect_before_show -->
+This signal is emitted before any "show" management. You can connect
+to this signal if you want to change some properties or position
+before the real "show".
+
+# Deprecated since 3.10
+
+This signal should not be used.
 <!-- struct CompletionItem -->
 
 
@@ -636,6 +871,10 @@ Trait containing all `CompletionItem` methods.
 Create a new `CompletionItem` with label `label`, icon `icon` and
 extra information `info`. Both `icon` and `info` can be `None` in which case
 there will be no icon shown and no extra information available.
+
+# Deprecated since 3.24
+
+Use `CompletionItem::new2` instead.
 ## `label`
 The item label.
 ## `text`
@@ -654,7 +893,7 @@ the stock label will be used.
 
 # Deprecated since 3.10
 
-Use `CompletionItem::new` instead.
+Use `CompletionItem::new2` instead.
 ## `label`
 The item label.
 ## `text`
@@ -671,6 +910,10 @@ a new `CompletionItem`.
 Create a new `CompletionItem` with markup label `markup`, icon
 `icon` and extra information `info`. Both `icon` and `info` can be `None` in
 which case there will be no icon shown and no extra information available.
+
+# Deprecated since 3.24
+
+Use `CompletionItem::new2` instead.
 ## `markup`
 The item markup label.
 ## `text`
@@ -683,6 +926,98 @@ The item extra information.
 # Returns
 
 a new `CompletionItem`.
+<!-- impl CompletionItem::fn new2 -->
+Creates a new `CompletionItem`. The desired properties need to be set
+afterwards.
+
+Feature: `v3_24`
+
+
+# Returns
+
+a new `CompletionItem`.
+<!-- trait CompletionItemExt::fn set_gicon -->
+
+Feature: `v3_24`
+
+## `gicon`
+the `gio::Icon`, or `None`.
+<!-- trait CompletionItemExt::fn set_icon -->
+
+Feature: `v3_24`
+
+## `icon`
+the `gdk_pixbuf::Pixbuf`, or `None`.
+<!-- trait CompletionItemExt::fn set_icon_name -->
+
+Feature: `v3_24`
+
+## `icon_name`
+the icon name, or `None`.
+<!-- trait CompletionItemExt::fn set_info -->
+
+Feature: `v3_24`
+
+## `info`
+the info, or `None`.
+<!-- trait CompletionItemExt::fn set_label -->
+
+Feature: `v3_24`
+
+## `label`
+the label, or `None`.
+<!-- trait CompletionItemExt::fn set_markup -->
+
+Feature: `v3_24`
+
+## `markup`
+the markup, or `None`.
+<!-- trait CompletionItemExt::fn set_text -->
+
+Feature: `v3_24`
+
+## `text`
+the text, or `None`.
+<!-- trait CompletionItemExt::fn get_property_gicon -->
+The `gio::Icon` for the icon to be shown for this proposal.
+
+Feature: `v3_18`
+
+<!-- trait CompletionItemExt::fn set_property_gicon -->
+The `gio::Icon` for the icon to be shown for this proposal.
+
+Feature: `v3_18`
+
+<!-- trait CompletionItemExt::fn get_property_icon -->
+The `gdk_pixbuf::Pixbuf` for the icon to be shown for this proposal.
+<!-- trait CompletionItemExt::fn set_property_icon -->
+The `gdk_pixbuf::Pixbuf` for the icon to be shown for this proposal.
+<!-- trait CompletionItemExt::fn get_property_icon-name -->
+The icon name for the icon to be shown for this proposal.
+
+Feature: `v3_18`
+
+<!-- trait CompletionItemExt::fn set_property_icon-name -->
+The icon name for the icon to be shown for this proposal.
+
+Feature: `v3_18`
+
+<!-- trait CompletionItemExt::fn get_property_info -->
+Optional extra information to be shown for this proposal.
+<!-- trait CompletionItemExt::fn set_property_info -->
+Optional extra information to be shown for this proposal.
+<!-- trait CompletionItemExt::fn get_property_label -->
+Label to be shown for this proposal.
+<!-- trait CompletionItemExt::fn set_property_label -->
+Label to be shown for this proposal.
+<!-- trait CompletionItemExt::fn get_property_markup -->
+Label with markup to be shown for this proposal.
+<!-- trait CompletionItemExt::fn set_property_markup -->
+Label with markup to be shown for this proposal.
+<!-- trait CompletionItemExt::fn get_property_text -->
+Proposal text.
+<!-- trait CompletionItemExt::fn set_property_text -->
+Proposal text.
 <!-- struct CompletionProposal -->
 
 
@@ -780,6 +1115,9 @@ model. By default, it uses a direct hash (`g_direct_hash`).
 # Returns
 
 The hash value of `self`.
+<!-- trait CompletionProposalExt::fn connect_changed -->
+Emitted when the proposal has changed. The completion popup
+will react to this by updating the shown information.
 <!-- struct CompletionProvider -->
 
 
@@ -957,9 +1295,9 @@ Trait containing all `CompletionWords` methods.
 [`CompletionWords`](struct.CompletionWords.html)
 <!-- impl CompletionWords::fn new -->
 ## `name`
-The name for the provider
+The name for the provider, or `None`.
 ## `icon`
-A specific icon for the provider
+A specific icon for the provider, or `None`.
 
 # Returns
 
@@ -972,6 +1310,16 @@ a `gtk::TextBuffer`
 Unregisters `buffer` from the `self` provider.
 ## `buffer`
 a `gtk::TextBuffer`
+<!-- trait CompletionWordsExt::fn get_property_activation -->
+The type of activation.
+
+Feature: `v3_10`
+
+<!-- trait CompletionWordsExt::fn set_property_activation -->
+The type of activation.
+
+Feature: `v3_10`
+
 <!-- enum CompressionType -->
 <!-- enum CompressionType::variant None -->
 plain text.
@@ -1224,6 +1572,38 @@ the data to pass to the `callback` function.
 ## `notify`
 function to call on `user_data` when the `callback` is no
  longer needed, or `None`.
+<!-- trait FileExt::fn get_property_compression-type -->
+The compression type.
+
+Feature: `v3_14`
+
+<!-- trait FileExt::fn get_property_encoding -->
+The character encoding, initially `None`. After a successful file
+loading or saving operation, the encoding is non-`None`.
+
+Feature: `v3_14`
+
+<!-- trait FileExt::fn get_property_location -->
+The location.
+
+Feature: `v3_14`
+
+<!-- trait FileExt::fn set_property_location -->
+The location.
+
+Feature: `v3_14`
+
+<!-- trait FileExt::fn get_property_newline-type -->
+The line ending type.
+
+Feature: `v3_14`
+
+<!-- trait FileExt::fn get_property_read-only -->
+Whether the file is read-only or not. The value of this property is
+not updated automatically (there is no file monitors).
+
+Feature: `v3_18`
+
 <!-- struct FileLoader -->
 
 
@@ -1389,6 +1769,56 @@ Feature: `v3_14`
 ## `candidate_encodings`
 a list of
  `Encoding`<!-- -->s.
+<!-- trait FileLoaderExt::fn get_property_buffer -->
+The `Buffer` to load the contents into. The
+`FileLoader` object has a weak reference to the buffer.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn set_property_buffer -->
+The `Buffer` to load the contents into. The
+`FileLoader` object has a weak reference to the buffer.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn get_property_file -->
+The `File`. The `FileLoader` object has a weak
+reference to the file.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn set_property_file -->
+The `File`. The `FileLoader` object has a weak
+reference to the file.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn get_property_input-stream -->
+The `gio::InputStream` to load. Useful for reading stdin. If this property
+is set, the `FileLoader:location` property is ignored.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn set_property_input-stream -->
+The `gio::InputStream` to load. Useful for reading stdin. If this property
+is set, the `FileLoader:location` property is ignored.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn get_property_location -->
+The `gio::File` to load. If the `FileLoader:input-stream` is
+`None`, by default the location is taken from the `File` at
+construction time.
+
+Feature: `v3_14`
+
+<!-- trait FileLoaderExt::fn set_property_location -->
+The `gio::File` to load. If the `FileLoader:input-stream` is
+`None`, by default the location is taken from the `File` at
+construction time.
+
+Feature: `v3_14`
+
 <!-- struct FileSaver -->
 
 
@@ -1572,6 +2002,82 @@ Feature: `v3_14`
 
 ## `newline_type`
 the new newline type.
+<!-- trait FileSaverExt::fn get_property_buffer -->
+The `Buffer` to save. The `FileSaver` object has a
+weak reference to the buffer.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_buffer -->
+The `Buffer` to save. The `FileSaver` object has a
+weak reference to the buffer.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_compression-type -->
+The compression type.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_compression-type -->
+The compression type.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_encoding -->
+The file's encoding.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_encoding -->
+The file's encoding.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_file -->
+The `File`. The `FileSaver` object has a weak
+reference to the file.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_file -->
+The `File`. The `FileSaver` object has a weak
+reference to the file.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_flags -->
+File saving flags.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_flags -->
+File saving flags.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_location -->
+The `gio::File` where to save the buffer. By default the location is taken
+from the `File` at construction time.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_location -->
+The `gio::File` where to save the buffer. By default the location is taken
+from the `File` at construction time.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn get_property_newline-type -->
+The newline type.
+
+Feature: `v3_14`
+
+<!-- trait FileSaverExt::fn set_property_newline-type -->
+The newline type.
+
+Feature: `v3_14`
+
 <!-- struct Gutter -->
 
 
@@ -1599,6 +2105,14 @@ The y position to get identified.
 # Returns
 
 the renderer at (x, y) or `None`.
+<!-- trait GutterExt::fn get_view -->
+
+Feature: `v3_24`
+
+
+# Returns
+
+the associated `View`.
 <!-- trait GutterExt::fn get_window -->
 Get the `gdk::Window` of the gutter. The window will only be available when the
 gutter has at least one, non-zero width, cell renderer packed.
@@ -1611,6 +2125,14 @@ Use `gtk::TextViewExt::get_window` instead.
 
 the `gdk::Window` of the gutter, or `None`
 if the gutter has no window.
+<!-- trait GutterExt::fn get_window_type -->
+
+Feature: `v3_24`
+
+
+# Returns
+
+the `gtk::TextWindowType` of `self`.
 <!-- trait GutterExt::fn insert -->
 Insert `renderer` into the gutter. If `renderer` is yet unowned then gutter
 claims its ownership. Otherwise just increases renderer's reference count.
@@ -1641,6 +2163,42 @@ the new renderer position.
 # Deprecated since 3.12
 
 Use `GutterRendererExt::set_padding` instead.
+<!-- trait GutterExt::fn get_property_view -->
+The `View` of the gutter.
+<!-- trait GutterExt::fn set_property_view -->
+The `View` of the gutter.
+<!-- trait GutterExt::fn get_property_window-type -->
+The text window type on which the window is placed.
+<!-- trait GutterExt::fn set_property_window-type -->
+The text window type on which the window is placed.
+<!-- trait GutterExt::fn get_property_xpad -->
+The x-padding.
+
+# Deprecated since 3.12
+
+Use the `GutterRenderer`'s
+`GutterRenderer:xpad` property instead.
+<!-- trait GutterExt::fn set_property_xpad -->
+The x-padding.
+
+# Deprecated since 3.12
+
+Use the `GutterRenderer`'s
+`GutterRenderer:xpad` property instead.
+<!-- trait GutterExt::fn get_property_ypad -->
+The y-padding.
+
+# Deprecated since 3.12
+
+Use the `GutterRenderer`'s
+`GutterRenderer:ypad` property instead.
+<!-- trait GutterExt::fn set_property_ypad -->
+The y-padding.
+
+# Deprecated since 3.12
+
+Use the `GutterRenderer`'s
+`GutterRenderer:ypad` property instead.
 <!-- struct GutterRenderer -->
 
 
@@ -1707,9 +2265,11 @@ Called when drawing a region of lines has ended.
 <!-- trait GutterRendererExt::fn get_alignment -->
 Get the x-alignment and y-alignment of the gutter renderer.
 ## `xalign`
-return location for the x-alignment (can be `None`)
+return location for the x-alignment,
+ or `None` to ignore.
 ## `yalign`
-return location for the y-alignment (can be `None`)
+return location for the y-alignment,
+ or `None` to ignore.
 <!-- trait GutterRendererExt::fn get_alignment_mode -->
 Get the alignment mode. The alignment mode describes the manner in which the
 renderer is aligned (see :xalign and :yalign).
@@ -1728,9 +2288,11 @@ return value for a `gdk::RGBA`
 <!-- trait GutterRendererExt::fn get_padding -->
 Get the x-padding and y-padding of the gutter renderer.
 ## `xpad`
-return location for the x-padding (can be `None`)
+return location for the x-padding,
+ or `None` to ignore.
 ## `ypad`
-return location for the y-padding (can be `None`)
+return location for the y-padding,
+ or `None` to ignore.
 <!-- trait GutterRendererExt::fn get_size -->
 Get the size of the renderer.
 
@@ -1844,6 +2406,96 @@ the size
 Set whether the gutter renderer is visible.
 ## `visible`
 the visibility
+<!-- trait GutterRendererExt::fn connect_activate -->
+The ::activate signal is emitted when the renderer is
+activated.
+## `iter`
+a `gtk::TextIter`
+## `area`
+a `gdk::Rectangle`
+## `event`
+the event that caused the activation
+<!-- trait GutterRendererExt::fn connect_query_activatable -->
+The ::query-activatable signal is emitted when the renderer
+can possibly be activated.
+## `iter`
+a `gtk::TextIter`
+## `area`
+a `gdk::Rectangle`
+## `event`
+the ``GdkEvent`` that is causing the activatable query
+<!-- trait GutterRendererExt::fn connect_query_data -->
+The ::query-data signal is emitted when the renderer needs
+to be filled with data just before a cell is drawn. This can
+be used by general renderer implementations to allow render
+data to be filled in externally.
+## `start`
+a `gtk::TextIter`
+## `end`
+a `gtk::TextIter`
+## `state`
+the renderer state
+<!-- trait GutterRendererExt::fn connect_query_tooltip -->
+The ::query-tooltip signal is emitted when the renderer can
+show a tooltip.
+## `iter`
+a `gtk::TextIter`
+## `area`
+a `gdk::Rectangle`
+## `x`
+the x position (in window coordinates)
+## `y`
+the y position (in window coordinates)
+## `tooltip`
+a `gtk::Tooltip`
+<!-- trait GutterRendererExt::fn connect_queue_draw -->
+The ::queue-draw signal is emitted when the renderer needs
+to be redrawn. Use `GutterRendererExt::queue_draw`
+to emit this signal from an implementation of the
+`GutterRenderer` interface.
+<!-- trait GutterRendererExt::fn get_property_alignment-mode -->
+The alignment mode of the renderer. This can be used to indicate
+that in the case a cell spans multiple lines (due to text wrapping)
+the alignment should work on either the full cell, the first line
+or the last line.
+<!-- trait GutterRendererExt::fn set_property_alignment-mode -->
+The alignment mode of the renderer. This can be used to indicate
+that in the case a cell spans multiple lines (due to text wrapping)
+the alignment should work on either the full cell, the first line
+or the last line.
+<!-- trait GutterRendererExt::fn get_property_view -->
+The view on which the renderer is placed.
+<!-- trait GutterRendererExt::fn get_property_visible -->
+The visibility of the renderer.
+<!-- trait GutterRendererExt::fn set_property_visible -->
+The visibility of the renderer.
+<!-- trait GutterRendererExt::fn get_property_window-type -->
+The window type of the view on which the renderer is placed (left,
+or right).
+<!-- trait GutterRendererExt::fn get_property_xalign -->
+The horizontal alignment of the renderer. Set to 0 for a left
+alignment. 1 for a right alignment. And 0.5 for centering the cells.
+A value lower than 0 doesn't modify the alignment.
+<!-- trait GutterRendererExt::fn set_property_xalign -->
+The horizontal alignment of the renderer. Set to 0 for a left
+alignment. 1 for a right alignment. And 0.5 for centering the cells.
+A value lower than 0 doesn't modify the alignment.
+<!-- trait GutterRendererExt::fn get_property_xpad -->
+The left and right padding of the renderer.
+<!-- trait GutterRendererExt::fn set_property_xpad -->
+The left and right padding of the renderer.
+<!-- trait GutterRendererExt::fn get_property_yalign -->
+The vertical alignment of the renderer. Set to 0 for a top
+alignment. 1 for a bottom alignment. And 0.5 for centering the cells.
+A value lower than 0 doesn't modify the alignment.
+<!-- trait GutterRendererExt::fn set_property_yalign -->
+The vertical alignment of the renderer. Set to 0 for a top
+alignment. 1 for a bottom alignment. And 0.5 for centering the cells.
+A value lower than 0 doesn't modify the alignment.
+<!-- trait GutterRendererExt::fn get_property_ypad -->
+The top and bottom padding of the renderer.
+<!-- trait GutterRendererExt::fn set_property_ypad -->
+The top and bottom padding of the renderer.
 <!-- enum GutterRendererAlignmentMode -->
 The alignment mode of the renderer, when a cell spans multiple lines (due to
 text wrapping).
@@ -1894,13 +2546,13 @@ Don't use this function.
 the stock id.
 <!-- trait GutterRendererPixbufExt::fn set_gicon -->
 ## `icon`
-the icon
+the icon, or `None`.
 <!-- trait GutterRendererPixbufExt::fn set_icon_name -->
 ## `icon_name`
-the icon name
+the icon name, or `None`.
 <!-- trait GutterRendererPixbufExt::fn set_pixbuf -->
 ## `pixbuf`
-the pixbuf
+the pixbuf, or `None`.
 <!-- trait GutterRendererPixbufExt::fn set_stock_id -->
 
 # Deprecated since 3.10
@@ -1908,6 +2560,18 @@ the pixbuf
 Don't use this function.
 ## `stock_id`
 the stock id
+<!-- trait GutterRendererPixbufExt::fn get_property_stock-id -->
+The stock id.
+
+# Deprecated since 3.10
+
+Don't use this property.
+<!-- trait GutterRendererPixbufExt::fn set_property_stock-id -->
+The stock id.
+
+# Deprecated since 3.10
+
+Don't use this property.
 <!-- struct GutterRendererText -->
 
 
@@ -2274,6 +2938,12 @@ a string specifying the mark category, or `None`.
 # Returns
 
 the previous `Mark`, or `None`.
+<!-- trait MarkExt::fn get_property_category -->
+The category of the `Mark`, classifies the mark and controls
+which pixbuf is used and with which priority it is drawn.
+<!-- trait MarkExt::fn set_property_category -->
+The category of the `Mark`, classifies the mark and controls
+which pixbuf is used and with which priority it is drawn.
 <!-- struct MarkAttributes -->
 
 
@@ -2397,6 +3067,54 @@ Sets stock id to be used as a base for rendered icon.
 Don't use this function.
 ## `stock_id`
 a stock id.
+<!-- trait MarkAttributesExt::fn connect_query_tooltip_markup -->
+The code should connect to this signal to provide a tooltip for given
+`mark`. The tooltip can contain a markup.
+## `mark`
+The `Mark`.
+
+# Returns
+
+A tooltip. The string should be freed with
+`g_free` when done with it.
+<!-- trait MarkAttributesExt::fn connect_query_tooltip_text -->
+The code should connect to this signal to provide a tooltip for given
+`mark`. The tooltip should be just a plain text.
+## `mark`
+The `Mark`.
+
+# Returns
+
+A tooltip. The string should be freed with
+`g_free` when done with it.
+<!-- trait MarkAttributesExt::fn get_property_background -->
+A color used for background of a line.
+<!-- trait MarkAttributesExt::fn set_property_background -->
+A color used for background of a line.
+<!-- trait MarkAttributesExt::fn get_property_gicon -->
+A `gio::Icon` that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn set_property_gicon -->
+A `gio::Icon` that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn get_property_icon-name -->
+An icon name that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn set_property_icon-name -->
+An icon name that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn get_property_pixbuf -->
+A `gdk_pixbuf::Pixbuf` that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn set_property_pixbuf -->
+A `gdk_pixbuf::Pixbuf` that may be a base of a rendered icon.
+<!-- trait MarkAttributesExt::fn get_property_stock-id -->
+A stock id that may be a base of a rendered icon.
+
+# Deprecated since 3.10
+
+Don't use this property.
+<!-- trait MarkAttributesExt::fn set_property_stock-id -->
+A stock id that may be a base of a rendered icon.
+
+# Deprecated since 3.10
+
+Don't use this property.
 <!-- enum NewlineType -->
 <!-- enum NewlineType::variant Lf -->
 line feed, used on UNIX.
@@ -2849,6 +3567,171 @@ This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
 ## `wrap_mode`
 a `gtk::WrapMode`.
+<!-- trait PrintCompositorExt::fn get_property_body-font-name -->
+Name of the font used for the text body.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_body-font-name -->
+Name of the font used for the text body.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_buffer -->
+The `Buffer` object to print.
+<!-- trait PrintCompositorExt::fn set_property_buffer -->
+The `Buffer` object to print.
+<!-- trait PrintCompositorExt::fn get_property_footer-font-name -->
+Name of the font used to print page footer.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_footer-font-name -->
+Name of the font used to print page footer.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_header-font-name -->
+Name of the font used to print page header.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_header-font-name -->
+Name of the font used to print page header.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_highlight-syntax -->
+Whether to print the document with highlighted syntax.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_highlight-syntax -->
+Whether to print the document with highlighted syntax.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_line-numbers-font-name -->
+Name of the font used to print line numbers on the left margin.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_line-numbers-font-name -->
+Name of the font used to print line numbers on the left margin.
+If this property is unspecified, the text body font is used.
+
+Accepted values are strings representing a font description Pango can understand.
+(e.g. &quot;Monospace 10&quot;). See `pango::FontDescription::from_string`
+for a description of the format of the string representation.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_n-pages -->
+The number of pages in the document or `<code>`-1`</code>` if the
+document has not been completely paginated.
+<!-- trait PrintCompositorExt::fn get_property_print-footer -->
+Whether to print a footer in each page.
+
+Note that by default the footer format is unspecified, and if it is
+unspecified the footer will not be printed, regardless of the value of
+this property.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_print-footer -->
+Whether to print a footer in each page.
+
+Note that by default the footer format is unspecified, and if it is
+unspecified the footer will not be printed, regardless of the value of
+this property.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_print-header -->
+Whether to print a header in each page.
+
+Note that by default the header format is unspecified, and if it is
+unspecified the header will not be printed, regardless of the value of
+this property.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_print-header -->
+Whether to print a header in each page.
+
+Note that by default the header format is unspecified, and if it is
+unspecified the header will not be printed, regardless of the value of
+this property.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_print-line-numbers -->
+Interval of printed line numbers. If this property is set to 0 no
+numbers will be printed. If greater than 0, a number will be
+printed every "print-line-numbers" lines (i.e. 1 will print all line numbers).
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_print-line-numbers -->
+Interval of printed line numbers. If this property is set to 0 no
+numbers will be printed. If greater than 0, a number will be
+printed every "print-line-numbers" lines (i.e. 1 will print all line numbers).
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_tab-width -->
+Width of a tab character expressed in spaces.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_tab-width -->
+Width of a tab character expressed in spaces.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn get_property_wrap-mode -->
+Whether to wrap lines never, at word boundaries, or at character boundaries.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
+<!-- trait PrintCompositorExt::fn set_property_wrap-mode -->
+Whether to wrap lines never, at word boundaries, or at character boundaries.
+
+The value of this property cannot be changed anymore after the first
+call to the `PrintCompositorExt::paginate` function.
 <!-- struct SearchContext -->
 
 
@@ -2888,6 +3771,10 @@ that the `buffer` is small, this function is more convenient to use.
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `SearchContextExt::backward2` instead.
 ## `iter`
 start of search.
 ## `match_start`
@@ -2898,9 +3785,43 @@ return location for end of match, or `None`.
 # Returns
 
 whether a match was found.
+<!-- trait SearchContextExt::fn backward2 -->
+Synchronous backward search. It is recommended to use the asynchronous
+functions instead, to not block the user interface. However, if you are sure
+that the `buffer` is small, this function is more convenient to use.
+
+The difference with `SearchContextExt::backward` is that the
+`has_wrapped_around` out parameter has been added for convenience.
+
+If the `SearchSettings:wrap-around` property is `false`, this function
+doesn't try to wrap around.
+
+The `has_wrapped_around` out parameter is set independently of whether a match
+is found. So if this function returns `false`, `has_wrapped_around` will have
+the same value as the `SearchSettings:wrap-around` property.
+
+Feature: `v3_22`
+
+## `iter`
+start of search.
+## `match_start`
+return location for start of match, or `None`.
+## `match_end`
+return location for end of match, or `None`.
+## `has_wrapped_around`
+return location to know whether the
+ search has wrapped around, or `None`.
+
+# Returns
+
+whether a match was found.
 <!-- trait SearchContextExt::fn backward_async -->
-Asynchronous backward search. See the `gio::AsyncResult` documentation to know
-how to use this function.
+The asynchronous version of `SearchContextExt::backward2`.
+
+See the documentation of `SearchContextExt::backward2` for more
+details.
+
+See the `gio::AsyncResult` documentation to know how to use this function.
 
 If the operation is cancelled, the `callback` will only be called if
 `cancellable` was not `None`. `SearchContextExt::backward_async` takes
@@ -2922,12 +3843,38 @@ Finishes a backward search started with
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `SearchContextExt::backward_finish2` instead.
 ## `result`
 a `gio::AsyncResult`.
 ## `match_start`
 return location for start of match, or `None`.
 ## `match_end`
 return location for end of match, or `None`.
+
+# Returns
+
+whether a match was found.
+<!-- trait SearchContextExt::fn backward_finish2 -->
+Finishes a backward search started with
+`SearchContextExt::backward_async`.
+
+See the documentation of `SearchContextExt::backward2` for more
+details.
+
+Feature: `v3_22`
+
+## `result`
+a `gio::AsyncResult`.
+## `match_start`
+return location for start of match, or `None`.
+## `match_end`
+return location for end of match, or `None`.
+## `has_wrapped_around`
+return location to know whether the
+ search has wrapped around, or `None`.
 
 # Returns
 
@@ -2939,6 +3886,10 @@ that the `buffer` is small, this function is more convenient to use.
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `SearchContextExt::forward2` instead.
 ## `iter`
 start of search.
 ## `match_start`
@@ -2949,9 +3900,43 @@ return location for end of match, or `None`.
 # Returns
 
 whether a match was found.
+<!-- trait SearchContextExt::fn forward2 -->
+Synchronous forward search. It is recommended to use the asynchronous
+functions instead, to not block the user interface. However, if you are sure
+that the `buffer` is small, this function is more convenient to use.
+
+The difference with `SearchContextExt::forward` is that the
+`has_wrapped_around` out parameter has been added for convenience.
+
+If the `SearchSettings:wrap-around` property is `false`, this function
+doesn't try to wrap around.
+
+The `has_wrapped_around` out parameter is set independently of whether a match
+is found. So if this function returns `false`, `has_wrapped_around` will have
+the same value as the `SearchSettings:wrap-around` property.
+
+Feature: `v3_22`
+
+## `iter`
+start of search.
+## `match_start`
+return location for start of match, or `None`.
+## `match_end`
+return location for end of match, or `None`.
+## `has_wrapped_around`
+return location to know whether the
+ search has wrapped around, or `None`.
+
+# Returns
+
+whether a match was found.
 <!-- trait SearchContextExt::fn forward_async -->
-Asynchronous forward search. See the `gio::AsyncResult` documentation to know
-how to use this function.
+The asynchronous version of `SearchContextExt::forward2`.
+
+See the documentation of `SearchContextExt::forward2` for more
+details.
+
+See the `gio::AsyncResult` documentation to know how to use this function.
 
 If the operation is cancelled, the `callback` will only be called if
 `cancellable` was not `None`. `SearchContextExt::forward_async` takes
@@ -2973,12 +3958,38 @@ Finishes a forward search started with
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `SearchContextExt::forward_finish2` instead.
 ## `result`
 a `gio::AsyncResult`.
 ## `match_start`
 return location for start of match, or `None`.
 ## `match_end`
 return location for end of match, or `None`.
+
+# Returns
+
+whether a match was found.
+<!-- trait SearchContextExt::fn forward_finish2 -->
+Finishes a forward search started with
+`SearchContextExt::forward_async`.
+
+See the documentation of `SearchContextExt::forward2` for more
+details.
+
+Feature: `v3_22`
+
+## `result`
+a `gio::AsyncResult`.
+## `match_start`
+return location for start of match, or `None`.
+## `match_end`
+return location for end of match, or `None`.
+## `has_wrapped_around`
+return location to know whether the
+ search has wrapped around, or `None`.
 
 # Returns
 
@@ -3067,6 +4078,35 @@ backreferences; read the `glib::Regex::replace` documentation for more details.
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.22
+
+Use `SearchContextExt::replace2` instead.
+## `match_start`
+the start of the match to replace.
+## `match_end`
+the end of the match to replace.
+## `replace`
+the replacement text.
+## `replace_length`
+the length of `replace` in bytes, or -1.
+
+# Returns
+
+whether the match has been replaced.
+<!-- trait SearchContextExt::fn replace2 -->
+Replaces a search match by another text. If `match_start` and `match_end`
+doesn't correspond to a search match, `false` is returned.
+
+Unlike with `SearchContextExt::replace`, the `match_start` and
+`match_end` iters are revalidated to point to the replacement text boundaries.
+
+For a regular expression replacement, you can check if `replace` is valid by
+calling `glib::Regex::check_replacement`. The `replace` text can contain
+backreferences; read the `glib::Regex::replace` documentation for more details.
+
+Feature: `v3_22`
+
 ## `match_start`
 the start of the match to replace.
 ## `match_end`
@@ -3113,7 +4153,7 @@ To enable or disable the search highlighting, use
 Feature: `v3_16`
 
 ## `match_style`
-a `Style`.
+a `Style`, or `None`.
 <!-- trait SearchContextExt::fn set_settings -->
 Associate a `SearchSettings` with the search context. If `settings` is
 `None`, a new one will be created.
@@ -3122,8 +4162,72 @@ The search context holds a reference to `settings`.
 
 Feature: `v3_10`
 
+
+# Deprecated since 3.24
+
+The `SearchContext:settings` property will become a
+construct-only property in a future version. Create a new
+`SearchContext` instead, or change the `SearchSettings`
+properties. When the `SearchContext:settings` property will become
+construct-only, it will be possible to simplify some code that needed to
+listen to the notify::settings signal.
 ## `settings`
 the new `SearchSettings`, or `None`.
+<!-- trait SearchContextExt::fn get_property_buffer -->
+The `Buffer` associated to the search context.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn set_property_buffer -->
+The `Buffer` associated to the search context.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn get_property_highlight -->
+Highlight the search occurrences.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn set_property_highlight -->
+Highlight the search occurrences.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn get_property_match-style -->
+A `Style`, or `None` for theme's scheme default style.
+
+Feature: `v3_16`
+
+<!-- trait SearchContextExt::fn set_property_match-style -->
+A `Style`, or `None` for theme's scheme default style.
+
+Feature: `v3_16`
+
+<!-- trait SearchContextExt::fn get_property_occurrences-count -->
+The total number of search occurrences. If the search is disabled,
+the value is 0. If the buffer is not already fully scanned, the value
+is -1.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn get_property_regex-error -->
+If the regex search pattern doesn't follow all the rules, this
+property will be set. If the pattern is valid, the value is `None`.
+
+Free with `glib::Error::free`.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn get_property_settings -->
+The `SearchSettings` associated to the search context.
+
+Feature: `v3_10`
+
+<!-- trait SearchContextExt::fn set_property_settings -->
+The `SearchSettings` associated to the search context.
+
+Feature: `v3_10`
+
 <!-- struct SearchSettings -->
 
 
@@ -3215,6 +4319,10 @@ Enables or disables whether to search by regular expressions.
 If enabled, the `SearchSettings:search-text` property contains the
 pattern of the regular expression.
 
+`SearchContext` uses `glib::Regex` when regex search is enabled. See the
+[Regular expression syntax](https://developer.gnome.org/glib/stable/glib-regex-syntax.html)
+page in the GLib reference manual.
+
 Feature: `v3_10`
 
 ## `regex_enabled`
@@ -3241,6 +4349,68 @@ Feature: `v3_10`
 
 ## `wrap_around`
 the setting.
+<!-- trait SearchSettingsExt::fn get_property_at-word-boundaries -->
+If `true`, a search match must start and end a word. The match can
+span multiple words.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn set_property_at-word-boundaries -->
+If `true`, a search match must start and end a word. The match can
+span multiple words.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn get_property_case-sensitive -->
+Whether the search is case sensitive.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn set_property_case-sensitive -->
+Whether the search is case sensitive.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn get_property_regex-enabled -->
+Search by regular expressions with
+`SearchSettings:search-text` as the pattern.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn set_property_regex-enabled -->
+Search by regular expressions with
+`SearchSettings:search-text` as the pattern.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn get_property_search-text -->
+A search string, or `None` if the search is disabled. If the regular
+expression search is enabled, `SearchSettings:search-text` is
+the pattern.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn set_property_search-text -->
+A search string, or `None` if the search is disabled. If the regular
+expression search is enabled, `SearchSettings:search-text` is
+the pattern.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn get_property_wrap-around -->
+For a forward search, continue at the beginning of the buffer if no
+search occurrence is found. For a backward search, continue at the
+end of the buffer.
+
+Feature: `v3_10`
+
+<!-- trait SearchSettingsExt::fn set_property_wrap-around -->
+For a forward search, continue at the beginning of the buffer if no
+search occurrence is found. For a backward search, continue at the
+end of the buffer.
+
+Feature: `v3_10`
+
 <!-- enum SmartHomeEndType -->
 <!-- enum SmartHomeEndType::variant Disabled -->
 smart-home-end disabled.
@@ -3255,6 +4425,165 @@ non-whitespace character on the second press.
 <!-- enum SmartHomeEndType::variant Always -->
 always move to the first/last
 non-whitespace character when the HOME/END keys are pressed.
+<!-- struct SpaceDrawer -->
+
+
+Feature: `v3_24`
+
+# Implements
+
+[`SpaceDrawerExt`](trait.SpaceDrawerExt.html)
+<!-- trait SpaceDrawerExt -->
+Trait containing all `SpaceDrawer` methods.
+
+Feature: `v3_24`
+
+# Implementors
+
+[`SpaceDrawer`](struct.SpaceDrawer.html)
+<!-- impl SpaceDrawer::fn new -->
+Creates a new `SpaceDrawer` object. Useful for storing space drawing
+settings independently of a `View`.
+
+Feature: `v3_24`
+
+
+# Returns
+
+a new `SpaceDrawer`.
+<!-- trait SpaceDrawerExt::fn bind_matrix_setting -->
+Binds the `SpaceDrawer:matrix` property to a `gio::Settings` key.
+
+The `gio::Settings` key must be of the same type as the
+`SpaceDrawer:matrix` property, that is, `"au"`.
+
+The `gio::Settings::bind` function cannot be used, because the default GIO
+mapping functions don't support `glib::Variant` properties (maybe it will be
+supported by a future GIO version, in which case this function can be
+deprecated).
+
+Feature: `v3_24`
+
+## `settings`
+a `gio::Settings` object.
+## `key`
+the `settings` key to bind.
+## `flags`
+flags for the binding.
+<!-- trait SpaceDrawerExt::fn get_enable_matrix -->
+
+Feature: `v3_24`
+
+
+# Returns
+
+whether the `SpaceDrawer:matrix` property is enabled.
+<!-- trait SpaceDrawerExt::fn get_matrix -->
+Gets the value of the `SpaceDrawer:matrix` property, as a `glib::Variant`.
+An empty array can be returned in case the matrix is a zero matrix.
+
+The `SpaceDrawerExt::get_types_for_locations` function may be more
+convenient to use.
+
+Feature: `v3_24`
+
+
+# Returns
+
+the `SpaceDrawer:matrix` value as a new floating `glib::Variant`
+ instance.
+<!-- trait SpaceDrawerExt::fn get_types_for_locations -->
+If only one location is specified, this function returns what kind of
+white spaces are drawn at that location. The value is retrieved from the
+`SpaceDrawer:matrix` property.
+
+If several locations are specified, this function returns the logical AND for
+those locations. Which means that if a certain kind of white space is present
+in the return value, then that kind of white space is drawn at all the
+specified `locations`.
+
+Feature: `v3_24`
+
+## `locations`
+one or several `SpaceLocationFlags`.
+
+# Returns
+
+a combination of `SpaceTypeFlags`.
+<!-- trait SpaceDrawerExt::fn set_enable_matrix -->
+Sets whether the `SpaceDrawer:matrix` property is enabled.
+
+Feature: `v3_24`
+
+## `enable_matrix`
+the new value.
+<!-- trait SpaceDrawerExt::fn set_matrix -->
+Sets a new value to the `SpaceDrawer:matrix` property, as a
+`glib::Variant`. If `matrix` is `None`, then an empty array is set.
+
+If `matrix` is floating, it is consumed.
+
+The `SpaceDrawerExt::set_types_for_locations` function may be more
+convenient to use.
+
+Feature: `v3_24`
+
+## `matrix`
+the new matrix value, or `None`.
+<!-- trait SpaceDrawerExt::fn set_types_for_locations -->
+Modifies the `SpaceDrawer:matrix` property at the specified
+`locations`.
+
+Feature: `v3_24`
+
+## `locations`
+one or several `SpaceLocationFlags`.
+## `types`
+a combination of `SpaceTypeFlags`.
+<!-- trait SpaceDrawerExt::fn get_property_enable-matrix -->
+Whether the `SpaceDrawer:matrix` property is enabled.
+
+Feature: `v3_24`
+
+<!-- trait SpaceDrawerExt::fn set_property_enable-matrix -->
+Whether the `SpaceDrawer:matrix` property is enabled.
+
+Feature: `v3_24`
+
+<!-- trait SpaceDrawerExt::fn get_property_matrix -->
+The :matrix property is a `glib::Variant` property to specify where and
+what kind of white spaces to draw.
+
+The `glib::Variant` is of type `"au"`, an array of unsigned integers. Each
+integer is a combination of `SpaceTypeFlags`. There is one
+integer for each `SpaceLocationFlags`, in the same order as
+they are defined in the enum (`SpaceLocationFlags::None` and
+`SpaceLocationFlags::All` are not taken into account).
+
+If the array is shorter than the number of locations, then the value
+for the missing locations will be `SpaceTypeFlags::None`.
+
+By default, `SpaceTypeFlags::All` is set for all locations.
+
+Feature: `v3_24`
+
+<!-- trait SpaceDrawerExt::fn set_property_matrix -->
+The :matrix property is a `glib::Variant` property to specify where and
+what kind of white spaces to draw.
+
+The `glib::Variant` is of type `"au"`, an array of unsigned integers. Each
+integer is a combination of `SpaceTypeFlags`. There is one
+integer for each `SpaceLocationFlags`, in the same order as
+they are defined in the enum (`SpaceLocationFlags::None` and
+`SpaceLocationFlags::All` are not taken into account).
+
+If the array is shorter than the number of locations, then the value
+for the missing locations will be `SpaceTypeFlags::None`.
+
+By default, `SpaceTypeFlags::All` is set for all locations.
+
+Feature: `v3_24`
+
 <!-- struct Style -->
 
 
@@ -3267,6 +4596,19 @@ Trait containing all `Style` methods.
 # Implementors
 
 [`Style`](struct.Style.html)
+<!-- trait StyleExt::fn apply -->
+This function modifies the `gtk::TextTag` properties that are related to the
+`Style` properties. Other `gtk::TextTag` properties are left untouched.
+
+If `self` is non-`None`, applies `self` to `tag`.
+
+If `self` is `None`, the related *-set properties of `gtk::TextTag` are set to
+`false`.
+
+Feature: `v3_22`
+
+## `tag`
+a `gtk::TextTag` to apply styles to.
 <!-- trait StyleExt::fn copy -->
 Creates a copy of `self`, that is a new `Style` instance which
 has the same attributes set.
@@ -3275,6 +4617,16 @@ has the same attributes set.
 
 copy of `self`, call `gobject::Object::unref`
 when you are done with it.
+<!-- trait StyleExt::fn get_property_underline -->
+
+# Deprecated since 3.18
+
+Use pango-underline.
+<!-- trait StyleExt::fn set_property_underline -->
+
+# Deprecated since 3.18
+
+Use pango-underline.
 <!-- struct StyleScheme -->
 
 
@@ -3324,6 +4676,18 @@ id of the style to retrieve.
 style which corresponds to `style_id` in
 the `self`, or `None` when no style with this name found. It is owned by
 `self` and may not be unref'ed.
+<!-- trait StyleSchemeExt::fn get_property_description -->
+Style scheme description, a translatable string to present to the user.
+<!-- trait StyleSchemeExt::fn get_property_filename -->
+Style scheme filename or `None`.
+<!-- trait StyleSchemeExt::fn get_property_id -->
+Style scheme id, a unique string used to identify the style scheme
+in `StyleSchemeManager`.
+<!-- trait StyleSchemeExt::fn set_property_id -->
+Style scheme id, a unique string used to identify the style scheme
+in `StyleSchemeManager`.
+<!-- trait StyleSchemeExt::fn get_property_name -->
+Style scheme name, a translatable string to present to the user.
 <!-- struct StyleSchemeChooser -->
 
 
@@ -3339,7 +4703,7 @@ Feature: `v3_16`
 
 # Implementors
 
-[`StyleSchemeChooser`](struct.StyleSchemeChooser.html)
+[`StyleSchemeChooserButton`](struct.StyleSchemeChooserButton.html), [`StyleSchemeChooserWidget`](struct.StyleSchemeChooserWidget.html), [`StyleSchemeChooser`](struct.StyleSchemeChooser.html)
 <!-- trait StyleSchemeChooserExt::fn get_style_scheme -->
 Gets the currently-selected scheme.
 
@@ -3356,6 +4720,54 @@ Feature: `v3_16`
 
 ## `scheme`
 a `StyleScheme`
+<!-- trait StyleSchemeChooserExt::fn get_property_style-scheme -->
+The :style-scheme property contains the currently selected style
+scheme. The property can be set to change
+the current selection programmatically.
+
+Feature: `v3_16`
+
+<!-- trait StyleSchemeChooserExt::fn set_property_style-scheme -->
+The :style-scheme property contains the currently selected style
+scheme. The property can be set to change
+the current selection programmatically.
+
+Feature: `v3_16`
+
+<!-- struct StyleSchemeChooserButton -->
+
+
+Feature: `v3_16`
+
+# Implements
+
+[`WidgetExt`](trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+<!-- impl StyleSchemeChooserButton::fn new -->
+Creates a new `StyleSchemeChooserButton`.
+
+Feature: `v3_16`
+
+
+# Returns
+
+a new `StyleSchemeChooserButton`.
+<!-- struct StyleSchemeChooserWidget -->
+
+
+Feature: `v3_16`
+
+# Implements
+
+[`WidgetExt`](trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+<!-- impl StyleSchemeChooserWidget::fn new -->
+Creates a new `StyleSchemeChooserWidget`.
+
+Feature: `v3_16`
+
+
+# Returns
+
+a new `StyleSchemeChooserWidget`.
 <!-- struct StyleSchemeManager -->
 
 
@@ -3436,11 +4848,15 @@ a `None`-terminated array of strings or `None`.
 <!-- struct Tag -->
 
 
+Feature: `v3_20`
+
 # Implements
 
-[`TagExt`](trait.TagExt.html)
+[`TagExt`](trait.TagExt.html), [`TextTagExt`](trait.TextTagExt.html)
 <!-- trait TagExt -->
 Trait containing all `Tag` methods.
+
+Feature: `v3_20`
 
 # Implementors
 
@@ -3460,6 +4876,38 @@ tag name, or `None`.
 # Returns
 
 a new `Tag`.
+<!-- trait TagExt::fn get_property_draw-spaces -->
+Whether to draw white spaces. This property takes precedence over the value
+defined by the `SpaceDrawer`'s `SpaceDrawer:matrix` property
+(only where the tag is applied).
+
+Setting this property also changes `Tag:draw-spaces-set` to
+`true`.
+
+Feature: `v3_20`
+
+<!-- trait TagExt::fn set_property_draw-spaces -->
+Whether to draw white spaces. This property takes precedence over the value
+defined by the `SpaceDrawer`'s `SpaceDrawer:matrix` property
+(only where the tag is applied).
+
+Setting this property also changes `Tag:draw-spaces-set` to
+`true`.
+
+Feature: `v3_20`
+
+<!-- trait TagExt::fn get_property_draw-spaces-set -->
+Whether the `Tag:draw-spaces` property is set and must be
+taken into account.
+
+Feature: `v3_20`
+
+<!-- trait TagExt::fn set_property_draw-spaces-set -->
+Whether the `Tag:draw-spaces` property is set and must be
+taken into account.
+
+Feature: `v3_20`
+
 <!-- struct UndoManager -->
 
 
@@ -3502,6 +4950,10 @@ if there are redo operations available.
 Perform a single undo. Calling this function when there are no undo operations
 available is an error. Use `UndoManager::can_undo` to find out
 if there are undo operations available.
+<!-- trait UndoManagerExt::fn connect_can_redo_changed -->
+Emitted when the ability to redo has changed.
+<!-- trait UndoManagerExt::fn connect_can_undo_changed -->
+Emitted when the ability to undo has changed.
 <!-- struct View -->
 
 
@@ -3515,9 +4967,14 @@ Trait containing all `View` methods.
 
 [`Map`](struct.Map.html), [`View`](struct.View.html)
 <!-- impl View::fn new -->
-Creates a new `View`. An empty default `Buffer` will be
-created for you and can be retrieved with `gtk::TextViewExt::get_buffer`. If you
-want to specify your own buffer, consider `View::new_with_buffer`.
+Creates a new `View`.
+
+By default, an empty `Buffer` will be lazily created and can be
+retrieved with `gtk::TextViewExt::get_buffer`.
+
+If you want to specify your own buffer, either override the
+`gtk::TextViewClass` create_buffer factory method, or use
+`View::new_with_buffer`.
 
 # Returns
 
@@ -3548,15 +5005,21 @@ Feature: `v3_16`
 
 the `BackgroundPatternType`.
 <!-- trait ViewExt::fn get_completion -->
-Gets the `Completion` associated with `self`.
+Gets the `Completion` associated with `self`. The returned object is
+guaranteed to be the same for the lifetime of `self`. Each `View`
+object has a different `Completion`.
 
 # Returns
-
 
 the `Completion` associated with `self`.
 <!-- trait ViewExt::fn get_draw_spaces -->
 Returns the `DrawSpacesFlags` specifying if and how spaces
 should be displayed for this `self`.
+
+# Deprecated since 3.24
+
+Use `SpaceDrawerExt::get_types_for_locations`
+instead.
 
 # Returns
 
@@ -3651,6 +5114,17 @@ how the cursor will move when HOME and END keys are pressed.
 # Returns
 
 a `SmartHomeEndType` value.
+<!-- trait ViewExt::fn get_space_drawer -->
+Gets the `SpaceDrawer` associated with `self`. The returned object is
+guaranteed to be the same for the lifetime of `self`. Each `View`
+object has a different `SpaceDrawer`.
+
+Feature: `v3_24`
+
+
+# Returns
+
+the `SpaceDrawer` associated with `self`.
 <!-- trait ViewExt::fn get_tab_width -->
 Returns the width of tabulation in characters.
 
@@ -3698,6 +5172,11 @@ disable display of spaces.
 
 For a finer-grained method, there is also the `Tag`'s
 `Tag:draw-spaces` property.
+
+# Deprecated since 3.24
+
+Use `SpaceDrawerExt::set_types_for_locations`
+instead.
 ## `flags`
 `DrawSpacesFlags` specifing how white spaces should
 be displayed
@@ -3799,3 +5278,156 @@ Feature: `v3_16`
 `gtk::TextIter` of the first line to indent
 ## `end`
 `gtk::TextIter` of the last line to indent
+<!-- trait ViewExt::fn connect_change_case -->
+Keybinding signal to change case of the text at the current cursor position.
+
+Feature: `v3_16`
+
+## `case_type`
+the case to use
+<!-- trait ViewExt::fn connect_change_number -->
+Keybinding signal to edit a number at the current cursor position.
+
+Feature: `v3_16`
+
+## `count`
+the number to add to the number at the current position
+<!-- trait ViewExt::fn connect_join_lines -->
+Keybinding signal to join the lines currently selected.
+
+Feature: `v3_16`
+
+<!-- trait ViewExt::fn connect_line_mark_activated -->
+Emitted when a line mark has been activated (for instance when there
+was a button press in the line marks gutter). You can use `iter` to
+determine on which line the activation took place.
+## `iter`
+a `gtk::TextIter`
+## `event`
+the ``GdkEvent`` that activated the event
+<!-- trait ViewExt::fn connect_move_lines -->
+The ::move-lines signal is a keybinding which gets emitted
+when the user initiates moving a line. The default binding key
+is Alt+Up/Down arrow. And moves the currently selected lines,
+or the current line by `count`. For the moment, only
+`count` of -1 or 1 is valid.
+
+The `copy` parameter is deprecated, it has never been used by
+`View` (the value is always `false`) and was buggy.
+## `copy`
+`true` if the line should be copied, `false` if it should be
+ moved. This parameter is deprecated and will be removed in a later
+ version, it should be always `false`.
+## `count`
+the number of lines to move over. Only 1 and -1 are
+ supported.
+<!-- trait ViewExt::fn connect_move_to_matching_bracket -->
+Keybinding signal to move the cursor to the matching bracket.
+
+Feature: `v3_16`
+
+## `extend_selection`
+`true` if the move should extend the selection
+<!-- trait ViewExt::fn connect_move_words -->
+The ::move-words signal is a keybinding which gets emitted
+when the user initiates moving a word. The default binding key
+is Alt+Left/Right Arrow and moves the current selection, or the current
+word by one word.
+## `count`
+the number of words to move over
+<!-- trait ViewExt::fn connect_show_completion -->
+The ::show-completion signal is a key binding signal which gets
+emitted when the user requests a completion, by pressing
+`<keycombo>``<keycap>`Control`</keycap>``<keycap>`space`</keycap>``</keycombo>`.
+
+This will create a `CompletionContext` with the activation
+type as `CompletionActivation::UserRequested`.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to activate the completion by
+another means, for example with another key binding or a menu entry.
+<!-- trait ViewExt::fn connect_smart_home_end -->
+Emitted when a the cursor was moved according to the smart home
+end setting. The signal is emitted after the cursor is moved, but
+during the `gtk::TextView`::move-cursor action. This can be used to find
+out whether the cursor was moved by a normal home/end or by a smart
+home/end.
+## `iter`
+a `gtk::TextIter`
+## `count`
+the count
+<!-- trait ViewExt::fn get_property_background-pattern -->
+Draw a specific background pattern on the view.
+
+Feature: `v3_16`
+
+<!-- trait ViewExt::fn set_property_background-pattern -->
+Draw a specific background pattern on the view.
+
+Feature: `v3_16`
+
+<!-- trait ViewExt::fn get_property_completion -->
+The completion object associated with the view
+<!-- trait ViewExt::fn get_property_draw-spaces -->
+Set if and how the spaces should be visualized.
+
+For a finer-grained method, there is also the `Tag`'s
+`Tag:draw-spaces` property.
+
+# Deprecated since 3.24
+
+Use the `SpaceDrawer:matrix` property
+instead.
+<!-- trait ViewExt::fn set_property_draw-spaces -->
+Set if and how the spaces should be visualized.
+
+For a finer-grained method, there is also the `Tag`'s
+`Tag:draw-spaces` property.
+
+# Deprecated since 3.24
+
+Use the `SpaceDrawer:matrix` property
+instead.
+<!-- trait ViewExt::fn get_property_indent-width -->
+Width of an indentation step expressed in number of spaces.
+<!-- trait ViewExt::fn set_property_indent-width -->
+Width of an indentation step expressed in number of spaces.
+<!-- trait ViewExt::fn get_property_right-margin-position -->
+Position of the right margin.
+<!-- trait ViewExt::fn set_property_right-margin-position -->
+Position of the right margin.
+<!-- trait ViewExt::fn get_property_show-line-marks -->
+Whether to display line mark pixbufs
+<!-- trait ViewExt::fn set_property_show-line-marks -->
+Whether to display line mark pixbufs
+<!-- trait ViewExt::fn get_property_show-line-numbers -->
+Whether to display line numbers
+<!-- trait ViewExt::fn set_property_show-line-numbers -->
+Whether to display line numbers
+<!-- trait ViewExt::fn get_property_show-right-margin -->
+Whether to display the right margin.
+<!-- trait ViewExt::fn set_property_show-right-margin -->
+Whether to display the right margin.
+<!-- trait ViewExt::fn get_property_smart-backspace -->
+Whether smart Backspace should be used.
+
+Feature: `v3_18`
+
+<!-- trait ViewExt::fn set_property_smart-backspace -->
+Whether smart Backspace should be used.
+
+Feature: `v3_18`
+
+<!-- trait ViewExt::fn get_property_smart-home-end -->
+Set the behavior of the HOME and END keys.
+<!-- trait ViewExt::fn set_property_smart-home-end -->
+Set the behavior of the HOME and END keys.
+<!-- trait ViewExt::fn get_property_space-drawer -->
+The `SpaceDrawer` object associated with the view.
+
+Feature: `v3_24`
+
+<!-- trait ViewExt::fn get_property_tab-width -->
+Width of a tab character expressed in number of spaces.
+<!-- trait ViewExt::fn set_property_tab-width -->
+Width of a tab character expressed in number of spaces.

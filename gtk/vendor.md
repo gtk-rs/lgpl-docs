@@ -8,12 +8,12 @@ opened when the user selects the `About` option from the `Help` menu.
 All parts of the dialog are optional.
 
 About dialogs often contain links and email addresses. `AboutDialog`
-displays these as clickable links. By default, it calls `gtk_show_uri`
+displays these as clickable links. By default, it calls `gtk_show_uri_on_window`
 when a user clicks one. The behaviour can be overridden with the
 `AboutDialog::activate-link` signal.
 
 To specify a person with an email address, use a string like
-"Edgar Allan Poe <edgar`poe.com`>". To specify a website with a title,
+"Edgar Allan Poe <edgar\@poe.com>". To specify a website with a title,
 use a string like "GTK+ team http://www.gtk.org".
 
 To make constructing a `AboutDialog` as convenient as possible, you can
@@ -264,6 +264,146 @@ Sets whether the license text in `self` is
 automatically wrapped.
 ## `wrap_license`
 whether to wrap the license
+<!-- trait AboutDialogExt::fn connect_activate_link -->
+The signal which gets emitted to activate a URI.
+Applications may connect to it to override the default behaviour,
+which is to call `gtk_show_uri_on_window`.
+## `uri`
+the URI that is activated
+
+# Returns
+
+`true` if the link has been activated
+<!-- trait AboutDialogExt::fn get_property_artists -->
+The people who contributed artwork to the program, as a `None`-terminated
+array of strings. Each string may contain email addresses and URLs, which
+will be displayed as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn set_property_artists -->
+The people who contributed artwork to the program, as a `None`-terminated
+array of strings. Each string may contain email addresses and URLs, which
+will be displayed as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn get_property_authors -->
+The authors of the program, as a `None`-terminated array of strings.
+Each string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn set_property_authors -->
+The authors of the program, as a `None`-terminated array of strings.
+Each string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn get_property_comments -->
+Comments about the program. This string is displayed in a label
+in the main dialog, thus it should be a short explanation of
+the main purpose of the program, not a detailed list of features.
+<!-- trait AboutDialogExt::fn set_property_comments -->
+Comments about the program. This string is displayed in a label
+in the main dialog, thus it should be a short explanation of
+the main purpose of the program, not a detailed list of features.
+<!-- trait AboutDialogExt::fn get_property_copyright -->
+Copyright information for the program.
+<!-- trait AboutDialogExt::fn set_property_copyright -->
+Copyright information for the program.
+<!-- trait AboutDialogExt::fn get_property_documenters -->
+The people documenting the program, as a `None`-terminated array of strings.
+Each string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn set_property_documenters -->
+The people documenting the program, as a `None`-terminated array of strings.
+Each string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn get_property_license -->
+The license of the program. This string is displayed in a
+text view in a secondary dialog, therefore it is fine to use
+a long multi-paragraph text. Note that the text is only wrapped
+in the text view if the "wrap-license" property is set to `true`;
+otherwise the text itself must contain the intended linebreaks.
+When setting this property to a non-`None` value, the
+`AboutDialog:license-type` property is set to `License::Custom`
+as a side effect.
+<!-- trait AboutDialogExt::fn set_property_license -->
+The license of the program. This string is displayed in a
+text view in a secondary dialog, therefore it is fine to use
+a long multi-paragraph text. Note that the text is only wrapped
+in the text view if the "wrap-license" property is set to `true`;
+otherwise the text itself must contain the intended linebreaks.
+When setting this property to a non-`None` value, the
+`AboutDialog:license-type` property is set to `License::Custom`
+as a side effect.
+<!-- trait AboutDialogExt::fn get_property_license-type -->
+The license of the program, as a value of the `License` enumeration.
+
+The `AboutDialog` will automatically fill out a standard disclaimer
+and link the user to the appropriate online resource for the license
+text.
+
+If `License::Unknown` is used, the link used will be the same
+specified in the `AboutDialog:website` property.
+
+If `License::Custom` is used, the current contents of the
+`AboutDialog:license` property are used.
+
+For any other `License` value, the contents of the
+`AboutDialog:license` property are also set by this property as
+a side effect.
+<!-- trait AboutDialogExt::fn set_property_license-type -->
+The license of the program, as a value of the `License` enumeration.
+
+The `AboutDialog` will automatically fill out a standard disclaimer
+and link the user to the appropriate online resource for the license
+text.
+
+If `License::Unknown` is used, the link used will be the same
+specified in the `AboutDialog:website` property.
+
+If `License::Custom` is used, the current contents of the
+`AboutDialog:license` property are used.
+
+For any other `License` value, the contents of the
+`AboutDialog:license` property are also set by this property as
+a side effect.
+<!-- trait AboutDialogExt::fn get_property_logo -->
+A logo for the about box. If it is `None`, the default window icon
+set with `Window::set_default_icon` will be used.
+<!-- trait AboutDialogExt::fn set_property_logo -->
+A logo for the about box. If it is `None`, the default window icon
+set with `Window::set_default_icon` will be used.
+<!-- trait AboutDialogExt::fn get_property_logo-icon-name -->
+A named icon to use as the logo for the about box. This property
+overrides the `AboutDialog:logo` property.
+<!-- trait AboutDialogExt::fn set_property_logo-icon-name -->
+A named icon to use as the logo for the about box. This property
+overrides the `AboutDialog:logo` property.
+<!-- trait AboutDialogExt::fn get_property_program-name -->
+The name of the program.
+If this is not set, it defaults to `g_get_application_name`.
+<!-- trait AboutDialogExt::fn set_property_program-name -->
+The name of the program.
+If this is not set, it defaults to `g_get_application_name`.
+<!-- trait AboutDialogExt::fn get_property_translator-credits -->
+Credits to the translators. This string should be marked as translatable.
+The string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn set_property_translator-credits -->
+Credits to the translators. This string should be marked as translatable.
+The string may contain email addresses and URLs, which will be displayed
+as links, see the introduction for more details.
+<!-- trait AboutDialogExt::fn get_property_version -->
+The version of the program.
+<!-- trait AboutDialogExt::fn set_property_version -->
+The version of the program.
+<!-- trait AboutDialogExt::fn get_property_website -->
+The URL for the link to the website of the program.
+This should be a string starting with "http://.
+<!-- trait AboutDialogExt::fn set_property_website -->
+The URL for the link to the website of the program.
+This should be a string starting with "http://.
+<!-- trait AboutDialogExt::fn get_property_website-label -->
+The label for the link to the website of the program.
+<!-- trait AboutDialogExt::fn set_property_website-label -->
+The label for the link to the website of the program.
+<!-- trait AboutDialogExt::fn get_property_wrap-license -->
+Whether to wrap the text in the license dialog.
+<!-- trait AboutDialogExt::fn set_property_wrap-license -->
+Whether to wrap the text in the license dialog.
 <!-- struct AccelGroup -->
 A `AccelGroup` represents a group of keyboard accelerators,
 typically attached to a toplevel `Window` (with
@@ -438,6 +578,32 @@ an array of
  is owned by GTK+ and must not be freed.
 <!-- trait AccelGroupExt::fn unlock -->
 Undoes the last call to `AccelGroupExt::lock` on this `self`.
+<!-- trait AccelGroupExt::fn connect_accel_activate -->
+The accel-activate signal is an implementation detail of
+`AccelGroup` and not meant to be used by applications.
+## `acceleratable`
+the object on which the accelerator was activated
+## `keyval`
+the accelerator keyval
+## `modifier`
+the modifier combination of the accelerator
+
+# Returns
+
+`true` if the accelerator was activated
+<!-- trait AccelGroupExt::fn connect_accel_changed -->
+The accel-changed signal is emitted when an entry
+is added to or removed from the accel group.
+
+Widgets like `AccelLabel` which display an associated
+accelerator should connect to this signal, and rebuild
+their visual representation if the `accel_closure` is theirs.
+## `keyval`
+the accelerator keyval
+## `modifier`
+the modifier combination of the accelerator
+## `accel_closure`
+the `gobject::Closure` of the accelerator
 <!-- struct ActionBar -->
 `ActionBar` is designed to present contextual actions. It is
 expected to be displayed below the content and expand horizontally
@@ -795,6 +961,47 @@ changed the `Adjustment:value` property.
 
 GTK+ emits `Adjustment::value-changed` itself whenever
  the value changes
+<!-- trait AdjustmentExt::fn connect_changed -->
+Emitted when one or more of the `Adjustment` properties have been
+changed, other than the `Adjustment:value` property.
+<!-- trait AdjustmentExt::fn connect_value_changed -->
+Emitted when the `Adjustment:value` property has been changed.
+<!-- trait AdjustmentExt::fn get_property_lower -->
+The minimum value of the adjustment.
+<!-- trait AdjustmentExt::fn set_property_lower -->
+The minimum value of the adjustment.
+<!-- trait AdjustmentExt::fn get_property_page-increment -->
+The page increment of the adjustment.
+<!-- trait AdjustmentExt::fn set_property_page-increment -->
+The page increment of the adjustment.
+<!-- trait AdjustmentExt::fn get_property_page-size -->
+The page size of the adjustment.
+Note that the page-size is irrelevant and should be set to zero
+if the adjustment is used for a simple scalar value, e.g. in a
+`SpinButton`.
+<!-- trait AdjustmentExt::fn set_property_page-size -->
+The page size of the adjustment.
+Note that the page-size is irrelevant and should be set to zero
+if the adjustment is used for a simple scalar value, e.g. in a
+`SpinButton`.
+<!-- trait AdjustmentExt::fn get_property_step-increment -->
+The step increment of the adjustment.
+<!-- trait AdjustmentExt::fn set_property_step-increment -->
+The step increment of the adjustment.
+<!-- trait AdjustmentExt::fn get_property_upper -->
+The maximum value of the adjustment.
+Note that values will be restricted by
+`upper - page-size` if the page-size
+property is nonzero.
+<!-- trait AdjustmentExt::fn set_property_upper -->
+The maximum value of the adjustment.
+Note that values will be restricted by
+`upper - page-size` if the page-size
+property is nonzero.
+<!-- trait AdjustmentExt::fn get_property_value -->
+The value of the adjustment.
+<!-- trait AdjustmentExt::fn set_property_value -->
+The value of the adjustment.
 <!-- enum Align -->
 Controls how a widget deals with extra space in a single (x or y)
 dimension.
@@ -936,6 +1143,118 @@ the padding at the bottom of the widget
 the padding at the left of the widget
 ## `padding_right`
 the padding at the right of the widget.
+<!-- trait AlignmentExt::fn get_property_bottom-padding -->
+The padding to insert at the bottom of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_bottom` instead
+<!-- trait AlignmentExt::fn set_property_bottom-padding -->
+The padding to insert at the bottom of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_bottom` instead
+<!-- trait AlignmentExt::fn get_property_left-padding -->
+The padding to insert at the left of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_start` instead
+<!-- trait AlignmentExt::fn set_property_left-padding -->
+The padding to insert at the left of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_start` instead
+<!-- trait AlignmentExt::fn get_property_right-padding -->
+The padding to insert at the right of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_end` instead
+<!-- trait AlignmentExt::fn set_property_right-padding -->
+The padding to insert at the right of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_end` instead
+<!-- trait AlignmentExt::fn get_property_top-padding -->
+The padding to insert at the top of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_top` instead
+<!-- trait AlignmentExt::fn set_property_top-padding -->
+The padding to insert at the top of the widget.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_top` instead
+<!-- trait AlignmentExt::fn get_property_xalign -->
+Horizontal position of child in available space. A value of 0.0
+will flush the child left (or right, in RTL locales); a value
+of 1.0 will flush the child right (or left, in RTL locales).
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_halign` on the child instead
+<!-- trait AlignmentExt::fn set_property_xalign -->
+Horizontal position of child in available space. A value of 0.0
+will flush the child left (or right, in RTL locales); a value
+of 1.0 will flush the child right (or left, in RTL locales).
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_halign` on the child instead
+<!-- trait AlignmentExt::fn get_property_xscale -->
+If available horizontal space is bigger than needed, how much
+of it to use for the child. A value of 0.0 means none; a value
+of 1.0 means all.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_hexpand` on the child instead
+<!-- trait AlignmentExt::fn set_property_xscale -->
+If available horizontal space is bigger than needed, how much
+of it to use for the child. A value of 0.0 means none; a value
+of 1.0 means all.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_hexpand` on the child instead
+<!-- trait AlignmentExt::fn get_property_yalign -->
+Vertical position of child in available space. A value of 0.0
+will flush the child to the top; a value of 1.0 will flush the
+child to the bottom.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_valign` on the child instead
+<!-- trait AlignmentExt::fn set_property_yalign -->
+Vertical position of child in available space. A value of 0.0
+will flush the child to the top; a value of 1.0 will flush the
+child to the bottom.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_valign` on the child instead
+<!-- trait AlignmentExt::fn get_property_yscale -->
+If available vertical space is bigger than needed, how much
+of it to use for the child. A value of 0.0 means none; a value
+of 1.0 means all.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_vexpand` on the child instead
+<!-- trait AlignmentExt::fn set_property_yscale -->
+If available vertical space is bigger than needed, how much
+of it to use for the child. A value of 0.0 means none; a value
+of 1.0 means all.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_vexpand` on the child instead
 <!-- struct AppChooser -->
 `AppChooser` is an interface that can be implemented by widgets which
 allow the user to choose an application (typically for the purpose of
@@ -979,6 +1298,16 @@ Returns the current value of the `AppChooser:content-type` property.
 the content type of `self`. Free with `g_free`
 <!-- trait AppChooserExt::fn refresh -->
 Reloads the list of applications.
+<!-- trait AppChooserExt::fn get_property_content-type -->
+The content type of the `AppChooser` object.
+
+See [GContentType][gio-GContentType]
+for more information about content types.
+<!-- trait AppChooserExt::fn set_property_content-type -->
+The content type of the `AppChooser` object.
+
+See [GContentType][gio-GContentType]
+for more information about content types.
 <!-- struct AppChooserDialog -->
 `AppChooserDialog` shows a `AppChooserWidget` inside a `Dialog`.
 
@@ -1043,6 +1372,20 @@ Sets the text to display at the top of the dialog.
 If the heading is not set, the dialog displays a default text.
 ## `heading`
 a string containing Pango markup
+<!-- trait AppChooserDialogExt::fn get_property_gfile -->
+The GFile used by the `AppChooserDialog`.
+The dialog's `AppChooserWidget` content type will be guessed from the
+file, if present.
+<!-- trait AppChooserDialogExt::fn set_property_gfile -->
+The GFile used by the `AppChooserDialog`.
+The dialog's `AppChooserWidget` content type will be guessed from the
+file, if present.
+<!-- trait AppChooserDialogExt::fn get_property_heading -->
+The text to show at the top of the dialog.
+The string may contain Pango markup.
+<!-- trait AppChooserDialogExt::fn set_property_heading -->
+The text to show at the top of the dialog.
+The string may contain Pango markup.
 <!-- struct AppChooserWidget -->
 `AppChooserWidget` is a widget for selecting applications.
 It is the main building block for `AppChooserDialog`. Most
@@ -1156,6 +1499,81 @@ Sets whether the app chooser should show recommended applications
 for the content type in a separate section.
 ## `setting`
 the new value for `AppChooserWidget:show-recommended`
+<!-- trait AppChooserWidgetExt::fn connect_application_activated -->
+Emitted when an application item is activated from the widget's list.
+
+This usually happens when the user double clicks an item, or an item
+is selected and the user presses one of the keys Space, Shift+Space,
+Return or Enter.
+## `application`
+the activated `gio::AppInfo`
+<!-- trait AppChooserWidgetExt::fn connect_application_selected -->
+Emitted when an application item is selected from the widget's list.
+## `application`
+the selected `gio::AppInfo`
+<!-- trait AppChooserWidgetExt::fn connect_populate_popup -->
+Emitted when a context menu is about to popup over an application item.
+Clients can insert menu items into the provided `Menu` object in the
+callback of this signal; the context menu will be shown over the item
+if at least one item has been added to the menu.
+## `menu`
+the `Menu` to populate
+## `application`
+the current `gio::AppInfo`
+<!-- trait AppChooserWidgetExt::fn get_property_default-text -->
+The `AppChooserWidget:default-text` property determines the text
+that appears in the widget when there are no applications for the
+given content type.
+See also `AppChooserWidgetExt::set_default_text`.
+<!-- trait AppChooserWidgetExt::fn set_property_default-text -->
+The `AppChooserWidget:default-text` property determines the text
+that appears in the widget when there are no applications for the
+given content type.
+See also `AppChooserWidgetExt::set_default_text`.
+<!-- trait AppChooserWidgetExt::fn get_property_show-all -->
+If the `AppChooserWidget:show-all` property is `true`, the app
+chooser presents all applications in a single list, without
+subsections for default, recommended or related applications.
+<!-- trait AppChooserWidgetExt::fn set_property_show-all -->
+If the `AppChooserWidget:show-all` property is `true`, the app
+chooser presents all applications in a single list, without
+subsections for default, recommended or related applications.
+<!-- trait AppChooserWidgetExt::fn get_property_show-default -->
+The ::show-default property determines whether the app chooser
+should show the default handler for the content type in a
+separate section. If `false`, the default handler is listed
+among the recommended applications.
+<!-- trait AppChooserWidgetExt::fn set_property_show-default -->
+The ::show-default property determines whether the app chooser
+should show the default handler for the content type in a
+separate section. If `false`, the default handler is listed
+among the recommended applications.
+<!-- trait AppChooserWidgetExt::fn get_property_show-fallback -->
+The `AppChooserWidget:show-fallback` property determines whether
+the app chooser should show a section for fallback applications.
+If `false`, the fallback applications are listed among the other
+applications.
+<!-- trait AppChooserWidgetExt::fn set_property_show-fallback -->
+The `AppChooserWidget:show-fallback` property determines whether
+the app chooser should show a section for fallback applications.
+If `false`, the fallback applications are listed among the other
+applications.
+<!-- trait AppChooserWidgetExt::fn get_property_show-other -->
+The `AppChooserWidget:show-other` property determines whether
+the app chooser should show a section for other applications.
+<!-- trait AppChooserWidgetExt::fn set_property_show-other -->
+The `AppChooserWidget:show-other` property determines whether
+the app chooser should show a section for other applications.
+<!-- trait AppChooserWidgetExt::fn get_property_show-recommended -->
+The `AppChooserWidget:show-recommended` property determines
+whether the app chooser should show a section for recommended
+applications. If `false`, the recommended applications are listed
+among the other applications.
+<!-- trait AppChooserWidgetExt::fn set_property_show-recommended -->
+The `AppChooserWidget:show-recommended` property determines
+whether the app chooser should show a section for recommended
+applications. If `false`, the recommended applications are listed
+among the other applications.
 <!-- struct Application -->
 `Application` is a class that handles many important aspects
 of a GTK+ application in a convenient fashion, without enforcing
@@ -1374,7 +1792,8 @@ Feature: `v3_6`
 
 # Returns
 
-the active window
+the active window, or `None` if
+ there isn't one.
 <!-- trait GtkApplicationExt::fn get_app_menu -->
 Returns the menu model that has been set with
 `GtkApplicationExt::set_app_menu`.
@@ -1619,6 +2038,21 @@ Removes an inhibitor that has been established with `GtkApplicationExt::inhibit`
 Inhibitors are also cleared when the application exits.
 ## `cookie`
 a cookie that was returned by `GtkApplicationExt::inhibit`
+<!-- trait GtkApplicationExt::fn connect_window_added -->
+Emitted when a `Window` is added to `application` through
+`GtkApplicationExt::add_window`.
+## `window`
+the newly-added `Window`
+<!-- trait GtkApplicationExt::fn connect_window_removed -->
+Emitted when a `Window` is removed from `application`,
+either as a side-effect of being destroyed or explicitly
+through `GtkApplicationExt::remove_window`.
+## `window`
+the `Window` that is being removed
+<!-- trait GtkApplicationExt::fn get_property_register-session -->
+Set this property to `true` to register with the session manager.
+<!-- trait GtkApplicationExt::fn set_property_register-session -->
+Set this property to `true` to register with the session manager.
 <!-- struct ApplicationWindow -->
 `ApplicationWindow` is a `Window` subclass that offers some
 extra functionality for better integration with `Application`
@@ -1786,6 +2220,22 @@ Sets whether the window will display a menubar for the app menu
 and menubar as needed.
 ## `show_menubar`
 whether to show a menubar when needed
+<!-- trait ApplicationWindowExt::fn get_property_show-menubar -->
+If this property is `true`, the window will display a menubar
+that includes the app menu and menubar, unless these are
+shown by the desktop shell. See `GtkApplicationExt::set_app_menu`
+and `GtkApplicationExt::set_menubar`.
+
+If `false`, the window will not display a menubar, regardless
+of whether the desktop shell is showing the menus or not.
+<!-- trait ApplicationWindowExt::fn set_property_show-menubar -->
+If this property is `true`, the window will display a menubar
+that includes the app menu and menubar, unless these are
+shown by the desktop shell. See `GtkApplicationExt::set_app_menu`
+and `GtkApplicationExt::set_menubar`.
+
+If `false`, the window will not display a menubar, regardless
+of whether the desktop shell is showing the menus or not.
 <!-- struct Arrow -->
 `[Deprecated since 3.14]` `Arrow` should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right). The
@@ -2206,6 +2656,50 @@ visibility or completeness of a page changes.
 One situation where it can be necessary to call this
 function is when changing a value on the current page
 affects the future page flow of the assistant.
+<!-- trait AssistantExt::fn connect_apply -->
+The ::apply signal is emitted when the apply button is clicked.
+
+The default behavior of the `Assistant` is to switch to the page
+after the current page, unless the current page is the last one.
+
+A handler for the ::apply signal should carry out the actions for
+which the wizard has collected data. If the action takes a long time
+to complete, you might consider putting a page of type
+`AssistantPageType::Progress` after the confirmation page and handle
+this operation within the `Assistant::prepare` signal of the progress
+page.
+<!-- trait AssistantExt::fn connect_cancel -->
+The ::cancel signal is emitted when then the cancel button is clicked.
+<!-- trait AssistantExt::fn connect_close -->
+The ::close signal is emitted either when the close button of
+a summary page is clicked, or when the apply button in the last
+page in the flow (of type `AssistantPageType::Confirm`) is clicked.
+<!-- trait AssistantExt::fn connect_prepare -->
+The ::prepare signal is emitted when a new page is set as the
+assistant's current page, before making the new page visible.
+
+A handler for this signal can do any preparations which are
+necessary before showing `page`.
+## `page`
+the current page
+<!-- trait AssistantExt::fn get_property_use-header-bar -->
+`true` if the assistant uses a `HeaderBar` for action buttons
+instead of the action-area.
+
+For technical reasons, this property is declared as an integer
+property, but you should only set it to `true` or `false`.
+
+Feature: `v3_12`
+
+<!-- trait AssistantExt::fn set_property_use-header-bar -->
+`true` if the assistant uses a `HeaderBar` for action buttons
+instead of the action-area.
+
+For technical reasons, this property is declared as an integer
+property, but you should only set it to `true` or `false`.
+
+Feature: `v3_12`
+
 <!-- enum AssistantPageType -->
 An enum for determining the page role inside the `Assistant`. It's
 used to handle buttons sensitivity and visibility.
@@ -2277,7 +2771,8 @@ added, so you do not need to unref it.
 
 # Returns
 
-pointer to child of the `Bin`
+the child of `self`, or `None` if it does
+not have a child.
 <!-- struct Box -->
 The `Box` widget organizes child widgets into a rectangular area.
 
@@ -3097,6 +3592,16 @@ the `gobject::Value` to store the result in
 # Returns
 
 `true` on success
+<!-- trait BuilderExt::fn get_property_translation-domain -->
+The translation domain used when translating property values that
+have been marked as translatable in interface descriptions.
+If the translation domain is `None`, `Builder` uses `gettext`,
+otherwise `g_dgettext`.
+<!-- trait BuilderExt::fn set_property_translation-domain -->
+The translation domain used when translating property values that
+have been marked as translatable in interface descriptions.
+If the translation domain is `None`, `Builder` uses `gettext`,
+otherwise `g_dgettext`.
 <!-- enum BuilderError -->
 Error codes that identify various errors that can occur while using
 `Builder`.
@@ -3190,7 +3695,7 @@ This function is a convenience wrapper around `Button::new` and
 Feature: `v3_10`
 
 ## `icon_name`
-an icon name
+an icon name or `None`
 ## `size`
 an icon size (`IconSize`)
 
@@ -3432,6 +3937,99 @@ If true, an underline in the text of the button label indicates
 the next character should be used for the mnemonic accelerator key.
 ## `use_underline`
 `true` if underlines in the text indicate mnemonics
+<!-- trait ButtonExt::fn connect_activate -->
+The ::activate signal on `Button` is an action signal and
+emitting it causes the button to animate press then release.
+Applications should never connect to this signal, but use the
+`Button::clicked` signal.
+<!-- trait ButtonExt::fn connect_clicked -->
+Emitted when the button has been activated (pressed and released).
+<!-- trait ButtonExt::fn connect_enter -->
+Emitted when the pointer enters the button.
+
+# Deprecated since 2.8
+
+Use the `Widget::enter-notify-event` signal.
+<!-- trait ButtonExt::fn connect_leave -->
+Emitted when the pointer leaves the button.
+
+# Deprecated since 2.8
+
+Use the `Widget::leave-notify-event` signal.
+<!-- trait ButtonExt::fn connect_pressed -->
+Emitted when the button is pressed.
+
+# Deprecated since 2.8
+
+Use the `Widget::button-press-event` signal.
+<!-- trait ButtonExt::fn connect_released -->
+Emitted when the button is released.
+
+# Deprecated since 2.8
+
+Use the `Widget::button-release-event` signal.
+<!-- trait ButtonExt::fn get_property_always-show-image -->
+If `true`, the button will ignore the `Settings:gtk-button-images`
+setting and always show the image, if available.
+
+Use this property if the button would be useless or hard to use
+without the image.
+
+Feature: `v3_6`
+
+<!-- trait ButtonExt::fn set_property_always-show-image -->
+If `true`, the button will ignore the `Settings:gtk-button-images`
+setting and always show the image, if available.
+
+Use this property if the button would be useless or hard to use
+without the image.
+
+Feature: `v3_6`
+
+<!-- trait ButtonExt::fn get_property_image -->
+The child widget to appear next to the button text.
+<!-- trait ButtonExt::fn set_property_image -->
+The child widget to appear next to the button text.
+<!-- trait ButtonExt::fn get_property_image-position -->
+The position of the image relative to the text inside the button.
+<!-- trait ButtonExt::fn set_property_image-position -->
+The position of the image relative to the text inside the button.
+<!-- trait ButtonExt::fn get_property_xalign -->
+If the child of the button is a `Misc` or `Alignment`, this property
+can be used to control its horizontal alignment. 0.0 is left aligned,
+1.0 is right aligned.
+
+# Deprecated since 3.14
+
+Access the child widget directly if you need to control
+its alignment.
+<!-- trait ButtonExt::fn set_property_xalign -->
+If the child of the button is a `Misc` or `Alignment`, this property
+can be used to control its horizontal alignment. 0.0 is left aligned,
+1.0 is right aligned.
+
+# Deprecated since 3.14
+
+Access the child widget directly if you need to control
+its alignment.
+<!-- trait ButtonExt::fn get_property_yalign -->
+If the child of the button is a `Misc` or `Alignment`, this property
+can be used to control its vertical alignment. 0.0 is top aligned,
+1.0 is bottom aligned.
+
+# Deprecated since 3.14
+
+Access the child widget directly if you need to control
+its alignment.
+<!-- trait ButtonExt::fn set_property_yalign -->
+If the child of the button is a `Misc` or `Alignment`, this property
+can be used to control its vertical alignment. 0.0 is top aligned,
+1.0 is bottom aligned.
+
+# Deprecated since 3.14
+
+Access the child widget directly if you need to control
+its alignment.
 <!-- struct ButtonBox -->
 
 
@@ -3681,6 +4279,77 @@ the display options to set
 Removes the visual marker from a particular day.
 ## `day`
 the day number to unmark between 1 and 31.
+<!-- trait CalendarExt::fn connect_day_selected -->
+Emitted when the user selects a day.
+<!-- trait CalendarExt::fn connect_day_selected_double_click -->
+Emitted when the user double-clicks a day.
+<!-- trait CalendarExt::fn connect_month_changed -->
+Emitted when the user clicks a button to change the selected month on a
+calendar.
+<!-- trait CalendarExt::fn connect_next_month -->
+Emitted when the user switched to the next month.
+<!-- trait CalendarExt::fn connect_next_year -->
+Emitted when user switched to the next year.
+<!-- trait CalendarExt::fn connect_prev_month -->
+Emitted when the user switched to the previous month.
+<!-- trait CalendarExt::fn connect_prev_year -->
+Emitted when user switched to the previous year.
+<!-- trait CalendarExt::fn get_property_day -->
+The selected day (as a number between 1 and 31, or 0
+to unselect the currently selected day).
+This property gets initially set to the current day.
+<!-- trait CalendarExt::fn set_property_day -->
+The selected day (as a number between 1 and 31, or 0
+to unselect the currently selected day).
+This property gets initially set to the current day.
+<!-- trait CalendarExt::fn get_property_detail-height-rows -->
+Height of a detail cell, in rows.
+A value of 0 allows any width. See `CalendarExt::set_detail_func`.
+<!-- trait CalendarExt::fn set_property_detail-height-rows -->
+Height of a detail cell, in rows.
+A value of 0 allows any width. See `CalendarExt::set_detail_func`.
+<!-- trait CalendarExt::fn get_property_detail-width-chars -->
+Width of a detail cell, in characters.
+A value of 0 allows any width. See `CalendarExt::set_detail_func`.
+<!-- trait CalendarExt::fn set_property_detail-width-chars -->
+Width of a detail cell, in characters.
+A value of 0 allows any width. See `CalendarExt::set_detail_func`.
+<!-- trait CalendarExt::fn get_property_month -->
+The selected month (as a number between 0 and 11).
+This property gets initially set to the current month.
+<!-- trait CalendarExt::fn set_property_month -->
+The selected month (as a number between 0 and 11).
+This property gets initially set to the current month.
+<!-- trait CalendarExt::fn get_property_no-month-change -->
+Determines whether the selected month can be changed.
+<!-- trait CalendarExt::fn set_property_no-month-change -->
+Determines whether the selected month can be changed.
+<!-- trait CalendarExt::fn get_property_show-day-names -->
+Determines whether day names are displayed.
+<!-- trait CalendarExt::fn set_property_show-day-names -->
+Determines whether day names are displayed.
+<!-- trait CalendarExt::fn get_property_show-details -->
+Determines whether details are shown directly in the widget, or if they are
+available only as tooltip. When this property is set days with details are
+marked.
+<!-- trait CalendarExt::fn set_property_show-details -->
+Determines whether details are shown directly in the widget, or if they are
+available only as tooltip. When this property is set days with details are
+marked.
+<!-- trait CalendarExt::fn get_property_show-heading -->
+Determines whether a heading is displayed.
+<!-- trait CalendarExt::fn set_property_show-heading -->
+Determines whether a heading is displayed.
+<!-- trait CalendarExt::fn get_property_show-week-numbers -->
+Determines whether week numbers are displayed.
+<!-- trait CalendarExt::fn set_property_show-week-numbers -->
+Determines whether week numbers are displayed.
+<!-- trait CalendarExt::fn get_property_year -->
+The selected year.
+This property gets initially set to the current year.
+<!-- trait CalendarExt::fn set_property_year -->
+The selected year.
+This property gets initially set to the current year.
 <!-- struct CellArea -->
 The `CellArea` is an abstract class for `CellLayout` widgets
 (also referred to as "layouting widgets") to interface with an
@@ -4524,6 +5193,62 @@ edit widget.
 See `CellAreaExt::get_edited_cell` and `CellAreaExt::get_edit_widget`.
 ## `canceled`
 whether editing was canceled.
+<!-- trait CellAreaExt::fn connect_add_editable -->
+Indicates that editing has started on `renderer` and that `editable`
+should be added to the owning cell-layouting widget at `cell_area`.
+## `renderer`
+the `CellRenderer` that started the edited
+## `editable`
+the `CellEditable` widget to add
+## `cell_area`
+the `Widget` relative `gdk::Rectangle` coordinates
+ where `editable` should be added
+## `path`
+the `TreePath` string this edit was initiated for
+<!-- trait CellAreaExt::fn connect_apply_attributes -->
+This signal is emitted whenever applying attributes to `area` from `model`
+## `model`
+the `TreeModel` to apply the attributes from
+## `iter`
+the `TreeIter` indicating which row to apply the attributes of
+## `is_expander`
+whether the view shows children for this row
+## `is_expanded`
+whether the view is currently showing the children of this row
+<!-- trait CellAreaExt::fn connect_focus_changed -->
+Indicates that focus changed on this `area`. This signal
+is emitted either as a result of focus handling or event
+handling.
+
+It's possible that the signal is emitted even if the
+currently focused renderer did not change, this is
+because focus may change to the same renderer in the
+same cell area for a different row of data.
+## `renderer`
+the `CellRenderer` that has focus
+## `path`
+the current `TreePath` string set for `area`
+<!-- trait CellAreaExt::fn connect_remove_editable -->
+Indicates that editing finished on `renderer` and that `editable`
+should be removed from the owning cell-layouting widget.
+## `renderer`
+the `CellRenderer` that finished editeding
+## `editable`
+the `CellEditable` widget to remove
+<!-- trait CellAreaExt::fn get_property_edit-widget -->
+The widget currently editing the edited cell
+
+This property is read-only and only changes as
+a result of a call `CellAreaExt::activate_cell`.
+<!-- trait CellAreaExt::fn get_property_edited-cell -->
+The cell in the area that is currently edited
+
+This property is read-only and only changes as
+a result of a call `CellAreaExt::activate_cell`.
+<!-- trait CellAreaExt::fn get_property_focus-cell -->
+The cell in the area that currently has focus
+<!-- trait CellAreaExt::fn set_property_focus-cell -->
+The cell in the area that currently has focus
 <!-- struct CellAreaBox -->
 The `CellAreaBox` renders cell renderers into a row or a column
 depending on its `Orientation`.
@@ -4596,6 +5321,10 @@ whether `renderer` should have the same size in all rows
 Sets the spacing to add between cell renderers in `self`.
 ## `spacing`
 the space to add between ``GtkCellRenderers``
+<!-- trait CellAreaBoxExt::fn get_property_spacing -->
+The amount of space to reserve between cells.
+<!-- trait CellAreaBoxExt::fn set_property_spacing -->
+The amount of space to reserve between cells.
 <!-- struct CellAreaContext -->
 The `CellAreaContext` object is created by a given `CellArea`
 implementation via its `CellAreaClass.create_context`() virtual
@@ -4762,6 +5491,26 @@ of all the displayed row heights using
 `CellAreaExt::get_preferred_height_for_width`.
 
 Since 3.0
+<!-- trait CellAreaContextExt::fn get_property_area -->
+The `CellArea` this context was created by
+<!-- trait CellAreaContextExt::fn set_property_area -->
+The `CellArea` this context was created by
+<!-- trait CellAreaContextExt::fn get_property_minimum-height -->
+The minimum height for the `CellArea` in this context
+for all `TreeModel` rows that this context was requested
+for using `CellAreaExt::get_preferred_height`.
+<!-- trait CellAreaContextExt::fn get_property_minimum-width -->
+The minimum width for the `CellArea` in this context
+for all `TreeModel` rows that this context was requested
+for using `CellAreaExt::get_preferred_width`.
+<!-- trait CellAreaContextExt::fn get_property_natural-height -->
+The natural height for the `CellArea` in this context
+for all `TreeModel` rows that this context was requested
+for using `CellAreaExt::get_preferred_height`.
+<!-- trait CellAreaContextExt::fn get_property_natural-width -->
+The natural width for the `CellArea` in this context
+for all `TreeModel` rows that this context was requested
+for using `CellAreaExt::get_preferred_width`.
 <!-- struct CellEditable -->
 The `CellEditable` interface must be implemented for widgets to be usable
 when editing the contents of a `TreeView` cell.
@@ -4785,6 +5534,32 @@ the editing process. It may be `None`, in the instance that editing was
 initiated through programatic means.
 ## `event`
 A ``GdkEvent``, or `None`
+<!-- trait CellEditableExt::fn connect_editing_done -->
+This signal is a sign for the cell renderer to update its
+value from the `cell_editable`.
+
+Implementations of `CellEditable` are responsible for
+emitting this signal when they are done editing, e.g.
+`Entry` is emitting it when the user presses Enter.
+
+`CellEditable::editing_done` is a convenience method
+for emitting `CellEditable::editing-done`.
+<!-- trait CellEditableExt::fn connect_remove_widget -->
+This signal is meant to indicate that the cell is finished
+editing, and the widget may now be destroyed.
+
+Implementations of `CellEditable` are responsible for
+emitting this signal when they are done editing. It must
+be emitted after the `CellEditable::editing-done` signal,
+to give the cell renderer a chance to update the cell's value
+before the widget is removed.
+
+`CellEditable::remove_widget` is a convenience method
+for emitting `CellEditable::remove-widget`.
+<!-- trait CellEditableExt::fn get_property_editing-canceled -->
+Indicates whether editing on the cell has been canceled.
+<!-- trait CellEditableExt::fn set_property_editing-canceled -->
+Indicates whether editing on the cell has been canceled.
 <!-- struct CellLayout -->
 `CellLayout` is an interface to be implemented by all objects which
 want to provide a `TreeViewColumn` like API for packing cells,
@@ -5232,6 +6007,60 @@ in response to the `CellEditable::editing-done` signal of
 `CellEditable`.
 ## `canceled`
 `true` if the editing has been canceled
+<!-- trait CellRendererExt::fn connect_editing_canceled -->
+This signal gets emitted when the user cancels the process of editing a
+cell. For example, an editable cell renderer could be written to cancel
+editing when the user presses Escape.
+
+See also: `CellRendererExt::stop_editing`.
+<!-- trait CellRendererExt::fn connect_editing_started -->
+This signal gets emitted when a cell starts to be edited.
+The intended use of this signal is to do special setup
+on `editable`, e.g. adding a `EntryCompletion` or setting
+up additional columns in a `ComboBox`.
+
+Note that GTK+ doesn't guarantee that cell renderers will
+continue to use the same kind of widget for editing in future
+releases, therefore you should check the type of `editable`
+before doing any specific setup, as in the following example:
+
+```C
+static void
+text_editing_started (GtkCellRenderer *cell,
+                      GtkCellEditable *editable,
+                      const gchar     *path,
+                      gpointer         data)
+{
+  if (GTK_IS_ENTRY (editable))
+    {
+      GtkEntry *entry = GTK_ENTRY (editable);
+      
+      // ... create a GtkEntryCompletion
+      
+      gtk_entry_set_completion (entry, completion);
+    }
+}
+```
+## `editable`
+the `CellEditable`
+## `path`
+the path identifying the edited cell
+<!-- trait CellRendererExt::fn get_property_cell-background-gdk -->
+Cell background as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRenderer:cell-background-rgba` instead.
+<!-- trait CellRendererExt::fn set_property_cell-background-gdk -->
+Cell background as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRenderer:cell-background-rgba` instead.
+<!-- trait CellRendererExt::fn get_property_cell-background-rgba -->
+Cell background as a `gdk::RGBA`
+<!-- trait CellRendererExt::fn set_property_cell-background-rgba -->
+Cell background as a `gdk::RGBA`
 <!-- struct CellRendererAccel -->
 `CellRendererAccel` displays a keyboard accelerator (i.e. a key
 combination like `Control + a`). If the cell renderer is editable,
@@ -5254,6 +6083,54 @@ Creates a new `CellRendererAccel`.
 # Returns
 
 the new cell renderer
+<!-- trait CellRendererAccelExt::fn connect_accel_cleared -->
+Gets emitted when the user has removed the accelerator.
+## `path_string`
+the path identifying the row of the edited cell
+<!-- trait CellRendererAccelExt::fn connect_accel_edited -->
+Gets emitted when the user has selected a new accelerator.
+## `path_string`
+the path identifying the row of the edited cell
+## `accel_key`
+the new accelerator keyval
+## `accel_mods`
+the new acclerator modifier mask
+## `hardware_keycode`
+the keycode of the new accelerator
+<!-- trait CellRendererAccelExt::fn get_property_accel-key -->
+The keyval of the accelerator.
+<!-- trait CellRendererAccelExt::fn set_property_accel-key -->
+The keyval of the accelerator.
+<!-- trait CellRendererAccelExt::fn get_property_accel-mode -->
+Determines if the edited accelerators are GTK+ accelerators. If
+they are, consumed modifiers are suppressed, only accelerators
+accepted by GTK+ are allowed, and the accelerators are rendered
+in the same way as they are in menus.
+
+If the mode is set to `CellRendererAccelMode::ModifierTap`
+then bare modifiers can be set as accelerators by tapping (ie:
+pressing and immediately releasing) them.
+<!-- trait CellRendererAccelExt::fn set_property_accel-mode -->
+Determines if the edited accelerators are GTK+ accelerators. If
+they are, consumed modifiers are suppressed, only accelerators
+accepted by GTK+ are allowed, and the accelerators are rendered
+in the same way as they are in menus.
+
+If the mode is set to `CellRendererAccelMode::ModifierTap`
+then bare modifiers can be set as accelerators by tapping (ie:
+pressing and immediately releasing) them.
+<!-- trait CellRendererAccelExt::fn get_property_accel-mods -->
+The modifier mask of the accelerator.
+<!-- trait CellRendererAccelExt::fn set_property_accel-mods -->
+The modifier mask of the accelerator.
+<!-- trait CellRendererAccelExt::fn get_property_keycode -->
+The hardware keycode of the accelerator. Note that the hardware keycode is
+only relevant if the key does not have a keyval. Normally, the keyboard
+configuration should assign keyvals to all keys.
+<!-- trait CellRendererAccelExt::fn set_property_keycode -->
+The hardware keycode of the accelerator. Note that the hardware keycode is
+only relevant if the key does not have a keyval. Normally, the keyboard
+configuration should assign keyvals to all keys.
 <!-- enum CellRendererAccelMode -->
 Determines if the edited accelerators are GTK+ accelerators. If
 they are, consumed modifiers are suppressed, only accelerators
@@ -5299,6 +6176,56 @@ a different string in each row of the `TreeView`.
 # Returns
 
 the new cell renderer
+<!-- trait CellRendererComboExt::fn connect_changed -->
+This signal is emitted each time after the user selected an item in
+the combo box, either by using the mouse or the arrow keys. Contrary
+to `ComboBox`, `CellRendererCombo`::changed is not emitted for
+changes made to a selected item in the entry. The argument `new_iter`
+corresponds to the newly selected item in the combo box and it is relative
+to the `TreeModel` set via the model property on `CellRendererCombo`.
+
+Note that as soon as you change the model displayed in the tree view,
+the tree view will immediately cease the editing operating. This
+means that you most probably want to refrain from changing the model
+until the combo cell renderer emits the edited or editing_canceled signal.
+## `path_string`
+a string of the path identifying the edited cell
+ (relative to the tree view model)
+## `new_iter`
+the new iter selected in the combo box
+ (relative to the combo box model)
+<!-- trait CellRendererComboExt::fn get_property_has-entry -->
+If `true`, the cell renderer will include an entry and allow to enter
+values other than the ones in the popup list.
+<!-- trait CellRendererComboExt::fn set_property_has-entry -->
+If `true`, the cell renderer will include an entry and allow to enter
+values other than the ones in the popup list.
+<!-- trait CellRendererComboExt::fn get_property_model -->
+Holds a tree model containing the possible values for the combo box.
+Use the text_column property to specify the column holding the values.
+<!-- trait CellRendererComboExt::fn set_property_model -->
+Holds a tree model containing the possible values for the combo box.
+Use the text_column property to specify the column holding the values.
+<!-- trait CellRendererComboExt::fn get_property_text-column -->
+Specifies the model column which holds the possible values for the
+combo box.
+
+Note that this refers to the model specified in the model property,
+not the model backing the tree view to which
+this cell renderer is attached.
+
+`CellRendererCombo` automatically adds a text cell renderer for
+this column to its combo box.
+<!-- trait CellRendererComboExt::fn set_property_text-column -->
+Specifies the model column which holds the possible values for the
+combo box.
+
+Note that this refers to the model specified in the model property,
+not the model backing the tree view to which
+this cell renderer is attached.
+
+`CellRendererCombo` automatically adds a text cell renderer for
+this column to its combo box.
 <!-- enum CellRendererMode -->
 Identifies how the user can interact with a particular cell.
 <!-- enum CellRendererMode::variant Inert -->
@@ -5345,6 +6272,46 @@ in the model, thus rendering a different image in each row of the
 # Returns
 
 the new cell renderer
+<!-- trait CellRendererPixbufExt::fn get_property_follow-state -->
+Specifies whether the rendered pixbuf should be colorized
+according to the `CellRendererState`.
+
+# Deprecated since 3.16
+
+Cell renderers always follow state.
+<!-- trait CellRendererPixbufExt::fn set_property_follow-state -->
+Specifies whether the rendered pixbuf should be colorized
+according to the `CellRendererState`.
+
+# Deprecated since 3.16
+
+Cell renderers always follow state.
+<!-- trait CellRendererPixbufExt::fn get_property_gicon -->
+The GIcon representing the icon to display.
+If the icon theme is changed, the image will be updated
+automatically.
+<!-- trait CellRendererPixbufExt::fn set_property_gicon -->
+The GIcon representing the icon to display.
+If the icon theme is changed, the image will be updated
+automatically.
+<!-- trait CellRendererPixbufExt::fn get_property_icon-name -->
+The name of the themed icon to display.
+This property only has an effect if not overridden by "stock_id"
+or "pixbuf" properties.
+<!-- trait CellRendererPixbufExt::fn set_property_icon-name -->
+The name of the themed icon to display.
+This property only has an effect if not overridden by "stock_id"
+or "pixbuf" properties.
+<!-- trait CellRendererPixbufExt::fn get_property_stock-id -->
+
+# Deprecated since 3.10
+
+Use `CellRendererPixbuf:icon-name` instead.
+<!-- trait CellRendererPixbufExt::fn set_property_stock-id -->
+
+# Deprecated since 3.10
+
+Use `CellRendererPixbuf:icon-name` instead.
 <!-- struct CellRendererProgress -->
 `CellRendererProgress` renders a numeric value as a progress par in a cell.
 Additionally, it can display a text on top of the progress bar.
@@ -5366,6 +6333,60 @@ Creates a new `CellRendererProgress`.
 # Returns
 
 the new cell renderer
+<!-- trait CellRendererProgressExt::fn get_property_pulse -->
+Setting this to a non-negative value causes the cell renderer to
+enter "activity mode", where a block bounces back and forth to
+indicate that some progress is made, without specifying exactly how
+much.
+
+Each increment of the property causes the block to move by a little
+bit.
+
+To indicate that the activity has not started yet, set the property
+to zero. To indicate completion, set the property to `G_MAXINT`.
+<!-- trait CellRendererProgressExt::fn set_property_pulse -->
+Setting this to a non-negative value causes the cell renderer to
+enter "activity mode", where a block bounces back and forth to
+indicate that some progress is made, without specifying exactly how
+much.
+
+Each increment of the property causes the block to move by a little
+bit.
+
+To indicate that the activity has not started yet, set the property
+to zero. To indicate completion, set the property to `G_MAXINT`.
+<!-- trait CellRendererProgressExt::fn get_property_text -->
+The "text" property determines the label which will be drawn
+over the progress bar. Setting this property to `None` causes the default
+label to be displayed. Setting this property to an empty string causes
+no label to be displayed.
+<!-- trait CellRendererProgressExt::fn set_property_text -->
+The "text" property determines the label which will be drawn
+over the progress bar. Setting this property to `None` causes the default
+label to be displayed. Setting this property to an empty string causes
+no label to be displayed.
+<!-- trait CellRendererProgressExt::fn get_property_text-xalign -->
+The "text-xalign" property controls the horizontal alignment of the
+text in the progress bar. Valid values range from 0 (left) to 1
+(right). Reserved for RTL layouts.
+<!-- trait CellRendererProgressExt::fn set_property_text-xalign -->
+The "text-xalign" property controls the horizontal alignment of the
+text in the progress bar. Valid values range from 0 (left) to 1
+(right). Reserved for RTL layouts.
+<!-- trait CellRendererProgressExt::fn get_property_text-yalign -->
+The "text-yalign" property controls the vertical alignment of the
+text in the progress bar. Valid values range from 0 (top) to 1
+(bottom).
+<!-- trait CellRendererProgressExt::fn set_property_text-yalign -->
+The "text-yalign" property controls the vertical alignment of the
+text in the progress bar. Valid values range from 0 (top) to 1
+(bottom).
+<!-- trait CellRendererProgressExt::fn get_property_value -->
+The "value" property determines the percentage to which the
+progress bar will be "filled in".
+<!-- trait CellRendererProgressExt::fn set_property_value -->
+The "value" property determines the percentage to which the
+progress bar will be "filled in".
 <!-- struct CellRendererSpin -->
 `CellRendererSpin` renders text in a cell like `CellRendererText` from
 which it is derived. But while `CellRendererText` offers a simple entry to
@@ -5396,6 +6417,20 @@ Creates a new `CellRendererSpin`.
 # Returns
 
 a new `CellRendererSpin`
+<!-- trait CellRendererSpinExt::fn get_property_adjustment -->
+The adjustment that holds the value of the spinbutton.
+This must be non-`None` for the cell renderer to be editable.
+<!-- trait CellRendererSpinExt::fn set_property_adjustment -->
+The adjustment that holds the value of the spinbutton.
+This must be non-`None` for the cell renderer to be editable.
+<!-- trait CellRendererSpinExt::fn get_property_climb-rate -->
+The acceleration rate when you hold down a button.
+<!-- trait CellRendererSpinExt::fn set_property_climb-rate -->
+The acceleration rate when you hold down a button.
+<!-- trait CellRendererSpinExt::fn get_property_digits -->
+The number of decimal places to display.
+<!-- trait CellRendererSpinExt::fn set_property_digits -->
+The number of decimal places to display.
 <!-- struct CellRendererSpinner -->
 `CellRendererSpinner` renders a spinning animation in a cell, very
 similar to `Spinner`. It can often be used as an alternative
@@ -5424,6 +6459,22 @@ activity.
 # Returns
 
 a new `CellRenderer`
+<!-- trait CellRendererSpinnerExt::fn get_property_pulse -->
+Pulse of the spinner. Increment this value to draw the next frame of the
+spinner animation. Usually, you would update this value in a timeout.
+
+By default, the `Spinner` widget draws one full cycle of the animation,
+consisting of 12 frames, in 750 milliseconds.
+<!-- trait CellRendererSpinnerExt::fn set_property_pulse -->
+Pulse of the spinner. Increment this value to draw the next frame of the
+spinner animation. Usually, you would update this value in a timeout.
+
+By default, the `Spinner` widget draws one full cycle of the animation,
+consisting of 12 frames, in 750 milliseconds.
+<!-- trait CellRendererSpinnerExt::fn get_property_size -->
+The `IconSize` value that specifies the size of the rendered spinner.
+<!-- trait CellRendererSpinnerExt::fn set_property_size -->
+The `IconSize` value that specifies the size of the rendered spinner.
 <!-- struct CellRendererText -->
 A `CellRendererText` renders a given text in its cell, using the font, color and
 style information provided by its properties. The text will be ellipsized if it is
@@ -5463,6 +6514,121 @@ displayed). If `number_of_rows` is -1, then the fixed height is unset, and
 the height is determined by the properties again.
 ## `number_of_rows`
 Number of rows of text each cell renderer is allocated, or -1
+<!-- trait CellRendererTextExt::fn connect_edited -->
+This signal is emitted after `renderer` has been edited.
+
+It is the responsibility of the application to update the model
+and store `new_text` at the position indicated by `path`.
+## `path`
+the path identifying the edited cell
+## `new_text`
+the new text
+<!-- trait CellRendererTextExt::fn get_property_alignment -->
+Specifies how to align the lines of text with respect to each other.
+
+Note that this property describes how to align the lines of text in
+case there are several of them. The "xalign" property of `CellRenderer`,
+on the other hand, sets the horizontal alignment of the whole text.
+<!-- trait CellRendererTextExt::fn set_property_alignment -->
+Specifies how to align the lines of text with respect to each other.
+
+Note that this property describes how to align the lines of text in
+case there are several of them. The "xalign" property of `CellRenderer`,
+on the other hand, sets the horizontal alignment of the whole text.
+<!-- trait CellRendererTextExt::fn get_property_background-gdk -->
+Background color as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRendererText:background-rgba` instead.
+<!-- trait CellRendererTextExt::fn set_property_background-gdk -->
+Background color as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRendererText:background-rgba` instead.
+<!-- trait CellRendererTextExt::fn get_property_background-rgba -->
+Background color as a `gdk::RGBA`
+<!-- trait CellRendererTextExt::fn set_property_background-rgba -->
+Background color as a `gdk::RGBA`
+<!-- trait CellRendererTextExt::fn get_property_ellipsize -->
+Specifies the preferred place to ellipsize the string, if the cell renderer
+does not have enough room to display the entire string. Setting it to
+`pango::EllipsizeMode::None` turns off ellipsizing. See the wrap-width property
+for another way of making the text fit into a given width.
+<!-- trait CellRendererTextExt::fn set_property_ellipsize -->
+Specifies the preferred place to ellipsize the string, if the cell renderer
+does not have enough room to display the entire string. Setting it to
+`pango::EllipsizeMode::None` turns off ellipsizing. See the wrap-width property
+for another way of making the text fit into a given width.
+<!-- trait CellRendererTextExt::fn get_property_foreground-gdk -->
+Foreground color as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRendererText:foreground-rgba` instead.
+<!-- trait CellRendererTextExt::fn set_property_foreground-gdk -->
+Foreground color as a `gdk::Color`
+
+# Deprecated since 3.4
+
+Use `CellRendererText:foreground-rgba` instead.
+<!-- trait CellRendererTextExt::fn get_property_foreground-rgba -->
+Foreground color as a `gdk::RGBA`
+<!-- trait CellRendererTextExt::fn set_property_foreground-rgba -->
+Foreground color as a `gdk::RGBA`
+<!-- trait CellRendererTextExt::fn get_property_max-width-chars -->
+The desired maximum width of the cell, in characters. If this property
+is set to -1, the width will be calculated automatically.
+
+For cell renderers that ellipsize or wrap text; this property
+controls the maximum reported width of the cell. The
+cell should not receive any greater allocation unless it is
+set to expand in its `CellLayout` and all of the cell's siblings
+have received their natural width.
+<!-- trait CellRendererTextExt::fn set_property_max-width-chars -->
+The desired maximum width of the cell, in characters. If this property
+is set to -1, the width will be calculated automatically.
+
+For cell renderers that ellipsize or wrap text; this property
+controls the maximum reported width of the cell. The
+cell should not receive any greater allocation unless it is
+set to expand in its `CellLayout` and all of the cell's siblings
+have received their natural width.
+<!-- trait CellRendererTextExt::fn get_property_placeholder-text -->
+The text that will be displayed in the `CellRenderer` if
+`CellRendererText:editable` is `true` and the cell is empty.
+
+Since 3.6
+<!-- trait CellRendererTextExt::fn set_property_placeholder-text -->
+The text that will be displayed in the `CellRenderer` if
+`CellRendererText:editable` is `true` and the cell is empty.
+
+Since 3.6
+<!-- trait CellRendererTextExt::fn get_property_width-chars -->
+The desired width of the cell, in characters. If this property is set to
+-1, the width will be calculated automatically, otherwise the cell will
+request either 3 characters or the property value, whichever is greater.
+<!-- trait CellRendererTextExt::fn set_property_width-chars -->
+The desired width of the cell, in characters. If this property is set to
+-1, the width will be calculated automatically, otherwise the cell will
+request either 3 characters or the property value, whichever is greater.
+<!-- trait CellRendererTextExt::fn get_property_wrap-mode -->
+Specifies how to break the string into multiple lines, if the cell
+renderer does not have enough room to display the entire string.
+This property has no effect unless the wrap-width property is set.
+<!-- trait CellRendererTextExt::fn set_property_wrap-mode -->
+Specifies how to break the string into multiple lines, if the cell
+renderer does not have enough room to display the entire string.
+This property has no effect unless the wrap-width property is set.
+<!-- trait CellRendererTextExt::fn get_property_wrap-width -->
+Specifies the minimum width at which the text is wrapped. The wrap-mode property can
+be used to influence at what character positions the line breaks can be placed.
+Setting wrap-width to -1 turns wrapping off.
+<!-- trait CellRendererTextExt::fn set_property_wrap-width -->
+Specifies the minimum width at which the text is wrapped. The wrap-mode property can
+be used to influence at what character positions the line breaks can be placed.
+Setting wrap-width to -1 turns wrapping off.
 <!-- struct CellRendererToggle -->
 `CellRendererToggle` renders a toggle button in a cell. The
 button is drawn as a radio or a checkbutton, depending on the
@@ -5528,6 +6694,15 @@ up a per-row setting using `TreeViewColumn` to associate model
 columns with cell renderer properties).
 ## `radio`
 `true` to make the toggle look like a radio button
+<!-- trait CellRendererToggleExt::fn connect_toggled -->
+The ::toggled signal is emitted when the cell is toggled.
+
+It is the responsibility of the application to update the model
+with the correct value to store at `path`. Often this is simply the
+opposite of the value currently stored at `path`.
+## `path`
+string representation of `TreePath` describing the
+ event location
 <!-- struct CheckButton -->
 A `CheckButton` places a discrete `ToggleButton` next to a widget,
 (usually a `Label`). See the section on `ToggleButton` widgets for
@@ -5682,6 +6857,11 @@ visual appearance, it doesn’t affect the semantics of the widget.
 `true` to display an “inconsistent” third state check
 <!-- trait CheckMenuItemExt::fn toggled -->
 Emits the `CheckMenuItem::toggled` signal.
+<!-- trait CheckMenuItemExt::fn connect_toggled -->
+This signal is emitted when the state of the check box is changed.
+
+A signal handler can use `CheckMenuItemExt::get_active`
+to discover the new state.
 <!-- struct Clipboard -->
 The `Clipboard` object represents a clipboard of data shared
 between different processes or between different widgets in
@@ -6173,6 +7353,12 @@ the actual URI data.
 # Returns
 
 `true` is there is an URI list available, `false` otherwise.
+<!-- trait ClipboardExt::fn connect_owner_change -->
+The ::owner-change signal is emitted when GTK+ receives an
+event that indicates that the ownership of the selection
+associated with `clipboard` has changed.
+## `event`
+the `gdk::EventOwnerChange` event
 <!-- struct ColorButton -->
 The `ColorButton` is a button which displays the currently selected
 color and allows to open a color selection dialog to change the color.
@@ -6302,6 +7488,66 @@ Sets whether or not the color button should use the alpha channel.
 Use `ColorChooser::set_use_alpha` instead.
 ## `use_alpha`
 `true` if color button should use alpha channel, `false` if not
+<!-- trait ColorButtonExt::fn connect_color_set -->
+The ::color-set signal is emitted when the user selects a color.
+When handling this signal, use `ColorButton::get_rgba` to
+find out which color was just selected.
+
+Note that this signal is only emitted when the user
+changes the color. If you need to react to programmatic color changes
+as well, use the notify::color signal.
+<!-- trait ColorButtonExt::fn get_property_alpha -->
+The selected opacity value (0 fully transparent, 65535 fully opaque).
+<!-- trait ColorButtonExt::fn set_property_alpha -->
+The selected opacity value (0 fully transparent, 65535 fully opaque).
+<!-- trait ColorButtonExt::fn get_property_color -->
+The selected color.
+
+# Deprecated since 3.4
+
+Use `ColorButton:rgba` instead.
+<!-- trait ColorButtonExt::fn set_property_color -->
+The selected color.
+
+# Deprecated since 3.4
+
+Use `ColorButton:rgba` instead.
+<!-- trait ColorButtonExt::fn get_property_rgba -->
+The RGBA color.
+<!-- trait ColorButtonExt::fn set_property_rgba -->
+The RGBA color.
+<!-- trait ColorButtonExt::fn get_property_show-editor -->
+Set this property to `true` to skip the palette
+in the dialog and go directly to the color editor.
+
+This property should be used in cases where the palette
+in the editor would be redundant, such as when the color
+button is already part of a palette.
+
+Feature: `v3_20`
+
+<!-- trait ColorButtonExt::fn set_property_show-editor -->
+Set this property to `true` to skip the palette
+in the dialog and go directly to the color editor.
+
+This property should be used in cases where the palette
+in the editor would be redundant, such as when the color
+button is already part of a palette.
+
+Feature: `v3_20`
+
+<!-- trait ColorButtonExt::fn get_property_title -->
+The title of the color selection dialog
+<!-- trait ColorButtonExt::fn set_property_title -->
+The title of the color selection dialog
+<!-- trait ColorButtonExt::fn get_property_use-alpha -->
+If this property is set to `true`, the color swatch on the button is
+rendered against a checkerboard background to show its opacity and
+the opacity slider is displayed in the color selection dialog.
+<!-- trait ColorButtonExt::fn set_property_use-alpha -->
+If this property is set to `true`, the color swatch on the button is
+rendered against a checkerboard background to show its opacity and
+the opacity slider is displayed in the color selection dialog.
 <!-- struct ColorChooser -->
 `ColorChooser` is an interface that is implemented by widgets
 for choosing colors. Depending on the situation, colors may be
@@ -6365,6 +7611,37 @@ the new color
 Sets whether or not the color chooser should use the alpha channel.
 ## `use_alpha`
 `true` if color chooser should use alpha channel, `false` if not
+<!-- trait ColorChooserExt::fn connect_color_activated -->
+Emitted when a color is activated from the color chooser.
+This usually happens when the user clicks a color swatch,
+or a color is selected and the user presses one of the keys
+Space, Shift+Space, Return or Enter.
+## `color`
+the color
+<!-- trait ColorChooserExt::fn get_property_rgba -->
+The ::rgba property contains the currently selected color,
+as a `gdk::RGBA` struct. The property can be set to change
+the current selection programmatically.
+<!-- trait ColorChooserExt::fn set_property_rgba -->
+The ::rgba property contains the currently selected color,
+as a `gdk::RGBA` struct. The property can be set to change
+the current selection programmatically.
+<!-- trait ColorChooserExt::fn get_property_use-alpha -->
+When ::use-alpha is `true`, colors may have alpha (translucency)
+information. When it is `false`, the `gdk::RGBA` struct obtained
+via the `ColorChooser:rgba` property will be forced to have
+alpha == 1.
+
+Implementations are expected to show alpha by rendering the color
+over a non-uniform background (like a checkerboard pattern).
+<!-- trait ColorChooserExt::fn set_property_use-alpha -->
+When ::use-alpha is `true`, colors may have alpha (translucency)
+information. When it is `false`, the `gdk::RGBA` struct obtained
+via the `ColorChooser:rgba` property will be forced to have
+alpha == 1.
+
+Implementations are expected to show alpha by rendering the color
+over a non-uniform background (like a checkerboard pattern).
 <!-- struct ColorChooserDialog -->
 The `ColorChooserDialog` widget is a dialog for choosing
 a color. It implements the `ColorChooser` interface.
@@ -6425,6 +7702,14 @@ Creates a new `ColorChooserWidget`.
 # Returns
 
 a new `ColorChooserWidget`
+<!-- trait ColorChooserWidgetExt::fn get_property_show-editor -->
+The ::show-editor property is `true` when the color chooser
+is showing the single-color editor. It can be set to switch
+the color chooser into single-color editing mode.
+<!-- trait ColorChooserWidgetExt::fn set_property_show-editor -->
+The ::show-editor property is `true` when the color chooser
+is showing the single-color editor. It can be set to switch
+the color chooser into single-color editing mode.
 <!-- struct ComboBox -->
 A `ComboBox` is a widget that allows the user to choose from a list of
 valid choices. The `ComboBox` displays the selected choice. When
@@ -6479,7 +7764,7 @@ combobox
 ```
 
 A `ComboBox` with an entry has a single CSS node with name combobox. It
-contains a bx with the .linked class and that box contains an entry and a
+contains a box with the .linked class. That box contains an entry and a
 button, both with the .combo class added.
 The button also contains another node with name arrow.
 
@@ -6697,6 +7982,8 @@ Pops up the menu or dropdown list of `self`.
 
 This function is mostly intended for use by accessibility technologies;
 applications should have little use for it.
+
+Before calling this, `self` must be mapped, or nothing will happen.
 <!-- trait ComboBoxExt::fn popup_for_device -->
 Pops up the menu or dropdown list of `self`, the popup window
 will be grabbed so only `device` and its associated pointer/keyboard
@@ -6819,6 +8106,204 @@ the preferred number of columns when you want the popup to be layed out
 in a table.
 ## `width`
 Preferred number of columns
+<!-- trait ComboBoxExt::fn connect_changed -->
+The changed signal is emitted when the active
+item is changed. The can be due to the user selecting
+a different item from the list, or due to a
+call to `ComboBoxExt::set_active_iter`.
+It will also be emitted while typing into the entry of a combo box
+with an entry.
+<!-- trait ComboBoxExt::fn connect_format_entry_text -->
+For combo boxes that are created with an entry (See `ComboBox`:has-entry).
+
+A signal which allows you to change how the text displayed in a combo box's
+entry is displayed.
+
+Connect a signal handler which returns an allocated string representing
+`path`. That string will then be used to set the text in the combo box's entry.
+The default signal handler uses the text from the `ComboBox`::entry-text-column
+model column.
+
+Here's an example signal handler which fetches data from the model and
+displays it in the entry.
+
+```C
+static gchar*
+format_entry_text_callback (GtkComboBox *combo,
+                            const gchar *path,
+                            gpointer     user_data)
+{
+  GtkTreeIter iter;
+  GtkTreeModel model;
+  gdouble      value;
+
+  model = gtk_combo_box_get_model (combo);
+
+  gtk_tree_model_get_iter_from_string (model, &iter, path);
+  gtk_tree_model_get (model, &iter,
+                      THE_DOUBLE_VALUE_COLUMN, &value,
+                      -1);
+
+  return g_strdup_printf ("%g", value);
+}
+```
+## `path`
+the `TreePath` string from the combo box's current model to format text for
+
+# Returns
+
+a newly allocated string representing `path`
+for the current `ComboBox` model.
+<!-- trait ComboBoxExt::fn connect_move_active -->
+The ::move-active signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to move the active selection.
+## `scroll_type`
+a `ScrollType`
+<!-- trait ComboBoxExt::fn connect_popdown -->
+The ::popdown signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to popdown the combo box list.
+
+The default bindings for this signal are Alt+Up and Escape.
+<!-- trait ComboBoxExt::fn connect_popup -->
+The ::popup signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to popup the combo box list.
+
+The default binding for this signal is Alt+Down.
+<!-- trait ComboBoxExt::fn get_property_active -->
+The item which is currently active. If the model is a non-flat treemodel,
+and the active item is not an immediate child of the root of the tree,
+this property has the value
+`gtk_tree_path_get_indices (path)[0]`,
+where `path` is the `TreePath` of the active item.
+<!-- trait ComboBoxExt::fn set_property_active -->
+The item which is currently active. If the model is a non-flat treemodel,
+and the active item is not an immediate child of the root of the tree,
+this property has the value
+`gtk_tree_path_get_indices (path)[0]`,
+where `path` is the `TreePath` of the active item.
+<!-- trait ComboBoxExt::fn get_property_active-id -->
+The value of the ID column of the active row.
+<!-- trait ComboBoxExt::fn set_property_active-id -->
+The value of the ID column of the active row.
+<!-- trait ComboBoxExt::fn get_property_add-tearoffs -->
+The add-tearoffs property controls whether generated menus
+have tearoff menu items.
+
+Note that this only affects menu style combo boxes.
+
+# Deprecated since 3.10
+
+<!-- trait ComboBoxExt::fn set_property_add-tearoffs -->
+The add-tearoffs property controls whether generated menus
+have tearoff menu items.
+
+Note that this only affects menu style combo boxes.
+
+# Deprecated since 3.10
+
+<!-- trait ComboBoxExt::fn get_property_button-sensitivity -->
+Whether the dropdown button is sensitive when
+the model is empty.
+<!-- trait ComboBoxExt::fn set_property_button-sensitivity -->
+Whether the dropdown button is sensitive when
+the model is empty.
+<!-- trait ComboBoxExt::fn get_property_cell-area -->
+The `CellArea` used to layout cell renderers for this combo box.
+
+If no area is specified when creating the combo box with `ComboBox::new_with_area`
+a horizontally oriented `CellAreaBox` will be used.
+<!-- trait ComboBoxExt::fn set_property_cell-area -->
+The `CellArea` used to layout cell renderers for this combo box.
+
+If no area is specified when creating the combo box with `ComboBox::new_with_area`
+a horizontally oriented `CellAreaBox` will be used.
+<!-- trait ComboBoxExt::fn get_property_column-span-column -->
+If this is set to a non-negative value, it must be the index of a column
+of type `G_TYPE_INT` in the model.
+
+The values of that column are used to determine how many columns a value
+in the list will span.
+<!-- trait ComboBoxExt::fn set_property_column-span-column -->
+If this is set to a non-negative value, it must be the index of a column
+of type `G_TYPE_INT` in the model.
+
+The values of that column are used to determine how many columns a value
+in the list will span.
+<!-- trait ComboBoxExt::fn get_property_entry-text-column -->
+The column in the combo box's model to associate with strings from the entry
+if the combo was created with `ComboBox:has-entry` = `true`.
+<!-- trait ComboBoxExt::fn set_property_entry-text-column -->
+The column in the combo box's model to associate with strings from the entry
+if the combo was created with `ComboBox:has-entry` = `true`.
+<!-- trait ComboBoxExt::fn get_property_has-entry -->
+Whether the combo box has an entry.
+<!-- trait ComboBoxExt::fn set_property_has-entry -->
+Whether the combo box has an entry.
+<!-- trait ComboBoxExt::fn get_property_has-frame -->
+The has-frame property controls whether a frame
+is drawn around the entry.
+<!-- trait ComboBoxExt::fn set_property_has-frame -->
+The has-frame property controls whether a frame
+is drawn around the entry.
+<!-- trait ComboBoxExt::fn get_property_id-column -->
+The column in the combo box's model that provides string
+IDs for the values in the model, if != -1.
+<!-- trait ComboBoxExt::fn set_property_id-column -->
+The column in the combo box's model that provides string
+IDs for the values in the model, if != -1.
+<!-- trait ComboBoxExt::fn get_property_model -->
+The model from which the combo box takes the values shown
+in the list.
+<!-- trait ComboBoxExt::fn set_property_model -->
+The model from which the combo box takes the values shown
+in the list.
+<!-- trait ComboBoxExt::fn get_property_popup-fixed-width -->
+Whether the popup's width should be a fixed width matching the
+allocated width of the combo box.
+<!-- trait ComboBoxExt::fn set_property_popup-fixed-width -->
+Whether the popup's width should be a fixed width matching the
+allocated width of the combo box.
+<!-- trait ComboBoxExt::fn get_property_popup-shown -->
+Whether the combo boxes dropdown is popped up.
+Note that this property is mainly useful, because
+it allows you to connect to notify::popup-shown.
+<!-- trait ComboBoxExt::fn get_property_row-span-column -->
+If this is set to a non-negative value, it must be the index of a column
+of type `G_TYPE_INT` in the model.
+
+The values of that column are used to determine how many rows a value in
+the list will span. Therefore, the values in the model column pointed to
+by this property must be greater than zero and not larger than wrap-width.
+<!-- trait ComboBoxExt::fn set_property_row-span-column -->
+If this is set to a non-negative value, it must be the index of a column
+of type `G_TYPE_INT` in the model.
+
+The values of that column are used to determine how many rows a value in
+the list will span. Therefore, the values in the model column pointed to
+by this property must be greater than zero and not larger than wrap-width.
+<!-- trait ComboBoxExt::fn get_property_tearoff-title -->
+A title that may be displayed by the window manager
+when the popup is torn-off.
+
+# Deprecated since 3.10
+
+<!-- trait ComboBoxExt::fn set_property_tearoff-title -->
+A title that may be displayed by the window manager
+when the popup is torn-off.
+
+# Deprecated since 3.10
+
+<!-- trait ComboBoxExt::fn get_property_wrap-width -->
+If wrap-width is set to a positive value, the list will be
+displayed in multiple columns, the number of columns is
+determined by wrap-width.
+<!-- trait ComboBoxExt::fn set_property_wrap-width -->
+If wrap-width is set to a positive value, the list will be
+displayed in multiple columns, the number of columns is
+determined by wrap-width.
 <!-- struct ComboBoxText -->
 A `ComboBoxText` is a simple variant of `ComboBox` that hides
 the model-view complexity for simple text-only use cases.
@@ -7648,6 +9133,22 @@ this `self`.
 # Returns
 
 a new string representing the `self`.
+<!-- trait CssProviderExt::fn connect_parsing_error -->
+Signals that a parsing error occurred. the `path`, `line` and `position`
+describe the actual location of the error as accurately as possible.
+
+Parsing errors are never fatal, so the parsing will resume after
+the error. Errors may however cause parts of the given
+data or even all of it to not be parsed at all. So it is a useful idea
+to check that the parsing succeeds by connecting to this signal.
+
+Note that this signal may be emitted at any time as the css provider
+may opt to defer parsing parts or all of the input to a later time
+than when a loading function was called.
+## `section`
+section the error happened in
+## `error`
+The parsing error
 <!-- enum CssProviderError -->
 Error codes for `GTK_CSS_PROVIDER_ERROR`.
 <!-- enum CssProviderError::variant Failed -->
@@ -8195,6 +9696,38 @@ A convenient way to sensitize/desensitize dialog buttons.
 a response ID
 ## `setting`
 `true` for sensitive
+<!-- trait DialogExt::fn connect_close -->
+The ::close signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user uses a keybinding to close
+the dialog.
+
+The default binding for this signal is the Escape key.
+<!-- trait DialogExt::fn connect_response -->
+Emitted when an action widget is clicked, the dialog receives a
+delete event, or the application programmer calls `DialogExt::response`.
+On a delete event, the response ID is `ResponseType::DeleteEvent`.
+Otherwise, it depends on which action widget was clicked.
+## `response_id`
+the response ID
+<!-- trait DialogExt::fn get_property_use-header-bar -->
+`true` if the dialog uses a `HeaderBar` for action buttons
+instead of the action-area.
+
+For technical reasons, this property is declared as an integer
+property, but you should only set it to `true` or `false`.
+
+Feature: `v3_12`
+
+<!-- trait DialogExt::fn set_property_use-header-bar -->
+`true` if the dialog uses a `HeaderBar` for action buttons
+instead of the action-area.
+
+For technical reasons, this property is declared as an integer
+property, but you should only set it to `true` or `false`.
+
+Feature: `v3_12`
+
 <!-- enum DirectionType -->
 Focus movement types.
 <!-- enum DirectionType::variant TabForward -->
@@ -8479,6 +10012,47 @@ indicates that the position should be set after the last character
 of the editable. Note that `position` is in characters, not in bytes.
 ## `position`
 the position of the cursor
+<!-- trait EditableExt::fn connect_changed -->
+The ::changed signal is emitted at the end of a single
+user-visible operation on the contents of the `Editable`.
+
+E.g., a paste operation that replaces the contents of the
+selection will cause only one signal emission (even though it
+is implemented by first deleting the selection, then inserting
+the new content, and may cause multiple ::notify::text signals
+to be emitted).
+<!-- trait EditableExt::fn connect_delete_text -->
+This signal is emitted when text is deleted from
+the widget by the user. The default handler for
+this signal will normally be responsible for deleting
+the text, so by connecting to this signal and then
+stopping the signal with `g_signal_stop_emission`, it
+is possible to modify the range of deleted text, or
+prevent it from being deleted entirely. The `start_pos`
+and `end_pos` parameters are interpreted as for
+`Editable::delete_text`.
+## `start_pos`
+the starting position
+## `end_pos`
+the end position
+<!-- trait EditableExt::fn connect_insert_text -->
+This signal is emitted when text is inserted into
+the widget by the user. The default handler for
+this signal will normally be responsible for inserting
+the text, so by connecting to this signal and then
+stopping the signal with `g_signal_stop_emission`, it
+is possible to modify the inserted text, or prevent
+it from being inserted entirely.
+## `new_text`
+the new text to insert
+## `new_text_length`
+the length of the new text, in bytes,
+ or -1 if new_text is nul-terminated
+## `position`
+the position, in characters,
+ at which to insert the new text. this is an in-out
+ parameter. After the signal emission is finished, it
+ should point after the newly inserted text.
 <!-- struct Entry -->
 The `Entry` widget is a single line text entry
 widget. A fairly large set of key bindings are supported
@@ -8653,7 +10227,8 @@ This function is useful when drawing something to the
 entry in a draw callback.
 
 If the entry is not realized or has no icon at the given position,
-`icon_area` is filled with zeros.
+`icon_area` is filled with zeros. Otherwise, `icon_area` will be filled
+with the icon’s allocation, relative to `self`’s allocation.
 
 See also `EntryExt::get_text_area`
 ## `icon_pos`
@@ -8983,10 +10558,9 @@ the key event
 
 `true` if the input method handled the key event.
 <!-- trait EntryExt::fn layout_index_to_text_index -->
-Converts from a position in the entry contents (returned
-by `EntryExt::get_text`) to a position in the
-entry’s `pango::Layout` (returned by `EntryExt::get_layout`,
-with text retrieved via `pango::LayoutExt::get_text`).
+Converts from a position in the entry’s `pango::Layout` (returned by
+`EntryExt::get_layout`) to a position in the entry contents
+(returned by `EntryExt::get_text`).
 ## `layout_index`
 byte index into the entry layout text
 
@@ -9156,6 +10730,12 @@ Use `None` for `tooltip` to remove an existing tooltip.
 
 See also `WidgetExt::set_tooltip_text` and
 `EntryExt::set_icon_tooltip_markup`.
+
+If you unset the widget tooltip via `WidgetExt::set_tooltip_text` or
+`WidgetExt::set_tooltip_markup`, this sets `Widget`:has-tooltip to `false`,
+which suppresses icon tooltips too. You can resolve this by then calling
+`WidgetExt::set_has_tooltip` to set `Widget`:has-tooltip back to `true`, or
+setting at least one non-empty tooltip on any icon achieves the same result.
 ## `icon_pos`
 the icon position
 ## `tooltip`
@@ -9296,9 +10876,10 @@ size reverts to the default entry size.
 ## `n_chars`
 width in chars
 <!-- trait EntryExt::fn text_index_to_layout_index -->
-Converts from a position in the entry’s `pango::Layout` (returned by
-`EntryExt::get_layout`) to a position in the entry contents
-(returned by `EntryExt::get_text`).
+Converts from a position in the entry contents (returned
+by `EntryExt::get_text`) to a position in the
+entry’s `pango::Layout` (returned by `EntryExt::get_layout`,
+with text retrieved via `pango::LayoutExt::get_text`).
 ## `text_index`
 byte index into the entry contents
 
@@ -9309,6 +10890,489 @@ byte index into the entry layout text
 Unsets the invisible char previously set with
 `EntryExt::set_invisible_char`. So that the
 default invisible char is used again.
+<!-- trait EntryExt::fn connect_activate -->
+The ::activate signal is emitted when the user hits
+the Enter key.
+
+While this signal is used as a
+[keybinding signal][`BindingSignal`],
+it is also commonly used by applications to intercept
+activation of entries.
+
+The default bindings for this signal are all forms of the Enter key.
+<!-- trait EntryExt::fn connect_backspace -->
+The ::backspace signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+The default bindings for this signal are
+Backspace and Shift-Backspace.
+<!-- trait EntryExt::fn connect_copy_clipboard -->
+The ::copy-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to copy the selection to the clipboard.
+
+The default bindings for this signal are
+Ctrl-c and Ctrl-Insert.
+<!-- trait EntryExt::fn connect_cut_clipboard -->
+The ::cut-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to cut the selection to the clipboard.
+
+The default bindings for this signal are
+Ctrl-x and Shift-Delete.
+<!-- trait EntryExt::fn connect_delete_from_cursor -->
+The ::delete-from-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a text deletion.
+
+If the `type_` is `DeleteType::Chars`, GTK+ deletes the selection
+if there is one, otherwise it deletes the requested number
+of characters.
+
+The default bindings for this signal are
+Delete for deleting a character and Ctrl-Delete for
+deleting a word.
+## `type_`
+the granularity of the deletion, as a `DeleteType`
+## `count`
+the number of `type_` units to delete
+<!-- trait EntryExt::fn connect_icon_press -->
+The ::icon-press signal is emitted when an activatable icon
+is clicked.
+## `icon_pos`
+The position of the clicked icon
+## `event`
+the button press event
+<!-- trait EntryExt::fn connect_icon_release -->
+The ::icon-release signal is emitted on the button release from a
+mouse click over an activatable icon.
+## `icon_pos`
+The position of the clicked icon
+## `event`
+the button release event
+<!-- trait EntryExt::fn connect_insert_at_cursor -->
+The ::insert-at-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates the insertion of a
+fixed string at the cursor.
+
+This signal has no default bindings.
+## `string`
+the string to insert
+<!-- trait EntryExt::fn connect_move_cursor -->
+The ::move-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a cursor movement.
+If the cursor is not visible in `entry`, this signal causes
+the viewport to be moved instead.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal come in two variants,
+the variant with the Shift modifier extends the selection,
+the variant without the Shift modifer does not.
+There are too many key combinations to list them all here.
+- Arrow keys move by individual characters/lines
+- Ctrl-arrow key combinations move by words/paragraphs
+- Home/End keys move to the ends of the buffer
+## `step`
+the granularity of the move, as a `MovementStep`
+## `count`
+the number of `step` units to move
+## `extend_selection`
+`true` if the move should extend the selection
+<!-- trait EntryExt::fn connect_paste_clipboard -->
+The ::paste-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to paste the contents of the clipboard
+into the text view.
+
+The default bindings for this signal are
+Ctrl-v and Shift-Insert.
+<!-- trait EntryExt::fn connect_populate_popup -->
+The ::populate-popup signal gets emitted before showing the
+context menu of the entry.
+
+If you need to add items to the context menu, connect
+to this signal and append your items to the `widget`, which
+will be a `Menu` in this case.
+
+If `Entry:populate-all` is `true`, this signal will
+also be emitted to populate touch popups. In this case,
+`widget` will be a different container, e.g. a `Toolbar`.
+The signal handler should not make assumptions about the
+type of `widget`.
+## `widget`
+the container that is being populated
+<!-- trait EntryExt::fn connect_preedit_changed -->
+If an input method is used, the typed text will not immediately
+be committed to the buffer. So if you are interested in the text,
+connect to this signal.
+## `preedit`
+the current preedit string
+<!-- trait EntryExt::fn connect_toggle_overwrite -->
+The ::toggle-overwrite signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to toggle the overwrite mode of the entry.
+
+The default bindings for this signal is Insert.
+<!-- trait EntryExt::fn get_property_attributes -->
+A list of Pango attributes to apply to the text of the entry.
+
+This is mainly useful to change the size or weight of the text.
+
+The `pango::Attribute`'s `start_index` and `end_index` must refer to the
+`EntryBuffer` text, i.e. without the preedit string.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn set_property_attributes -->
+A list of Pango attributes to apply to the text of the entry.
+
+This is mainly useful to change the size or weight of the text.
+
+The `pango::Attribute`'s `start_index` and `end_index` must refer to the
+`EntryBuffer` text, i.e. without the preedit string.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn get_property_caps-lock-warning -->
+Whether password entries will show a warning when Caps Lock is on.
+
+Note that the warning is shown using a secondary icon, and thus
+does not work if you are using the secondary icon position for some
+other purpose.
+<!-- trait EntryExt::fn set_property_caps-lock-warning -->
+Whether password entries will show a warning when Caps Lock is on.
+
+Note that the warning is shown using a secondary icon, and thus
+does not work if you are using the secondary icon position for some
+other purpose.
+<!-- trait EntryExt::fn get_property_completion -->
+The auxiliary completion object to use with the entry.
+<!-- trait EntryExt::fn set_property_completion -->
+The auxiliary completion object to use with the entry.
+<!-- trait EntryExt::fn get_property_im-module -->
+Which IM (input method) module should be used for this entry.
+See `IMContext`.
+
+Setting this to a non-`None` value overrides the
+system-wide IM module setting. See the `Settings`
+`Settings:gtk-im-module` property.
+<!-- trait EntryExt::fn set_property_im-module -->
+Which IM (input method) module should be used for this entry.
+See `IMContext`.
+
+Setting this to a non-`None` value overrides the
+system-wide IM module setting. See the `Settings`
+`Settings:gtk-im-module` property.
+<!-- trait EntryExt::fn get_property_inner-border -->
+Sets the text area's border between the text and the frame.
+
+# Deprecated since 3.4
+
+Use the standard border and padding CSS properties
+ (through objects like `StyleContext` and `CssProvider`); the value
+ of this style property is ignored.
+<!-- trait EntryExt::fn set_property_inner-border -->
+Sets the text area's border between the text and the frame.
+
+# Deprecated since 3.4
+
+Use the standard border and padding CSS properties
+ (through objects like `StyleContext` and `CssProvider`); the value
+ of this style property is ignored.
+<!-- trait EntryExt::fn get_property_input-hints -->
+Additional hints (beyond `Entry:input-purpose`) that
+allow input methods to fine-tune their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn set_property_input-hints -->
+Additional hints (beyond `Entry:input-purpose`) that
+allow input methods to fine-tune their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn get_property_input-purpose -->
+The purpose of this text field.
+
+This property can be used by on-screen keyboards and other input
+methods to adjust their behaviour.
+
+Note that setting the purpose to `InputPurpose::Password` or
+`InputPurpose::Pin` is independent from setting
+`Entry:visibility`.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn set_property_input-purpose -->
+The purpose of this text field.
+
+This property can be used by on-screen keyboards and other input
+methods to adjust their behaviour.
+
+Note that setting the purpose to `InputPurpose::Password` or
+`InputPurpose::Pin` is independent from setting
+`Entry:visibility`.
+
+Feature: `v3_6`
+
+<!-- trait EntryExt::fn get_property_invisible-char -->
+The invisible character is used when masking entry contents (in
+\"password mode\")"). When it is not explicitly set with the
+`Entry:invisible-char` property, GTK+ determines the character
+to use from a list of possible candidates, depending on availability
+in the current font.
+
+This style property allows the theme to prepend a character
+to the list of candidates.
+<!-- trait EntryExt::fn set_property_invisible-char -->
+The invisible character is used when masking entry contents (in
+\"password mode\")"). When it is not explicitly set with the
+`Entry:invisible-char` property, GTK+ determines the character
+to use from a list of possible candidates, depending on availability
+in the current font.
+
+This style property allows the theme to prepend a character
+to the list of candidates.
+<!-- trait EntryExt::fn get_property_invisible-char-set -->
+Whether the invisible char has been set for the `Entry`.
+<!-- trait EntryExt::fn set_property_invisible-char-set -->
+Whether the invisible char has been set for the `Entry`.
+<!-- trait EntryExt::fn get_property_max-width-chars -->
+The desired maximum width of the entry, in characters.
+If this property is set to -1, the width will be calculated
+automatically.
+
+Feature: `v3_12`
+
+<!-- trait EntryExt::fn set_property_max-width-chars -->
+The desired maximum width of the entry, in characters.
+If this property is set to -1, the width will be calculated
+automatically.
+
+Feature: `v3_12`
+
+<!-- trait EntryExt::fn get_property_overwrite-mode -->
+If text is overwritten when typing in the `Entry`.
+<!-- trait EntryExt::fn set_property_overwrite-mode -->
+If text is overwritten when typing in the `Entry`.
+<!-- trait EntryExt::fn get_property_placeholder-text -->
+The text that will be displayed in the `Entry` when it is empty
+and unfocused.
+<!-- trait EntryExt::fn set_property_placeholder-text -->
+The text that will be displayed in the `Entry` when it is empty
+and unfocused.
+<!-- trait EntryExt::fn get_property_populate-all -->
+If :populate-all is `true`, the `Entry::populate-popup`
+signal is also emitted for touch popups.
+
+Feature: `v3_8`
+
+<!-- trait EntryExt::fn set_property_populate-all -->
+If :populate-all is `true`, the `Entry::populate-popup`
+signal is also emitted for touch popups.
+
+Feature: `v3_8`
+
+<!-- trait EntryExt::fn get_property_primary-icon-activatable -->
+Whether the primary icon is activatable.
+
+GTK+ emits the `Entry::icon-press` and `Entry::icon-release`
+signals only on sensitive, activatable icons.
+
+Sensitive, but non-activatable icons can be used for purely
+informational purposes.
+<!-- trait EntryExt::fn set_property_primary-icon-activatable -->
+Whether the primary icon is activatable.
+
+GTK+ emits the `Entry::icon-press` and `Entry::icon-release`
+signals only on sensitive, activatable icons.
+
+Sensitive, but non-activatable icons can be used for purely
+informational purposes.
+<!-- trait EntryExt::fn get_property_primary-icon-gicon -->
+The `gio::Icon` to use for the primary icon for the entry.
+<!-- trait EntryExt::fn set_property_primary-icon-gicon -->
+The `gio::Icon` to use for the primary icon for the entry.
+<!-- trait EntryExt::fn get_property_primary-icon-name -->
+The icon name to use for the primary icon for the entry.
+<!-- trait EntryExt::fn set_property_primary-icon-name -->
+The icon name to use for the primary icon for the entry.
+<!-- trait EntryExt::fn get_property_primary-icon-pixbuf -->
+A pixbuf to use as the primary icon for the entry.
+<!-- trait EntryExt::fn set_property_primary-icon-pixbuf -->
+A pixbuf to use as the primary icon for the entry.
+<!-- trait EntryExt::fn get_property_primary-icon-sensitive -->
+Whether the primary icon is sensitive.
+
+An insensitive icon appears grayed out. GTK+ does not emit the
+`Entry::icon-press` and `Entry::icon-release` signals and
+does not allow DND from insensitive icons.
+
+An icon should be set insensitive if the action that would trigger
+when clicked is currently not available.
+<!-- trait EntryExt::fn set_property_primary-icon-sensitive -->
+Whether the primary icon is sensitive.
+
+An insensitive icon appears grayed out. GTK+ does not emit the
+`Entry::icon-press` and `Entry::icon-release` signals and
+does not allow DND from insensitive icons.
+
+An icon should be set insensitive if the action that would trigger
+when clicked is currently not available.
+<!-- trait EntryExt::fn get_property_primary-icon-stock -->
+The stock id to use for the primary icon for the entry.
+
+# Deprecated since 3.10
+
+Use `Entry:primary-icon-name` instead.
+<!-- trait EntryExt::fn set_property_primary-icon-stock -->
+The stock id to use for the primary icon for the entry.
+
+# Deprecated since 3.10
+
+Use `Entry:primary-icon-name` instead.
+<!-- trait EntryExt::fn get_property_primary-icon-storage-type -->
+The representation which is used for the primary icon of the entry.
+<!-- trait EntryExt::fn get_property_primary-icon-tooltip-markup -->
+The contents of the tooltip on the primary icon, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+
+Also see `EntryExt::set_icon_tooltip_markup`.
+<!-- trait EntryExt::fn set_property_primary-icon-tooltip-markup -->
+The contents of the tooltip on the primary icon, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+
+Also see `EntryExt::set_icon_tooltip_markup`.
+<!-- trait EntryExt::fn get_property_primary-icon-tooltip-text -->
+The contents of the tooltip on the primary icon.
+
+Also see `EntryExt::set_icon_tooltip_text`.
+<!-- trait EntryExt::fn set_property_primary-icon-tooltip-text -->
+The contents of the tooltip on the primary icon.
+
+Also see `EntryExt::set_icon_tooltip_text`.
+<!-- trait EntryExt::fn get_property_progress-fraction -->
+The current fraction of the task that's been completed.
+<!-- trait EntryExt::fn set_property_progress-fraction -->
+The current fraction of the task that's been completed.
+<!-- trait EntryExt::fn get_property_progress-pulse-step -->
+The fraction of total entry width to move the progress
+bouncing block for each call to `EntryExt::progress_pulse`.
+<!-- trait EntryExt::fn set_property_progress-pulse-step -->
+The fraction of total entry width to move the progress
+bouncing block for each call to `EntryExt::progress_pulse`.
+<!-- trait EntryExt::fn get_property_secondary-icon-activatable -->
+Whether the secondary icon is activatable.
+
+GTK+ emits the `Entry::icon-press` and `Entry::icon-release`
+signals only on sensitive, activatable icons.
+
+Sensitive, but non-activatable icons can be used for purely
+informational purposes.
+<!-- trait EntryExt::fn set_property_secondary-icon-activatable -->
+Whether the secondary icon is activatable.
+
+GTK+ emits the `Entry::icon-press` and `Entry::icon-release`
+signals only on sensitive, activatable icons.
+
+Sensitive, but non-activatable icons can be used for purely
+informational purposes.
+<!-- trait EntryExt::fn get_property_secondary-icon-gicon -->
+The `gio::Icon` to use for the secondary icon for the entry.
+<!-- trait EntryExt::fn set_property_secondary-icon-gicon -->
+The `gio::Icon` to use for the secondary icon for the entry.
+<!-- trait EntryExt::fn get_property_secondary-icon-name -->
+The icon name to use for the secondary icon for the entry.
+<!-- trait EntryExt::fn set_property_secondary-icon-name -->
+The icon name to use for the secondary icon for the entry.
+<!-- trait EntryExt::fn get_property_secondary-icon-pixbuf -->
+An pixbuf to use as the secondary icon for the entry.
+<!-- trait EntryExt::fn set_property_secondary-icon-pixbuf -->
+An pixbuf to use as the secondary icon for the entry.
+<!-- trait EntryExt::fn get_property_secondary-icon-sensitive -->
+Whether the secondary icon is sensitive.
+
+An insensitive icon appears grayed out. GTK+ does not emit the
+`Entry::icon-press` and `Entry::icon-release` signals and
+does not allow DND from insensitive icons.
+
+An icon should be set insensitive if the action that would trigger
+when clicked is currently not available.
+<!-- trait EntryExt::fn set_property_secondary-icon-sensitive -->
+Whether the secondary icon is sensitive.
+
+An insensitive icon appears grayed out. GTK+ does not emit the
+`Entry::icon-press` and `Entry::icon-release` signals and
+does not allow DND from insensitive icons.
+
+An icon should be set insensitive if the action that would trigger
+when clicked is currently not available.
+<!-- trait EntryExt::fn get_property_secondary-icon-stock -->
+The stock id to use for the secondary icon for the entry.
+
+# Deprecated since 3.10
+
+Use `Entry:secondary-icon-name` instead.
+<!-- trait EntryExt::fn set_property_secondary-icon-stock -->
+The stock id to use for the secondary icon for the entry.
+
+# Deprecated since 3.10
+
+Use `Entry:secondary-icon-name` instead.
+<!-- trait EntryExt::fn get_property_secondary-icon-storage-type -->
+The representation which is used for the secondary icon of the entry.
+<!-- trait EntryExt::fn get_property_secondary-icon-tooltip-markup -->
+The contents of the tooltip on the secondary icon, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+
+Also see `EntryExt::set_icon_tooltip_markup`.
+<!-- trait EntryExt::fn set_property_secondary-icon-tooltip-markup -->
+The contents of the tooltip on the secondary icon, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+
+Also see `EntryExt::set_icon_tooltip_markup`.
+<!-- trait EntryExt::fn get_property_secondary-icon-tooltip-text -->
+The contents of the tooltip on the secondary icon.
+
+Also see `EntryExt::set_icon_tooltip_text`.
+<!-- trait EntryExt::fn set_property_secondary-icon-tooltip-text -->
+The contents of the tooltip on the secondary icon.
+
+Also see `EntryExt::set_icon_tooltip_text`.
+<!-- trait EntryExt::fn get_property_shadow-type -->
+Which kind of shadow to draw around the entry when
+`Entry:has-frame` is set to `true`.
+
+# Deprecated since 3.20
+
+Use CSS to determine the style of the border;
+ the value of this style property is ignored.
+<!-- trait EntryExt::fn set_property_shadow-type -->
+Which kind of shadow to draw around the entry when
+`Entry:has-frame` is set to `true`.
+
+# Deprecated since 3.20
+
+Use CSS to determine the style of the border;
+ the value of this style property is ignored.
+<!-- trait EntryExt::fn get_property_text-length -->
+The length of the text in the `Entry`.
+<!-- trait EntryExt::fn get_property_truncate-multiline -->
+When `true`, pasted multi-line text is truncated to the first line.
+<!-- trait EntryExt::fn set_property_truncate-multiline -->
+When `true`, pasted multi-line text is truncated to the first line.
+<!-- trait EntryExt::fn get_property_xalign -->
+The horizontal alignment, from 0 (left) to 1 (right).
+Reversed for RTL layouts.
+<!-- trait EntryExt::fn set_property_xalign -->
+The horizontal alignment, from 0 (left) to 1 (right).
+Reversed for RTL layouts.
 <!-- struct EntryBuffer -->
 The `EntryBuffer` class contains the actual text displayed in a
 `Entry` widget.
@@ -9446,6 +11510,30 @@ Note that `n_chars` is in characters, not in bytes.
 the new text
 ## `n_chars`
 the number of characters in `text`, or -1
+<!-- trait EntryBufferExt::fn connect_deleted_text -->
+This signal is emitted after text is deleted from the buffer.
+## `position`
+the position the text was deleted at.
+## `n_chars`
+The number of characters that were deleted.
+<!-- trait EntryBufferExt::fn connect_inserted_text -->
+This signal is emitted after text is inserted into the buffer.
+## `position`
+the position the text was inserted at.
+## `chars`
+The text that was inserted.
+## `n_chars`
+The number of characters that were inserted.
+<!-- trait EntryBufferExt::fn get_property_length -->
+The length (in characters) of the text in buffer.
+<!-- trait EntryBufferExt::fn get_property_max-length -->
+The maximum length (in characters) of the text in the buffer.
+<!-- trait EntryBufferExt::fn set_property_max-length -->
+The maximum length (in characters) of the text in the buffer.
+<!-- trait EntryBufferExt::fn get_property_text -->
+The contents of the buffer.
+<!-- trait EntryBufferExt::fn set_property_text -->
+The contents of the buffer.
 <!-- struct EntryCompletion -->
 `EntryCompletion` is an auxiliary object to be used in conjunction with
 `Entry` to provide the completion functionality. It implements the
@@ -9685,6 +11773,121 @@ renderer, use `gobject::ObjectExt::set` to set the `EntryCompletion:text-column`
 property directly.
 ## `column`
 the column in the model of `self` to get strings from
+<!-- trait EntryCompletionExt::fn connect_action_activated -->
+Gets emitted when an action is activated.
+## `index`
+the index of the activated action
+<!-- trait EntryCompletionExt::fn connect_cursor_on_match -->
+Gets emitted when a match from the cursor is on a match
+of the list. The default behaviour is to replace the contents
+of the entry with the contents of the text column in the row
+pointed to by `iter`.
+
+Note that `model` is the model that was passed to
+`EntryCompletionExt::set_model`.
+## `model`
+the `TreeModel` containing the matches
+## `iter`
+a `TreeIter` positioned at the selected match
+
+# Returns
+
+`true` if the signal has been handled
+<!-- trait EntryCompletionExt::fn connect_insert_prefix -->
+Gets emitted when the inline autocompletion is triggered.
+The default behaviour is to make the entry display the
+whole prefix and select the newly inserted part.
+
+Applications may connect to this signal in order to insert only a
+smaller part of the `prefix` into the entry - e.g. the entry used in
+the `FileChooser` inserts only the part of the prefix up to the
+next '/'.
+## `prefix`
+the common prefix of all possible completions
+
+# Returns
+
+`true` if the signal has been handled
+<!-- trait EntryCompletionExt::fn connect_match_selected -->
+Gets emitted when a match from the list is selected.
+The default behaviour is to replace the contents of the
+entry with the contents of the text column in the row
+pointed to by `iter`.
+
+Note that `model` is the model that was passed to
+`EntryCompletionExt::set_model`.
+## `model`
+the `TreeModel` containing the matches
+## `iter`
+a `TreeIter` positioned at the selected match
+
+# Returns
+
+`true` if the signal has been handled
+<!-- trait EntryCompletionExt::fn connect_no_matches -->
+Gets emitted when the filter model has zero
+number of rows in completion_complete method.
+(In other words when `EntryCompletion` is out of
+ suggestions)
+
+Feature: `v3_14`
+
+<!-- trait EntryCompletionExt::fn get_property_cell-area -->
+The `CellArea` used to layout cell renderers in the treeview column.
+
+If no area is specified when creating the entry completion with
+`EntryCompletion::new_with_area` a horizontally oriented
+`CellAreaBox` will be used.
+<!-- trait EntryCompletionExt::fn set_property_cell-area -->
+The `CellArea` used to layout cell renderers in the treeview column.
+
+If no area is specified when creating the entry completion with
+`EntryCompletion::new_with_area` a horizontally oriented
+`CellAreaBox` will be used.
+<!-- trait EntryCompletionExt::fn get_property_inline-completion -->
+Determines whether the common prefix of the possible completions
+should be inserted automatically in the entry. Note that this
+requires text-column to be set, even if you are using a custom
+match function.
+<!-- trait EntryCompletionExt::fn set_property_inline-completion -->
+Determines whether the common prefix of the possible completions
+should be inserted automatically in the entry. Note that this
+requires text-column to be set, even if you are using a custom
+match function.
+<!-- trait EntryCompletionExt::fn get_property_inline-selection -->
+Determines whether the possible completions on the popup
+will appear in the entry as you navigate through them.
+<!-- trait EntryCompletionExt::fn set_property_inline-selection -->
+Determines whether the possible completions on the popup
+will appear in the entry as you navigate through them.
+<!-- trait EntryCompletionExt::fn get_property_popup-completion -->
+Determines whether the possible completions should be
+shown in a popup window.
+<!-- trait EntryCompletionExt::fn set_property_popup-completion -->
+Determines whether the possible completions should be
+shown in a popup window.
+<!-- trait EntryCompletionExt::fn get_property_popup-set-width -->
+Determines whether the completions popup window will be
+resized to the width of the entry.
+<!-- trait EntryCompletionExt::fn set_property_popup-set-width -->
+Determines whether the completions popup window will be
+resized to the width of the entry.
+<!-- trait EntryCompletionExt::fn get_property_popup-single-match -->
+Determines whether the completions popup window will shown
+for a single possible completion. You probably want to set
+this to `false` if you are using
+[inline completion][`EntryCompletion`--inline-completion].
+<!-- trait EntryCompletionExt::fn set_property_popup-single-match -->
+Determines whether the completions popup window will shown
+for a single possible completion. You probably want to set
+this to `false` if you are using
+[inline completion][`EntryCompletion`--inline-completion].
+<!-- trait EntryCompletionExt::fn get_property_text-column -->
+The column of the model containing the strings.
+Note that the strings must be UTF-8.
+<!-- trait EntryCompletionExt::fn set_property_text-column -->
+The column of the model containing the strings.
+Note that the strings must be UTF-8.
 <!-- enum EntryIconPosition -->
 Specifies the side of the entry at which an icon is placed.
 <!-- enum EntryIconPosition::variant Primary -->
@@ -9840,6 +12043,26 @@ Feature: `v3_14`
 
 ## `phase`
 a propagation phase
+<!-- trait EventControllerExt::fn get_property_propagation-phase -->
+The propagation phase at which this controller will handle events.
+
+Feature: `v3_14`
+
+<!-- trait EventControllerExt::fn set_property_propagation-phase -->
+The propagation phase at which this controller will handle events.
+
+Feature: `v3_14`
+
+<!-- trait EventControllerExt::fn get_property_widget -->
+The widget receiving the ``GdkEvents`` that the controller will handle.
+
+Feature: `v3_14`
+
+<!-- trait EventControllerExt::fn set_property_widget -->
+The widget receiving the ``GdkEvents`` that the controller will handle.
+
+Feature: `v3_14`
+
 <!-- enum EventSequenceState -->
 Describes the state of a `gdk::EventSequence` in a `Gesture`.
 <!-- enum EventSequenceState::variant None -->
@@ -10073,6 +12296,28 @@ If true, an underline in the text of the expander label indicates
 the next character should be used for the mnemonic accelerator key.
 ## `use_underline`
 `true` if underlines in the text indicate mnemonics
+<!-- trait ExpanderExt::fn get_property_resize-toplevel -->
+When this property is `true`, the expander will resize the toplevel
+widget containing the expander upon expanding and collapsing.
+<!-- trait ExpanderExt::fn set_property_resize-toplevel -->
+When this property is `true`, the expander will resize the toplevel
+widget containing the expander upon expanding and collapsing.
+<!-- trait ExpanderExt::fn get_property_spacing -->
+Space to put between the label and the child when the
+expander is expanded.
+
+# Deprecated since 3.20
+
+This property is deprecated and ignored.
+ Use margins on the child instead.
+<!-- trait ExpanderExt::fn set_property_spacing -->
+Space to put between the label and the child when the
+expander is expanded.
+
+# Deprecated since 3.20
+
+This property is deprecated and ignored.
+ Use margins on the child instead.
 <!-- struct FileChooser -->
 `FileChooser` is an interface that can be implemented by file
 selection widgets. In GTK+, the main objects that implement this
@@ -10361,7 +12606,7 @@ types a file name that already exists.
 `true` if the file chooser will present a confirmation dialog;
 `false` otherwise.
 <!-- trait FileChooserExt::fn get_extra_widget -->
-Gets the current preview widget; see
+Gets the current extra widget; see
 `FileChooser::set_extra_widget`.
 
 # Returns
@@ -10911,6 +13156,149 @@ is not in the current directory, does not exist, or
 is otherwise not currently selected, does nothing.
 ## `uri`
 the URI to unselect
+<!-- trait FileChooserExt::fn connect_confirm_overwrite -->
+This signal gets emitted whenever it is appropriate to present a
+confirmation dialog when the user has selected a file name that
+already exists. The signal only gets emitted when the file
+chooser is in `FileChooserAction::Save` mode.
+
+Most applications just need to turn on the
+`FileChooser:do-overwrite-confirmation` property (or call the
+`FileChooser::set_do_overwrite_confirmation` function), and
+they will automatically get a stock confirmation dialog.
+Applications which need to customize this behavior should do
+that, and also connect to the `FileChooser::confirm-overwrite`
+signal.
+
+A signal handler for this signal must return a
+`FileChooserConfirmation` value, which indicates the action to
+take. If the handler determines that the user wants to select a
+different filename, it should return
+`FileChooserConfirmation::SelectAgain`. If it determines
+that the user is satisfied with his choice of file name, it
+should return `FileChooserConfirmation::AcceptFilename`.
+On the other hand, if it determines that the stock confirmation
+dialog should be used, it should return
+`FileChooserConfirmation::Confirm`. The following example
+illustrates this.
+
+## Custom confirmation ## {`gtkfilechooser`-confirmation}
+
+
+```C
+static GtkFileChooserConfirmation
+confirm_overwrite_callback (GtkFileChooser *chooser, gpointer data)
+{
+  char *uri;
+
+  uri = gtk_file_chooser_get_uri (chooser);
+
+  if (is_uri_read_only (uri))
+    {
+      if (user_wants_to_replace_read_only_file (uri))
+        return GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME;
+      else
+        return GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN;
+    } else
+      return GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM; // fall back to the default dialog
+}
+
+...
+
+chooser = gtk_file_chooser_dialog_new (...);
+
+gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+g_signal_connect (chooser, "confirm-overwrite",
+                  G_CALLBACK (confirm_overwrite_callback), NULL);
+
+if (gtk_dialog_run (chooser) == GTK_RESPONSE_ACCEPT)
+        save_to_file (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+
+gtk_widget_destroy (chooser);
+```
+
+# Returns
+
+a `FileChooserConfirmation` value that indicates which
+ action to take after emitting the signal.
+<!-- trait FileChooserExt::fn connect_current_folder_changed -->
+This signal is emitted when the current folder in a `FileChooser`
+changes. This can happen due to the user performing some action that
+changes folders, such as selecting a bookmark or visiting a folder on the
+file list. It can also happen as a result of calling a function to
+explicitly change the current folder in a file chooser.
+
+Normally you do not need to connect to this signal, unless you need to keep
+track of which folder a file chooser is showing.
+
+See also: `FileChooser::set_current_folder`,
+`FileChooser::get_current_folder`,
+`FileChooser::set_current_folder_uri`,
+`FileChooser::get_current_folder_uri`.
+<!-- trait FileChooserExt::fn connect_file_activated -->
+This signal is emitted when the user "activates" a file in the file
+chooser. This can happen by double-clicking on a file in the file list, or
+by pressing `Enter`.
+
+Normally you do not need to connect to this signal. It is used internally
+by `FileChooserDialog` to know when to activate the default button in the
+dialog.
+
+See also: `FileChooser::get_filename`,
+`FileChooser::get_filenames`, `FileChooser::get_uri`,
+`FileChooser::get_uris`.
+<!-- trait FileChooserExt::fn connect_selection_changed -->
+This signal is emitted when there is a change in the set of selected files
+in a `FileChooser`. This can happen when the user modifies the selection
+with the mouse or the keyboard, or when explicitly calling functions to
+change the selection.
+
+Normally you do not need to connect to this signal, as it is easier to wait
+for the file chooser to finish running, and then to get the list of
+selected files using the functions mentioned below.
+
+See also: `FileChooser::select_filename`,
+`FileChooser::unselect_filename`, `FileChooser::get_filename`,
+`FileChooser::get_filenames`, `FileChooser::select_uri`,
+`FileChooser::unselect_uri`, `FileChooser::get_uri`,
+`FileChooser::get_uris`.
+<!-- trait FileChooserExt::fn connect_update_preview -->
+This signal is emitted when the preview in a file chooser should be
+regenerated. For example, this can happen when the currently selected file
+changes. You should use this signal if you want your file chooser to have
+a preview widget.
+
+Once you have installed a preview widget with
+`FileChooser::set_preview_widget`, you should update it when this
+signal is emitted. You can use the functions
+`FileChooser::get_preview_filename` or
+`FileChooser::get_preview_uri` to get the name of the file to preview.
+Your widget may not be able to preview all kinds of files; your callback
+must call `FileChooser::set_preview_widget_active` to inform the file
+chooser about whether the preview was generated successfully or not.
+
+Please see the example code in
+[Using a Preview Widget][gtkfilechooser-preview].
+
+See also: `FileChooser::set_preview_widget`,
+`FileChooser::set_preview_widget_active`,
+`FileChooser::set_use_preview_label`,
+`FileChooser::get_preview_filename`,
+`FileChooser::get_preview_uri`.
+<!-- trait FileChooserExt::fn get_property_create-folders -->
+Whether a file chooser not in `FileChooserAction::Open` mode
+will offer the user to create new folders.
+<!-- trait FileChooserExt::fn set_property_create-folders -->
+Whether a file chooser not in `FileChooserAction::Open` mode
+will offer the user to create new folders.
+<!-- trait FileChooserExt::fn get_property_do-overwrite-confirmation -->
+Whether a file chooser in `FileChooserAction::Save` mode
+will present an overwrite confirmation dialog if the user
+selects a file name that already exists.
+<!-- trait FileChooserExt::fn set_property_do-overwrite-confirmation -->
+Whether a file chooser in `FileChooserAction::Save` mode
+will present an overwrite confirmation dialog if the user
+selects a file name that already exists.
 <!-- enum FileChooserAction -->
 Describes whether a `FileChooser` is being used to open existing files
 or to save to a possibly new file.
@@ -11041,6 +13429,21 @@ the new browse dialog title.
 Sets the width (in characters) that `self` will use to `n_chars`.
 ## `n_chars`
 the new width, in characters.
+<!-- trait FileChooserButtonExt::fn connect_file_set -->
+The ::file-set signal is emitted when the user selects a file.
+
+Note that this signal is only emitted when the user
+changes the file.
+<!-- trait FileChooserButtonExt::fn set_property_dialog -->
+Instance of the `FileChooserDialog` associated with the button.
+<!-- trait FileChooserButtonExt::fn get_property_title -->
+Title to put on the `FileChooserDialog` associated with the button.
+<!-- trait FileChooserButtonExt::fn set_property_title -->
+Title to put on the `FileChooserDialog` associated with the button.
+<!-- trait FileChooserButtonExt::fn get_property_width-chars -->
+The width of the entry and label inside the button, in characters.
+<!-- trait FileChooserButtonExt::fn set_property_width-chars -->
+The width of the entry and label inside the button, in characters.
 <!-- enum FileChooserConfirmation -->
 Used as a return value of handlers for the
 `FileChooser::confirm-overwrite` signal of a `FileChooser`. This
@@ -11275,6 +13678,114 @@ Open or save mode for the widget
 # Returns
 
 a new `FileChooserWidget`
+<!-- trait FileChooserWidgetExt::fn connect_desktop_folder -->
+The ::desktop-folder signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show the user's Desktop
+folder in the file list.
+
+The default binding for this signal is `Alt + D`.
+<!-- trait FileChooserWidgetExt::fn connect_down_folder -->
+The ::down-folder signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser go to a child of the current folder
+in the file hierarchy. The subfolder that will be used is displayed in the
+path bar widget of the file chooser. For example, if the path bar is showing
+"/foo/bar/baz", with bar currently displayed, then this will cause the file
+chooser to switch to the "baz" subfolder.
+
+The default binding for this signal is `Alt + Down`.
+<!-- trait FileChooserWidgetExt::fn connect_home_folder -->
+The ::home-folder signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show the user's home
+folder in the file list.
+
+The default binding for this signal is `Alt + Home`.
+<!-- trait FileChooserWidgetExt::fn connect_location_popup -->
+The ::location-popup signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show a "Location" prompt which
+the user can use to manually type the name of the file he wishes to select.
+
+The default bindings for this signal are `Control + L` with a `path` string
+of "" (the empty string). It is also bound to `/` with a `path` string of
+"`/`" (a slash): this lets you type `/` and immediately type a path name.
+On Unix systems, this is bound to `~` (tilde) with a `path` string of "~"
+itself for access to home directories.
+## `path`
+a string that gets put in the text entry for the file name
+<!-- trait FileChooserWidgetExt::fn connect_location_popup_on_paste -->
+The ::location-popup-on-paste signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show a "Location" prompt when the user
+pastes into a `FileChooserWidget`.
+
+The default binding for this signal is `Control + V`.
+<!-- trait FileChooserWidgetExt::fn connect_location_toggle_popup -->
+The ::location-toggle-popup signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to toggle the visibility of a "Location" prompt which the user
+can use to manually type the name of the file he wishes to select.
+
+The default binding for this signal is `Control + L`.
+<!-- trait FileChooserWidgetExt::fn connect_places_shortcut -->
+The ::places-shortcut signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to move the focus to the places sidebar.
+
+The default binding for this signal is `Alt + P`.
+<!-- trait FileChooserWidgetExt::fn connect_quick_bookmark -->
+The ::quick-bookmark signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser switch to the bookmark specified
+in the `bookmark_index` parameter. For example, if you have three bookmarks,
+you can pass 0, 1, 2 to this signal to switch to each of them, respectively.
+
+The default binding for this signal is `Alt + 1`, `Alt + 2`,
+etc. until `Alt + 0`. Note that in the default binding, that
+`Alt + 1` is actually defined to switch to the bookmark at index
+0, and so on successively; `Alt + 0` is defined to switch to the
+bookmark at index 10.
+## `bookmark_index`
+the number of the bookmark to switch to
+<!-- trait FileChooserWidgetExt::fn connect_recent_shortcut -->
+The ::recent-shortcut signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show the Recent location.
+
+The default binding for this signal is `Alt + R`.
+<!-- trait FileChooserWidgetExt::fn connect_search_shortcut -->
+The ::search-shortcut signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser show the search entry.
+
+The default binding for this signal is `Alt + S`.
+<!-- trait FileChooserWidgetExt::fn connect_show_hidden -->
+The ::show-hidden signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser display hidden files.
+
+The default binding for this signal is `Control + H`.
+<!-- trait FileChooserWidgetExt::fn connect_up_folder -->
+The ::up-folder signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+This is used to make the file chooser go to the parent of the current folder
+in the file hierarchy.
+
+The default binding for this signal is `Alt + Up`.
 <!-- struct FileFilter -->
 A `FileFilter` can be used to restrict the files being shown in a
 `FileChooser`. Files can be filtered based on their name (with
@@ -11447,18 +13958,19 @@ other display bugs:
 - Fonts other than the one you used to write the app will of course
  change the size of widgets containing text; keep in mind that
  users may use a larger font because of difficulty reading the
- default, or they may be using Windows or the framebuffer port of
- GTK+, where different fonts are available.
+ default, or they may be using a different OS that provides different fonts.
 
 - Translation of text into other languages changes its size. Also,
  display of non-English text will use a different font in many
  cases.
 
-In addition, the fixed widget can’t properly be mirrored in
-right-to-left languages such as Hebrew and Arabic. i.e. normally
-GTK+ will flip the interface to put labels to the right of the
-thing they label, but it can’t do that with `Fixed`. So your
-application will not be usable in right-to-left languages.
+In addition, `Fixed` does not pay attention to text direction and thus may
+produce unwanted results if your app is run under right-to-left languages
+such as Hebrew or Arabic. That is: normally GTK+ will order containers
+appropriately for the text direction, e.g. to put labels to the right of the
+thing they label when using an RTL language, but it can’t do that with
+`Fixed`. So if you need to reorder widgets depending on the text direction,
+you would need to manually detect it and adjust child positions accordingly.
 
 Finally, fixed positioning makes it kind of annoying to add/remove
 GUI elements, since you have to reposition all the other
@@ -11468,6 +13980,9 @@ application.
 If you know none of these things are an issue for your application,
 and prefer the simplicity of `Fixed`, by all means use the
 widget. But you should be aware of the tradeoffs.
+
+See also `Layout`, which shares the ability to perform fixed positioning
+of child widgets and additionally adds custom drawing and scrollability.
 
 # Implements
 
@@ -11615,6 +14130,21 @@ the position of the child
 the child widget, which will
  always be a `FlowBoxChild` or `None` in case no child widget
  with the given index exists.
+<!-- trait FlowBoxExt::fn get_child_at_pos -->
+Gets the child in the (`x`, `y`) position.
+
+Feature: `v3_22_6`
+
+## `x`
+the x coordinate of the child
+## `y`
+the y coordinate of the child
+
+# Returns
+
+the child widget, which will
+ always be a `FlowBoxChild` or `None` in case no child widget
+ exists for the given x and y coordinates.
 <!-- trait FlowBoxExt::fn get_column_spacing -->
 Gets the horizontal spacing.
 
@@ -11895,6 +14425,111 @@ Feature: `v3_12`
 
 ## `child`
 a child of `self`
+<!-- trait FlowBoxExt::fn connect_activate_cursor_child -->
+The ::activate-cursor-child signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user activates the `box_`.
+<!-- trait FlowBoxExt::fn connect_child_activated -->
+The ::child-activated signal is emitted when a child has been
+activated by the user.
+## `child`
+the child that is activated
+<!-- trait FlowBoxExt::fn connect_move_cursor -->
+The ::move-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a cursor movement.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal come in two variants,
+the variant with the Shift modifier extends the selection,
+the variant without the Shift modifer does not.
+There are too many key combinations to list them all here.
+- Arrow keys move by individual children
+- Home/End keys move to the ends of the box
+- PageUp/PageDown keys move vertically by pages
+## `step`
+the granularity fo the move, as a `MovementStep`
+## `count`
+the number of `step` units to move
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+`false` to propagate the event further.
+<!-- trait FlowBoxExt::fn connect_select_all -->
+The ::select-all signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to select all children of the box, if
+the selection mode permits it.
+
+The default bindings for this signal is Ctrl-a.
+<!-- trait FlowBoxExt::fn connect_selected_children_changed -->
+The ::selected-children-changed signal is emitted when the
+set of selected children changes.
+
+Use `FlowBoxExt::selected_foreach` or
+`FlowBoxExt::get_selected_children` to obtain the
+selected children.
+<!-- trait FlowBoxExt::fn connect_toggle_cursor_child -->
+The ::toggle-cursor-child signal is a
+[keybinding signal][`BindingSignal`]
+which toggles the selection of the child that has the focus.
+
+The default binding for this signal is Ctrl-Space.
+<!-- trait FlowBoxExt::fn connect_unselect_all -->
+The ::unselect-all signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to unselect all children of the box, if
+the selection mode permits it.
+
+The default bindings for this signal is Ctrl-Shift-a.
+<!-- trait FlowBoxExt::fn get_property_activate-on-single-click -->
+Determines whether children can be activated with a single
+click, or require a double-click.
+<!-- trait FlowBoxExt::fn set_property_activate-on-single-click -->
+Determines whether children can be activated with a single
+click, or require a double-click.
+<!-- trait FlowBoxExt::fn get_property_column-spacing -->
+The amount of horizontal space between two children.
+<!-- trait FlowBoxExt::fn set_property_column-spacing -->
+The amount of horizontal space between two children.
+<!-- trait FlowBoxExt::fn get_property_homogeneous -->
+Determines whether all children should be allocated the
+same size.
+<!-- trait FlowBoxExt::fn set_property_homogeneous -->
+Determines whether all children should be allocated the
+same size.
+<!-- trait FlowBoxExt::fn get_property_max-children-per-line -->
+The maximum amount of children to request space for consecutively
+in the given orientation.
+<!-- trait FlowBoxExt::fn set_property_max-children-per-line -->
+The maximum amount of children to request space for consecutively
+in the given orientation.
+<!-- trait FlowBoxExt::fn get_property_min-children-per-line -->
+The minimum number of children to allocate consecutively
+in the given orientation.
+
+Setting the minimum children per line ensures
+that a reasonably small height will be requested
+for the overall minimum width of the box.
+<!-- trait FlowBoxExt::fn set_property_min-children-per-line -->
+The minimum number of children to allocate consecutively
+in the given orientation.
+
+Setting the minimum children per line ensures
+that a reasonably small height will be requested
+for the overall minimum width of the box.
+<!-- trait FlowBoxExt::fn get_property_row-spacing -->
+The amount of vertical space between two children.
+<!-- trait FlowBoxExt::fn set_property_row-spacing -->
+The amount of vertical space between two children.
+<!-- trait FlowBoxExt::fn get_property_selection-mode -->
+The selection mode used by the flow box.
+<!-- trait FlowBoxExt::fn set_property_selection-mode -->
+The selection mode used by the flow box.
 <!-- struct FlowBoxChild -->
 
 
@@ -11961,6 +14596,14 @@ Feature: `v3_12`
 # Returns
 
 `true` if `self` is selected
+<!-- trait FlowBoxChildExt::fn connect_activate -->
+The ::activate signal is emitted when the user activates
+a child widget in a `FlowBox`, either by clicking or
+double-clicking, or by using the Space or Enter key.
+
+While this signal is used as a
+[keybinding signal][`BindingSignal`],
+it can be used by applications for their own purposes.
 <!-- struct FontButton -->
 The `FontButton` is a button which displays the currently selected
 font an allows to open a font chooser dialog to change the font.
@@ -12062,6 +14705,50 @@ If `true`, font name will be written using font chosen.
 If `use_size` is `true`, the font name will be written using the selected size.
 ## `use_size`
 If `true`, font name will be written using the selected size.
+<!-- trait FontButtonExt::fn connect_font_set -->
+The ::font-set signal is emitted when the user selects a font.
+When handling this signal, use `FontButtonExt::get_font_name`
+to find out which font was just selected.
+
+Note that this signal is only emitted when the user
+changes the font. If you need to react to programmatic font changes
+as well, use the notify::font-name signal.
+<!-- trait FontButtonExt::fn get_property_font-name -->
+The name of the currently selected font.
+<!-- trait FontButtonExt::fn set_property_font-name -->
+The name of the currently selected font.
+<!-- trait FontButtonExt::fn get_property_show-size -->
+If this property is set to `true`, the selected font size will be shown
+in the label. For a more WYSIWYG way to show the selected size, see the
+::use-size property.
+<!-- trait FontButtonExt::fn set_property_show-size -->
+If this property is set to `true`, the selected font size will be shown
+in the label. For a more WYSIWYG way to show the selected size, see the
+::use-size property.
+<!-- trait FontButtonExt::fn get_property_show-style -->
+If this property is set to `true`, the name of the selected font style
+will be shown in the label. For a more WYSIWYG way to show the selected
+style, see the ::use-font property.
+<!-- trait FontButtonExt::fn set_property_show-style -->
+If this property is set to `true`, the name of the selected font style
+will be shown in the label. For a more WYSIWYG way to show the selected
+style, see the ::use-font property.
+<!-- trait FontButtonExt::fn get_property_title -->
+The title of the font chooser dialog.
+<!-- trait FontButtonExt::fn set_property_title -->
+The title of the font chooser dialog.
+<!-- trait FontButtonExt::fn get_property_use-font -->
+If this property is set to `true`, the label will be drawn
+in the selected font.
+<!-- trait FontButtonExt::fn set_property_use-font -->
+If this property is set to `true`, the label will be drawn
+in the selected font.
+<!-- trait FontButtonExt::fn get_property_use-size -->
+If this property is set to `true`, the label will be drawn
+with the selected font size.
+<!-- trait FontButtonExt::fn set_property_use-size -->
+If this property is set to `true`, the label will be drawn
+with the selected font size.
 <!-- struct FontChooser -->
 `FontChooser` is an interface that can be implemented by widgets
 displaying the list of fonts. In GTK+, the main objects
@@ -12222,6 +14909,29 @@ the text to display in the preview area
 Shows or hides the editable preview entry.
 ## `show_preview_entry`
 whether to show the editable preview entry or not
+<!-- trait FontChooserExt::fn connect_font_activated -->
+Emitted when a font is activated.
+This usually happens when the user double clicks an item,
+or an item is selected and the user presses one of the keys
+Space, Shift+Space, Return or Enter.
+## `fontname`
+the font name
+<!-- trait FontChooserExt::fn get_property_font -->
+The font description as a string, e.g. "Sans Italic 12".
+<!-- trait FontChooserExt::fn set_property_font -->
+The font description as a string, e.g. "Sans Italic 12".
+<!-- trait FontChooserExt::fn get_property_font-desc -->
+The font description as a `pango::FontDescription`.
+<!-- trait FontChooserExt::fn set_property_font-desc -->
+The font description as a `pango::FontDescription`.
+<!-- trait FontChooserExt::fn get_property_preview-text -->
+The string with which to preview the font.
+<!-- trait FontChooserExt::fn set_property_preview-text -->
+The string with which to preview the font.
+<!-- trait FontChooserExt::fn get_property_show-preview-entry -->
+Whether to show an entry to change the preview text.
+<!-- trait FontChooserExt::fn set_property_show-preview-entry -->
+Whether to show an entry to change the preview text.
 <!-- struct FontChooserDialog -->
 The `FontChooserDialog` widget is a dialog for selecting a font.
 It implements the `FontChooser` interface.
@@ -12297,7 +15007,11 @@ frame
 
 `Frame` has a main CSS node with name frame and a subnode with
 name border. The border node is used to render the visible border.
-The style class .flat can appear with the main node.
+
+The border node can be given the style class .flat, which is used by themes
+to disable drawing of the border. To do this from code, call
+`FrameExt::set_shadow_type` with GTK_SHADOW_NONE to add the .flat class or
+any other shadow type to remove it.
 
 # Implements
 
@@ -12354,8 +15068,8 @@ Retrieves the shadow type of the frame. See
 
 the current shadow type of the frame.
 <!-- trait FrameExt::fn set_label -->
-Sets the text of the label. If `label` is `None`,
-the current label is removed.
+Removes the current `Frame:label-widget`. If `label` is not `None`, creates a
+new `Label` with that text and adds it as the `Frame:label-widget`.
 ## `label`
 the text to use as the label of the frame
 <!-- trait FrameExt::fn set_label_align -->
@@ -12371,13 +15085,15 @@ The y alignment of the label. A value of 0.0 aligns under
  0.0 or 1.0 the gap in the frame won’t be painted because the label
  will be completely above or below the frame.
 <!-- trait FrameExt::fn set_label_widget -->
-Sets the label widget for the frame. This is the widget that
-will appear embedded in the top edge of the frame as a
-title.
+Sets the `Frame:label-widget` for the frame. This is the widget that
+will appear embedded in the top edge of the frame as a title.
 ## `label_widget`
 the new label widget
 <!-- trait FrameExt::fn set_shadow_type -->
-Sets the shadow type for `self`.
+Sets the `Frame:shadow-type` for `self`, i.e. whether it is drawn without
+(GTK_SHADOW_NONE) or with (other values) a visible border. Values other than
+GTK_SHADOW_NONE are treated identically by `Frame`. The chosen type is
+applied by removing or adding the .flat class to the CSS node named border.
 ## `type_`
 the new `ShadowType`
 <!-- struct GLArea -->
@@ -12688,6 +15404,152 @@ Feature: `v3_22`
 
 ## `use_es`
 whether to use OpenGL or OpenGL ES
+<!-- trait GLAreaExt::fn connect_create_context -->
+The ::create-context signal is emitted when the widget is being
+realized, and allows you to override how the GL context is
+created. This is useful when you want to reuse an existing GL
+context, or if you want to try creating different kinds of GL
+options.
+
+If context creation fails then the signal handler can use
+`GLAreaExt::set_error` to register a more detailed error
+of how the construction failed.
+
+Feature: `v3_16`
+
+
+# Returns
+
+a newly created `gdk::GLContext`;
+ the `GLArea` widget will take ownership of the returned value.
+<!-- trait GLAreaExt::fn connect_render -->
+The ::render signal is emitted every time the contents
+of the `GLArea` should be redrawn.
+
+The `context` is bound to the `area` prior to emitting this function,
+and the buffers are painted to the window once the emission terminates.
+
+Feature: `v3_16`
+
+## `context`
+the `gdk::GLContext` used by `area`
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait GLAreaExt::fn connect_resize -->
+The ::resize signal is emitted once when the widget is realized, and
+then each time the widget is changed while realized. This is useful
+in order to keep GL state up to date with the widget size, like for
+instance camera properties which may depend on the width/height ratio.
+
+The GL context for the area is guaranteed to be current when this signal
+is emitted.
+
+The default handler sets up the GL viewport.
+
+Feature: `v3_16`
+
+## `width`
+the width of the viewport
+## `height`
+the height of the viewport
+<!-- trait GLAreaExt::fn get_property_auto-render -->
+If set to `true` the `GLArea::render` signal will be emitted every time
+the widget draws. This is the default and is useful if drawing the widget
+is faster.
+
+If set to `false` the data from previous rendering is kept around and will
+be used for drawing the widget the next time, unless the window is resized.
+In order to force a rendering `GLAreaExt::queue_render` must be called.
+This mode is useful when the scene changes seldomly, but takes a long time
+to redraw.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn set_property_auto-render -->
+If set to `true` the `GLArea::render` signal will be emitted every time
+the widget draws. This is the default and is useful if drawing the widget
+is faster.
+
+If set to `false` the data from previous rendering is kept around and will
+be used for drawing the widget the next time, unless the window is resized.
+In order to force a rendering `GLAreaExt::queue_render` must be called.
+This mode is useful when the scene changes seldomly, but takes a long time
+to redraw.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn get_property_context -->
+The `gdk::GLContext` used by the `GLArea` widget.
+
+The `GLArea` widget is responsible for creating the `gdk::GLContext`
+instance. If you need to render with other kinds of buffers (stencil,
+depth, etc), use render buffers.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn get_property_has-alpha -->
+If set to `true` the buffer allocated by the widget will have an alpha channel
+component, and when rendering to the window the result will be composited over
+whatever is below the widget.
+
+If set to `false` there will be no alpha channel, and the buffer will fully
+replace anything below the widget.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn set_property_has-alpha -->
+If set to `true` the buffer allocated by the widget will have an alpha channel
+component, and when rendering to the window the result will be composited over
+whatever is below the widget.
+
+If set to `false` there will be no alpha channel, and the buffer will fully
+replace anything below the widget.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn get_property_has-depth-buffer -->
+If set to `true` the widget will allocate and enable a depth buffer for the
+target framebuffer.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn set_property_has-depth-buffer -->
+If set to `true` the widget will allocate and enable a depth buffer for the
+target framebuffer.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn get_property_has-stencil-buffer -->
+If set to `true` the widget will allocate and enable a stencil buffer for the
+target framebuffer.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn set_property_has-stencil-buffer -->
+If set to `true` the widget will allocate and enable a stencil buffer for the
+target framebuffer.
+
+Feature: `v3_16`
+
+<!-- trait GLAreaExt::fn get_property_use-es -->
+If set to `true` the widget will try to create a `gdk::GLContext` using
+OpenGL ES instead of OpenGL.
+
+See also: `gdk::GLContextExt::set_use_es`
+
+Feature: `v3_22`
+
+<!-- trait GLAreaExt::fn set_property_use-es -->
+If set to `true` the widget will try to create a `gdk::GLContext` using
+OpenGL ES instead of OpenGL.
+
+See also: `gdk::GLContextExt::set_use_es`
+
+Feature: `v3_22`
+
 <!-- struct Gesture -->
 `Gesture` is the base object for gesture recognition, although this
 object is quite generalized to serve as a base for multi-touch gestures,
@@ -12946,11 +15808,11 @@ Returns `true` if `self` is currently handling events corresponding to
 Feature: `v3_14`
 
 ## `sequence`
-a `gdk::EventSequence`
+a `gdk::EventSequence` or `None`
 
 # Returns
 
-`true` if `self` is handling `sequence`
+`true` if `self` is handling `sequence`, `false` otherwise
 <!-- trait GestureExt::fn is_active -->
 Returns `true` if the gesture is currently active.
 A gesture is active meanwhile there are touch sequences
@@ -13069,6 +15931,87 @@ Separates `self` into an isolated group.
 
 Feature: `v3_14`
 
+<!-- trait GestureExt::fn connect_begin -->
+This signal is emitted when the gesture is recognized. This means the
+number of touch sequences matches `Gesture:n-points`, and the `Gesture::check`
+handler(s) returned `true`.
+
+Note: These conditions may also happen when an extra touch (eg. a third touch
+on a 2-touches gesture) is lifted, in that situation `sequence` won't pertain
+to the current set of active touches, so don't rely on this being true.
+
+Feature: `v3_14`
+
+## `sequence`
+the `gdk::EventSequence` that made the gesture to be recognized
+<!-- trait GestureExt::fn connect_cancel -->
+This signal is emitted whenever a sequence is cancelled. This usually
+happens on active touches when `EventControllerExt::reset` is called
+on `gesture` (manually, due to grabs...), or the individual `sequence`
+was claimed by parent widgets' controllers (see `GestureExt::set_sequence_state`).
+
+`gesture` must forget everything about `sequence` as a reaction to this signal.
+
+Feature: `v3_14`
+
+## `sequence`
+the `gdk::EventSequence` that was cancelled
+<!-- trait GestureExt::fn connect_end -->
+This signal is emitted when `gesture` either stopped recognizing the event
+sequences as something to be handled (the `Gesture::check` handler returned
+`false`), or the number of touch sequences became higher or lower than
+`Gesture:n-points`.
+
+Note: `sequence` might not pertain to the group of sequences that were
+previously triggering recognition on `gesture` (ie. a just pressed touch
+sequence that exceeds `Gesture:n-points`). This situation may be detected
+by checking through `GestureExt::handles_sequence`.
+
+Feature: `v3_14`
+
+## `sequence`
+the `gdk::EventSequence` that made gesture recognition to finish
+<!-- trait GestureExt::fn connect_sequence_state_changed -->
+This signal is emitted whenever a sequence state changes. See
+`GestureExt::set_sequence_state` to know more about the expectable
+sequence lifetimes.
+
+Feature: `v3_14`
+
+## `sequence`
+the `gdk::EventSequence` that was cancelled
+## `state`
+the new sequence state
+<!-- trait GestureExt::fn connect_update -->
+This signal is emitted whenever an event is handled while the gesture is
+recognized. `sequence` is guaranteed to pertain to the set of active touches.
+
+Feature: `v3_14`
+
+## `sequence`
+the `gdk::EventSequence` that was updated
+<!-- trait GestureExt::fn get_property_n-points -->
+The number of touch points that trigger recognition on this gesture,
+
+Feature: `v3_14`
+
+<!-- trait GestureExt::fn set_property_n-points -->
+The number of touch points that trigger recognition on this gesture,
+
+Feature: `v3_14`
+
+<!-- trait GestureExt::fn get_property_window -->
+If non-`None`, the gesture will only listen for events that happen on
+this `gdk::Window`, or a child of it.
+
+Feature: `v3_14`
+
+<!-- trait GestureExt::fn set_property_window -->
+If non-`None`, the gesture will only listen for events that happen on
+this `gdk::Window`, or a child of it.
+
+Feature: `v3_14`
+
 <!-- struct GestureDrag -->
 `GestureDrag` is a `Gesture` implementation that recognizes drag
 operations. The drag operation itself can be tracked throught the
@@ -13131,6 +16074,33 @@ Y coordinate for the drag start point
 # Returns
 
 `true` if the gesture is active
+<!-- trait GestureDragExt::fn connect_drag_begin -->
+This signal is emitted whenever dragging starts.
+
+Feature: `v3_14`
+
+## `start_x`
+X coordinate, relative to the widget allocation
+## `start_y`
+Y coordinate, relative to the widget allocation
+<!-- trait GestureDragExt::fn connect_drag_end -->
+This signal is emitted whenever the dragging is finished.
+
+Feature: `v3_14`
+
+## `offset_x`
+X offset, relative to the start point
+## `offset_y`
+Y offset, relative to the start point
+<!-- trait GestureDragExt::fn connect_drag_update -->
+This signal is emitted whenever the dragging point moves.
+
+Feature: `v3_14`
+
+## `offset_x`
+X offset, relative to the start point
+## `offset_y`
+Y offset, relative to the start point
 <!-- struct GestureLongPress -->
 `GestureLongPress` is a `Gesture` implementation able to recognize
 long presses, triggering the `GestureLongPress::pressed` after the
@@ -13164,6 +16134,22 @@ a `Widget`
 # Returns
 
 a newly created `GestureLongPress`
+<!-- trait GestureLongPressExt::fn connect_cancelled -->
+This signal is emitted whenever a press moved too far, or was released
+before `GestureLongPress::pressed` happened.
+
+Feature: `v3_14`
+
+<!-- trait GestureLongPressExt::fn connect_pressed -->
+This signal is emitted whenever a press goes unmoved/unreleased longer than
+what the GTK+ defaults tell.
+
+Feature: `v3_14`
+
+## `x`
+the X coordinate where the press happened, relative to the widget allocation
+## `y`
+the Y coordinate where the press happened, relative to the widget allocation
 <!-- struct GestureMultiPress -->
 `GestureMultiPress` is a `Gesture` implementation able to recognize
 multiple clicks on a nearby zone, which can be listened for through the
@@ -13230,6 +16216,37 @@ Feature: `v3_14`
 
 ## `rect`
 rectangle to receive coordinates on
+<!-- trait GestureMultiPressExt::fn connect_pressed -->
+This signal is emitted whenever a button or touch press happens.
+
+Feature: `v3_14`
+
+## `n_press`
+how many touch/button presses happened with this one
+## `x`
+The X coordinate, in widget allocation coordinates
+## `y`
+The Y coordinate, in widget allocation coordinates
+<!-- trait GestureMultiPressExt::fn connect_released -->
+This signal is emitted when a button or touch is released. `n_press`
+will report the number of press that is paired to this event, note
+that `GestureMultiPress::stopped` may have been emitted between the
+press and its release, `n_press` will only start over at the next press.
+
+Feature: `v3_14`
+
+## `n_press`
+number of press that is paired with this release
+## `x`
+The X coordinate, in widget allocation coordinates
+## `y`
+The Y coordinate, in widget allocation coordinates
+<!-- trait GestureMultiPressExt::fn connect_stopped -->
+This signal is emitted whenever any time/distance threshold has
+been exceeded.
+
+Feature: `v3_14`
+
 <!-- struct GesturePan -->
 `GesturePan` is a `Gesture` implementation able to recognize
 pan gestures, those are drags that are locked to happen along one
@@ -13288,6 +16305,26 @@ Feature: `v3_14`
 
 ## `orientation`
 expected orientation
+<!-- trait GesturePanExt::fn connect_pan -->
+This signal is emitted once a panning gesture along the
+expected axis is detected.
+
+Feature: `v3_14`
+
+## `direction`
+current direction of the pan gesture
+## `offset`
+Offset along the gesture orientation
+<!-- trait GesturePanExt::fn get_property_orientation -->
+The expected orientation of pan gestures.
+
+Feature: `v3_14`
+
+<!-- trait GesturePanExt::fn set_property_orientation -->
+The expected orientation of pan gestures.
+
+Feature: `v3_14`
+
 <!-- struct GestureRotate -->
 `GestureRotate` is a `Gesture` implementation able to recognize
 2-finger rotations, whenever the angle between both handled sequences
@@ -13329,6 +16366,16 @@ Feature: `v3_14`
 # Returns
 
 the angle delta in radians
+<!-- trait GestureRotateExt::fn connect_angle_changed -->
+This signal is emitted when the angle between both tracked points
+changes.
+
+Feature: `v3_14`
+
+## `angle`
+Current angle in radians
+## `angle_delta`
+Difference with the starting angle, in radians
 <!-- struct GestureSingle -->
 `GestureSingle` is a subclass of `Gesture`, optimized (although
 not restricted) for dealing with mouse and single-touch gestures. Under
@@ -13433,6 +16480,38 @@ Feature: `v3_14`
 
 ## `touch_only`
 whether `self` handles only touch events
+<!-- trait GestureSingleExt::fn get_property_button -->
+Mouse button number to listen to, or 0 to listen for any button.
+
+Feature: `v3_14`
+
+<!-- trait GestureSingleExt::fn set_property_button -->
+Mouse button number to listen to, or 0 to listen for any button.
+
+Feature: `v3_14`
+
+<!-- trait GestureSingleExt::fn get_property_exclusive -->
+Whether the gesture is exclusive. Exclusive gestures only listen to pointer
+and pointer emulated events.
+
+Feature: `v3_14`
+
+<!-- trait GestureSingleExt::fn set_property_exclusive -->
+Whether the gesture is exclusive. Exclusive gestures only listen to pointer
+and pointer emulated events.
+
+Feature: `v3_14`
+
+<!-- trait GestureSingleExt::fn get_property_touch-only -->
+Whether the gesture handles only touch events.
+
+Feature: `v3_14`
+
+<!-- trait GestureSingleExt::fn set_property_touch-only -->
+Whether the gesture handles only touch events.
+
+Feature: `v3_14`
+
 <!-- struct GestureSwipe -->
 `GestureSwipe` is a `Gesture` implementation able to recognize
 swipes, after a press/move/.../move/release sequence happens, the
@@ -13484,6 +16563,16 @@ return value for the velocity in the Y axis, in pixels/sec
 # Returns
 
 whether velocity could be calculated
+<!-- trait GestureSwipeExt::fn connect_swipe -->
+This signal is emitted when the recognized gesture is finished, velocity
+and direction are a product of previously recorded events.
+
+Feature: `v3_14`
+
+## `velocity_x`
+velocity in the X axis, in pixels/sec
+## `velocity_y`
+velocity in the Y axis, in pixels/sec
 <!-- struct GestureZoom -->
 `GestureZoom` is a `Gesture` implementation able to recognize
 pinch/zoom gestures, whenever the distance between both tracked
@@ -13526,6 +16615,14 @@ Feature: `v3_14`
 # Returns
 
 the scale delta
+<!-- trait GestureZoomExt::fn connect_scale_changed -->
+This signal is emitted whenever the distance between both tracked
+sequences changes.
+
+Feature: `v3_14`
+
+## `scale`
+Scale delta, taking the initial state as 1:1
 <!-- struct Grid -->
 `Grid` is a container which arranges its child widgets in
 rows and columns. It is a very similar to `Table` and `Box`,
@@ -13913,7 +17010,7 @@ including close, maximize, and minimize.
 Feature: `v3_10`
 
 ## `setting`
-`true` to show standard widow decorations
+`true` to show standard window decorations
 <!-- trait HeaderBarExt::fn set_subtitle -->
 Sets the subtitle of the `HeaderBar`. The title should give a user
 an additional detail to help him identify the current view.
@@ -13935,6 +17032,62 @@ Feature: `v3_10`
 
 ## `title`
 a title, or `None`
+<!-- trait HeaderBarExt::fn get_property_decoration-layout -->
+The decoration layout for buttons. If this property is
+not set, the `Settings:gtk-decoration-layout` setting
+is used.
+
+See `HeaderBarExt::set_decoration_layout` for information
+about the format of this string.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn set_property_decoration-layout -->
+The decoration layout for buttons. If this property is
+not set, the `Settings:gtk-decoration-layout` setting
+is used.
+
+See `HeaderBarExt::set_decoration_layout` for information
+about the format of this string.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn get_property_decoration-layout-set -->
+Set to `true` if `HeaderBar:decoration-layout` is set.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn set_property_decoration-layout-set -->
+Set to `true` if `HeaderBar:decoration-layout` is set.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn get_property_has-subtitle -->
+If `true`, reserve space for a subtitle, even if none
+is currently set.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn set_property_has-subtitle -->
+If `true`, reserve space for a subtitle, even if none
+is currently set.
+
+Feature: `v3_12`
+
+<!-- trait HeaderBarExt::fn get_property_show-close-button -->
+Whether to show window decorations.
+
+Which buttons are actually shown and where is determined
+by the `HeaderBar:decoration-layout` property, and by
+the state of the window (e.g. a close button will not be
+shown if the window can't be closed).
+<!-- trait HeaderBarExt::fn set_property_show-close-button -->
+Whether to show window decorations.
+
+Which buttons are actually shown and where is determined
+by the `HeaderBar:decoration-layout` property, and by
+the state of the window (e.g. a close button will not be
+shown if the window can't be closed).
 <!-- struct IMContext -->
 `IMContext` defines the interface for GTK+ input methods. An input method
 is used by GTK+ text input widgets like `Entry` to map from key events to
@@ -14141,6 +17294,45 @@ is TRUE), then the IM context may use some other method to display
 feedback, such as displaying it in a child of the root window.
 ## `use_preedit`
 whether the IM context should use the preedit string.
+<!-- trait IMContextExt::fn connect_commit -->
+The ::commit signal is emitted when a complete input sequence
+has been entered by the user. This can be a single character
+immediately after a key press or the final result of preediting.
+## `str`
+the completed character(s) entered by the user
+<!-- trait IMContextExt::fn connect_delete_surrounding -->
+The ::delete-surrounding signal is emitted when the input method
+needs to delete all or part of the context surrounding the cursor.
+## `offset`
+the character offset from the cursor position of the text
+ to be deleted. A negative value indicates a position before
+ the cursor.
+## `n_chars`
+the number of characters to be deleted
+
+# Returns
+
+`true` if the signal was handled.
+<!-- trait IMContextExt::fn connect_preedit_changed -->
+The ::preedit-changed signal is emitted whenever the preedit sequence
+currently being entered has changed. It is also emitted at the end of
+a preedit sequence, in which case
+`IMContextExt::get_preedit_string` returns the empty string.
+<!-- trait IMContextExt::fn connect_preedit_end -->
+The ::preedit-end signal is emitted when a preediting sequence
+has been completed or canceled.
+<!-- trait IMContextExt::fn connect_preedit_start -->
+The ::preedit-start signal is emitted when a new preediting sequence
+starts.
+<!-- trait IMContextExt::fn connect_retrieve_surrounding -->
+The ::retrieve-surrounding signal is emitted when the input method
+requires the context surrounding the cursor. The callback should set
+the input method surrounding context by calling the
+`IMContextExt::set_surrounding` method.
+
+# Returns
+
+`true` if the signal was handled.
 <!-- struct IMMulticontext -->
 
 
@@ -15802,6 +18994,10 @@ array of
  directories that are searched for icon themes
 ## `n_elements`
 number of elements in `path`.
+<!-- trait IconThemeExt::fn connect_changed -->
+Emitted when the current icon theme is switched or GTK+ detects
+that a change has occurred in the contents of the current
+icon theme.
 <!-- enum IconThemeError -->
 Error codes for `IconTheme` operations.
 <!-- enum IconThemeError::variant NotFound -->
@@ -16392,6 +19588,207 @@ method sets `IconView:reorderable` to `false`.
 <!-- trait IconViewExt::fn unset_model_drag_source -->
 Undoes the effect of `IconView::enable_model_drag_source`. Calling this
 method sets `IconView:reorderable` to `false`.
+<!-- trait IconViewExt::fn connect_activate_cursor_item -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user activates the currently
+focused item.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control activation
+programmatically.
+
+The default bindings for this signal are Space, Return and Enter.
+<!-- trait IconViewExt::fn connect_item_activated -->
+The ::item-activated signal is emitted when the method
+`IconViewExt::item_activated` is called, when the user double
+clicks an item with the "activate-on-single-click" property set
+to `false`, or when the user single clicks an item when the
+"activate-on-single-click" property set to `true`. It is also
+emitted when a non-editable item is selected and one of the keys:
+Space, Return or Enter is pressed.
+## `path`
+the `TreePath` for the activated item
+<!-- trait IconViewExt::fn connect_move_cursor -->
+The ::move-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a cursor movement.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal include
+- Arrow keys which move by individual steps
+- Home/End keys which move to the first/last item
+- PageUp/PageDown which move by "pages"
+All of these will extend the selection when combined with
+the Shift modifier.
+## `step`
+the granularity of the move, as a `MovementStep`
+## `count`
+the number of `step` units to move
+<!-- trait IconViewExt::fn connect_select_all -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user selects all items.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control selection
+programmatically.
+
+The default binding for this signal is Ctrl-a.
+<!-- trait IconViewExt::fn connect_select_cursor_item -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user selects the item that is currently
+focused.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control selection
+programmatically.
+
+There is no default binding for this signal.
+<!-- trait IconViewExt::fn connect_selection_changed -->
+The ::selection-changed signal is emitted when the selection
+(i.e. the set of selected items) changes.
+<!-- trait IconViewExt::fn connect_toggle_cursor_item -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user toggles whether the currently
+focused item is selected or not. The exact effect of this
+depend on the selection mode.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control selection
+programmatically.
+
+There is no default binding for this signal is Ctrl-Space.
+<!-- trait IconViewExt::fn connect_unselect_all -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user unselects all items.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control selection
+programmatically.
+
+The default binding for this signal is Ctrl-Shift-a.
+<!-- trait IconViewExt::fn get_property_activate-on-single-click -->
+The activate-on-single-click property specifies whether the "item-activated" signal
+will be emitted after a single click.
+
+Feature: `v3_8`
+
+<!-- trait IconViewExt::fn set_property_activate-on-single-click -->
+The activate-on-single-click property specifies whether the "item-activated" signal
+will be emitted after a single click.
+
+Feature: `v3_8`
+
+<!-- trait IconViewExt::fn get_property_cell-area -->
+The `CellArea` used to layout cell renderers for this view.
+
+If no area is specified when creating the icon view with `IconView::new_with_area`
+a `CellAreaBox` will be used.
+<!-- trait IconViewExt::fn set_property_cell-area -->
+The `CellArea` used to layout cell renderers for this view.
+
+If no area is specified when creating the icon view with `IconView::new_with_area`
+a `CellAreaBox` will be used.
+<!-- trait IconViewExt::fn get_property_column-spacing -->
+The column-spacing property specifies the space which is inserted between
+the columns of the icon view.
+<!-- trait IconViewExt::fn set_property_column-spacing -->
+The column-spacing property specifies the space which is inserted between
+the columns of the icon view.
+<!-- trait IconViewExt::fn get_property_columns -->
+The columns property contains the number of the columns in which the
+items should be displayed. If it is -1, the number of columns will
+be chosen automatically to fill the available area.
+<!-- trait IconViewExt::fn set_property_columns -->
+The columns property contains the number of the columns in which the
+items should be displayed. If it is -1, the number of columns will
+be chosen automatically to fill the available area.
+<!-- trait IconViewExt::fn get_property_item-orientation -->
+The item-orientation property specifies how the cells (i.e. the icon and
+the text) of the item are positioned relative to each other.
+<!-- trait IconViewExt::fn set_property_item-orientation -->
+The item-orientation property specifies how the cells (i.e. the icon and
+the text) of the item are positioned relative to each other.
+<!-- trait IconViewExt::fn get_property_item-padding -->
+The item-padding property specifies the padding around each
+of the icon view's item.
+<!-- trait IconViewExt::fn set_property_item-padding -->
+The item-padding property specifies the padding around each
+of the icon view's item.
+<!-- trait IconViewExt::fn get_property_item-width -->
+The item-width property specifies the width to use for each item.
+If it is set to -1, the icon view will automatically determine a
+suitable item size.
+<!-- trait IconViewExt::fn set_property_item-width -->
+The item-width property specifies the width to use for each item.
+If it is set to -1, the icon view will automatically determine a
+suitable item size.
+<!-- trait IconViewExt::fn get_property_margin -->
+The margin property specifies the space which is inserted
+at the edges of the icon view.
+<!-- trait IconViewExt::fn set_property_margin -->
+The margin property specifies the space which is inserted
+at the edges of the icon view.
+<!-- trait IconViewExt::fn get_property_markup-column -->
+The ::markup-column property contains the number of the model column
+containing markup information to be displayed. The markup column must be
+of type `G_TYPE_STRING`. If this property and the :text-column property
+are both set to column numbers, it overrides the text column.
+If both are set to -1, no texts are displayed.
+<!-- trait IconViewExt::fn set_property_markup-column -->
+The ::markup-column property contains the number of the model column
+containing markup information to be displayed. The markup column must be
+of type `G_TYPE_STRING`. If this property and the :text-column property
+are both set to column numbers, it overrides the text column.
+If both are set to -1, no texts are displayed.
+<!-- trait IconViewExt::fn get_property_pixbuf-column -->
+The ::pixbuf-column property contains the number of the model column
+containing the pixbufs which are displayed. The pixbuf column must be
+of type `GDK_TYPE_PIXBUF`. Setting this property to -1 turns off the
+display of pixbufs.
+<!-- trait IconViewExt::fn set_property_pixbuf-column -->
+The ::pixbuf-column property contains the number of the model column
+containing the pixbufs which are displayed. The pixbuf column must be
+of type `GDK_TYPE_PIXBUF`. Setting this property to -1 turns off the
+display of pixbufs.
+<!-- trait IconViewExt::fn get_property_reorderable -->
+The reorderable property specifies if the items can be reordered
+by DND.
+<!-- trait IconViewExt::fn set_property_reorderable -->
+The reorderable property specifies if the items can be reordered
+by DND.
+<!-- trait IconViewExt::fn get_property_row-spacing -->
+The row-spacing property specifies the space which is inserted between
+the rows of the icon view.
+<!-- trait IconViewExt::fn set_property_row-spacing -->
+The row-spacing property specifies the space which is inserted between
+the rows of the icon view.
+<!-- trait IconViewExt::fn get_property_selection-mode -->
+The ::selection-mode property specifies the selection mode of
+icon view. If the mode is `SelectionMode::Multiple`, rubberband selection
+is enabled, for the other modes, only keyboard selection is possible.
+<!-- trait IconViewExt::fn set_property_selection-mode -->
+The ::selection-mode property specifies the selection mode of
+icon view. If the mode is `SelectionMode::Multiple`, rubberband selection
+is enabled, for the other modes, only keyboard selection is possible.
+<!-- trait IconViewExt::fn get_property_spacing -->
+The spacing property specifies the space which is inserted between
+the cells (i.e. the icon and the text) of an item.
+<!-- trait IconViewExt::fn set_property_spacing -->
+The spacing property specifies the space which is inserted between
+the cells (i.e. the icon and the text) of an item.
+<!-- trait IconViewExt::fn get_property_text-column -->
+The ::text-column property contains the number of the model column
+containing the texts which are displayed. The text column must be
+of type `G_TYPE_STRING`. If this property and the :markup-column
+property are both set to -1, no texts are displayed.
+<!-- trait IconViewExt::fn set_property_text-column -->
+The ::text-column property contains the number of the model column
+containing the texts which are displayed. The text column must be
+of type `G_TYPE_STRING`. If this property and the :markup-column
+property are both set to -1, no texts are displayed.
 <!-- enum IconViewDropPosition -->
 An enum for determining where a dropped item goes.
 <!-- enum IconViewDropPosition::variant NoDrop -->
@@ -16566,7 +19963,7 @@ If the icon name isn’t known, a “broken image” icon will be
 displayed instead. If the current icon theme is changed, the icon
 will be updated appropriately.
 ## `icon_name`
-an icon name
+an icon name or `None`
 ## `size`
 a stock icon size (`IconSize`)
 
@@ -16778,7 +20175,7 @@ an icon size (`IconSize`)
 <!-- trait ImageExt::fn set_from_icon_name -->
 See `Image::new_from_icon_name` for details.
 ## `icon_name`
-an icon name
+an icon name or `None`
 ## `size`
 an icon size (`IconSize`)
 <!-- trait ImageExt::fn set_from_icon_set -->
@@ -16815,13 +20212,75 @@ See `Image::new_from_surface` for details.
 Feature: `v3_10`
 
 ## `surface`
-a cairo_surface_t
+a cairo_surface_t or `None`
 <!-- trait ImageExt::fn set_pixel_size -->
 Sets the pixel size to use for named icons. If the pixel size is set
 to a value != -1, it is used instead of the icon size set by
 `ImageExt::set_from_icon_name`.
 ## `pixel_size`
 the new pixel size
+<!-- trait ImageExt::fn get_property_gicon -->
+The GIcon displayed in the `Image`. For themed icons,
+If the icon theme is changed, the image will be updated
+automatically.
+<!-- trait ImageExt::fn set_property_gicon -->
+The GIcon displayed in the `Image`. For themed icons,
+If the icon theme is changed, the image will be updated
+automatically.
+<!-- trait ImageExt::fn get_property_icon-name -->
+The name of the icon in the icon theme. If the icon theme is
+changed, the image will be updated automatically.
+<!-- trait ImageExt::fn set_property_icon-name -->
+The name of the icon in the icon theme. If the icon theme is
+changed, the image will be updated automatically.
+<!-- trait ImageExt::fn get_property_icon-set -->
+
+# Deprecated since 3.10
+
+Use `Image:icon-name` instead.
+<!-- trait ImageExt::fn set_property_icon-set -->
+
+# Deprecated since 3.10
+
+Use `Image:icon-name` instead.
+<!-- trait ImageExt::fn get_property_pixel-size -->
+The "pixel-size" property can be used to specify a fixed size
+overriding the `Image:icon-size` property for images of type
+`ImageType::IconName`.
+<!-- trait ImageExt::fn set_property_pixel-size -->
+The "pixel-size" property can be used to specify a fixed size
+overriding the `Image:icon-size` property for images of type
+`ImageType::IconName`.
+<!-- trait ImageExt::fn get_property_resource -->
+A path to a resource file to display.
+
+Feature: `v3_8`
+
+<!-- trait ImageExt::fn set_property_resource -->
+A path to a resource file to display.
+
+Feature: `v3_8`
+
+<!-- trait ImageExt::fn get_property_stock -->
+
+# Deprecated since 3.10
+
+Use `Image:icon-name` instead.
+<!-- trait ImageExt::fn set_property_stock -->
+
+# Deprecated since 3.10
+
+Use `Image:icon-name` instead.
+<!-- trait ImageExt::fn get_property_use-fallback -->
+Whether the icon displayed in the `Image` will use
+standard icon names fallback. The value of this property
+is only relevant for images of type `ImageType::IconName`
+and `ImageType::Gicon`.
+<!-- trait ImageExt::fn set_property_use-fallback -->
+Whether the icon displayed in the `Image` will use
+standard icon names fallback. The value of this property
+is only relevant for images of type `ImageType::IconName`
+and `ImageType::Gicon`.
 <!-- struct ImageMenuItem -->
 `[Deprecated since 3.10]` A `ImageMenuItem` is a menu item which has an icon next to the text label.
 
@@ -17028,6 +20487,60 @@ stock id to select the stock item for the item.
 
 ## `use_stock`
 `true` if the menuitem should use a stock item
+<!-- trait ImageMenuItemExt::fn set_property_accel-group -->
+The Accel Group to use for stock accelerator keys
+
+# Deprecated since 3.10
+
+Use `WidgetExt::add_accelerator` instead
+<!-- trait ImageMenuItemExt::fn get_property_always-show-image -->
+If `true`, the menu item will always show the image, if available.
+
+Use this property only if the menuitem would be useless or hard to use
+without the image.
+
+# Deprecated since 3.10
+
+Use a `MenuItem` containing a `Box` with
+ a `AccelLabel` and a `Image` instead
+<!-- trait ImageMenuItemExt::fn set_property_always-show-image -->
+If `true`, the menu item will always show the image, if available.
+
+Use this property only if the menuitem would be useless or hard to use
+without the image.
+
+# Deprecated since 3.10
+
+Use a `MenuItem` containing a `Box` with
+ a `AccelLabel` and a `Image` instead
+<!-- trait ImageMenuItemExt::fn get_property_image -->
+Child widget to appear next to the menu text.
+
+# Deprecated since 3.10
+
+Use a `MenuItem` containing a `Box` with
+ a `AccelLabel` and a `Image` instead
+<!-- trait ImageMenuItemExt::fn set_property_image -->
+Child widget to appear next to the menu text.
+
+# Deprecated since 3.10
+
+Use a `MenuItem` containing a `Box` with
+ a `AccelLabel` and a `Image` instead
+<!-- trait ImageMenuItemExt::fn get_property_use-stock -->
+If `true`, the label set in the menuitem is used as a
+stock id to select the stock item for the item.
+
+# Deprecated since 3.10
+
+Use a named icon from the `IconTheme` instead
+<!-- trait ImageMenuItemExt::fn set_property_use-stock -->
+If `true`, the label set in the menuitem is used as a
+stock id to select the stock item for the item.
+
+# Deprecated since 3.10
+
+Use a named icon from the `IconTheme` instead
 <!-- enum ImageType -->
 Describes the image data representation used by a `Image`. If you
 want to get the image from the widget, you can only get the
@@ -17082,7 +20595,7 @@ GtkWidget *widget;
 GtkInfoBar *bar;
 
 widget = gtk_info_bar_new ();
-bar = GTK_INFO_BAR (bar);
+bar = GTK_INFO_BAR (widget);
 
 gtk_widget_set_no_show_all (widget, TRUE);
 message_label = gtk_label_new ("");
@@ -17249,6 +20762,37 @@ Feature: `v3_10`
 
 ## `setting`
 `true` to include a close button
+<!-- trait InfoBarExt::fn connect_close -->
+The ::close signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user uses a keybinding to dismiss
+the info bar.
+
+The default binding for this signal is the Escape key.
+<!-- trait InfoBarExt::fn connect_response -->
+Emitted when an action widget is clicked or the application programmer
+calls `DialogExt::response`. The `response_id` depends on which action
+widget was clicked.
+## `response_id`
+the response ID
+<!-- trait InfoBarExt::fn get_property_message-type -->
+The type of the message.
+
+The type may be used to determine the appearance of the info bar.
+<!-- trait InfoBarExt::fn set_property_message-type -->
+The type of the message.
+
+The type may be used to determine the appearance of the info bar.
+<!-- trait InfoBarExt::fn get_property_show-close-button -->
+Whether to include a standard close button.
+
+Feature: `v3_10`
+
+<!-- trait InfoBarExt::fn set_property_show-close-button -->
+Whether to include a standard close button.
+
+Feature: `v3_10`
+
 <!-- enum InputPurpose -->
 Describes primary purpose of the input widget. This information is
 useful for on-screen keyboards and similar input methods to decide
@@ -17909,18 +21453,238 @@ Feature: `v3_16`
 
 ## `yalign`
 the new yalign value, between 0 and 1
-<!-- struct Layout -->
-`Layout` is similar to `DrawingArea` in that it’s a “blank slate”
-and doesn’t do anything but paint a blank background by default. It's
-different in that it supports scrolling natively (you can add it to a
-`ScrolledWindow`), and it can contain child widgets, since it’s a
-`Container`. However if you’re just going to draw, a `DrawingArea`
-is a better choice since it has lower overhead.
+<!-- trait LabelExt::fn connect_activate_current_link -->
+A [keybinding signal][`BindingSignal`]
+which gets emitted when the user activates a link in the label.
 
-When handling expose events on a `Layout`, you must draw to
-GTK_LAYOUT (layout)->bin_window, rather than to
-GTK_WIDGET (layout)->window, as you would for a drawing
-area.
+Applications may also emit the signal with `g_signal_emit_by_name`
+if they need to control activation of URIs programmatically.
+
+The default bindings for this signal are all forms of the Enter key.
+<!-- trait LabelExt::fn connect_activate_link -->
+The signal which gets emitted to activate a URI.
+Applications may connect to it to override the default behaviour,
+which is to call `gtk_show_uri_on_window`.
+## `uri`
+the URI that is activated
+
+# Returns
+
+`true` if the link has been activated
+<!-- trait LabelExt::fn connect_copy_clipboard -->
+The ::copy-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to copy the selection to the clipboard.
+
+The default binding for this signal is Ctrl-c.
+<!-- trait LabelExt::fn connect_move_cursor -->
+The ::move-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a cursor movement.
+If the cursor is not visible in `entry`, this signal causes
+the viewport to be moved instead.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal come in two variants,
+the variant with the Shift modifier extends the selection,
+the variant without the Shift modifer does not.
+There are too many key combinations to list them all here.
+- Arrow keys move by individual characters/lines
+- Ctrl-arrow key combinations move by words/paragraphs
+- Home/End keys move to the ends of the buffer
+## `step`
+the granularity of the move, as a `MovementStep`
+## `count`
+the number of `step` units to move
+## `extend_selection`
+`true` if the move should extend the selection
+<!-- trait LabelExt::fn connect_populate_popup -->
+The ::populate-popup signal gets emitted before showing the
+context menu of the label. Note that only selectable labels
+have context menus.
+
+If you need to add items to the context menu, connect
+to this signal and append your menuitems to the `menu`.
+## `menu`
+the menu that is being populated
+<!-- trait LabelExt::fn get_property_angle -->
+The angle that the baseline of the label makes with the horizontal,
+in degrees, measured counterclockwise. An angle of 90 reads from
+from bottom to top, an angle of 270, from top to bottom. Ignored
+if the label is selectable.
+<!-- trait LabelExt::fn set_property_angle -->
+The angle that the baseline of the label makes with the horizontal,
+in degrees, measured counterclockwise. An angle of 90 reads from
+from bottom to top, an angle of 270, from top to bottom. Ignored
+if the label is selectable.
+<!-- trait LabelExt::fn get_property_ellipsize -->
+The preferred place to ellipsize the string, if the label does
+not have enough room to display the entire string, specified as a
+`pango::EllipsizeMode`.
+
+Note that setting this property to a value other than
+`pango::EllipsizeMode::None` has the side-effect that the label requests
+only enough space to display the ellipsis "...". In particular, this
+means that ellipsizing labels do not work well in notebook tabs, unless
+the `Notebook` tab-expand child property is set to `true`. Other ways
+to set a label's width are `WidgetExt::set_size_request` and
+`LabelExt::set_width_chars`.
+<!-- trait LabelExt::fn set_property_ellipsize -->
+The preferred place to ellipsize the string, if the label does
+not have enough room to display the entire string, specified as a
+`pango::EllipsizeMode`.
+
+Note that setting this property to a value other than
+`pango::EllipsizeMode::None` has the side-effect that the label requests
+only enough space to display the ellipsis "...". In particular, this
+means that ellipsizing labels do not work well in notebook tabs, unless
+the `Notebook` tab-expand child property is set to `true`. Other ways
+to set a label's width are `WidgetExt::set_size_request` and
+`LabelExt::set_width_chars`.
+<!-- trait LabelExt::fn get_property_label -->
+The contents of the label.
+
+If the string contains [Pango XML markup][PangoMarkupFormat], you will
+have to set the `Label:use-markup` property to `true` in order for the
+label to display the markup attributes. See also `LabelExt::set_markup`
+for a convenience function that sets both this property and the
+`Label:use-markup` property at the same time.
+
+If the string contains underlines acting as mnemonics, you will have to
+set the `Label:use-underline` property to `true` in order for the label
+to display them.
+<!-- trait LabelExt::fn set_property_label -->
+The contents of the label.
+
+If the string contains [Pango XML markup][PangoMarkupFormat], you will
+have to set the `Label:use-markup` property to `true` in order for the
+label to display the markup attributes. See also `LabelExt::set_markup`
+for a convenience function that sets both this property and the
+`Label:use-markup` property at the same time.
+
+If the string contains underlines acting as mnemonics, you will have to
+set the `Label:use-underline` property to `true` in order for the label
+to display them.
+<!-- trait LabelExt::fn get_property_lines -->
+The number of lines to which an ellipsized, wrapping label
+should be limited. This property has no effect if the
+label is not wrapping or ellipsized. Set this property to
+-1 if you don't want to limit the number of lines.
+
+Feature: `v3_10`
+
+<!-- trait LabelExt::fn set_property_lines -->
+The number of lines to which an ellipsized, wrapping label
+should be limited. This property has no effect if the
+label is not wrapping or ellipsized. Set this property to
+-1 if you don't want to limit the number of lines.
+
+Feature: `v3_10`
+
+<!-- trait LabelExt::fn get_property_max-width-chars -->
+The desired maximum width of the label, in characters. If this property
+is set to -1, the width will be calculated automatically.
+
+See the section on [text layout][label-text-layout]
+for details of how `Label:width-chars` and `Label:max-width-chars`
+determine the width of ellipsized and wrapped labels.
+<!-- trait LabelExt::fn set_property_max-width-chars -->
+The desired maximum width of the label, in characters. If this property
+is set to -1, the width will be calculated automatically.
+
+See the section on [text layout][label-text-layout]
+for details of how `Label:width-chars` and `Label:max-width-chars`
+determine the width of ellipsized and wrapped labels.
+<!-- trait LabelExt::fn get_property_single-line-mode -->
+Whether the label is in single line mode. In single line mode,
+the height of the label does not depend on the actual text, it
+is always set to ascent + descent of the font. This can be an
+advantage in situations where resizing the label because of text
+changes would be distracting, e.g. in a statusbar.
+<!-- trait LabelExt::fn set_property_single-line-mode -->
+Whether the label is in single line mode. In single line mode,
+the height of the label does not depend on the actual text, it
+is always set to ascent + descent of the font. This can be an
+advantage in situations where resizing the label because of text
+changes would be distracting, e.g. in a statusbar.
+<!-- trait LabelExt::fn get_property_track-visited-links -->
+Set this property to `true` to make the label track which links
+have been visited. It will then apply the `StateFlags::Visited`
+when rendering this link, in addition to `StateFlags::Link`.
+<!-- trait LabelExt::fn set_property_track-visited-links -->
+Set this property to `true` to make the label track which links
+have been visited. It will then apply the `StateFlags::Visited`
+when rendering this link, in addition to `StateFlags::Link`.
+<!-- trait LabelExt::fn get_property_width-chars -->
+The desired width of the label, in characters. If this property is set to
+-1, the width will be calculated automatically.
+
+See the section on [text layout][label-text-layout]
+for details of how `Label:width-chars` and `Label:max-width-chars`
+determine the width of ellipsized and wrapped labels.
+<!-- trait LabelExt::fn set_property_width-chars -->
+The desired width of the label, in characters. If this property is set to
+-1, the width will be calculated automatically.
+
+See the section on [text layout][label-text-layout]
+for details of how `Label:width-chars` and `Label:max-width-chars`
+determine the width of ellipsized and wrapped labels.
+<!-- trait LabelExt::fn get_property_wrap-mode -->
+If line wrapping is on (see the `Label:wrap` property) this controls
+how the line wrapping is done. The default is `pango::WrapMode::Word`, which
+means wrap on word boundaries.
+<!-- trait LabelExt::fn set_property_wrap-mode -->
+If line wrapping is on (see the `Label:wrap` property) this controls
+how the line wrapping is done. The default is `pango::WrapMode::Word`, which
+means wrap on word boundaries.
+<!-- trait LabelExt::fn get_property_xalign -->
+The xalign property determines the horizontal aligment of the label text
+inside the labels size allocation. Compare this to `Widget:halign`,
+which determines how the labels size allocation is positioned in the
+space available for the label.
+
+Feature: `v3_16`
+
+<!-- trait LabelExt::fn set_property_xalign -->
+The xalign property determines the horizontal aligment of the label text
+inside the labels size allocation. Compare this to `Widget:halign`,
+which determines how the labels size allocation is positioned in the
+space available for the label.
+
+Feature: `v3_16`
+
+<!-- trait LabelExt::fn get_property_yalign -->
+The yalign property determines the vertical aligment of the label text
+inside the labels size allocation. Compare this to `Widget:valign`,
+which determines how the labels size allocation is positioned in the
+space available for the label.
+
+Feature: `v3_16`
+
+<!-- trait LabelExt::fn set_property_yalign -->
+The yalign property determines the vertical aligment of the label text
+inside the labels size allocation. Compare this to `Widget:valign`,
+which determines how the labels size allocation is positioned in the
+space available for the label.
+
+Feature: `v3_16`
+
+<!-- struct Layout -->
+`Layout` is similar to `DrawingArea` in that it’s a “blank slate” and
+doesn’t do anything except paint a blank background by default. It’s
+different in that it supports scrolling natively due to implementing
+`Scrollable`, and can contain child widgets since it’s a `Container`.
+
+If you just want to draw, a `DrawingArea` is a better choice since it has
+lower overhead. If you just need to position child widgets at specific
+points, then `Fixed` provides that functionality on its own.
+
+When handling expose events on a `Layout`, you must draw to the `gdk::Window`
+returned by `LayoutExt::get_bin_window`, rather than to the one returned by
+`WidgetExt::get_window` as you would for a `DrawingArea`.
 
 # Implements
 
@@ -18290,6 +22054,90 @@ Feature: `v3_6`
 ## `value`
 a value in the interval between
  `LevelBar:min-value` and `LevelBar:max-value`
+<!-- trait LevelBarExt::fn connect_offset_changed -->
+Emitted when an offset specified on the bar changes value as an
+effect to `LevelBarExt::add_offset_value` being called.
+
+The signal supports detailed connections; you can connect to the
+detailed signal "changed::x" in order to only receive callbacks when
+the value of offset "x" changes.
+
+Feature: `v3_6`
+
+## `name`
+the name of the offset that changed value
+<!-- trait LevelBarExt::fn get_property_inverted -->
+Level bars normally grow from top to bottom or left to right.
+Inverted level bars grow in the opposite direction.
+
+Feature: `v3_8`
+
+<!-- trait LevelBarExt::fn set_property_inverted -->
+Level bars normally grow from top to bottom or left to right.
+Inverted level bars grow in the opposite direction.
+
+Feature: `v3_8`
+
+<!-- trait LevelBarExt::fn get_property_max-value -->
+The `LevelBar:max-value` property determaxes the maximum value of
+the interval that can be displayed by the bar.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn set_property_max-value -->
+The `LevelBar:max-value` property determaxes the maximum value of
+the interval that can be displayed by the bar.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn get_property_min-value -->
+The `LevelBar:min-value` property determines the minimum value of
+the interval that can be displayed by the bar.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn set_property_min-value -->
+The `LevelBar:min-value` property determines the minimum value of
+the interval that can be displayed by the bar.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn get_property_mode -->
+The `LevelBar:mode` property determines the way `LevelBar`
+interprets the value properties to draw the level fill area.
+Specifically, when the value is `LevelBarMode::Continuous`,
+`LevelBar` will draw a single block representing the current value in
+that area; when the value is `LevelBarMode::Discrete`,
+the widget will draw a succession of separate blocks filling the
+draw area, with the number of blocks being equal to the units separating
+the integral roundings of `LevelBar:min-value` and `LevelBar:max-value`.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn set_property_mode -->
+The `LevelBar:mode` property determines the way `LevelBar`
+interprets the value properties to draw the level fill area.
+Specifically, when the value is `LevelBarMode::Continuous`,
+`LevelBar` will draw a single block representing the current value in
+that area; when the value is `LevelBarMode::Discrete`,
+the widget will draw a succession of separate blocks filling the
+draw area, with the number of blocks being equal to the units separating
+the integral roundings of `LevelBar:min-value` and `LevelBar:max-value`.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn get_property_value -->
+The `LevelBar:value` property determines the currently
+filled value of the level bar.
+
+Feature: `v3_6`
+
+<!-- trait LevelBarExt::fn set_property_value -->
+The `LevelBar:value` property determines the currently
+filled value of the level bar.
+
+Feature: `v3_6`
+
 <!-- enum LevelBarMode -->
 Describes how `LevelBar` contents should be rendered.
 Note that this enumeration could be extended with additional modes
@@ -18346,7 +22194,7 @@ to the constructor is used as a label for the widget.
 The URI bound to a `LinkButton` can be set specifically using
 `LinkButtonExt::set_uri`, and retrieved using `LinkButtonExt::get_uri`.
 
-By default, `LinkButton` calls `gtk_show_uri` when the button is
+By default, `LinkButton` calls `gtk_show_uri_on_window` when the button is
 clicked. This behaviour can be overridden by connecting to the
 `LinkButton::activate-link` signal and returning `true` from the
 signal handler.
@@ -18410,6 +22258,26 @@ Sets the “visited” state of the URI where the `LinkButton`
 points. See `LinkButtonExt::get_visited` for more details.
 ## `visited`
 the new “visited” state
+<!-- trait LinkButtonExt::fn connect_activate_link -->
+The ::activate-link signal is emitted each time the `LinkButton`
+has been clicked.
+
+The default handler will call `gtk_show_uri_on_window` with the URI stored inside
+the `LinkButton:uri` property.
+
+To override the default behavior, you can connect to the ::activate-link
+signal and stop the propagation of the signal by returning `true` from
+your handler.
+<!-- trait LinkButtonExt::fn get_property_uri -->
+The URI bound to this button.
+<!-- trait LinkButtonExt::fn set_property_uri -->
+The URI bound to this button.
+<!-- trait LinkButtonExt::fn get_property_visited -->
+The 'visited' state of this button. A visited link is drawn in a
+different color.
+<!-- trait LinkButtonExt::fn set_property_visited -->
+The 'visited' state of this button. A visited link is drawn in a
+different color.
 <!-- struct ListBox -->
 A `ListBox` is a vertical container that contains `ListBoxRow`
 children. These rows can by dynamically sorted and filtered, and
@@ -18777,6 +22645,49 @@ Feature: `v3_14`
 
 ## `row`
 the row to unselected
+<!-- trait ListBoxExt::fn connect_row_activated -->
+The ::row-activated signal is emitted when a row has been activated by the user.
+
+Feature: `v3_10`
+
+## `row`
+the activated row
+<!-- trait ListBoxExt::fn connect_row_selected -->
+The ::row-selected signal is emitted when a new row is selected, or
+(with a `None` `row`) when the selection is cleared.
+
+When the `box_` is using `SelectionMode::Multiple`, this signal will not
+give you the full picture of selection changes, and you should use
+the `ListBox::selected-rows-changed` signal instead.
+
+Feature: `v3_10`
+
+## `row`
+the selected row
+<!-- trait ListBoxExt::fn connect_select_all -->
+The ::select-all signal is a [keybinding signal][`BindingSignal`]
+which gets emitted to select all children of the box, if the selection
+mode permits it.
+
+The default bindings for this signal is Ctrl-a.
+
+Feature: `v3_14`
+
+<!-- trait ListBoxExt::fn connect_selected_rows_changed -->
+The ::selected-rows-changed signal is emitted when the
+set of selected rows changes.
+
+Feature: `v3_14`
+
+<!-- trait ListBoxExt::fn connect_unselect_all -->
+The ::unselect-all signal is a [keybinding signal][`BindingSignal`]
+which gets emitted to unselect all children of the box, if the selection
+mode permits it.
+
+The default bindings for this signal is Ctrl-Shift-a.
+
+Feature: `v3_14`
+
 <!-- struct ListBoxRow -->
 
 
@@ -18895,6 +22806,28 @@ Feature: `v3_14`
 
 ## `selectable`
 `true` to mark the row as selectable
+<!-- trait ListBoxRowExt::fn get_property_activatable -->
+The property determines whether the `ListBox::row-activated`
+signal will be emitted for this row.
+
+Feature: `v3_14`
+
+<!-- trait ListBoxRowExt::fn set_property_activatable -->
+The property determines whether the `ListBox::row-activated`
+signal will be emitted for this row.
+
+Feature: `v3_14`
+
+<!-- trait ListBoxRowExt::fn get_property_selectable -->
+The property determines whether this row can be selected.
+
+Feature: `v3_14`
+
+<!-- trait ListBoxRowExt::fn set_property_selectable -->
+The property determines whether this row can be selected.
+
+Feature: `v3_14`
+
 <!-- struct ListStore -->
 The `ListStore` object is a list model for use with a `TreeView`
 widget. It implements the `TreeModel` interface, and consequentialy,
@@ -19469,6 +23402,13 @@ Returns the title of the menu. See `MenuExt::set_title`.
 the title of the menu, or `None` if the menu
  has no title set on it. This string is owned by GTK+
  and should not be modified or freed.
+<!-- trait MenuExt::fn place_on_monitor -->
+Places `self` on the given monitor.
+
+Feature: `v3_22`
+
+## `monitor`
+the monitor to place the menu on
 <!-- trait MenuExt::fn popdown -->
 Removes the menu from the screen.
 <!-- trait MenuExt::fn popup -->
@@ -19744,6 +23684,201 @@ text as that menu item’s label.
 
 ## `title`
 a string containing the title for the menu
+<!-- trait MenuExt::fn connect_move_scroll -->
+## `scroll_type`
+a `ScrollType`
+<!-- trait MenuExt::fn connect_popped_up -->
+Emitted when the position of `menu` is finalized after being popped up
+using gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (), or
+gtk_menu_popup_at_pointer ().
+
+`menu` might be flipped over the anchor rectangle in order to keep it
+on-screen, in which case `flipped_x` and `flipped_y` will be set to `true`
+accordingly.
+
+`flipped_rect` is the ideal position of `menu` after any possible flipping,
+but before any possible sliding. `final_rect` is `flipped_rect`, but possibly
+translated in the case that flipping is still ineffective in keeping `menu`
+on-screen.
+
+![](popup-slide.png)
+
+The blue menu is `menu`'s ideal position, the green menu is `flipped_rect`,
+and the red menu is `final_rect`.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dx`, `Menu:rect-anchor-dy`, and
+`Menu:menu-type-hint`.
+
+Feature: `v3_22`
+
+## `flipped_rect`
+the position of `menu` after any possible
+ flipping or `None` if the backend can't obtain it
+## `final_rect`
+the final position of `menu` or `None` if the
+ backend can't obtain it
+## `flipped_x`
+`true` if the anchors were flipped horizontally
+## `flipped_y`
+`true` if the anchors were flipped vertically
+<!-- trait MenuExt::fn get_property_accel-group -->
+The accel group holding accelerators for the menu.
+<!-- trait MenuExt::fn set_property_accel-group -->
+The accel group holding accelerators for the menu.
+<!-- trait MenuExt::fn get_property_accel-path -->
+An accel path used to conveniently construct accel paths of child items.
+<!-- trait MenuExt::fn set_property_accel-path -->
+An accel path used to conveniently construct accel paths of child items.
+<!-- trait MenuExt::fn get_property_active -->
+The index of the currently selected menu item, or -1 if no
+menu item is selected.
+<!-- trait MenuExt::fn set_property_active -->
+The index of the currently selected menu item, or -1 if no
+menu item is selected.
+<!-- trait MenuExt::fn get_property_anchor-hints -->
+Positioning hints for aligning the menu relative to a rectangle.
+
+These hints determine how the menu should be positioned in the case that
+the menu would fall off-screen if placed in its ideal position.
+
+![](popup-flip.png)
+
+For example, `gdk::AnchorHints::FlipY` will replace `gdk::Gravity::NorthWest` with
+`gdk::Gravity::SouthWest` and vice versa if the menu extends beyond the
+bottom edge of the monitor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:rect-anchor-dx`,
+`Menu:rect-anchor-dy`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn set_property_anchor-hints -->
+Positioning hints for aligning the menu relative to a rectangle.
+
+These hints determine how the menu should be positioned in the case that
+the menu would fall off-screen if placed in its ideal position.
+
+![](popup-flip.png)
+
+For example, `gdk::AnchorHints::FlipY` will replace `gdk::Gravity::NorthWest` with
+`gdk::Gravity::SouthWest` and vice versa if the menu extends beyond the
+bottom edge of the monitor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:rect-anchor-dx`,
+`Menu:rect-anchor-dy`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn get_property_attach-widget -->
+The widget the menu is attached to. Setting this property attaches
+the menu without a ``GtkMenuDetachFunc``. If you need to use a detacher,
+use `MenuExt::attach_to_widget` directly.
+<!-- trait MenuExt::fn set_property_attach-widget -->
+The widget the menu is attached to. Setting this property attaches
+the menu without a ``GtkMenuDetachFunc``. If you need to use a detacher,
+use `MenuExt::attach_to_widget` directly.
+<!-- trait MenuExt::fn get_property_menu-type-hint -->
+The `gdk::WindowTypeHint` to use for the menu's `gdk::Window`.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dx`, `Menu:rect-anchor-dy`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn set_property_menu-type-hint -->
+The `gdk::WindowTypeHint` to use for the menu's `gdk::Window`.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dx`, `Menu:rect-anchor-dy`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn get_property_monitor -->
+The monitor the menu will be popped up on.
+<!-- trait MenuExt::fn set_property_monitor -->
+The monitor the menu will be popped up on.
+<!-- trait MenuExt::fn get_property_rect-anchor-dx -->
+Horizontal offset to apply to the menu, i.e. the rectangle or widget
+anchor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dy`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn set_property_rect-anchor-dx -->
+Horizontal offset to apply to the menu, i.e. the rectangle or widget
+anchor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dy`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn get_property_rect-anchor-dy -->
+Vertical offset to apply to the menu, i.e. the rectangle or widget anchor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dx`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn set_property_rect-anchor-dy -->
+Vertical offset to apply to the menu, i.e. the rectangle or widget anchor.
+
+See gtk_menu_popup_at_rect (), gtk_menu_popup_at_widget (),
+gtk_menu_popup_at_pointer (), `Menu:anchor-hints`,
+`Menu:rect-anchor-dx`, `Menu:menu-type-hint`, and `Menu::popped-up`.
+
+Feature: `v3_22`
+
+<!-- trait MenuExt::fn get_property_reserve-toggle-size -->
+A boolean that indicates whether the menu reserves space for
+toggles and icons, regardless of their actual presence.
+
+This property should only be changed from its default value
+for special-purposes such as tabular menus. Regular menus that
+are connected to a menu bar or context menus should reserve
+toggle space for consistency.
+<!-- trait MenuExt::fn set_property_reserve-toggle-size -->
+A boolean that indicates whether the menu reserves space for
+toggles and icons, regardless of their actual presence.
+
+This property should only be changed from its default value
+for special-purposes such as tabular menus. Regular menus that
+are connected to a menu bar or context menus should reserve
+toggle space for consistency.
+<!-- trait MenuExt::fn get_property_tearoff-state -->
+A boolean that indicates whether the menu is torn-off.
+
+# Deprecated since 3.10
+
+<!-- trait MenuExt::fn set_property_tearoff-state -->
+A boolean that indicates whether the menu is torn-off.
+
+# Deprecated since 3.10
+
+<!-- trait MenuExt::fn get_property_tearoff-title -->
+A title that may be displayed by the window manager when this
+menu is torn-off.
+
+# Deprecated since 3.10
+
+<!-- trait MenuExt::fn set_property_tearoff-title -->
+A title that may be displayed by the window manager when this
+menu is torn-off.
+
+# Deprecated since 3.10
+
 <!-- struct MenuBar -->
 The `MenuBar` is a subclass of `MenuShell` which contains one or
 more ``GtkMenuItems``. The result is a standard menu bar which can hold
@@ -19804,6 +23939,18 @@ a new `PackDirection`
 Sets how items should be packed inside a menubar.
 ## `pack_dir`
 a new `PackDirection`
+<!-- trait MenuBarExt::fn get_property_child-pack-direction -->
+The child pack direction of the menubar. It determines how
+the widgets contained in child menuitems are arranged.
+<!-- trait MenuBarExt::fn set_property_child-pack-direction -->
+The child pack direction of the menubar. It determines how
+the widgets contained in child menuitems are arranged.
+<!-- trait MenuBarExt::fn get_property_pack-direction -->
+The pack direction of the menubar. It determines how
+menuitems are arranged in the menubar.
+<!-- trait MenuBarExt::fn set_property_pack-direction -->
+The pack direction of the menubar. It determines how
+menuitems are arranged in the menubar.
 <!-- struct MenuButton -->
 The `MenuButton` widget is used to display a popup when clicked on.
 This popup can be provided either as a `Menu`, a `Popover` or an
@@ -20044,6 +24191,80 @@ Feature: `v3_12`
 
 ## `use_popover`
 `true` to construct a popover from the menu model
+<!-- trait MenuButtonExt::fn get_property_align-widget -->
+The `Widget` to use to align the menu with.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn set_property_align-widget -->
+The `Widget` to use to align the menu with.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn get_property_direction -->
+The `ArrowType` representing the direction in which the
+menu or popover will be popped out.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn set_property_direction -->
+The `ArrowType` representing the direction in which the
+menu or popover will be popped out.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn get_property_menu-model -->
+The `gio::MenuModel` from which the popup will be created.
+Depending on the `MenuButton:use-popover` property, that may
+be a menu or a popover.
+
+See `MenuButtonExt::set_menu_model` for the interaction with the
+`MenuButton:popup` property.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn set_property_menu-model -->
+The `gio::MenuModel` from which the popup will be created.
+Depending on the `MenuButton:use-popover` property, that may
+be a menu or a popover.
+
+See `MenuButtonExt::set_menu_model` for the interaction with the
+`MenuButton:popup` property.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn get_property_popover -->
+The `Popover` that will be popped up when the button is clicked.
+
+Feature: `v3_12`
+
+<!-- trait MenuButtonExt::fn set_property_popover -->
+The `Popover` that will be popped up when the button is clicked.
+
+Feature: `v3_12`
+
+<!-- trait MenuButtonExt::fn get_property_popup -->
+The `Menu` that will be popped up when the button is clicked.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn set_property_popup -->
+The `Menu` that will be popped up when the button is clicked.
+
+Feature: `v3_6`
+
+<!-- trait MenuButtonExt::fn get_property_use-popover -->
+Whether to construct a `Popover` from the menu model,
+or a `Menu`.
+
+Feature: `v3_12`
+
+<!-- trait MenuButtonExt::fn set_property_use-popover -->
+Whether to construct a `Popover` from the menu model,
+or a `Menu`.
+
+Feature: `v3_12`
+
 <!-- enum MenuDirectionType -->
 An enumeration representing directional movements within a menu.
 <!-- enum MenuDirectionType::variant Parent -->
@@ -20253,6 +24474,38 @@ the allocation to use as signal data.
 Emits the `MenuItem::toggle-size-request` signal on the given item.
 ## `requisition`
 the requisition to use as signal data.
+<!-- trait MenuItemExt::fn connect_activate -->
+Emitted when the item is activated.
+<!-- trait MenuItemExt::fn connect_activate_item -->
+Emitted when the item is activated, but also if the menu item has a
+submenu. For normal applications, the relevant signal is
+`MenuItem::activate`.
+<!-- trait MenuItemExt::fn get_property_accel-path -->
+Sets the accelerator path of the menu item, through which runtime
+changes of the menu item's accelerator caused by the user can be
+identified and saved to persistant storage.
+<!-- trait MenuItemExt::fn set_property_accel-path -->
+Sets the accelerator path of the menu item, through which runtime
+changes of the menu item's accelerator caused by the user can be
+identified and saved to persistant storage.
+<!-- trait MenuItemExt::fn get_property_label -->
+The text for the child label.
+<!-- trait MenuItemExt::fn set_property_label -->
+The text for the child label.
+<!-- trait MenuItemExt::fn get_property_right-justified -->
+Sets whether the menu item appears justified
+at the right side of a menu bar.
+<!-- trait MenuItemExt::fn set_property_right-justified -->
+Sets whether the menu item appears justified
+at the right side of a menu bar.
+<!-- trait MenuItemExt::fn get_property_submenu -->
+The submenu attached to the menu item, or `None` if it has none.
+<!-- trait MenuItemExt::fn set_property_submenu -->
+The submenu attached to the menu item, or `None` if it has none.
+<!-- trait MenuItemExt::fn get_property_use-underline -->
+`true` if underlines in the text indicate mnemonics.
+<!-- trait MenuItemExt::fn set_property_use-underline -->
+`true` if underlines in the text indicate mnemonics.
 <!-- struct MenuShell -->
 A `MenuShell` is the abstract base class used to derive the
 `Menu` and `MenuBar` subclasses.
@@ -20436,6 +24689,57 @@ See also `gdk_keyboard_grab`
 ## `take_focus`
 `true` if the menu shell should take the keyboard
  focus on popup
+<!-- trait MenuShellExt::fn connect_activate_current -->
+An action signal that activates the current menu item within
+the menu shell.
+## `force_hide`
+if `true`, hide the menu after activating the menu item
+<!-- trait MenuShellExt::fn connect_cancel -->
+An action signal which cancels the selection within the menu shell.
+Causes the `MenuShell::selection-done` signal to be emitted.
+<!-- trait MenuShellExt::fn connect_cycle_focus -->
+A keybinding signal which moves the focus in the
+given `direction`.
+## `direction`
+the direction to cycle in
+<!-- trait MenuShellExt::fn connect_deactivate -->
+This signal is emitted when a menu shell is deactivated.
+<!-- trait MenuShellExt::fn connect_insert -->
+The ::insert signal is emitted when a new `MenuItem` is added to
+a `MenuShell`. A separate signal is used instead of
+`Container`::add because of the need for an additional position
+parameter.
+
+The inverse of this signal is the `Container`::removed signal.
+## `child`
+the `MenuItem` that is being inserted
+## `position`
+the position at which the insert occurs
+<!-- trait MenuShellExt::fn connect_move_current -->
+An keybinding signal which moves the current menu item
+in the direction specified by `direction`.
+## `direction`
+the direction to move
+<!-- trait MenuShellExt::fn connect_move_selected -->
+The ::move-selected signal is emitted to move the selection to
+another item.
+## `distance`
++1 to move to the next item, -1 to move to the previous
+
+# Returns
+
+`true` to stop the signal emission, `false` to continue
+<!-- trait MenuShellExt::fn connect_selection_done -->
+This signal is emitted when a selection has been
+completed within a menu shell.
+<!-- trait MenuShellExt::fn get_property_take-focus -->
+A boolean that determines whether the menu and its submenus grab the
+keyboard focus. See `MenuShellExt::set_take_focus` and
+`MenuShellExt::get_take_focus`.
+<!-- trait MenuShellExt::fn set_property_take-focus -->
+A boolean that determines whether the menu and its submenus grab the
+keyboard focus. See `MenuShellExt::set_take_focus` and
+`MenuShellExt::get_take_focus`.
 <!-- struct MenuToolButton -->
 A `MenuToolButton` is a `ToolItem` that contains a button and
 a small additional button with an arrow. When clicked, the arrow
@@ -20518,6 +24822,15 @@ Sets the `Menu` that is popped up when the user clicks on the arrow.
 If `menu` is NULL, the arrow button becomes insensitive.
 ## `menu`
 the `Menu` associated with `MenuToolButton`
+<!-- trait MenuToolButtonExt::fn connect_show_menu -->
+The ::show-menu signal is emitted before the menu is shown.
+
+It can be used to populate the menu on demand, using
+`MenuToolButtonExt::set_menu`.
+
+Note that even if you populate the menu dynamically in this way,
+you must set an empty menu on the `MenuToolButton` beforehand,
+since the arrow is made insensitive if the menu is not set.
 <!-- struct MessageDialog -->
 `MessageDialog` presents a dialog with some message text. It’s simply a
 convenience widget; you could construct the equivalent of `MessageDialog`
@@ -20704,6 +25017,48 @@ Sets the text of the message dialog to be `str`, which is marked
 up with the [Pango text markup language][PangoMarkupFormat].
 ## `str`
 markup string (see [Pango markup format][PangoMarkupFormat])
+<!-- trait MessageDialogExt::fn get_property_image -->
+The image for this dialog.
+
+# Deprecated since 3.12
+
+Use `Dialog` to create dialogs with images
+<!-- trait MessageDialogExt::fn set_property_image -->
+The image for this dialog.
+
+# Deprecated since 3.12
+
+Use `Dialog` to create dialogs with images
+<!-- trait MessageDialogExt::fn get_property_message-area -->
+The `Box` that corresponds to the message area of this dialog. See
+`MessageDialogExt::get_message_area` for a detailed description of this
+area.
+<!-- trait MessageDialogExt::fn get_property_message-type -->
+The type of the message.
+<!-- trait MessageDialogExt::fn set_property_message-type -->
+The type of the message.
+<!-- trait MessageDialogExt::fn get_property_secondary-text -->
+The secondary text of the message dialog.
+<!-- trait MessageDialogExt::fn set_property_secondary-text -->
+The secondary text of the message dialog.
+<!-- trait MessageDialogExt::fn get_property_secondary-use-markup -->
+`true` if the secondary text of the dialog includes Pango markup.
+See `pango_parse_markup`.
+<!-- trait MessageDialogExt::fn set_property_secondary-use-markup -->
+`true` if the secondary text of the dialog includes Pango markup.
+See `pango_parse_markup`.
+<!-- trait MessageDialogExt::fn get_property_text -->
+The primary text of the message dialog. If the dialog has
+a secondary text, this will appear as the title.
+<!-- trait MessageDialogExt::fn set_property_text -->
+The primary text of the message dialog. If the dialog has
+a secondary text, this will appear as the title.
+<!-- trait MessageDialogExt::fn get_property_use-markup -->
+`true` if the primary text of the dialog includes Pango markup.
+See `pango_parse_markup`.
+<!-- trait MessageDialogExt::fn set_property_use-markup -->
+`true` if the primary text of the dialog includes Pango markup.
+See `pango_parse_markup`.
 <!-- enum MessageType -->
 The type of message being displayed in the dialog.
 <!-- enum MessageType::variant Info -->
@@ -20788,6 +25143,72 @@ the amount of space to add on the left and right of the widget,
 ## `ypad`
 the amount of space to add on the top and bottom of the widget,
  in pixels.
+<!-- trait MiscExt::fn get_property_xalign -->
+The horizontal alignment. A value of 0.0 means left alignment (or right
+on RTL locales); a value of 1.0 means right alignment (or left on RTL
+locales).
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_halign` instead. If you are using
+ `Label`, use `Label:xalign` instead.
+<!-- trait MiscExt::fn set_property_xalign -->
+The horizontal alignment. A value of 0.0 means left alignment (or right
+on RTL locales); a value of 1.0 means right alignment (or left on RTL
+locales).
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_halign` instead. If you are using
+ `Label`, use `Label:xalign` instead.
+<!-- trait MiscExt::fn get_property_xpad -->
+The amount of space to add on the left and right of the widget, in
+pixels.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_start` and
+ `WidgetExt::set_margin_end` instead
+<!-- trait MiscExt::fn set_property_xpad -->
+The amount of space to add on the left and right of the widget, in
+pixels.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_start` and
+ `WidgetExt::set_margin_end` instead
+<!-- trait MiscExt::fn get_property_yalign -->
+The vertical alignment. A value of 0.0 means top alignment;
+a value of 1.0 means bottom alignment.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_valign` instead. If you are using
+ `Label`, use `Label:yalign` instead.
+<!-- trait MiscExt::fn set_property_yalign -->
+The vertical alignment. A value of 0.0 means top alignment;
+a value of 1.0 means bottom alignment.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_valign` instead. If you are using
+ `Label`, use `Label:yalign` instead.
+<!-- trait MiscExt::fn get_property_ypad -->
+The amount of space to add on the top and bottom of the widget, in
+pixels.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_top` and
+ `WidgetExt::set_margin_bottom` instead
+<!-- trait MiscExt::fn set_property_ypad -->
+The amount of space to add on the top and bottom of the widget, in
+pixels.
+
+# Deprecated since 3.14
+
+Use `WidgetExt::set_margin_top` and
+ `WidgetExt::set_margin_bottom` instead
 <!-- struct ModelButton -->
 `ModelButton` is a button class that can use a `gio::Action` as its model.
 In contrast to `ToggleButton` or `RadioButton`, which can also
@@ -20881,6 +25302,106 @@ Feature: `v3_16`
 # Returns
 
 the newly created `ModelButton` widget
+<!-- trait ModelButtonExt::fn get_property_active -->
+The state of the button. This is reflecting the state of the associated
+`gio::Action`.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_active -->
+The state of the button. This is reflecting the state of the associated
+`gio::Action`.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_centered -->
+Wether to render the button contents centered instead of left-aligned.
+This property should be set for title-like items.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_centered -->
+Wether to render the button contents centered instead of left-aligned.
+This property should be set for title-like items.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_icon -->
+A `gio::Icon` that will be used if iconic appearance for the button is
+desired.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_icon -->
+A `gio::Icon` that will be used if iconic appearance for the button is
+desired.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_iconic -->
+If this property is set, the button will show an icon if one is set.
+If no icon is set, the text will be used. This is typically used for
+horizontal sections of linked buttons.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_iconic -->
+If this property is set, the button will show an icon if one is set.
+If no icon is set, the text will be used. This is typically used for
+horizontal sections of linked buttons.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_inverted -->
+Whether to show the submenu indicator at the opposite side than normal.
+This property should be set for model buttons that 'go back' to a parent
+menu.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_inverted -->
+Whether to show the submenu indicator at the opposite side than normal.
+This property should be set for model buttons that 'go back' to a parent
+menu.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_menu-name -->
+The name of a submenu to open when the button is activated.
+If this is set, the button should not have an action associated with it.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_menu-name -->
+The name of a submenu to open when the button is activated.
+If this is set, the button should not have an action associated with it.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_role -->
+Specifies whether the button is a plain, check or radio button.
+When `Actionable:action-name` is set, the role will be determined
+from the action and does not have to be set explicitly.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_role -->
+Specifies whether the button is a plain, check or radio button.
+When `Actionable:action-name` is set, the role will be determined
+from the action and does not have to be set explicitly.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn get_property_text -->
+The label for the button.
+
+Feature: `v3_16`
+
+<!-- trait ModelButtonExt::fn set_property_text -->
+The label for the button.
+
+Feature: `v3_16`
+
 <!-- enum MovementStep -->
 <!-- enum MovementStep::variant LogicalPositions -->
 Move forward or back by graphemes
@@ -21417,6 +25938,57 @@ via drag and drop or not.
 a child `Widget`
 ## `reorderable`
 whether the tab is reorderable or not
+<!-- trait NotebookExt::fn connect_create_window -->
+The ::create-window signal is emitted when a detachable
+tab is dropped on the root window.
+
+A handler for this signal can create a window containing
+a notebook where the tab will be attached. It is also
+responsible for moving/resizing the window and adding the
+necessary properties to the notebook (e.g. the
+`Notebook:group-name` ).
+## `page`
+the tab of `notebook` that is being detached
+## `x`
+the X coordinate where the drop happens
+## `y`
+the Y coordinate where the drop happens
+
+# Returns
+
+a `Notebook` that `page` should be
+ added to, or `None`.
+<!-- trait NotebookExt::fn connect_page_added -->
+the ::page-added signal is emitted in the notebook
+right after a page is added to the notebook.
+## `child`
+the child `Widget` affected
+## `page_num`
+the new page number for `child`
+<!-- trait NotebookExt::fn connect_page_removed -->
+the ::page-removed signal is emitted in the notebook
+right after a page is removed from the notebook.
+## `child`
+the child `Widget` affected
+## `page_num`
+the `child` page number
+<!-- trait NotebookExt::fn connect_page_reordered -->
+the ::page-reordered signal is emitted in the notebook
+right after a page has been reordered.
+## `child`
+the child `Widget` affected
+## `page_num`
+the new page number for `child`
+<!-- trait NotebookExt::fn connect_switch_page -->
+Emitted when the user or a function changes the current page.
+## `page`
+the new current page
+## `page_num`
+the index of the page
+<!-- trait NotebookExt::fn get_property_group-name -->
+Group name for tab drag and drop.
+<!-- trait NotebookExt::fn set_property_group-name -->
+Group name for tab drag and drop.
 <!-- enum NotebookTab -->
 <!-- enum NumberUpLayout -->
 Used to determine the layout of pages on a sheet when printing
@@ -21466,6 +26038,10 @@ the orientation of the `self`.
 Sets the orientation of the `self`.
 ## `orientation`
 the orientable’s new orientation.
+<!-- trait OrientableExt::fn get_property_orientation -->
+The orientation of the orientable.
+<!-- trait OrientableExt::fn set_property_orientation -->
+The orientation of the orientable.
 <!-- enum Orientation -->
 Represents the orientation of widgets and other objects which can be switched
 between horizontal and vertical orientation on the fly, like `Toolbar` or
@@ -21558,6 +26134,29 @@ Feature: `v3_18`
 an overlay child of `Overlay`
 ## `pass_through`
 whether the child should pass the input through
+<!-- trait OverlayExt::fn connect_get_child_position -->
+The ::get-child-position signal is emitted to determine
+the position and size of any overlay child widgets. A
+handler for this signal should fill `allocation` with
+the desired position and size for `widget`, relative to
+the 'main' child of `overlay`.
+
+The default handler for this signal uses the `widget`'s
+halign and valign properties to determine the position
+and gives the widget its natural size (except that an
+alignment of `Align::Fill` will cause the overlay to
+be full-width/height). If the main child is a
+`ScrolledWindow`, the overlays are placed relative
+to its contents.
+## `widget`
+the child widget to position
+## `allocation`
+return
+ location for the allocation
+
+# Returns
+
+`true` if the `allocation` has been filled
 <!-- enum PackDirection -->
 Determines how widgets should be packed inside menubars
 and menuitems contained in menubars.
@@ -21927,7 +26526,7 @@ paned
 ```
 
 `Paned` has a main CSS node with name paned, and a subnode for
-the separator with name separator. The subnodes gets a .wide style
+the separator with name separator. The subnode gets a .wide style
 class when the paned is supposed to be wide.
 
 In horizontal orientation, the nodes of the children are always arranged
@@ -22046,6 +26645,74 @@ Feature: `v3_16`
 
 ## `wide`
 the new value for the `Paned:wide-handle` property
+<!-- trait PanedExt::fn connect_accept_position -->
+The ::accept-position signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to accept the current position of the handle when
+moving it using key bindings.
+
+The default binding for this signal is Return or Space.
+<!-- trait PanedExt::fn connect_cancel_position -->
+The ::cancel-position signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to cancel moving the position of the handle using key
+bindings. The position of the handle will be reset to the value prior to
+moving it.
+
+The default binding for this signal is Escape.
+<!-- trait PanedExt::fn connect_cycle_child_focus -->
+The ::cycle-child-focus signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to cycle the focus between the children of the paned.
+
+The default binding is f6.
+## `reversed`
+whether cycling backward or forward
+<!-- trait PanedExt::fn connect_cycle_handle_focus -->
+The ::cycle-handle-focus signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to cycle whether the paned should grab focus to allow
+the user to change position of the handle by using key bindings.
+
+The default binding for this signal is f8.
+## `reversed`
+whether cycling backward or forward
+<!-- trait PanedExt::fn connect_move_handle -->
+The ::move-handle signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to move the handle when the user is using key bindings
+to move it.
+## `scroll_type`
+a `ScrollType`
+<!-- trait PanedExt::fn connect_toggle_handle_focus -->
+The ::toggle-handle-focus is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to accept the current position of the handle and then
+move focus to the next widget in the focus chain.
+
+The default binding is Tab.
+<!-- trait PanedExt::fn get_property_max-position -->
+The largest possible value for the position property.
+This property is derived from the size and shrinkability
+of the widget's children.
+<!-- trait PanedExt::fn get_property_min-position -->
+The smallest possible value for the position property.
+This property is derived from the size and shrinkability
+of the widget's children.
+<!-- trait PanedExt::fn get_property_wide-handle -->
+Setting this property to `true` indicates that the paned needs
+to provide stronger visual separation (e.g. because it separates
+between two notebooks, whose tab rows would otherwise merge visually).
+
+Feature: `v3_16`
+
+<!-- trait PanedExt::fn set_property_wide-handle -->
+Setting this property to `true` indicates that the paned needs
+to provide stronger visual separation (e.g. because it separates
+between two notebooks, whose tab rows would otherwise merge visually).
+
+Feature: `v3_16`
+
 <!-- struct PaperSize -->
 `PaperSize` handles paper sizes. It uses the standard called
 [PWG 5101.1-2002 PWG: Standard for Media Standardized Names](http://www.pwg.org/standards.html)
@@ -22321,7 +26988,7 @@ location.
 
 # CSS nodes
 
-`PlacesSidebar` uses a single CSS node with name placesidebar and style
+`PlacesSidebar` uses a single CSS node with name placessidebar and style
 class .sidebar.
 
 Among the children of the places sidebar, the following style classes can
@@ -22627,6 +27294,197 @@ Feature: `v3_18`
 
 ## `show_trash`
 whether to show an item for the Trash location
+<!-- trait PlacesSidebarExt::fn connect_drag_action_ask -->
+The places sidebar emits this signal when it needs to ask the application
+to pop up a menu to ask the user for which drag action to perform.
+
+Feature: `v3_10`
+
+## `actions`
+Possible drag actions that need to be asked for.
+
+# Returns
+
+the final drag action that the sidebar should pass to the drag side
+of the drag-and-drop operation.
+<!-- trait PlacesSidebarExt::fn connect_drag_action_requested -->
+When the user starts a drag-and-drop operation and the sidebar needs
+to ask the application for which drag action to perform, then the
+sidebar will emit this signal.
+
+The application can evaluate the `context` for customary actions, or
+it can check the type of the files indicated by `source_file_list` against the
+possible actions for the destination `dest_file`.
+
+The drag action to use must be the return value of the signal handler.
+
+Feature: `v3_10`
+
+## `context`
+`gdk::DragContext` with information about the drag operation
+## `dest_file`
+`gio::File` with the tentative location that is being hovered for a drop
+## `source_file_list`
+
+ List of `gio::File` that are being dragged
+
+# Returns
+
+The drag action to use, for example, `gdk::DragAction::Copy`
+or `gdk::DragAction::Move`, or 0 if no action is allowed here (i.e. drops
+are not allowed in the specified `dest_file`).
+<!-- trait PlacesSidebarExt::fn connect_drag_perform_drop -->
+The places sidebar emits this signal when the user completes a
+drag-and-drop operation and one of the sidebar's items is the
+destination. This item is in the `dest_file`, and the
+`source_file_list` has the list of files that are dropped into it and
+which should be copied/moved/etc. based on the specified `action`.
+
+Feature: `v3_10`
+
+## `dest_file`
+Destination `gio::File`.
+## `source_file_list`
+
+ `glib::List` of `gio::File` that got dropped.
+## `action`
+Drop action to perform.
+<!-- trait PlacesSidebarExt::fn connect_mount -->
+The places sidebar emits this signal when it starts a new operation
+because the user clicked on some location that needs mounting.
+In this way the application using the `PlacesSidebar` can track the
+progress of the operation and, for example, show a notification.
+
+Feature: `v3_20`
+
+## `mount_operation`
+the `gio::MountOperation` that is going to start.
+<!-- trait PlacesSidebarExt::fn connect_open_location -->
+The places sidebar emits this signal when the user selects a location
+in it. The calling application should display the contents of that
+location; for example, a file manager should show a list of files in
+the specified location.
+
+Feature: `v3_10`
+
+## `location`
+`gio::File` to which the caller should switch.
+## `open_flags`
+a single value from `PlacesOpenFlags` specifying how the `location` should be opened.
+<!-- trait PlacesSidebarExt::fn connect_populate_popup -->
+The places sidebar emits this signal when the user invokes a contextual
+popup on one of its items. In the signal handler, the application may
+add extra items to the menu as appropriate. For example, a file manager
+may want to add a "Properties" command to the menu.
+
+It is not necessary to store the `selected_item` for each menu item;
+during their callbacks, the application can use `PlacesSidebarExt::get_location`
+to get the file to which the item refers.
+
+The `selected_item` argument may be `None` in case the selection refers to
+a volume. In this case, `selected_volume` will be non-`None`. In this case,
+the calling application will have to `gobject::ObjectExt::ref` the `selected_volume` and
+keep it around to use it in the callback.
+
+The `container` and all its contents are destroyed after the user
+dismisses the popup. The popup is re-created (and thus, this signal is
+emitted) every time the user activates the contextual menu.
+
+Before 3.18, the `container` always was a `Menu`, and you were expected
+to add your items as ``GtkMenuItems``. Since 3.18, the popup may be implemented
+as a `Popover`, in which case `container` will be something else, e.g. a
+`Box`, to which you may add ``GtkModelButtons`` or other widgets, such as
+``GtkEntries``, ``GtkSpinButtons``, etc. If your application can deal with this
+situation, you can set `PlacesSidebar::populate-all` to `true` to request
+that this signal is emitted for populating popovers as well.
+
+Feature: `v3_10`
+
+## `container`
+a `Menu` or another `Container`
+## `selected_item`
+`gio::File` with the item to which the popup should refer, or `None` in the case of a `selected_volume`.
+## `selected_volume`
+`gio::Volume` if the selected item is a volume, or `None` if it is a file.
+<!-- trait PlacesSidebarExt::fn connect_show_connect_to_server -->
+The places sidebar emits this signal when it needs the calling
+application to present an way to connect directly to a network server.
+For example, the application may bring up a dialog box asking for
+a URL like "sftp://ftp.example.com". It is up to the application to create
+the corresponding mount by using, for example, `gio::File::mount_enclosing_volume`.
+
+# Deprecated since 3.18
+
+use the `PlacesSidebar::show-other-locations` signal
+ to connect to network servers.
+<!-- trait PlacesSidebarExt::fn connect_show_enter_location -->
+The places sidebar emits this signal when it needs the calling
+application to present an way to directly enter a location.
+For example, the application may bring up a dialog box asking for
+a URL like "http://http.example.com".
+
+Feature: `v3_14`
+
+<!-- trait PlacesSidebarExt::fn connect_show_error_message -->
+The places sidebar emits this signal when it needs the calling
+application to present an error message. Most of these messages
+refer to mounting or unmounting media, for example, when a drive
+cannot be started for some reason.
+
+Feature: `v3_10`
+
+## `primary`
+primary message with a summary of the error to show.
+## `secondary`
+secondary message with details of the error to show.
+<!-- trait PlacesSidebarExt::fn connect_show_other_locations -->
+The places sidebar emits this signal when it needs the calling
+application to present a way to show other locations e.g. drives
+and network access points.
+For example, the application may bring up a page showing persistent
+volumes and discovered network addresses.
+
+Feature: `v3_18`
+
+
+# Deprecated since 3.20
+
+use the `PlacesSidebar::show-other-locations-with-flags`
+which includes the open flags in order to allow the user to specify to open
+in a new tab or window, in a similar way than `PlacesSidebar::open-location`
+<!-- trait PlacesSidebarExt::fn connect_show_other_locations_with_flags -->
+The places sidebar emits this signal when it needs the calling
+application to present a way to show other locations e.g. drives
+and network access points.
+For example, the application may bring up a page showing persistent
+volumes and discovered network addresses.
+
+Feature: `v3_20`
+
+## `open_flags`
+a single value from `PlacesOpenFlags` specifying how it should be opened.
+<!-- trait PlacesSidebarExt::fn connect_unmount -->
+The places sidebar emits this signal when it starts a new operation
+because the user for example ejected some drive or unmounted a mount.
+In this way the application using the `PlacesSidebar` can track the
+progress of the operation and, for example, show a notification.
+
+Feature: `v3_20`
+
+## `mount_operation`
+the `gio::MountOperation` that is going to start.
+<!-- trait PlacesSidebarExt::fn get_property_populate-all -->
+If :populate-all is `true`, the `PlacesSidebar::populate-popup` signal
+is also emitted for popovers.
+
+Feature: `v3_18`
+
+<!-- trait PlacesSidebarExt::fn set_property_populate-all -->
+If :populate-all is `true`, the `PlacesSidebar::populate-popup` signal
+is also emitted for popovers.
+
+Feature: `v3_18`
+
 <!-- enum PolicyType -->
 Determines how the size should be computed to achieve the one of the
 visibility mode for the scrollbars.
@@ -22950,6 +27808,68 @@ You can show or hide the popover without transitions
  and `PopoverExt::popdown` will use transitions.
 ## `transitions_enabled`
 Whether transitions are enabled
+<!-- trait PopoverExt::fn get_property_constrain-to -->
+Sets a constraint for the popover position.
+
+Feature: `v3_20`
+
+<!-- trait PopoverExt::fn set_property_constrain-to -->
+Sets a constraint for the popover position.
+
+Feature: `v3_20`
+
+<!-- trait PopoverExt::fn get_property_modal -->
+Sets whether the popover is modal (so other elements in the window do not
+receive input while the popover is visible).
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn set_property_modal -->
+Sets whether the popover is modal (so other elements in the window do not
+receive input while the popover is visible).
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn get_property_pointing-to -->
+Marks a specific rectangle to be pointed.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn set_property_pointing-to -->
+Marks a specific rectangle to be pointed.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn get_property_position -->
+Sets the preferred position of the popover.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn set_property_position -->
+Sets the preferred position of the popover.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn get_property_relative-to -->
+Sets the attached widget.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn set_property_relative-to -->
+Sets the attached widget.
+
+Feature: `v3_12`
+
+<!-- trait PopoverExt::fn get_property_transitions-enabled -->
+Whether show/hide transitions are enabled for this popover.
+
+Feature: `v3_16`
+
+<!-- trait PopoverExt::fn set_property_transitions-enabled -->
+Whether show/hide transitions are enabled for this popover.
+
+Feature: `v3_16`
+
 <!-- enum PopoverConstraint -->
 Describes constraints to positioning of popovers. More values
 may be added to this enumeration in the future.
@@ -23854,18 +28774,18 @@ step size used in activity mode can be set.
 
 ```plain
 progressbar[.osd]
-╰── trough
-    ├── [text]
+├── [text]
+╰── trough[.empty][.full]
     ╰── progress[.pulse]
 ```
 
 `ProgressBar` has a main CSS node with name progressbar and subnodes with
-names text, trough and progress. The text subnode is only present if text
-is shown. The progress subnode has the style class .pulse when in activity
-mode. It gets the style classes .left, .right, .top or .bottom added when
-the progress 'touches' the corresponding end of the `ProgressBar`.
-The .osd class on the progressbar node is for use in overlays like the one
-epiphany has for page loading progress.
+names text and trough, of which the latter has a subnode named progress. The
+text subnode is only present if text is shown. The progress subnode has the
+style class .pulse when in activity mode. It gets the style classes .left,
+.right, .top or .bottom added when the progress 'touches' the corresponding
+end of the `ProgressBar`. The .osd class on the progressbar node is for use
+in overlays like the one Epiphany has for page loading progress.
 
 # Implements
 
@@ -23975,6 +28895,44 @@ be styled and sized suitably for containing text, as long as
 `ProgressBar:show-text` is `true`.
 ## `text`
 a UTF-8 string, or `None`
+<!-- trait ProgressBarExt::fn get_property_ellipsize -->
+The preferred place to ellipsize the string, if the progress bar does
+not have enough room to display the entire string, specified as a
+`pango::EllipsizeMode`.
+
+Note that setting this property to a value other than
+`pango::EllipsizeMode::None` has the side-effect that the progress bar requests
+only enough space to display the ellipsis ("..."). Another means to set a
+progress bar's width is `WidgetExt::set_size_request`.
+<!-- trait ProgressBarExt::fn set_property_ellipsize -->
+The preferred place to ellipsize the string, if the progress bar does
+not have enough room to display the entire string, specified as a
+`pango::EllipsizeMode`.
+
+Note that setting this property to a value other than
+`pango::EllipsizeMode::None` has the side-effect that the progress bar requests
+only enough space to display the ellipsis ("..."). Another means to set a
+progress bar's width is `WidgetExt::set_size_request`.
+<!-- trait ProgressBarExt::fn get_property_show-text -->
+Sets whether the progress bar will show a text in addition
+to the bar itself. The shown text is either the value of
+the `ProgressBar:text` property or, if that is `None`,
+the `ProgressBar:fraction` value, as a percentage.
+
+To make a progress bar that is styled and sized suitably for
+showing text (even if the actual text is blank), set
+`ProgressBar:show-text` to `true` and `ProgressBar:text`
+to the empty string (not `None`).
+<!-- trait ProgressBarExt::fn set_property_show-text -->
+Sets whether the progress bar will show a text in addition
+to the bar itself. The shown text is either the value of
+the `ProgressBar:text` property or, if that is `None`,
+the `ProgressBar:fraction` value, as a percentage.
+
+To make a progress bar that is styled and sized suitably for
+showing text (even if the actual text is blank), set
+`ProgressBar:show-text` to `true` and `ProgressBar:text`
+to the empty string (not `None`).
 <!-- enum PropagationPhase -->
 Describes the stage at which events are fed into a `EventController`.
 <!-- enum PropagationPhase::variant None -->
@@ -24206,6 +29164,15 @@ changes.
 ## `group`
 an existing radio
  button group, such as one returned from `RadioButtonExt::get_group`, or `None`.
+<!-- trait RadioButtonExt::fn connect_group_changed -->
+Emitted when the group of radio buttons that a radio button belongs
+to changes. This is emitted when a radio button switches from
+being alone to being part of a group of 2 or more buttons, or
+vice-versa, and when a button is moved from one group of 2 or
+more buttons to a different one, but not when the composition
+of the group that a button belongs to changes.
+<!-- trait RadioButtonExt::fn set_property_group -->
+Sets a new group for a radio button.
 <!-- struct RadioMenuItem -->
 A radio menu item is a check menu item that belongs to a group. At each
 instant exactly one of the radio menu items from a group is selected.
@@ -24365,6 +29332,8 @@ a `RadioMenuItem` whose group we are
 Sets the group of a radio menu item, or changes it.
 ## `group`
 the new group, or `None`.
+<!-- trait RadioMenuItemExt::fn set_property_group -->
+The radio menu item whose group this widget belongs to.
 <!-- struct Range -->
 `Range` is the common base class for widgets which visualize an
 adjustment, e.g `Scale` or `Scrollbar`.
@@ -24601,6 +29570,67 @@ them. The range emits the `Range::value-changed` signal if the
 value changes.
 ## `value`
 new value of the range
+<!-- trait RangeExt::fn connect_adjust_bounds -->
+Emitted before clamping a value, to give the application a
+chance to adjust the bounds.
+## `value`
+the value before we clamp
+<!-- trait RangeExt::fn connect_change_value -->
+The `Range::change-value` signal is emitted when a scroll action is
+performed on a range. It allows an application to determine the
+type of scroll event that occurred and the resultant new value.
+The application can handle the event itself and return `true` to
+prevent further processing. Or, by returning `false`, it can pass
+the event to other handlers until the default GTK+ handler is
+reached.
+
+The value parameter is unrounded. An application that overrides
+the `Range`::change-value signal is responsible for clamping the
+value to the desired number of decimal digits; the default GTK+
+handler clamps the value based on `Range:round-digits`.
+## `scroll`
+the type of scroll action that was performed
+## `value`
+the new value resulting from the scroll action
+
+# Returns
+
+`true` to prevent other handlers from being invoked for
+ the signal, `false` to propagate the signal further
+<!-- trait RangeExt::fn connect_move_slider -->
+Virtual function that moves the slider. Used for keybindings.
+## `step`
+how to move the slider
+<!-- trait RangeExt::fn connect_value_changed -->
+Emitted when the range value changes.
+<!-- trait RangeExt::fn get_property_fill-level -->
+The fill level (e.g. prebuffering of a network stream).
+See `RangeExt::set_fill_level`.
+<!-- trait RangeExt::fn set_property_fill-level -->
+The fill level (e.g. prebuffering of a network stream).
+See `RangeExt::set_fill_level`.
+<!-- trait RangeExt::fn get_property_restrict-to-fill-level -->
+The restrict-to-fill-level property controls whether slider
+movement is restricted to an upper boundary set by the
+fill level. See `RangeExt::set_restrict_to_fill_level`.
+<!-- trait RangeExt::fn set_property_restrict-to-fill-level -->
+The restrict-to-fill-level property controls whether slider
+movement is restricted to an upper boundary set by the
+fill level. See `RangeExt::set_restrict_to_fill_level`.
+<!-- trait RangeExt::fn get_property_round-digits -->
+The number of digits to round the value to when
+it changes, or -1. See `Range::change-value`.
+<!-- trait RangeExt::fn set_property_round-digits -->
+The number of digits to round the value to when
+it changes, or -1. See `Range::change-value`.
+<!-- trait RangeExt::fn get_property_show-fill-level -->
+The show-fill-level property controls whether fill level indicator
+graphics are displayed on the trough. See
+`RangeExt::set_show_fill_level`.
+<!-- trait RangeExt::fn set_property_show-fill-level -->
+The show-fill-level property controls whether fill level indicator
+graphics are displayed on the trough. See
+`RangeExt::set_show_fill_level`.
 <!-- struct RecentChooser -->
 `RecentChooser` is an interface that can be implemented by widgets
 displaying the list of recently used files. In GTK+, the main objects
@@ -24827,6 +29857,65 @@ Unselects all the items inside `self`.
 Unselects `uri` inside `self`.
 ## `uri`
 a URI
+<!-- trait RecentChooserExt::fn connect_item_activated -->
+This signal is emitted when the user "activates" a recent item
+in the recent chooser. This can happen by double-clicking on an item
+in the recently used resources list, or by pressing
+`Enter`.
+<!-- trait RecentChooserExt::fn connect_selection_changed -->
+This signal is emitted when there is a change in the set of
+selected recently used resources. This can happen when a user
+modifies the selection with the mouse or the keyboard, or when
+explicitly calling functions to change the selection.
+<!-- trait RecentChooserExt::fn get_property_filter -->
+The `RecentFilter` object to be used when displaying
+the recently used resources.
+<!-- trait RecentChooserExt::fn set_property_filter -->
+The `RecentFilter` object to be used when displaying
+the recently used resources.
+<!-- trait RecentChooserExt::fn get_property_limit -->
+The maximum number of recently used resources to be displayed,
+or -1 to display all items.
+<!-- trait RecentChooserExt::fn set_property_limit -->
+The maximum number of recently used resources to be displayed,
+or -1 to display all items.
+<!-- trait RecentChooserExt::fn get_property_local-only -->
+Whether this `RecentChooser` should display only local (file:)
+resources.
+<!-- trait RecentChooserExt::fn set_property_local-only -->
+Whether this `RecentChooser` should display only local (file:)
+resources.
+<!-- trait RecentChooserExt::fn set_property_recent-manager -->
+The `RecentManager` instance used by the `RecentChooser` to
+display the list of recently used resources.
+<!-- trait RecentChooserExt::fn get_property_select-multiple -->
+Allow the user to select multiple resources.
+<!-- trait RecentChooserExt::fn set_property_select-multiple -->
+Allow the user to select multiple resources.
+<!-- trait RecentChooserExt::fn get_property_show-icons -->
+Whether this `RecentChooser` should display an icon near the item.
+<!-- trait RecentChooserExt::fn set_property_show-icons -->
+Whether this `RecentChooser` should display an icon near the item.
+<!-- trait RecentChooserExt::fn get_property_show-not-found -->
+Whether this `RecentChooser` should display the recently used resources
+even if not present anymore. Setting this to `false` will perform a
+potentially expensive check on every local resource (every remote
+resource will always be displayed).
+<!-- trait RecentChooserExt::fn set_property_show-not-found -->
+Whether this `RecentChooser` should display the recently used resources
+even if not present anymore. Setting this to `false` will perform a
+potentially expensive check on every local resource (every remote
+resource will always be displayed).
+<!-- trait RecentChooserExt::fn get_property_show-tips -->
+Whether this `RecentChooser` should display a tooltip containing the
+full path of the recently used resources.
+<!-- trait RecentChooserExt::fn set_property_show-tips -->
+Whether this `RecentChooser` should display a tooltip containing the
+full path of the recently used resources.
+<!-- trait RecentChooserExt::fn get_property_sort-type -->
+Sorting order to be used when displaying the recently used resources.
+<!-- trait RecentChooserExt::fn set_property_sort-type -->
+Sorting order to be used when displaying the recently used resources.
 <!-- struct RecentChooserDialog -->
 `RecentChooserDialog` is a dialog box suitable for displaying the recently
 used documents. This widgets works by putting a `RecentChooserWidget` inside
@@ -25534,6 +30623,18 @@ the URI of the item you wish to remove
 
 `true` if the item pointed by `uri` has been successfully
  removed by the recently used resources list, and `false` otherwise
+<!-- trait RecentManagerExt::fn connect_changed -->
+Emitted when the current recently used resources manager changes
+its contents, either by calling `RecentManagerExt::add_item` or
+by another application.
+<!-- trait RecentManagerExt::fn get_property_filename -->
+The full path to the file to be used to store and read the
+recently used resources list
+<!-- trait RecentManagerExt::fn set_property_filename -->
+The full path to the file to be used to store and read the
+recently used resources list
+<!-- trait RecentManagerExt::fn get_property_size -->
+The size of the recently used resources list.
 <!-- enum RecentManagerError -->
 Error codes for `RecentManager` operations
 <!-- enum RecentManagerError::variant NotFound -->
@@ -25670,7 +30771,7 @@ Feature: `v3_10`
 
 a newly created `Revealer`
 <!-- trait RevealerExt::fn get_child_revealed -->
-Returns whether the child is fully revealed, ie wether
+Returns whether the child is fully revealed, in other words whether
 the transition to the revealed state is completed.
 
 Feature: `v3_10`
@@ -25941,9 +31042,11 @@ Gets the position in which the current value is displayed.
 
 the position in which the current value is displayed
 <!-- trait ScaleExt::fn set_digits -->
-Sets the number of decimal places that are displayed in the value.
-Also causes the value of the adjustment to be rounded off to this
-number of digits, so the retrieved value matches the value the user saw.
+Sets the number of decimal places that are displayed in the value. Also
+causes the value of the adjustment to be rounded to this number of digits,
+so the retrieved value matches the displayed one, if `Scale:draw-value` is
+`true` when the value changes. If you want to enforce rounding the value when
+`Scale:draw-value` is `false`, you can set `Range:round-digits` instead.
 
 Note that rounding to a small number of digits can interfere with
 the smooth autoscrolling that is built into `Scale`. As an alternative,
@@ -25958,9 +31061,8 @@ to the slider.
 ## `draw_value`
 `true` to draw the value
 <!-- trait ScaleExt::fn set_has_origin -->
-If `has_origin` is set to `true` (the default),
-the scale will highlight the part of the scale
-between the origin (bottom or left side) of the scale
+If `Scale:has-origin` is set to `true` (the default), the scale will
+highlight the part of the trough between the origin (bottom or left side)
 and the current value.
 ## `has_origin`
 `true` if the scale has an origin
@@ -25968,6 +31070,32 @@ and the current value.
 Sets the position in which the current value is displayed.
 ## `pos`
 the position in which the current value is displayed
+<!-- trait ScaleExt::fn connect_format_value -->
+Signal which allows you to change how the scale value is displayed.
+Connect a signal handler which returns an allocated string representing
+`value`. That string will then be used to display the scale's value.
+
+If no user-provided handlers are installed, the value will be displayed on
+its own, rounded according to the value of the `Scale:digits` property.
+
+Here's an example signal handler which displays a value 1.0 as
+with "-->1.0<--".
+
+```C
+static gchar*
+format_value_callback (GtkScale *scale,
+                       gdouble   value)
+{
+  return g_strdup_printf ("-->\%0.*g<--",
+                          gtk_scale_get_digits (scale), value);
+ }
+```
+## `value`
+the value to format
+
+# Returns
+
+allocated string representing `value`
 <!-- struct ScaleButton -->
 `ScaleButton` provides a button which pops up a scale widget.
 This kind of widget is commonly used for volume controls in multimedia
@@ -26057,6 +31185,55 @@ inside them. The scale button emits the `ScaleButton::value-changed`
 signal if the value changes.
 ## `value`
 new value of the scale button
+<!-- trait ScaleButtonExt::fn connect_popdown -->
+The ::popdown signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to popdown the scale widget.
+
+The default binding for this signal is Escape.
+<!-- trait ScaleButtonExt::fn connect_popup -->
+The ::popup signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to popup the scale widget.
+
+The default bindings for this signal are Space, Enter and Return.
+<!-- trait ScaleButtonExt::fn connect_value_changed -->
+The ::value-changed signal is emitted when the value field has
+changed.
+## `value`
+the new value
+<!-- trait ScaleButtonExt::fn get_property_icons -->
+The names of the icons to be used by the scale button.
+The first item in the array will be used in the button
+when the current value is the lowest value, the second
+item for the highest value. All the subsequent icons will
+be used for all the other values, spread evenly over the
+range of values.
+
+If there's only one icon name in the `icons` array, it will
+be used for all the values. If only two icon names are in
+the `icons` array, the first one will be used for the bottom
+50% of the scale, and the second one for the top 50%.
+
+It is recommended to use at least 3 icons so that the
+`ScaleButton` reflects the current value of the scale
+better for the users.
+<!-- trait ScaleButtonExt::fn set_property_icons -->
+The names of the icons to be used by the scale button.
+The first item in the array will be used in the button
+when the current value is the lowest value, the second
+item for the highest value. All the subsequent icons will
+be used for all the other values, spread evenly over the
+range of values.
+
+If there's only one icon name in the `icons` array, it will
+be used for all the values. If only two icon names are in
+the `icons` array, the first one will be used for the bottom
+50% of the scale, and the second one for the top 50%.
+
+It is recommended to use at least 3 icons so that the
+`ScaleButton` reflects the current value of the scale
+better for the users.
 <!-- enum ScrollStep -->
 <!-- enum ScrollStep::variant Steps -->
 Scroll in steps.
@@ -26201,6 +31378,30 @@ vertical scrolling should start below the minimum height or
 below the natural height.
 ## `policy`
 the vertical `ScrollablePolicy`
+<!-- trait ScrollableExt::fn get_property_hadjustment -->
+Horizontal `Adjustment` of the scrollable widget. This adjustment is
+shared between the scrollable widget and its parent.
+<!-- trait ScrollableExt::fn set_property_hadjustment -->
+Horizontal `Adjustment` of the scrollable widget. This adjustment is
+shared between the scrollable widget and its parent.
+<!-- trait ScrollableExt::fn get_property_hscroll-policy -->
+Determines whether horizontal scrolling should start once the scrollable
+widget is allocated less than its minimum width or less than its natural width.
+<!-- trait ScrollableExt::fn set_property_hscroll-policy -->
+Determines whether horizontal scrolling should start once the scrollable
+widget is allocated less than its minimum width or less than its natural width.
+<!-- trait ScrollableExt::fn get_property_vadjustment -->
+Verical `Adjustment` of the scrollable widget. This adjustment is shared
+between the scrollable widget and its parent.
+<!-- trait ScrollableExt::fn set_property_vadjustment -->
+Verical `Adjustment` of the scrollable widget. This adjustment is shared
+between the scrollable widget and its parent.
+<!-- trait ScrollableExt::fn get_property_vscroll-policy -->
+Determines whether vertical scrolling should start once the scrollable
+widget is allocated less than its minimum height or less than its natural height.
+<!-- trait ScrollableExt::fn set_property_vscroll-policy -->
+Determines whether vertical scrolling should start once the scrollable
+widget is allocated less than its minimum height or less than its natural height.
 <!-- enum ScrollablePolicy -->
 Defines the policy to be used in a scrollable widget when updating
 the scrolled window adjustments in a given orientation.
@@ -26212,16 +31413,15 @@ Scrollable adjustments are based on the natural size
 The `Scrollbar` widget is a horizontal or vertical scrollbar,
 depending on the value of the `Orientable:orientation` property.
 
-The position of the thumb in a scrollbar is controlled by the scroll
-adjustments. See `Adjustment` for the fields in an adjustment - for
-`Scrollbar`, the `Adjustment:value` field represents the position
-of the scrollbar, which must be between the `Adjustment:lower` field
-and `Adjustment:upper` - `Adjustment:page-size`. The
-`Adjustment:page-size` field represents the size of the visible
-scrollable area. The `Adjustment:step-increment` and
-`Adjustment:page-increment` fields are properties when the user asks to
-step down (using the small stepper arrows) or page down (using for
-example the `Page Down` key).
+Its position and movement are controlled by the adjustment that is passed to
+or created by `Scrollbar::new`. See `Adjustment` for more details. The
+`Adjustment:value` field sets the position of the thumb and must be between
+`Adjustment:lower` and `Adjustment:upper` - `Adjustment:page-size`. The
+`Adjustment:page-size` represents the size of the visible scrollable area.
+The fields `Adjustment:step-increment` and `Adjustment:page-increment`
+fields are added to or subtracted from the `Adjustment:value` when the user
+asks to move by a step (using e.g. the cursor arrow keys or, if present, the
+stepper buttons) or by a page (using e.g. the Page Down/Up keys).
 
 # CSS nodes
 
@@ -26265,31 +31465,21 @@ the `Adjustment` to use, or `None` to create a new adjustment.
 
 the new `Scrollbar`.
 <!-- struct ScrolledWindow -->
-`ScrolledWindow` is a `Bin` subclass: it’s a container
-the accepts a single child widget. `ScrolledWindow` adds scrollbars
-to the child widget and optionally draws a beveled frame around the
-child widget.
+`ScrolledWindow` is a container that accepts a single child widget, makes
+that child scrollable using either internally added scrollbars or externally
+associated adjustments, and optionally draws a frame around the child.
 
-The scrolled window can work in two ways. Some widgets have native
-scrolling support; these widgets implement the `Scrollable` interface.
-Widgets with native scroll support include `TreeView`, `TextView`,
-and `Layout`.
-
-For widgets that lack native scrolling support, the `Viewport`
-widget acts as an adaptor class, implementing scrollability for child
-widgets that lack their own scrolling capabilities. Use `Viewport`
-to scroll child widgets such as `Grid`, `Box`, and so on.
-
-If a widget has native scrolling abilities, it can be added to the
-`ScrolledWindow` with `ContainerExt::add`. If a widget does not, you
-must first add the widget to a `Viewport`, then add the `Viewport`
-to the scrolled window. `ContainerExt::add` will do this for you for
-widgets that don’t implement `Scrollable` natively, so you can
-ignore the presence of the viewport.
+Widgets with native scrolling support, i.e. those whose classes implement the
+`Scrollable` interface, are added directly. For other types of widget, the
+class `Viewport` acts as an adaptor, giving scrollability to other widgets.
+`ScrolledWindow`’s implementation of `ContainerExt::add` intelligently
+accounts for whether or not the added child is a `Scrollable`. If it isn’t,
+`ScrolledWindow` wraps the child in a `Viewport` and adds that for you.
+Therefore, you can just add any child widget and not worry about the details.
 
 If `ContainerExt::add` has added a `Viewport` for you, you can remove
-both your added child widget from the `Viewport` and the `Viewport`
-from the `ScrolledWindow` with either of the calls
+both your added child widget from the `Viewport`, and the `Viewport`
+from the `ScrolledWindow`, with either of these calls:
 
 ```C
 gtk_container_remove (GTK_CONTAINER (scrolled_window),
@@ -26299,15 +31489,13 @@ gtk_container_remove (GTK_CONTAINER (scrolled_window),
                       gtk_bin_get_child (GTK_BIN (scrolled_window)));
 ```
 
-The position of the scrollbars is controlled by the scroll adjustments.
-See `Adjustment` for the fields in an adjustment — for
-`Scrollbar`, used by `ScrolledWindow`, the “value” field
-represents the position of the scrollbar, which must be between the
-“lower” field and “upper - page_size.” The “page_size” field
-represents the size of the visible scrollable area. The
-“step_increment” and “page_increment” fields are used when the user
-asks to step down (using the small stepper arrows) or page down (using
-for example the PageDown key).
+Unless `ScrolledWindow:policy` is GTK_POLICY_NEVER or GTK_POLICY_EXTERNAL,
+`ScrolledWindow` adds internal `Scrollbar` widgets around its child. The
+scroll position of the child, and if applicable the scrollbars, is controlled
+by the `ScrolledWindow:hadjustment` and `ScrolledWindow:vadjustment`
+that are associated with the `ScrolledWindow`. See the docs on `Scrollbar`
+for the details, but note that the “step_increment” and “page_increment”
+fields are only effective if the policy causes scrollbars to be present.
 
 If a `ScrolledWindow` doesn’t behave quite as you would like, or
 doesn’t have exactly the right layout, it’s very possible to set up
@@ -26520,7 +31708,7 @@ Returns the vertical scrollbar of `self`.
 
 the vertical scrollbar of the scrolled window.
 <!-- trait ScrolledWindowExt::fn set_capture_button_press -->
-Changes the behaviour of `self` wrt. to the initial
+Changes the behaviour of `self` with regard to the initial
 event that possibly starts kinetic scrolling. When `capture_button_press`
 is set to `true`, the event is captured by the scrolled window, and
 then later replayed if it is meant to go to the child widget.
@@ -26545,7 +31733,7 @@ Kinetic scrolling only applies to devices with source
 `true` to enable kinetic scrolling
 <!-- trait ScrolledWindowExt::fn set_max_content_height -->
 Sets the maximum height that `self` should keep visible. The
-`self` will grow up to this width before it starts scrolling
+`self` will grow up to this height before it starts scrolling
 the content.
 
 It is a programming error to set the maximum content height to a value
@@ -26573,7 +31761,7 @@ Note that this can and (usually will) be smaller than the minimum
 size of the content.
 
 It is a programming error to set the minimum content height to a
-value smaller than `ScrolledWindow:max-content-height`.
+value greater than `ScrolledWindow:max-content-height`.
 ## `height`
 the minimal content height
 <!-- trait ScrolledWindowExt::fn set_min_content_width -->
@@ -26582,7 +31770,7 @@ Note that this can and (usually will) be smaller than the minimum
 size of the content.
 
 It is a programming error to set the minimum content width to a
-value smaller than `ScrolledWindow:max-content-width`.
+value greater than `ScrolledWindow:max-content-width`.
 ## `width`
 the minimal content width
 <!-- trait ScrolledWindowExt::fn set_overlay_scrolling -->
@@ -26650,6 +31838,160 @@ window, it defaults to `CornerType::TopLeft`.
 
 See also `ScrolledWindowExt::set_placement` and
 `ScrolledWindowExt::get_placement`.
+<!-- trait ScrolledWindowExt::fn connect_edge_overshot -->
+The ::edge-overshot signal is emitted whenever user initiated scrolling
+makes the scrolledwindow firmly surpass (ie. with some edge resistance)
+the lower or upper limits defined by the adjustment in that orientation.
+
+A similar behavior without edge resistance is provided by the
+`ScrolledWindow::edge-reached` signal.
+
+Note: The `pos` argument is LTR/RTL aware, so callers should be aware too
+if intending to provide behavior on horizontal edges.
+
+Feature: `v3_16`
+
+## `pos`
+edge side that was hit
+<!-- trait ScrolledWindowExt::fn connect_edge_reached -->
+The ::edge-reached signal is emitted whenever user-initiated scrolling
+makes the scrolledwindow exactly reaches the lower or upper limits
+defined by the adjustment in that orientation.
+
+A similar behavior with edge resistance is provided by the
+`ScrolledWindow::edge-overshot` signal.
+
+Note: The `pos` argument is LTR/RTL aware, so callers should be aware too
+if intending to provide behavior on horizontal edges.
+
+Feature: `v3_16`
+
+## `pos`
+edge side that was reached
+<!-- trait ScrolledWindowExt::fn connect_move_focus_out -->
+The ::move-focus-out signal is a
+[keybinding signal][`BindingSignal`] which gets
+emitted when focus is moved away from the scrolled window by a
+keybinding. The `Widget::move-focus` signal is emitted with
+`direction_type` on this scrolled windows toplevel parent in the
+container hierarchy. The default bindings for this signal are
+`Tab + Ctrl` and `Tab + Ctrl + Shift`.
+## `direction_type`
+either `DirectionType::TabForward` or
+ `DirectionType::TabBackward`
+<!-- trait ScrolledWindowExt::fn connect_scroll_child -->
+The ::scroll-child signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when a keybinding that scrolls is pressed.
+The horizontal or vertical adjustment is updated which triggers a
+signal that the scrolled windows child may listen to and scroll itself.
+## `scroll`
+a `ScrollType` describing how much to scroll
+## `horizontal`
+whether the keybinding scrolls the child
+ horizontally or not
+<!-- trait ScrolledWindowExt::fn get_property_kinetic-scrolling -->
+Whether kinetic scrolling is enabled or not. Kinetic scrolling
+only applies to devices with source `gdk::InputSource::Touchscreen`.
+<!-- trait ScrolledWindowExt::fn set_property_kinetic-scrolling -->
+Whether kinetic scrolling is enabled or not. Kinetic scrolling
+only applies to devices with source `gdk::InputSource::Touchscreen`.
+<!-- trait ScrolledWindowExt::fn get_property_max-content-height -->
+The maximum content height of `scrolled_window`, or -1 if not set.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn set_property_max-content-height -->
+The maximum content height of `scrolled_window`, or -1 if not set.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn get_property_max-content-width -->
+The maximum content width of `scrolled_window`, or -1 if not set.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn set_property_max-content-width -->
+The maximum content width of `scrolled_window`, or -1 if not set.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn get_property_min-content-height -->
+The minimum content height of `scrolled_window`, or -1 if not set.
+<!-- trait ScrolledWindowExt::fn set_property_min-content-height -->
+The minimum content height of `scrolled_window`, or -1 if not set.
+<!-- trait ScrolledWindowExt::fn get_property_min-content-width -->
+The minimum content width of `scrolled_window`, or -1 if not set.
+<!-- trait ScrolledWindowExt::fn set_property_min-content-width -->
+The minimum content width of `scrolled_window`, or -1 if not set.
+<!-- trait ScrolledWindowExt::fn get_property_overlay-scrolling -->
+Whether overlay scrolling is enabled or not. If it is, the
+scrollbars are only added as traditional widgets when a mouse
+is present. Otherwise, they are overlayed on top of the content,
+as narrow indicators.
+
+Feature: `v3_16`
+
+<!-- trait ScrolledWindowExt::fn set_property_overlay-scrolling -->
+Whether overlay scrolling is enabled or not. If it is, the
+scrollbars are only added as traditional widgets when a mouse
+is present. Otherwise, they are overlayed on top of the content,
+as narrow indicators.
+
+Feature: `v3_16`
+
+<!-- trait ScrolledWindowExt::fn get_property_propagate-natural-height -->
+Whether the natural height of the child should be calculated and propagated
+through the scrolled windows requested natural height.
+
+This is useful in cases where an attempt should be made to allocate exactly
+enough space for the natural size of the child.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn set_property_propagate-natural-height -->
+Whether the natural height of the child should be calculated and propagated
+through the scrolled windows requested natural height.
+
+This is useful in cases where an attempt should be made to allocate exactly
+enough space for the natural size of the child.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn get_property_propagate-natural-width -->
+Whether the natural width of the child should be calculated and propagated
+through the scrolled windows requested natural width.
+
+This is useful in cases where an attempt should be made to allocate exactly
+enough space for the natural size of the child.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn set_property_propagate-natural-width -->
+Whether the natural width of the child should be calculated and propagated
+through the scrolled windows requested natural width.
+
+This is useful in cases where an attempt should be made to allocate exactly
+enough space for the natural size of the child.
+
+Feature: `v3_22`
+
+<!-- trait ScrolledWindowExt::fn get_property_window-placement-set -->
+Whether "window-placement" should be used to determine the location
+of the contents with respect to the scrollbars.
+
+# Deprecated since 3.10
+
+This value is ignored and
+`ScrolledWindow:window-placement` value is always honored.
+<!-- trait ScrolledWindowExt::fn set_property_window-placement-set -->
+Whether "window-placement" should be used to determine the location
+of the contents with respect to the scrollbars.
+
+# Deprecated since 3.10
+
+This value is ignored and
+`ScrolledWindow:window-placement` value is always honored.
 <!-- struct SearchBar -->
 `SearchBar` is a container made to have a search entry (possibly
 with additional connex widgets, such as drop-down menus, or buttons)
@@ -26805,7 +32147,7 @@ emits the `SearchEntry::search-changed` signal which can
 be used instead of the `Editable::changed` signal.
 
 The `SearchEntry::previous-match`, `SearchEntry::next-match`
-and `SearchEntry::stop-search` signals can be uesd to implement
+and `SearchEntry::stop-search` signals can be used to implement
 moving between search results and ending the search.
 
 Often, `SearchEntry` will be fed events by means of being
@@ -26858,6 +32200,47 @@ a key event
 `GDK_EVENT_STOP` if the key press event resulted
  in a search beginning or continuing, `GDK_EVENT_PROPAGATE`
  otherwise.
+<!-- trait SearchEntryExt::fn connect_next_match -->
+The ::next-match signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a move to the next match
+for the current search string.
+
+Applications should connect to it, to implement moving between
+matches.
+
+The default bindings for this signal is Ctrl-g.
+
+Feature: `v3_16`
+
+<!-- trait SearchEntryExt::fn connect_previous_match -->
+The ::previous-match signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a move to the previous match
+for the current search string.
+
+Applications should connect to it, to implement moving between
+matches.
+
+The default bindings for this signal is Ctrl-Shift-g.
+
+Feature: `v3_16`
+
+<!-- trait SearchEntryExt::fn connect_search_changed -->
+The `SearchEntry::search-changed` signal is emitted with a short
+delay of 150 milliseconds after the last change to the entry text.
+
+Feature: `v3_10`
+
+<!-- trait SearchEntryExt::fn connect_stop_search -->
+The ::stop-search signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user stops a search via keyboard input.
+
+Applications should connect to it, to implement hiding the search
+entry in this case.
+
+The default bindings for this signal is Escape.
+
+Feature: `v3_16`
+
 <!-- struct SelectionData -->
 <!-- impl SelectionData::fn copy -->
 Makes a copy of a `SelectionData`-struct and its data.
@@ -27268,6 +32651,895 @@ Use `gobject::ObjectExt::set` instead.
 # Deprecated since 3.16
 
 Use `gobject::ObjectExt::set` instead.
+<!-- trait SettingsExt::fn get_property_color-hash -->
+Holds a hash table representation of the `Settings:gtk-color-scheme`
+setting, mapping color names to ``GdkColors``.
+
+# Deprecated since 3.8
+
+Will always return an empty hash table.
+<!-- trait SettingsExt::fn get_property_gtk-alternative-sort-arrows -->
+Controls the direction of the sort indicators in sorted list and tree
+views. By default an arrow pointing down means the column is sorted
+in ascending order. When set to `true`, this order will be inverted.
+<!-- trait SettingsExt::fn set_property_gtk-alternative-sort-arrows -->
+Controls the direction of the sort indicators in sorted list and tree
+views. By default an arrow pointing down means the column is sorted
+in ascending order. When set to `true`, this order will be inverted.
+<!-- trait SettingsExt::fn get_property_gtk-application-prefer-dark-theme -->
+Whether the application prefers to use a dark theme. If a GTK+ theme
+includes a dark variant, it will be used instead of the configured
+theme.
+
+Some applications benefit from minimizing the amount of light pollution that
+interferes with the content. Good candidates for dark themes are photo and
+video editors that make the actual content get all the attention and minimize
+the distraction of the chrome.
+
+Dark themes should not be used for documents, where large spaces are white/light
+and the dark chrome creates too much contrast (web browser, text editor...).
+<!-- trait SettingsExt::fn set_property_gtk-application-prefer-dark-theme -->
+Whether the application prefers to use a dark theme. If a GTK+ theme
+includes a dark variant, it will be used instead of the configured
+theme.
+
+Some applications benefit from minimizing the amount of light pollution that
+interferes with the content. Good candidates for dark themes are photo and
+video editors that make the actual content get all the attention and minimize
+the distraction of the chrome.
+
+Dark themes should not be used for documents, where large spaces are white/light
+and the dark chrome creates too much contrast (web browser, text editor...).
+<!-- trait SettingsExt::fn get_property_gtk-auto-mnemonics -->
+Whether mnemonics should be automatically shown and hidden when the user
+presses the mnemonic activator.
+
+# Deprecated since 3.10
+
+This setting is ignored
+<!-- trait SettingsExt::fn set_property_gtk-auto-mnemonics -->
+Whether mnemonics should be automatically shown and hidden when the user
+presses the mnemonic activator.
+
+# Deprecated since 3.10
+
+This setting is ignored
+<!-- trait SettingsExt::fn get_property_gtk-button-images -->
+Whether images should be shown on buttons
+
+# Deprecated since 3.10
+
+This setting is deprecated. Application developers
+ control whether a button should show an icon or not, on a
+ per-button basis. If a `Button` should show an icon, use the
+ `Button:always-show-image` property of `Button`, and pack a
+ `Image` inside the `Button`
+<!-- trait SettingsExt::fn set_property_gtk-button-images -->
+Whether images should be shown on buttons
+
+# Deprecated since 3.10
+
+This setting is deprecated. Application developers
+ control whether a button should show an icon or not, on a
+ per-button basis. If a `Button` should show an icon, use the
+ `Button:always-show-image` property of `Button`, and pack a
+ `Image` inside the `Button`
+<!-- trait SettingsExt::fn get_property_gtk-can-change-accels -->
+Whether menu accelerators can be changed by pressing a key over the menu item.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-can-change-accels -->
+Whether menu accelerators can be changed by pressing a key over the menu item.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-color-palette -->
+Palette to use in the deprecated color selector.
+
+# Deprecated since 3.10
+
+Only used by the deprecated color selector widget.
+<!-- trait SettingsExt::fn set_property_gtk-color-palette -->
+Palette to use in the deprecated color selector.
+
+# Deprecated since 3.10
+
+Only used by the deprecated color selector widget.
+<!-- trait SettingsExt::fn get_property_gtk-color-scheme -->
+A palette of named colors for use in themes. The format of the string is
+
+```text
+name1: color1
+name2: color2
+...
+```
+Color names must be acceptable as identifiers in the
+[gtkrc][gtk3-Resource-Files] syntax, and
+color specifications must be in the format accepted by
+`gdk::Color::parse`.
+
+Note that due to the way the color tables from different sources are
+merged, color specifications will be converted to hexadecimal form
+when getting this property.
+
+Starting with GTK+ 2.12, the entries can alternatively be separated
+by ';' instead of newlines:
+
+```text
+name1: color1; name2: color2; ...
+```
+
+# Deprecated since 3.8
+
+Color scheme support was dropped and is no longer supported.
+ You can still set this property, but it will be ignored.
+<!-- trait SettingsExt::fn set_property_gtk-color-scheme -->
+A palette of named colors for use in themes. The format of the string is
+
+```text
+name1: color1
+name2: color2
+...
+```
+Color names must be acceptable as identifiers in the
+[gtkrc][gtk3-Resource-Files] syntax, and
+color specifications must be in the format accepted by
+`gdk::Color::parse`.
+
+Note that due to the way the color tables from different sources are
+merged, color specifications will be converted to hexadecimal form
+when getting this property.
+
+Starting with GTK+ 2.12, the entries can alternatively be separated
+by ';' instead of newlines:
+
+```text
+name1: color1; name2: color2; ...
+```
+
+# Deprecated since 3.8
+
+Color scheme support was dropped and is no longer supported.
+ You can still set this property, but it will be ignored.
+<!-- trait SettingsExt::fn get_property_gtk-cursor-blink -->
+Whether the cursor should blink.
+
+Also see the `Settings:gtk-cursor-blink-timeout` setting,
+which allows more flexible control over cursor blinking.
+<!-- trait SettingsExt::fn set_property_gtk-cursor-blink -->
+Whether the cursor should blink.
+
+Also see the `Settings:gtk-cursor-blink-timeout` setting,
+which allows more flexible control over cursor blinking.
+<!-- trait SettingsExt::fn get_property_gtk-cursor-blink-timeout -->
+Time after which the cursor stops blinking, in seconds.
+The timer is reset after each user interaction.
+
+Setting this to zero has the same effect as setting
+`Settings:gtk-cursor-blink` to `false`.
+<!-- trait SettingsExt::fn set_property_gtk-cursor-blink-timeout -->
+Time after which the cursor stops blinking, in seconds.
+The timer is reset after each user interaction.
+
+Setting this to zero has the same effect as setting
+`Settings:gtk-cursor-blink` to `false`.
+<!-- trait SettingsExt::fn get_property_gtk-decoration-layout -->
+This setting determines which buttons should be put in the
+titlebar of client-side decorated windows, and whether they
+should be placed at the left of right.
+
+The format of the string is button names, separated by commas.
+A colon separates the buttons that should appear on the left
+from those on the right. Recognized button names are minimize,
+maximize, close, icon (the window icon) and menu (a menu button
+for the fallback app menu).
+
+For example, "menu:minimize,maximize,close" specifies a menu
+on the left, and minimize, maximize and close buttons on the right.
+
+Note that buttons will only be shown when they are meaningful.
+E.g. a menu button only appears when the desktop shell does not
+show the app menu, and a close button only appears on a window
+that can be closed.
+
+Also note that the setting can be overridden with the
+`HeaderBar:decoration-layout` property.
+
+Feature: `v3_12`
+
+<!-- trait SettingsExt::fn set_property_gtk-decoration-layout -->
+This setting determines which buttons should be put in the
+titlebar of client-side decorated windows, and whether they
+should be placed at the left of right.
+
+The format of the string is button names, separated by commas.
+A colon separates the buttons that should appear on the left
+from those on the right. Recognized button names are minimize,
+maximize, close, icon (the window icon) and menu (a menu button
+for the fallback app menu).
+
+For example, "menu:minimize,maximize,close" specifies a menu
+on the left, and minimize, maximize and close buttons on the right.
+
+Note that buttons will only be shown when they are meaningful.
+E.g. a menu button only appears when the desktop shell does not
+show the app menu, and a close button only appears on a window
+that can be closed.
+
+Also note that the setting can be overridden with the
+`HeaderBar:decoration-layout` property.
+
+Feature: `v3_12`
+
+<!-- trait SettingsExt::fn get_property_gtk-dialogs-use-header -->
+Whether builtin GTK+ dialogs such as the file chooser, the
+color chooser or the font chooser will use a header bar at
+the top to show action widgets, or an action area at the bottom.
+
+This setting does not affect custom dialogs using `Dialog`
+directly, or message dialogs.
+
+Feature: `v3_12`
+
+<!-- trait SettingsExt::fn set_property_gtk-dialogs-use-header -->
+Whether builtin GTK+ dialogs such as the file chooser, the
+color chooser or the font chooser will use a header bar at
+the top to show action widgets, or an action area at the bottom.
+
+This setting does not affect custom dialogs using `Dialog`
+directly, or message dialogs.
+
+Feature: `v3_12`
+
+<!-- trait SettingsExt::fn get_property_gtk-enable-accels -->
+Whether menu items should have visible accelerators which can be
+activated.
+<!-- trait SettingsExt::fn set_property_gtk-enable-accels -->
+Whether menu items should have visible accelerators which can be
+activated.
+<!-- trait SettingsExt::fn get_property_gtk-enable-event-sounds -->
+Whether to play any event sounds at all.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn set_property_gtk-enable-event-sounds -->
+Whether to play any event sounds at all.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn get_property_gtk-enable-input-feedback-sounds -->
+Whether to play event sounds as feedback to user input.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn set_property_gtk-enable-input-feedback-sounds -->
+Whether to play event sounds as feedback to user input.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn get_property_gtk-enable-mnemonics -->
+Whether labels and menu items should have visible mnemonics which
+can be activated.
+
+# Deprecated since 3.10
+
+This setting can still be used for application
+ overrides, but will be ignored in the future
+<!-- trait SettingsExt::fn set_property_gtk-enable-mnemonics -->
+Whether labels and menu items should have visible mnemonics which
+can be activated.
+
+# Deprecated since 3.10
+
+This setting can still be used for application
+ overrides, but will be ignored in the future
+<!-- trait SettingsExt::fn get_property_gtk-enable-primary-paste -->
+Whether a middle click on a mouse should paste the
+'PRIMARY' clipboard content at the cursor location.
+<!-- trait SettingsExt::fn set_property_gtk-enable-primary-paste -->
+Whether a middle click on a mouse should paste the
+'PRIMARY' clipboard content at the cursor location.
+<!-- trait SettingsExt::fn get_property_gtk-enable-tooltips -->
+Whether tooltips should be shown on widgets.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-enable-tooltips -->
+Whether tooltips should be shown on widgets.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-entry-password-hint-timeout -->
+How long to show the last input character in hidden
+entries. This value is in milliseconds. 0 disables showing the
+last char. 600 is a good value for enabling it.
+<!-- trait SettingsExt::fn set_property_gtk-entry-password-hint-timeout -->
+How long to show the last input character in hidden
+entries. This value is in milliseconds. 0 disables showing the
+last char. 600 is a good value for enabling it.
+<!-- trait SettingsExt::fn get_property_gtk-error-bell -->
+When `true`, keyboard navigation and other input-related errors
+will cause a beep. Since the error bell is implemented using
+`gdk::WindowExt::beep`, the windowing system may offer ways to
+configure the error bell in many ways, such as flashing the
+window or similar visual effects.
+<!-- trait SettingsExt::fn set_property_gtk-error-bell -->
+When `true`, keyboard navigation and other input-related errors
+will cause a beep. Since the error bell is implemented using
+`gdk::WindowExt::beep`, the windowing system may offer ways to
+configure the error bell in many ways, such as flashing the
+window or similar visual effects.
+<!-- trait SettingsExt::fn get_property_gtk-fallback-icon-theme -->
+Name of a icon theme to fall back to.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-fallback-icon-theme -->
+Name of a icon theme to fall back to.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-file-chooser-backend -->
+Name of the `FileChooser` backend to use by default.
+
+# Deprecated since 3.10
+
+This setting is ignored. `FileChooser` uses GIO by default.
+<!-- trait SettingsExt::fn set_property_gtk-file-chooser-backend -->
+Name of the `FileChooser` backend to use by default.
+
+# Deprecated since 3.10
+
+This setting is ignored. `FileChooser` uses GIO by default.
+<!-- trait SettingsExt::fn get_property_gtk-font-name -->
+The default font to use. GTK+ uses the family name and size from this string.
+<!-- trait SettingsExt::fn set_property_gtk-font-name -->
+The default font to use. GTK+ uses the family name and size from this string.
+<!-- trait SettingsExt::fn get_property_gtk-icon-sizes -->
+A list of icon sizes. The list is separated by colons, and
+item has the form:
+
+`size-name` = `width` , `height`
+
+E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48".
+GTK+ itself use the following named icon sizes: gtk-menu,
+gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd,
+gtk-dialog. Applications can register their own named icon
+sizes with `IconSize::register`.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-icon-sizes -->
+A list of icon sizes. The list is separated by colons, and
+item has the form:
+
+`size-name` = `width` , `height`
+
+E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48".
+GTK+ itself use the following named icon sizes: gtk-menu,
+gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd,
+gtk-dialog. Applications can register their own named icon
+sizes with `IconSize::register`.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-im-module -->
+Which IM (input method) module should be used by default. This is the
+input method that will be used if the user has not explicitly chosen
+another input method from the IM context menu.
+This also can be a colon-separated list of input methods, which GTK+
+will try in turn until it finds one available on the system.
+
+See `IMContext`.
+<!-- trait SettingsExt::fn set_property_gtk-im-module -->
+Which IM (input method) module should be used by default. This is the
+input method that will be used if the user has not explicitly chosen
+another input method from the IM context menu.
+This also can be a colon-separated list of input methods, which GTK+
+will try in turn until it finds one available on the system.
+
+See `IMContext`.
+<!-- trait SettingsExt::fn get_property_gtk-im-preedit-style -->
+How to draw the input method preedit string.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-im-preedit-style -->
+How to draw the input method preedit string.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-im-status-style -->
+How to draw the input method statusbar.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-im-status-style -->
+How to draw the input method statusbar.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-keynav-cursor-only -->
+When `true`, keyboard navigation should be able to reach all widgets
+by using the cursor keys only. Tab, Shift etc. keys can't be expected
+to be present on the used input device.
+
+# Deprecated since 3.10
+
+Generally, the behavior for touchscreen input should be
+ performed dynamically based on `gdk_event_get_source_device`.
+<!-- trait SettingsExt::fn set_property_gtk-keynav-cursor-only -->
+When `true`, keyboard navigation should be able to reach all widgets
+by using the cursor keys only. Tab, Shift etc. keys can't be expected
+to be present on the used input device.
+
+# Deprecated since 3.10
+
+Generally, the behavior for touchscreen input should be
+ performed dynamically based on `gdk_event_get_source_device`.
+<!-- trait SettingsExt::fn get_property_gtk-keynav-use-caret -->
+Whether GTK+ should make sure that text can be navigated with
+a caret, even if it is not editable. This is useful when using
+a screen reader.
+
+Feature: `v3_20`
+
+<!-- trait SettingsExt::fn set_property_gtk-keynav-use-caret -->
+Whether GTK+ should make sure that text can be navigated with
+a caret, even if it is not editable. This is useful when using
+a screen reader.
+
+Feature: `v3_20`
+
+<!-- trait SettingsExt::fn get_property_gtk-keynav-wrap-around -->
+When `true`, some widgets will wrap around when doing keyboard
+navigation, such as menus, menubars and notebooks.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-keynav-wrap-around -->
+When `true`, some widgets will wrap around when doing keyboard
+navigation, such as menus, menubars and notebooks.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-long-press-time -->
+The time for a button or touch press to be considered a "long press".
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn set_property_gtk-long-press-time -->
+The time for a button or touch press to be considered a "long press".
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn get_property_gtk-menu-bar-accel -->
+Keybinding to activate the menu bar.
+
+# Deprecated since 3.10
+
+This setting can still be used for application
+ overrides, but will be ignored in the future
+<!-- trait SettingsExt::fn set_property_gtk-menu-bar-accel -->
+Keybinding to activate the menu bar.
+
+# Deprecated since 3.10
+
+This setting can still be used for application
+ overrides, but will be ignored in the future
+<!-- trait SettingsExt::fn get_property_gtk-menu-bar-popup-delay -->
+Delay before the submenus of a menu bar appear.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-menu-bar-popup-delay -->
+Delay before the submenus of a menu bar appear.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-menu-images -->
+Whether images should be shown in menu items
+
+# Deprecated since 3.10
+
+This setting is deprecated. Application developers
+ control whether or not a `MenuItem` should have an icon or not,
+ on a per widget basis. Either use a `MenuItem` with a `Box`
+ containing a `Image` and a `AccelLabel`, or describe your menus
+ using a `gio::Menu` XML description
+<!-- trait SettingsExt::fn set_property_gtk-menu-images -->
+Whether images should be shown in menu items
+
+# Deprecated since 3.10
+
+This setting is deprecated. Application developers
+ control whether or not a `MenuItem` should have an icon or not,
+ on a per widget basis. Either use a `MenuItem` with a `Box`
+ containing a `Image` and a `AccelLabel`, or describe your menus
+ using a `gio::Menu` XML description
+<!-- trait SettingsExt::fn get_property_gtk-menu-popdown-delay -->
+The time before hiding a submenu when the pointer is moving towards the submenu.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-menu-popdown-delay -->
+The time before hiding a submenu when the pointer is moving towards the submenu.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-menu-popup-delay -->
+Minimum time the pointer must stay over a menu item before the submenu appear.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-menu-popup-delay -->
+Minimum time the pointer must stay over a menu item before the submenu appear.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-primary-button-warps-slider -->
+Whether a click in a `Range` trough should scroll to the click position or
+scroll by a single page in the respective direction.
+
+Feature: `v3_6`
+
+<!-- trait SettingsExt::fn set_property_gtk-primary-button-warps-slider -->
+Whether a click in a `Range` trough should scroll to the click position or
+scroll by a single page in the respective direction.
+
+Feature: `v3_6`
+
+<!-- trait SettingsExt::fn get_property_gtk-print-backends -->
+A comma-separated list of print backends to use in the print
+dialog. Available print backends depend on the GTK+ installation,
+and may include "file", "cups", "lpr" or "papi".
+<!-- trait SettingsExt::fn set_property_gtk-print-backends -->
+A comma-separated list of print backends to use in the print
+dialog. Available print backends depend on the GTK+ installation,
+and may include "file", "cups", "lpr" or "papi".
+<!-- trait SettingsExt::fn get_property_gtk-print-preview-command -->
+A command to run for displaying the print preview. The command
+should contain a `%f` placeholder, which will get replaced by
+the path to the pdf file. The command may also contain a `%s`
+placeholder, which will get replaced by the path to a file
+containing the print settings in the format produced by
+`PrintSettingsExt::to_file`.
+
+The preview application is responsible for removing the pdf file
+and the print settings file when it is done.
+<!-- trait SettingsExt::fn set_property_gtk-print-preview-command -->
+A command to run for displaying the print preview. The command
+should contain a `%f` placeholder, which will get replaced by
+the path to the pdf file. The command may also contain a `%s`
+placeholder, which will get replaced by the path to a file
+containing the print settings in the format produced by
+`PrintSettingsExt::to_file`.
+
+The preview application is responsible for removing the pdf file
+and the print settings file when it is done.
+<!-- trait SettingsExt::fn get_property_gtk-recent-files-enabled -->
+Whether GTK+ should keep track of items inside the recently used
+resources list. If set to `false`, the list will always be empty.
+
+Feature: `v3_8`
+
+<!-- trait SettingsExt::fn set_property_gtk-recent-files-enabled -->
+Whether GTK+ should keep track of items inside the recently used
+resources list. If set to `false`, the list will always be empty.
+
+Feature: `v3_8`
+
+<!-- trait SettingsExt::fn get_property_gtk-recent-files-limit -->
+The number of recently used files that should be displayed by default by
+`RecentChooser` implementations and by the `FileChooser`. A value of
+-1 means every recently used file stored.
+
+# Deprecated since 3.10
+
+This setting is ignored
+<!-- trait SettingsExt::fn set_property_gtk-recent-files-limit -->
+The number of recently used files that should be displayed by default by
+`RecentChooser` implementations and by the `FileChooser`. A value of
+-1 means every recently used file stored.
+
+# Deprecated since 3.10
+
+This setting is ignored
+<!-- trait SettingsExt::fn get_property_gtk-recent-files-max-age -->
+The maximum age, in days, of the items inside the recently used
+resources list. Items older than this setting will be excised
+from the list. If set to 0, the list will always be empty; if
+set to -1, no item will be removed.
+<!-- trait SettingsExt::fn set_property_gtk-recent-files-max-age -->
+The maximum age, in days, of the items inside the recently used
+resources list. Items older than this setting will be excised
+from the list. If set to 0, the list will always be empty; if
+set to -1, no item will be removed.
+<!-- trait SettingsExt::fn get_property_gtk-scrolled-window-placement -->
+Where the contents of scrolled windows are located with respect to the
+scrollbars, if not overridden by the scrolled window's own placement.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-scrolled-window-placement -->
+Where the contents of scrolled windows are located with respect to the
+scrollbars, if not overridden by the scrolled window's own placement.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-show-input-method-menu -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-show-input-method-menu -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-show-unicode-menu -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-show-unicode-menu -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-sound-theme-name -->
+The XDG sound theme to use for event sounds.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn set_property_gtk-sound-theme-name -->
+The XDG sound theme to use for event sounds.
+
+See the [Sound Theme Specifications](http://www.freedesktop.org/wiki/Specifications/sound-theme-spec)
+for more information on event sounds and sound themes.
+
+GTK+ itself does not support event sounds, you have to use a loadable
+module like the one that comes with libcanberra.
+<!-- trait SettingsExt::fn get_property_gtk-timeout-expand -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-timeout-expand -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-timeout-initial -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-timeout-initial -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-timeout-repeat -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-timeout-repeat -->
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-titlebar-double-click -->
+This setting determines the action to take when a double-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn set_property_gtk-titlebar-double-click -->
+This setting determines the action to take when a double-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn get_property_gtk-titlebar-middle-click -->
+This setting determines the action to take when a middle-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn set_property_gtk-titlebar-middle-click -->
+This setting determines the action to take when a middle-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn get_property_gtk-titlebar-right-click -->
+This setting determines the action to take when a right-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn set_property_gtk-titlebar-right-click -->
+This setting determines the action to take when a right-click
+occurs on the titlebar of client-side decorated windows.
+
+Recognized actions are minimize, toggle-maximize, menu, lower
+or none.
+
+Feature: `v3_14`
+
+<!-- trait SettingsExt::fn get_property_gtk-toolbar-icon-size -->
+The size of icons in default toolbars.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-toolbar-icon-size -->
+The size of icons in default toolbars.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-toolbar-style -->
+The size of icons in default toolbars.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-toolbar-style -->
+The size of icons in default toolbars.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-tooltip-browse-mode-timeout -->
+Amount of time, in milliseconds, after which the browse mode
+will be disabled.
+
+See `Settings:gtk-tooltip-browse-timeout` for more information
+about browse mode.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-tooltip-browse-mode-timeout -->
+Amount of time, in milliseconds, after which the browse mode
+will be disabled.
+
+See `Settings:gtk-tooltip-browse-timeout` for more information
+about browse mode.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-tooltip-browse-timeout -->
+Controls the time after which tooltips will appear when
+browse mode is enabled, in milliseconds.
+
+Browse mode is enabled when the mouse pointer moves off an object
+where a tooltip was currently being displayed. If the mouse pointer
+hits another object before the browse mode timeout expires (see
+`Settings:gtk-tooltip-browse-mode-timeout`), it will take the
+amount of milliseconds specified by this setting to popup the tooltip
+for the new object.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-tooltip-browse-timeout -->
+Controls the time after which tooltips will appear when
+browse mode is enabled, in milliseconds.
+
+Browse mode is enabled when the mouse pointer moves off an object
+where a tooltip was currently being displayed. If the mouse pointer
+hits another object before the browse mode timeout expires (see
+`Settings:gtk-tooltip-browse-mode-timeout`), it will take the
+amount of milliseconds specified by this setting to popup the tooltip
+for the new object.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-tooltip-timeout -->
+Time, in milliseconds, after which a tooltip could appear if the
+cursor is hovering on top of a widget.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn set_property_gtk-tooltip-timeout -->
+Time, in milliseconds, after which a tooltip could appear if the
+cursor is hovering on top of a widget.
+
+# Deprecated since 3.10
+
+This setting is ignored.
+<!-- trait SettingsExt::fn get_property_gtk-touchscreen-mode -->
+When `true`, there are no motion notify events delivered on this screen,
+and widgets can't use the pointer hovering them for any essential
+functionality.
+
+# Deprecated since 3.4
+
+Generally, the behavior for touchscreen input should be
+ performed dynamically based on `gdk_event_get_source_device`.
+<!-- trait SettingsExt::fn set_property_gtk-touchscreen-mode -->
+When `true`, there are no motion notify events delivered on this screen,
+and widgets can't use the pointer hovering them for any essential
+functionality.
+
+# Deprecated since 3.4
+
+Generally, the behavior for touchscreen input should be
+ performed dynamically based on `gdk_event_get_source_device`.
+<!-- trait SettingsExt::fn get_property_gtk-visible-focus -->
+Whether 'focus rectangles' should be always visible, never visible,
+or hidden until the user starts to use the keyboard.
+
+# Deprecated since 3.10
+
+This setting is ignored
+<!-- trait SettingsExt::fn set_property_gtk-visible-focus -->
+Whether 'focus rectangles' should be always visible, never visible,
+or hidden until the user starts to use the keyboard.
+
+# Deprecated since 3.10
+
+This setting is ignored
 <!-- enum ShadowType -->
 Used to change the appearance of an outline typically provided by a `Frame`.
 
@@ -27339,6 +33611,43 @@ Feature: `v3_20`
 # Implementors
 
 [`ShortcutsWindow`](struct.ShortcutsWindow.html)
+<!-- trait ShortcutsWindowExt::fn connect_close -->
+The ::close signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user uses a keybinding to close
+the window.
+
+The default binding for this signal is the Escape key.
+<!-- trait ShortcutsWindowExt::fn connect_search -->
+The ::search signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user uses a keybinding to start a search.
+
+The default binding for this signal is Control-F.
+<!-- trait ShortcutsWindowExt::fn get_property_section-name -->
+The name of the section to show.
+
+This should be the section-name of one of the `ShortcutsSection`
+objects that are in this shortcuts window.
+<!-- trait ShortcutsWindowExt::fn set_property_section-name -->
+The name of the section to show.
+
+This should be the section-name of one of the `ShortcutsSection`
+objects that are in this shortcuts window.
+<!-- trait ShortcutsWindowExt::fn get_property_view-name -->
+The view name by which to filter the contents.
+
+This should correspond to the `ShortcutsGroup:view` property of some of
+the `ShortcutsGroup` objects that are inside this shortcuts window.
+
+Set this to `None` to show all groups.
+<!-- trait ShortcutsWindowExt::fn set_property_view-name -->
+The view name by which to filter the contents.
+
+This should correspond to the `ShortcutsGroup:view` property of some of
+the `ShortcutsGroup` objects that are inside this shortcuts window.
+
+Set this to `None` to show all groups.
 <!-- struct SizeGroup -->
 `SizeGroup` provides a mechanism for grouping a number of widgets
 together so they all request the same amount of space. This is
@@ -27491,6 +33800,30 @@ or should all have the same requisition in both directions
 (`SizeGroupMode::Both`).
 ## `mode`
 the mode to set for the size group.
+<!-- trait SizeGroupExt::fn get_property_ignore-hidden -->
+If `true`, unmapped widgets are ignored when determining
+the size of the group.
+
+# Deprecated since 3.22
+
+Measuring the size of hidden widgets has not worked
+ reliably for a long time. In most cases, they will report a size
+ of 0 nowadays, and thus, their size will not affect the other
+ size group members. In effect, size groups will always operate
+ as if this property was `true`. Use a `Stack` instead to hide
+ widgets while still having their size taken into account.
+<!-- trait SizeGroupExt::fn set_property_ignore-hidden -->
+If `true`, unmapped widgets are ignored when determining
+the size of the group.
+
+# Deprecated since 3.22
+
+Measuring the size of hidden widgets has not worked
+ reliably for a long time. In most cases, they will report a size
+ of 0 nowadays, and thus, their size will not affect the other
+ size group members. In effect, size groups will always operate
+ as if this property was `true`. Use a `Stack` instead to hide
+ widgets while still having their size taken into account.
 <!-- enum SizeGroupMode -->
 The mode of the size group determines the directions in which the size
 group affects the requested sizes of its component widgets.
@@ -27538,6 +33871,8 @@ to the desired number of characters to display in the entry.
 
 ```plain
 spinbutton.horizontal
+├── undershoot.left
+├── undershoot.right
 ├── entry
 │   ╰── ...
 ├── button.down
@@ -27547,6 +33882,8 @@ spinbutton.horizontal
 
 ```plain
 spinbutton.vertical
+├── undershoot.left
+├── undershoot.right
 ├── button.up
 ├── entry
 │   ╰── ...
@@ -27807,6 +34144,64 @@ a `SpinType` indicating the direction to spin
 step increment to apply in the specified direction
 <!-- trait SpinButtonExt::fn update -->
 Manually force an update of the spin button.
+<!-- trait SpinButtonExt::fn connect_change_value -->
+The ::change-value signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a value change.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal are Up/Down and PageUp and/PageDown.
+## `scroll`
+a `ScrollType` to specify the speed and amount of change
+<!-- trait SpinButtonExt::fn connect_input -->
+The ::input signal can be used to influence the conversion of
+the users input into a double value. The signal handler is
+expected to use `EntryExt::get_text` to retrieve the text of
+the entry and set `new_value` to the new value.
+
+The default conversion uses `g_strtod`.
+## `new_value`
+return location for the new value
+
+# Returns
+
+`true` for a successful conversion, `false` if the input
+ was not handled, and `GTK_INPUT_ERROR` if the conversion failed.
+<!-- trait SpinButtonExt::fn connect_output -->
+The ::output signal can be used to change to formatting
+of the value that is displayed in the spin buttons entry.
+
+```C
+// show leading zeros
+static gboolean
+on_output (GtkSpinButton *spin,
+           gpointer       data)
+{
+   GtkAdjustment *adjustment;
+   gchar *text;
+   int value;
+
+   adjustment = gtk_spin_button_get_adjustment (spin);
+   value = (int)gtk_adjustment_get_value (adjustment);
+   text = g_strdup_printf ("%02d", value);
+   gtk_entry_set_text (GTK_ENTRY (spin), text);
+   g_free (text);
+
+   return TRUE;
+}
+```
+
+# Returns
+
+`true` if the value has been displayed
+<!-- trait SpinButtonExt::fn connect_value_changed -->
+The ::value-changed signal is emitted when the value represented by
+`spinbutton` changes. Also see the `SpinButton::output` signal.
+<!-- trait SpinButtonExt::fn connect_wrapped -->
+The ::wrapped signal is emitted right after the spinbutton wraps
+from its maximum to minimum value or vice-versa.
 <!-- enum SpinButtonUpdatePolicy -->
 The spin button update policy determines whether the spin button displays
 values even if they are outside the bounds of its adjustment.
@@ -28144,6 +34539,26 @@ Feature: `v3_10`
 
 ## `name`
 the name of the child to make visible
+<!-- trait StackExt::fn get_property_hhomogeneous -->
+`true` if the stack allocates the same width for all children.
+
+Feature: `v3_16`
+
+<!-- trait StackExt::fn set_property_hhomogeneous -->
+`true` if the stack allocates the same width for all children.
+
+Feature: `v3_16`
+
+<!-- trait StackExt::fn get_property_vhomogeneous -->
+`true` if the stack allocates the same height for all children.
+
+Feature: `v3_16`
+
+<!-- trait StackExt::fn set_property_vhomogeneous -->
+`true` if the stack allocates the same height for all children.
+
+Feature: `v3_16`
+
 <!-- struct StackSidebar -->
 A `StackSidebar` enables you to quickly and easily provide a
 consistent "sidebar" object for your user interface.
@@ -28267,6 +34682,18 @@ Feature: `v3_10`
 
 ## `stack`
 a `Stack`
+<!-- trait StackSwitcherExt::fn get_property_icon-size -->
+Use the "icon-size" property to change the size of the image displayed
+when a `StackSwitcher` is displaying icons.
+
+Feature: `v3_20`
+
+<!-- trait StackSwitcherExt::fn set_property_icon-size -->
+Use the "icon-size" property to change the size of the image displayed
+when a `StackSwitcher` is displaying icons.
+
+Feature: `v3_20`
+
 <!-- enum StackTransitionType -->
 These enumeration values describe the possible transitions
 between pages in a `Stack` widget.
@@ -28823,6 +35250,219 @@ Shows or hides a status icon.
 Use notifications
 ## `visible`
 `true` to show the status icon, `false` to hide it
+<!-- trait StatusIconExt::fn connect_activate -->
+Gets emitted when the user activates the status icon.
+If and how status icons can activated is platform-dependent.
+
+Unlike most G_SIGNAL_ACTION signals, this signal is meant to
+be used by applications and should be wrapped by language bindings.
+<!-- trait StatusIconExt::fn connect_button_press_event -->
+The ::button-press-event signal will be emitted when a button
+(typically from a mouse) is pressed.
+
+Whether this event is emitted is platform-dependent. Use the ::activate
+and ::popup-menu signals in preference.
+## `event`
+the `gdk::EventButton` which triggered
+ this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked
+for the event. `false` to propagate the event further.
+<!-- trait StatusIconExt::fn connect_button_release_event -->
+The ::button-release-event signal will be emitted when a button
+(typically from a mouse) is released.
+
+Whether this event is emitted is platform-dependent. Use the ::activate
+and ::popup-menu signals in preference.
+## `event`
+the `gdk::EventButton` which triggered
+ this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked
+for the event. `false` to propagate the event further.
+<!-- trait StatusIconExt::fn connect_popup_menu -->
+Gets emitted when the user brings up the context menu
+of the status icon. Whether status icons can have context
+menus and how these are activated is platform-dependent.
+
+The `button` and `activate_time` parameters should be
+passed as the last to arguments to `MenuExt::popup`.
+
+Unlike most G_SIGNAL_ACTION signals, this signal is meant to
+be used by applications and should be wrapped by language bindings.
+## `button`
+the button that was pressed, or 0 if the
+ signal is not emitted in response to a button press event
+## `activate_time`
+the timestamp of the event that
+ triggered the signal emission
+<!-- trait StatusIconExt::fn connect_query_tooltip -->
+Emitted when the hover timeout has expired with the
+cursor hovering above `status_icon`; or emitted when `status_icon` got
+focus in keyboard mode.
+
+Using the given coordinates, the signal handler should determine
+whether a tooltip should be shown for `status_icon`. If this is
+the case `true` should be returned, `false` otherwise. Note that if
+`keyboard_mode` is `true`, the values of `x` and `y` are undefined and
+should not be used.
+
+The signal handler is free to manipulate `tooltip` with the therefore
+destined function calls.
+
+Whether this signal is emitted is platform-dependent.
+For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
+## `x`
+the x coordinate of the cursor position where the request has been
+ emitted, relative to `status_icon`
+## `y`
+the y coordinate of the cursor position where the request has been
+ emitted, relative to `status_icon`
+## `keyboard_mode`
+`true` if the tooltip was trigged using the keyboard
+## `tooltip`
+a `Tooltip`
+
+# Returns
+
+`true` if `tooltip` should be shown right now, `false` otherwise.
+<!-- trait StatusIconExt::fn connect_scroll_event -->
+The ::scroll-event signal is emitted when a button in the 4 to 7
+range is pressed. Wheel mice are usually configured to generate
+button press events for buttons 4 and 5 when the wheel is turned.
+
+Whether this event is emitted is platform-dependent.
+## `event`
+the `gdk::EventScroll` which triggered
+ this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait StatusIconExt::fn connect_size_changed -->
+Gets emitted when the size available for the image
+changes, e.g. because the notification area got resized.
+## `size`
+the new size
+
+# Returns
+
+`true` if the icon was updated for the new
+size. Otherwise, GTK+ will scale the icon as necessary.
+<!-- trait StatusIconExt::fn get_property_embedded -->
+`true` if the statusicon is embedded in a notification area.
+<!-- trait StatusIconExt::fn get_property_gicon -->
+The `gio::Icon` displayed in the `StatusIcon`. For themed icons,
+the image will be updated automatically if the theme changes.
+<!-- trait StatusIconExt::fn set_property_gicon -->
+The `gio::Icon` displayed in the `StatusIcon`. For themed icons,
+the image will be updated automatically if the theme changes.
+<!-- trait StatusIconExt::fn get_property_has-tooltip -->
+Enables or disables the emission of `StatusIcon::query-tooltip` on
+`status_icon`. A value of `true` indicates that `status_icon` can have a
+tooltip, in this case the status icon will be queried using
+`StatusIcon::query-tooltip` to determine whether it will provide a
+tooltip or not.
+
+Note that setting this property to `true` for the first time will change
+the event masks of the windows of this status icon to include leave-notify
+and motion-notify events. This will not be undone when the property is set
+to `false` again.
+
+Whether this property is respected is platform dependent.
+For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
+<!-- trait StatusIconExt::fn set_property_has-tooltip -->
+Enables or disables the emission of `StatusIcon::query-tooltip` on
+`status_icon`. A value of `true` indicates that `status_icon` can have a
+tooltip, in this case the status icon will be queried using
+`StatusIcon::query-tooltip` to determine whether it will provide a
+tooltip or not.
+
+Note that setting this property to `true` for the first time will change
+the event masks of the windows of this status icon to include leave-notify
+and motion-notify events. This will not be undone when the property is set
+to `false` again.
+
+Whether this property is respected is platform dependent.
+For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
+<!-- trait StatusIconExt::fn get_property_orientation -->
+The orientation of the tray in which the statusicon
+is embedded.
+<!-- trait StatusIconExt::fn get_property_stock -->
+
+# Deprecated since 3.10
+
+Use `StatusIcon:icon-name` instead.
+<!-- trait StatusIconExt::fn set_property_stock -->
+
+# Deprecated since 3.10
+
+Use `StatusIcon:icon-name` instead.
+<!-- trait StatusIconExt::fn get_property_title -->
+The title of this tray icon. This should be a short, human-readable,
+localized string describing the tray icon. It may be used by tools
+like screen readers to render the tray icon.
+<!-- trait StatusIconExt::fn set_property_title -->
+The title of this tray icon. This should be a short, human-readable,
+localized string describing the tray icon. It may be used by tools
+like screen readers to render the tray icon.
+<!-- trait StatusIconExt::fn get_property_tooltip-markup -->
+Sets the text of tooltip to be the given string, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+Also see `TooltipExt::set_markup`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`.
+`StatusIcon:has-tooltip` will automatically be set to `true` and
+the default handler for the `StatusIcon::query-tooltip` signal
+will take care of displaying the tooltip.
+
+On some platforms, embedded markup will be ignored.
+<!-- trait StatusIconExt::fn set_property_tooltip-markup -->
+Sets the text of tooltip to be the given string, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+Also see `TooltipExt::set_markup`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`.
+`StatusIcon:has-tooltip` will automatically be set to `true` and
+the default handler for the `StatusIcon::query-tooltip` signal
+will take care of displaying the tooltip.
+
+On some platforms, embedded markup will be ignored.
+<!-- trait StatusIconExt::fn get_property_tooltip-text -->
+Sets the text of tooltip to be the given string.
+
+Also see `TooltipExt::set_text`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`.
+`StatusIcon:has-tooltip` will automatically be set to `true` and
+the default handler for the `StatusIcon::query-tooltip` signal
+will take care of displaying the tooltip.
+
+Note that some platforms have limitations on the length of tooltips
+that they allow on status icons, e.g. Windows only shows the first
+64 characters.
+<!-- trait StatusIconExt::fn set_property_tooltip-text -->
+Sets the text of tooltip to be the given string.
+
+Also see `TooltipExt::set_text`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`.
+`StatusIcon:has-tooltip` will automatically be set to `true` and
+the default handler for the `StatusIcon::query-tooltip` signal
+will take care of displaying the tooltip.
+
+Note that some platforms have limitations on the length of tooltips
+that they allow on status icons, e.g. Windows only shows the first
+64 characters.
 <!-- struct Statusbar -->
 A `Statusbar` is usually placed along the bottom of an application's
 main `Window`. It may provide a regular commentary of the application's
@@ -28923,6 +35563,18 @@ Forces the removal of all messages from a statusbar's
 stack with the exact `context_id`.
 ## `context_id`
 a context identifier
+<!-- trait StatusbarExt::fn connect_text_popped -->
+Is emitted whenever a new message is popped off a statusbar's stack.
+## `context_id`
+the context id of the relevant message/statusbar
+## `text`
+the message that was just popped
+<!-- trait StatusbarExt::fn connect_text_pushed -->
+Is emitted whenever a new message gets pushed onto a statusbar's stack.
+## `context_id`
+the context id of the relevant message/statusbar
+## `text`
+the message that was pushed
 <!-- struct StyleContext -->
 `StyleContext` is an object that stores styling information affecting
 a widget defined by `WidgetPath`.
@@ -29678,6 +36330,20 @@ Flags that determine what to print
 # Returns
 
 a newly allocated string representing `self`
+<!-- trait StyleContextExt::fn connect_changed -->
+The ::changed signal is emitted when there is a change in the
+`StyleContext`.
+
+For a `StyleContext` returned by `WidgetExt::get_style_context`, the
+`Widget::style-updated` signal/vfunc might be more convenient to use.
+
+This signal is useful when using the theming layer standalone.
+<!-- trait StyleContextExt::fn get_property_parent -->
+Sets or gets the style context’s parent. See `StyleContextExt::set_parent`
+for details.
+<!-- trait StyleContextExt::fn set_property_parent -->
+Sets or gets the style context’s parent. See `StyleContextExt::set_parent`
+for details.
 <!-- struct StyleProperties -->
 `[Deprecated since 3.16]` `StyleProperties` provides the storage for style information
 that is used by `StyleContext` and other `StyleProvider`
@@ -29988,6 +36654,50 @@ Feature: `v3_14`
 
 ## `state`
 the new state
+<!-- trait SwitchExt::fn connect_activate -->
+The ::activate signal on `Switch` is an action signal and
+emitting it causes the switch to animate.
+Applications should never connect to this signal, but use the
+notify::active signal.
+<!-- trait SwitchExt::fn connect_state_set -->
+The ::state-set signal on `Switch` is emitted to change the underlying
+state. It is emitted when the user changes the switch position. The
+default handler keeps the state in sync with the `Switch:active`
+property.
+
+To implement delayed state change, applications can connect to this signal,
+initiate the change of the underlying state, and call `SwitchExt::set_state`
+when the underlying state change is complete. The signal handler should
+return `true` to prevent the default handler from running.
+
+Visually, the underlying state is represented by the trough color of
+the switch, while the `Switch:active` property is represented by the
+position of the switch.
+
+Feature: `v3_14`
+
+## `state`
+the new state of the switch
+
+# Returns
+
+`true` to stop the signal emission
+<!-- trait SwitchExt::fn get_property_active -->
+Whether the `Switch` widget is in its on or off state.
+<!-- trait SwitchExt::fn set_property_active -->
+Whether the `Switch` widget is in its on or off state.
+<!-- trait SwitchExt::fn get_property_state -->
+The backend state that is controlled by the switch.
+See `Switch::state-set` for details.
+
+Feature: `v3_14`
+
+<!-- trait SwitchExt::fn set_property_state -->
+The backend state that is controlled by the switch.
+See `Switch::state-set` for details.
+
+Feature: `v3_14`
+
 <!-- struct SymbolicColor -->
 `[Deprecated since 3.8]` `SymbolicColor` is a boxed type that represents a symbolic color.
 It is the result of parsing a
@@ -31195,6 +37905,178 @@ registered using `TextBufferExt::register_serialize_format` or
 `TextBufferExt::register_serialize_tagset`
 ## `format`
 a `gdk::Atom` representing a registered rich text format.
+<!-- trait TextBufferExt::fn connect_apply_tag -->
+The ::apply-tag signal is emitted to apply a tag to a
+range of text in a `TextBuffer`.
+Applying actually occurs in the default handler.
+
+Note that if your handler runs before the default handler it must not
+invalidate the `start` and `end` iters (or has to revalidate them).
+
+See also:
+`TextBufferExt::apply_tag`,
+`TextBufferExt::insert_with_tags`,
+`TextBufferExt::insert_range`.
+## `tag`
+the applied tag
+## `start`
+the start of the range the tag is applied to
+## `end`
+the end of the range the tag is applied to
+<!-- trait TextBufferExt::fn connect_begin_user_action -->
+The ::begin-user-action signal is emitted at the beginning of a single
+user-visible operation on a `TextBuffer`.
+
+See also:
+`TextBufferExt::begin_user_action`,
+`TextBufferExt::insert_interactive`,
+`TextBufferExt::insert_range_interactive`,
+`TextBufferExt::delete_interactive`,
+`TextBufferExt::backspace`,
+`TextBufferExt::delete_selection`.
+<!-- trait TextBufferExt::fn connect_changed -->
+The ::changed signal is emitted when the content of a `TextBuffer`
+has changed.
+<!-- trait TextBufferExt::fn connect_delete_range -->
+The ::delete-range signal is emitted to delete a range
+from a `TextBuffer`.
+
+Note that if your handler runs before the default handler it must not
+invalidate the `start` and `end` iters (or has to revalidate them).
+The default signal handler revalidates the `start` and `end` iters to
+both point to the location where text was deleted. Handlers
+which run after the default handler (see `g_signal_connect_after`)
+do not have access to the deleted text.
+
+See also: `TextBufferExt::delete`.
+## `start`
+the start of the range to be deleted
+## `end`
+the end of the range to be deleted
+<!-- trait TextBufferExt::fn connect_end_user_action -->
+The ::end-user-action signal is emitted at the end of a single
+user-visible operation on the `TextBuffer`.
+
+See also:
+`TextBufferExt::end_user_action`,
+`TextBufferExt::insert_interactive`,
+`TextBufferExt::insert_range_interactive`,
+`TextBufferExt::delete_interactive`,
+`TextBufferExt::backspace`,
+`TextBufferExt::delete_selection`,
+`TextBufferExt::backspace`.
+<!-- trait TextBufferExt::fn connect_insert_child_anchor -->
+The ::insert-child-anchor signal is emitted to insert a
+`TextChildAnchor` in a `TextBuffer`.
+Insertion actually occurs in the default handler.
+
+Note that if your handler runs before the default handler it must
+not invalidate the `location` iter (or has to revalidate it).
+The default signal handler revalidates it to be placed after the
+inserted `anchor`.
+
+See also: `TextBufferExt::insert_child_anchor`.
+## `location`
+position to insert `anchor` in `textbuffer`
+## `anchor`
+the `TextChildAnchor` to be inserted
+<!-- trait TextBufferExt::fn connect_insert_pixbuf -->
+The ::insert-pixbuf signal is emitted to insert a `gdk_pixbuf::Pixbuf`
+in a `TextBuffer`. Insertion actually occurs in the default handler.
+
+Note that if your handler runs before the default handler it must not
+invalidate the `location` iter (or has to revalidate it).
+The default signal handler revalidates it to be placed after the
+inserted `pixbuf`.
+
+See also: `TextBufferExt::insert_pixbuf`.
+## `location`
+position to insert `pixbuf` in `textbuffer`
+## `pixbuf`
+the `gdk_pixbuf::Pixbuf` to be inserted
+<!-- trait TextBufferExt::fn connect_insert_text -->
+The ::insert-text signal is emitted to insert text in a `TextBuffer`.
+Insertion actually occurs in the default handler.
+
+Note that if your handler runs before the default handler it must not
+invalidate the `location` iter (or has to revalidate it).
+The default signal handler revalidates it to point to the end of the
+inserted text.
+
+See also:
+`TextBufferExt::insert`,
+`TextBufferExt::insert_range`.
+## `location`
+position to insert `text` in `textbuffer`
+## `text`
+the UTF-8 text to be inserted
+## `len`
+length of the inserted text in bytes
+<!-- trait TextBufferExt::fn connect_mark_deleted -->
+The ::mark-deleted signal is emitted as notification
+after a `TextMark` is deleted.
+
+See also:
+`TextBufferExt::delete_mark`.
+## `mark`
+The mark that was deleted
+<!-- trait TextBufferExt::fn connect_mark_set -->
+The ::mark-set signal is emitted as notification
+after a `TextMark` is set.
+
+See also:
+`TextBufferExt::create_mark`,
+`TextBufferExt::move_mark`.
+## `location`
+The location of `mark` in `textbuffer`
+## `mark`
+The mark that is set
+<!-- trait TextBufferExt::fn connect_modified_changed -->
+The ::modified-changed signal is emitted when the modified bit of a
+`TextBuffer` flips.
+
+See also:
+`TextBufferExt::set_modified`.
+<!-- trait TextBufferExt::fn connect_paste_done -->
+The paste-done signal is emitted after paste operation has been completed.
+This is useful to properly scroll the view to the end of the pasted text.
+See `TextBufferExt::paste_clipboard` for more details.
+## `clipboard`
+the `Clipboard` pasted from
+<!-- trait TextBufferExt::fn connect_remove_tag -->
+The ::remove-tag signal is emitted to remove all occurrences of `tag` from
+a range of text in a `TextBuffer`.
+Removal actually occurs in the default handler.
+
+Note that if your handler runs before the default handler it must not
+invalidate the `start` and `end` iters (or has to revalidate them).
+
+See also:
+`TextBufferExt::remove_tag`.
+## `tag`
+the tag to be removed
+## `start`
+the start of the range the tag is removed from
+## `end`
+the end of the range the tag is removed from
+<!-- trait TextBufferExt::fn get_property_copy-target-list -->
+The list of targets this buffer supports for clipboard copying
+and as DND source.
+<!-- trait TextBufferExt::fn get_property_cursor-position -->
+The position of the insert mark (as offset from the beginning
+of the buffer). It is useful for getting notified when the
+cursor moves.
+<!-- trait TextBufferExt::fn get_property_has-selection -->
+Whether the buffer has some text currently selected.
+<!-- trait TextBufferExt::fn get_property_paste-target-list -->
+The list of targets this buffer supports for clipboard pasting
+and as DND destination.
+<!-- trait TextBufferExt::fn get_property_text -->
+The text content of the buffer. Without child widgets and images,
+see `TextBufferExt::get_text` for more information.
+<!-- trait TextBufferExt::fn set_property_text -->
+The text content of the buffer. Without child widgets and images,
+see `TextBufferExt::get_text` for more information.
 <!-- struct TextChildAnchor -->
 A `TextChildAnchor` is a spot in the buffer where child widgets can
 be “anchored” (inserted inline, as if they were characters). The anchor
@@ -32322,6 +39204,18 @@ dragging-and-dropping text. Most other marks are not visible.
 Marks are not visible by default.
 ## `setting`
 visibility of mark
+<!-- trait TextMarkExt::fn get_property_left-gravity -->
+Whether the mark has left gravity. When text is inserted at the mark’s
+current location, if the mark has left gravity it will be moved
+to the left of the newly-inserted text, otherwise to the right.
+<!-- trait TextMarkExt::fn set_property_left-gravity -->
+Whether the mark has left gravity. When text is inserted at the mark’s
+current location, if the mark has left gravity it will be moved
+to the left of the newly-inserted text, otherwise to the right.
+<!-- trait TextMarkExt::fn get_property_name -->
+The name of the mark or `None` if the mark is anonymous.
+<!-- trait TextMarkExt::fn set_property_name -->
+The name of the mark or `None` if the mark is anonymous.
 <!-- struct TextTag -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -32400,6 +39294,206 @@ is the order in which they were added to the table, or created with
 automatically.
 ## `priority`
 the new priority
+<!-- trait TextTagExt::fn connect_event -->
+The ::event signal is emitted when an event occurs on a region of the
+buffer marked with this tag.
+## `object`
+the object the event was fired from (typically a `TextView`)
+## `event`
+the event which triggered the signal
+## `iter`
+a `TextIter` pointing at the location the event occurred
+
+# Returns
+
+`true` to stop other handlers from being invoked for the
+event. `false` to propagate the event further.
+<!-- trait TextTagExt::fn get_property_accumulative-margin -->
+Whether the margins accumulate or override each other.
+
+When set to `true` the margins of this tag are added to the margins
+of any other non-accumulative margins present. When set to `false`
+the margins override one another (the default).
+<!-- trait TextTagExt::fn set_property_accumulative-margin -->
+Whether the margins accumulate or override each other.
+
+When set to `true` the margins of this tag are added to the margins
+of any other non-accumulative margins present. When set to `false`
+the margins override one another (the default).
+<!-- trait TextTagExt::fn get_property_background-gdk -->
+Background color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:background-rgba` instead.
+<!-- trait TextTagExt::fn set_property_background-gdk -->
+Background color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:background-rgba` instead.
+<!-- trait TextTagExt::fn get_property_background-rgba -->
+Background color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn set_property_background-rgba -->
+Background color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn get_property_fallback -->
+Whether font fallback is enabled.
+
+When set to `true`, other fonts will be substituted
+where the current font is missing glyphs.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_fallback -->
+Whether font fallback is enabled.
+
+When set to `true`, other fonts will be substituted
+where the current font is missing glyphs.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn get_property_font -->
+Font description as string, e.g. \"Sans Italic 12\".
+
+Note that the initial value of this property depends on
+the internals of `pango::FontDescription`.
+<!-- trait TextTagExt::fn set_property_font -->
+Font description as string, e.g. \"Sans Italic 12\".
+
+Note that the initial value of this property depends on
+the internals of `pango::FontDescription`.
+<!-- trait TextTagExt::fn get_property_font-features -->
+OpenType font features, as a string.
+
+Feature: `v3_18`
+
+<!-- trait TextTagExt::fn set_property_font-features -->
+OpenType font features, as a string.
+
+Feature: `v3_18`
+
+<!-- trait TextTagExt::fn get_property_foreground-gdk -->
+Foreground color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:foreground-rgba` instead.
+<!-- trait TextTagExt::fn set_property_foreground-gdk -->
+Foreground color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:foreground-rgba` instead.
+<!-- trait TextTagExt::fn get_property_foreground-rgba -->
+Foreground color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn set_property_foreground-rgba -->
+Foreground color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn get_property_invisible -->
+Whether this text is hidden.
+
+Note that there may still be problems with the support for invisible
+text, in particular when navigating programmatically inside a buffer
+containing invisible segments.
+<!-- trait TextTagExt::fn set_property_invisible -->
+Whether this text is hidden.
+
+Note that there may still be problems with the support for invisible
+text, in particular when navigating programmatically inside a buffer
+containing invisible segments.
+<!-- trait TextTagExt::fn get_property_language -->
+The language this text is in, as an ISO code. Pango can use this as a
+hint when rendering the text. If not set, an appropriate default will be
+used.
+
+Note that the initial value of this property depends on the current
+locale, see also `gtk_get_default_language`.
+<!-- trait TextTagExt::fn set_property_language -->
+The language this text is in, as an ISO code. Pango can use this as a
+hint when rendering the text. If not set, an appropriate default will be
+used.
+
+Note that the initial value of this property depends on the current
+locale, see also `gtk_get_default_language`.
+<!-- trait TextTagExt::fn get_property_letter-spacing -->
+Extra spacing between graphemes, in Pango units.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_letter-spacing -->
+Extra spacing between graphemes, in Pango units.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_paragraph-background -->
+The paragraph background color as a string.
+<!-- trait TextTagExt::fn get_property_paragraph-background-gdk -->
+The paragraph background color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:paragraph-background-rgba` instead.
+<!-- trait TextTagExt::fn set_property_paragraph-background-gdk -->
+The paragraph background color as a `gdk::Color`.
+
+# Deprecated since 3.4
+
+Use `TextTag:paragraph-background-rgba` instead.
+<!-- trait TextTagExt::fn get_property_paragraph-background-rgba -->
+The paragraph background color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn set_property_paragraph-background-rgba -->
+The paragraph background color as a `gdk::RGBA`.
+<!-- trait TextTagExt::fn get_property_strikethrough-rgba -->
+This property modifies the color of strikeouts. If not set, strikeouts
+will use the forground color.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_strikethrough-rgba -->
+This property modifies the color of strikeouts. If not set, strikeouts
+will use the forground color.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn get_property_strikethrough-rgba-set -->
+If the `TextTag:strikethrough-rgba` property has been set.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_strikethrough-rgba-set -->
+If the `TextTag:strikethrough-rgba` property has been set.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn get_property_underline-rgba -->
+This property modifies the color of underlines. If not set, underlines
+will use the forground color.
+
+If `TextTag:underline` is set to `pango::Underline::Error`, an alternate
+color may be applied instead of the foreground. Setting this property
+will always override those defaults.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_underline-rgba -->
+This property modifies the color of underlines. If not set, underlines
+will use the forground color.
+
+If `TextTag:underline` is set to `pango::Underline::Error`, an alternate
+color may be applied instead of the foreground. Setting this property
+will always override those defaults.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn get_property_underline-rgba-set -->
+If the `TextTag:underline-rgba` property has been set.
+
+Feature: `v3_16`
+
+<!-- trait TextTagExt::fn set_property_underline-rgba-set -->
+If the `TextTag:underline-rgba` property has been set.
+
+Feature: `v3_16`
+
 <!-- struct TextTagTable -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -32480,6 +39574,17 @@ removed, so the tag will end up destroyed if you don’t have a reference to
 it.
 ## `tag`
 a `TextTag`
+<!-- trait TextTagTableExt::fn connect_tag_added -->
+## `tag`
+the added tag.
+<!-- trait TextTagTableExt::fn connect_tag_changed -->
+## `tag`
+the changed tag.
+## `size_changed`
+whether the change affects the `TextView` layout.
+<!-- trait TextTagTableExt::fn connect_tag_removed -->
+## `tag`
+the removed tag.
 <!-- struct TextView -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -32603,7 +39708,7 @@ Converts coordinate (`buffer_x`, `buffer_y`) to coordinates for the window
 Note that you can’t convert coordinates for a nonexisting window (see
 `TextViewExt::set_border_window_size`).
 ## `win`
-a `TextWindowType` except `TextWindowType::Private`
+a `TextWindowType`, except `TextWindowType::Private`
 ## `buffer_x`
 buffer x coordinate
 ## `buffer_y`
@@ -32940,9 +40045,9 @@ window to get
 a `gdk::Window`, or `None`
 <!-- trait TextViewExt::fn get_window_type -->
 Usually used to find out which window an event corresponds to.
+
 If you connect to an event signal on `self`, this function
-should be called on `event->window` to
-see which window it was.
+should be called on `event->window` to see which window it was.
 ## `window`
 a window type
 
@@ -33118,8 +40223,8 @@ Sets the width of `TextWindowType::Left` or `TextWindowType::Right`,
 or the height of `TextWindowType::Top` or `TextWindowType::Bottom`.
 Automatically destroys the corresponding window if the size is set
 to 0, and creates the window if the size is set to non-zero. This
-function can only be used for the “border windows,” it doesn’t work
-with `TextWindowType::Widget`, `TextWindowType::Text`, or
+function can only be used for the “border windows”, and it won’t
+work with `TextWindowType::Widget`, `TextWindowType::Text`, or
 `TextWindowType::Private`.
 ## `type_`
 window to affect
@@ -33276,8 +40381,313 @@ window y coordinate
 buffer x coordinate return location or `None`
 ## `buffer_y`
 buffer y coordinate return location or `None`
+<!-- trait TextViewExt::fn connect_backspace -->
+The ::backspace signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user asks for it.
+
+The default bindings for this signal are
+Backspace and Shift-Backspace.
+<!-- trait TextViewExt::fn connect_copy_clipboard -->
+The ::copy-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to copy the selection to the clipboard.
+
+The default bindings for this signal are
+Ctrl-c and Ctrl-Insert.
+<!-- trait TextViewExt::fn connect_cut_clipboard -->
+The ::cut-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to cut the selection to the clipboard.
+
+The default bindings for this signal are
+Ctrl-x and Shift-Delete.
+<!-- trait TextViewExt::fn connect_delete_from_cursor -->
+The ::delete-from-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a text deletion.
+
+If the `type_` is `DeleteType::Chars`, GTK+ deletes the selection
+if there is one, otherwise it deletes the requested number
+of characters.
+
+The default bindings for this signal are
+Delete for deleting a character, Ctrl-Delete for
+deleting a word and Ctrl-Backspace for deleting a word
+backwords.
+## `type_`
+the granularity of the deletion, as a `DeleteType`
+## `count`
+the number of `type_` units to delete
+<!-- trait TextViewExt::fn connect_extend_selection -->
+The ::extend-selection signal is emitted when the selection needs to be
+extended at `location`.
+
+Feature: `v3_16`
+
+## `granularity`
+the granularity type
+## `location`
+the location where to extend the selection
+## `start`
+where the selection should start
+## `end`
+where the selection should end
+
+# Returns
+
+`GDK_EVENT_STOP` to stop other handlers from being invoked for the
+ event. `GDK_EVENT_PROPAGATE` to propagate the event further.
+<!-- trait TextViewExt::fn connect_insert_at_cursor -->
+The ::insert-at-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates the insertion of a
+fixed string at the cursor.
+
+This signal has no default bindings.
+## `string`
+the string to insert
+<!-- trait TextViewExt::fn connect_move_cursor -->
+The ::move-cursor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates a cursor movement.
+If the cursor is not visible in `text_view`, this signal causes
+the viewport to be moved instead.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically.
+
+The default bindings for this signal come in two variants,
+the variant with the Shift modifier extends the selection,
+the variant without the Shift modifer does not.
+There are too many key combinations to list them all here.
+- Arrow keys move by individual characters/lines
+- Ctrl-arrow key combinations move by words/paragraphs
+- Home/End keys move to the ends of the buffer
+- PageUp/PageDown keys move vertically by pages
+- Ctrl-PageUp/PageDown keys move horizontally by pages
+## `step`
+the granularity of the move, as a `MovementStep`
+## `count`
+the number of `step` units to move
+## `extend_selection`
+`true` if the move should extend the selection
+<!-- trait TextViewExt::fn connect_move_viewport -->
+The ::move-viewport signal is a
+[keybinding signal][`BindingSignal`]
+which can be bound to key combinations to allow the user
+to move the viewport, i.e. change what part of the text view
+is visible in a containing scrolled window.
+
+There are no default bindings for this signal.
+## `step`
+the granularity of the movement, as a `ScrollStep`
+## `count`
+the number of `step` units to move
+<!-- trait TextViewExt::fn connect_paste_clipboard -->
+The ::paste-clipboard signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to paste the contents of the clipboard
+into the text view.
+
+The default bindings for this signal are
+Ctrl-v and Shift-Insert.
+<!-- trait TextViewExt::fn connect_populate_popup -->
+The ::populate-popup signal gets emitted before showing the
+context menu of the text view.
+
+If you need to add items to the context menu, connect
+to this signal and append your items to the `popup`, which
+will be a `Menu` in this case.
+
+If `TextView:populate-all` is `true`, this signal will
+also be emitted to populate touch popups. In this case,
+`popup` will be a different container, e.g. a `Toolbar`.
+
+The signal handler should not make assumptions about the
+type of `widget`, but check whether `popup` is a `Menu`
+or `Toolbar` or another kind of container.
+## `popup`
+the container that is being populated
+<!-- trait TextViewExt::fn connect_preedit_changed -->
+If an input method is used, the typed text will not immediately
+be committed to the buffer. So if you are interested in the text,
+connect to this signal.
+
+This signal is only emitted if the text at the given position
+is actually editable.
+## `preedit`
+the current preedit string
+<!-- trait TextViewExt::fn connect_select_all -->
+The ::select-all signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to select or unselect the complete
+contents of the text view.
+
+The default bindings for this signal are Ctrl-a and Ctrl-/
+for selecting and Shift-Ctrl-a and Ctrl-\ for unselecting.
+## `select`
+`true` to select, `false` to unselect
+<!-- trait TextViewExt::fn connect_set_anchor -->
+The ::set-anchor signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user initiates setting the "anchor"
+mark. The "anchor" mark gets placed at the same position as the
+"insert" mark.
+
+This signal has no default bindings.
+<!-- trait TextViewExt::fn connect_toggle_cursor_visible -->
+The ::toggle-cursor-visible signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to toggle the `TextView:cursor-visible`
+property.
+
+The default binding for this signal is F7.
+<!-- trait TextViewExt::fn connect_toggle_overwrite -->
+The ::toggle-overwrite signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted to toggle the overwrite mode of the text view.
+
+The default bindings for this signal is Insert.
+<!-- trait TextViewExt::fn get_property_bottom-margin -->
+The bottom margin for text in the text view.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-bottom`.
+
+Feature: `v3_18`
+
+<!-- trait TextViewExt::fn set_property_bottom-margin -->
+The bottom margin for text in the text view.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-bottom`.
+
+Feature: `v3_18`
+
+<!-- trait TextViewExt::fn get_property_im-module -->
+Which IM (input method) module should be used for this text_view.
+See `IMContext`.
+
+Setting this to a non-`None` value overrides the
+system-wide IM module setting. See the `Settings`
+`Settings:gtk-im-module` property.
+<!-- trait TextViewExt::fn set_property_im-module -->
+Which IM (input method) module should be used for this text_view.
+See `IMContext`.
+
+Setting this to a non-`None` value overrides the
+system-wide IM module setting. See the `Settings`
+`Settings:gtk-im-module` property.
+<!-- trait TextViewExt::fn get_property_input-hints -->
+Additional hints (beyond `TextView:input-purpose`) that
+allow input methods to fine-tune their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait TextViewExt::fn set_property_input-hints -->
+Additional hints (beyond `TextView:input-purpose`) that
+allow input methods to fine-tune their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait TextViewExt::fn get_property_input-purpose -->
+The purpose of this text field.
+
+This property can be used by on-screen keyboards and other input
+methods to adjust their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait TextViewExt::fn set_property_input-purpose -->
+The purpose of this text field.
+
+This property can be used by on-screen keyboards and other input
+methods to adjust their behaviour.
+
+Feature: `v3_6`
+
+<!-- trait TextViewExt::fn get_property_left-margin -->
+The default left margin for text in the text view.
+Tags in the buffer may override the default.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-left`.
+<!-- trait TextViewExt::fn set_property_left-margin -->
+The default left margin for text in the text view.
+Tags in the buffer may override the default.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-left`.
+<!-- trait TextViewExt::fn get_property_populate-all -->
+If :populate-all is `true`, the `TextView::populate-popup`
+signal is also emitted for touch popups.
+
+Feature: `v3_8`
+
+<!-- trait TextViewExt::fn set_property_populate-all -->
+If :populate-all is `true`, the `TextView::populate-popup`
+signal is also emitted for touch popups.
+
+Feature: `v3_8`
+
+<!-- trait TextViewExt::fn get_property_right-margin -->
+The default right margin for text in the text view.
+Tags in the buffer may override the default.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-right`.
+<!-- trait TextViewExt::fn set_property_right-margin -->
+The default right margin for text in the text view.
+Tags in the buffer may override the default.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-right`.
+<!-- trait TextViewExt::fn get_property_top-margin -->
+The top margin for text in the text view.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-top`.
+
+Feature: `v3_18`
+
+<!-- trait TextViewExt::fn set_property_top-margin -->
+The top margin for text in the text view.
+
+Note that this property is confusingly named. In CSS terms,
+the value set here is padding, and it is applied in addition
+to the padding from the theme.
+
+Don't confuse this property with `Widget:margin-top`.
+
+Feature: `v3_18`
+
 <!-- enum TextWindowType -->
 Used to reference the parts of `TextView`.
+<!-- enum TextWindowType::variant Private -->
+Invalid value, used as a marker
 <!-- enum TextWindowType::variant Widget -->
 Window that floats over scrolling areas.
 <!-- enum TextWindowType::variant Text -->
@@ -33441,6 +40851,9 @@ and label; if `false`, draw the button like a normal button
 Emits the `ToggleButton::toggled` signal on the
 `ToggleButton`. There is no good reason for an
 application ever to call this function.
+<!-- trait ToggleButtonExt::fn connect_toggled -->
+Should be connected if you wish to perform an action whenever the
+`ToggleButton`'s state is changed.
 <!-- struct ToggleToolButton -->
 A `ToggleToolButton` is a `ToolItem` that contains a toggle
 button.
@@ -33495,6 +40908,12 @@ want the `ToggleButton` to be “pressed in”, and `false` to raise it.
 This action causes the toggled signal to be emitted.
 ## `is_active`
 whether `self` should be active
+<!-- trait ToggleToolButtonExt::fn connect_toggled -->
+Emitted whenever the toggle tool button changes state.
+<!-- trait ToggleToolButtonExt::fn get_property_active -->
+If the toggle tool button should be pressed in.
+<!-- trait ToggleToolButtonExt::fn set_property_active -->
+If the toggle tool button should be pressed in.
 <!-- struct ToolButton -->
 ``GtkToolButtons`` are ``GtkToolItems`` containing buttons.
 
@@ -33659,6 +41078,29 @@ Labels shown on tool buttons never have mnemonics on them; this property
 only affects the menu item on the overflow menu.
 ## `use_underline`
 whether the button label has the form “_Open”
+<!-- trait ToolButtonExt::fn connect_clicked -->
+This signal is emitted when the tool button is clicked with the mouse
+or activated with the keyboard.
+<!-- trait ToolButtonExt::fn get_property_icon-name -->
+The name of the themed icon displayed on the item.
+This property only has an effect if not overridden by
+`ToolButton:label-widget`, `ToolButton:icon-widget` or
+`ToolButton:stock-id` properties.
+<!-- trait ToolButtonExt::fn set_property_icon-name -->
+The name of the themed icon displayed on the item.
+This property only has an effect if not overridden by
+`ToolButton:label-widget`, `ToolButton:icon-widget` or
+`ToolButton:stock-id` properties.
+<!-- trait ToolButtonExt::fn get_property_stock-id -->
+
+# Deprecated since 3.10
+
+Use `ToolButton:icon-name` instead.
+<!-- trait ToolButtonExt::fn set_property_stock-id -->
+
+# Deprecated since 3.10
+
+Use `ToolButton:icon-name` instead.
 <!-- struct ToolItem -->
 ``GtkToolItems`` are widgets that can appear on a toolbar. To
 create a toolbar item that contain something else than a button, use
@@ -33906,6 +41348,40 @@ is in vertical mode
 Emits the signal `ToolItem::toolbar_reconfigured` on `self`.
 `Toolbar` and other `ToolShell` implementations use this function
 to notify children, when some aspect of their configuration changes.
+<!-- trait ToolItemExt::fn connect_create_menu_proxy -->
+This signal is emitted when the toolbar needs information from `tool_item`
+about whether the item should appear in the toolbar overflow menu. In
+response the tool item should either
+
+- call `ToolItemExt::set_proxy_menu_item` with a `None`
+ pointer and return `true` to indicate that the item should not appear
+ in the overflow menu
+
+- call `ToolItemExt::set_proxy_menu_item` with a new menu
+ item and return `true`, or
+
+- return `false` to indicate that the signal was not handled by the item.
+ This means that the item will not appear in the overflow menu unless
+ a later handler installs a menu item.
+
+The toolbar may cache the result of this signal. When the tool item changes
+how it will respond to this signal it must call `ToolItemExt::rebuild_menu`
+to invalidate the cache and ensure that the toolbar rebuilds its overflow
+menu.
+
+# Returns
+
+`true` if the signal was handled, `false` if not
+<!-- trait ToolItemExt::fn connect_toolbar_reconfigured -->
+This signal is emitted when some property of the toolbar that the
+item is a child of changes. For custom subclasses of `ToolItem`,
+the default handler of this signal use the functions
+- `ToolShell::get_orientation`
+- `ToolShell::get_style`
+- `ToolShell::get_icon_size`
+- `ToolShell::get_relief_style`
+to find out what the toolbar should look like and change
+themselves accordingly.
 <!-- struct ToolItemGroup -->
 A `ToolItemGroup` is used together with `ToolPalette` to add
 ``GtkToolItems`` to a palette like container with different
@@ -34285,6 +41761,28 @@ so that user preferences will be used to determine the icon size.
 <!-- trait ToolPaletteExt::fn unset_style -->
 Unsets a toolbar style set with `ToolPaletteExt::set_style`,
 so that user preferences will be used to determine the toolbar style.
+<!-- trait ToolPaletteExt::fn get_property_icon-size -->
+The size of the icons in a tool palette. When this property is set,
+it overrides the default setting.
+
+This should only be used for special-purpose tool palettes, normal
+application tool palettes should respect the user preferences for the
+size of icons.
+<!-- trait ToolPaletteExt::fn set_property_icon-size -->
+The size of the icons in a tool palette. When this property is set,
+it overrides the default setting.
+
+This should only be used for special-purpose tool palettes, normal
+application tool palettes should respect the user preferences for the
+size of icons.
+<!-- trait ToolPaletteExt::fn get_property_icon-size-set -->
+Is `true` if the `ToolPalette:icon-size` property has been set.
+<!-- trait ToolPaletteExt::fn set_property_icon-size-set -->
+Is `true` if the `ToolPalette:icon-size` property has been set.
+<!-- trait ToolPaletteExt::fn get_property_toolbar-style -->
+The style of items in the tool palette.
+<!-- trait ToolPaletteExt::fn set_property_toolbar-style -->
+The style of items in the tool palette.
 <!-- struct ToolShell -->
 The `ToolShell` interface allows container widgets to provide additional
 information when embedding `ToolItem` widgets.
@@ -34519,6 +42017,62 @@ user preferences will be used to determine the icon size.
 <!-- trait ToolbarExt::fn unset_style -->
 Unsets a toolbar style set with `ToolbarExt::set_style`, so that
 user preferences will be used to determine the toolbar style.
+<!-- trait ToolbarExt::fn connect_focus_home_or_end -->
+A keybinding signal used internally by GTK+. This signal can't
+be used in application code
+## `focus_home`
+`true` if the first item should be focused
+
+# Returns
+
+`true` if the signal was handled, `false` if not
+<!-- trait ToolbarExt::fn connect_orientation_changed -->
+Emitted when the orientation of the toolbar changes.
+## `orientation`
+the new `Orientation` of the toolbar
+<!-- trait ToolbarExt::fn connect_popup_context_menu -->
+Emitted when the user right-clicks the toolbar or uses the
+keybinding to display a popup menu.
+
+Application developers should handle this signal if they want
+to display a context menu on the toolbar. The context-menu should
+appear at the coordinates given by `x` and `y`. The mouse button
+number is given by the `button` parameter. If the menu was popped
+up using the keybaord, `button` is -1.
+## `x`
+the x coordinate of the point where the menu should appear
+## `y`
+the y coordinate of the point where the menu should appear
+## `button`
+the mouse button the user pressed, or -1
+
+# Returns
+
+return `true` if the signal was handled, `false` if not
+<!-- trait ToolbarExt::fn connect_style_changed -->
+Emitted when the style of the toolbar changes.
+## `style`
+the new `ToolbarStyle` of the toolbar
+<!-- trait ToolbarExt::fn get_property_icon-size -->
+The size of the icons in a toolbar is normally determined by
+the toolbar-icon-size setting. When this property is set, it
+overrides the setting.
+
+This should only be used for special-purpose toolbars, normal
+application toolbars should respect the user preferences for the
+size of icons.
+<!-- trait ToolbarExt::fn set_property_icon-size -->
+The size of the icons in a toolbar is normally determined by
+the toolbar-icon-size setting. When this property is set, it
+overrides the setting.
+
+This should only be used for special-purpose toolbars, normal
+application toolbars should respect the user preferences for the
+size of icons.
+<!-- trait ToolbarExt::fn get_property_icon-size-set -->
+Is `true` if the icon-size property has been set.
+<!-- trait ToolbarExt::fn set_property_icon-size-set -->
+Is `true` if the icon-size property has been set.
 <!-- enum ToolbarStyle -->
 Used to customize the appearance of a `Toolbar`. Note that
 setting the toolbar style overrides the user’s preferences
@@ -35208,6 +42762,58 @@ this means, see `TreeModel::ref_node`.
 Please note that nodes that are deleted are not unreffed.
 ## `iter`
 the `TreeIter`-struct
+<!-- trait TreeModelExt::fn connect_row_changed -->
+This signal is emitted when a row in the model has changed.
+## `path`
+a `TreePath`-struct identifying the changed row
+## `iter`
+a valid `TreeIter`-struct pointing to the changed row
+<!-- trait TreeModelExt::fn connect_row_deleted -->
+This signal is emitted when a row has been deleted.
+
+Note that no iterator is passed to the signal handler,
+since the row is already deleted.
+
+This should be called by models after a row has been removed.
+The location pointed to by `path` should be the location that
+the row previously was at. It may not be a valid location anymore.
+## `path`
+a `TreePath`-struct identifying the row
+<!-- trait TreeModelExt::fn connect_row_has_child_toggled -->
+This signal is emitted when a row has gotten the first child
+row or lost its last child row.
+## `path`
+a `TreePath`-struct identifying the row
+## `iter`
+a valid `TreeIter`-struct pointing to the row
+<!-- trait TreeModelExt::fn connect_row_inserted -->
+This signal is emitted when a new row has been inserted in
+the model.
+
+Note that the row may still be empty at this point, since
+it is a common pattern to first insert an empty row, and
+then fill it with the desired values.
+## `path`
+a `TreePath`-struct identifying the new row
+## `iter`
+a valid `TreeIter`-struct pointing to the new row
+<!-- trait TreeModelExt::fn connect_rows_reordered -->
+This signal is emitted when the children of a node in the
+`TreeModel` have been reordered.
+
+Note that this signal is not emitted
+when rows are reordered by DND, since this is implemented
+by removing and then reinserting the row.
+## `path`
+a `TreePath`-struct identifying the tree node whose children
+ have been reordered
+## `iter`
+a valid `TreeIter`-struct pointing to the node whose children
+ have been reordered, or `None` if the depth of `path` is 0
+## `new_order`
+an array of integers mapping the current position
+ of each child to its old position before the re-ordering,
+ i.e. `new_order``[newpos] = oldpos`
 <!-- struct TreeModelFilter -->
 A `TreeModelFilter` is a tree model which wraps another tree model,
 and can do the following things:
@@ -35576,6 +43182,116 @@ Moves the `self` to point to its parent node, if it has a parent.
 # Returns
 
 `true` if `self` has a parent, and the move was made
+<!-- struct TreeRowReference -->
+A `TreeRowReference` tracks model changes so that it always refers to the
+same row (a `TreePath` refers to a position, not a fixed row). Create a
+new `TreeRowReference` with `TreeRowReference::new`.
+<!-- impl TreeRowReference::fn new -->
+Creates a row reference based on `path`.
+
+This reference will keep pointing to the node pointed to
+by `path`, so long as it exists. Any changes that occur on `model` are
+propagated, and the path is updated appropriately. If
+`path` isn’t a valid path in `model`, then `None` is returned.
+## `model`
+a `TreeModel`
+## `path`
+a valid `TreePath`-struct to monitor
+
+# Returns
+
+a newly allocated `TreeRowReference`, or `None`
+<!-- impl TreeRowReference::fn new_proxy -->
+You do not need to use this function.
+
+Creates a row reference based on `path`.
+
+This reference will keep pointing to the node pointed to
+by `path`, so long as it exists. If `path` isn’t a valid
+path in `model`, then `None` is returned. However, unlike
+references created with `TreeRowReference::new`, it
+does not listen to the model for changes. The creator of
+the row reference must do this explicitly using
+`TreeRowReference::inserted`, `TreeRowReference::deleted`,
+`TreeRowReference::reordered`.
+
+These functions must be called exactly once per proxy when the
+corresponding signal on the model is emitted. This single call
+updates all row references for that proxy. Since built-in GTK+
+objects like `TreeView` already use this mechanism internally,
+using them as the proxy object will produce unpredictable results.
+Further more, passing the same object as `model` and `proxy`
+doesn’t work for reasons of internal implementation.
+
+This type of row reference is primarily meant by structures that
+need to carefully monitor exactly when a row reference updates
+itself, and is not generally needed by most applications.
+## `proxy`
+a proxy `gobject::Object`
+## `model`
+a `TreeModel`
+## `path`
+a valid `TreePath`-struct to monitor
+
+# Returns
+
+a newly allocated `TreeRowReference`, or `None`
+<!-- impl TreeRowReference::fn copy -->
+Copies a `TreeRowReference`.
+
+# Returns
+
+a copy of `self`
+<!-- impl TreeRowReference::fn free -->
+Free’s `self`. `self` may be `None`
+<!-- impl TreeRowReference::fn get_model -->
+Returns the model that the row reference is monitoring.
+
+# Returns
+
+the model
+<!-- impl TreeRowReference::fn get_path -->
+Returns a path that the row reference currently points to,
+or `None` if the path pointed to is no longer valid.
+
+# Returns
+
+a current path, or `None`
+<!-- impl TreeRowReference::fn valid -->
+Returns `true` if the `self` is non-`None` and refers to
+a current valid path.
+
+# Returns
+
+`true` if `self` points to a valid path
+<!-- impl TreeRowReference::fn deleted -->
+Lets a set of row reference created by
+`TreeRowReference::new_proxy` know that the
+model emitted the `TreeModel::row-deleted` signal.
+## `proxy`
+a `gobject::Object`
+## `path`
+the path position that was deleted
+<!-- impl TreeRowReference::fn inserted -->
+Lets a set of row reference created by
+`TreeRowReference::new_proxy` know that the
+model emitted the `TreeModel::row-inserted` signal.
+## `proxy`
+a `gobject::Object`
+## `path`
+the row position that was inserted
+<!-- impl TreeRowReference::fn reordered -->
+Lets a set of row reference created by
+`TreeRowReference::new_proxy` know that the
+model emitted the `TreeModel::rows-reordered` signal.
+## `proxy`
+a `gobject::Object`
+## `path`
+the parent path of the reordered signal
+## `iter`
+the iter pointing to the parent of the reordered
+## `new_order`
+the new order of rows
 <!-- struct TreeSelection -->
 The `TreeSelection` object is a helper object to manage the selection
 for a `TreeView` widget. The `TreeSelection` object is
@@ -35751,6 +43467,17 @@ inclusive.
 The initial node of the range.
 ## `end_path`
 The initial node of the range.
+<!-- trait TreeSelectionExt::fn connect_changed -->
+Emitted whenever the selection has (possibly) changed. Please note that
+this signal is mostly a hint. It may only be emitted once when a range
+of rows are selected, and it may occasionally be emitted when nothing
+has happened.
+<!-- trait TreeSelectionExt::fn get_property_mode -->
+Selection mode.
+See `TreeSelectionExt::set_mode` for more information on this property.
+<!-- trait TreeSelectionExt::fn set_property_mode -->
+Selection mode.
+See `TreeSelectionExt::set_mode` for more information on this property.
 <!-- struct TreeSortable -->
 `TreeSortable` is an interface to be implemented by tree models which
 support sorting. The `TreeView` uses the methods provided by this interface
@@ -35831,6 +43558,10 @@ User data to pass to `sort_func`, or `None`
 Destroy notifier of `user_data`, or `None`
 <!-- trait TreeSortableExt::fn sort_column_changed -->
 Emits a `TreeSortable::sort-column-changed` signal on `self`.
+<!-- trait TreeSortableExt::fn connect_sort_column_changed -->
+The ::sort-column-changed signal is emitted when the sort column
+or sort order of `sortable` is changed. The signal is emitted before
+the contents of `sortable` are resorted.
 <!-- struct TreeStore -->
 The `TreeStore` object is a list model for use with a `TreeView`
 widget. It implements the `TreeModel` interface, and consequentially,
@@ -37208,6 +44939,161 @@ Undoes the effect of
 Undoes the effect of
 `TreeView::enable_model_drag_source`. Calling this method sets
 `TreeView:reorderable` to `false`.
+<!-- trait TreeViewExt::fn connect_columns_changed -->
+The number of columns of the treeview has changed.
+<!-- trait TreeViewExt::fn connect_cursor_changed -->
+The position of the cursor (focused cell) has changed.
+<!-- trait TreeViewExt::fn connect_move_cursor -->
+The `TreeView::move-cursor` signal is a [keybinding
+signal][`BindingSignal`] which gets emitted when the user
+presses one of the cursor keys.
+
+Applications should not connect to it, but may emit it with
+`g_signal_emit_by_name` if they need to control the cursor
+programmatically. In contrast to `TreeViewExt::set_cursor` and
+`TreeViewExt::set_cursor_on_cell` when moving horizontally
+`TreeView::move-cursor` does not reset the current selection.
+## `step`
+the granularity of the move, as a
+`MovementStep`. `MovementStep::LogicalPositions`,
+`MovementStep::VisualPositions`, `MovementStep::DisplayLines`,
+`MovementStep::Pages` and `MovementStep::BufferEnds` are
+supported. `MovementStep::LogicalPositions` and
+`MovementStep::VisualPositions` are treated identically.
+## `direction`
+the direction to move: +1 to move forwards;
+-1 to move backwards. The resulting movement is
+undefined for all other values.
+
+# Returns
+
+`true` if `step` is supported, `false` otherwise.
+<!-- trait TreeViewExt::fn connect_row_activated -->
+The "row-activated" signal is emitted when the method
+`TreeViewExt::row_activated` is called, when the user double
+clicks a treeview row with the "activate-on-single-click"
+property set to `false`, or when the user single clicks a row when
+the "activate-on-single-click" property set to `true`. It is also
+emitted when a non-editable row is selected and one of the keys:
+Space, Shift+Space, Return or Enter is pressed.
+
+For selection handling refer to the
+[tree widget conceptual overview][TreeWidget]
+as well as `TreeSelection`.
+## `path`
+the `TreePath` for the activated row
+## `column`
+the `TreeViewColumn` in which the activation occurred
+<!-- trait TreeViewExt::fn connect_row_collapsed -->
+The given row has been collapsed (child nodes are hidden).
+## `iter`
+the tree iter of the collapsed row
+## `path`
+a tree path that points to the row
+<!-- trait TreeViewExt::fn connect_row_expanded -->
+The given row has been expanded (child nodes are shown).
+## `iter`
+the tree iter of the expanded row
+## `path`
+a tree path that points to the row
+<!-- trait TreeViewExt::fn connect_test_collapse_row -->
+The given row is about to be collapsed (hide its children nodes). Use this
+signal if you need to control the collapsibility of individual rows.
+## `iter`
+the tree iter of the row to collapse
+## `path`
+a tree path that points to the row
+
+# Returns
+
+`false` to allow collapsing, `true` to reject
+<!-- trait TreeViewExt::fn connect_test_expand_row -->
+The given row is about to be expanded (show its children nodes). Use this
+signal if you need to control the expandability of individual rows.
+## `iter`
+the tree iter of the row to expand
+## `path`
+a tree path that points to the row
+
+# Returns
+
+`false` to allow expansion, `true` to reject
+<!-- trait TreeViewExt::fn get_property_activate-on-single-click -->
+The activate-on-single-click property specifies whether the "row-activated" signal
+will be emitted after a single click.
+
+Feature: `v3_8`
+
+<!-- trait TreeViewExt::fn set_property_activate-on-single-click -->
+The activate-on-single-click property specifies whether the "row-activated" signal
+will be emitted after a single click.
+
+Feature: `v3_8`
+
+<!-- trait TreeViewExt::fn get_property_fixed-height-mode -->
+Setting the ::fixed-height-mode property to `true` speeds up
+`TreeView` by assuming that all rows have the same height.
+Only enable this option if all rows are the same height.
+Please see `TreeViewExt::set_fixed_height_mode` for more
+information on this option.
+<!-- trait TreeViewExt::fn set_property_fixed-height-mode -->
+Setting the ::fixed-height-mode property to `true` speeds up
+`TreeView` by assuming that all rows have the same height.
+Only enable this option if all rows are the same height.
+Please see `TreeViewExt::set_fixed_height_mode` for more
+information on this option.
+<!-- trait TreeViewExt::fn get_property_hover-expand -->
+Enables or disables the hover expansion mode of `tree_view`.
+Hover expansion makes rows expand or collapse if the pointer moves
+over them.
+
+This mode is primarily intended for treeviews in popups, e.g.
+in `ComboBox` or `EntryCompletion`.
+<!-- trait TreeViewExt::fn set_property_hover-expand -->
+Enables or disables the hover expansion mode of `tree_view`.
+Hover expansion makes rows expand or collapse if the pointer moves
+over them.
+
+This mode is primarily intended for treeviews in popups, e.g.
+in `ComboBox` or `EntryCompletion`.
+<!-- trait TreeViewExt::fn get_property_hover-selection -->
+Enables or disables the hover selection mode of `tree_view`.
+Hover selection makes the selected row follow the pointer.
+Currently, this works only for the selection modes
+`SelectionMode::Single` and `SelectionMode::Browse`.
+
+This mode is primarily intended for treeviews in popups, e.g.
+in `ComboBox` or `EntryCompletion`.
+<!-- trait TreeViewExt::fn set_property_hover-selection -->
+Enables or disables the hover selection mode of `tree_view`.
+Hover selection makes the selected row follow the pointer.
+Currently, this works only for the selection modes
+`SelectionMode::Single` and `SelectionMode::Browse`.
+
+This mode is primarily intended for treeviews in popups, e.g.
+in `ComboBox` or `EntryCompletion`.
+<!-- trait TreeViewExt::fn get_property_level-indentation -->
+Extra indentation for each level.
+<!-- trait TreeViewExt::fn set_property_level-indentation -->
+Extra indentation for each level.
+<!-- trait TreeViewExt::fn get_property_rules-hint -->
+Sets a hint to the theme to draw rows in alternating colors.
+
+# Deprecated since 3.14
+
+The theme is responsible for drawing rows
+ using zebra striping
+<!-- trait TreeViewExt::fn set_property_rules-hint -->
+Sets a hint to the theme to draw rows in alternating colors.
+
+# Deprecated since 3.14
+
+The theme is responsible for drawing rows
+ using zebra striping
+<!-- trait TreeViewExt::fn get_property_show-expanders -->
+`true` if the view has expanders.
+<!-- trait TreeViewExt::fn set_property_show-expanders -->
+`true` if the view has expanders.
 <!-- struct TreeViewColumn -->
 The `TreeViewColumn` object represents a visible column in a `TreeView` widget.
 It allows to set properties of the column header, and functions as a holding pen for
@@ -37630,6 +45516,22 @@ Sets the widget in the header to be `widget`. If widget is `None`, then the
 header button is set with a `Label` set to the title of `self`.
 ## `widget`
 A child `Widget`, or `None`.
+<!-- trait TreeViewColumnExt::fn get_property_cell-area -->
+The `CellArea` used to layout cell renderers for this column.
+
+If no area is specified when creating the tree view column with `TreeViewColumn::new_with_area`
+a horizontally oriented `CellAreaBox` will be used.
+<!-- trait TreeViewColumnExt::fn set_property_cell-area -->
+The `CellArea` used to layout cell renderers for this column.
+
+If no area is specified when creating the tree view column with `TreeViewColumn::new_with_area`
+a horizontally oriented `CellAreaBox` will be used.
+<!-- trait TreeViewColumnExt::fn get_property_sort-column-id -->
+Logical sort column ID this column sorts on when selected for sorting. Setting the sort column ID makes the column header
+clickable. Set to -1 to make the column unsortable.
+<!-- trait TreeViewColumnExt::fn set_property_sort-column-id -->
+Logical sort column ID this column sorts on when selected for sorting. Setting the sort column ID makes the column header
+clickable. Set to -1 to make the column unsortable.
 <!-- enum TreeViewColumnSizing -->
 The sizing method the column uses to determine its width. Please note
 that `TreeViewColumnSizing::Autosize` are inefficient for large views, and
@@ -37792,6 +45694,16 @@ the functions from `ScaleButton`.
 # Returns
 
 a new `VolumeButton`
+<!-- trait VolumeButtonExt::fn get_property_use-symbolic -->
+Whether to use symbolic icons as the icons. Note that
+if the symbolic icons are not available in your installed
+theme, then the normal (potentially colorful) icons will
+be used.
+<!-- trait VolumeButtonExt::fn set_property_use-symbolic -->
+Whether to use symbolic icons as the icons. Note that
+if the symbolic icons are not available in your installed
+theme, then the normal (potentially colorful) icons will
+be used.
 <!-- struct Widget -->
 `Widget` is the base class all widgets in GTK+ derive from. It manages the
 widget lifecycle, states and style.
@@ -39297,11 +47209,12 @@ Returns the parent container of `self`.
 
 the parent container of `self`, or `None`
 <!-- trait WidgetExt::fn get_parent_window -->
-Gets `self`’s parent window.
+Gets `self`’s parent window, or `None` if it does not have one.
 
 # Returns
 
-the parent window of `self`.
+the parent window of `self`, or `None`
+if it does not have a parent window.
 <!-- trait WidgetExt::fn get_path -->
 Returns the `WidgetPath` representing `self`, if the widget
 is not connected to a toplevel widget, a partial path will be
@@ -39898,7 +47811,8 @@ interested in whether there was an intersection.
 ## `area`
 a rectangle
 ## `intersection`
-rectangle to store intersection of `self` and `area`
+rectangle to store
+ intersection of `self` and `area`
 
 # Returns
 
@@ -39921,6 +47835,10 @@ compositing manager is running for `self`’s screen.
 Please note that the semantics of this call will change
 in the future if used on a widget that has a composited
 window in its hierarchy (as set by `gdk::WindowExt::set_composited`).
+
+# Deprecated since 3.22
+
+Use `gdk::ScreenExt::is_composited` instead.
 
 # Returns
 
@@ -40053,10 +47971,6 @@ This function is only for use in widget implementations. Causes
 a widget to be mapped if it isn’t already.
 <!-- trait WidgetExt::fn mnemonic_activate -->
 Emits the `Widget::mnemonic-activate` signal.
-
-The default handler for this signal activates the `self` if
-`group_cycling` is `false`, and just grabs the focus if `group_cycling`
-is `true`.
 ## `group_cycling`
 `true` if there are other widgets with the same mnemonic
 
@@ -41175,14 +49089,11 @@ See also the `Widget:tooltip-text` property and `TooltipExt::set_text`.
 ## `text`
 the contents of the tooltip for `self`
 <!-- trait WidgetExt::fn set_tooltip_window -->
-Replaces the default, usually yellow, window used for displaying
+Replaces the default window used for displaying
 tooltips with `custom_window`. GTK+ will take care of showing and
 hiding `custom_window` at the right moment, to behave likewise as
 the default tooltip window. If `custom_window` is `None`, the default
 tooltip window will be used.
-
-If the custom window should have the default theming it needs to
-have the name “gtk-tooltip”, see `WidgetExt::set_name`.
 ## `custom_window`
 a `Window`, or `None`
 <!-- trait WidgetExt::fn set_valign -->
@@ -41410,6 +49321,1159 @@ values for the current widget state (insensitive, prelighted, etc.).
 See `WidgetExt::set_state_flags`.
 ## `flags`
 State flags to turn off
+<!-- trait WidgetExt::fn connect_button_press_event -->
+The ::button-press-event signal will be emitted when a button
+(typically from a mouse) is pressed.
+
+To receive this signal, the `gdk::Window` associated to the
+widget needs to enable the `gdk::EventMask::ButtonPressMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventButton` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_button_release_event -->
+The ::button-release-event signal will be emitted when a button
+(typically from a mouse) is released.
+
+To receive this signal, the `gdk::Window` associated to the
+widget needs to enable the `gdk::EventMask::ButtonReleaseMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventButton` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_can_activate_accel -->
+Determines whether an accelerator that activates the signal
+identified by `signal_id` can currently be activated.
+This signal is present to allow applications and derived
+widgets to override the default `Widget` handling
+for determining whether an accelerator can be activated.
+## `signal_id`
+the ID of a signal installed on `widget`
+
+# Returns
+
+`true` if the signal can be activated.
+<!-- trait WidgetExt::fn connect_child_notify -->
+The ::child-notify signal is emitted for each
+[child property][child-properties] that has
+changed on an object. The signal's detail holds the property name.
+## `child_property`
+the `gobject::ParamSpec` of the changed child property
+<!-- trait WidgetExt::fn connect_composited_changed -->
+The ::composited-changed signal is emitted when the composited
+status of `widgets` screen changes.
+See `gdk::ScreenExt::is_composited`.
+
+# Deprecated since 3.22
+
+Use `gdk::Screen`::composited-changed instead.
+<!-- trait WidgetExt::fn connect_configure_event -->
+The ::configure-event signal will be emitted when the size, position or
+stacking of the `widget`'s window has changed.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::StructureMask` mask. GDK will enable this mask
+automatically for all new windows.
+## `event`
+the `gdk::EventConfigure` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_damage_event -->
+Emitted when a redirected window belonging to `widget` gets drawn into.
+The region/area members of the event shows what area of the redirected
+drawable was drawn into.
+## `event`
+the `gdk::EventExpose` event
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_delete_event -->
+The ::delete-event signal is emitted if a user requests that
+a toplevel window is closed. The default handler for this signal
+destroys the window. Connecting `WidgetExt::hide_on_delete` to
+this signal will cause the window to be hidden instead, so that
+it can later be shown again without reconstructing it.
+## `event`
+the event which triggered this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_destroy -->
+Signals that all holders of a reference to the widget should release
+the reference that they hold. May result in finalization of the widget
+if all references are released.
+
+This signal is not suitable for saving widget state.
+<!-- trait WidgetExt::fn connect_destroy_event -->
+The ::destroy-event signal is emitted when a `gdk::Window` is destroyed.
+You rarely get this signal, because most widgets disconnect themselves
+from their window before they destroy it, so no widget owns the
+window at destroy time.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::StructureMask` mask. GDK will enable this mask
+automatically for all new windows.
+## `event`
+the event which triggered this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_direction_changed -->
+The ::direction-changed signal is emitted when the text direction
+of a widget changes.
+## `previous_direction`
+the previous text direction of `widget`
+<!-- trait WidgetExt::fn connect_drag_begin -->
+The ::drag-begin signal is emitted on the drag source when a drag is
+started. A typical reason to connect to this signal is to set up a
+custom drag icon with e.g. `WidgetExt::drag_source_set_icon_pixbuf`.
+
+Note that some widgets set up a drag icon in the default handler of
+this signal, so you may have to use `g_signal_connect_after` to
+override what the default handler did.
+## `context`
+the drag context
+<!-- trait WidgetExt::fn connect_drag_data_delete -->
+The ::drag-data-delete signal is emitted on the drag source when a drag
+with the action `gdk::DragAction::Move` is successfully completed. The signal
+handler is responsible for deleting the data that has been dropped. What
+"delete" means depends on the context of the drag operation.
+## `context`
+the drag context
+<!-- trait WidgetExt::fn connect_drag_data_get -->
+The ::drag-data-get signal is emitted on the drag source when the drop
+site requests the data which is dragged. It is the responsibility of
+the signal handler to fill `data` with the data in the format which
+is indicated by `info`. See `SelectionData::set` and
+`SelectionData::set_text`.
+## `context`
+the drag context
+## `data`
+the `SelectionData` to be filled with the dragged data
+## `info`
+the info that has been registered with the target in the
+ `TargetList`
+## `time`
+the timestamp at which the data was requested
+<!-- trait WidgetExt::fn connect_drag_data_received -->
+The ::drag-data-received signal is emitted on the drop site when the
+dragged data has been received. If the data was received in order to
+determine whether the drop will be accepted, the handler is expected
+to call `gdk_drag_status` and not finish the drag.
+If the data was received in response to a `Widget::drag-drop` signal
+(and this is the last target to be received), the handler for this
+signal is expected to process the received data and then call
+`gtk_drag_finish`, setting the `success` parameter depending on
+whether the data was processed successfully.
+
+Applications must create some means to determine why the signal was emitted
+and therefore whether to call `gdk_drag_status` or `gtk_drag_finish`.
+
+The handler may inspect the selected action with
+`gdk::DragContextExt::get_selected_action` before calling
+`gtk_drag_finish`, e.g. to implement `gdk::DragAction::Ask` as
+shown in the following example:
+
+```C
+void
+drag_data_received (GtkWidget          *widget,
+                    GdkDragContext     *context,
+                    gint                x,
+                    gint                y,
+                    GtkSelectionData   *data,
+                    guint               info,
+                    guint               time)
+{
+  if ((data->length >= 0) && (data->format == 8))
+    {
+      GdkDragAction action;
+
+      // handle data here
+
+      action = gdk_drag_context_get_selected_action (context);
+      if (action == GDK_ACTION_ASK)
+        {
+          GtkWidget *dialog;
+          gint response;
+
+          dialog = gtk_message_dialog_new (NULL,
+                                           GTK_DIALOG_MODAL |
+                                           GTK_DIALOG_DESTROY_WITH_PARENT,
+                                           GTK_MESSAGE_INFO,
+                                           GTK_BUTTONS_YES_NO,
+                                           "Move the data ?\n");
+          response = gtk_dialog_run (GTK_DIALOG (dialog));
+          gtk_widget_destroy (dialog);
+
+          if (response == GTK_RESPONSE_YES)
+            action = GDK_ACTION_MOVE;
+          else
+            action = GDK_ACTION_COPY;
+         }
+
+      gtk_drag_finish (context, TRUE, action == GDK_ACTION_MOVE, time);
+    }
+  else
+    gtk_drag_finish (context, FALSE, FALSE, time);
+ }
+```
+## `context`
+the drag context
+## `x`
+where the drop happened
+## `y`
+where the drop happened
+## `data`
+the received data
+## `info`
+the info that has been registered with the target in the
+ `TargetList`
+## `time`
+the timestamp at which the data was received
+<!-- trait WidgetExt::fn connect_drag_drop -->
+The ::drag-drop signal is emitted on the drop site when the user drops
+the data onto the widget. The signal handler must determine whether
+the cursor position is in a drop zone or not. If it is not in a drop
+zone, it returns `false` and no further processing is necessary.
+Otherwise, the handler returns `true`. In this case, the handler must
+ensure that `gtk_drag_finish` is called to let the source know that
+the drop is done. The call to `gtk_drag_finish` can be done either
+directly or in a `Widget::drag-data-received` handler which gets
+triggered by calling `WidgetExt::drag_get_data` to receive the data for one
+or more of the supported targets.
+## `context`
+the drag context
+## `x`
+the x coordinate of the current cursor position
+## `y`
+the y coordinate of the current cursor position
+## `time`
+the timestamp of the motion event
+
+# Returns
+
+whether the cursor position is in a drop zone
+<!-- trait WidgetExt::fn connect_drag_end -->
+The ::drag-end signal is emitted on the drag source when a drag is
+finished. A typical reason to connect to this signal is to undo
+things done in `Widget::drag-begin`.
+## `context`
+the drag context
+<!-- trait WidgetExt::fn connect_drag_failed -->
+The ::drag-failed signal is emitted on the drag source when a drag has
+failed. The signal handler may hook custom code to handle a failed DnD
+operation based on the type of error, it returns `true` is the failure has
+been already handled (not showing the default "drag operation failed"
+animation), otherwise it returns `false`.
+## `context`
+the drag context
+## `result`
+the result of the drag operation
+
+# Returns
+
+`true` if the failed drag operation has been already handled.
+<!-- trait WidgetExt::fn connect_drag_leave -->
+The ::drag-leave signal is emitted on the drop site when the cursor
+leaves the widget. A typical reason to connect to this signal is to
+undo things done in `Widget::drag-motion`, e.g. undo highlighting
+with `WidgetExt::drag_unhighlight`.
+
+
+Likewise, the `Widget::drag-leave` signal is also emitted before the
+::drag-drop signal, for instance to allow cleaning up of a preview item
+created in the `Widget::drag-motion` signal handler.
+## `context`
+the drag context
+## `time`
+the timestamp of the motion event
+<!-- trait WidgetExt::fn connect_drag_motion -->
+The ::drag-motion signal is emitted on the drop site when the user
+moves the cursor over the widget during a drag. The signal handler
+must determine whether the cursor position is in a drop zone or not.
+If it is not in a drop zone, it returns `false` and no further processing
+is necessary. Otherwise, the handler returns `true`. In this case, the
+handler is responsible for providing the necessary information for
+displaying feedback to the user, by calling `gdk_drag_status`.
+
+If the decision whether the drop will be accepted or rejected can't be
+made based solely on the cursor position and the type of the data, the
+handler may inspect the dragged data by calling `WidgetExt::drag_get_data` and
+defer the `gdk_drag_status` call to the `Widget::drag-data-received`
+handler. Note that you must pass `DestDefaults::Drop`,
+`DestDefaults::Motion` or `DestDefaults::All` to `Widget::drag_dest_set`
+when using the drag-motion signal that way.
+
+Also note that there is no drag-enter signal. The drag receiver has to
+keep track of whether he has received any drag-motion signals since the
+last `Widget::drag-leave` and if not, treat the drag-motion signal as
+an "enter" signal. Upon an "enter", the handler will typically highlight
+the drop site with `WidgetExt::drag_highlight`.
+
+```C
+static void
+drag_motion (GtkWidget      *widget,
+             GdkDragContext *context,
+             gint            x,
+             gint            y,
+             guint           time)
+{
+  GdkAtom target;
+
+  PrivateData *private_data = GET_PRIVATE_DATA (widget);
+
+  if (!private_data->drag_highlight)
+   {
+     private_data->drag_highlight = 1;
+     gtk_drag_highlight (widget);
+   }
+
+  target = gtk_drag_dest_find_target (widget, context, NULL);
+  if (target == GDK_NONE)
+    gdk_drag_status (context, 0, time);
+  else
+   {
+     private_data->pending_status
+        = gdk_drag_context_get_suggested_action (context);
+     gtk_drag_get_data (widget, context, target, time);
+   }
+
+  return TRUE;
+}
+
+static void
+drag_data_received (GtkWidget        *widget,
+                    GdkDragContext   *context,
+                    gint              x,
+                    gint              y,
+                    GtkSelectionData *selection_data,
+                    guint             info,
+                    guint             time)
+{
+  PrivateData *private_data = GET_PRIVATE_DATA (widget);
+
+  if (private_data->suggested_action)
+   {
+     private_data->suggested_action = 0;
+
+     // We are getting this data due to a request in drag_motion,
+     // rather than due to a request in drag_drop, so we are just
+     // supposed to call gdk_drag_status(), not actually paste in
+     // the data.
+
+     str = gtk_selection_data_get_text (selection_data);
+     if (!data_is_acceptable (str))
+       gdk_drag_status (context, 0, time);
+     else
+       gdk_drag_status (context,
+                        private_data->suggested_action,
+                        time);
+   }
+  else
+   {
+     // accept the drop
+   }
+}
+```
+## `context`
+the drag context
+## `x`
+the x coordinate of the current cursor position
+## `y`
+the y coordinate of the current cursor position
+## `time`
+the timestamp of the motion event
+
+# Returns
+
+whether the cursor position is in a drop zone
+<!-- trait WidgetExt::fn connect_draw -->
+This signal is emitted when a widget is supposed to render itself.
+The `widget`'s top left corner must be painted at the origin of
+the passed in context and be sized to the values returned by
+`WidgetExt::get_allocated_width` and
+`WidgetExt::get_allocated_height`.
+
+Signal handlers connected to this signal can modify the cairo
+context passed as `cr` in any way they like and don't need to
+restore it. The signal emission takes care of calling `cairo_save`
+before and `cairo_restore` after invoking the handler.
+
+The signal handler will get a `cr` with a clip region already set to the
+widget's dirty region, i.e. to the area that needs repainting. Complicated
+widgets that want to avoid redrawing themselves completely can get the full
+extents of the clip region with `gdk_cairo_get_clip_rectangle`, or they can
+get a finer-grained representation of the dirty region with
+`cairo_copy_clip_rectangle_list`.
+## `cr`
+the cairo context to draw to
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+`false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_enter_notify_event -->
+The ::enter-notify-event will be emitted when the pointer enters
+the `widget`'s window.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::EnterNotifyMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventCrossing` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_event -->
+The GTK+ main loop will emit three signals for each GDK event delivered
+to a widget: one generic ::event signal, another, more specific,
+signal that matches the type of event delivered (e.g.
+`Widget::key-press-event`) and finally a generic
+`Widget::event-after` signal.
+## `event`
+the ``GdkEvent`` which triggered this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event
+and to cancel the emission of the second specific ::event signal.
+ `false` to propagate the event further and to allow the emission of
+ the second signal. The ::event-after signal is emitted regardless of
+ the return value.
+<!-- trait WidgetExt::fn connect_event_after -->
+After the emission of the `Widget::event` signal and (optionally)
+the second more specific signal, ::event-after will be emitted
+regardless of the previous two signals handlers return values.
+## `event`
+the ``GdkEvent`` which triggered this signal
+<!-- trait WidgetExt::fn connect_focus -->
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event. `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_focus_in_event -->
+The ::focus-in-event signal will be emitted when the keyboard focus
+enters the `widget`'s window.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::FocusChangeMask` mask.
+## `event`
+the `gdk::EventFocus` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_focus_out_event -->
+The ::focus-out-event signal will be emitted when the keyboard focus
+leaves the `widget`'s window.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::FocusChangeMask` mask.
+## `event`
+the `gdk::EventFocus` which triggered this
+ signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_grab_broken_event -->
+Emitted when a pointer or keyboard grab on a window belonging
+to `widget` gets broken.
+
+On X11, this happens when the grab window becomes unviewable
+(i.e. it or one of its ancestors is unmapped), or if the same
+application grabs the pointer or keyboard again.
+## `event`
+the `gdk::EventGrabBroken` event
+
+# Returns
+
+`true` to stop other handlers from being invoked for
+ the event. `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_grab_notify -->
+The ::grab-notify signal is emitted when a widget becomes
+shadowed by a GTK+ grab (not a pointer or keyboard grab) on
+another widget, or when it becomes unshadowed due to a grab
+being removed.
+
+A widget is shadowed by a `WidgetExt::grab_add` when the topmost
+grab widget in the grab stack of its window group is not
+its ancestor.
+## `was_grabbed`
+`false` if the widget becomes shadowed, `true`
+ if it becomes unshadowed
+<!-- trait WidgetExt::fn connect_hide -->
+The ::hide signal is emitted when `widget` is hidden, for example with
+`WidgetExt::hide`.
+<!-- trait WidgetExt::fn connect_hierarchy_changed -->
+The ::hierarchy-changed signal is emitted when the
+anchored state of a widget changes. A widget is
+“anchored” when its toplevel
+ancestor is a `Window`. This signal is emitted when
+a widget changes from un-anchored to anchored or vice-versa.
+## `previous_toplevel`
+the previous toplevel ancestor, or `None`
+ if the widget was previously unanchored
+<!-- trait WidgetExt::fn connect_key_press_event -->
+The ::key-press-event signal is emitted when a key is pressed. The signal
+emission will reoccur at the key-repeat rate when the key is kept pressed.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::KeyPressMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventKey` which triggered this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_key_release_event -->
+The ::key-release-event signal is emitted when a key is released.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::KeyReleaseMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventKey` which triggered this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_keynav_failed -->
+Gets emitted if keyboard navigation fails.
+See `WidgetExt::keynav_failed` for details.
+## `direction`
+the direction of movement
+
+# Returns
+
+`true` if stopping keyboard navigation is fine, `false`
+ if the emitting widget should try to handle the keyboard
+ navigation attempt in its parent container(s).
+<!-- trait WidgetExt::fn connect_leave_notify_event -->
+The ::leave-notify-event will be emitted when the pointer leaves
+the `widget`'s window.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::LeaveNotifyMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventCrossing` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_map -->
+The ::map signal is emitted when `widget` is going to be mapped, that is
+when the widget is visible (which is controlled with
+`WidgetExt::set_visible`) and all its parents up to the toplevel widget
+are also visible. Once the map has occurred, `Widget::map-event` will
+be emitted.
+
+The ::map signal can be used to determine whether a widget will be drawn,
+for instance it can resume an animation that was stopped during the
+emission of `Widget::unmap`.
+<!-- trait WidgetExt::fn connect_map_event -->
+The ::map-event signal will be emitted when the `widget`'s window is
+mapped. A window is mapped when it becomes visible on the screen.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::StructureMask` mask. GDK will enable this mask
+automatically for all new windows.
+## `event`
+the `gdk::EventAny` which triggered this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_mnemonic_activate -->
+The default handler for this signal activates `widget` if `group_cycling`
+is `false`, or just makes `widget` grab focus if `group_cycling` is `true`.
+## `group_cycling`
+`true` if there are other widgets with the same mnemonic
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+`false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_motion_notify_event -->
+The ::motion-notify-event signal is emitted when the pointer moves
+over the widget's `gdk::Window`.
+
+To receive this signal, the `gdk::Window` associated to the widget
+needs to enable the `gdk::EventMask::PointerMotionMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventMotion` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_parent_set -->
+The ::parent-set signal is emitted when a new parent
+has been set on a widget.
+## `old_parent`
+the previous parent, or `None` if the widget
+ just got its initial parent.
+<!-- trait WidgetExt::fn connect_popup_menu -->
+This signal gets emitted whenever a widget should pop up a context
+menu. This usually happens through the standard key binding mechanism;
+by pressing a certain key while a widget is focused, the user can cause
+the widget to pop up a menu. For example, the `Entry` widget creates
+a menu with clipboard commands. See the
+[Popup Menu Migration Checklist][checklist-popup-menu]
+for an example of how to use this signal.
+
+# Returns
+
+`true` if a menu was activated
+<!-- trait WidgetExt::fn connect_property_notify_event -->
+The ::property-notify-event signal will be emitted when a property on
+the `widget`'s window has been changed or deleted.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::PropertyChangeMask` mask.
+## `event`
+the `gdk::EventProperty` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_proximity_in_event -->
+To receive this signal the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::ProximityInMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventProximity` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_proximity_out_event -->
+To receive this signal the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::ProximityOutMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventProximity` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_query_tooltip -->
+Emitted when `Widget:has-tooltip` is `true` and the hover timeout
+has expired with the cursor hovering "above" `widget`; or emitted when `widget` got
+focus in keyboard mode.
+
+Using the given coordinates, the signal handler should determine
+whether a tooltip should be shown for `widget`. If this is the case
+`true` should be returned, `false` otherwise. Note that if
+`keyboard_mode` is `true`, the values of `x` and `y` are undefined and
+should not be used.
+
+The signal handler is free to manipulate `tooltip` with the therefore
+destined function calls.
+## `x`
+the x coordinate of the cursor position where the request has
+ been emitted, relative to `widget`'s left side
+## `y`
+the y coordinate of the cursor position where the request has
+ been emitted, relative to `widget`'s top
+## `keyboard_mode`
+`true` if the tooltip was triggered using the keyboard
+## `tooltip`
+a `Tooltip`
+
+# Returns
+
+`true` if `tooltip` should be shown right now, `false` otherwise.
+<!-- trait WidgetExt::fn connect_realize -->
+The ::realize signal is emitted when `widget` is associated with a
+`gdk::Window`, which means that `WidgetExt::realize` has been called or the
+widget has been mapped (that is, it is going to be drawn).
+<!-- trait WidgetExt::fn connect_screen_changed -->
+The ::screen-changed signal gets emitted when the
+screen of a widget has changed.
+## `previous_screen`
+the previous screen, or `None` if the
+ widget was not associated with a screen before
+<!-- trait WidgetExt::fn connect_scroll_event -->
+The ::scroll-event signal is emitted when a button in the 4 to 7
+range is pressed. Wheel mice are usually configured to generate
+button press events for buttons 4 and 5 when the wheel is turned.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::ScrollMask` mask.
+
+This signal will be sent to the grab widget if there is one.
+## `event`
+the `gdk::EventScroll` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_selection_clear_event -->
+The ::selection-clear-event signal will be emitted when the
+the `widget`'s window has lost ownership of a selection.
+## `event`
+the `gdk::EventSelection` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_selection_notify_event -->
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event. `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_selection_request_event -->
+The ::selection-request-event signal will be emitted when
+another client requests ownership of the selection owned by
+the `widget`'s window.
+## `event`
+the `gdk::EventSelection` which triggered
+ this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_show -->
+The ::show signal is emitted when `widget` is shown, for example with
+`WidgetExt::show`.
+<!-- trait WidgetExt::fn connect_show_help -->
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+`false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_size_allocate -->
+## `allocation`
+the region which has been
+ allocated to the widget.
+<!-- trait WidgetExt::fn connect_state_changed -->
+The ::state-changed signal is emitted when the widget state changes.
+See `Widget::get_state`.
+
+# Deprecated since 3.0
+
+Use `Widget::state-flags-changed` instead.
+## `state`
+the previous state
+<!-- trait WidgetExt::fn connect_state_flags_changed -->
+The ::state-flags-changed signal is emitted when the widget state
+changes, see `WidgetExt::get_state_flags`.
+## `flags`
+The previous state flags.
+<!-- trait WidgetExt::fn connect_style_set -->
+The ::style-set signal is emitted when a new style has been set
+on a widget. Note that style-modifying functions like
+`Widget::modify_base` also cause this signal to be emitted.
+
+Note that this signal is emitted for changes to the deprecated
+`Style`. To track changes to the `StyleContext` associated
+with a widget, use the `Widget::style-updated` signal.
+
+# Deprecated since 3.0
+
+Use the `Widget::style-updated` signal
+## `previous_style`
+the previous style, or `None` if the widget
+ just got its initial style
+<!-- trait WidgetExt::fn connect_style_updated -->
+The ::style-updated signal is a convenience signal that is emitted when the
+`StyleContext::changed` signal is emitted on the `widget`'s associated
+`StyleContext` as returned by `WidgetExt::get_style_context`.
+
+Note that style-modifying functions like `WidgetExt::override_color` also
+cause this signal to be emitted.
+<!-- trait WidgetExt::fn connect_unmap -->
+The ::unmap signal is emitted when `widget` is going to be unmapped, which
+means that either it or any of its parents up to the toplevel widget have
+been set as hidden.
+
+As ::unmap indicates that a widget will not be shown any longer, it can be
+used to, for example, stop an animation on the widget.
+<!-- trait WidgetExt::fn connect_unmap_event -->
+The ::unmap-event signal will be emitted when the `widget`'s window is
+unmapped. A window is unmapped when it becomes invisible on the screen.
+
+To receive this signal, the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::StructureMask` mask. GDK will enable this mask
+automatically for all new windows.
+## `event`
+the `gdk::EventAny` which triggered this signal
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_unrealize -->
+The ::unrealize signal is emitted when the `gdk::Window` associated with
+`widget` is destroyed, which means that `WidgetExt::unrealize` has been
+called or the widget has been unmapped (that is, it is going to be
+hidden).
+<!-- trait WidgetExt::fn connect_visibility_notify_event -->
+The ::visibility-notify-event will be emitted when the `widget`'s
+window is obscured or unobscured.
+
+To receive this signal the `gdk::Window` associated to the widget needs
+to enable the `gdk::EventMask::VisibilityNotifyMask` mask.
+
+# Deprecated since 3.12
+
+Modern composited windowing systems with pervasive
+ transparency make it impossible to track the visibility of a window
+ reliably, so this signal can not be guaranteed to provide useful
+ information.
+## `event`
+the `gdk::EventVisibility` which
+ triggered this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the event.
+ `false` to propagate the event further.
+<!-- trait WidgetExt::fn connect_window_state_event -->
+The ::window-state-event will be emitted when the state of the
+toplevel window associated to the `widget` changes.
+
+To receive this signal the `gdk::Window` associated to the widget
+needs to enable the `gdk::EventMask::StructureMask` mask. GDK will enable
+this mask automatically for all new windows.
+## `event`
+the `gdk::EventWindowState` which
+ triggered this signal.
+
+# Returns
+
+`true` to stop other handlers from being invoked for the
+ event. `false` to propagate the event further.
+<!-- trait WidgetExt::fn get_property_double-buffered -->
+Whether the widget is double buffered.
+
+# Deprecated since 3.14
+
+Widgets should not use this property.
+<!-- trait WidgetExt::fn set_property_double-buffered -->
+Whether the widget is double buffered.
+
+# Deprecated since 3.14
+
+Widgets should not use this property.
+<!-- trait WidgetExt::fn get_property_expand -->
+Whether to expand in both directions. Setting this sets both `Widget:hexpand` and `Widget:vexpand`
+<!-- trait WidgetExt::fn set_property_expand -->
+Whether to expand in both directions. Setting this sets both `Widget:hexpand` and `Widget:vexpand`
+<!-- trait WidgetExt::fn get_property_focus-on-click -->
+Whether the widget should grab focus when it is clicked with the mouse.
+
+This property is only relevant for widgets that can take focus.
+
+Before 3.20, several widgets (`Button`, `FileChooserButton`,
+`ComboBox`) implemented this property individually.
+
+Feature: `v3_20`
+
+<!-- trait WidgetExt::fn set_property_focus-on-click -->
+Whether the widget should grab focus when it is clicked with the mouse.
+
+This property is only relevant for widgets that can take focus.
+
+Before 3.20, several widgets (`Button`, `FileChooserButton`,
+`ComboBox`) implemented this property individually.
+
+Feature: `v3_20`
+
+<!-- trait WidgetExt::fn get_property_halign -->
+How to distribute horizontal space if widget gets extra space, see `Align`
+<!-- trait WidgetExt::fn set_property_halign -->
+How to distribute horizontal space if widget gets extra space, see `Align`
+<!-- trait WidgetExt::fn get_property_has-tooltip -->
+Enables or disables the emission of `Widget::query-tooltip` on `widget`.
+A value of `true` indicates that `widget` can have a tooltip, in this case
+the widget will be queried using `Widget::query-tooltip` to determine
+whether it will provide a tooltip or not.
+
+Note that setting this property to `true` for the first time will change
+the event masks of the `GdkWindows` of this widget to include leave-notify
+and motion-notify events. This cannot and will not be undone when the
+property is set to `false` again.
+<!-- trait WidgetExt::fn set_property_has-tooltip -->
+Enables or disables the emission of `Widget::query-tooltip` on `widget`.
+A value of `true` indicates that `widget` can have a tooltip, in this case
+the widget will be queried using `Widget::query-tooltip` to determine
+whether it will provide a tooltip or not.
+
+Note that setting this property to `true` for the first time will change
+the event masks of the `GdkWindows` of this widget to include leave-notify
+and motion-notify events. This cannot and will not be undone when the
+property is set to `false` again.
+<!-- trait WidgetExt::fn get_property_hexpand -->
+Whether to expand horizontally. See `WidgetExt::set_hexpand`.
+<!-- trait WidgetExt::fn set_property_hexpand -->
+Whether to expand horizontally. See `WidgetExt::set_hexpand`.
+<!-- trait WidgetExt::fn get_property_hexpand-set -->
+Whether to use the `Widget:hexpand` property. See `WidgetExt::get_hexpand_set`.
+<!-- trait WidgetExt::fn set_property_hexpand-set -->
+Whether to use the `Widget:hexpand` property. See `WidgetExt::get_hexpand_set`.
+<!-- trait WidgetExt::fn get_property_margin -->
+Sets all four sides' margin at once. If read, returns max
+margin on any side.
+<!-- trait WidgetExt::fn set_property_margin -->
+Sets all four sides' margin at once. If read, returns max
+margin on any side.
+<!-- trait WidgetExt::fn get_property_margin-bottom -->
+Margin on bottom side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+<!-- trait WidgetExt::fn set_property_margin-bottom -->
+Margin on bottom side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+<!-- trait WidgetExt::fn get_property_margin-end -->
+Margin on end of widget, horizontally. This property supports
+left-to-right and right-to-left text directions.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+Feature: `v3_12`
+
+<!-- trait WidgetExt::fn set_property_margin-end -->
+Margin on end of widget, horizontally. This property supports
+left-to-right and right-to-left text directions.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+Feature: `v3_12`
+
+<!-- trait WidgetExt::fn get_property_margin-left -->
+Margin on left side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+# Deprecated since 3.12
+
+Use `Widget:margin-start` instead.
+<!-- trait WidgetExt::fn set_property_margin-left -->
+Margin on left side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+# Deprecated since 3.12
+
+Use `Widget:margin-start` instead.
+<!-- trait WidgetExt::fn get_property_margin-right -->
+Margin on right side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+# Deprecated since 3.12
+
+Use `Widget:margin-end` instead.
+<!-- trait WidgetExt::fn set_property_margin-right -->
+Margin on right side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+# Deprecated since 3.12
+
+Use `Widget:margin-end` instead.
+<!-- trait WidgetExt::fn get_property_margin-start -->
+Margin on start of widget, horizontally. This property supports
+left-to-right and right-to-left text directions.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+Feature: `v3_12`
+
+<!-- trait WidgetExt::fn set_property_margin-start -->
+Margin on start of widget, horizontally. This property supports
+left-to-right and right-to-left text directions.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+
+Feature: `v3_12`
+
+<!-- trait WidgetExt::fn get_property_margin-top -->
+Margin on top side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+<!-- trait WidgetExt::fn set_property_margin-top -->
+Margin on top side of widget.
+
+This property adds margin outside of the widget's normal size
+request, the margin will be added in addition to the size from
+`WidgetExt::set_size_request` for example.
+<!-- trait WidgetExt::fn get_property_opacity -->
+The requested opacity of the widget. See `WidgetExt::set_opacity` for
+more details about window opacity.
+
+Before 3.8 this was only available in `Window`
+
+Feature: `v3_8`
+
+<!-- trait WidgetExt::fn set_property_opacity -->
+The requested opacity of the widget. See `WidgetExt::set_opacity` for
+more details about window opacity.
+
+Before 3.8 this was only available in `Window`
+
+Feature: `v3_8`
+
+<!-- trait WidgetExt::fn get_property_scale-factor -->
+The scale factor of the widget. See `WidgetExt::get_scale_factor` for
+more details about widget scaling.
+
+Feature: `v3_10`
+
+<!-- trait WidgetExt::fn get_property_style -->
+The style of the widget, which contains information about how it will look (colors, etc).
+
+# Deprecated
+
+Use `StyleContext` instead
+<!-- trait WidgetExt::fn set_property_style -->
+The style of the widget, which contains information about how it will look (colors, etc).
+
+# Deprecated
+
+Use `StyleContext` instead
+<!-- trait WidgetExt::fn get_property_tooltip-markup -->
+Sets the text of tooltip to be the given string, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+Also see `TooltipExt::set_markup`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`: `Widget:has-tooltip`
+will automatically be set to `true` and there will be taken care of
+`Widget::query-tooltip` in the default signal handler.
+
+Note that if both `Widget:tooltip-text` and `Widget:tooltip-markup`
+are set, the last one wins.
+<!-- trait WidgetExt::fn set_property_tooltip-markup -->
+Sets the text of tooltip to be the given string, which is marked up
+with the [Pango text markup language][PangoMarkupFormat].
+Also see `TooltipExt::set_markup`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`: `Widget:has-tooltip`
+will automatically be set to `true` and there will be taken care of
+`Widget::query-tooltip` in the default signal handler.
+
+Note that if both `Widget:tooltip-text` and `Widget:tooltip-markup`
+are set, the last one wins.
+<!-- trait WidgetExt::fn get_property_tooltip-text -->
+Sets the text of tooltip to be the given string.
+
+Also see `TooltipExt::set_text`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`: `Widget:has-tooltip`
+will automatically be set to `true` and there will be taken care of
+`Widget::query-tooltip` in the default signal handler.
+
+Note that if both `Widget:tooltip-text` and `Widget:tooltip-markup`
+are set, the last one wins.
+<!-- trait WidgetExt::fn set_property_tooltip-text -->
+Sets the text of tooltip to be the given string.
+
+Also see `TooltipExt::set_text`.
+
+This is a convenience property which will take care of getting the
+tooltip shown if the given string is not `None`: `Widget:has-tooltip`
+will automatically be set to `true` and there will be taken care of
+`Widget::query-tooltip` in the default signal handler.
+
+Note that if both `Widget:tooltip-text` and `Widget:tooltip-markup`
+are set, the last one wins.
+<!-- trait WidgetExt::fn get_property_valign -->
+How to distribute vertical space if widget gets extra space, see `Align`
+<!-- trait WidgetExt::fn set_property_valign -->
+How to distribute vertical space if widget gets extra space, see `Align`
+<!-- trait WidgetExt::fn get_property_vexpand -->
+Whether to expand vertically. See `WidgetExt::set_vexpand`.
+<!-- trait WidgetExt::fn set_property_vexpand -->
+Whether to expand vertically. See `WidgetExt::set_vexpand`.
+<!-- trait WidgetExt::fn get_property_vexpand-set -->
+Whether to use the `Widget:vexpand` property. See `WidgetExt::get_vexpand_set`.
+<!-- trait WidgetExt::fn set_property_vexpand-set -->
+Whether to use the `Widget:vexpand` property. See `WidgetExt::get_vexpand_set`.
+<!-- trait WidgetExt::fn get_property_window -->
+The widget's window if it is realized, `None` otherwise.
 <!-- enum WidgetHelpType -->
 Kinds of widget-specific help. Used by the ::show-help signal.
 <!-- enum WidgetHelpType::variant Tooltip -->
@@ -41435,8 +50499,9 @@ the widget to receive the focus when the window is mapped.
 An example of a UI definition fragment with accel groups:
 
 ```plain
-window
+window.background
 ├── decoration
+├── <titlebar child>.titlebar [.default-decoration]
 ╰── <child>
 ```
 
@@ -42916,6 +51981,160 @@ end up stuck. Just don’t write code that crashes if not.
 
 You can track stickiness via the “window-state-event” signal
 on `Widget`.
+<!-- trait GtkWindowExt::fn connect_activate_default -->
+The ::activate-default signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user activates the default widget
+of `window`.
+<!-- trait GtkWindowExt::fn connect_activate_focus -->
+The ::activate-focus signal is a
+[keybinding signal][`BindingSignal`]
+which gets emitted when the user activates the currently
+focused widget of `window`.
+<!-- trait GtkWindowExt::fn connect_enable_debugging -->
+The ::enable-debugging signal is a [keybinding signal][`BindingSignal`]
+which gets emitted when the user enables or disables interactive
+debugging. When `toggle` is `true`, interactive debugging is toggled
+on or off, when it is `false`, the debugger will be pointed at the
+widget under the pointer.
+
+The default bindings for this signal are Ctrl-Shift-I
+and Ctrl-Shift-D.
+## `toggle`
+toggle the debugger
+
+# Returns
+
+`true` if the key binding was handled
+<!-- trait GtkWindowExt::fn connect_keys_changed -->
+The ::keys-changed signal gets emitted when the set of accelerators
+or mnemonics that are associated with `window` changes.
+<!-- trait GtkWindowExt::fn get_property_accept-focus -->
+Whether the window should receive the input focus.
+<!-- trait GtkWindowExt::fn set_property_accept-focus -->
+Whether the window should receive the input focus.
+<!-- trait GtkWindowExt::fn get_property_application -->
+The `Application` associated with the window.
+
+The application will be kept alive for at least as long as it
+has any windows associated with it (see `gio::ApplicationExt::hold`
+for a way to keep it alive without windows).
+
+Normally, the connection between the application and the window
+will remain until the window is destroyed, but you can explicitly
+remove it by setting the :application property to `None`.
+<!-- trait GtkWindowExt::fn set_property_application -->
+The `Application` associated with the window.
+
+The application will be kept alive for at least as long as it
+has any windows associated with it (see `gio::ApplicationExt::hold`
+for a way to keep it alive without windows).
+
+Normally, the connection between the application and the window
+will remain until the window is destroyed, but you can explicitly
+remove it by setting the :application property to `None`.
+<!-- trait GtkWindowExt::fn get_property_attached-to -->
+The widget to which this window is attached.
+See `GtkWindowExt::set_attached_to`.
+
+Examples of places where specifying this relation is useful are
+for instance a `Menu` created by a `ComboBox`, a completion
+popup window created by `Entry` or a typeahead search entry
+created by `TreeView`.
+<!-- trait GtkWindowExt::fn set_property_attached-to -->
+The widget to which this window is attached.
+See `GtkWindowExt::set_attached_to`.
+
+Examples of places where specifying this relation is useful are
+for instance a `Menu` created by a `ComboBox`, a completion
+popup window created by `Entry` or a typeahead search entry
+created by `TreeView`.
+<!-- trait GtkWindowExt::fn get_property_decorated -->
+Whether the window should be decorated by the window manager.
+<!-- trait GtkWindowExt::fn set_property_decorated -->
+Whether the window should be decorated by the window manager.
+<!-- trait GtkWindowExt::fn get_property_deletable -->
+Whether the window frame should have a close button.
+<!-- trait GtkWindowExt::fn set_property_deletable -->
+Whether the window frame should have a close button.
+<!-- trait GtkWindowExt::fn get_property_focus-on-map -->
+Whether the window should receive the input focus when mapped.
+<!-- trait GtkWindowExt::fn set_property_focus-on-map -->
+Whether the window should receive the input focus when mapped.
+<!-- trait GtkWindowExt::fn get_property_focus-visible -->
+Whether 'focus rectangles' are currently visible in this window.
+
+This property is maintained by GTK+ based on user input
+and should not be set by applications.
+<!-- trait GtkWindowExt::fn set_property_focus-visible -->
+Whether 'focus rectangles' are currently visible in this window.
+
+This property is maintained by GTK+ based on user input
+and should not be set by applications.
+<!-- trait GtkWindowExt::fn get_property_gravity -->
+The window gravity of the window. See `GtkWindowExt::move` and `gdk::Gravity` for
+more details about window gravity.
+<!-- trait GtkWindowExt::fn set_property_gravity -->
+The window gravity of the window. See `GtkWindowExt::move` and `gdk::Gravity` for
+more details about window gravity.
+<!-- trait GtkWindowExt::fn get_property_has-resize-grip -->
+Whether the window has a corner resize grip.
+
+Note that the resize grip is only shown if the window is
+actually resizable and not maximized. Use
+`Window:resize-grip-visible` to find out if the resize
+grip is currently shown.
+
+# Deprecated since 3.14
+
+Resize grips have been removed.
+<!-- trait GtkWindowExt::fn set_property_has-resize-grip -->
+Whether the window has a corner resize grip.
+
+Note that the resize grip is only shown if the window is
+actually resizable and not maximized. Use
+`Window:resize-grip-visible` to find out if the resize
+grip is currently shown.
+
+# Deprecated since 3.14
+
+Resize grips have been removed.
+<!-- trait GtkWindowExt::fn get_property_hide-titlebar-when-maximized -->
+Whether the titlebar should be hidden during maximization.
+<!-- trait GtkWindowExt::fn set_property_hide-titlebar-when-maximized -->
+Whether the titlebar should be hidden during maximization.
+<!-- trait GtkWindowExt::fn get_property_icon-name -->
+The :icon-name property specifies the name of the themed icon to
+use as the window icon. See `IconTheme` for more details.
+<!-- trait GtkWindowExt::fn set_property_icon-name -->
+The :icon-name property specifies the name of the themed icon to
+use as the window icon. See `IconTheme` for more details.
+<!-- trait GtkWindowExt::fn get_property_mnemonics-visible -->
+Whether mnemonics are currently visible in this window.
+
+This property is maintained by GTK+ based on user input,
+and should not be set by applications.
+<!-- trait GtkWindowExt::fn set_property_mnemonics-visible -->
+Whether mnemonics are currently visible in this window.
+
+This property is maintained by GTK+ based on user input,
+and should not be set by applications.
+<!-- trait GtkWindowExt::fn get_property_resize-grip-visible -->
+Whether a corner resize grip is currently shown.
+
+# Deprecated since 3.14
+
+Resize grips have been removed.
+<!-- trait GtkWindowExt::fn set_property_startup-id -->
+The :startup-id is a write-only property for setting window's
+startup notification identifier. See `GtkWindowExt::set_startup_id`
+for more details.
+<!-- trait GtkWindowExt::fn get_property_transient-for -->
+The transient parent of the window. See `GtkWindowExt::set_transient_for` for
+more details about transient windows.
+<!-- trait GtkWindowExt::fn set_property_transient-for -->
+The transient parent of the window. See `GtkWindowExt::set_transient_for` for
+more details about transient windows.
 <!-- struct WindowGroup -->
 A `WindowGroup` restricts the effect of grabs to windows
 in the same group, thereby making window groups almost behave

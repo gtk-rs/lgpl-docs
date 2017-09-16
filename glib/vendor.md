@@ -294,6 +294,8 @@ Use the SHA-1 hashing algorithm
 Use the SHA-256 hashing algorithm
 <!-- enum ChecksumType::variant Sha512 -->
 Use the SHA-512 hashing algorithm (Since: 2.36)
+<!-- enum ChecksumType::variant Sha384 -->
+Use the SHA-384 hashing algorithm (Since: 2.51)
 <!-- enum DateMonth -->
 Enumeration representing a month; values are `DateMonth::January`,
 `DateMonth::February`, etc. `DateMonth::BadMonth` is the invalid value.
@@ -1232,7 +1234,8 @@ integer.
 
 If `key` cannot be found then 0 is returned and `error` is set to
 `KeyFileError::KeyNotFound`. Likewise, if the value associated
-with `key` cannot be interpreted as an integer then 0 is returned
+with `key` cannot be interpreted as an integer, or is out of range
+for a `gint`, then 0 is returned
 and `error` is set to `KeyFileError::InvalidValue`.
 ## `group_name`
 a group name
@@ -1249,7 +1252,8 @@ integers.
 
 If `key` cannot be found then `None` is returned and `error` is set to
 `KeyFileError::KeyNotFound`. Likewise, if the values associated
-with `key` cannot be interpreted as integers then `None` is returned
+with `key` cannot be interpreted as integers, or are out of range for
+`gint`, then `None` is returned
 and `error` is set to `KeyFileError::InvalidValue`.
 ## `group_name`
 a group name
@@ -1472,9 +1476,13 @@ flags from `KeyFileFlags`
 <!-- impl KeyFile::fn load_from_dirs -->
 This function looks for a key file named `file` in the paths
 specified in `search_dirs`, loads the file into `self` and
-returns the file's full path in `full_path`. If the file could not
-be loaded then an `error` is set to either a `FileError` or
-`KeyFileError`.
+returns the file's full path in `full_path`.
+
+If the file could not be found in any of the `search_dirs`,
+`KeyFileError::NotFound` is returned. If
+the file is found but the OS returns an error when opening or reading the
+file, a `G_FILE_ERROR` is returned. If there is a problem parsing the file, a
+`G_KEY_FILE_ERROR` is returned.
 ## `file`
 a relative path to a filename to open and parse
 ## `search_dirs`
@@ -1490,8 +1498,13 @@ flags from `KeyFileFlags`
 `true` if a key file could be loaded, `false` otherwise
 <!-- impl KeyFile::fn load_from_file -->
 Loads a key file into an empty `KeyFile` structure.
-If the file could not be loaded then `error` is set to
-either a `FileError` or `KeyFileError`.
+
+If the OS returns an error when opening or reading the file, a
+`G_FILE_ERROR` is returned. If there is a problem parsing the file, a
+`G_KEY_FILE_ERROR` is returned.
+
+This function will never return a `KeyFileError::NotFound` error. If the
+`file` is not found, `FileError::Noent` is returned.
 ## `file`
 the path of a filename to load, in the GLib filename encoding
 ## `flags`
@@ -2404,6 +2417,12 @@ idle_callback (gpointer data)
 }
 ```
 
+Calls to this function from a thread other than the one acquired by the
+`MainContext` the `Source` is attached to are typically redundant, as the
+source could be destroyed immediately after this function returns. However,
+once a source is destroyed it cannot be un-destroyed, so this function can be
+used for opportunistic checks from any thread.
+
 # Returns
 
 `true` if the source has been destroyed
@@ -2574,6 +2593,9 @@ suggests that it will be delivered first but the priority for the
 other suggests that it would be delivered first, and the ready time
 for both sources is reached during the same main context iteration
 then the order of dispatch is undefined.
+
+It is a no-op to call this function on a `Source` which has already been
+destroyed with `Source::destroy`.
 
 This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
@@ -2914,10 +2936,10 @@ can use:
 
 
 ```C
-  GVariant *v = g_variant_new ('u', 40);
+  GVariant *v = g_variant_new ("u", 40);
 ```
 
-The string 'u' in the first argument tells `Variant` that the data passed to
+The string "u" in the first argument tells `Variant` that the data passed to
 the constructor (40) is going to be an unsigned integer.
 
 More advanced examples of `Variant` in use can be found in documentation for
@@ -3267,10 +3289,10 @@ a `gdouble` floating point value
 
 a floating reference to a new double `Variant` instance
 <!-- impl Variant::fn new_fixed_array -->
-Provides access to the serialised data for an array of fixed-sized
-items.
+Constructs a new array `Variant` instance, where the elements are
+of `element_type` type.
 
-`value` must be an array with fixed-sized elements. Numeric types are
+`elements` must be an array with fixed-sized elements. Numeric types are
 fixed-size as are tuples containing only other fixed-sized types.
 
 `element_size` must be the size of a single element in the array.
@@ -3279,8 +3301,7 @@ you might say sizeof(gint32). This value isn't used except for the purpose
 of a double-check that the form of the serialised data matches the caller's
 expectation.
 
-`n_elements`, which must be non-`None` is set equal to the number of
-items in the array.
+`n_elements` must be the length of the `elements` array.
 ## `element_type`
 the `VariantType` of each element
 ## `elements`
@@ -3638,7 +3659,7 @@ pointing to the argument following the last.
 
 Note that the arguments in `app` must be of the correct width for their
 types specified in `format_string` when collected into the `va_list`.
-See the [GVariant varargs documentation][gvariant-varargs.
+See the [GVariant varargs documentation][gvariant-varargs].
 
 These two generalisations allow mixing of multiple calls to
 `Variant::new_va` and `Variant::get_va` within a single actual
@@ -4026,11 +4047,11 @@ the appropriate type:
 - `G_VARIANT_TYPE_DOUBLE`: `gdouble`
 
 For example, if calling this function for an array of 32-bit integers,
-you might say sizeof(gint32). This value isn't used except for the purpose
+you might say `sizeof(gint32)`. This value isn't used except for the purpose
 of a double-check that the form of the serialised data matches the caller's
 expectation.
 
-`n_elements`, which must be non-`None` is set equal to the number of
+`n_elements`, which must be non-`None`, is set equal to the number of
 items in the array.
 ## `n_elements`
 a pointer to the location to store the number of items
@@ -4740,7 +4761,7 @@ The meaning of each of the characters is as follows:
 - `s`: the type string of `G_VARIANT_TYPE_STRING`; a string.
 - `o`: the type string of `G_VARIANT_TYPE_OBJECT_PATH`; a string in the form
  of a D-Bus object path.
-- `g`: the type string of `G_VARIANT_TYPE_STRING`; a string in the form of
+- `g`: the type string of `G_VARIANT_TYPE_SIGNATURE`; a string in the form of
  a D-Bus type signature.
 - `?`: the type string of `G_VARIANT_TYPE_BASIC`; an indefinite type that
  is a supertype of any of the basic types.
