@@ -1747,3 +1747,290 @@ For example it will be 0 during the definition of the first patch.
 Gets path defining the patch patch_num for a mesh pattern.
 
 patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
+<!-- file pdf.rs -->
+<!-- struct File -->
+PDF file surface.
+<!-- impl File::fn new -->
+Create a new PDF file surface.
+
+```
+use cairo::Context;
+use cairo::pdf;
+use cairo::prelude::*;
+
+let surface = pdf::File::new(100.0, 100.0, "test.pdf");
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- impl File::fn restrict -->
+Specify what PDF version to generate.
+<!-- struct Buffer -->
+Memory buffer PDF surface.
+<!-- impl Buffer::fn new -->
+Creates a new buffer surface.
+
+```
+use cairo::Context;
+use cairo::pdf;
+use cairo::prelude::*;
+
+let surface = pdf::Buffer::new(100.0, 100.0);
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+
+// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
+use std::fs::File;
+use std::io::Write;
+
+File::create("test.pdf").unwrap().write_all(surface.as_ref()).unwrap();
+```
+<!-- impl Buffer::fn restrict -->
+Specify what PDF version to generate.
+<!-- struct Writer -->
+Writer PDF surface, lets you render to any type implementing `io::Write`.
+<!-- fn new -->
+Create a new writer surface.
+
+```
+use std::fs::File;
+
+use cairo::Context;
+use cairo::pdf;
+use cairo::prelude::*;
+
+let surface = pdf::Writer::new(100.0, 100.0, File::create("test.pdf").unwrap());
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what PDF version to generate.
+<!-- struct Stream -->
+Streaming PDF surface.
+<!-- fn new -->
+Create a new streaming surface.
+
+```
+use std::fs::File;
+use std::io::Write;
+
+use cairo::Context;
+use cairo::pdf;
+use cairo::prelude::*;
+
+let mut file = File::create("test.pdf").unwrap();
+let surface = pdf::Stream::new(100.0, 100.0, |data|
+    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what PDF version to generate.
+<!-- file ps.rs -->
+<!-- struct File -->
+PostScript file surface.
+<!-- impl File::fn new -->
+Create a new PostScript file surface.
+
+```
+use cairo::Context;
+use cairo::ps;
+use cairo::prelude::*;
+
+let surface = ps::File::new(100.0, 100.0, "test.ps");
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- impl File::fn restrict -->
+Specify what PostScript level to generate.
+<!-- struct Buffer -->
+Memory buffer PostScript surface.
+<!-- impl Buffer::fn new -->
+Creates a new buffer surface.
+
+```
+use cairo::Context;
+use cairo::ps;
+use cairo::prelude::*;
+
+let surface = ps::Buffer::new(100.0, 100.0);
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+
+// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
+use std::fs::File;
+use std::io::Write;
+
+File::create("test.ps").unwrap().write_all(surface.as_ref()).unwrap();
+```
+<!-- impl Buffer::fn restrict -->
+Specify what PostScript level to generate.
+<!-- struct Writer -->
+Writer SVG surface, lets you render to any type implementing `io::Write`.
+<!-- fn new -->
+Create a new writer surface.
+
+```
+use std::fs::File;
+
+use cairo::Context;
+use cairo::ps;
+use cairo::prelude::*;
+
+let surface = ps::Writer::new(100.0, 100.0, File::create("test.ps").unwrap());
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what PostScript level to generate.
+<!-- struct Stream -->
+Streaming PDF surface.
+<!-- fn new -->
+Create a new streaming surface.
+
+```
+use std::fs::File;
+use std::io::Write;
+
+use cairo::Context;
+use cairo::ps;
+use cairo::prelude::*;
+
+let mut file = File::create("test.ps").unwrap();
+let surface = ps::Stream::new(100.0, 100.0, |data|
+    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what PostScript level to generate.
+<!-- file support.rs -->
+<!-- struct Stream -->
+Handles dark magic to maintain a stream closure based surface.
+
+The closure is boxed twice so it can be passed around as a `*mut c_void`,
+and it's then converted back into an usable trait object by removing the lifetime.
+
+This seems to be okay because the closure is alive as long as the surface is.
+<!-- struct Writer -->
+Uses the `Stream` abstraction to implement streaming on a `T: io::Write`,
+nothing fancy going on here.
+<!-- struct Buffer -->
+Uses the `Stream` abstraction to implement streaming to a buffer bound to
+the surface.
+
+The `Vec<u8>` is actually kept around as a `*mut Vec<u8>` since the closure
+will be alive as long as the vector.
+<!-- file svg.rs -->
+<!-- struct File -->
+SVG file surface.
+<!-- impl File::fn new -->
+Create a new SVG file surface.
+
+```
+use cairo::Context;
+use cairo::svg;
+use cairo::prelude::*;
+
+let surface = svg::File::new(100.0, 100.0, "test.svg");
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- impl File::fn restrict -->
+Specify what SVG version to generate.
+<!-- struct Buffer -->
+Memory buffer SVG surface.
+<!-- impl Buffer::fn new -->
+Creates a new buffer surface.
+
+```
+use cairo::Context;
+use cairo::svg;
+use cairo::prelude::*;
+
+let surface = svg::Buffer::new(100.0, 100.0);
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+
+// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
+use std::fs::File;
+use std::io::Write;
+
+File::create("test.svg").unwrap().write_all(surface.as_ref()).unwrap();
+```
+<!-- impl Buffer::fn restrict -->
+Specify what SVG version to generate.
+<!-- struct Writer -->
+Writer SVG surface, lets you render to any type implementing `io::Write`.
+<!-- fn new -->
+Create a new writer surface.
+
+```
+use std::fs::File;
+
+use cairo::Context;
+use cairo::svg;
+use cairo::prelude::*;
+
+let surface = svg::Writer::new(100.0, 100.0, File::create("test.svg").unwrap());
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what SVG version to generate.
+<!-- struct Stream -->
+Streaming SVG surface.
+<!-- fn new -->
+Create a new streaming surface.
+
+```
+use std::fs::File;
+use std::io::Write;
+
+use cairo::Context;
+use cairo::svg;
+use cairo::prelude::*;
+
+let mut file = File::create("test.svg").unwrap();
+let surface = svg::Stream::new(100.0, 100.0, |data|
+    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let context = Context::new(&surface);
+
+// Draw things on the context.
+
+surface.finish();
+```
+<!-- fn restrict -->
+Specify what SVG version to generate.
