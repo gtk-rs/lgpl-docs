@@ -1056,7 +1056,7 @@ on the same screen as the launching window.
 
 # Implements
 
-[`AppLaunchContextExt`](trait.AppLaunchContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AppLaunchContextExt`](trait.AppLaunchContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait AppLaunchContextExt -->
 Trait containing all `AppLaunchContext` methods.
 
@@ -1178,11 +1178,11 @@ application is not expected to manually register itself and check
 if it is the primary instance. Instead, the `main` function of a
 `Application` should do very little more than instantiating the
 application instance, possibly connecting signal handlers, then
-calling `ApplicationExt::run`. All checks for uniqueness are done
+calling `Application::run`. All checks for uniqueness are done
 internally. If the application is the primary instance then the
 startup signal is emitted and the mainloop runs. If the application
 is not the primary instance then a signal is sent to the primary
-instance and `ApplicationExt::run` promptly returns. See the code
+instance and `Application::run` promptly returns. See the code
 examples below.
 
 If used, the expected form of an application identifier is very close
@@ -1263,7 +1263,7 @@ For an example of using extra D-Bus hooks with GApplication, see
 
 # Implements
 
-[`ApplicationExt`](trait.ApplicationExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
+[`ApplicationExt`](trait.ApplicationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
 <!-- trait ApplicationExt -->
 Trait containing all `Application` methods.
 
@@ -1626,12 +1626,12 @@ a hint (or ""), but never `None`
 <!-- trait ApplicationExt::fn quit -->
 Immediately quits the application.
 
-Upon return to the mainloop, `ApplicationExt::run` will return,
+Upon return to the mainloop, `Application::run` will return,
 calling only the 'shutdown' function before doing so.
 
 The hold count is ignored.
 
-The result of calling `ApplicationExt::run` again after it returns is
+The result of calling `Application::run` again after it returns is
 unspecified.
 <!-- trait ApplicationExt::fn register -->
 Attempts registration of the application.
@@ -1930,7 +1930,7 @@ The ::activate signal is emitted on the primary instance when an
 activation occurs. See `ApplicationExt::activate`.
 <!-- trait ApplicationExt::fn connect_command_line -->
 The ::command-line signal is emitted on the primary instance when
-a commandline is not handled locally. See `ApplicationExt::run` and
+a commandline is not handled locally. See `Application::run` and
 the `ApplicationCommandLine` documentation for more information.
 ## `command_line`
 a `ApplicationCommandLine` representing the
@@ -2022,7 +2022,7 @@ asynchronous operations.
 
 # Implements
 
-[`CancellableExt`](trait.CancellableExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CancellableExt`](trait.CancellableExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CancellableExt -->
 Trait containing all `Cancellable` methods.
 
@@ -4857,7 +4857,7 @@ attributes.
 
 # Implements
 
-[`FileInfoExt`](trait.FileInfoExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`FileInfoExt`](trait.FileInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait FileInfoExt -->
 Trait containing all `FileInfo` methods.
 
@@ -5467,7 +5467,7 @@ a regular item, use `MenuExt::insert`. To add a section, use
 
 # Implements
 
-[`MenuExt`](trait.MenuExt.html), [`MenuModelExt`](trait.MenuModelExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuExt`](trait.MenuExt.html), [`MenuModelExt`](trait.MenuModelExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait MenuExt -->
 Trait containing all `Menu` methods.
 
@@ -5627,7 +5627,7 @@ using the functions below.
 
 # Implements
 
-[`MenuAttributeIterExt`](trait.MenuAttributeIterExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuAttributeIterExt`](trait.MenuAttributeIterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait MenuAttributeIterExt -->
 Trait containing all `MenuAttributeIter` methods.
 
@@ -5696,7 +5696,7 @@ functions below.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait MenuItemExt -->
 Trait containing all `MenuItem` methods.
 
@@ -6062,7 +6062,7 @@ the functions below.
 
 # Implements
 
-[`MenuLinkIterExt`](trait.MenuLinkIterExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuLinkIterExt`](trait.MenuLinkIterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait MenuLinkIterExt -->
 Trait containing all `MenuLinkIter` methods.
 
@@ -6238,7 +6238,7 @@ target value of the menu item.
 
 # Implements
 
-[`MenuModelExt`](trait.MenuModelExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuModelExt`](trait.MenuModelExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait MenuModelExt -->
 Trait containing all `MenuModel` methods.
 
@@ -6424,7 +6424,7 @@ Feature: `v2_40`
 
 # Implements
 
-[`NotificationExt`](trait.NotificationExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`NotificationExt`](trait.NotificationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait NotificationExt -->
 Trait containing all `Notification` methods.
 
@@ -6626,7 +6626,7 @@ when that button is clicked.
 
 # Implements
 
-[`PermissionExt`](trait.PermissionExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PermissionExt`](trait.PermissionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait PermissionExt -->
 Trait containing all `Permission` methods.
 
@@ -7300,7 +7300,7 @@ rules. It should not be committed to version control or included in
 
 # Implements
 
-[`SettingsExt`](trait.SettingsExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`SettingsExt`](trait.SettingsExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait SettingsExt -->
 Trait containing all `Settings` methods.
 
@@ -8295,6 +8295,329 @@ Ideally, this property would be called 'schema'. `SettingsSchema`
 has only existed since version 2.32, however, and before then the
 'schema' property was used to refer to the ID of the schema rather
 than the schema itself. Take care.
+<!-- struct SettingsSchema -->
+The `SettingsSchemaSource` and `SettingsSchema` APIs provide a
+mechanism for advanced control over the loading of schemas and a
+mechanism for introspecting their content.
+
+Plugin loading systems that wish to provide plugins a way to access
+settings face the problem of how to make the schemas for these
+settings visible to GSettings. Typically, a plugin will want to ship
+the schema along with itself and it won't be installed into the
+standard system directories for schemas.
+
+`SettingsSchemaSource` provides a mechanism for dealing with this by
+allowing the creation of a new 'schema source' from which schemas can
+be acquired. This schema source can then become part of the metadata
+associated with the plugin and queried whenever the plugin requires
+access to some settings.
+
+Consider the following example:
+
+
+```C
+typedef struct
+{
+   ...
+   GSettingsSchemaSource *schema_source;
+   ...
+} Plugin;
+
+Plugin *
+initialise_plugin (const gchar *dir)
+{
+  Plugin *plugin;
+
+  ...
+
+  plugin->schema_source =
+    g_settings_new_schema_source_from_directory (dir,
+      g_settings_schema_source_get_default (), FALSE, NULL);
+
+  ...
+
+  return plugin;
+}
+
+...
+
+GSettings *
+plugin_get_settings (Plugin      *plugin,
+                     const gchar *schema_id)
+{
+  GSettingsSchema *schema;
+
+  if (schema_id == NULL)
+    schema_id = plugin->identifier;
+
+  schema = g_settings_schema_source_lookup (plugin->schema_source,
+                                            schema_id, FALSE);
+
+  if (schema == NULL)
+    {
+      ... disable the plugin or abort, etc ...
+    }
+
+  return g_settings_new_full (schema, NULL, NULL);
+}
+```
+
+The code above shows how hooks should be added to the code that
+initialises (or enables) the plugin to create the schema source and
+how an API can be added to the plugin system to provide a convenient
+way for the plugin to access its settings, using the schemas that it
+ships.
+
+From the standpoint of the plugin, it would need to ensure that it
+ships a gschemas.compiled file as part of itself, and then simply do
+the following:
+
+
+```C
+{
+  GSettings *settings;
+  gint some_value;
+
+  settings = plugin_get_settings (self, NULL);
+  some_value = g_settings_get_int (settings, "some-value");
+  ...
+}
+```
+
+It's also possible that the plugin system expects the schema source
+files (ie: .gschema.xml files) instead of a gschemas.compiled file.
+In that case, the plugin loading system must compile the schemas for
+itself before attempting to create the settings source.
+<!-- impl SettingsSchema::fn get_id -->
+Get the ID of `self`.
+
+# Returns
+
+the ID
+<!-- impl SettingsSchema::fn get_key -->
+Gets the key named `name` from `self`.
+
+It is a programmer error to request a key that does not exist. See
+`SettingsSchema::list_keys`.
+
+Feature: `v2_40`
+
+## `name`
+the name of a key
+
+# Returns
+
+the `SettingsSchemaKey` for `name`
+<!-- impl SettingsSchema::fn get_path -->
+Gets the path associated with `self`, or `None`.
+
+Schemas may be single-instance or relocatable. Single-instance
+schemas correspond to exactly one set of keys in the backend
+database: those located at the path returned by this function.
+
+Relocatable schemas can be referenced by other schemas and can
+threfore describe multiple sets of keys at different locations. For
+relocatable schemas, this function will return `None`.
+
+# Returns
+
+the path of the schema, or `None`
+<!-- impl SettingsSchema::fn has_key -->
+Checks if `self` has a key named `name`.
+
+Feature: `v2_40`
+
+## `name`
+the name of a key
+
+# Returns
+
+`true` if such a key exists
+<!-- impl SettingsSchema::fn list_children -->
+Gets the list of children in `self`.
+
+You should free the return value with `g_strfreev` when you are done
+with it.
+
+Feature: `v2_44`
+
+
+# Returns
+
+a list of the children on `settings`
+<!-- impl SettingsSchema::fn list_keys -->
+Introspects the list of keys on `self`.
+
+You should probably not be calling this function from "normal" code
+(since you should already know what keys are in your schema). This
+function is intended for introspection reasons.
+
+Feature: `v2_46`
+
+
+# Returns
+
+a list of the keys on
+ `self`
+<!-- impl SettingsSchema::fn ref -->
+Increase the reference count of `self`, returning a new reference.
+
+# Returns
+
+a new reference to `self`
+<!-- impl SettingsSchema::fn unref -->
+Decrease the reference count of `self`, possibly freeing it.
+<!-- struct SettingsSchemaKey -->
+`SettingsSchemaKey` is an opaque data structure and can only be accessed
+using the following functions.
+
+Feature: `v2_34`
+<!-- impl SettingsSchemaKey::fn get_default_value -->
+Gets the default value for `self`.
+
+Note that this is the default value according to the schema. System
+administrator defaults and lockdown are not visible via this API.
+
+Feature: `v2_40`
+
+
+# Returns
+
+the default value for the key
+<!-- impl SettingsSchemaKey::fn get_description -->
+Gets the description for `self`.
+
+If no description has been provided in the schema for `self`, returns
+`None`.
+
+The description can be one sentence to several paragraphs in length.
+Paragraphs are delimited with a double newline. Descriptions can be
+translated and the value returned from this function is is the
+current locale.
+
+This function is slow. The summary and description information for
+the schemas is not stored in the compiled schema database so this
+function has to parse all of the source XML files in the schema
+directory.
+
+Feature: `v2_34`
+
+
+# Returns
+
+the description for `self`, or `None`
+<!-- impl SettingsSchemaKey::fn get_name -->
+Gets the name of `self`.
+
+Feature: `v2_44`
+
+
+# Returns
+
+the name of `self`.
+<!-- impl SettingsSchemaKey::fn get_range -->
+Queries the range of a key.
+
+This function will return a `glib::Variant` that fully describes the range
+of values that are valid for `self`.
+
+The type of `glib::Variant` returned is `(sv)`. The string describes
+the type of range restriction in effect. The type and meaning of
+the value contained in the variant depends on the string.
+
+If the string is `'type'` then the variant contains an empty array.
+The element type of that empty array is the expected type of value
+and all values of that type are valid.
+
+If the string is `'enum'` then the variant contains an array
+enumerating the possible values. Each item in the array is
+a possible valid value and no other values are valid.
+
+If the string is `'flags'` then the variant contains an array. Each
+item in the array is a value that may appear zero or one times in an
+array to be used as the value for this key. For example, if the
+variant contained the array `['x', 'y']` then the valid values for
+the key would be `[]`, `['x']`, `['y']`, `['x', 'y']` and
+`['y', 'x']`.
+
+Finally, if the string is `'range'` then the variant contains a pair
+of like-typed values -- the minimum and maximum permissible values
+for this key.
+
+This information should not be used by normal programs. It is
+considered to be a hint for introspection purposes. Normal programs
+should already know what is permitted by their own schema. The
+format may change in any way in the future -- but particularly, new
+forms may be added to the possibilities described above.
+
+You should free the returned value with `glib::Variant::unref` when it is
+no longer needed.
+
+Feature: `v2_40`
+
+
+# Returns
+
+a `glib::Variant` describing the range
+<!-- impl SettingsSchemaKey::fn get_summary -->
+Gets the summary for `self`.
+
+If no summary has been provided in the schema for `self`, returns
+`None`.
+
+The summary is a short description of the purpose of the key; usually
+one short sentence. Summaries can be translated and the value
+returned from this function is is the current locale.
+
+This function is slow. The summary and description information for
+the schemas is not stored in the compiled schema database so this
+function has to parse all of the source XML files in the schema
+directory.
+
+Feature: `v2_34`
+
+
+# Returns
+
+the summary for `self`, or `None`
+<!-- impl SettingsSchemaKey::fn get_value_type -->
+Gets the `glib::VariantType` of `self`.
+
+Feature: `v2_40`
+
+
+# Returns
+
+the type of `self`
+<!-- impl SettingsSchemaKey::fn range_check -->
+Checks if the given `value` is of the correct type and within the
+permitted range for `self`.
+
+It is a programmer error if `value` is not of the correct type -- you
+must check for this first.
+
+Feature: `v2_40`
+
+## `value`
+the value to check
+
+# Returns
+
+`true` if `value` is valid for `self`
+<!-- impl SettingsSchemaKey::fn ref -->
+Increase the reference count of `self`, returning a new reference.
+
+Feature: `v2_40`
+
+
+# Returns
+
+a new reference to `self`
+<!-- impl SettingsSchemaKey::fn unref -->
+Decrease the reference count of `self`, possibly freeing it.
+
+Feature: `v2_40`
+
 <!-- struct SimpleAction -->
 A `SimpleAction` is the obvious simple implementation of the `Action`
 interface. This is the easiest way to create an action for purposes of
@@ -8304,7 +8627,7 @@ See also ``GtkAction``.
 
 # Implements
 
-[`SimpleActionExt`](trait.SimpleActionExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionExt`](trait.ActionExt.html)
+[`SimpleActionExt`](trait.SimpleActionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionExt`](trait.ActionExt.html)
 <!-- trait SimpleActionExt -->
 Trait containing all `SimpleAction` methods.
 
@@ -8458,7 +8781,7 @@ implementing the `ActionGroup` and `ActionMap` interfaces.
 
 # Implements
 
-[`SimpleActionGroupExt`](trait.SimpleActionGroupExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
+[`SimpleActionGroupExt`](trait.SimpleActionGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
 <!-- trait SimpleActionGroupExt -->
 Trait containing all `SimpleActionGroup` methods.
 
@@ -8531,7 +8854,7 @@ Calling request or release will result in errors.
 
 # Implements
 
-[`PermissionExt`](trait.PermissionExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PermissionExt`](trait.PermissionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl SimplePermission::fn new -->
 Creates a new `Permission` instance that represents an action that is
 either always or never allowed.
@@ -8552,7 +8875,7 @@ themes that inherit other themes.
 
 # Implements
 
-[`ThemedIconExt`](trait.ThemedIconExt.html), [`ObjectExt`](trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
+[`ThemedIconExt`](trait.ThemedIconExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
 <!-- trait ThemedIconExt -->
 Trait containing all `ThemedIcon` methods.
 
@@ -8670,7 +8993,7 @@ a certificate and a private key (which is needed when acting as a
 
 # Implements
 
-[`TlsCertificateExt`](trait.TlsCertificateExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TlsCertificateExt`](trait.TlsCertificateExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TlsCertificateExt -->
 Trait containing all `TlsCertificate` methods.
 
