@@ -12,7 +12,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`BufferExt`](trait.BufferExt.html), [`TextBufferExt`](trait.TextBufferExt.html)
+[`BufferExt`](trait.BufferExt.html), [`gtk::TextBufferExt`](../gtk/trait.TextBufferExt.html)
 <!-- trait BufferExt -->
 Trait containing all `Buffer` methods.
 
@@ -805,7 +805,7 @@ The `gtk::TextIter` at which the completion is invoked.
 
 # Implements
 
-[`CompletionInfoExt`](trait.CompletionInfoExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`CompletionInfoExt`](trait.CompletionInfoExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
 <!-- trait CompletionInfoExt -->
 Trait containing all `CompletionInfo` methods.
 
@@ -2847,7 +2847,7 @@ Feature: `v3_18`
 
 # Implements
 
-[`MapExt`](trait.MapExt.html), [`ViewExt`](trait.ViewExt.html), [`TextViewExt`](trait.TextViewExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`MapExt`](trait.MapExt.html), [`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
 <!-- trait MapExt -->
 Trait containing all `Map` methods.
 
@@ -2886,7 +2886,7 @@ a `View`
 
 # Implements
 
-[`MarkExt`](trait.MarkExt.html), [`TextMarkExt`](trait.TextMarkExt.html)
+[`MarkExt`](trait.MarkExt.html), [`gtk::TextMarkExt`](../gtk/trait.TextMarkExt.html)
 <!-- trait MarkExt -->
 Trait containing all `Mark` methods.
 
@@ -4741,7 +4741,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+[`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
 <!-- impl StyleSchemeChooserButton::fn new -->
 Creates a new `StyleSchemeChooserButton`.
 
@@ -4758,7 +4758,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+[`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
 <!-- impl StyleSchemeChooserWidget::fn new -->
 Creates a new `StyleSchemeChooserWidget`.
 
@@ -4852,7 +4852,7 @@ Feature: `v3_20`
 
 # Implements
 
-[`TagExt`](trait.TagExt.html), [`TextTagExt`](trait.TextTagExt.html)
+[`TagExt`](trait.TagExt.html), [`gtk::TextTagExt`](../gtk/trait.TextTagExt.html)
 <!-- trait TagExt -->
 Trait containing all `Tag` methods.
 
@@ -4959,7 +4959,7 @@ Emitted when the ability to undo has changed.
 
 # Implements
 
-[`ViewExt`](trait.ViewExt.html), [`TextViewExt`](trait.TextViewExt.html), [`WidgetExt`](trait.WidgetExt.html)
+[`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
 <!-- trait ViewExt -->
 Trait containing all `View` methods.
 

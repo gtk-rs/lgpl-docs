@@ -40,7 +40,7 @@ the “Close” button returns the `ResponseType::Cancel` response id.
 
 # Implements
 
-[`AboutDialogExt`](trait.AboutDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AboutDialogExt`](trait.AboutDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait AboutDialogExt -->
 Trait containing all `AboutDialog` methods.
 
@@ -423,7 +423,7 @@ and mnemonics, of course.
 
 # Implements
 
-[`AccelGroupExt`](trait.AccelGroupExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AccelGroupExt`](trait.AccelGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait AccelGroupExt -->
 Trait containing all `AccelGroup` methods.
 
@@ -622,7 +622,7 @@ Feature: `v3_12`
 
 # Implements
 
-[`ActionBarExt`](trait.ActionBarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ActionBarExt`](trait.ActionBarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ActionBarExt -->
 Trait containing all `ActionBar` methods.
 
@@ -688,13 +688,13 @@ or `Application`, but other action groups that are added with
 
 # Implements
 
-[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ActionableExt -->
 Trait containing all `Actionable` methods.
 
 # Implementors
 
-[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`LinkButton`](struct.LinkButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`ModelButton`](struct.ModelButton.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
+[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`LinkButton`](struct.LinkButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`ModelButton`](struct.ModelButton.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait ActionableExt::fn get_action_name -->
 Gets the action name for `self`.
 
@@ -784,7 +784,7 @@ it is left up to the owner of the `Adjustment` to control the value.
 
 # Implements
 
-[`AdjustmentExt`](trait.AdjustmentExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AdjustmentExt`](trait.AdjustmentExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait AdjustmentExt -->
 Trait containing all `Adjustment` methods.
 
@@ -1054,7 +1054,7 @@ child widget.
 
 # Implements
 
-[`AlignmentExt`](trait.AlignmentExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AlignmentExt`](trait.AlignmentExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait AlignmentExt -->
 `[Deprecated since 3.14]` Trait containing all `Alignment` methods.
 
@@ -1276,7 +1276,7 @@ use `AppChooser::get_app_info`.
 
 # Implements
 
-[`AppChooserExt`](trait.AppChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AppChooserExt`](trait.AppChooserExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait AppChooserExt -->
 Trait containing all `AppChooser` methods.
 
@@ -1321,7 +1321,7 @@ use `AppChooserDialogExt::set_heading`.
 
 # Implements
 
-[`AppChooserDialogExt`](trait.AppChooserDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
+[`AppChooserDialogExt`](trait.AppChooserDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- trait AppChooserDialogExt -->
 Trait containing all `AppChooserDialog` methods.
 
@@ -1411,7 +1411,7 @@ To keep track of the selected application, use the
 
 # Implements
 
-[`AppChooserWidgetExt`](trait.AppChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
+[`AppChooserWidgetExt`](trait.AppChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`AppChooserExt`](trait.AppChooserExt.html)
 <!-- trait AppChooserWidgetExt -->
 Trait containing all `AppChooserWidget` methods.
 
@@ -1654,7 +1654,7 @@ session while inhibitors are present.
 
 # Implements
 
-[`ApplicationExt`](trait.ApplicationExt.html), [`ApplicationExt`](trait.ApplicationExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
+[`GtkApplicationExt`](trait.GtkApplicationExt.html), [`gio::ApplicationExt`](../gio/trait.ApplicationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`gio::ActionGroupExt`](../gio/trait.ActionGroupExt.html), [`gio::ActionMapExt`](../gio/trait.ActionMapExt.html)
 <!-- trait GtkApplicationExt -->
 Trait containing all `Application` methods.
 
@@ -2161,7 +2161,7 @@ The following attributes are used when constructing submenus:
 
 # Implements
 
-[`ApplicationWindowExt`](trait.ApplicationWindowExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
+[`ApplicationWindowExt`](trait.ApplicationWindowExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`gio::ActionGroupExt`](../gio/trait.ActionGroupExt.html), [`gio::ActionMapExt`](../gio/trait.ActionMapExt.html)
 <!-- trait ApplicationWindowExt -->
 Trait containing all `ApplicationWindow` methods.
 
@@ -2260,7 +2260,7 @@ react to the text direction.
 
 # Implements
 
-[`ArrowExt`](trait.ArrowExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ArrowExt`](trait.ArrowExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ArrowExt -->
 `[Deprecated since 3.14]` Trait containing all `Arrow` methods.
 
@@ -2318,7 +2318,7 @@ a frame around the child. The frame will be
 
 # Implements
 
-[`AspectFrameExt`](trait.AspectFrameExt.html), [`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AspectFrameExt`](trait.AspectFrameExt.html), [`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait AspectFrameExt -->
 Trait containing all `AspectFrame` methods.
 
@@ -2393,7 +2393,7 @@ as necessary.
 
 # Implements
 
-[`AssistantExt`](trait.AssistantExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`AssistantExt`](trait.AssistantExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait AssistantExt -->
 Trait containing all `Assistant` methods.
 
@@ -2757,7 +2757,7 @@ Many GTK+ widgets are subclasses of `Bin`, including `Window`,
 
 # Implements
 
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait BinExt -->
 Trait containing all `Bin` methods.
 
@@ -2828,7 +2828,7 @@ regardless of text direction.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait BoxExt -->
 Trait containing all `Box` methods.
 
@@ -2999,6 +2999,131 @@ Sets the `Box:spacing` property of `self`, which is the
 number of pixels to place between children of `self`.
 ## `spacing`
 the number of pixels to put between children
+<!-- struct Buildable -->
+`Buildable` allows objects to extend and customize their deserialization
+from [`Builder` UI descriptions][BUILDER-UI].
+The interface includes methods for setting names and properties of objects,
+parsing custom tags and constructing child objects.
+
+The `Buildable` interface is implemented by all widgets and
+many of the non-widget objects that are provided by GTK+. The
+main user of this interface is `Builder`. There should be
+very little need for applications to call any of these functions directly.
+
+An object only needs to implement this interface if it needs to extend the
+`Builder` format or run any extra routines at deserialization time.
+
+# Implements
+
+[`BuildableExt`](trait.BuildableExt.html)
+<!-- trait BuildableExt -->
+Trait containing all `Buildable` methods.
+
+# Implementors
+
+[`AboutDialog`](struct.AboutDialog.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconFactory`](struct.IconFactory.html), [`IconView`](struct.IconView.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+<!-- trait BuildableExt::fn add_child -->
+Adds a child to `self`. `type_` is an optional string
+describing how the child should be added.
+## `builder`
+a `Builder`
+## `child`
+child to add
+## `type_`
+kind of child or `None`
+<!-- trait BuildableExt::fn construct_child -->
+Constructs a child of `self` with the name `name`.
+
+`Builder` calls this function if a “constructor” has been
+specified in the UI definition.
+## `builder`
+`Builder` used to construct this object
+## `name`
+name of child to construct
+
+# Returns
+
+the constructed child
+<!-- trait BuildableExt::fn custom_finished -->
+This is similar to `Buildable::parser_finished` but is
+called once for each custom tag handled by the `self`.
+## `builder`
+a `Builder`
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+the name of the tag
+## `data`
+user data created in custom_tag_start
+<!-- trait BuildableExt::fn custom_tag_end -->
+This is called at the end of each custom element handled by
+the buildable.
+## `builder`
+`Builder` used to construct this object
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+name of tag
+## `data`
+user data that will be passed in to parser functions
+<!-- trait BuildableExt::fn custom_tag_start -->
+This is called for each unknown element under `<child>`.
+## `builder`
+a `Builder` used to construct this object
+## `child`
+child object or `None` for non-child tags
+## `tagname`
+name of tag
+## `parser`
+a `glib::MarkupParser` to fill in
+## `data`
+return location for user data that will be passed in
+ to parser functions
+
+# Returns
+
+`true` if a object has a custom implementation, `false`
+ if it doesn't.
+<!-- trait BuildableExt::fn get_internal_child -->
+Get the internal child called `childname` of the `self` object.
+## `builder`
+a `Builder`
+## `childname`
+name of child
+
+# Returns
+
+the internal child of the buildable object
+<!-- trait BuildableExt::fn get_name -->
+Gets the name of the `self` object.
+
+`Builder` sets the name based on the
+[`Builder` UI definition][BUILDER-UI]
+used to construct the `self`.
+
+# Returns
+
+the name set with `Buildable::set_name`
+<!-- trait BuildableExt::fn parser_finished -->
+Called when the builder finishes the parsing of a
+[`Builder` UI definition][BUILDER-UI].
+Note that this will be called once for each time
+`Builder::add_from_file` or `BuilderExt::add_from_string`
+is called on a builder.
+## `builder`
+a `Builder`
+<!-- trait BuildableExt::fn set_buildable_property -->
+Sets the property name `name` to `value` on the `self` object.
+## `builder`
+a `Builder`
+## `name`
+name of property
+## `value`
+value of property
+<!-- trait BuildableExt::fn set_name -->
+Sets the name of the `self` object.
+## `name`
+name to set
 <!-- struct Builder -->
 A `Builder` is an auxiliary object that reads textual descriptions
 of a user interface and instantiates the described objects. To create
@@ -3186,7 +3311,7 @@ See the [`Widget` documentation][composite-templates] for details.
 
 # Implements
 
-[`BuilderExt`](trait.BuilderExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`BuilderExt`](trait.BuilderExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait BuilderExt -->
 Trait containing all `Builder` methods.
 
@@ -3668,7 +3793,7 @@ to differentiate themselves from a plain `Button`.
 
 # Implements
 
-[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ButtonExt -->
 Trait containing all `Button` methods.
 
@@ -4035,7 +4160,7 @@ its alignment.
 
 # Implements
 
-[`ButtonBoxExt`](trait.ButtonBoxExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ButtonBoxExt`](trait.ButtonBoxExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ButtonBoxExt -->
 Trait containing all `ButtonBox` methods.
 
@@ -4174,7 +4299,7 @@ historically incorrect.
 
 # Implements
 
-[`CalendarExt`](trait.CalendarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CalendarExt`](trait.CalendarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait CalendarExt -->
 Trait containing all `Calendar` methods.
 
@@ -4672,7 +4797,7 @@ the value of a cell property, use `CellArea::cell_get_property`,
 
 # Implements
 
-[`CellAreaExt`](trait.CellAreaExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`CellAreaExt`](trait.CellAreaExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait CellAreaExt -->
 Trait containing all `CellArea` methods.
 
@@ -5270,7 +5395,7 @@ argument to `CellAreaBoxExt::pack_start` and `CellAreaBoxExt::pack_end`.
 
 # Implements
 
-[`CellAreaBoxExt`](trait.CellAreaBoxExt.html), [`CellAreaExt`](trait.CellAreaExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`CellAreaBoxExt`](trait.CellAreaBoxExt.html), [`CellAreaExt`](trait.CellAreaExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait CellAreaBoxExt -->
 Trait containing all `CellAreaBox` methods.
 
@@ -5339,7 +5464,7 @@ such as `CellAreaExt::render` and `CellAreaExt::event`.
 
 # Implements
 
-[`CellAreaContextExt`](trait.CellAreaContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellAreaContextExt`](trait.CellAreaContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellAreaContextExt -->
 Trait containing all `CellAreaContext` methods.
 
@@ -5517,7 +5642,7 @@ when editing the contents of a `TreeView` cell.
 
 # Implements
 
-[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellEditableExt`](trait.CellEditableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait CellEditableExt -->
 Trait containing all `CellEditable` methods.
 
@@ -5767,7 +5892,7 @@ has been set or not. You should not set them independently.
 
 # Implements
 
-[`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererExt -->
 Trait containing all `CellRenderer` methods.
 
@@ -6070,7 +6195,7 @@ The `CellRendererAccel` cell renderer was added in GTK+ 2.10.
 
 # Implements
 
-[`CellRendererAccelExt`](trait.CellRendererAccelExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererAccelExt`](trait.CellRendererAccelExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererAccelExt -->
 Trait containing all `CellRendererAccel` methods.
 
@@ -6157,7 +6282,7 @@ The `CellRendererCombo` cell renderer was added in GTK+ 2.6.
 
 # Implements
 
-[`CellRendererComboExt`](trait.CellRendererComboExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererComboExt`](trait.CellRendererComboExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererComboExt -->
 Trait containing all `CellRendererCombo` methods.
 
@@ -6253,7 +6378,7 @@ pixbuf, it renders that one.
 
 # Implements
 
-[`CellRendererPixbufExt`](trait.CellRendererPixbufExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererPixbufExt`](trait.CellRendererPixbufExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererPixbufExt -->
 Trait containing all `CellRendererPixbuf` methods.
 
@@ -6320,7 +6445,7 @@ The `CellRendererProgress` cell renderer was added in GTK+ 2.6.
 
 # Implements
 
-[`CellRendererProgressExt`](trait.CellRendererProgressExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`CellRendererProgressExt`](trait.CellRendererProgressExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait CellRendererProgressExt -->
 Trait containing all `CellRendererProgress` methods.
 
@@ -6404,7 +6529,7 @@ The `CellRendererSpin` cell renderer was added in GTK+ 2.10.
 
 # Implements
 
-[`CellRendererSpinExt`](trait.CellRendererSpinExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererSpinExt`](trait.CellRendererSpinExt.html), [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererSpinExt -->
 Trait containing all `CellRendererSpin` methods.
 
@@ -6445,7 +6570,7 @@ for each cell is to bind them to columns in your tree model using e.g.
 
 # Implements
 
-[`CellRendererSpinnerExt`](trait.CellRendererSpinnerExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererSpinnerExt`](trait.CellRendererSpinnerExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererSpinnerExt -->
 Trait containing all `CellRendererSpinner` methods.
 
@@ -6485,7 +6610,7 @@ the `CellRendererText` allows to edit its text using an entry.
 
 # Implements
 
-[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererTextExt -->
 Trait containing all `CellRendererText` methods.
 
@@ -6637,7 +6762,7 @@ When activated, it emits the `CellRendererToggle::toggled` signal.
 
 # Implements
 
-[`CellRendererToggleExt`](trait.CellRendererToggleExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`CellRendererToggleExt`](trait.CellRendererToggleExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait CellRendererToggleExt -->
 Trait containing all `CellRendererToggle` methods.
 
@@ -6736,7 +6861,7 @@ in this case.
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl CheckButton::fn new -->
 Creates a new `CheckButton`.
 
@@ -6785,7 +6910,7 @@ with name check, which gets the .left or .right style class.
 
 # Implements
 
-[`CheckMenuItemExt`](trait.CheckMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`CheckMenuItemExt`](trait.CheckMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait CheckMenuItemExt -->
 Trait containing all `CheckMenuItem` methods.
 
@@ -6923,7 +7048,7 @@ form for representing strings in GTK+.)
 
 # Implements
 
-[`ClipboardExt`](trait.ClipboardExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ClipboardExt`](trait.ClipboardExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait ClipboardExt -->
 Trait containing all `Clipboard` methods.
 
@@ -7371,7 +7496,7 @@ it from a plain `Button`, it gets the .color style class.
 
 # Implements
 
-[`ColorButtonExt`](trait.ColorButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`ColorButtonExt`](trait.ColorButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- trait ColorButtonExt -->
 Trait containing all `ColorButton` methods.
 
@@ -7648,7 +7773,7 @@ a color. It implements the `ColorChooser` interface.
 
 # Implements
 
-[`ColorChooserDialogExt`](trait.ColorChooserDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`ColorChooserDialogExt`](trait.ColorChooserDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- trait ColorChooserDialogExt -->
 Trait containing all `ColorChooserDialog` methods.
 
@@ -7689,7 +7814,7 @@ to provide a dialog for selecting colors.
 
 # Implements
 
-[`ColorChooserWidgetExt`](trait.ColorChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
+[`ColorChooserWidgetExt`](trait.ColorChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ColorChooserExt`](trait.ColorChooserExt.html)
 <!-- trait ColorChooserWidgetExt -->
 Trait containing all `ColorChooserWidget` methods.
 
@@ -7770,7 +7895,7 @@ The button also contains another node with name arrow.
 
 # Implements
 
-[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait ComboBoxExt -->
 Trait containing all `ComboBox` methods.
 
@@ -8348,7 +8473,7 @@ children, and the .linked class to the node of its internal box.
 
 # Implements
 
-[`ComboBoxTextExt`](trait.ComboBoxTextExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`ComboBoxTextExt`](trait.ComboBoxTextExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait ComboBoxTextExt -->
 Trait containing all `ComboBoxText` methods.
 
@@ -8649,7 +8774,7 @@ An example of these properties in UI definitions:
 
 # Implements
 
-[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ContainerExt -->
 Trait containing all `Container` methods.
 
@@ -9037,7 +9162,7 @@ key theme, as defined by `Settings:gtk-key-theme-name`.
 
 # Implements
 
-[`CssProviderExt`](trait.CssProviderExt.html), [`ObjectExt`](trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
+[`CssProviderExt`](trait.CssProviderExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
 <!-- trait CssProviderExt -->
 Trait containing all `CssProvider` methods.
 
@@ -9424,7 +9549,7 @@ An example of a `Dialog` UI definition fragment:
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait DialogExt -->
 Trait containing all `Dialog` methods.
 
@@ -9848,7 +9973,7 @@ handler to decide whether to draw the focus indicator. See
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- impl DrawingArea::fn new -->
 Creates a new drawing area.
 
@@ -10130,7 +10255,7 @@ just a single handle for the text cursor, it gets the style class
 
 # Implements
 
-[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
+[`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- trait EntryExt -->
 Trait containing all `Entry` methods.
 
@@ -11388,7 +11513,7 @@ integrate with an application’s concept of undo/redo.
 
 # Implements
 
-[`EntryBufferExt`](trait.EntryBufferExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`EntryBufferExt`](trait.EntryBufferExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait EntryBufferExt -->
 Trait containing all `EntryBuffer` methods.
 
@@ -11578,7 +11703,7 @@ matching iter.
 
 # Implements
 
-[`EntryCompletionExt`](trait.EntryCompletionExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`EntryCompletionExt`](trait.EntryCompletionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait EntryCompletionExt -->
 Trait containing all `EntryCompletion` methods.
 
@@ -11901,7 +12026,7 @@ which do not have their own window.
 
 # Implements
 
-[`EventBoxExt`](trait.EventBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`EventBoxExt`](trait.EventBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait EventBoxExt -->
 Trait containing all `EventBox` methods.
 
@@ -11985,7 +12110,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait EventControllerExt -->
 Trait containing all `EventController` methods.
 
@@ -12144,7 +12269,7 @@ them is using any style classes.
 
 # Implements
 
-[`ExpanderExt`](trait.ExpanderExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ExpanderExt`](trait.ExpanderExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ExpanderExt -->
 Trait containing all `Expander` methods.
 
@@ -13351,7 +13476,7 @@ The `FileChooserButton` supports the ``GtkFileChooserActions``
 
 # Implements
 
-[`FileChooserButtonExt`](trait.FileChooserButtonExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
+[`FileChooserButtonExt`](trait.FileChooserButtonExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- trait FileChooserButtonExt -->
 Trait containing all `FileChooserButton` methods.
 
@@ -13621,7 +13746,7 @@ when you use `FileChooserDialog` to ensure proper operation.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- impl FileChooserDialog::fn new -->
 Creates a new `FileChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
@@ -13661,7 +13786,7 @@ widget.
 
 # Implements
 
-[`FileChooserWidgetExt`](trait.FileChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
+[`FileChooserWidgetExt`](trait.FileChooserWidgetExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html)
 <!-- trait FileChooserWidgetExt -->
 Trait containing all `FileChooserWidget` methods.
 
@@ -13829,7 +13954,7 @@ rules:
 
 # Implements
 
-[`FileFilterExt`](trait.FileFilterExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`FileFilterExt`](trait.FileFilterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FileFilterExt -->
 Trait containing all `FileFilter` methods.
 
@@ -13986,7 +14111,7 @@ of child widgets and additionally adds custom drawing and scrollability.
 
 # Implements
 
-[`FixedExt`](trait.FixedExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`FixedExt`](trait.FixedExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FixedExt -->
 Trait containing all `Fixed` methods.
 
@@ -14061,7 +14186,7 @@ Feature: `v3_12`
 
 # Implements
 
-[`FlowBoxExt`](trait.FlowBoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`FlowBoxExt`](trait.FlowBoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait FlowBoxExt -->
 Trait containing all `FlowBox` methods.
 
@@ -14537,7 +14662,7 @@ Feature: `v3_12`
 
 # Implements
 
-[`FlowBoxChildExt`](trait.FlowBoxChildExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`FlowBoxChildExt`](trait.FlowBoxChildExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FlowBoxChildExt -->
 Trait containing all `FlowBoxChild` methods.
 
@@ -14615,7 +14740,7 @@ It is suitable widget for selecting a font in a preference dialog.
 
 # Implements
 
-[`FontButtonExt`](trait.FontButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`FontButtonExt`](trait.FontButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- trait FontButtonExt -->
 Trait containing all `FontButton` methods.
 
@@ -14944,7 +15069,7 @@ and “cancel_button”.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserDialog::fn new -->
 Creates a new `FontChooserDialog`.
 ## `title`
@@ -14976,7 +15101,7 @@ To change the text which is shown in the preview area, use
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FontChooserExt`](trait.FontChooserExt.html)
 <!-- impl FontChooserWidget::fn new -->
 Creates a new `FontChooserWidget`.
 
@@ -15015,7 +15140,7 @@ any other shadow type to remove it.
 
 # Implements
 
-[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`FrameExt`](trait.FrameExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait FrameExt -->
 Trait containing all `Frame` methods.
 
@@ -15204,7 +15329,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`GLAreaExt`](trait.GLAreaExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GLAreaExt`](trait.GLAreaExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait GLAreaExt -->
 Trait containing all `GLArea` methods.
 
@@ -15645,7 +15770,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureExt -->
 Trait containing all `Gesture` methods.
 
@@ -16024,7 +16149,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureDragExt -->
 Trait containing all `GestureDrag` methods.
 
@@ -16114,7 +16239,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureLongPressExt`](trait.GestureLongPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureLongPressExt`](trait.GestureLongPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureLongPressExt -->
 Trait containing all `GestureLongPress` methods.
 
@@ -16166,7 +16291,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureMultiPressExt`](trait.GestureMultiPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureMultiPressExt`](trait.GestureMultiPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureMultiPressExt -->
 Trait containing all `GestureMultiPress` methods.
 
@@ -16267,7 +16392,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GesturePanExt`](trait.GesturePanExt.html), [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GesturePanExt`](trait.GesturePanExt.html), [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GesturePanExt -->
 Trait containing all `GesturePan` methods.
 
@@ -16334,7 +16459,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureRotateExt`](trait.GestureRotateExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureRotateExt`](trait.GestureRotateExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureRotateExt -->
 Trait containing all `GestureRotate` methods.
 
@@ -16394,7 +16519,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureSingleExt -->
 Trait containing all `GestureSingle` methods.
 
@@ -16528,7 +16653,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureSwipeExt`](trait.GestureSwipeExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureSwipeExt`](trait.GestureSwipeExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureSwipeExt -->
 Trait containing all `GestureSwipe` methods.
 
@@ -16583,7 +16708,7 @@ Feature: `v3_14`
 
 # Implements
 
-[`GestureZoomExt`](trait.GestureZoomExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GestureZoomExt`](trait.GestureZoomExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait GestureZoomExt -->
 Trait containing all `GestureZoom` methods.
 
@@ -16645,7 +16770,7 @@ by the `Orientable:orientation` property.
 
 # Implements
 
-[`GridExt`](trait.GridExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`GridExt`](trait.GridExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait GridExt -->
 Trait containing all `Grid` methods.
 
@@ -16857,7 +16982,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`HeaderBarExt`](trait.HeaderBarExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`HeaderBarExt`](trait.HeaderBarExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait HeaderBarExt -->
 Trait containing all `HeaderBar` methods.
 
@@ -17162,7 +17287,7 @@ in order for the new input method to become available to GTK+ applications.
 
 # Implements
 
-[`IMContextExt`](trait.IMContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`IMContextExt`](trait.IMContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait IMContextExt -->
 Trait containing all `IMContext` methods.
 
@@ -17338,7 +17463,7 @@ the input method surrounding context by calling the
 
 # Implements
 
-[`IMMulticontextExt`](trait.IMMulticontextExt.html), [`IMContextExt`](trait.IMContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`IMMulticontextExt`](trait.IMMulticontextExt.html), [`IMContextExt`](trait.IMContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait IMMulticontextExt -->
 Trait containing all `IMMulticontext` methods.
 
@@ -17476,7 +17601,7 @@ multiple `<source>` elements. The following attributes are allowed:
 
 # Implements
 
-[`IconFactoryExt`](trait.IconFactoryExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`IconFactoryExt`](trait.IconFactoryExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait IconFactoryExt -->
 `[Deprecated since 3.10]` Trait containing all `IconFactory` methods.
 
@@ -17581,7 +17706,7 @@ an icon theme.
 
 # Implements
 
-[`IconInfoExt`](trait.IconInfoExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`IconInfoExt`](trait.IconInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait IconInfoExt -->
 Trait containing all `IconInfo` methods.
 
@@ -18548,7 +18673,7 @@ else
 
 # Implements
 
-[`IconThemeExt`](trait.IconThemeExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`IconThemeExt`](trait.IconThemeExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait IconThemeExt -->
 Trait containing all `IconTheme` methods.
 
@@ -19030,7 +19155,7 @@ For rubberband selection, a subnode with name rubberband is used.
 
 # Implements
 
-[`IconViewExt`](trait.IconViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`IconViewExt`](trait.IconViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait IconViewExt -->
 Trait containing all `IconView` methods.
 
@@ -19892,7 +20017,7 @@ can then be loaded into a `gdk_pixbuf::Pixbuf` using
 
 # Implements
 
-[`ImageExt`](trait.ImageExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ImageExt`](trait.ImageExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ImageExt -->
 Trait containing all `Image` methods.
 
@@ -20109,7 +20234,7 @@ The storage type of the image must be `ImageType::Empty` or
 
 # Deprecated since 3.10
 
-Use `ImageExt::get_icon_name` instead.
+Use `Image::get_icon_name` instead.
 ## `icon_set`
 location to store a
  `IconSet`, or `None`
@@ -20142,7 +20267,7 @@ be freed.
 
 # Deprecated since 3.10
 
-Use `ImageExt::get_icon_name` instead.
+Use `Image::get_icon_name` instead.
 ## `stock_id`
 place to store a
  stock icon name, or `None`
@@ -20348,7 +20473,7 @@ binding of Ctrl+M:
 
 # Implements
 
-[`ImageMenuItemExt`](trait.ImageMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ImageMenuItemExt`](trait.ImageMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ImageMenuItemExt -->
 `[Deprecated since 3.10]` Trait containing all `ImageMenuItem` methods.
 
@@ -20642,7 +20767,7 @@ on the message type.
 
 # Implements
 
-[`InfoBarExt`](trait.InfoBarExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`InfoBarExt`](trait.InfoBarExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait InfoBarExt -->
 Trait containing all `InfoBar` methods.
 
@@ -21001,7 +21126,7 @@ the `Label::activate-link` signal and the `LabelExt::get_current_uri` function.
 
 # Implements
 
-[`LabelExt`](trait.LabelExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`LabelExt`](trait.LabelExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait LabelExt -->
 Trait containing all `Label` methods.
 
@@ -21688,7 +21813,7 @@ returned by `LayoutExt::get_bin_window`, rather than to the one returned by
 
 # Implements
 
-[`LayoutExt`](trait.LayoutExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`LayoutExt`](trait.LayoutExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait LayoutExt -->
 Trait containing all `Layout` methods.
 
@@ -21897,7 +22022,7 @@ Feature: `v3_6`
 
 # Implements
 
-[`LevelBarExt`](trait.LevelBarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`LevelBarExt`](trait.LevelBarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait LevelBarExt -->
 Trait containing all `LevelBar` methods.
 
@@ -22206,7 +22331,7 @@ it from a plain `Button`, it gets the .link style class.
 
 # Implements
 
-[`LinkButtonExt`](trait.LinkButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`LinkButtonExt`](trait.LinkButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait LinkButtonExt -->
 Trait containing all `LinkButton` methods.
 
@@ -22317,7 +22442,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`ListBoxExt`](trait.ListBoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ListBoxExt`](trait.ListBoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ListBoxExt -->
 Trait containing all `ListBox` methods.
 
@@ -22695,7 +22820,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`ListBoxRowExt`](trait.ListBoxRowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ListBoxRowExt`](trait.ListBoxRowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ListBoxRowExt -->
 Trait containing all `ListBoxRow` methods.
 
@@ -22969,7 +23094,7 @@ An example of a UI Definition fragment for a list store:
 
 # Implements
 
-[`ListStoreExt`](trait.ListStoreExt.html), [`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
+[`ListStoreExt`](trait.ListStoreExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
 <!-- trait ListStoreExt -->
 Trait containing all `ListStore` methods.
 
@@ -23263,7 +23388,7 @@ with name arrow, for scrolling menu arrows. These subnodes get the
 
 # Implements
 
-[`MenuExt`](trait.MenuExt.html), [`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuExt`](trait.MenuExt.html), [`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MenuExt -->
 Trait containing all `Menu` methods.
 
@@ -23890,7 +24015,7 @@ many menu items.
 
 # Implements
 
-[`MenuBarExt`](trait.MenuBarExt.html), [`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuBarExt`](trait.MenuBarExt.html), [`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MenuBarExt -->
 Trait containing all `MenuBar` methods.
 
@@ -24040,7 +24165,7 @@ Feature: `v3_6`
 
 # Implements
 
-[`MenuButtonExt`](trait.MenuButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuButtonExt`](trait.MenuButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait MenuButtonExt -->
 Trait containing all `MenuButton` methods.
 
@@ -24315,7 +24440,7 @@ the .left or .right style class.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait MenuItemExt -->
 Trait containing all `MenuItem` methods.
 
@@ -24537,7 +24662,7 @@ grab and receive all key presses.
 
 # Implements
 
-[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MenuShellExt`](trait.MenuShellExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MenuShellExt -->
 Trait containing all `MenuShell` methods.
 
@@ -24766,7 +24891,7 @@ An example for a UI definition fragment with menus:
 
 # Implements
 
-[`MenuToolButtonExt`](trait.MenuToolButtonExt.html), [`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuToolButtonExt`](trait.MenuToolButtonExt.html), [`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait MenuToolButtonExt -->
 Trait containing all `MenuToolButton` methods.
 
@@ -24889,7 +25014,7 @@ the message area as an internal child with the name “message_area”.
 
 # Implements
 
-[`MessageDialogExt`](trait.MessageDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MessageDialogExt`](trait.MessageDialogExt.html), [`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MessageDialogExt -->
 Trait containing all `MessageDialog` methods.
 
@@ -25090,7 +25215,7 @@ this fact, all `Misc` API has been deprecated.
 
 # Implements
 
-[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait MiscExt -->
 `[Deprecated since 3.14]` Trait containing all `Misc` methods.
 
@@ -25284,7 +25409,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`ModelButtonExt`](trait.ModelButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ModelButtonExt`](trait.ModelButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ModelButtonExt -->
 Trait containing all `ModelButton` methods.
 
@@ -25491,7 +25616,7 @@ The nodes are always arranged from left-to-right, regarldess of text direction.
 
 # Implements
 
-[`NotebookExt`](trait.NotebookExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`NotebookExt`](trait.NotebookExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait NotebookExt -->
 Trait containing all `Notebook` methods.
 
@@ -26072,7 +26197,7 @@ the “type” attribute of a `<child>` element.
 
 # Implements
 
-[`OverlayExt`](trait.OverlayExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`OverlayExt`](trait.OverlayExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait OverlayExt -->
 Trait containing all `Overlay` methods.
 
@@ -26241,7 +26366,7 @@ Printing support was added in GTK+ 2.10.
 
 # Implements
 
-[`PageSetupExt`](trait.PageSetupExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PageSetupExt`](trait.PageSetupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait PageSetupExt -->
 Trait containing all `PageSetup` methods.
 
@@ -26554,7 +26679,7 @@ gtk_widget_set_size_request (frame2, 50, -1);
 
 # Implements
 
-[`PanedExt`](trait.PanedExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`PanedExt`](trait.PanedExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait PanedExt -->
 Trait containing all `Paned` methods.
 
@@ -26999,7 +27124,7 @@ be used:
 
 # Implements
 
-[`PlacesSidebarExt`](trait.PlacesSidebarExt.html), [`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PlacesSidebarExt`](trait.PlacesSidebarExt.html), [`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait PlacesSidebarExt -->
 Trait containing all `PlacesSidebar` methods.
 
@@ -27569,7 +27694,7 @@ Feature: `v3_12`
 
 # Implements
 
-[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait PopoverExt -->
 Trait containing all `Popover` methods.
 
@@ -27961,7 +28086,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`PopoverMenuExt`](trait.PopoverMenuExt.html), [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PopoverMenuExt`](trait.PopoverMenuExt.html), [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait PopoverMenuExt -->
 Trait containing all `PopoverMenu` methods.
 
@@ -28078,7 +28203,7 @@ Printing support was added in GTK+ 2.10.
 
 # Implements
 
-[`PrintContextExt`](trait.PrintContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PrintContextExt`](trait.PrintContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait PrintContextExt -->
 Trait containing all `PrintContext` methods.
 
@@ -28193,6 +28318,838 @@ A memory allocation failed.
 <!-- enum PrintError::variant InvalidFile -->
 An error occurred while loading a page setup
  or paper size from a key file.
+<!-- struct PrintOperation -->
+`PrintOperation` is the high-level, portable printing API.
+It looks a bit different than other GTK+ dialogs such as the
+`FileChooser`, since some platforms don’t expose enough
+infrastructure to implement a good print dialog. On such
+platforms, `PrintOperation` uses the native print dialog.
+On platforms which do not provide a native print dialog, GTK+
+uses its own, see ``GtkPrintUnixDialog``.
+
+The typical way to use the high-level printing API is to create
+a `PrintOperation` object with `PrintOperation::new` when
+the user selects to print. Then you set some properties on it,
+e.g. the page size, any `PrintSettings` from previous print
+operations, the number of pages, the current page, etc.
+
+Then you start the print operation by calling `PrintOperationExt::run`.
+It will then show a dialog, let the user select a printer and
+options. When the user finished the dialog various signals will
+be emitted on the `PrintOperation`, the main one being
+`PrintOperation::draw-page`, which you are supposed to catch
+and render the page on the provided `PrintContext` using Cairo.
+
+# The high-level printing API
+
+
+```C
+static GtkPrintSettings *settings = NULL;
+
+static void
+do_print (void)
+{
+  GtkPrintOperation *print;
+  GtkPrintOperationResult res;
+
+  print = gtk_print_operation_new ();
+
+  if (settings != NULL)
+    gtk_print_operation_set_print_settings (print, settings);
+
+  g_signal_connect (print, "begin_print", G_CALLBACK (begin_print), NULL);
+  g_signal_connect (print, "draw_page", G_CALLBACK (draw_page), NULL);
+
+  res = gtk_print_operation_run (print, GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                                 GTK_WINDOW (main_window), NULL);
+
+  if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
+    {
+      if (settings != NULL)
+        g_object_unref (settings);
+      settings = g_object_ref (gtk_print_operation_get_print_settings (print));
+    }
+
+  g_object_unref (print);
+}
+```
+
+By default `PrintOperation` uses an external application to do
+print preview. To implement a custom print preview, an application
+must connect to the preview signal. The functions
+`PrintOperationPreview::render_page`,
+`PrintOperationPreview::end_preview` and
+`PrintOperationPreview::is_selected`
+are useful when implementing a print preview.
+
+# Implements
+
+[`PrintOperationExt`](trait.PrintOperationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PrintOperationPreviewExt`](trait.PrintOperationPreviewExt.html)
+<!-- trait PrintOperationExt -->
+Trait containing all `PrintOperation` methods.
+
+# Implementors
+
+[`PrintOperation`](struct.PrintOperation.html)
+<!-- impl PrintOperation::fn new -->
+Creates a new `PrintOperation`.
+
+# Returns
+
+a new `PrintOperation`
+<!-- trait PrintOperationExt::fn cancel -->
+Cancels a running print operation. This function may
+be called from a `PrintOperation::begin-print`,
+`PrintOperation::paginate` or `PrintOperation::draw-page`
+signal handler to stop the currently running print
+operation.
+<!-- trait PrintOperationExt::fn draw_page_finish -->
+Signalize that drawing of particular page is complete.
+
+It is called after completion of page drawing (e.g. drawing in another
+thread).
+If `PrintOperationExt::set_defer_drawing` was called before, then this function
+has to be called by application. In another case it is called by the library
+itself.
+<!-- trait PrintOperationExt::fn get_default_page_setup -->
+Returns the default page setup, see
+`PrintOperationExt::set_default_page_setup`.
+
+# Returns
+
+the default page setup
+<!-- trait PrintOperationExt::fn get_embed_page_setup -->
+Gets the value of `PrintOperation:embed-page-setup` property.
+
+# Returns
+
+whether page setup selection combos are embedded
+<!-- trait PrintOperationExt::fn get_error -->
+Call this when the result of a print operation is
+`PrintOperationResult::Error`, either as returned by
+`PrintOperationExt::run`, or in the `PrintOperation::done` signal
+handler. The returned `glib::Error` will contain more details on what went wrong.
+<!-- trait PrintOperationExt::fn get_has_selection -->
+Gets the value of `PrintOperation:has-selection` property.
+
+# Returns
+
+whether there is a selection
+<!-- trait PrintOperationExt::fn get_n_pages_to_print -->
+Returns the number of pages that will be printed.
+
+Note that this value is set during print preparation phase
+(`PrintStatus::Preparing`), so this function should never be
+called before the data generation phase (`PrintStatus::GeneratingData`).
+You can connect to the `PrintOperation::status-changed` signal
+and call `PrintOperationExt::get_n_pages_to_print` when
+print status is `PrintStatus::GeneratingData`.
+This is typically used to track the progress of print operation.
+
+# Returns
+
+the number of pages that will be printed
+<!-- trait PrintOperationExt::fn get_print_settings -->
+Returns the current print settings.
+
+Note that the return value is `None` until either
+`PrintOperationExt::set_print_settings` or
+`PrintOperationExt::run` have been called.
+
+# Returns
+
+the current print settings of `self`.
+<!-- trait PrintOperationExt::fn get_status -->
+Returns the status of the print operation.
+Also see `PrintOperationExt::get_status_string`.
+
+# Returns
+
+the status of the print operation
+<!-- trait PrintOperationExt::fn get_status_string -->
+Returns a string representation of the status of the
+print operation. The string is translated and suitable
+for displaying the print status e.g. in a `Statusbar`.
+
+Use `PrintOperationExt::get_status` to obtain a status
+value that is suitable for programmatic use.
+
+# Returns
+
+a string representation of the status
+ of the print operation
+<!-- trait PrintOperationExt::fn get_support_selection -->
+Gets the value of `PrintOperation:support-selection` property.
+
+# Returns
+
+whether the application supports print of selection
+<!-- trait PrintOperationExt::fn is_finished -->
+A convenience function to find out if the print operation
+is finished, either successfully (`PrintStatus::Finished`)
+or unsuccessfully (`PrintStatus::FinishedAborted`).
+
+Note: when you enable print status tracking the print operation
+can be in a non-finished state even after done has been called, as
+the operation status then tracks the print job status on the printer.
+
+# Returns
+
+`true`, if the print operation is finished.
+<!-- trait PrintOperationExt::fn run -->
+Runs the print operation, by first letting the user modify
+print settings in the print dialog, and then print the document.
+
+Normally that this function does not return until the rendering of all
+pages is complete. You can connect to the
+`PrintOperation::status-changed` signal on `self` to obtain some
+information about the progress of the print operation.
+Furthermore, it may use a recursive mainloop to show the print dialog.
+
+If you call `PrintOperationExt::set_allow_async` or set the
+`PrintOperation:allow-async` property the operation will run
+asynchronously if this is supported on the platform. The
+`PrintOperation::done` signal will be emitted with the result of the
+operation when the it is done (i.e. when the dialog is canceled, or when
+the print succeeds or fails).
+
+```C
+if (settings != NULL)
+  gtk_print_operation_set_print_settings (print, settings);
+  
+if (page_setup != NULL)
+  gtk_print_operation_set_default_page_setup (print, page_setup);
+  
+g_signal_connect (print, "begin-print",
+                  G_CALLBACK (begin_print), &data);
+g_signal_connect (print, "draw-page",
+                  G_CALLBACK (draw_page), &data);
+ 
+res = gtk_print_operation_run (print,
+                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                               parent,
+                               &error);
+ 
+if (res == GTK_PRINT_OPERATION_RESULT_ERROR)
+ {
+   error_dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                         GTK_MESSAGE_ERROR,
+                         GTK_BUTTONS_CLOSE,
+                         "Error printing file:\n%s",
+                         error->message);
+   g_signal_connect (error_dialog, "response",
+                     G_CALLBACK (gtk_widget_destroy), NULL);
+   gtk_widget_show (error_dialog);
+   g_error_free (error);
+ }
+else if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
+ {
+   if (settings != NULL)
+g_object_unref (settings);
+   settings = g_object_ref (gtk_print_operation_get_print_settings (print));
+ }
+```
+
+Note that `PrintOperationExt::run` can only be called once on a
+given `PrintOperation`.
+## `action`
+the action to start
+## `parent`
+Transient parent of the dialog
+
+# Returns
+
+the result of the print operation. A return value of
+ `PrintOperationResult::Apply` indicates that the printing was
+ completed successfully. In this case, it is a good idea to obtain
+ the used print settings with `PrintOperationExt::get_print_settings`
+ and store them for reuse with the next print operation. A value of
+ `PrintOperationResult::InProgress` means the operation is running
+ asynchronously, and will emit the `PrintOperation::done` signal when
+ done.
+<!-- trait PrintOperationExt::fn set_allow_async -->
+Sets whether the `PrintOperationExt::run` may return
+before the print operation is completed. Note that
+some platforms may not allow asynchronous operation.
+## `allow_async`
+`true` to allow asynchronous operation
+<!-- trait PrintOperationExt::fn set_current_page -->
+Sets the current page.
+
+If this is called before `PrintOperationExt::run`,
+the user will be able to select to print only the current page.
+
+Note that this only makes sense for pre-paginated documents.
+## `current_page`
+the current page, 0-based
+<!-- trait PrintOperationExt::fn set_custom_tab_label -->
+Sets the label for the tab holding custom widgets.
+## `label`
+the label to use, or `None` to use the default label
+<!-- trait PrintOperationExt::fn set_default_page_setup -->
+Makes `default_page_setup` the default page setup for `self`.
+
+This page setup will be used by `PrintOperationExt::run`,
+but it can be overridden on a per-page basis by connecting
+to the `PrintOperation::request-page-setup` signal.
+## `default_page_setup`
+a `PageSetup`, or `None`
+<!-- trait PrintOperationExt::fn set_defer_drawing -->
+Sets up the `PrintOperation` to wait for calling of
+`PrintOperationExt::draw_page_finish` from application. It can
+be used for drawing page in another thread.
+
+This function must be called in the callback of “draw-page” signal.
+<!-- trait PrintOperationExt::fn set_embed_page_setup -->
+Embed page size combo box and orientation combo box into page setup page.
+Selected page setup is stored as default page setup in `PrintOperation`.
+## `embed`
+`true` to embed page setup selection in the ``GtkPrintUnixDialog``
+<!-- trait PrintOperationExt::fn set_export_filename -->
+Sets up the `PrintOperation` to generate a file instead
+of showing the print dialog. The indended use of this function
+is for implementing “Export to PDF” actions. Currently, PDF
+is the only supported format.
+
+“Print to PDF” support is independent of this and is done
+by letting the user pick the “Print to PDF” item from the list
+of printers in the print dialog.
+## `filename`
+the filename for the exported file
+<!-- trait PrintOperationExt::fn set_has_selection -->
+Sets whether there is a selection to print.
+
+Application has to set number of pages to which the selection
+will draw by `PrintOperationExt::set_n_pages` in a callback of
+`PrintOperation::begin-print`.
+## `has_selection`
+`true` indicates that a selection exists
+<!-- trait PrintOperationExt::fn set_job_name -->
+Sets the name of the print job. The name is used to identify
+the job (e.g. in monitoring applications like eggcups).
+
+If you don’t set a job name, GTK+ picks a default one by
+numbering successive print jobs.
+## `job_name`
+a string that identifies the print job
+<!-- trait PrintOperationExt::fn set_n_pages -->
+Sets the number of pages in the document.
+
+This must be set to a positive number
+before the rendering starts. It may be set in a
+`PrintOperation::begin-print` signal hander.
+
+Note that the page numbers passed to the
+`PrintOperation::request-page-setup`
+and `PrintOperation::draw-page` signals are 0-based, i.e. if
+the user chooses to print all pages, the last ::draw-page signal
+will be for page `n_pages` - 1.
+## `n_pages`
+the number of pages
+<!-- trait PrintOperationExt::fn set_print_settings -->
+Sets the print settings for `self`. This is typically used to
+re-establish print settings from a previous print operation,
+see `PrintOperationExt::run`.
+## `print_settings`
+`PrintSettings`
+<!-- trait PrintOperationExt::fn set_show_progress -->
+If `show_progress` is `true`, the print operation will show a
+progress dialog during the print operation.
+## `show_progress`
+`true` to show a progress dialog
+<!-- trait PrintOperationExt::fn set_support_selection -->
+Sets whether selection is supported by `PrintOperation`.
+## `support_selection`
+`true` to support selection
+<!-- trait PrintOperationExt::fn set_track_print_status -->
+If track_status is `true`, the print operation will try to continue report
+on the status of the print job in the printer queues and printer. This
+can allow your application to show things like “out of paper” issues,
+and when the print job actually reaches the printer.
+
+This function is often implemented using some form of polling, so it should
+not be enabled unless needed.
+## `track_status`
+`true` to track status after printing
+<!-- trait PrintOperationExt::fn set_unit -->
+Sets up the transformation for the cairo context obtained from
+`PrintContext` in such a way that distances are measured in
+units of `unit`.
+## `unit`
+the unit to use
+<!-- trait PrintOperationExt::fn set_use_full_page -->
+If `full_page` is `true`, the transformation for the cairo context
+obtained from `PrintContext` puts the origin at the top left
+corner of the page (which may not be the top left corner of the
+sheet, depending on page orientation and the number of pages per
+sheet). Otherwise, the origin is at the top left corner of the
+imageable area (i.e. inside the margins).
+## `full_page`
+`true` to set up the `PrintContext` for the full page
+<!-- trait PrintOperationExt::fn connect_begin_print -->
+Emitted after the user has finished changing print settings
+in the dialog, before the actual rendering starts.
+
+A typical use for ::begin-print is to use the parameters from the
+`PrintContext` and paginate the document accordingly, and then
+set the number of pages with `PrintOperationExt::set_n_pages`.
+## `context`
+the `PrintContext` for the current operation
+<!-- trait PrintOperationExt::fn connect_create_custom_widget -->
+Emitted when displaying the print dialog. If you return a
+widget in a handler for this signal it will be added to a custom
+tab in the print dialog. You typically return a container widget
+with multiple widgets in it.
+
+The print dialog owns the returned widget, and its lifetime is not
+controlled by the application. However, the widget is guaranteed
+to stay around until the `PrintOperation::custom-widget-apply`
+signal is emitted on the operation. Then you can read out any
+information you need from the widgets.
+
+# Returns
+
+A custom widget that gets embedded in
+ the print dialog, or `None`
+<!-- trait PrintOperationExt::fn connect_custom_widget_apply -->
+Emitted right before `PrintOperation::begin-print` if you added
+a custom widget in the `PrintOperation::create-custom-widget` handler.
+When you get this signal you should read the information from the
+custom widgets, as the widgets are not guaraneed to be around at a
+later time.
+## `widget`
+the custom widget added in create-custom-widget
+<!-- trait PrintOperationExt::fn connect_done -->
+Emitted when the print operation run has finished doing
+everything required for printing.
+
+`result` gives you information about what happened during the run.
+If `result` is `PrintOperationResult::Error` then you can call
+`PrintOperationExt::get_error` for more information.
+
+If you enabled print status tracking then
+`PrintOperationExt::is_finished` may still return `false`
+after `PrintOperation::done` was emitted.
+## `result`
+the result of the print operation
+<!-- trait PrintOperationExt::fn connect_draw_page -->
+Emitted for every page that is printed. The signal handler
+must render the `page_nr`'s page onto the cairo context obtained
+from `context` using `PrintContextExt::get_cairo_context`.
+
+```C
+static void
+draw_page (GtkPrintOperation *operation,
+           GtkPrintContext   *context,
+           gint               page_nr,
+           gpointer           user_data)
+{
+  cairo_t *cr;
+  PangoLayout *layout;
+  gdouble width, text_height;
+  gint layout_height;
+  PangoFontDescription *desc;
+  
+  cr = gtk_print_context_get_cairo_context (context);
+  width = gtk_print_context_get_width (context);
+  
+  cairo_rectangle (cr, 0, 0, width, HEADER_HEIGHT);
+  
+  cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
+  cairo_fill (cr);
+  
+  layout = gtk_print_context_create_pango_layout (context);
+  
+  desc = pango_font_description_from_string ("sans 14");
+  pango_layout_set_font_description (layout, desc);
+  pango_font_description_free (desc);
+  
+  pango_layout_set_text (layout, "some text", -1);
+  pango_layout_set_width (layout, width * PANGO_SCALE);
+  pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+                   
+  pango_layout_get_size (layout, NULL, &layout_height);
+  text_height = (gdouble)layout_height / PANGO_SCALE;
+  
+  cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);
+  pango_cairo_show_layout (cr, layout);
+  
+  g_object_unref (layout);
+}
+```
+
+Use `PrintOperationExt::set_use_full_page` and
+`PrintOperationExt::set_unit` before starting the print operation
+to set up the transformation of the cairo context according to your
+needs.
+## `context`
+the `PrintContext` for the current operation
+## `page_nr`
+the number of the currently printed page (0-based)
+<!-- trait PrintOperationExt::fn connect_end_print -->
+Emitted after all pages have been rendered.
+A handler for this signal can clean up any resources that have
+been allocated in the `PrintOperation::begin-print` handler.
+## `context`
+the `PrintContext` for the current operation
+<!-- trait PrintOperationExt::fn connect_paginate -->
+Emitted after the `PrintOperation::begin-print` signal, but before
+the actual rendering starts. It keeps getting emitted until a connected
+signal handler returns `true`.
+
+The ::paginate signal is intended to be used for paginating a document
+in small chunks, to avoid blocking the user interface for a long
+time. The signal handler should update the number of pages using
+`PrintOperationExt::set_n_pages`, and return `true` if the document
+has been completely paginated.
+
+If you don't need to do pagination in chunks, you can simply do
+it all in the ::begin-print handler, and set the number of pages
+from there.
+## `context`
+the `PrintContext` for the current operation
+
+# Returns
+
+`true` if pagination is complete
+<!-- trait PrintOperationExt::fn connect_preview -->
+Gets emitted when a preview is requested from the native dialog.
+
+The default handler for this signal uses an external viewer
+application to preview.
+
+To implement a custom print preview, an application must return
+`true` from its handler for this signal. In order to use the
+provided `context` for the preview implementation, it must be
+given a suitable cairo context with `PrintContextExt::set_cairo_context`.
+
+The custom preview implementation can use
+`PrintOperationPreview::is_selected` and
+`PrintOperationPreview::render_page` to find pages which
+are selected for print and render them. The preview must be
+finished by calling `PrintOperationPreview::end_preview`
+(typically in response to the user clicking a close button).
+## `preview`
+the `PrintOperationPreview` for the current operation
+## `context`
+the `PrintContext` that will be used
+## `parent`
+the `Window` to use as window parent, or `None`
+
+# Returns
+
+`true` if the listener wants to take over control of the preview
+<!-- trait PrintOperationExt::fn connect_request_page_setup -->
+Emitted once for every page that is printed, to give
+the application a chance to modify the page setup. Any changes
+done to `setup` will be in force only for printing this page.
+## `context`
+the `PrintContext` for the current operation
+## `page_nr`
+the number of the currently printed page (0-based)
+## `setup`
+the `PageSetup`
+<!-- trait PrintOperationExt::fn connect_status_changed -->
+Emitted at between the various phases of the print operation.
+See `PrintStatus` for the phases that are being discriminated.
+Use `PrintOperationExt::get_status` to find out the current
+status.
+<!-- trait PrintOperationExt::fn connect_update_custom_widget -->
+Emitted after change of selected printer. The actual page setup and
+print settings are passed to the custom widget, which can actualize
+itself according to this change.
+## `widget`
+the custom widget added in create-custom-widget
+## `setup`
+actual page setup
+## `settings`
+actual print settings
+<!-- trait PrintOperationExt::fn get_property_allow-async -->
+Determines whether the print operation may run asynchronously or not.
+
+Some systems don't support asynchronous printing, but those that do
+will return `PrintOperationResult::InProgress` as the status, and
+emit the `PrintOperation::done` signal when the operation is actually
+done.
+
+The Windows port does not support asynchronous operation at all (this
+is unlikely to change). On other platforms, all actions except for
+`PrintOperationAction::Export` support asynchronous operation.
+<!-- trait PrintOperationExt::fn set_property_allow-async -->
+Determines whether the print operation may run asynchronously or not.
+
+Some systems don't support asynchronous printing, but those that do
+will return `PrintOperationResult::InProgress` as the status, and
+emit the `PrintOperation::done` signal when the operation is actually
+done.
+
+The Windows port does not support asynchronous operation at all (this
+is unlikely to change). On other platforms, all actions except for
+`PrintOperationAction::Export` support asynchronous operation.
+<!-- trait PrintOperationExt::fn get_property_current-page -->
+The current page in the document.
+
+If this is set before `PrintOperationExt::run`,
+the user will be able to select to print only the current page.
+
+Note that this only makes sense for pre-paginated documents.
+<!-- trait PrintOperationExt::fn set_property_current-page -->
+The current page in the document.
+
+If this is set before `PrintOperationExt::run`,
+the user will be able to select to print only the current page.
+
+Note that this only makes sense for pre-paginated documents.
+<!-- trait PrintOperationExt::fn get_property_custom-tab-label -->
+Used as the label of the tab containing custom widgets.
+Note that this property may be ignored on some platforms.
+
+If this is `None`, GTK+ uses a default label.
+<!-- trait PrintOperationExt::fn set_property_custom-tab-label -->
+Used as the label of the tab containing custom widgets.
+Note that this property may be ignored on some platforms.
+
+If this is `None`, GTK+ uses a default label.
+<!-- trait PrintOperationExt::fn get_property_default-page-setup -->
+The `PageSetup` used by default.
+
+This page setup will be used by `PrintOperationExt::run`,
+but it can be overridden on a per-page basis by connecting
+to the `PrintOperation::request-page-setup` signal.
+<!-- trait PrintOperationExt::fn set_property_default-page-setup -->
+The `PageSetup` used by default.
+
+This page setup will be used by `PrintOperationExt::run`,
+but it can be overridden on a per-page basis by connecting
+to the `PrintOperation::request-page-setup` signal.
+<!-- trait PrintOperationExt::fn get_property_embed-page-setup -->
+If `true`, page size combo box and orientation combo box are embedded into page setup page.
+<!-- trait PrintOperationExt::fn set_property_embed-page-setup -->
+If `true`, page size combo box and orientation combo box are embedded into page setup page.
+<!-- trait PrintOperationExt::fn get_property_export-filename -->
+The name of a file to generate instead of showing the print dialog.
+Currently, PDF is the only supported format.
+
+The intended use of this property is for implementing
+“Export to PDF” actions.
+
+“Print to PDF” support is independent of this and is done
+by letting the user pick the “Print to PDF” item from the
+list of printers in the print dialog.
+<!-- trait PrintOperationExt::fn set_property_export-filename -->
+The name of a file to generate instead of showing the print dialog.
+Currently, PDF is the only supported format.
+
+The intended use of this property is for implementing
+“Export to PDF” actions.
+
+“Print to PDF” support is independent of this and is done
+by letting the user pick the “Print to PDF” item from the
+list of printers in the print dialog.
+<!-- trait PrintOperationExt::fn get_property_has-selection -->
+Determines whether there is a selection in your application.
+This can allow your application to print the selection.
+This is typically used to make a "Selection" button sensitive.
+<!-- trait PrintOperationExt::fn set_property_has-selection -->
+Determines whether there is a selection in your application.
+This can allow your application to print the selection.
+This is typically used to make a "Selection" button sensitive.
+<!-- trait PrintOperationExt::fn get_property_job-name -->
+A string used to identify the job (e.g. in monitoring
+applications like eggcups).
+
+If you don't set a job name, GTK+ picks a default one
+by numbering successive print jobs.
+<!-- trait PrintOperationExt::fn set_property_job-name -->
+A string used to identify the job (e.g. in monitoring
+applications like eggcups).
+
+If you don't set a job name, GTK+ picks a default one
+by numbering successive print jobs.
+<!-- trait PrintOperationExt::fn get_property_n-pages -->
+The number of pages in the document.
+
+This must be set to a positive number
+before the rendering starts. It may be set in a
+`PrintOperation::begin-print` signal hander.
+
+Note that the page numbers passed to the
+`PrintOperation::request-page-setup` and
+`PrintOperation::draw-page` signals are 0-based, i.e. if
+the user chooses to print all pages, the last ::draw-page signal
+will be for page `n_pages` - 1.
+<!-- trait PrintOperationExt::fn set_property_n-pages -->
+The number of pages in the document.
+
+This must be set to a positive number
+before the rendering starts. It may be set in a
+`PrintOperation::begin-print` signal hander.
+
+Note that the page numbers passed to the
+`PrintOperation::request-page-setup` and
+`PrintOperation::draw-page` signals are 0-based, i.e. if
+the user chooses to print all pages, the last ::draw-page signal
+will be for page `n_pages` - 1.
+<!-- trait PrintOperationExt::fn get_property_n-pages-to-print -->
+The number of pages that will be printed.
+
+Note that this value is set during print preparation phase
+(`PrintStatus::Preparing`), so this value should never be
+get before the data generation phase (`PrintStatus::GeneratingData`).
+You can connect to the `PrintOperation::status-changed` signal
+and call `PrintOperationExt::get_n_pages_to_print` when
+print status is `PrintStatus::GeneratingData`.
+This is typically used to track the progress of print operation.
+<!-- trait PrintOperationExt::fn get_property_print-settings -->
+The `PrintSettings` used for initializing the dialog.
+
+Setting this property is typically used to re-establish
+print settings from a previous print operation, see
+`PrintOperationExt::run`.
+<!-- trait PrintOperationExt::fn set_property_print-settings -->
+The `PrintSettings` used for initializing the dialog.
+
+Setting this property is typically used to re-establish
+print settings from a previous print operation, see
+`PrintOperationExt::run`.
+<!-- trait PrintOperationExt::fn get_property_show-progress -->
+Determines whether to show a progress dialog during the
+print operation.
+<!-- trait PrintOperationExt::fn set_property_show-progress -->
+Determines whether to show a progress dialog during the
+print operation.
+<!-- trait PrintOperationExt::fn get_property_status -->
+The status of the print operation.
+<!-- trait PrintOperationExt::fn get_property_status-string -->
+A string representation of the status of the print operation.
+The string is translated and suitable for displaying the print
+status e.g. in a `Statusbar`.
+
+See the `PrintOperation:status` property for a status value that
+is suitable for programmatic use.
+<!-- trait PrintOperationExt::fn get_property_support-selection -->
+If `true`, the print operation will support print of selection.
+This allows the print dialog to show a "Selection" button.
+<!-- trait PrintOperationExt::fn set_property_support-selection -->
+If `true`, the print operation will support print of selection.
+This allows the print dialog to show a "Selection" button.
+<!-- trait PrintOperationExt::fn get_property_track-print-status -->
+If `true`, the print operation will try to continue report on
+the status of the print job in the printer queues and printer.
+This can allow your application to show things like “out of paper”
+issues, and when the print job actually reaches the printer.
+However, this is often implemented using polling, and should
+not be enabled unless needed.
+<!-- trait PrintOperationExt::fn set_property_track-print-status -->
+If `true`, the print operation will try to continue report on
+the status of the print job in the printer queues and printer.
+This can allow your application to show things like “out of paper”
+issues, and when the print job actually reaches the printer.
+However, this is often implemented using polling, and should
+not be enabled unless needed.
+<!-- trait PrintOperationExt::fn get_property_unit -->
+The transformation for the cairo context obtained from
+`PrintContext` is set up in such a way that distances
+are measured in units of `unit`.
+<!-- trait PrintOperationExt::fn set_property_unit -->
+The transformation for the cairo context obtained from
+`PrintContext` is set up in such a way that distances
+are measured in units of `unit`.
+<!-- trait PrintOperationExt::fn get_property_use-full-page -->
+If `true`, the transformation for the cairo context obtained
+from `PrintContext` puts the origin at the top left corner
+of the page (which may not be the top left corner of the sheet,
+depending on page orientation and the number of pages per sheet).
+Otherwise, the origin is at the top left corner of the imageable
+area (i.e. inside the margins).
+<!-- trait PrintOperationExt::fn set_property_use-full-page -->
+If `true`, the transformation for the cairo context obtained
+from `PrintContext` puts the origin at the top left corner
+of the page (which may not be the top left corner of the sheet,
+depending on page orientation and the number of pages per sheet).
+Otherwise, the origin is at the top left corner of the imageable
+area (i.e. inside the margins).
+<!-- enum PrintOperationAction -->
+The `action` parameter to `PrintOperationExt::run`
+determines what action the print operation should perform.
+<!-- enum PrintOperationAction::variant PrintDialog -->
+Show the print dialog.
+<!-- enum PrintOperationAction::variant Print -->
+Start to print without showing
+ the print dialog, based on the current print settings.
+<!-- enum PrintOperationAction::variant Preview -->
+Show the print preview.
+<!-- enum PrintOperationAction::variant Export -->
+Export to a file. This requires
+ the export-filename property to be set.
+<!-- struct PrintOperationPreview -->
+
+
+# Implements
+
+[`PrintOperationPreviewExt`](trait.PrintOperationPreviewExt.html)
+<!-- trait PrintOperationPreviewExt -->
+Trait containing all `PrintOperationPreview` methods.
+
+# Implementors
+
+[`PrintOperationPreview`](struct.PrintOperationPreview.html), [`PrintOperation`](struct.PrintOperation.html)
+<!-- trait PrintOperationPreviewExt::fn end_preview -->
+Ends a preview.
+
+This function must be called to finish a custom print preview.
+<!-- trait PrintOperationPreviewExt::fn is_selected -->
+Returns whether the given page is included in the set of pages that
+have been selected for printing.
+## `page_nr`
+a page number
+
+# Returns
+
+`true` if the page has been selected for printing
+<!-- trait PrintOperationPreviewExt::fn render_page -->
+Renders a page to the preview, using the print context that
+was passed to the `PrintOperation::preview` handler together
+with `self`.
+
+A custom iprint preview should use this function in its ::expose
+handler to render the currently selected page.
+
+Note that this function requires a suitable cairo context to
+be associated with the print context.
+## `page_nr`
+the page to render
+<!-- trait PrintOperationPreviewExt::fn connect_got_page_size -->
+The ::got-page-size signal is emitted once for each page
+that gets rendered to the preview.
+
+A handler for this signal should update the `context`
+according to `page_setup` and set up a suitable cairo
+context, using `PrintContextExt::set_cairo_context`.
+## `context`
+the current `PrintContext`
+## `page_setup`
+the `PageSetup` for the current page
+<!-- trait PrintOperationPreviewExt::fn connect_ready -->
+The ::ready signal gets emitted once per preview operation,
+before the first page is rendered.
+
+A handler for this signal can be used for setup tasks.
+## `context`
+the current `PrintContext`
+<!-- enum PrintOperationResult -->
+A value of this type is returned by `PrintOperationExt::run`.
+<!-- enum PrintOperationResult::variant Error -->
+An error has occurred.
+<!-- enum PrintOperationResult::variant Apply -->
+The print settings should be stored.
+<!-- enum PrintOperationResult::variant Cancel -->
+The print operation has been canceled,
+ the print settings should not be stored.
+<!-- enum PrintOperationResult::variant InProgress -->
+The print operation is not complete
+ yet. This value will only be returned when running asynchronously.
 <!-- enum PrintPages -->
 See also `gtk_print_job_set_pages`
 <!-- enum PrintPages::variant All -->
@@ -28229,7 +29186,7 @@ Printing support was added in GTK+ 2.10.
 
 # Implements
 
-[`PrintSettingsExt`](trait.PrintSettingsExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`PrintSettingsExt`](trait.PrintSettingsExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait PrintSettingsExt -->
 Trait containing all `PrintSettings` methods.
 
@@ -28745,6 +29702,33 @@ Removes any value associated with `key`.
 This has the same effect as setting the value to `None`.
 ## `key`
 a key
+<!-- enum PrintStatus -->
+The status gives a rough indication of the completion of a running
+print operation.
+<!-- enum PrintStatus::variant Initial -->
+The printing has not started yet; this
+ status is set initially, and while the print dialog is shown.
+<!-- enum PrintStatus::variant Preparing -->
+This status is set while the begin-print
+ signal is emitted and during pagination.
+<!-- enum PrintStatus::variant GeneratingData -->
+This status is set while the
+ pages are being rendered.
+<!-- enum PrintStatus::variant SendingData -->
+The print job is being sent off to the
+ printer.
+<!-- enum PrintStatus::variant Pending -->
+The print job has been sent to the printer,
+ but is not printed for some reason, e.g. the printer may be stopped.
+<!-- enum PrintStatus::variant PendingIssue -->
+Some problem has occurred during
+ printing, e.g. a paper jam.
+<!-- enum PrintStatus::variant Printing -->
+The printer is processing the print job.
+<!-- enum PrintStatus::variant Finished -->
+The printing has been completed successfully.
+<!-- enum PrintStatus::variant FinishedAborted -->
+The printing has been aborted.
 <!-- struct ProgressBar -->
 The `ProgressBar` is typically used to display the progress of a long
 running operation. It provides a visual clue that processing is underway.
@@ -28789,7 +29773,7 @@ in overlays like the one Epiphany has for page loading progress.
 
 # Implements
 
-[`ProgressBarExt`](trait.ProgressBarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ProgressBarExt`](trait.ProgressBarExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ProgressBarExt -->
 Trait containing all `ProgressBar` methods.
 
@@ -29047,7 +30031,7 @@ can be used to determine if the button has been selected or deselected.
 
 # Implements
 
-[`RadioButtonExt`](trait.RadioButtonExt.html), [`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`RadioButtonExt`](trait.RadioButtonExt.html), [`CheckButtonExt`](trait.CheckButtonExt.html), [`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait RadioButtonExt -->
 Trait containing all `RadioButton` methods.
 
@@ -29214,7 +30198,7 @@ with name radio, which gets the .left or .right style class.
 
 # Implements
 
-[`RadioMenuItemExt`](trait.RadioMenuItemExt.html), [`CheckMenuItemExt`](trait.CheckMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`RadioMenuItemExt`](trait.RadioMenuItemExt.html), [`CheckMenuItemExt`](trait.CheckMenuItemExt.html), [`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait RadioMenuItemExt -->
 Trait containing all `RadioMenuItem` methods.
 
@@ -29334,6 +30318,90 @@ Sets the group of a radio menu item, or changes it.
 the new group, or `None`.
 <!-- trait RadioMenuItemExt::fn set_property_group -->
 The radio menu item whose group this widget belongs to.
+<!-- struct RadioToolButton -->
+A `RadioToolButton` is a `ToolItem` that contains a radio button,
+that is, a button that is part of a group of toggle buttons where only
+one button can be active at a time.
+
+Use `RadioToolButton::new` to create a new `RadioToolButton`. Use
+`RadioToolButton::new_from_widget` to create a new `RadioToolButton`
+that is part of the same group as an existing `RadioToolButton`.
+
+# CSS nodes
+
+`RadioToolButton` has a single CSS node with name toolbutton.
+
+# Implements
+
+[`RadioToolButtonExt`](trait.RadioToolButtonExt.html), [`ToggleToolButtonExt`](trait.ToggleToolButtonExt.html), [`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
+<!-- trait RadioToolButtonExt -->
+Trait containing all `RadioToolButton` methods.
+
+# Implementors
+
+[`RadioToolButton`](struct.RadioToolButton.html)
+<!-- impl RadioToolButton::fn new -->
+Creates a new `RadioToolButton`, adding it to `group`.
+## `group`
+An
+ existing radio button group, or `None` if you are creating a new group
+
+# Returns
+
+The new `RadioToolButton`
+<!-- impl RadioToolButton::fn new_from_stock -->
+Creates a new `RadioToolButton`, adding it to `group`.
+The new `RadioToolButton` will contain an icon and label from the
+stock item indicated by `stock_id`.
+
+# Deprecated since 3.10
+
+Use `RadioToolButton::new` instead.
+## `group`
+an existing radio button
+ group, or `None` if you are creating a new group
+## `stock_id`
+the name of a stock item
+
+# Returns
+
+The new `RadioToolButton`
+<!-- impl RadioToolButton::fn new_from_widget -->
+Creates a new `RadioToolButton` adding it to the same group as `gruup`
+## `group`
+An existing `RadioToolButton`, or `None`
+
+# Returns
+
+The new `RadioToolButton`
+<!-- impl RadioToolButton::fn new_with_stock_from_widget -->
+Creates a new `RadioToolButton` adding it to the same group as `group`.
+The new `RadioToolButton` will contain an icon and label from the
+stock item indicated by `stock_id`.
+
+# Deprecated since 3.10
+
+gtk_radio_tool_button_new_from_widget
+## `group`
+An existing `RadioToolButton`.
+## `stock_id`
+the name of a stock item
+
+# Returns
+
+A new `RadioToolButton`
+<!-- trait RadioToolButtonExt::fn get_group -->
+Returns the radio button group `self` belongs to.
+
+# Returns
+
+The group `self` belongs to.
+<!-- trait RadioToolButtonExt::fn set_group -->
+Adds `self` to `group`, removing it from the group it belonged to before.
+## `group`
+an existing radio button group, or `None`
+<!-- trait RadioToolButtonExt::fn set_property_group -->
+Sets a new group for a radio tool button.
 <!-- struct Range -->
 `Range` is the common base class for widgets which visualize an
 adjustment, e.g `Scale` or `Scrollbar`.
@@ -29345,7 +30413,7 @@ of the “steppers”. It also provides properties and methods for setting a
 
 # Implements
 
-[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait RangeExt -->
 Trait containing all `Range` methods.
 
@@ -29962,7 +31030,7 @@ Recently used files are supported since GTK+ 2.10.
 
 # Implements
 
-[`DialogExt`](trait.DialogExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
+[`DialogExt`](trait.DialogExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
 <!-- impl RecentChooserDialog::fn new -->
 Creates a new `RecentChooserDialog`. This function is analogous to
 `Dialog::new_with_buttons`.
@@ -30013,7 +31081,7 @@ Recently used files are supported since GTK+ 2.10.
 
 # Implements
 
-[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`RecentChooserExt`](trait.RecentChooserExt.html)
 <!-- impl RecentChooserWidget::fn new -->
 Creates a new `RecentChooserWidget` object. This is an embeddable widget
 used to access the recently used resources list.
@@ -30086,7 +31154,7 @@ An example of a UI definition fragment specifying `RecentFilter` rules:
 
 # Implements
 
-[`RecentFilterExt`](trait.RecentFilterExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`RecentFilterExt`](trait.RecentFilterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait RecentFilterExt -->
 Trait containing all `RecentFilter` methods.
 
@@ -30488,7 +31556,7 @@ Recently used files are supported since GTK+ 2.10.
 
 # Implements
 
-[`RecentManagerExt`](trait.RecentManagerExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`RecentManagerExt`](trait.RecentManagerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait RecentManagerExt -->
 Trait containing all `RecentManager` methods.
 
@@ -30752,7 +31820,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`RevealerExt`](trait.RevealerExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`RevealerExt`](trait.RevealerExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait RevealerExt -->
 Trait containing all `Revealer` methods.
 
@@ -30933,7 +32001,7 @@ subnode with name value.
 
 # Implements
 
-[`ScaleExt`](trait.ScaleExt.html), [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleExt`](trait.ScaleExt.html), [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ScaleExt -->
 Trait containing all `Scale` methods.
 
@@ -31109,7 +32177,7 @@ it from a plain `Button`, it gets the .scale style class.
 
 # Implements
 
-[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait ScaleButtonExt -->
 Trait containing all `ScaleButton` methods.
 
@@ -31453,7 +32521,7 @@ classes related to overlay scrolling (.overlay-indicator, .dragging, .hovering).
 
 # Implements
 
-[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Scrollbar::fn new -->
 Creates a new scrollbar with the given orientation.
 ## `orientation`
@@ -31536,7 +32604,7 @@ with a subnode named junction.
 
 # Implements
 
-[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ScrolledWindowExt -->
 Trait containing all `ScrolledWindow` methods.
 
@@ -32021,7 +33089,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`SearchBarExt`](trait.SearchBarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`SearchBarExt`](trait.SearchBarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait SearchBarExt -->
 Trait containing all `SearchBar` methods.
 
@@ -32158,7 +33226,7 @@ Feature: `v3_6`
 
 # Implements
 
-[`SearchEntryExt`](trait.SearchEntryExt.html), [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
+[`SearchEntryExt`](trait.SearchEntryExt.html), [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html)
 <!-- trait SearchEntryExt -->
 Trait containing all `SearchEntry` methods.
 
@@ -32477,7 +33545,7 @@ gets one of the .horizontal or .vertical style classes.
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- impl Separator::fn new -->
 Creates a new `Separator` with the given orientation.
 ## `orientation`
@@ -32497,7 +33565,7 @@ make it appear sunken into the interface.
 
 # Implements
 
-[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`MenuItemExt`](trait.MenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- impl SeparatorMenuItem::fn new -->
 Creates a new `SeparatorMenuItem`.
 
@@ -32521,7 +33589,7 @@ Use `SeparatorToolItem::new` to create a new `SeparatorToolItem`.
 
 # Implements
 
-[`SeparatorToolItemExt`](trait.SeparatorToolItemExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`SeparatorToolItemExt`](trait.SeparatorToolItemExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait SeparatorToolItemExt -->
 Trait containing all `SeparatorToolItem` methods.
 
@@ -32588,7 +33656,7 @@ to use `WidgetExt::get_settings`. `Settings::get_default` returns the
 
 # Implements
 
-[`SettingsExt`](trait.SettingsExt.html), [`ObjectExt`](trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
+[`SettingsExt`](trait.SettingsExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
 <!-- trait SettingsExt -->
 Trait containing all `Settings` methods.
 
@@ -33602,7 +34670,7 @@ Feature: `v3_20`
 
 # Implements
 
-[`ShortcutsWindowExt`](trait.ShortcutsWindowExt.html), [`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ShortcutsWindowExt`](trait.ShortcutsWindowExt.html), [`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ShortcutsWindowExt -->
 Trait containing all `ShortcutsWindow` methods.
 
@@ -33718,7 +34786,7 @@ An example of a UI definition fragment with `SizeGroup`:
 
 # Implements
 
-[`SizeGroupExt`](trait.SizeGroupExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`SizeGroupExt`](trait.SizeGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait SizeGroupExt -->
 Trait containing all `SizeGroup` methods.
 
@@ -33965,7 +35033,7 @@ create_floating_spin_button (void)
 
 # Implements
 
-[`SpinButtonExt`](trait.SpinButtonExt.html), [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`SpinButtonExt`](trait.SpinButtonExt.html), [`EntryExt`](trait.EntryExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`EditableExt`](trait.EditableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait SpinButtonExt -->
 Trait containing all `SpinButton` methods.
 
@@ -34244,7 +35312,7 @@ use `SpinnerExt::stop`.
 
 # Implements
 
-[`SpinnerExt`](trait.SpinnerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`SpinnerExt`](trait.SpinnerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait SpinnerExt -->
 Trait containing all `Spinner` methods.
 
@@ -34283,7 +35351,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`StackExt`](trait.StackExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`StackExt`](trait.StackExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait StackExt -->
 Trait containing all `Stack` methods.
 
@@ -34581,7 +35649,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`StackSidebarExt`](trait.StackSidebarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`StackSidebarExt`](trait.StackSidebarExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait StackSidebarExt -->
 Trait containing all `StackSidebar` methods.
 
@@ -34646,7 +35714,7 @@ Feature: `v3_10`
 
 # Implements
 
-[`StackSwitcherExt`](trait.StackSwitcherExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`StackSwitcherExt`](trait.StackSwitcherExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait StackSwitcherExt -->
 Trait containing all `StackSwitcher` methods.
 
@@ -34797,7 +35865,7 @@ the `gio::Notification` API which works well with `Application`. Also see this
 
 # Implements
 
-[`StatusIconExt`](trait.StatusIconExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`StatusIconExt`](trait.StatusIconExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait StatusIconExt -->
 `[Deprecated since 3.14]` Trait containing all `StatusIcon` methods.
 
@@ -35500,7 +36568,7 @@ is done using `StatusbarExt::remove`.
 
 # Implements
 
-[`StatusbarExt`](trait.StatusbarExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`StatusbarExt`](trait.StatusbarExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait StatusbarExt -->
 Trait containing all `Statusbar` methods.
 
@@ -35635,7 +36703,7 @@ still take precedence over your changes, as it uses the
 
 # Implements
 
-[`StyleContextExt`](trait.StyleContextExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`StyleContextExt`](trait.StyleContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait StyleContextExt -->
 Trait containing all `StyleContext` methods.
 
@@ -36364,7 +37432,7 @@ have been deprecated.
 
 # Implements
 
-[`StylePropertiesExt`](trait.StylePropertiesExt.html), [`ObjectExt`](trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
+[`StylePropertiesExt`](trait.StylePropertiesExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`StyleProviderExt`](trait.StyleProviderExt.html)
 <!-- trait StylePropertiesExt -->
 `[Deprecated since 3.16]` Trait containing all `StyleProperties` methods.
 
@@ -36609,7 +37677,7 @@ named slider. Neither of them is using any style classes.
 
 # Implements
 
-[`SwitchExt`](trait.SwitchExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`SwitchExt`](trait.SwitchExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait SwitchExt -->
 Trait containing all `Switch` methods.
 
@@ -37019,7 +38087,7 @@ types related to the text widget and how they work together.
 
 # Implements
 
-[`TextBufferExt`](trait.TextBufferExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TextBufferExt`](trait.TextBufferExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TextBufferExt -->
 Trait containing all `TextBuffer` methods.
 
@@ -38084,7 +39152,7 @@ can have multiple widgets anchored, to allow for multiple views.
 
 # Implements
 
-[`TextChildAnchorExt`](trait.TextChildAnchorExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TextChildAnchorExt`](trait.TextChildAnchorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TextChildAnchorExt -->
 Trait containing all `TextChildAnchor` methods.
 
@@ -39137,7 +40205,7 @@ Marks are typically created using the `TextBufferExt::create_mark` function.
 
 # Implements
 
-[`TextMarkExt`](trait.TextMarkExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TextMarkExt`](trait.TextMarkExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TextMarkExt -->
 Trait containing all `TextMark` methods.
 
@@ -39235,7 +40303,7 @@ They are maintained by GTK+ and you should not set them independently.
 
 # Implements
 
-[`TextTagExt`](trait.TextTagExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TextTagExt`](trait.TextTagExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TextTagExt -->
 Trait containing all `TextTag` methods.
 
@@ -39518,7 +40586,7 @@ An example of a UI definition fragment specifying tags:
 
 # Implements
 
-[`TextTagTableExt`](trait.TextTagTableExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TextTagTableExt`](trait.TextTagTableExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait TextTagTableExt -->
 Trait containing all `TextTagTable` methods.
 
@@ -39617,7 +40685,7 @@ of the main node.
 
 # Implements
 
-[`TextViewExt`](trait.TextViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`TextViewExt`](trait.TextViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait TextViewExt -->
 Trait containing all `TextView` methods.
 
@@ -40762,7 +41830,7 @@ void make_toggles (void) {
 
 # Implements
 
-[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToggleButtonExt`](trait.ToggleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToggleButtonExt -->
 Trait containing all `ToggleButton` methods.
 
@@ -40866,13 +41934,13 @@ Use `ToggleToolButton::new` to create a new `ToggleToolButton`.
 
 # Implements
 
-[`ToggleToolButtonExt`](trait.ToggleToolButtonExt.html), [`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToggleToolButtonExt`](trait.ToggleToolButtonExt.html), [`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToggleToolButtonExt -->
 Trait containing all `ToggleToolButton` methods.
 
 # Implementors
 
-[`ToggleToolButton`](struct.ToggleToolButton.html)
+[`RadioToolButton`](struct.RadioToolButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html)
 <!-- impl ToggleToolButton::fn new -->
 Returns a new `ToggleToolButton`
 
@@ -40940,7 +42008,7 @@ the button does not have a icon.
 
 # Implements
 
-[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html)
+[`ToolButtonExt`](trait.ToolButtonExt.html), [`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html)
 <!-- trait ToolButtonExt -->
 Trait containing all `ToolButton` methods.
 
@@ -41115,7 +42183,7 @@ See the `Toolbar` class for a description of the toolbar widget, and
 
 # Implements
 
-[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ToolItemExt`](trait.ToolItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ToolItemExt -->
 Trait containing all `ToolItem` methods.
 
@@ -41393,7 +42461,7 @@ categories and drag and drop support.
 
 # Implements
 
-[`ToolItemGroupExt`](trait.ToolItemGroupExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
+[`ToolItemGroupExt`](trait.ToolItemGroupExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
 <!-- trait ToolItemGroupExt -->
 Trait containing all `ToolItemGroup` methods.
 
@@ -41587,7 +42655,7 @@ gtk_tool_palette_add_drag_dest (GTK_TOOL_PALETTE (palette), target,
 
 # Implements
 
-[`ToolPaletteExt`](trait.ToolPaletteExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ToolPaletteExt`](trait.ToolPaletteExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait ToolPaletteExt -->
 Trait containing all `ToolPalette` methods.
 
@@ -41789,7 +42857,7 @@ information when embedding `ToolItem` widgets.
 
 # Implements
 
-[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`ToolShellExt`](trait.ToolShellExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait ToolShellExt -->
 Trait containing all `ToolShell` methods.
 
@@ -41887,7 +42955,7 @@ the `Toolbar::popup-context-menu` signal.
 
 # Implements
 
-[`ToolbarExt`](trait.ToolbarExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
+[`ToolbarExt`](trait.ToolbarExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ToolShellExt`](trait.ToolShellExt.html)
 <!-- trait ToolbarExt -->
 Trait containing all `Toolbar` methods.
 
@@ -42126,7 +43194,7 @@ will be used as tooltip window. This works as follows:
 
 # Implements
 
-[`TooltipExt`](trait.TooltipExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TooltipExt`](trait.TooltipExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TooltipExt -->
 Trait containing all `Tooltip` methods.
 
@@ -42883,7 +43951,7 @@ yourself.
 
 # Implements
 
-[`TreeModelFilterExt`](trait.TreeModelFilterExt.html), [`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html)
+[`TreeModelFilterExt`](trait.TreeModelFilterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html)
 <!-- trait TreeModelFilterExt -->
 Trait containing all `TreeModelFilter` methods.
 
@@ -43319,7 +44387,7 @@ select_row on an already selected row).
 
 # Implements
 
-[`TreeSelectionExt`](trait.TreeSelectionExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`TreeSelectionExt`](trait.TreeSelectionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait TreeSelectionExt -->
 Trait containing all `TreeSelection` methods.
 
@@ -43592,7 +44660,7 @@ An example of a UI Definition fragment for a tree store:
 
 # Implements
 
-[`TreeStoreExt`](trait.TreeStoreExt.html), [`ObjectExt`](trait.ObjectExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
+[`TreeStoreExt`](trait.TreeStoreExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`TreeModelExt`](trait.TreeModelExt.html), [`TreeSortableExt`](trait.TreeSortableExt.html)
 <!-- trait TreeStoreExt -->
 Trait containing all `TreeStore` methods.
 
@@ -43914,7 +44982,7 @@ For rubberband selection, a subnode with name rubberband is used.
 
 # Implements
 
-[`TreeViewExt`](trait.TreeViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`TreeViewExt`](trait.TreeViewExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait TreeViewExt -->
 Trait containing all `TreeView` methods.
 
@@ -45105,7 +46173,7 @@ they work together.
 
 # Implements
 
-[`TreeViewColumnExt`](trait.TreeViewColumnExt.html), [`ObjectExt`](trait.ObjectExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
+[`TreeViewColumnExt`](trait.TreeViewColumnExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)
 <!-- trait TreeViewColumnExt -->
 Trait containing all `TreeViewColumn` methods.
 
@@ -45595,7 +46663,7 @@ than the child widget’s minimum size in a given orientation.
 
 # Implements
 
-[`ViewportExt`](trait.ViewportExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
+[`ViewportExt`](trait.ViewportExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ScrollableExt`](trait.ScrollableExt.html)
 <!-- trait ViewportExt -->
 Trait containing all `Viewport` methods.
 
@@ -45679,7 +46747,7 @@ icons, tooltips and accessible labels.
 
 # Implements
 
-[`VolumeButtonExt`](trait.VolumeButtonExt.html), [`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
+[`VolumeButtonExt`](trait.VolumeButtonExt.html), [`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html)
 <!-- trait VolumeButtonExt -->
 Trait containing all `VolumeButton` methods.
 
@@ -45989,7 +47057,7 @@ foo_widget_class_init (FooWidgetClass *klass)
 
 # Implements
 
-[`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait WidgetExt -->
 Trait containing all `Widget` methods.
 
@@ -50521,7 +51589,7 @@ widget that is added as a titlebar child.
 
 # Implements
 
-[`WindowExt`](trait.WindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`GtkWindowExt`](trait.GtkWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html)
 <!-- trait GtkWindowExt -->
 Trait containing all `Window` methods.
 
@@ -52154,7 +53222,7 @@ freed.
 
 # Implements
 
-[`WindowGroupExt`](trait.WindowGroupExt.html), [`ObjectExt`](trait.ObjectExt.html)
+[`WindowGroupExt`](trait.WindowGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- trait WindowGroupExt -->
 Trait containing all `WindowGroup` methods.
 
