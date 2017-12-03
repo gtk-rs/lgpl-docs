@@ -353,3 +353,14 @@ See also the `Widget:tooltip-markup` property and
 `Tooltip::set_markup`.
 ## `markup`
 the contents of the tooltip for `self`, or `None`
+<!-- impl FileChooserDialog::fn with_buttons -->
+This function creates a `FileChooserDialog` with buttons:
+
+```no_run
+let dialog = FileChooserDialog::with_buttons::<Window>(
+    Some("Open File"),
+    None,
+    FileChooserAction::Open,
+    &[("_Cancel", ResponseType::Cancel), ("_Open", ResponseType::Accept)]
+);
+```
