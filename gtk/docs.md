@@ -357,6 +357,8 @@ the contents of the tooltip for `self`, or `None`
 This function creates a `FileChooserDialog` with buttons:
 
 ```no_run
+# use gtk::prelude::*;
+# use gtk::{FileChooserAction, FileChooserDialog, ResponseType, Window};
 let dialog = FileChooserDialog::with_buttons::<Window>(
     Some("Open File"),
     None,
