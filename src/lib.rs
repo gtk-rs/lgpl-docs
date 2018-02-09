@@ -25,6 +25,7 @@ pub enum Library {
 fn docs(lib: Library) -> Option<&'static str> {
     match lib {
         Library::Glib => Some(include_str!("../glib/docs.md")),
+        Library::Gio => Some(include_str!("../gio/docs.md")),
         Library::Cairo => Some(include_str!("../cairo/docs.md")),
         Library::Gdk => Some(include_str!("../gdk/docs.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/docs.md")),
