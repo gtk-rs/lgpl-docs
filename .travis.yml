@@ -16,7 +16,7 @@ script:
   - echo 'paths = ["."]' > .cargo/config
   - git clone -q --depth 50 -b pending https://github.com/rust-gnome/examples _examples
   - cd _examples
-  - ./build.sh
+  - ./build_travis.sh
   - if [ "$GTK" = "3.18" ]; then FEAT="gtk_3_18"; fi
   - echo $FEAT
   - cargo build --features "$FEAT gtk/embed-lgpl-docs" --jobs 1
