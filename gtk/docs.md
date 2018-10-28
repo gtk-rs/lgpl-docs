@@ -359,8 +359,8 @@ This function creates a `FileChooserDialog` with buttons:
 ```no_run
 # use gtk::prelude::*;
 # use gtk::{FileChooserAction, FileChooserDialog, ResponseType, Window};
-let dialog = FileChooserDialog::with_buttons::<Window>(
-    Some("Open File"),
+let dialog = FileChooserDialog::with_buttons::<_, Window>(
+    "Open File",
     None,
     FileChooserAction::Open,
     &[("_Cancel", ResponseType::Cancel), ("_Open", ResponseType::Accept)]
