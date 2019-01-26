@@ -1312,7 +1312,7 @@ For an example of using extra D-Bus hooks with GApplication, see
 
 # Implements
 
-[`ApplicationExt`](trait.ApplicationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
+[`ApplicationExt`](trait.ApplicationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html), [`ApplicationExtManual`](prelude/trait.ApplicationExtManual.html)
 <!-- trait ApplicationExt -->
 Trait containing all `Application` methods.
 
@@ -2502,7 +2502,7 @@ cannot be reduced below the size of the data within the buffer.
 
 # Implements
 
-[`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait BufferedInputStreamExt -->
 Trait containing all `BufferedInputStream` methods.
 
@@ -2669,7 +2669,7 @@ size cannot be reduced below the size of the data within the buffer.
 
 # Implements
 
-[`BufferedOutputStreamExt`](trait.BufferedOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`BufferedOutputStreamExt`](trait.BufferedOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait BufferedOutputStreamExt -->
 Trait containing all `BufferedOutputStream` methods.
 
@@ -3016,7 +3016,7 @@ GIConv.
 
 # Implements
 
-[`CharsetConverterExt`](trait.CharsetConverterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html)
+[`CharsetConverterExt`](trait.CharsetConverterExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html), [`ConverterExtManual`](prelude/trait.ConverterExtManual.html)
 <!-- trait CharsetConverterExt -->
 Trait containing all `CharsetConverter` methods.
 
@@ -3060,7 +3060,7 @@ replace.
 
 # Implements
 
-[`ConverterExt`](trait.ConverterExt.html)
+[`ConverterExt`](trait.ConverterExt.html), [`ConverterExtManual`](prelude/trait.ConverterExtManual.html)
 <!-- trait ConverterExt -->
 Trait containing all `Converter` methods.
 
@@ -3183,7 +3183,7 @@ As of GLib 2.34, `ConverterInputStream` implements
 
 # Implements
 
-[`ConverterInputStreamExt`](trait.ConverterInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExt`](trait.PollableInputStreamExt.html)
+[`ConverterInputStreamExt`](trait.ConverterInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html), [`PollableInputStreamExtManual`](prelude/trait.PollableInputStreamExtManual.html)
 <!-- trait ConverterInputStreamExt -->
 Trait containing all `ConverterInputStream` methods.
 
@@ -3215,7 +3215,7 @@ As of GLib 2.34, `ConverterOutputStream` implements
 
 # Implements
 
-[`ConverterOutputStreamExt`](trait.ConverterOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html)
+[`ConverterOutputStreamExt`](trait.ConverterOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html), [`PollableOutputStreamExtManual`](prelude/trait.PollableOutputStreamExtManual.html)
 <!-- trait ConverterOutputStreamExt -->
 Trait containing all `ConverterOutputStream` methods.
 
@@ -3402,7 +3402,7 @@ reading structured data directly from a binary input stream.
 
 # Implements
 
-[`DataInputStreamExt`](trait.DataInputStreamExt.html), [`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`DataInputStreamExt`](trait.DataInputStreamExt.html), [`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait DataInputStreamExt -->
 Trait containing all `DataInputStream` methods.
 
@@ -3792,7 +3792,7 @@ writing data directly to an output stream.
 
 # Implements
 
-[`DataOutputStreamExt`](trait.DataOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`DataOutputStreamExt`](trait.DataOutputStreamExt.html), [`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait DataOutputStreamExt -->
 Trait containing all `DataOutputStream` methods.
 
@@ -4763,7 +4763,7 @@ for HTTP Etag headers, which are a very similar concept.
 
 # Implements
 
-[`FileExt`](trait.FileExt.html)
+[`FileExt`](trait.FileExt.html), [`FileExtManual`](prelude/trait.FileExtManual.html)
 <!-- trait FileExt -->
 Trait containing all `File` methods.
 
@@ -7967,7 +7967,7 @@ To position a file input stream, use `Seekable::seek`.
 
 # Implements
 
-[`FileInputStreamExt`](trait.FileInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`FileInputStreamExt`](trait.FileInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait FileInputStreamExt -->
 Trait containing all `FileInputStream` methods.
 
@@ -8159,7 +8159,7 @@ stream, use `Seekable::truncate`.
 
 # Implements
 
-[`FileOutputStreamExt`](trait.FileOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`FileOutputStreamExt`](trait.FileOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait FileOutputStreamExt -->
 Trait containing all `FileOutputStream` methods.
 
@@ -8298,7 +8298,7 @@ and byte order flipping.
 
 # Implements
 
-[`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait FilterInputStreamExt -->
 Trait containing all `FilterInputStream` methods.
 
@@ -8330,7 +8330,7 @@ and byte order flipping.
 
 # Implements
 
-[`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`FilterOutputStreamExt`](trait.FilterOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait FilterOutputStreamExt -->
 Trait containing all `FilterOutputStream` methods.
 
@@ -9147,7 +9147,7 @@ All of these functions have async variants too.
 
 # Implements
 
-[`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait InputStreamExt -->
 Trait containing all `InputStream` methods.
 
@@ -9712,7 +9712,7 @@ Feature: `v2_44`
 
 # Implements
 
-[`ListStoreExt`](trait.ListStoreExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ListModelExt`](trait.ListModelExt.html)
+[`ListStoreExt`](trait.ListStoreExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ListModelExt`](trait.ListModelExt.html), [`ListStoreExtManual`](prelude/trait.ListStoreExtManual.html)
 <!-- trait ListStoreExt -->
 Trait containing all `ListStore` methods.
 
@@ -9906,7 +9906,7 @@ As of GLib 2.34, `MemoryInputStream` implements
 
 # Implements
 
-[`MemoryInputStreamExt`](trait.MemoryInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`MemoryInputStreamExt`](trait.MemoryInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`SeekableExt`](trait.SeekableExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html), [`PollableInputStreamExtManual`](prelude/trait.PollableInputStreamExtManual.html)
 <!-- trait MemoryInputStreamExt -->
 Trait containing all `MemoryInputStream` methods.
 
@@ -9966,7 +9966,7 @@ As of GLib 2.34, `MemoryOutputStream` trivially implements
 
 # Implements
 
-[`MemoryOutputStreamExt`](trait.MemoryOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`MemoryOutputStreamExt`](trait.MemoryOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`SeekableExt`](trait.SeekableExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html), [`PollableOutputStreamExtManual`](prelude/trait.PollableOutputStreamExtManual.html)
 <!-- trait MemoryOutputStreamExt -->
 Trait containing all `MemoryOutputStream` methods.
 
@@ -12232,7 +12232,7 @@ All of these functions have async variants too.
 
 # Implements
 
-[`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait OutputStreamExt -->
 Trait containing all `OutputStream` methods.
 
@@ -12885,7 +12885,7 @@ UNIX-file-descriptor-style asynchronous I/O rather than GIO-style.
 
 # Implements
 
-[`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExtManual`](prelude/trait.PollableInputStreamExtManual.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait PollableInputStreamExt -->
 Trait containing all `PollableInputStream` methods.
 
@@ -12967,7 +12967,7 @@ UNIX-file-descriptor-style asynchronous I/O rather than GIO-style.
 
 # Implements
 
-[`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExtManual`](prelude/trait.PollableOutputStreamExtManual.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html)
 <!-- trait PollableOutputStreamExt -->
 Trait containing all `PollableOutputStream` methods.
 
@@ -16419,7 +16419,7 @@ locking.
 
 # Implements
 
-[`SocketExt`](trait.SocketExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`SocketExt`](trait.SocketExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketExtManual`](prelude/trait.SocketExtManual.html)
 <!-- trait SocketExt -->
 Trait containing all `Socket` methods.
 
@@ -18463,7 +18463,7 @@ that makes this even easier.
 
 # Implements
 
-[`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketListenerExtManual`](prelude/trait.SocketListenerExtManual.html)
 <!-- trait SocketListenerExt -->
 Trait containing all `SocketListener` methods.
 
@@ -18741,7 +18741,7 @@ handle incoming clients.
 
 # Implements
 
-[`SocketServiceExt`](trait.SocketServiceExt.html), [`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`SocketServiceExt`](trait.SocketServiceExt.html), [`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketListenerExtManual`](prelude/trait.SocketListenerExtManual.html)
 <!-- trait SocketServiceExt -->
 Trait containing all `SocketService` methods.
 
@@ -19861,7 +19861,7 @@ or subclass and override the default handler.
 
 # Implements
 
-[`ThreadedSocketServiceExt`](trait.ThreadedSocketServiceExt.html), [`SocketServiceExt`](trait.SocketServiceExt.html), [`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`ThreadedSocketServiceExt`](trait.ThreadedSocketServiceExt.html), [`SocketServiceExt`](trait.SocketServiceExt.html), [`SocketListenerExt`](trait.SocketListenerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketListenerExtManual`](prelude/trait.SocketListenerExtManual.html)
 <!-- trait ThreadedSocketServiceExt -->
 Trait containing all `ThreadedSocketService` methods.
 
@@ -21385,7 +21385,7 @@ when using it.
 
 # Implements
 
-[`UnixSocketAddressExt`](trait.UnixSocketAddressExt.html), [`SocketAddressExt`](trait.SocketAddressExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketConnectableExt`](trait.SocketConnectableExt.html)
+[`UnixSocketAddressExt`](trait.UnixSocketAddressExt.html), [`SocketAddressExt`](trait.SocketAddressExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SocketConnectableExt`](trait.SocketConnectableExt.html), [`UnixSocketAddressExtManual`](prelude/trait.UnixSocketAddressExtManual.html)
 <!-- trait UnixSocketAddressExt -->
 Trait containing all `UnixSocketAddress` methods.
 
@@ -22116,7 +22116,7 @@ Zlib decompression
 
 # Implements
 
-[`ZlibCompressorExt`](trait.ZlibCompressorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html)
+[`ZlibCompressorExt`](trait.ZlibCompressorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html), [`ConverterExtManual`](prelude/trait.ConverterExtManual.html)
 <!-- trait ZlibCompressorExt -->
 Trait containing all `ZlibCompressor` methods.
 
@@ -22172,7 +22172,7 @@ Zlib decompression
 
 # Implements
 
-[`ZlibDecompressorExt`](trait.ZlibDecompressorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html)
+[`ZlibDecompressorExt`](trait.ZlibDecompressorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ConverterExt`](trait.ConverterExt.html), [`ConverterExtManual`](prelude/trait.ConverterExtManual.html)
 <!-- trait ZlibDecompressorExt -->
 Trait containing all `ZlibDecompressor` methods.
 

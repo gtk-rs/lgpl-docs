@@ -4639,7 +4639,7 @@ Each pixel value contains red, green, and blue
 
 # Implements
 
-[`WindowExt`](trait.WindowExt.html)
+[`WindowExt`](trait.WindowExt.html), [`WindowExtManual`](prelude/trait.WindowExtManual.html)
 <!-- trait WindowExt -->
 Trait containing all `Window` methods.
 
