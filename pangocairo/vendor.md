@@ -1,10 +1,4 @@
 <!-- file * -->
-<!-- struct FcFontMap -->
-
-
-# Implements
-
-[`pango::FontMapExt`](../pango/trait.FontMapExt.html), [`FontMapExt`](trait.FontMapExt.html)
 <!-- struct Font -->
 `Font` is an interface exported by fonts for
 use with Cairo. The actual type of the font will depend
@@ -41,7 +35,7 @@ Trait containing all `FontMap` methods.
 
 # Implementors
 
-[`FcFontMap`](struct.FcFontMap.html), [`FontMap`](struct.FontMap.html)
+[`FontMap`](struct.FontMap.html)
 <!-- impl FontMap::fn get_default -->
 Gets a default `FontMap` to use with Cairo.
 
