@@ -505,7 +505,7 @@ Feature: `v3_12`
 
 # Implements
 
-[`CompletionExt`](trait.CompletionExt.html)
+[`CompletionExt`](trait.CompletionExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html)
 <!-- trait CompletionExt -->
 Trait containing all `Completion` methods.
 
@@ -805,7 +805,7 @@ The `gtk::TextIter` at which the completion is invoked.
 
 # Implements
 
-[`CompletionInfoExt`](trait.CompletionInfoExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
+[`CompletionInfoExt`](trait.CompletionInfoExt.html), [`gtk::WindowExt`](../gtk/trait.WindowExt.html), [`gtk::BinExt`](../gtk/trait.BinExt.html), [`gtk::ContainerExt`](../gtk/trait.ContainerExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html)
 <!-- trait CompletionInfoExt -->
 Trait containing all `CompletionInfo` methods.
 
@@ -822,7 +822,7 @@ Get the current content widget.
 
 # Deprecated since 3.8
 
-Use `gtk::Bin::get_child` instead.
+Use `gtk::BinExt::get_child` instead.
 
 # Returns
 
@@ -843,8 +843,8 @@ happen you must use `gobject::Object::ref` before calling this method.
 
 # Deprecated since 3.8
 
-Use `gtk::Container::add` instead. If there is already a child
-widget, remove it with `gtk::Container::remove`.
+Use `gtk::ContainerExt::add` instead. If there is already a child
+widget, remove it with `gtk::ContainerExt::remove`.
 ## `widget`
 a `gtk::Widget`.
 <!-- trait CompletionInfoExt::fn connect_before_show -->
@@ -2847,7 +2847,7 @@ Feature: `v3_18`
 
 # Implements
 
-[`MapExt`](trait.MapExt.html), [`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
+[`MapExt`](trait.MapExt.html), [`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::ContainerExt`](../gtk/trait.ContainerExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html), [`gtk::ScrollableExt`](../gtk/trait.ScrollableExt.html)
 <!-- trait MapExt -->
 Trait containing all `Map` methods.
 
@@ -3732,6 +3732,197 @@ Whether to wrap lines never, at word boundaries, or at character boundaries.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
+<!-- struct Region -->
+
+
+Feature: `v3_22`
+
+# Implements
+
+[`RegionExt`](trait.RegionExt.html)
+<!-- trait RegionExt -->
+Trait containing all `Region` methods.
+
+Feature: `v3_22`
+
+# Implementors
+
+[`Region`](struct.Region.html)
+<!-- impl Region::fn new -->
+
+Feature: `v3_22`
+
+## `buffer`
+a `gtk::TextBuffer`.
+
+# Returns
+
+a new `Region` object for `buffer`.
+<!-- trait RegionExt::fn add_region -->
+Adds `region_to_add` to `self`. `region_to_add` is not modified.
+
+Feature: `v3_22`
+
+## `region_to_add`
+the `Region` to add to `self`, or `None`.
+<!-- trait RegionExt::fn add_subregion -->
+Adds the subregion delimited by `_start` and `_end` to `self`.
+
+Feature: `v3_22`
+
+## `_start`
+the start of the subregion.
+## `_end`
+the end of the subregion.
+<!-- trait RegionExt::fn get_bounds -->
+Gets the `start` and `end` bounds of the `self`.
+
+Feature: `v3_22`
+
+## `start`
+iterator to initialize with the start of `self`,
+ or `None`.
+## `end`
+iterator to initialize with the end of `self`,
+ or `None`.
+
+# Returns
+
+`true` if `start` and `end` have been set successfully (if non-`None`),
+ or `false` if the `self` is empty.
+<!-- trait RegionExt::fn get_buffer -->
+
+Feature: `v3_22`
+
+
+# Returns
+
+the `gtk::TextBuffer`.
+<!-- trait RegionExt::fn get_start_region_iter -->
+Initializes a `RegionIter` to the first subregion of `self`. If
+`self` is empty, `iter` will be initialized to the end iterator.
+
+Feature: `v3_22`
+
+## `iter`
+iterator to initialize to the first subregion.
+<!-- trait RegionExt::fn intersect_region -->
+Returns the intersection between `self` and `region2`. `self` and
+`region2` are not modified.
+
+Feature: `v3_22`
+
+## `region2`
+a `Region`, or `None`.
+
+# Returns
+
+the intersection as a `Region`
+ object.
+<!-- trait RegionExt::fn intersect_subregion -->
+Returns the intersection between `self` and the subregion delimited by
+`_start` and `_end`. `self` is not modified.
+
+Feature: `v3_22`
+
+## `_start`
+the start of the subregion.
+## `_end`
+the end of the subregion.
+
+# Returns
+
+the intersection as a new
+ `Region`.
+<!-- trait RegionExt::fn is_empty -->
+Returns whether the `self` is empty. A `None` `self` is considered empty.
+
+Feature: `v3_22`
+
+
+# Returns
+
+whether the `self` is empty.
+<!-- trait RegionExt::fn subtract_region -->
+Subtracts `region_to_subtract` from `self`. `region_to_subtract` is not
+modified.
+
+Feature: `v3_22`
+
+## `region_to_subtract`
+the `Region` to subtract from
+ `self`, or `None`.
+<!-- trait RegionExt::fn subtract_subregion -->
+Subtracts the subregion delimited by `_start` and `_end` from `self`.
+
+Feature: `v3_22`
+
+## `_start`
+the start of the subregion.
+## `_end`
+the end of the subregion.
+<!-- trait RegionExt::fn to_string -->
+Gets a string represention of `self`, for debugging purposes.
+
+The returned string contains the character offsets of the subregions. It
+doesn't include a newline character at the end of the string.
+
+Feature: `v3_22`
+
+
+# Returns
+
+a string represention of `self`. Free
+ with `g_free` when no longer needed.
+<!-- trait RegionExt::fn get_property_buffer -->
+The `gtk::TextBuffer`. The `Region` has a weak reference to the
+buffer.
+
+Feature: `v3_22`
+
+<!-- trait RegionExt::fn set_property_buffer -->
+The `gtk::TextBuffer`. The `Region` has a weak reference to the
+buffer.
+
+Feature: `v3_22`
+
+<!-- struct RegionIter -->
+`RegionIter` is an opaque datatype; ignore all its fields.
+Initialize the iter with `RegionExt::get_start_region_iter`.
+
+Feature: `v3_22`
+<!-- impl RegionIter::fn get_subregion -->
+Gets the subregion at this iterator.
+
+Feature: `v3_22`
+
+## `start`
+iterator to initialize with the subregion start, or `None`.
+## `end`
+iterator to initialize with the subregion end, or `None`.
+
+# Returns
+
+`true` if `start` and `end` have been set successfully (if non-`None`),
+ or `false` if `self` is the end iterator or if the region is empty.
+<!-- impl RegionIter::fn is_end -->
+
+Feature: `v3_22`
+
+
+# Returns
+
+whether `self` is the end iterator.
+<!-- impl RegionIter::fn next -->
+Moves `self` to the next subregion.
+
+Feature: `v3_22`
+
+
+# Returns
+
+`true` if `self` moved and is dereferenceable, or `false` if `self` has
+ been set to the end iterator.
 <!-- struct SearchContext -->
 
 
@@ -4328,9 +4519,9 @@ Feature: `v3_10`
 ## `regex_enabled`
 the setting.
 <!-- trait SearchSettingsExt::fn set_search_text -->
-Sets the text to search. If `text` is `None` or is empty, the search will be
-disabled. A copy of `text` will be made, so you can safely free `text` after
-a call to this function.
+Sets the text to search. If `search_text` is `None` or is empty, the search
+will be disabled. A copy of `search_text` will be made, so you can safely free
+`search_text` after a call to this function.
 
 You may be interested to call `gtk_source_utils_unescape_search_text` before
 this function.
@@ -4457,7 +4648,7 @@ Binds the `SpaceDrawer:matrix` property to a `gio::Settings` key.
 The `gio::Settings` key must be of the same type as the
 `SpaceDrawer:matrix` property, that is, `"au"`.
 
-The `gio::Settings::bind` function cannot be used, because the default GIO
+The `gio::SettingsExt::bind` function cannot be used, because the default GIO
 mapping functions don't support `glib::Variant` properties (maybe it will be
 supported by a future GIO version, in which case this function can be
 deprecated).
@@ -4741,7 +4932,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+[`gtk::ButtonExt`](../gtk/trait.ButtonExt.html), [`gtk::BinExt`](../gtk/trait.BinExt.html), [`gtk::ContainerExt`](../gtk/trait.ContainerExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html), [`gtk::ActionableExt`](../gtk/trait.ActionableExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
 <!-- impl StyleSchemeChooserButton::fn new -->
 Creates a new `StyleSchemeChooserButton`.
 
@@ -4758,7 +4949,7 @@ Feature: `v3_16`
 
 # Implements
 
-[`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
+[`gtk::BinExt`](../gtk/trait.BinExt.html), [`gtk::ContainerExt`](../gtk/trait.ContainerExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html), [`StyleSchemeChooserExt`](trait.StyleSchemeChooserExt.html)
 <!-- impl StyleSchemeChooserWidget::fn new -->
 Creates a new `StyleSchemeChooserWidget`.
 
@@ -4959,7 +5150,7 @@ Emitted when the ability to undo has changed.
 
 # Implements
 
-[`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html)
+[`ViewExt`](trait.ViewExt.html), [`gtk::TextViewExt`](../gtk/trait.TextViewExt.html), [`gtk::ContainerExt`](../gtk/trait.ContainerExt.html), [`gtk::WidgetExt`](../gtk/trait.WidgetExt.html), [`gtk::BuildableExt`](../gtk/trait.BuildableExt.html), [`gtk::ScrollableExt`](../gtk/trait.ScrollableExt.html)
 <!-- trait ViewExt -->
 Trait containing all `View` methods.
 
@@ -5141,8 +5332,8 @@ a position in `self`.
 
 the visual column at `iter`.
 <!-- trait ViewExt::fn indent_lines -->
-Insert one indentation level at the beginning of the
-specified lines.
+Inserts one indentation level at the beginning of the specified lines. The
+empty lines are not indented.
 
 Feature: `v3_16`
 
@@ -5431,3 +5622,10 @@ Feature: `v3_24`
 Width of a tab character expressed in number of spaces.
 <!-- trait ViewExt::fn set_property_tab-width -->
 Width of a tab character expressed in number of spaces.
+<!-- enum ViewGutterPosition -->
+<!-- enum ViewGutterPosition::variant Lines -->
+the gutter position of the lines
+renderer
+<!-- enum ViewGutterPosition::variant Marks -->
+the gutter position of the marks
+renderer

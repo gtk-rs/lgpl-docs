@@ -157,6 +157,12 @@ Creates a `Bytes` which is a subsection of another `Bytes`. The `offset` +
 
 A reference to `self` will be held by the newly created `Bytes` until
 the byte data is no longer needed.
+
+Since 2.56, if `offset` is 0 and `length` matches the size of `self`, then
+`self` will be returned with the reference count incremented by 1. If `self`
+is a slice of another `Bytes`, then the resulting `Bytes` will reference
+the same `Bytes` instead of `self`. This allows consumers to simplify the
+usage of `Bytes` when asynchronously writing to streams.
 ## `offset`
 offset which subsection starts at
 ## `length`
@@ -173,7 +179,7 @@ Increase the reference count on `self`.
 the `Bytes`
 <!-- impl Bytes::fn unref -->
 Releases a reference on `self`. This may result in the bytes being
-freed.
+freed. If `self` is `None`, it will return immediately.
 <!-- impl Bytes::fn unref_to_array -->
 Unreferences the bytes, and returns a new mutable `ByteArray` containing
 the same byte data.
@@ -371,6 +377,54 @@ the hour component of the date
 the minute component of the date
 ## `seconds`
 the number of seconds past the minute
+
+# Returns
+
+a new `DateTime`, or `None`
+<!-- impl DateTime::fn new_from_iso8601 -->
+Creates a `DateTime` corresponding to the given
+[ISO 8601 formatted string](https://en.wikipedia.org/wiki/ISO_8601)
+`text`. ISO 8601 strings of the form `<date>``<sep>``<time>``<tz>` are supported.
+
+`<sep>` is the separator and can be either 'T', 't' or ' '.
+
+`<date>` is in the form:
+
+- `YYYY-MM-DD` - Year/month/day, e.g. 2016-08-24.
+- `YYYYMMDD` - Same as above without dividers.
+- `YYYY-DDD` - Ordinal day where DDD is from 001 to 366, e.g. 2016-237.
+- `YYYYDDD` - Same as above without dividers.
+- `YYYY-Www-D` - Week day where ww is from 01 to 52 and D from 1-7,
+ e.g. 2016-W34-3.
+- `YYYYWwwD` - Same as above without dividers.
+
+`<time>` is in the form:
+
+- `hh:mm:ss(.sss)` - Hours, minutes, seconds (subseconds), e.g. 22:10:42.123.
+- `hhmmss(.sss)` - Same as above without dividers.
+
+`<tz>` is an optional timezone suffix of the form:
+
+- `Z` - UTC.
+- `+hh:mm` or `-hh:mm` - Offset from UTC in hours and minutes, e.g. +12:00.
+- `+hh` or `-hh` - Offset from UTC in hours, e.g. +12.
+
+If the timezone is not provided in `text` it must be provided in `default_tz`
+(this field is otherwise ignored).
+
+This call can fail (returning `None`) if `text` is not a valid ISO 8601
+formatted string.
+
+You should release the return value by calling `DateTime::unref`
+when you are done with it.
+
+Feature: `v2_56`
+
+## `text`
+an ISO 8601 formatted time string.
+## `default_tz`
+a `TimeZone` to use if the text doesn't contain a
+ timezone, or `None`.
 
 # Returns
 
@@ -588,6 +642,11 @@ the newly created `DateTime` which should be freed with
 <!-- impl DateTime::fn add_months -->
 Creates a copy of `self` and adds the specified number of months to the
 copy. Add negative values to subtract months.
+
+The day of the month of the resulting `DateTime` is clamped to the number
+of days in the updated calendar month. For example, if adding 1 month to
+31st January 2018, the result would be 28th February 2018. In 2020 (a leap
+year), the result would be 29th February.
 ## `months`
 the number of months
 
@@ -618,6 +677,9 @@ the newly created `DateTime` which should be freed with
 <!-- impl DateTime::fn add_years -->
 Creates a copy of `self` and adds the specified number of years to the
 copy. Add negative values to subtract years.
+
+As with `DateTime::add_months`, if the resulting date would be 29th
+February on a non-leap year, the day will be clamped to 28th February.
 ## `years`
 the number of years
 
@@ -723,6 +785,14 @@ conversions:
  for the specifier.
 - 0: Pad a numeric result with zeros. This overrides the default padding
  for the specifier.
+
+Additionally, when O is used with B, b, or h, it produces the alternative
+form of a month name. The alternative form should be used when the month
+name is used without a day number (e.g., standalone). It is required in
+some languages (Baltic, Slavic, Greek, and more) due to their grammatical
+rules. For other languages there is no difference. \%OB is a GNU and BSD
+`strftime` extension expected to be added to the future POSIX specification,
+\%Ob and \%Oh are GNU `strftime` extensions. Since: 2.56
 ## `format`
 a valid UTF-8 string, containing the format for the
  `DateTime`
@@ -730,7 +800,8 @@ a valid UTF-8 string, containing the format for the
 # Returns
 
 a newly allocated string formatted to the requested format
- or `None` in the case that there was an error. The string
+ or `None` in the case that there was an error (such as a format specifier
+ not being supported in the current locale). The string
  should be freed with `g_free`.
 <!-- impl DateTime::fn get_day_of_month -->
 Retrieves the day of the month represented by `self` in the gregorian
@@ -1283,10 +1354,38 @@ return location for the number of keys returned, or `None`
 
 a newly-allocated `None`-terminated array of strings.
  Use `g_strfreev` to free it.
+<!-- impl KeyFile::fn get_locale_for_key -->
+Returns the actual locale which the result of
+`KeyFile::get_locale_string` or `KeyFile::get_locale_string_list`
+came from.
+
+If calling `KeyFile::get_locale_string` or
+`KeyFile::get_locale_string_list` with exactly the same `self`,
+`group_name`, `key` and `locale`, the result of those functions will
+have originally been tagged with the locale that is the result of
+this function.
+
+Feature: `v2_56`
+
+## `group_name`
+a group name
+## `key`
+a key
+## `locale`
+a locale identifier or `None`
+
+# Returns
+
+the locale from the file, or `None` if the key was not
+ found or the entry in the file was was untranslated
 <!-- impl KeyFile::fn get_locale_string -->
 Returns the value associated with `key` under `group_name`
 translated in the given `locale` if available. If `locale` is
 `None` then the current locale is assumed.
+
+If `locale` is to be non-`None`, or if the current locale will change over
+the lifetime of the `KeyFile`, it must be loaded with
+`KeyFileFlags::KeepTranslations` in order to load strings for all locales.
 
 If `key` cannot be found then `None` is returned and `error` is set
 to `KeyFileError::KeyNotFound`. If the value associated
@@ -1307,6 +1406,10 @@ a newly allocated string or `None` if the specified
 Returns the values associated with `key` under `group_name`
 translated in the given `locale` if available. If `locale` is
 `None` then the current locale is assumed.
+
+If `locale` is to be non-`None`, or if the current locale will change over
+the lifetime of the `KeyFile`, it must be loaded with
+`KeyFileFlags::KeepTranslations` in order to load strings for all locales.
 
 If `key` cannot be found then `None` is returned and `error` is set
 to `KeyFileError::KeyNotFound`. If the values associated
@@ -1898,7 +2001,7 @@ Invokes a function in such a way that `self` is owned during the
 invocation of `function`.
 
 This function is the same as `MainContext::invoke` except that it
-lets you specify the priority incase `function` ends up being
+lets you specify the priority in case `function` ends up being
 scheduled as an idle and also lets you give a `GDestroyNotify` for `data`.
 
 `notify` should not assume that it is called from any particular
@@ -2181,6 +2284,46 @@ simply wait.
 <!-- impl MainLoop::fn unref -->
 Decreases the reference count on a `MainLoop` object by one. If
 the result is zero, free the loop and free all associated memory.
+<!-- enum OptionArg -->
+The `OptionArg` enum values determine which type of extra argument the
+options expect to find. If an option expects an extra argument, it can
+be specified in several ways; with a short option: `-x arg`, with a long
+option: `--name arg` or combined in a single argument: `--name=arg`.
+<!-- enum OptionArg::variant None -->
+No extra argument. This is useful for simple flags.
+<!-- enum OptionArg::variant String -->
+The option takes a string argument.
+<!-- enum OptionArg::variant Int -->
+The option takes an integer argument.
+<!-- enum OptionArg::variant Callback -->
+The option provides a callback (of type
+ `GOptionArgFunc`) to parse the extra argument.
+<!-- enum OptionArg::variant Filename -->
+The option takes a filename as argument.
+<!-- enum OptionArg::variant StringArray -->
+The option takes a string argument, multiple
+ uses of the option are collected into an array of strings.
+<!-- enum OptionArg::variant FilenameArray -->
+The option takes a filename as argument,
+ multiple uses of the option are collected into an array of strings.
+<!-- enum OptionArg::variant Double -->
+The option takes a double argument. The argument
+ can be formatted either for the user's locale or for the "C" locale.
+ Since 2.12
+<!-- enum OptionArg::variant Int64 -->
+The option takes a 64-bit integer. Like
+ `OptionArg::Int` but for larger numbers. The number can be in
+ decimal base, or in hexadecimal (when prefixed with `0x`, for
+ example, `0xffffffff`). Since 2.12
+<!-- enum SeekType -->
+An enumeration specifying the base position for a
+`IOChannel::seek_position` operation.
+<!-- enum SeekType::variant Cur -->
+the current position in the file.
+<!-- enum SeekType::variant Set -->
+the start of the file.
+<!-- enum SeekType::variant End -->
+the end of the file.
 <!-- struct Source -->
 The `GSource` struct is an opaque data type
 representing an event source.
@@ -2591,7 +2734,7 @@ so yourself, from the source dispatch function.
 Note that if you have a pair of sources where the ready time of one
 suggests that it will be delivered first but the priority for the
 other suggests that it would be delivered first, and the ready time
-for both sources is reached during the same main context iteration
+for both sources is reached during the same main context iteration,
 then the order of dispatch is undefined.
 
 It is a no-op to call this function on a `Source` which has already been
@@ -2610,16 +2753,14 @@ Decreases the reference count of a source by one. If the
 resulting reference count is zero the source and associated
 memory will be destroyed.
 <!-- impl Source::fn remove -->
-Removes the source with the given id from the default main context.
+Removes the source with the given ID from the default main context. You must
+use `Source::destroy` for sources added to a non-default main context.
 
-The id of a `Source` is given by `Source::get_id`, or will be
+The ID of a `Source` is given by `Source::get_id`, or will be
 returned by the functions `Source::attach`, `g_idle_add`,
 `g_idle_add_full`, `g_timeout_add`, `g_timeout_add_full`,
 `g_child_watch_add`, `g_child_watch_add_full`, `g_io_add_watch`, and
 `g_io_add_watch_full`.
-
-See also `Source::destroy`. You must use `Source::destroy` for sources
-added to a non-default main context.
 
 It is a programmer error to attempt to remove a non-existent source.
 
@@ -3151,7 +3292,7 @@ child.
 
 To put the entire example together, for our dictionary mapping
 strings to variants (with two entries, as given above), we are
-using 91 bytes of memory for type information, 29 byes of memory
+using 91 bytes of memory for type information, 29 bytes of memory
 for the serialised data, 16 bytes for buffer management and 24
 bytes for the `Variant` instance, or a total of 160 bytes, plus
 malloc overhead. If we were to use `Variant::get_child_value` to
@@ -3186,7 +3327,7 @@ const gchar *some_strings[] = { "a", "b", "c", NULL };
 GVariant *new_variant;
 
 new_variant = g_variant_new ("(t^as)",
-                             /<!-- -->* This cast is required. *<!-- -->/
+                             // This cast is required.
                              (guint64) some_flags,
                              some_strings);
 ```
@@ -4126,6 +4267,13 @@ If `self` is found not to be in normal form then a new trusted
 It makes sense to call this function if you've received `Variant`
 data from untrusted sources and you want to ensure your serialised
 output is definitely in normal form.
+
+If `self` is already in normal form, a new reference will be returned
+(which will be floating if `self` is floating). If it is not in normal form,
+the newly created `Variant` will be returned with a single non-floating
+reference. Typically, `Variant::take_ref` should be called on the return
+value from this function to guarantee ownership of a single non-floating
+reference to it.
 
 # Returns
 

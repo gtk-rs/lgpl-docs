@@ -6,7 +6,7 @@ on the particular font technology Cairo was compiled to use.
 
 # Implements
 
-[`FontExt`](trait.FontExt.html)
+[`FontExt`](trait.FontExt.html), [`pango::FontExt`](../pango/trait.FontExt.html)
 <!-- trait FontExt -->
 Trait containing all `Font` methods.
 
@@ -29,7 +29,7 @@ on the particular font technology Cairo was compiled to use.
 
 # Implements
 
-[`FontMapExt`](trait.FontMapExt.html), [`FontMapExt`](trait.FontMapExt.html)
+[`FontMapExt`](trait.FontMapExt.html), [`pango::FontMapExt`](../pango/trait.FontMapExt.html)
 <!-- trait FontMapExt -->
 Trait containing all `FontMap` methods.
 
@@ -88,7 +88,7 @@ In most cases one should simply use `FontMap::new`(),
 or in fact in most of those cases, just use
 `FontMap::get_default`().
 ## `fonttype`
-desired `cairo_font_type_t`
+desired `cairo::FontType`
 
 # Returns
 
@@ -111,7 +111,7 @@ Gets the type of Cairo font backend that `self` uses.
 
 # Returns
 
-the `cairo_font_type_t` cairo font backend type
+the `cairo::FontType` cairo font backend type
 <!-- trait FontMapExt::fn get_resolution -->
 Gets the resolution for the fontmap. See `FontMap::set_resolution`
 

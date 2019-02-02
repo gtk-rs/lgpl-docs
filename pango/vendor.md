@@ -9,11 +9,90 @@ Put all available space on the right
 Center the line within the available space
 <!-- enum Alignment::variant Right -->
 Put all available space on the left
+<!-- struct Analysis -->
+The `Analysis` structure stores information about
+the properties of a segment of text.
 <!-- struct AttrClass -->
 The `AttrClass` structure stores the type and operations for
 a particular type of attribute. The functions in this structure should
 not be called directly. Instead, one should use the wrapper functions
 provided for `Attribute`.
+<!-- struct AttrIterator -->
+The `AttrIterator` structure is used to represent an
+iterator through a `AttrList`. A new iterator is created
+with `AttrList::get_iterator`. Once the iterator
+is created, it can be advanced through the style changes
+in the text using `AttrIterator::next`. At each
+style change, the range of the current style segment and the
+attributes currently in effect can be queried.
+<!-- impl AttrIterator::fn copy -->
+Copy a `AttrIterator`
+
+# Returns
+
+the newly allocated
+ `AttrIterator`, which should be freed with
+ `AttrIterator::destroy`.
+<!-- impl AttrIterator::fn destroy -->
+Destroy a `AttrIterator` and free all associated memory.
+<!-- impl AttrIterator::fn get -->
+Find the current attribute of a particular type at the iterator
+location. When multiple attributes of the same type overlap,
+the attribute whose range starts closest to the current location
+is used.
+## `type_`
+the type of attribute to find.
+
+# Returns
+
+the current attribute of the given type,
+ or `None` if no attribute of that type applies to the
+ current location.
+<!-- impl AttrIterator::fn get_attrs -->
+Gets a list of all attributes at the current position of the
+iterator.
+
+# Returns
+
+a list of
+ all attributes for the current range.
+ To free this value, call `Attribute::destroy` on
+ each value and `glib::SList::free` on the list.
+<!-- impl AttrIterator::fn get_font -->
+Get the font and other attributes at the current iterator position.
+## `desc`
+a `FontDescription` to fill in with the current values.
+ The family name in this structure will be set using
+ `FontDescription::set_family_static` using values from
+ an attribute in the `AttrList` associated with the iterator,
+ so if you plan to keep it around, you must call:
+ `<literal>`pango_font_description_set_family (desc, pango_font_description_get_family (desc))`</literal>`.
+## `language`
+if non-`None`, location to store language tag for item, or `None`
+ if none is found.
+## `extra_attrs`
+if non-`None`,
+ location in which to store a list of non-font
+ attributes at the the current position; only the highest priority
+ value of each attribute will be added to this list. In order
+ to free this value, you must call `Attribute::destroy` on
+ each member.
+<!-- impl AttrIterator::fn next -->
+Advance the iterator until the next change of style.
+
+# Returns
+
+`false` if the iterator is at the end of the list, otherwise `true`
+<!-- impl AttrIterator::fn range -->
+Get the range of the current segment. Note that the
+stored return values are signed, not unsigned like
+the values in `Attribute`. To deal with this API
+oversight, stored return values that wouldn't fit into
+a signed integer are clamped to `G_MAXINT`.
+## `start`
+location to store the start of the range
+## `end`
+location to store the end of the range
 <!-- struct AttrList -->
 The `AttrList` structure represents a list of attributes
 that apply to a section of text. The attributes are, in general,
@@ -654,6 +733,13 @@ Omit characters at the start of the text
 Omit characters in the middle of the text
 <!-- enum EllipsizeMode::variant End -->
 Omit characters at the end of the text
+<!-- struct EngineLang -->
+`[Deprecated since 1.38]` The `EngineLang` class is implemented by engines that
+customize the rendering-system independent part of the
+Pango pipeline for a particular script or language. For
+instance, a custom `EngineLang` could be provided for
+Thai to implement the dictionary-based word boundary
+lookups needed for that language.
 <!-- struct EngineShape -->
 `[Deprecated since 1.38]` The `EngineShape` class is implemented by engines that
 customize the rendering-system dependent part of the
@@ -1404,7 +1490,7 @@ Trait containing all `Fontset` methods.
 
 # Implementors
 
-[`Fontset`](struct.Fontset.html)
+[`FontsetSimple`](struct.FontsetSimple.html), [`Fontset`](struct.Fontset.html)
 <!-- trait FontsetExt::fn foreach -->
 Iterates through all the fonts in a fontset, calling `func` for
 each one. If `func` returns `true`, that stops the iteration.
@@ -1429,6 +1515,40 @@ Get overall metric information for the fonts in the fontset.
 
 a `FontMetrics` object. The caller must call `FontMetrics::unref`
  when finished using the object.
+<!-- struct FontsetSimple -->
+`FontsetSimple` is a implementation of the abstract
+`Fontset` base class in terms of an array of fonts,
+which the creator provides when constructing the
+`FontsetSimple`.
+
+# Implements
+
+[`FontsetSimpleExt`](trait.FontsetSimpleExt.html), [`FontsetExt`](trait.FontsetExt.html)
+<!-- trait FontsetSimpleExt -->
+Trait containing all `FontsetSimple` methods.
+
+# Implementors
+
+[`FontsetSimple`](struct.FontsetSimple.html)
+<!-- impl FontsetSimple::fn new -->
+Creates a new `FontsetSimple` for the given language.
+## `language`
+a `Language` tag
+
+# Returns
+
+the newly allocated `FontsetSimple`, which should
+ be freed with `gobject::Object::unref`.
+<!-- trait FontsetSimpleExt::fn append -->
+Adds a font to the fontset.
+## `font`
+a `Font`.
+<!-- trait FontsetSimpleExt::fn size -->
+Returns the number of fonts in the fontset.
+
+# Returns
+
+the size of `self`.
 <!-- struct GlyphItem -->
 A `GlyphItem` is a pair of a `Item` and the glyphs
 resulting from shaping the text corresponding to an item.
@@ -1774,6 +1894,45 @@ for scripts not in their natural direction (eg.
 Latin in East gravity), choose per-script gravity such that every script
 respects the line progression. This means, Latin and Arabic will take
 opposite gravities and both flow top-to-bottom for example.
+<!-- struct Item -->
+The `Item` structure stores information about a segment of text.
+<!-- impl Item::fn new -->
+Creates a new `Item` structure initialized to default values.
+
+# Returns
+
+the newly allocated `Item`, which should
+ be freed with `Item::free`.
+<!-- impl Item::fn copy -->
+Copy an existing `Item` structure.
+
+# Returns
+
+the newly allocated `Item`, which
+ should be freed with `Item::free`, or `None` if
+ `self` was `None`.
+<!-- impl Item::fn free -->
+Free a `Item` and all associated memory.
+<!-- impl Item::fn split -->
+Modifies `self` to cover only the text after `split_index`, and
+returns a new item that covers the text before `split_index` that
+used to be in `self`. You can think of `split_index` as the length of
+the returned item. `split_index` may not be 0, and it may not be
+greater than or equal to the length of `self` (that is, there must
+be at least one byte assigned to each item, you can't create a
+zero-length item). `split_offset` is the length of the first item in
+chars, and must be provided because the text used to generate the
+item isn't available, so `Item::split` can't count the char
+length of the split items itself.
+## `split_index`
+byte index of position to split item, relative to the start of the item
+## `split_offset`
+number of chars between start of `self` and `split_index`
+
+# Returns
+
+new item representing text before `split_index`, which
+ should be freed with `Item::free`.
 <!-- struct Language -->
 The `Language` structure is used to
 represent a language.
