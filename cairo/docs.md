@@ -1827,8 +1827,7 @@ use cairo::pdf;
 use cairo::prelude::*;
 
 let mut file = File::create("test.pdf").unwrap();
-let surface = pdf::Stream::new(100.0, 100.0, |data|
-    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let surface = pdf::Writer::new(100.0, 100.0, file);
 let context = Context::new(&surface);
 
 // Draw things on the context.
@@ -1917,8 +1916,7 @@ use cairo::ps;
 use cairo::prelude::*;
 
 let mut file = File::create("test.ps").unwrap();
-let surface = ps::Stream::new(100.0, 100.0, |data|
-    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let surface = ps::Writer::new(100.0, 100.0, file);
 let context = Context::new(&surface);
 
 // Draw things on the context.
@@ -2024,8 +2022,7 @@ use cairo::svg;
 use cairo::prelude::*;
 
 let mut file = File::create("test.svg").unwrap();
-let surface = svg::Stream::new(100.0, 100.0, |data|
-    file.write_all(data).map(|_| ()).map_err(|_| ()));
+let surface = svg::Writer::new(100.0, 100.0, file);
 let context = Context::new(&surface);
 
 // Draw things on the context.
