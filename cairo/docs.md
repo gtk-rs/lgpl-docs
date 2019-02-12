@@ -1749,7 +1749,7 @@ Gets path defining the patch patch_num for a mesh pattern.
 patch_num can range from 0 to n-1 where n is the number returned by Mesh::get_patch_count().
 <!-- file pdf.rs -->
 <!-- struct File -->
-PDF file surface.
+A PDF surface that writes to a file
 <!-- impl File::fn new -->
 Create a new PDF file surface.
 
@@ -1767,33 +1767,15 @@ surface.finish();
 ```
 <!-- impl File::fn restrict -->
 Specify what PDF version to generate.
-<!-- struct Buffer -->
-Memory buffer PDF surface.
-<!-- impl Buffer::fn new -->
-Creates a new buffer surface.
-
-```
-use cairo::Context;
-use cairo::pdf;
-use cairo::prelude::*;
-
-let surface = pdf::Buffer::new(100.0, 100.0);
-let context = Context::new(&surface);
-
-// Draw things on the context.
-
-surface.finish();
-
-// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
-use std::fs::File;
-use std::io::Write;
-
-File::create("test.pdf").unwrap().write_all(surface.as_ref()).unwrap();
-```
-<!-- impl Buffer::fn restrict -->
-Specify what PDF version to generate.
 <!-- struct Writer -->
-Writer PDF surface, lets you render to any type implementing `io::Write`.
+A PDF surface that writes to a generic `io::Write` type (owning variant)
+
+The `Writer` takes ownership of the write object.
+Once you're done using the surface, you can obtain the write object
+back using the `finish()` method.
+
+If you would like the surface to reference the write object
+instead, use `RefWriter`.
 <!-- fn new -->
 Create a new writer surface.
 
@@ -1836,9 +1818,26 @@ surface.finish();
 ```
 <!-- fn restrict -->
 Specify what PDF version to generate.
+<!-- struct Writer -->
+A PDF surface that writes to a generic `io::Write` type (owning variant)
+
+The `Writer` takes ownership of the write object.
+Once you're done using the surface, you can obtain the write object
+back using the `finish()` method.
+
+If you would like the surface to reference the write object
+instead, use `RefWriter`.
+<!-- struct RefWriter -->
+A PDF surface that writes to a generic `io::Write` type (referencing variant)
+
+The `RefWriter` references the write object,
+which is why a lifetime parameter is required.
+
+If you would like the surface to own the write object
+instead, use `Writer`.
 <!-- file ps.rs -->
 <!-- struct File -->
-PostScript file surface.
+A PostScript surface that writes to a file
 <!-- impl File::fn new -->
 Create a new PostScript file surface.
 
@@ -1856,33 +1855,15 @@ surface.finish();
 ```
 <!-- impl File::fn restrict -->
 Specify what PostScript level to generate.
-<!-- struct Buffer -->
-Memory buffer PostScript surface.
-<!-- impl Buffer::fn new -->
-Creates a new buffer surface.
-
-```
-use cairo::Context;
-use cairo::ps;
-use cairo::prelude::*;
-
-let surface = ps::Buffer::new(100.0, 100.0);
-let context = Context::new(&surface);
-
-// Draw things on the context.
-
-surface.finish();
-
-// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
-use std::fs::File;
-use std::io::Write;
-
-File::create("test.ps").unwrap().write_all(surface.as_ref()).unwrap();
-```
-<!-- impl Buffer::fn restrict -->
-Specify what PostScript level to generate.
 <!-- struct Writer -->
-Writer SVG surface, lets you render to any type implementing `io::Write`.
+A PostScript surface that writes to a generic `io::Write` type (owning variant)
+
+The `Writer` takes ownership of the write object.
+Once you're done using the surface, you can obtain the write object
+back using the `finish()` method.
+
+If you would like the surface to reference the write object
+instead, use `RefWriter`.
 <!-- fn new -->
 Create a new writer surface.
 
@@ -1925,6 +1906,14 @@ surface.finish();
 ```
 <!-- fn restrict -->
 Specify what PostScript level to generate.
+<!-- struct RefWriter -->
+A PostScript surface that writes to a generic `io::Write` type (referencing variant)
+
+The `RefWriter` references the write object,
+which is why a lifetime parameter is required.
+
+If you would like the surface to own the write object
+instead, use `Writer`.
 <!-- file support.rs -->
 <!-- struct Stream -->
 Handles dark magic to maintain a stream closure based surface.
@@ -1944,7 +1933,7 @@ The `Vec<u8>` is actually kept around as a `*mut Vec<u8>` since the closure
 will be alive as long as the vector.
 <!-- file svg.rs -->
 <!-- struct File -->
-SVG file surface.
+An SVG surface that writes to a file
 <!-- impl File::fn new -->
 Create a new SVG file surface.
 
@@ -1962,33 +1951,15 @@ surface.finish();
 ```
 <!-- impl File::fn restrict -->
 Specify what SVG version to generate.
-<!-- struct Buffer -->
-Memory buffer SVG surface.
-<!-- impl Buffer::fn new -->
-Creates a new buffer surface.
-
-```
-use cairo::Context;
-use cairo::svg;
-use cairo::prelude::*;
-
-let surface = svg::Buffer::new(100.0, 100.0);
-let context = Context::new(&surface);
-
-// Draw things on the context.
-
-surface.finish();
-
-// Write contents to a file, `Buffer` implements `AsRef<[u8]>`.
-use std::fs::File;
-use std::io::Write;
-
-File::create("test.svg").unwrap().write_all(surface.as_ref()).unwrap();
-```
-<!-- impl Buffer::fn restrict -->
-Specify what SVG version to generate.
 <!-- struct Writer -->
-Writer SVG surface, lets you render to any type implementing `io::Write`.
+An SVG surface that writes to a generic `io::Write` type (owning variant)
+
+The `Writer` takes ownership of the write object.
+Once you're done using the surface, you can obtain the write object
+back using the `finish()` method.
+
+If you would like the surface to reference the write object
+instead, use `RefWriter`.
 <!-- fn new -->
 Create a new writer surface.
 
@@ -2008,26 +1979,11 @@ surface.finish();
 ```
 <!-- fn restrict -->
 Specify what SVG version to generate.
-<!-- struct Stream -->
-Streaming SVG surface.
-<!-- fn new -->
-Create a new streaming surface.
+<!-- struct RefWriter -->
+An SVG surface that writes to a generic `io::Write` type (referencing variant)
 
-```
-use std::fs::File;
-use std::io::Write;
+The `RefWriter` references the write object,
+which is why a lifetime parameter is required.
 
-use cairo::Context;
-use cairo::svg;
-use cairo::prelude::*;
-
-let mut file = File::create("test.svg").unwrap();
-let surface = svg::Writer::new(100.0, 100.0, file);
-let context = Context::new(&surface);
-
-// Draw things on the context.
-
-surface.finish();
-```
-<!-- fn restrict -->
-Specify what SVG version to generate.
+If you would like the surface to own the write object
+instead, use `Writer`.
