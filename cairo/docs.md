@@ -1535,6 +1535,7 @@ C0 is the first point of the patch.
 Degenerate sides are permitted so straight lines may be used. A zero length
 line on one side may be used to create 3 sided patches.
 
+```text
       C1     Side 1       C2
        +---------------+
        |               |
@@ -1547,6 +1548,7 @@ Side 0 |               | Side 2
        |               |
        +---------------+
     C0     Side 3        C3
+```
 
 Each patch is constructed by first calling Mesh::begin_patch(),
 then Mesh::move_to() to specify the first point in the patch (C0).
