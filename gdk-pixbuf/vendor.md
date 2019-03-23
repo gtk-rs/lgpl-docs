@@ -861,16 +861,6 @@ Feature: `v2_32`
 # Returns
 
 a read-only pointer to the raw pixel data
-<!-- impl Pixbuf::fn ref -->
-Adds a reference to a pixbuf.
-
-# Deprecated since 2.0
-
-Use `gobject::Object::ref`.
-
-# Returns
-
-The same as the `self` argument.
 <!-- impl Pixbuf::fn remove_option -->
 Remove the key/value pair option attached to a `Pixbuf`.
 
@@ -1249,12 +1239,6 @@ a nul-terminated string.
 # Returns
 
 `true` on success.
-<!-- impl Pixbuf::fn unref -->
-Removes a reference from a pixbuf.
-
-# Deprecated since 2.0
-
-Use `gobject::Object::unref`.
 <!-- trait PixbufExt::fn get_property_bits-per-sample -->
 The number of bits per sample.
 Currently only 8 bit per sample are supported.
@@ -1453,22 +1437,6 @@ the image.
 # Returns
 
 `true` if the "animation" was really just an image
-<!-- trait PixbufAnimationExt::fn ref -->
-Adds a reference to an animation.
-
-# Deprecated since 2.0
-
-Use `gobject::Object::ref`.
-
-# Returns
-
-The same as the `self` argument.
-<!-- trait PixbufAnimationExt::fn unref -->
-Removes a reference from an animation.
-
-# Deprecated since 2.0
-
-Use `gobject::Object::unref`.
 <!-- struct PixbufAnimationIter -->
 An opaque struct representing an iterator which points to a
 certain position in an animation.

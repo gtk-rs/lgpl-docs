@@ -1826,19 +1826,6 @@ If `notification` is no longer relevant, it can be withdrawn with
 id of the notification, or `None`
 ## `notification`
 the `Notification` to send
-<!-- trait ApplicationExt::fn set_action_group -->
-This used to be how actions were associated with a `Application`.
-Now there is `ActionMap` for that.
-
-# Deprecated since 2.32
-
-Use the `ActionMap` interface instead. Never ever
-mix use of this API with use of `ActionMap` on the same `self`
-or things will go very badly wrong. This function is known to
-introduce buggy behaviour (ie: signals not emitted on changes to the
-action group), so you should really use `ActionMap` instead.
-## `action_group`
-a `ActionGroup`, or `None`
 <!-- trait ApplicationExt::fn set_application_id -->
 Sets the unique identifier for `self`.
 
@@ -3925,21 +3912,6 @@ the search string to use
 a
  list of strvs. Free each item with `g_strfreev` and free the outer
  list with `g_free`.
-<!-- impl DesktopAppInfo::fn set_desktop_env -->
-Sets the name of the desktop that the application is running in.
-This is used by `AppInfo::should_show` and
-`DesktopAppInfoExt::get_show_in` to evaluate the
-`OnlyShowIn` and `NotShowIn`
-desktop entry fields.
-
-Should be called only once; subsequent calls are ignored.
-
-# Deprecated since 2.42
-
-do not use this API. Since 2.42 the value of the
-`XDG_CURRENT_DESKTOP` environment variable will be used.
-## `desktop_env`
-a string specifying what desktop this is
 <!-- trait DesktopAppInfoExt::fn get_action_name -->
 Gets the user-visible display name of the "additional application
 action" specified by `action_name`.
@@ -4244,37 +4216,6 @@ Checks if a drive can be stopped.
 # Returns
 
 `true` if the `self` can be stopped, `false` otherwise.
-<!-- trait DriveExt::fn eject -->
-Asynchronously ejects a drive.
-
-When the operation is finished, `callback` will be called.
-You can then call `Drive::eject_finish` to obtain the
-result of the operation.
-
-# Deprecated since 2.22
-
-Use `Drive::eject_with_operation` instead.
-## `flags`
-flags affecting the unmount if required for eject
-## `cancellable`
-optional `Cancellable` object, `None` to ignore.
-## `callback`
-a `GAsyncReadyCallback`, or `None`.
-## `user_data`
-user data to pass to `callback`
-<!-- trait DriveExt::fn eject_finish -->
-Finishes ejecting a drive.
-
-# Deprecated since 2.22
-
-Use `Drive::eject_with_operation_finish` instead.
-## `result`
-a `AsyncResult`.
-
-# Returns
-
-`true` if the drive has been ejected successfully,
- `false` otherwise.
 <!-- trait DriveExt::fn eject_with_operation -->
 Ejects a drive. This is an asynchronous operation, and is
 finished by calling `Drive::eject_with_operation_finish` with the `self`
@@ -5173,44 +5114,6 @@ This call does no blocking I/O.
 
 a new `File` that is a duplicate
  of the given `File`.
-<!-- trait FileExt::fn eject_mountable -->
-Starts an asynchronous eject on a mountable.
-When this operation has completed, `callback` will be called with
-`user_user` data, and the operation can be finalized with
-`File::eject_mountable_finish`.
-
-If `cancellable` is not `None`, then the operation can be cancelled by
-triggering the cancellable object from another thread. If the operation
-was cancelled, the error `IOErrorEnum::Cancelled` will be returned.
-
-# Deprecated since 2.22
-
-Use `File::eject_mountable_with_operation` instead.
-## `flags`
-flags affecting the operation
-## `cancellable`
-optional `Cancellable` object,
- `None` to ignore
-## `callback`
-a `GAsyncReadyCallback` to call
- when the request is satisfied, or `None`
-## `user_data`
-the data to pass to callback function
-<!-- trait FileExt::fn eject_mountable_finish -->
-Finishes an asynchronous eject operation started by
-`File::eject_mountable`.
-
-# Deprecated since 2.22
-
-Use `File::eject_mountable_with_operation_finish`
- instead.
-## `result`
-a `AsyncResult`
-
-# Returns
-
-`true` if the `self` was ejected successfully.
- `false` otherwise.
 <!-- trait FileExt::fn eject_mountable_with_operation -->
 Starts an asynchronous eject on a mountable.
 When this operation has completed, `callback` will be called with
@@ -7167,47 +7070,6 @@ a `AsyncResult`
 # Returns
 
 `true` on successful trash, `false` otherwise.
-<!-- trait FileExt::fn unmount_mountable -->
-Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
-
-If `cancellable` is not `None`, then the operation can be cancelled by
-triggering the cancellable object from another thread. If the operation
-was cancelled, the error `IOErrorEnum::Cancelled` will be returned.
-
-When the operation is finished, `callback` will be called.
-You can then call `File::unmount_mountable_finish` to get
-the result of the operation.
-
-# Deprecated since 2.22
-
-Use `File::unmount_mountable_with_operation` instead.
-## `flags`
-flags affecting the operation
-## `cancellable`
-optional `Cancellable` object,
- `None` to ignore
-## `callback`
-a `GAsyncReadyCallback` to call
- when the request is satisfied, or `None`
-## `user_data`
-the data to pass to callback function
-<!-- trait FileExt::fn unmount_mountable_finish -->
-Finishes an unmount operation, see `File::unmount_mountable` for details.
-
-Finish an asynchronous unmount operation that was started
-with `File::unmount_mountable`.
-
-# Deprecated since 2.22
-
-Use `File::unmount_mountable_with_operation_finish`
- instead.
-## `result`
-a `AsyncResult`
-
-# Returns
-
-`true` if the operation finished successfully.
- `false` otherwise.
 <!-- trait FileExt::fn unmount_mountable_with_operation -->
 Unmounts a file of type `FileType::Mountable`.
 
@@ -10933,35 +10795,6 @@ Checks if `self` can be unmounted.
 # Returns
 
 `true` if the `self` can be unmounted.
-<!-- trait MountExt::fn eject -->
-Ejects a mount. This is an asynchronous operation, and is
-finished by calling `Mount::eject_finish` with the `self`
-and `AsyncResult` data returned in the `callback`.
-
-# Deprecated since 2.22
-
-Use `Mount::eject_with_operation` instead.
-## `flags`
-flags affecting the unmount if required for eject
-## `cancellable`
-optional `Cancellable` object, `None` to ignore.
-## `callback`
-a `GAsyncReadyCallback`, or `None`.
-## `user_data`
-user data passed to `callback`.
-<!-- trait MountExt::fn eject_finish -->
-Finishes ejecting a mount. If any errors occurred during the operation,
-`error` will be set to contain the errors and `false` will be returned.
-
-# Deprecated since 2.22
-
-Use `Mount::eject_with_operation_finish` instead.
-## `result`
-a `AsyncResult`.
-
-# Returns
-
-`true` if the mount was successfully ejected. `false` otherwise.
 <!-- trait MountExt::fn eject_with_operation -->
 Ejects a mount. This is an asynchronous operation, and is
 finished by calling `Mount::eject_with_operation_finish` with the `self`
@@ -11184,35 +11017,6 @@ Increments the shadow count on `self`. Usually used by
 `VolumeMonitor` implementations when creating a shadow mount for
 `self`, see `Mount::is_shadowed` for more information. The caller
 will need to emit the `Mount::changed` signal on `self` manually.
-<!-- trait MountExt::fn unmount -->
-Unmounts a mount. This is an asynchronous operation, and is
-finished by calling `Mount::unmount_finish` with the `self`
-and `AsyncResult` data returned in the `callback`.
-
-# Deprecated since 2.22
-
-Use `Mount::unmount_with_operation` instead.
-## `flags`
-flags affecting the operation
-## `cancellable`
-optional `Cancellable` object, `None` to ignore.
-## `callback`
-a `GAsyncReadyCallback`, or `None`.
-## `user_data`
-user data passed to `callback`.
-<!-- trait MountExt::fn unmount_finish -->
-Finishes unmounting a mount. If any errors occurred during the operation,
-`error` will be set to contain the errors and `false` will be returned.
-
-# Deprecated since 2.22
-
-Use `Mount::unmount_with_operation_finish` instead.
-## `result`
-a `AsyncResult`.
-
-# Returns
-
-`true` if the mount was successfully unmounted. `false` otherwise.
 <!-- trait MountExt::fn unmount_with_operation -->
 Unmounts a mount. This is an asynchronous operation, and is
 finished by calling `Mount::unmount_with_operation_finish` with the `self`
@@ -12092,15 +11896,6 @@ a `NotificationPriority`
 Sets the title of `self` to `title`.
 ## `title`
 the new title for `self`
-<!-- impl Notification::fn set_urgent -->
-Deprecated in favor of `Notification::set_priority`.
-
-# Deprecated since 2.42
-
-Since 2.42, this has been deprecated in favour of
- `Notification::set_priority`.
-## `urgent`
-`true` if `self` is urgent
 <!-- enum NotificationPriority -->
 Priority levels for `GNotifications`.
 <!-- enum NotificationPriority::variant Normal -->
@@ -14454,33 +14249,6 @@ the path to use
 # Returns
 
 a new `Settings` object
-<!-- impl Settings::fn list_relocatable_schemas -->
-Deprecated.
-
-# Deprecated since 2.40
-
-Use `SettingsSchemaSource::list_schemas` instead
-
-# Returns
-
-a list of relocatable
- `Settings` schemas that are available. The list must not be
- modified or freed.
-<!-- impl Settings::fn list_schemas -->
-Deprecated.
-
-# Deprecated since 2.40
-
-Use `SettingsSchemaSource::list_schemas` instead.
-If you used `Settings::list_schemas` to check for the presence of
-a particular schema, use `SettingsSchemaSource::lookup` instead
-of your whole loop.
-
-# Returns
-
-a list of `Settings`
- schemas that are available. The list must not be modified or
- freed.
 <!-- impl Settings::fn sync -->
 Ensures that all pending operations are complete for the default backend.
 
@@ -14809,14 +14577,6 @@ user data for `mapping`
 # Returns
 
 the result, which may be `None`
-<!-- trait SettingsExt::fn get_range -->
-Queries the range of a key.
-
-# Deprecated since 2.40
-
-Use `SettingsSchemaKey::get_range` instead.
-## `key`
-the key to query the range of
 <!-- trait SettingsExt::fn get_string -->
 Gets the value that is stored at `key` in `self`.
 
@@ -14954,21 +14714,6 @@ with it.
 # Returns
 
 a list of the keys on `self`
-<!-- trait SettingsExt::fn range_check -->
-Checks if the given `value` is of the correct type and within the
-permitted range for `key`.
-
-# Deprecated since 2.40
-
-Use `SettingsSchemaKey::range_check` instead.
-## `key`
-the key to check
-## `value`
-the value to check
-
-# Returns
-
-`true` if `value` is valid for `key`
 <!-- trait SettingsExt::fn reset -->
 Resets `key` to its default value.
 
@@ -15284,36 +15029,6 @@ changes that will be applied when `SettingsExt::apply` is called.
 The path within the backend where the settings are stored.
 <!-- trait SettingsExt::fn set_property_path -->
 The path within the backend where the settings are stored.
-<!-- trait SettingsExt::fn get_property_schema -->
-The name of the schema that describes the types of keys
-for this `Settings` object.
-
-The type of this property is *not* `SettingsSchema`.
-`SettingsSchema` has only existed since version 2.32 and
-unfortunately this name was used in previous versions to refer to
-the schema ID rather than the schema itself. Take care to use the
-'settings-schema' property if you wish to pass in a
-`SettingsSchema`.
-
-# Deprecated since 2.32
-
-Use the 'schema-id' property instead. In a future
-version, this property may instead refer to a `SettingsSchema`.
-<!-- trait SettingsExt::fn set_property_schema -->
-The name of the schema that describes the types of keys
-for this `Settings` object.
-
-The type of this property is *not* `SettingsSchema`.
-`SettingsSchema` has only existed since version 2.32 and
-unfortunately this name was used in previous versions to refer to
-the schema ID rather than the schema itself. Take care to use the
-'settings-schema' property if you wish to pass in a
-`SettingsSchema`.
-
-# Deprecated since 2.32
-
-Use the 'schema-id' property instead. In a future
-version, this property may instead refer to a `SettingsSchema`.
 <!-- trait SettingsExt::fn get_property_schema-id -->
 The name of the schema that describes the types of keys
 for this `Settings` object.
@@ -16071,57 +15786,6 @@ Creates a new, empty, `SimpleActionGroup`.
 # Returns
 
 a new `SimpleActionGroup`
-<!-- impl SimpleActionGroup::fn add_entries -->
-A convenience function for creating multiple `SimpleAction` instances
-and adding them to the action group.
-
-# Deprecated since 2.38
-
-Use `ActionMap::add_action_entries`
-## `entries`
-a pointer to the first item in
- an array of `ActionEntry` structs
-## `n_entries`
-the length of `entries`, or -1
-## `user_data`
-the user data for signal connections
-<!-- impl SimpleActionGroup::fn insert -->
-Adds an action to the action group.
-
-If the action group already contains an action with the same name as
-`action` then the old action is dropped from the group.
-
-The action group takes its own reference on `action`.
-
-# Deprecated since 2.38
-
-Use `ActionMap::add_action`
-## `action`
-a `Action`
-<!-- impl SimpleActionGroup::fn lookup -->
-Looks up the action with the name `action_name` in the group.
-
-If no such action exists, returns `None`.
-
-# Deprecated since 2.38
-
-Use `ActionMap::lookup_action`
-## `action_name`
-the name of an action
-
-# Returns
-
-a `Action`, or `None`
-<!-- impl SimpleActionGroup::fn remove -->
-Removes the named action from the action group.
-
-If no action of this name is in the group then nothing happens.
-
-# Deprecated since 2.38
-
-Use `ActionMap::remove_action`
-## `action_name`
-the name of the action
 <!-- struct SimpleIOStream -->
 GSimpleIOStream creates a `IOStream` from an arbitrary `InputStream` and
 `OutputStream`. This allows any pair of input and output streams to be used
@@ -20034,17 +19698,6 @@ when the connection is closed. See
 
 `true` if `self` requires a proper TLS close
 notification.
-<!-- trait TlsConnectionExt::fn get_use_system_certdb -->
-Gets whether `self` uses the system certificate database to verify
-peer certificates. See `TlsConnection::set_use_system_certdb`.
-
-# Deprecated since 2.30
-
-Use `TlsConnectionExt::get_database` instead
-
-# Returns
-
-whether `self` uses the system certificate database
 <!-- trait TlsConnectionExt::fn handshake -->
 Attempts a TLS handshake on `self`.
 
@@ -20193,20 +19846,6 @@ than closing `self` itself, but note that this may only be done when no other
 operations are pending on `self` or the base I/O stream.
 ## `require_close_notify`
 whether or not to require close notification
-<!-- trait TlsConnectionExt::fn set_use_system_certdb -->
-Sets whether `self` uses the system certificate database to verify
-peer certificates. This is `true` by default. If set to `false`, then
-peer certificate validation will always set the
-`TlsCertificateFlags::UnknownCa` error (meaning
-`TlsConnection::accept-certificate` will always be emitted on
-client-side connections, unless that bit is not set in
-`TlsClientConnection:validation-flags`).
-
-# Deprecated since 2.30
-
-Use `TlsConnectionExt::set_database` instead
-## `use_system_certdb`
-whether to use the system certificate database
 <!-- trait TlsConnectionExt::fn connect_accept_certificate -->
 Emitted during the TLS handshake after the peer certificate has
 been received. You can examine `peer_cert`'s certification path by
@@ -20313,22 +19952,6 @@ See `TlsConnectionExt::set_require_close_notify`.
 <!-- trait TlsConnectionExt::fn set_property_require-close-notify -->
 Whether or not proper TLS close notification is required.
 See `TlsConnectionExt::set_require_close_notify`.
-<!-- trait TlsConnectionExt::fn get_property_use-system-certdb -->
-Whether or not the system certificate database will be used to
-verify peer certificates. See
-`TlsConnection::set_use_system_certdb`.
-
-# Deprecated since 2.30
-
-Use GTlsConnection:database instead
-<!-- trait TlsConnectionExt::fn set_property_use-system-certdb -->
-Whether or not the system certificate database will be used to
-verify peer certificates. See
-`TlsConnection::set_use_system_certdb`.
-
-# Deprecated since 2.30
-
-Use GTlsConnection:database instead
 <!-- struct TlsDatabase -->
 `TlsDatabase` is used to lookup certificates and other information
 from a certificate or key store. It is an abstract base class which
@@ -21386,35 +21009,6 @@ Checks if a volume can be mounted.
 # Returns
 
 `true` if the `self` can be mounted. `false` otherwise
-<!-- trait VolumeExt::fn eject -->
-Ejects a volume. This is an asynchronous operation, and is
-finished by calling `Volume::eject_finish` with the `self`
-and `AsyncResult` returned in the `callback`.
-
-# Deprecated since 2.22
-
-Use `Volume::eject_with_operation` instead.
-## `flags`
-flags affecting the unmount if required for eject
-## `cancellable`
-optional `Cancellable` object, `None` to ignore
-## `callback`
-a `GAsyncReadyCallback`, or `None`
-## `user_data`
-user data that gets passed to `callback`
-<!-- trait VolumeExt::fn eject_finish -->
-Finishes ejecting a volume. If any errors occurred during the operation,
-`error` will be set to contain the errors and `false` will be returned.
-
-# Deprecated since 2.22
-
-Use `Volume::eject_with_operation_finish` instead.
-## `result`
-a `AsyncResult`
-
-# Returns
-
-`true`, `false` if operation failed
 <!-- trait VolumeExt::fn eject_with_operation -->
 Ejects a volume. This is an asynchronous operation, and is
 finished by calling `Volume::eject_with_operation_finish` with the `self`
@@ -21609,50 +21203,6 @@ Trait containing all `VolumeMonitor` methods.
 # Implementors
 
 [`VolumeMonitor`](struct.VolumeMonitor.html)
-<!-- impl VolumeMonitor::fn adopt_orphan_mount -->
-This function should be called by any `VolumeMonitor`
-implementation when a new `Mount` object is created that is not
-associated with a `Volume` object. It must be called just before
-emitting the `mount_added` signal.
-
-If the return value is not `None`, the caller must associate the
-returned `Volume` object with the `Mount`. This involves returning
-it in its `Mount::get_volume` implementation. The caller must
-also listen for the "removed" signal on the returned object
-and give up its reference when handling that signal
-
-Similarly, if implementing `VolumeMonitor::adopt_orphan_mount`,
-the implementor must take a reference to `mount` and return it in
-its `Volume::get_mount` implemented. Also, the implementor must
-listen for the "unmounted" signal on `mount` and give up its
-reference upon handling that signal.
-
-There are two main use cases for this function.
-
-One is when implementing a user space file system driver that reads
-blocks of a block device that is already represented by the native
-volume monitor (for example a CD Audio file system driver). Such
-a driver will generate its own `Mount` object that needs to be
-associated with the `Volume` object that represents the volume.
-
-The other is for implementing a `VolumeMonitor` whose sole purpose
-is to return `Volume` objects representing entries in the users
-"favorite servers" list or similar.
-
-# Deprecated since 2.20
-
-Instead of using this function, `VolumeMonitor`
-implementations should instead create shadow mounts with the URI of
-the mount they intend to adopt. See the proxy volume monitor in
-gvfs for an example of this. Also see `Mount::is_shadowed`,
-`Mount::shadow` and `Mount::unshadow` functions.
-## `mount`
-a `Mount` object to find a parent for
-
-# Returns
-
-the `Volume` object that is the parent for `mount` or `None`
-if no wants to adopt the `Mount`.
 <!-- impl VolumeMonitor::fn get -->
 Gets the volume monitor used by gio.
 

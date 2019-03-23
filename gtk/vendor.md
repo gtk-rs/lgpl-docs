@@ -1174,200 +1174,6 @@ child widget.
 # Implements
 
 [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- impl Alignment::fn new -->
-Creates a new `Alignment`.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties
-## `xalign`
-the horizontal alignment of the child widget, from 0 (left) to 1
- (right).
-## `yalign`
-the vertical alignment of the child widget, from 0 (top) to 1
- (bottom).
-## `xscale`
-the amount that the child widget expands horizontally to fill up
- unused space, from 0 to 1.
- A value of 0 indicates that the child widget should never expand.
- A value of 1 indicates that the child widget will expand to fill all of the
- space allocated for the `Alignment`.
-## `yscale`
-the amount that the child widget expands vertically to fill up
- unused space, from 0 to 1. The values are similar to `xscale`.
-
-# Returns
-
-the new `Alignment`
-<!-- impl Alignment::fn get_padding -->
-Gets the padding on the different sides of the widget.
-See gtk_alignment_set_padding ().
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties
-## `padding_top`
-location to store the padding for
- the top of the widget, or `None`
-## `padding_bottom`
-location to store the padding
- for the bottom of the widget, or `None`
-## `padding_left`
-location to store the padding
- for the left of the widget, or `None`
-## `padding_right`
-location to store the padding
- for the right of the widget, or `None`
-<!-- impl Alignment::fn set -->
-Sets the `Alignment` values.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties
-## `xalign`
-the horizontal alignment of the child widget, from 0 (left) to 1
- (right).
-## `yalign`
-the vertical alignment of the child widget, from 0 (top) to 1
- (bottom).
-## `xscale`
-the amount that the child widget expands horizontally to fill up
- unused space, from 0 to 1.
- A value of 0 indicates that the child widget should never expand.
- A value of 1 indicates that the child widget will expand to fill all of the
- space allocated for the `Alignment`.
-## `yscale`
-the amount that the child widget expands vertically to fill up
- unused space, from 0 to 1. The values are similar to `xscale`.
-<!-- impl Alignment::fn set_padding -->
-Sets the padding on the different sides of the widget.
-The padding adds blank space to the sides of the widget. For instance,
-this can be used to indent the child widget towards the right by adding
-padding on the left.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties
-## `padding_top`
-the padding at the top of the widget
-## `padding_bottom`
-the padding at the bottom of the widget
-## `padding_left`
-the padding at the left of the widget
-## `padding_right`
-the padding at the right of the widget.
-<!-- trait AlignmentExt::fn get_property_bottom-padding -->
-The padding to insert at the bottom of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_bottom` instead
-<!-- trait AlignmentExt::fn set_property_bottom-padding -->
-The padding to insert at the bottom of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_bottom` instead
-<!-- trait AlignmentExt::fn get_property_left-padding -->
-The padding to insert at the left of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_start` instead
-<!-- trait AlignmentExt::fn set_property_left-padding -->
-The padding to insert at the left of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_start` instead
-<!-- trait AlignmentExt::fn get_property_right-padding -->
-The padding to insert at the right of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_end` instead
-<!-- trait AlignmentExt::fn set_property_right-padding -->
-The padding to insert at the right of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_end` instead
-<!-- trait AlignmentExt::fn get_property_top-padding -->
-The padding to insert at the top of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_top` instead
-<!-- trait AlignmentExt::fn set_property_top-padding -->
-The padding to insert at the top of the widget.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_top` instead
-<!-- trait AlignmentExt::fn get_property_xalign -->
-Horizontal position of child in available space. A value of 0.0
-will flush the child left (or right, in RTL locales); a value
-of 1.0 will flush the child right (or left, in RTL locales).
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_halign` on the child instead
-<!-- trait AlignmentExt::fn set_property_xalign -->
-Horizontal position of child in available space. A value of 0.0
-will flush the child left (or right, in RTL locales); a value
-of 1.0 will flush the child right (or left, in RTL locales).
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_halign` on the child instead
-<!-- trait AlignmentExt::fn get_property_xscale -->
-If available horizontal space is bigger than needed, how much
-of it to use for the child. A value of 0.0 means none; a value
-of 1.0 means all.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_hexpand` on the child instead
-<!-- trait AlignmentExt::fn set_property_xscale -->
-If available horizontal space is bigger than needed, how much
-of it to use for the child. A value of 0.0 means none; a value
-of 1.0 means all.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_hexpand` on the child instead
-<!-- trait AlignmentExt::fn get_property_yalign -->
-Vertical position of child in available space. A value of 0.0
-will flush the child to the top; a value of 1.0 will flush the
-child to the bottom.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_valign` on the child instead
-<!-- trait AlignmentExt::fn set_property_yalign -->
-Vertical position of child in available space. A value of 0.0
-will flush the child to the top; a value of 1.0 will flush the
-child to the bottom.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_valign` on the child instead
-<!-- trait AlignmentExt::fn get_property_yscale -->
-If available vertical space is bigger than needed, how much
-of it to use for the child. A value of 0.0 means none; a value
-of 1.0 means all.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_vexpand` on the child instead
-<!-- trait AlignmentExt::fn set_property_yscale -->
-If available vertical space is bigger than needed, how much
-of it to use for the child. A value of 0.0 means none; a value
-of 1.0 means all.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_vexpand` on the child instead
 <!-- struct AppChooser -->
 `AppChooser` is an interface that can be implemented by widgets which
 allow the user to choose an application (typically for the purpose of
@@ -1937,34 +1743,6 @@ the application flags
 # Returns
 
 a new `Application` instance
-<!-- trait GtkApplicationExt::fn add_accelerator -->
-Installs an accelerator that will cause the named action
-to be activated when the key combination specificed by `accelerator`
-is pressed.
-
-`accelerator` must be a string that can be parsed by `gtk_accelerator_parse`,
-e.g. "`<Primary>`q" or “`<Control>``<Alt>`p”.
-
-`action_name` must be the name of an action as it would be used
-in the app menu, i.e. actions that have been added to the application
-are referred to with an “app.” prefix, and window-specific actions
-with a “win.” prefix.
-
-`Application` also extracts accelerators out of “accel” attributes
-in the `GMenuModels` passed to `GtkApplicationExt::set_app_menu` and
-`GtkApplicationExt::set_menubar`, which is usually more convenient
-than calling this function for each accelerator.
-
-# Deprecated since 3.14
-
-Use `GtkApplicationExt::set_accels_for_action` instead
-## `accelerator`
-accelerator string
-## `action_name`
-the name of the action to activate
-## `parameter`
-parameter to pass when activating the action,
- or `None` if the action does not accept an activation parameter
 <!-- trait GtkApplicationExt::fn add_window -->
 Adds a window to `self`.
 
@@ -2175,18 +1953,6 @@ replaced with your own.
 # Returns
 
 `true` if you should set an app menu
-<!-- trait GtkApplicationExt::fn remove_accelerator -->
-Removes an accelerator that has been previously added
-with `Application::add_accelerator`.
-
-# Deprecated since 3.14
-
-Use `GtkApplicationExt::set_accels_for_action` instead
-## `action_name`
-the name of the action to activate
-## `parameter`
-parameter to pass when activating the action,
- or `None` if the action does not accept an activation parameter
 <!-- trait GtkApplicationExt::fn remove_window -->
 Remove a window from `self`.
 
@@ -2495,30 +2261,6 @@ Trait containing all `Arrow` methods.
 # Implementors
 
 [`Arrow`](struct.Arrow.html)
-<!-- impl Arrow::fn new -->
-Creates a new `Arrow` widget.
-
-# Deprecated since 3.14
-
-Use a `Image` with a suitable icon.
-## `arrow_type`
-a valid `ArrowType`.
-## `shadow_type`
-a valid `ShadowType`.
-
-# Returns
-
-the new `Arrow` widget.
-<!-- trait ArrowExt::fn set -->
-Sets the direction and style of the `Arrow`, `self`.
-
-# Deprecated since 3.14
-
-Use a `Image` with a suitable icon.
-## `arrow_type`
-a valid `ArrowType`.
-## `shadow_type`
-a valid `ShadowType`.
 <!-- enum ArrowType -->
 Used to indicate the direction in which an arrow should point.
 <!-- enum ArrowType::variant Up -->
@@ -2699,34 +2441,6 @@ a page of `self`
 # Returns
 
 `true` if `page` has padding
-<!-- trait AssistantExt::fn get_page_header_image -->
-Gets the header image for `page`.
-
-# Deprecated since 3.2
-
-Since GTK+ 3.2, a header is no longer shown;
- add your header decoration to the page content instead.
-## `page`
-a page of `self`
-
-# Returns
-
-the header image for `page`,
- or `None` if there’s no header image for the page
-<!-- trait AssistantExt::fn get_page_side_image -->
-Gets the side image for `page`.
-
-# Deprecated since 3.2
-
-Since GTK+ 3.2, sidebar images are not
- shown anymore.
-## `page`
-a page of `self`
-
-# Returns
-
-the side image for `page`,
- or `None` if there’s no side image for the page
 <!-- trait AssistantExt::fn get_page_title -->
 Gets the title for `page`.
 ## `page`
@@ -2832,31 +2546,6 @@ Feature: `v3_18`
 a page of `self`
 ## `has_padding`
 whether this page has padding
-<!-- trait AssistantExt::fn set_page_header_image -->
-Sets a header image for `page`.
-
-# Deprecated since 3.2
-
-Since GTK+ 3.2, a header is no longer shown;
- add your header decoration to the page content instead.
-## `page`
-a page of `self`
-## `pixbuf`
-the new header image `page`
-<!-- trait AssistantExt::fn set_page_side_image -->
-Sets a side image for `page`.
-
-This image used to be displayed in the side area of the assistant
-when `page` is the current page.
-
-# Deprecated since 3.2
-
-Since GTK+ 3.2, sidebar images are not
- shown anymore.
-## `page`
-a page of `self`
-## `pixbuf`
-the new side image `page`
 <!-- trait AssistantExt::fn set_page_title -->
 Sets a title for `page`.
 
@@ -4040,25 +3729,6 @@ an icon size (`IconSize`)
 # Returns
 
 a new `Button` displaying the themed icon
-<!-- impl Button::fn new_from_stock -->
-Creates a new `Button` containing the image and text from a
-[stock item][gtkstock].
-Some stock ids have preprocessor macros like `GTK_STOCK_OK` and
-`GTK_STOCK_APPLY`.
-
-If `stock_id` is unknown, then it will be treated as a mnemonic
-label (as for `Button::new_with_mnemonic`).
-
-# Deprecated since 3.10
-
-Stock items are deprecated. Use `Button::new_with_label`
-instead.
-## `stock_id`
-the name of the stock item
-
-# Returns
-
-a new `Button`
 <!-- impl Button::fn new_with_label -->
 Creates a `Button` widget with a `Label` child containing the given
 text.
@@ -4084,23 +3754,6 @@ The text of the button, with an underscore in front of the
 a new `Button`
 <!-- trait ButtonExt::fn clicked -->
 Emits a `Button::clicked` signal to the given `Button`.
-<!-- trait ButtonExt::fn enter -->
-Emits a `Button::enter` signal to the given `Button`.
-
-# Deprecated since 2.20
-
-Use the `Widget::enter-notify-event` signal.
-<!-- trait ButtonExt::fn get_alignment -->
-Gets the alignment of the child in the button.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
-## `xalign`
-return location for horizontal alignment
-## `yalign`
-return location for vertical alignment
 <!-- trait ButtonExt::fn get_always_show_image -->
 Returns whether the button will ignore the `Settings:gtk-button-images`
 setting and always show the image, if available.
@@ -4160,17 +3813,6 @@ Returns the current relief style of the given `Button`.
 # Returns
 
 The current `ReliefStyle`
-<!-- trait ButtonExt::fn get_use_stock -->
-Returns whether the button label is a stock item.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-`true` if the button label is used to
- select a stock item instead of being
- used directly as the label text.
 <!-- trait ButtonExt::fn get_use_underline -->
 Returns whether an embedded underline in the button label indicates a
 mnemonic. See gtk_button_set_use_underline ().
@@ -4179,38 +3821,6 @@ mnemonic. See gtk_button_set_use_underline ().
 
 `true` if an embedded underline in the button label
  indicates the mnemonic accelerator keys.
-<!-- trait ButtonExt::fn leave -->
-Emits a `Button::leave` signal to the given `Button`.
-
-# Deprecated since 2.20
-
-Use the `Widget::leave-notify-event` signal.
-<!-- trait ButtonExt::fn pressed -->
-Emits a `Button::pressed` signal to the given `Button`.
-
-# Deprecated since 2.20
-
-Use the `Widget::button-press-event` signal.
-<!-- trait ButtonExt::fn released -->
-Emits a `Button::released` signal to the given `Button`.
-
-# Deprecated since 2.20
-
-Use the `Widget::button-release-event` signal.
-<!-- trait ButtonExt::fn set_alignment -->
-Sets the alignment of the child. This property has no effect unless
-the child is a `Misc` or a `Alignment`.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
-## `xalign`
-the horizontal position of the child, 0.0 is left aligned,
- 1.0 is right aligned
-## `yalign`
-the vertical position of the child, 0.0 is top aligned,
- 1.0 is bottom aligned
 <!-- trait ButtonExt::fn set_always_show_image -->
 If `true`, the button will ignore the `Settings:gtk-button-images`
 setting and always show the image, if available.
@@ -4258,14 +3868,6 @@ The deprecated value `ReliefStyle::Half` behaves the same as
 `ReliefStyle::Normal`.
 ## `relief`
 The `ReliefStyle` as described above
-<!-- trait ButtonExt::fn set_use_stock -->
-If `true`, the label set on the button is used as a
-stock id to select the stock item for the button.
-
-# Deprecated since 3.10
-
-## `use_stock`
-`true` if the button should use a stock item
 <!-- trait ButtonExt::fn set_use_underline -->
 If true, an underline in the text of the button label indicates
 the next character should be used for the mnemonic accelerator key.
@@ -4278,30 +3880,6 @@ Applications should never connect to this signal, but use the
 `Button::clicked` signal.
 <!-- trait ButtonExt::fn connect_clicked -->
 Emitted when the button has been activated (pressed and released).
-<!-- trait ButtonExt::fn connect_enter -->
-Emitted when the pointer enters the button.
-
-# Deprecated since 2.8
-
-Use the `Widget::enter-notify-event` signal.
-<!-- trait ButtonExt::fn connect_leave -->
-Emitted when the pointer leaves the button.
-
-# Deprecated since 2.8
-
-Use the `Widget::leave-notify-event` signal.
-<!-- trait ButtonExt::fn connect_pressed -->
-Emitted when the button is pressed.
-
-# Deprecated since 2.8
-
-Use the `Widget::button-press-event` signal.
-<!-- trait ButtonExt::fn connect_released -->
-Emitted when the button is released.
-
-# Deprecated since 2.8
-
-Use the `Widget::button-release-event` signal.
 <!-- trait ButtonExt::fn get_property_always-show-image -->
 If `true`, the button will ignore the `Settings:gtk-button-images`
 setting and always show the image, if available.
@@ -4322,42 +3900,6 @@ The child widget to appear next to the button text.
 The position of the image relative to the text inside the button.
 <!-- trait ButtonExt::fn set_property_image-position -->
 The position of the image relative to the text inside the button.
-<!-- trait ButtonExt::fn get_property_xalign -->
-If the child of the button is a `Misc` or `Alignment`, this property
-can be used to control its horizontal alignment. 0.0 is left aligned,
-1.0 is right aligned.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
-<!-- trait ButtonExt::fn set_property_xalign -->
-If the child of the button is a `Misc` or `Alignment`, this property
-can be used to control its horizontal alignment. 0.0 is left aligned,
-1.0 is right aligned.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
-<!-- trait ButtonExt::fn get_property_yalign -->
-If the child of the button is a `Misc` or `Alignment`, this property
-can be used to control its vertical alignment. 0.0 is top aligned,
-1.0 is bottom aligned.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
-<!-- trait ButtonExt::fn set_property_yalign -->
-If the child of the button is a `Misc` or `Alignment`, this property
-can be used to control its vertical alignment. 0.0 is top aligned,
-1.0 is bottom aligned.
-
-# Deprecated since 3.14
-
-Access the child widget directly if you need to control
-its alignment.
 <!-- struct ButtonBox -->
 
 
@@ -6226,30 +5768,6 @@ Returns the cell renderer’s sensitivity.
 # Returns
 
 `true` if the cell renderer is sensitive
-<!-- trait CellRendererExt::fn get_size -->
-Obtains the width and height needed to render the cell. Used by view
-widgets to determine the appropriate size for the cell_area passed to
-`CellRendererExt::render`. If `cell_area` is not `None`, fills in the
-x and y offsets (if set) of the cell relative to this location.
-
-Please note that the values set in `width` and `height`, as well as those
-in `x_offset` and `y_offset` are inclusive of the xpad and ypad properties.
-
-# Deprecated since 3.0
-
-Use `CellRendererExt::get_preferred_size` instead.
-## `widget`
-the widget the renderer is rendering to
-## `cell_area`
-The area a cell will be allocated, or `None`
-## `x_offset`
-location to return x offset of cell relative to `cell_area`, or `None`
-## `y_offset`
-location to return y offset of cell relative to `cell_area`, or `None`
-## `width`
-location to return width needed to render a cell, or `None`
-## `height`
-location to return height needed to render a cell, or `None`
 <!-- trait CellRendererExt::fn get_state -->
 Translates the cell renderer state to `StateFlags`,
 based on the cell renderer and widget sensitivity, and
@@ -6391,18 +5909,6 @@ text_editing_started (GtkCellRenderer *cell,
 the `CellEditable`
 ## `path`
 the path identifying the edited cell
-<!-- trait CellRendererExt::fn get_property_cell-background-gdk -->
-Cell background as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRenderer:cell-background-rgba` instead.
-<!-- trait CellRendererExt::fn set_property_cell-background-gdk -->
-Cell background as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRenderer:cell-background-rgba` instead.
 <!-- trait CellRendererExt::fn get_property_cell-background-rgba -->
 Cell background as a `gdk::RGBA`
 <!-- trait CellRendererExt::fn set_property_cell-background-rgba -->
@@ -6648,16 +6154,6 @@ or "pixbuf" properties.
 The name of the themed icon to display.
 This property only has an effect if not overridden by "stock_id"
 or "pixbuf" properties.
-<!-- trait CellRendererPixbufExt::fn get_property_stock-id -->
-
-# Deprecated since 3.10
-
-Use `CellRendererPixbuf:icon-name` instead.
-<!-- trait CellRendererPixbufExt::fn set_property_stock-id -->
-
-# Deprecated since 3.10
-
-Use `CellRendererPixbuf:icon-name` instead.
 <!-- trait CellRendererPixbufExt::fn get_property_stock-size -->
 The `IconSize` value that specifies the size of the rendered icon.
 <!-- trait CellRendererPixbufExt::fn set_property_stock-size -->
@@ -6885,18 +6381,6 @@ Specifies how to align the lines of text with respect to each other.
 Note that this property describes how to align the lines of text in
 case there are several of them. The "xalign" property of `CellRenderer`,
 on the other hand, sets the horizontal alignment of the whole text.
-<!-- trait CellRendererTextExt::fn get_property_background-gdk -->
-Background color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRendererText:background-rgba` instead.
-<!-- trait CellRendererTextExt::fn set_property_background-gdk -->
-Background color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRendererText:background-rgba` instead.
 <!-- trait CellRendererTextExt::fn get_property_background-rgba -->
 Background color as a `gdk::RGBA`
 <!-- trait CellRendererTextExt::fn set_property_background-rgba -->
@@ -6911,18 +6395,6 @@ Specifies the preferred place to ellipsize the string, if the cell renderer
 does not have enough room to display the entire string. Setting it to
 `pango::EllipsizeMode::None` turns off ellipsizing. See the wrap-width property
 for another way of making the text fit into a given width.
-<!-- trait CellRendererTextExt::fn get_property_foreground-gdk -->
-Foreground color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRendererText:foreground-rgba` instead.
-<!-- trait CellRendererTextExt::fn set_property_foreground-gdk -->
-Foreground color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellRendererText:foreground-rgba` instead.
 <!-- trait CellRendererTextExt::fn get_property_foreground-rgba -->
 Foreground color as a `gdk::RGBA`
 <!-- trait CellRendererTextExt::fn set_property_foreground-rgba -->
@@ -7162,32 +6634,6 @@ returned.
 # Returns
 
 a `TreeModel` used or `None`
-<!-- trait CellViewExt::fn get_size_of_row -->
-Sets `requisition` to the size needed by `self` to display
-the model row pointed to by `path`.
-
-# Deprecated since 3.0
-
-Combo box formerly used this to calculate the
-sizes for cellviews, now you can achieve this by either using
-the `CellView:fit-model` property or by setting the currently
-displayed row of the `CellView` and using `WidgetExt::get_preferred_size`.
-## `path`
-a `TreePath`
-## `requisition`
-return location for the size
-
-# Returns
-
-`true`
-<!-- trait CellViewExt::fn set_background_color -->
-Sets the background color of `view`.
-
-# Deprecated since 3.4
-
-Use `CellViewExt::set_background_rgba` instead.
-## `color`
-the new background color
 <!-- trait CellViewExt::fn set_background_rgba -->
 Sets the background color of `self`.
 ## `rgba`
@@ -7222,18 +6668,6 @@ set, it will remove it before setting the new model. If `model` is
 `None`, then it will unset the old model.
 ## `model`
 a `TreeModel`
-<!-- trait CellViewExt::fn get_property_background-gdk -->
-The background color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellView:background-rgba` instead.
-<!-- trait CellViewExt::fn set_property_background-gdk -->
-The background color as a `gdk::Color`
-
-# Deprecated since 3.4
-
-Use `CellView:background-rgba` instead.
 <!-- trait CellViewExt::fn get_property_background-rgba -->
 The background color as a `gdk::RGBA`
 <!-- trait CellViewExt::fn set_property_background-rgba -->
@@ -7993,18 +7427,6 @@ color when the user finishes.
 # Returns
 
 a new color button
-<!-- impl ColorButton::fn new_with_color -->
-Creates a new color button.
-
-# Deprecated since 3.4
-
-Use `ColorButton::new_with_rgba` instead.
-## `color`
-A `gdk::Color` to set the current color with
-
-# Returns
-
-a new color button
 <!-- impl ColorButton::fn new_with_rgba -->
 Creates a new color button.
 ## `rgba`
@@ -8013,56 +7435,12 @@ A `gdk::RGBA` to set the current color with
 # Returns
 
 a new color button
-<!-- trait ColorButtonExt::fn get_alpha -->
-Returns the current alpha value.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::get_rgba` instead.
-
-# Returns
-
-an integer between 0 and 65535
-<!-- trait ColorButtonExt::fn get_color -->
-Sets `color` to be the current color in the `ColorButton` widget.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::get_rgba` instead.
-## `color`
-a `gdk::Color` to fill in with the current color
-<!-- trait ColorButtonExt::fn get_rgba -->
-Sets `rgba` to be the current color in the `ColorButton` widget.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::get_rgba` instead.
-## `rgba`
-a `gdk::RGBA` to fill in with the current color
 <!-- trait ColorButtonExt::fn get_title -->
 Gets the title of the color selection dialog.
 
 # Returns
 
 An internal string, do not free the return value
-<!-- trait ColorButtonExt::fn get_use_alpha -->
-Does the color selection dialog use the alpha channel ?
-
-# Deprecated since 3.4
-
-Use `ColorChooser::get_use_alpha` instead.
-
-# Returns
-
-`true` if the color sample uses alpha channel, `false` if not
-<!-- trait ColorButtonExt::fn set_alpha -->
-Sets the current opacity to be `alpha`.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::set_rgba` instead.
-## `alpha`
-an integer between 0 and 65535
 <!-- trait ColorButtonExt::fn set_color -->
 Sets the current color to be `color`.
 
@@ -8071,26 +7449,10 @@ Sets the current color to be `color`.
 Use `ColorChooser::set_rgba` instead.
 ## `color`
 A `gdk::Color` to set the current color with
-<!-- trait ColorButtonExt::fn set_rgba -->
-Sets the current color to be `rgba`.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::set_rgba` instead.
-## `rgba`
-a `gdk::RGBA` to set the current color with
 <!-- trait ColorButtonExt::fn set_title -->
 Sets the title for the color selection dialog.
 ## `title`
 String containing new window title
-<!-- trait ColorButtonExt::fn set_use_alpha -->
-Sets whether or not the color button should use the alpha channel.
-
-# Deprecated since 3.4
-
-Use `ColorChooser::set_use_alpha` instead.
-## `use_alpha`
-`true` if color button should use alpha channel, `false` if not
 <!-- trait ColorButtonExt::fn connect_color_set -->
 The ::color-set signal is emitted when the user selects a color.
 When handling this signal, use `ColorButton::get_rgba` to
@@ -8103,18 +7465,6 @@ as well, use the notify::color signal.
 The selected opacity value (0 fully transparent, 65535 fully opaque).
 <!-- trait ColorButtonExt::fn set_property_alpha -->
 The selected opacity value (0 fully transparent, 65535 fully opaque).
-<!-- trait ColorButtonExt::fn get_property_color -->
-The selected color.
-
-# Deprecated since 3.4
-
-Use `ColorButton:rgba` instead.
-<!-- trait ColorButtonExt::fn set_property_color -->
-The selected color.
-
-# Deprecated since 3.4
-
-Use `ColorButton:rgba` instead.
 <!-- trait ColorButtonExt::fn get_property_rgba -->
 The RGBA color.
 <!-- trait ColorButtonExt::fn set_property_rgba -->
@@ -8463,15 +7813,6 @@ A `TreeIter`
 # Returns
 
 `true` if `iter` was set, `false` otherwise
-<!-- trait ComboBoxExt::fn get_add_tearoffs -->
-Gets the current value of the :add-tearoffs property.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-the current value of the :add-tearoffs property.
 <!-- trait ComboBoxExt::fn get_button_sensitivity -->
 Returns whether the combo box sets the dropdown button
 sensitive or not when there are no items in the model.
@@ -8557,17 +7898,6 @@ Returns the column with row span information for `self`.
 # Returns
 
 the row span column.
-<!-- trait ComboBoxExt::fn get_title -->
-Gets the current title of the menu in tearoff mode. See
-`ComboBox::set_add_tearoffs`.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-the menu’s title in tearoff mode. This is an internal copy of the
-string which must not be freed.
 <!-- trait ComboBoxExt::fn get_wrap_width -->
 Returns the wrap width which is used to determine the number of columns
 for the popup menu. If the wrap width is larger than 1, the combo box
@@ -8619,14 +7949,6 @@ Sets the current active item to be the one referenced by `iter`, or
 unsets the active item if `iter` is `None`.
 ## `iter`
 The `TreeIter`, or `None`
-<!-- trait ComboBoxExt::fn set_add_tearoffs -->
-Sets whether the popup menu should have a tearoff
-menu item.
-
-# Deprecated since 3.10
-
-## `add_tearoffs`
-`true` to add tearoff menu items
 <!-- trait ComboBoxExt::fn set_button_sensitivity -->
 Sets whether the dropdown button of the combo box should be
 always sensitive (`SensitivityType::On`), never sensitive (`SensitivityType::Off`)
@@ -8697,13 +8019,6 @@ The row span column contains integers which indicate how many rows
 an item should span.
 ## `row_span`
 A column in the model passed during construction.
-<!-- trait ComboBoxExt::fn set_title -->
-Sets the menu’s title in tearoff mode.
-
-# Deprecated since 3.10
-
-## `title`
-a title for the menu in tearoff mode
 <!-- trait ComboBoxExt::fn set_wrap_width -->
 Sets the wrap width of `self` to be `width`. The wrap width is basically
 the preferred number of columns when you want the popup to be layed out
@@ -8792,22 +8107,6 @@ where `path` is the `TreePath` of the active item.
 The value of the ID column of the active row.
 <!-- trait ComboBoxExt::fn set_property_active-id -->
 The value of the ID column of the active row.
-<!-- trait ComboBoxExt::fn get_property_add-tearoffs -->
-The add-tearoffs property controls whether generated menus
-have tearoff menu items.
-
-Note that this only affects menu style combo boxes.
-
-# Deprecated since 3.10
-
-<!-- trait ComboBoxExt::fn set_property_add-tearoffs -->
-The add-tearoffs property controls whether generated menus
-have tearoff menu items.
-
-Note that this only affects menu style combo boxes.
-
-# Deprecated since 3.10
-
 <!-- trait ComboBoxExt::fn get_property_button-sensitivity -->
 Whether the dropdown button is sensitive when
 the model is empty.
@@ -8884,18 +8183,6 @@ If this is set to a non-negative value, it must be the index of a column
 of type `G_TYPE_INT` in the model. The value in that column for each item
 will determine how many rows that item will span in the popup. Therefore,
 values in this column must be greater than zero.
-<!-- trait ComboBoxExt::fn get_property_tearoff-title -->
-A title that may be displayed by the window manager
-when the popup is torn-off.
-
-# Deprecated since 3.10
-
-<!-- trait ComboBoxExt::fn set_property_tearoff-title -->
-A title that may be displayed by the window manager
-when the popup is torn-off.
-
-# Deprecated since 3.10
-
 <!-- trait ComboBoxExt::fn get_property_wrap-width -->
 If wrap-width is set to a positive value, items in the popup will be laid
 out along multiple columns, starting a new row on reaching the wrap width.
@@ -9460,19 +8747,6 @@ a child of `self`
 # Returns
 
 A newly created `WidgetPath`
-<!-- trait ContainerExt::fn get_resize_mode -->
-Returns the resize mode for the container. See
-gtk_container_set_resize_mode ().
-
-# Deprecated since 3.12
-
-Resize modes are deprecated. They aren’t necessary
- anymore since frame clocks and might introduce obscure bugs if
- used.
-
-# Returns
-
-the current resize mode
 <!-- trait ContainerExt::fn propagate_draw -->
 When a container receives a call to the draw function, it must send
 synthetic `Widget::draw` calls to all children that don’t have their
@@ -9507,10 +8781,6 @@ using `WidgetExt::destroy` since this will remove it from the
 container and help break any circular reference count cycles.
 ## `widget`
 a current child of `self`
-<!-- trait ContainerExt::fn resize_children -->
-
-# Deprecated since 3.10
-
 <!-- trait ContainerExt::fn set_border_width -->
 Sets the border width of the container.
 
@@ -9577,31 +8847,6 @@ system as the allocation for immediate children of the container.
 ## `adjustment`
 an adjustment which should be adjusted when the focus
  is moved among the descendents of `self`
-<!-- trait ContainerExt::fn set_reallocate_redraws -->
-Sets the `reallocate_redraws` flag of the container to the given value.
-
-Containers requesting reallocation redraws get automatically
-redrawn if any of their children changed allocation.
-
-# Deprecated since 3.14
-
-Call `WidgetExt::queue_draw` in your size_allocate handler.
-## `needs_redraws`
-the new value for the container’s `reallocate_redraws` flag
-<!-- trait ContainerExt::fn set_resize_mode -->
-Sets the resize mode for the container.
-
-The resize mode of a container determines whether a resize request
-will be passed to the container’s parent, queued for later execution
-or executed immediately.
-
-# Deprecated since 3.12
-
-Resize modes are deprecated. They aren’t necessary
- anymore since frame clocks and might introduce obscure bugs if
- used.
-## `resize_mode`
-the new resize mode
 <!-- trait ContainerExt::fn unset_focus_chain -->
 Removes a focus chain explicitly set with `ContainerExt::set_focus_chain`.
 
@@ -10137,17 +9382,6 @@ as with `Dialog::new_with_buttons`. Each button must have both
 text and response ID.
 ## `first_button_text`
 button text
-<!-- trait DialogExt::fn get_action_area -->
-Returns the action area of `self`.
-
-# Deprecated since 3.12
-
-Direct access to the action area
- is discouraged; use `DialogExt::add_button`, etc.
-
-# Returns
-
-the action area
 <!-- trait DialogExt::fn get_content_area -->
 Returns the content area of `self`.
 
@@ -10240,68 +9474,6 @@ be triggered during a `DialogExt::run` call.
 # Returns
 
 response ID
-<!-- trait DialogExt::fn set_alternative_button_order -->
-Sets an alternative button order. If the
-`Settings:gtk-alternative-button-order` setting is set to `true`,
-the dialog buttons are reordered according to the order of the
-response ids passed to this function.
-
-By default, GTK+ dialogs use the button order advocated by the
-[GNOME Human Interface Guidelines](http://library.gnome.org/devel/hig-book/stable/)
-with the affirmative button at the far
-right, and the cancel button left of it. But the builtin GTK+ dialogs
-and ``GtkMessageDialogs`` do provide an alternative button order,
-which is more suitable on some platforms, e.g. Windows.
-
-Use this function after adding all the buttons to your dialog, as the
-following example shows:
-
-
-```C
-cancel_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                       _("_Cancel"),
-                                       GTK_RESPONSE_CANCEL);
-
-ok_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                   _("_OK"),
-                                   GTK_RESPONSE_OK);
-
-gtk_widget_grab_default (ok_button);
-
-help_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                     _("_Help"),
-                                     GTK_RESPONSE_HELP);
-
-gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
-                                         GTK_RESPONSE_OK,
-                                         GTK_RESPONSE_CANCEL,
-                                         GTK_RESPONSE_HELP,
-                                         -1);
-```
-
-# Deprecated since 3.10
-
-Deprecated
-## `first_response_id`
-a response id used by one `self`’s buttons
-<!-- trait DialogExt::fn set_alternative_button_order_from_array -->
-Sets an alternative button order. If the
-`Settings:gtk-alternative-button-order` setting is set to `true`,
-the dialog buttons are reordered according to the order of the
-response ids in `new_order`.
-
-See `Dialog::set_alternative_button_order` for more information.
-
-This function is for use by language bindings.
-
-# Deprecated since 3.10
-
-Deprecated
-## `n_params`
-the number of response ids in `new_order`
-## `new_order`
-an array of response ids of
- `self`’s buttons
 <!-- trait DialogExt::fn set_default_response -->
 Sets the last widget in the dialog’s action area with the given `response_id`
 as the default widget for the dialog. Pressing “Enter” normally activates
@@ -10903,21 +10075,6 @@ Icon position
 # Returns
 
 `true` if the icon is sensitive.
-<!-- trait EntryExt::fn get_icon_stock -->
-Retrieves the stock id used for the icon, or `None` if there is
-no icon or if the icon was set by some other method (e.g., by
-pixbuf, icon name or gicon).
-
-# Deprecated since 3.10
-
-Use `EntryExt::get_icon_name` instead.
-## `icon_pos`
-Icon position
-
-# Returns
-
-A stock id, or `None` if no icon is set or if the icon
- wasn’t set from a stock id
 <!-- trait EntryExt::fn get_icon_storage_type -->
 Gets the type of representation being used by the icon
 to store image data. If the icon has no image data,
@@ -10948,20 +10105,6 @@ the icon position
 
 the tooltip text, or `None`. Free the returned
  string with `g_free` when done.
-<!-- trait EntryExt::fn get_inner_border -->
-This function returns the entry’s `Entry:inner-border` property. See
-`Entry::set_inner_border` for more information.
-
-# Deprecated since 3.4
-
-Use the standard border and padding CSS properties (through
- objects like `StyleContext` and `CssProvider`); the value returned by
- this function is ignored by `Entry`.
-
-# Returns
-
-the entry’s `Border`, or
- `None` if none was set.
 <!-- trait EntryExt::fn get_input_hints -->
 Gets the value of the `Entry:input-hints` property.
 <!-- trait EntryExt::fn get_input_purpose -->
@@ -11267,19 +10410,6 @@ If `pixbuf` is `None`, no icon will be shown in the specified position.
 Icon position
 ## `pixbuf`
 A `gdk_pixbuf::Pixbuf`, or `None`
-<!-- trait EntryExt::fn set_icon_from_stock -->
-Sets the icon shown in the entry at the specified position from
-a stock image.
-
-If `stock_id` is `None`, no icon will be shown in the specified position.
-
-# Deprecated since 3.10
-
-Use `EntryExt::set_icon_from_icon_name` instead.
-## `icon_pos`
-Icon position
-## `stock_id`
-The name of the stock item, or `None`
 <!-- trait EntryExt::fn set_icon_sensitive -->
 Sets the sensitivity for the specified icon.
 ## `icon_pos`
@@ -11318,23 +10448,6 @@ setting at least one non-empty tooltip on any icon achieves the same result.
 the icon position
 ## `tooltip`
 the contents of the tooltip for the icon, or `None`
-<!-- trait EntryExt::fn set_inner_border -->
-Sets `entry`’s inner-border property to `border`, or clears it if `None`
-is passed. The inner-border is the area around the entry’s text, but
-inside its frame.
-
-If set, this property overrides the inner-border style property.
-Overriding the style-provided border is useful when you want to do
-in-place editing of some text in a canvas or list widget, where
-pixel-exact positioning of the entry is important.
-
-# Deprecated since 3.4
-
-Use the standard border and padding CSS properties (through
- objects like `StyleContext` and `CssProvider`); the value set with
- this function is ignored by `Entry`.
-## `border`
-a `Border`, or `None`
 <!-- trait EntryExt::fn set_input_hints -->
 Sets the `Entry:input-hints` property, which
 allows input methods to fine-tune their behaviour.
@@ -11633,22 +10746,6 @@ See `IMContext`.
 Setting this to a non-`None` value overrides the
 system-wide IM module setting. See the `Settings`
 `Settings:gtk-im-module` property.
-<!-- trait EntryExt::fn get_property_inner-border -->
-Sets the text area's border between the text and the frame.
-
-# Deprecated since 3.4
-
-Use the standard border and padding CSS properties
- (through objects like `StyleContext` and `CssProvider`); the value
- of this style property is ignored.
-<!-- trait EntryExt::fn set_property_inner-border -->
-Sets the text area's border between the text and the frame.
-
-# Deprecated since 3.4
-
-Use the standard border and padding CSS properties
- (through objects like `StyleContext` and `CssProvider`); the value
- of this style property is ignored.
 <!-- trait EntryExt::fn get_property_input-hints -->
 Additional hints (beyond `Entry:input-purpose`) that
 allow input methods to fine-tune their behaviour.
@@ -11765,18 +10862,6 @@ does not allow DND from insensitive icons.
 
 An icon should be set insensitive if the action that would trigger
 when clicked is currently not available.
-<!-- trait EntryExt::fn get_property_primary-icon-stock -->
-The stock id to use for the primary icon for the entry.
-
-# Deprecated since 3.10
-
-Use `Entry:primary-icon-name` instead.
-<!-- trait EntryExt::fn set_property_primary-icon-stock -->
-The stock id to use for the primary icon for the entry.
-
-# Deprecated since 3.10
-
-Use `Entry:primary-icon-name` instead.
 <!-- trait EntryExt::fn get_property_primary-icon-storage-type -->
 The representation which is used for the primary icon of the entry.
 <!-- trait EntryExt::fn get_property_primary-icon-tooltip-markup -->
@@ -11853,18 +10938,6 @@ does not allow DND from insensitive icons.
 
 An icon should be set insensitive if the action that would trigger
 when clicked is currently not available.
-<!-- trait EntryExt::fn get_property_secondary-icon-stock -->
-The stock id to use for the secondary icon for the entry.
-
-# Deprecated since 3.10
-
-Use `Entry:secondary-icon-name` instead.
-<!-- trait EntryExt::fn set_property_secondary-icon-stock -->
-The stock id to use for the secondary icon for the entry.
-
-# Deprecated since 3.10
-
-Use `Entry:secondary-icon-name` instead.
 <!-- trait EntryExt::fn get_property_secondary-icon-storage-type -->
 The representation which is used for the secondary icon of the entry.
 <!-- trait EntryExt::fn get_property_secondary-icon-tooltip-markup -->
@@ -17807,19 +16880,6 @@ Creates a new `IMMulticontext`.
 # Returns
 
 a new `IMMulticontext`.
-<!-- trait IMMulticontextExt::fn append_menuitems -->
-Add menuitems for various available input methods to a menu;
-the menuitems, when selected, will switch the input method
-for the context and the global default input method.
-
-# Deprecated since 3.10
-
-It is better to use the system-wide input
- method framework for changing input methods. Modern
- desktop shells offer on-screen displays for this that
- can triggered with a keyboard shortcut, e.g. Super-Space.
-## `menushell`
-a `MenuShell`
 <!-- trait IMMulticontextExt::fn get_context_id -->
 Gets the id of the currently active slave of the `self`.
 
@@ -17833,30 +16893,6 @@ This causes the currently active slave of `self` to be
 replaced by the slave corresponding to the new context id.
 ## `context_id`
 the id to use
-<!-- enum IMPreeditStyle -->
-Style for input method preedit. See also
-`Settings:gtk-im-preedit-style`
-
-# Deprecated since 3.10
-
-<!-- enum IMPreeditStyle::variant Nothing -->
-Deprecated
-<!-- enum IMPreeditStyle::variant Callback -->
-Deprecated
-<!-- enum IMPreeditStyle::variant None -->
-Deprecated
-<!-- enum IMStatusStyle -->
-Style for input method status. See also
-`Settings:gtk-im-status-style`
-
-# Deprecated since 3.10
-
-<!-- enum IMStatusStyle::variant Nothing -->
-Deprecated
-<!-- enum IMStatusStyle::variant Callback -->
-Deprecated
-<!-- enum IMStatusStyle::variant None -->
-Deprecated
 <!-- struct IconFactory -->
 An icon factory manages a collection of `IconSet`; a `IconSet` manages a
 set of variants of a particular icon (i.e. a `IconSet` contains variants for
@@ -17933,98 +16969,6 @@ multiple `<source>` elements. The following attributes are allowed:
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- impl IconFactory::fn new -->
-Creates a new `IconFactory`. An icon factory manages a collection
-of ``GtkIconSets``; a `IconSet` manages a set of variants of a
-particular icon (i.e. a `IconSet` contains variants for different
-sizes and widget states). Icons in an icon factory are named by a
-stock ID, which is a simple string identifying the icon. Each
-`Style` has a list of ``GtkIconFactorys`` derived from the current
-theme; those icon factories are consulted first when searching for
-an icon. If the theme doesn’t set a particular icon, GTK+ looks for
-the icon in a list of default icon factories, maintained by
-`IconFactory::add_default` and
-`IconFactory::remove_default`. Applications with icons should
-add a default icon factory with their icons, which will allow
-themes to override the icons for the application.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-a new `IconFactory`
-<!-- impl IconFactory::fn lookup_default -->
-Looks for an icon in the list of default icon factories. For
-display to the user, you should use `Style::lookup_icon_set` on
-the `Style` for the widget that will display the icon, instead of
-using this function directly, so that themes are taken into
-account.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `stock_id`
-an icon name
-
-# Returns
-
-a `IconSet`, or `None`
-<!-- impl IconFactory::fn add -->
-Adds the given `icon_set` to the icon factory, under the name
-`stock_id`. `stock_id` should be namespaced for your application,
-e.g. “myapp-whatever-icon”. Normally applications create a
-`IconFactory`, then add it to the list of default factories with
-`IconFactory::add_default`. Then they pass the `stock_id` to
-widgets such as `Image` to display the icon. Themes can provide
-an icon with the same name (such as "myapp-whatever-icon") to
-override your application’s default icons. If an icon already
-existed in `self` for `stock_id`, it is unreferenced and replaced
-with the new `icon_set`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `stock_id`
-icon name
-## `icon_set`
-icon set
-<!-- impl IconFactory::fn add_default -->
-Adds an icon factory to the list of icon factories searched by
-`Style::lookup_icon_set`. This means that, for example,
-`Image::new_from_stock` will be able to find icons in `self`.
-There will normally be an icon factory added for each library or
-application that comes with icons. The default icon factories
-can be overridden by themes.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-<!-- impl IconFactory::fn lookup -->
-Looks up `stock_id` in the icon factory, returning an icon set
-if found, otherwise `None`. For display to the user, you should
-use `Style::lookup_icon_set` on the `Style` for the
-widget that will display the icon, instead of using this
-function directly, so that themes are taken into account.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `stock_id`
-an icon name
-
-# Returns
-
-icon set of `stock_id`.
-<!-- impl IconFactory::fn remove_default -->
-Removes an icon factory from the list of default icon
-factories. Not normally used; you might use it for a library that
-can be unloaded or shut down.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
 <!-- struct IconInfo -->
 Contains information found when looking up an icon in
 an icon theme.
@@ -18048,38 +16992,6 @@ the pixbuf to wrap in a `IconInfo`
 # Returns
 
 a `IconInfo`
-<!-- trait IconInfoExt::fn copy -->
-Make a copy of a `IconInfo`.
-
-# Deprecated since 3.8
-
-Use `gobject::ObjectExt::ref`
-
-# Returns
-
-the new `IconInfo`
-<!-- trait IconInfoExt::fn free -->
-Free a `IconInfo` and associated information
-
-# Deprecated since 3.8
-
-Use `gobject::ObjectExt::unref`
-<!-- trait IconInfoExt::fn get_attach_points -->
-This function is deprecated and always returns `false`.
-
-# Deprecated since 3.14
-
-Attachment points are deprecated
-## `points`
-location to store pointer
- to an array of points, or `None` free the array of points with `g_free`.
-## `n_points`
-location to store the number of points in `points`,
- or `None`
-
-# Returns
-
-`false`
 <!-- trait IconInfoExt::fn get_base_scale -->
 Gets the base scale for the icon. The base scale is a scale
 for the icon that was specified by the icon theme creator.
@@ -18107,46 +17019,6 @@ not include the base scale.
 
 the base size, or 0, if no base
  size is known for the icon.
-<!-- trait IconInfoExt::fn get_builtin_pixbuf -->
-Gets the built-in image for this icon, if any. To allow GTK+ to use
-built in icon images, you must pass the `IconLookupFlags::UseBuiltin`
-to `IconThemeExt::lookup_icon`.
-
-# Deprecated since 3.14
-
-This function is deprecated, use
- `IconThemeExt::add_resource_path` instead of builtin icons.
-
-# Returns
-
-the built-in image pixbuf, or `None`.
- No extra reference is added to the returned pixbuf, so if
- you want to keep it around, you must use `gobject::ObjectExt::ref`.
- The returned image must not be modified.
-<!-- trait IconInfoExt::fn get_display_name -->
-This function is deprecated and always returns `None`.
-
-# Deprecated since 3.14
-
-Display names are deprecated
-
-# Returns
-
-`None`
-<!-- trait IconInfoExt::fn get_embedded_rect -->
-This function is deprecated and always returns `false`.
-
-# Deprecated since 3.14
-
-Embedded rectangles are deprecated
-## `rectangle`
-`gdk::Rectangle` in which to store embedded
- rectangle coordinates; coordinates are only stored
- when this function returns `true`.
-
-# Returns
-
-`false`
 <!-- trait IconInfoExt::fn get_filename -->
 Gets the filename for the icon. If the `IconLookupFlags::UseBuiltin`
 flag was passed to `IconThemeExt::lookup_icon`, there may be no
@@ -18359,235 +17231,7 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
-<!-- trait IconInfoExt::fn load_symbolic_for_style -->
-Loads an icon, modifying it to match the system colours for the foreground,
-success, warning and error colors provided. If the icon is not a symbolic
-one, the function will return the result from `IconInfoExt::load_icon`.
-
-This allows loading symbolic icons that will match the system theme.
-
-See `IconInfoExt::load_symbolic` for more details.
-
-# Deprecated since 3.0
-
-Use `IconInfoExt::load_symbolic_for_context` instead
-## `style`
-a `Style` to take the colors from
-## `state`
-the widget state to use for colors
-## `was_symbolic`
-a `gboolean`, returns whether the
- loaded icon was a symbolic one and whether the `fg` color was
- applied to it.
-
-# Returns
-
-a `gdk_pixbuf::Pixbuf` representing the loaded icon
-<!-- trait IconInfoExt::fn set_raw_coordinates -->
-Sets whether the coordinates returned by `IconInfo::get_embedded_rect`
-and `IconInfo::get_attach_points` should be returned in their
-original form as specified in the icon theme, instead of scaled
-appropriately for the pixbuf returned by `IconInfoExt::load_icon`.
-
-Raw coordinates are somewhat strange; they are specified to be with
-respect to the unscaled pixmap for PNG and XPM icons, but for SVG
-icons, they are in a 1000x1000 coordinate space that is scaled
-to the final size of the icon. You can determine if the icon is an SVG
-icon by using `IconInfoExt::get_filename`, and seeing if it is non-`None`
-and ends in “.svg”.
-
-This function is provided primarily to allow compatibility wrappers
-for older API's, and is not expected to be useful for applications.
-
-# Deprecated since 3.14
-
-Embedded rectangles and attachment points are deprecated
-## `raw_coordinates`
-whether the coordinates of embedded rectangles
- and attached points should be returned in their original
- (unscaled) form.
 <!-- struct IconSet -->
-<!-- impl IconSet::fn new -->
-Creates a new `IconSet`. A `IconSet` represents a single icon
-in various sizes and widget states. It can provide a `gdk_pixbuf::Pixbuf`
-for a given size and state on request, and automatically caches
-some of the rendered `gdk_pixbuf::Pixbuf` objects.
-
-Normally you would use `Widget::render_icon_pixbuf` instead of
-using `IconSet` directly. The one case where you’d use
-`IconSet` is to create application-specific icon sets to place in
-a `IconFactory`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-a new `IconSet`
-<!-- impl IconSet::fn new_from_pixbuf -->
-Creates a new `IconSet` with `pixbuf` as the default/fallback
-source image. If you don’t add any additional `IconSource` to the
-icon set, all variants of the icon will be created from `pixbuf`,
-using scaling, pixelation, etc. as required to adjust the icon size
-or make the icon look insensitive/prelighted.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `pixbuf`
-a `gdk_pixbuf::Pixbuf`
-
-# Returns
-
-a new `IconSet`
-<!-- impl IconSet::fn add_source -->
-Icon sets have a list of `IconSource`, which they use as base
-icons for rendering icons in different states and sizes. Icons are
-scaled, made to look insensitive, etc. in
-`IconSet::render_icon`, but `IconSet` needs base images to
-work with. The base images and when to use them are described by
-a `IconSource`.
-
-This function copies `source`, so you can reuse the same source immediately
-without affecting the icon set.
-
-An example of when you’d use this function: a web browser’s "Back
-to Previous Page" icon might point in a different direction in
-Hebrew and in English; it might look different when insensitive;
-and it might change size depending on toolbar mode (small/large
-icons). So a single icon set would contain all those variants of
-the icon, and you might add a separate source for each one.
-
-You should nearly always add a “default” icon source with all
-fields wildcarded, which will be used as a fallback if no more
-specific source matches. `IconSet` always prefers more specific
-icon sources to more generic icon sources. The order in which you
-add the sources to the icon set does not matter.
-
-`IconSet::new_from_pixbuf` creates a new icon set with a
-default icon source based on the given pixbuf.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `source`
-a `IconSource`
-<!-- impl IconSet::fn copy -->
-Copies `self` by value.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-a new `IconSet` identical to the first.
-<!-- impl IconSet::fn get_sizes -->
-Obtains a list of icon sizes this icon set can render. The returned
-array must be freed with `g_free`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `sizes`
-return location
- for array of sizes (`IconSize`)
-## `n_sizes`
-location to store number of elements in returned array
-<!-- impl IconSet::fn ref -->
-Increments the reference count on `self`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-`self`.
-<!-- impl IconSet::fn render_icon -->
-Renders an icon using `Style::render_icon`. In most cases,
-`Widget::render_icon` is better, since it automatically provides
-most of the arguments from the current widget settings. This
-function never returns `None`; if the icon can’t be rendered
-(perhaps because an image file fails to load), a default "missing
-image" icon will be returned instead.
-
-# Deprecated since 3.0
-
-Use `IconSet::render_icon_pixbuf` instead
-## `style`
-a `Style` associated with `widget`, or `None`
-## `direction`
-text direction
-## `state`
-widget state
-## `size`
-icon size (`IconSize`). A size of `(GtkIconSize)-1`
- means render at the size of the source and don’t scale.
-## `widget`
-widget that will display the icon, or `None`.
- The only use that is typically made of this
- is to determine the appropriate `gdk::Screen`.
-## `detail`
-detail to pass to the theme engine, or `None`.
- Note that passing a detail of anything but `None`
- will disable caching.
-
-# Returns
-
-a `gdk_pixbuf::Pixbuf` to be displayed
-<!-- impl IconSet::fn render_icon_pixbuf -->
-Renders an icon using `gtk_render_icon_pixbuf`. In most cases,
-`Widget::render_icon_pixbuf` is better, since it automatically provides
-most of the arguments from the current widget settings. This
-function never returns `None`; if the icon can’t be rendered
-(perhaps because an image file fails to load), a default "missing
-image" icon will be returned instead.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `context`
-a `StyleContext`
-## `size`
-icon size (`IconSize`). A size of `(GtkIconSize)-1`
- means render at the size of the source and don’t scale.
-
-# Returns
-
-a `gdk_pixbuf::Pixbuf` to be displayed
-<!-- impl IconSet::fn render_icon_surface -->
-Renders an icon using `gtk_render_icon_pixbuf` and converts it to a
-cairo surface.
-
-This function never returns `None`; if the icon can’t be rendered
-(perhaps because an image file fails to load), a default "missing
-image" icon will be returned instead.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `context`
-a `StyleContext`
-## `size`
-icon size (`IconSize`). A size of `(GtkIconSize)-1`
- means render at the size of the source and don’t scale.
-## `scale`
-the window scale to render for
-## `for_window`
-`gdk::Window` to optimize drawing for, or `None`
-
-# Returns
-
-a `cairo::Surface` to be displayed
-<!-- impl IconSet::fn unref -->
-Decrements the reference count on `self`, and frees memory
-if the reference count reaches 0.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
 <!-- enum IconSize -->
 Built-in stock icon sizes.
 <!-- enum IconSize::variant Invalid -->
@@ -18605,290 +17249,6 @@ Size appropriate for drag and drop (32px)
 <!-- enum IconSize::variant Dialog -->
 Size appropriate for dialogs (48px)
 <!-- struct IconSource -->
-<!-- impl IconSource::fn new -->
-Creates a new `IconSource`. A `IconSource` contains a `gdk_pixbuf::Pixbuf` (or
-image filename) that serves as the base image for one or more of the
-icons in a `IconSet`, along with a specification for which icons in the
-icon set will be based on that pixbuf or image file. An icon set contains
-a set of icons that represent “the same” logical concept in different states,
-different global text directions, and different sizes.
-
-So for example a web browser’s “Back to Previous Page” icon might
-point in a different direction in Hebrew and in English; it might
-look different when insensitive; and it might change size depending
-on toolbar mode (small/large icons). So a single icon set would
-contain all those variants of the icon. `IconSet` contains a list
-of `IconSource` from which it can derive specific icon variants in
-the set.
-
-In the simplest case, `IconSet` contains one source pixbuf from
-which it derives all variants. The convenience function
-`IconSet::new_from_pixbuf` handles this case; if you only have
-one source pixbuf, just use that function.
-
-If you want to use a different base pixbuf for different icon
-variants, you create multiple icon sources, mark which variants
-they’ll be used to create, and add them to the icon set with
-`IconSet::add_source`.
-
-By default, the icon source has all parameters wildcarded. That is,
-the icon source will be used as the base icon for any desired text
-direction, widget state, or icon size.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-a new `IconSource`
-<!-- impl IconSource::fn copy -->
-Creates a copy of `self`; mostly useful for language bindings.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-a new `IconSource`
-<!-- impl IconSource::fn free -->
-Frees a dynamically-allocated icon source, along with its
-filename, size, and pixbuf fields if those are not `None`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-<!-- impl IconSource::fn get_direction -->
-Obtains the text direction this icon source applies to. The return
-value is only useful/meaningful if the text direction is not
-wildcarded.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-text direction this source matches
-<!-- impl IconSource::fn get_direction_wildcarded -->
-Gets the value set by `IconSource::set_direction_wildcarded`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-`true` if this icon source is a base for any text direction variant
-<!-- impl IconSource::fn get_filename -->
-Retrieves the source filename, or `None` if none is set. The
-filename is not a copy, and should not be modified or expected to
-persist beyond the lifetime of the icon source.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-image filename. This string must not
-be modified or freed.
-<!-- impl IconSource::fn get_icon_name -->
-Retrieves the source icon name, or `None` if none is set. The
-icon_name is not a copy, and should not be modified or expected to
-persist beyond the lifetime of the icon source.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-icon name. This string must not be modified or freed.
-<!-- impl IconSource::fn get_pixbuf -->
-Retrieves the source pixbuf, or `None` if none is set.
-In addition, if a filename source is in use, this
-function in some cases will return the pixbuf from
-loaded from the filename. This is, for example, true
-for the `IconSource` passed to the `Style` `render_icon`
-virtual function. The reference count on the pixbuf is
-not incremented.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-source pixbuf
-<!-- impl IconSource::fn get_size -->
-Obtains the icon size this source applies to. The return value
-is only useful/meaningful if the icon size is not wildcarded.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-icon size (`IconSize`) this source matches.
-<!-- impl IconSource::fn get_size_wildcarded -->
-Gets the value set by `IconSource::set_size_wildcarded`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-`true` if this icon source is a base for any icon size variant
-<!-- impl IconSource::fn get_state -->
-Obtains the widget state this icon source applies to. The return
-value is only useful/meaningful if the widget state is not
-wildcarded.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-widget state this source matches
-<!-- impl IconSource::fn get_state_wildcarded -->
-Gets the value set by `IconSource::set_state_wildcarded`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-
-# Returns
-
-`true` if this icon source is a base for any widget state variant
-<!-- impl IconSource::fn set_direction -->
-Sets the text direction this icon source is intended to be used
-with.
-
-Setting the text direction on an icon source makes no difference
-if the text direction is wildcarded. Therefore, you should usually
-call `IconSource::set_direction_wildcarded` to un-wildcard it
-in addition to calling this function.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `direction`
-text direction this source applies to
-<!-- impl IconSource::fn set_direction_wildcarded -->
-If the text direction is wildcarded, this source can be used
-as the base image for an icon in any `TextDirection`.
-If the text direction is not wildcarded, then the
-text direction the icon source applies to should be set
-with `IconSource::set_direction`, and the icon source
-will only be used with that text direction.
-
-`IconSet` prefers non-wildcarded sources (exact matches) over
-wildcarded sources, and will use an exact match when possible.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `setting`
-`true` to wildcard the text direction
-<!-- impl IconSource::fn set_filename -->
-Sets the name of an image file to use as a base image when creating
-icon variants for `IconSet`. The filename must be absolute.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `filename`
-image file to use
-<!-- impl IconSource::fn set_icon_name -->
-Sets the name of an icon to look up in the current icon theme
-to use as a base image when creating icon variants for `IconSet`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `icon_name`
-name of icon to use
-<!-- impl IconSource::fn set_pixbuf -->
-Sets a pixbuf to use as a base image when creating icon variants
-for `IconSet`.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `pixbuf`
-pixbuf to use as a source
-<!-- impl IconSource::fn set_size -->
-Sets the icon size this icon source is intended to be used
-with.
-
-Setting the icon size on an icon source makes no difference
-if the size is wildcarded. Therefore, you should usually
-call `IconSource::set_size_wildcarded` to un-wildcard it
-in addition to calling this function.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `size`
-icon size (`IconSize`) this source applies to
-<!-- impl IconSource::fn set_size_wildcarded -->
-If the icon size is wildcarded, this source can be used as the base
-image for an icon of any size. If the size is not wildcarded, then
-the size the source applies to should be set with
-`IconSource::set_size` and the icon source will only be used
-with that specific size.
-
-`IconSet` prefers non-wildcarded sources (exact matches) over
-wildcarded sources, and will use an exact match when possible.
-
-`IconSet` will normally scale wildcarded source images to produce
-an appropriate icon at a given size, but will not change the size
-of source images that match exactly.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `setting`
-`true` to wildcard the widget state
-<!-- impl IconSource::fn set_state -->
-Sets the widget state this icon source is intended to be used
-with.
-
-Setting the widget state on an icon source makes no difference
-if the state is wildcarded. Therefore, you should usually
-call `IconSource::set_state_wildcarded` to un-wildcard it
-in addition to calling this function.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `state`
-widget state this source applies to
-<!-- impl IconSource::fn set_state_wildcarded -->
-If the widget state is wildcarded, this source can be used as the
-base image for an icon in any `StateType`. If the widget state
-is not wildcarded, then the state the source applies to should be
-set with `IconSource::set_state` and the icon source will
-only be used with that specific state.
-
-`IconSet` prefers non-wildcarded sources (exact matches) over
-wildcarded sources, and will use an exact match when possible.
-
-`IconSet` will normally transform wildcarded source images to
-produce an appropriate icon for a given state, for example
-lightening an image on prelight, but will not modify source images
-that match exactly.
-
-# Deprecated since 3.10
-
-Use `IconTheme` instead.
-## `setting`
-`true` to wildcard the widget state
 <!-- struct IconTheme -->
 `IconTheme` provides a facility for looking up icons by name
 and size. The main reason for using a name rather than simply
@@ -18979,32 +17339,6 @@ a new icon theme object for scratch.
 # Returns
 
 the newly created `IconTheme` object.
-<!-- impl IconTheme::fn add_builtin_icon -->
-Registers a built-in icon for icon theme lookups. The idea
-of built-in icons is to allow an application or library
-that uses themed icons to function requiring files to
-be present in the file system. For instance, the default
-images for all of GTK+’s stock icons are registered
-as built-icons.
-
-In general, if you use `IconTheme::add_builtin_icon`
-you should also install the icon in the icon theme, so
-that the icon is generally available.
-
-This function will generally be used with pixbufs loaded
-via `gdk_pixbuf::Pixbuf::new_from_inline`.
-
-# Deprecated since 3.14
-
-Use `IconThemeExt::add_resource_path`
- to add application-specific icons to the icon theme.
-## `icon_name`
-the name of the icon to register
-## `size`
-the size in pixels at which to register the icon (different
- images can be registered for the same icon name at different sizes.)
-## `pixbuf`
-`gdk_pixbuf::Pixbuf` that contains the image to use for `icon_name`
 <!-- impl IconTheme::fn get_default -->
 Gets the icon theme for the default screen. See
 `IconTheme::get_for_screen`.
@@ -20351,30 +18685,6 @@ a stock icon size (`IconSize`)
 # Returns
 
 a new `Image` displaying the themed icon
-<!-- impl Image::fn new_from_icon_set -->
-Creates a `Image` displaying an icon set. Sample stock sizes are
-`IconSize::Menu`, `IconSize::SmallToolbar`. Instead of using
-this function, usually it’s better to create a `IconFactory`, put
-your icon sets in the icon factory, add the icon factory to the
-list of default factories with `IconFactory::add_default`, and
-then use `Image::new_from_stock`. This will allow themes to
-override the icon you ship with your application.
-
-The `Image` does not assume a reference to the
-icon set; you still need to unref it if you own references.
-`Image` will add its own reference rather than adopting yours.
-
-# Deprecated since 3.10
-
-Use `Image::new_from_icon_name` instead.
-## `icon_set`
-a `IconSet`
-## `size`
-a stock icon size (`IconSize`)
-
-# Returns
-
-a new `Image`
 <!-- impl Image::fn new_from_pixbuf -->
 Creates a new `Image` displaying `pixbuf`.
 The `Image` does not assume a reference to the
@@ -20413,25 +18723,6 @@ a resource path
 # Returns
 
 a new `Image`
-<!-- impl Image::fn new_from_stock -->
-Creates a `Image` displaying a stock icon. Sample stock icon
-names are `GTK_STOCK_OPEN`, `GTK_STOCK_QUIT`. Sample stock sizes
-are `IconSize::Menu`, `IconSize::SmallToolbar`. If the stock
-icon name isn’t known, the image will be empty.
-You can register your own stock icon names, see
-`IconFactory::add_default` and `IconFactory::add`.
-
-# Deprecated since 3.10
-
-Use `Image::new_from_icon_name` instead.
-## `stock_id`
-a stock icon name
-## `size`
-a stock icon size (`IconSize`)
-
-# Returns
-
-a new `Image` displaying the stock icon
 <!-- impl Image::fn new_from_surface -->
 Creates a new `Image` displaying `surface`.
 The `Image` does not assume a reference to the
@@ -20480,20 +18771,6 @@ place to store an
 ## `size`
 place to store an icon size
  (`IconSize`), or `None`
-<!-- trait ImageExt::fn get_icon_set -->
-Gets the icon set and size being displayed by the `Image`.
-The storage type of the image must be `ImageType::Empty` or
-`ImageType::IconSet` (see `ImageExt::get_storage_type`).
-
-# Deprecated since 3.10
-
-Use `Image::get_icon_name` instead.
-## `icon_set`
-location to store a
- `IconSet`, or `None`
-## `size`
-location to store a stock
- icon size (`IconSize`), or `None`
 <!-- trait ImageExt::fn get_pixbuf -->
 Gets the `gdk_pixbuf::Pixbuf` being displayed by the `Image`.
 The storage type of the image must be `ImageType::Empty` or
@@ -20511,22 +18788,6 @@ Gets the pixel size used for named icons.
 # Returns
 
 the pixel size used for named icons.
-<!-- trait ImageExt::fn get_stock -->
-Gets the stock icon name and size being displayed by the `Image`.
-The storage type of the image must be `ImageType::Empty` or
-`ImageType::Stock` (see `ImageExt::get_storage_type`).
-The returned string is owned by the `Image` and should not
-be freed.
-
-# Deprecated since 3.10
-
-Use `Image::get_icon_name` instead.
-## `stock_id`
-place to store a
- stock icon name, or `None`
-## `size`
-place to store a stock icon
- size (`IconSize`), or `None`
 <!-- trait ImageExt::fn get_storage_type -->
 Gets the type of representation being used by the `Image`
 to store image data. If the `Image` has no image data,
@@ -20556,16 +18817,6 @@ See `Image::new_from_icon_name` for details.
 an icon name or `None`
 ## `size`
 an icon size (`IconSize`)
-<!-- trait ImageExt::fn set_from_icon_set -->
-See `Image::new_from_icon_set` for details.
-
-# Deprecated since 3.10
-
-Use `ImageExt::set_from_icon_name` instead.
-## `icon_set`
-a `IconSet`
-## `size`
-a stock icon size (`IconSize`)
 <!-- trait ImageExt::fn set_from_pixbuf -->
 See `Image::new_from_pixbuf` for details.
 ## `pixbuf`
@@ -20574,16 +18825,6 @@ a `gdk_pixbuf::Pixbuf` or `None`
 See `Image::new_from_resource` for details.
 ## `resource_path`
 a resource path or `None`
-<!-- trait ImageExt::fn set_from_stock -->
-See `Image::new_from_stock` for details.
-
-# Deprecated since 3.10
-
-Use `ImageExt::set_from_icon_name` instead.
-## `stock_id`
-a stock icon name
-## `size`
-a stock icon size (`IconSize`)
 <!-- trait ImageExt::fn set_from_surface -->
 See `Image::new_from_surface` for details.
 ## `surface`
@@ -20608,16 +18849,6 @@ changed, the image will be updated automatically.
 <!-- trait ImageExt::fn set_property_icon-name -->
 The name of the icon in the icon theme. If the icon theme is
 changed, the image will be updated automatically.
-<!-- trait ImageExt::fn get_property_icon-set -->
-
-# Deprecated since 3.10
-
-Use `Image:icon-name` instead.
-<!-- trait ImageExt::fn set_property_icon-set -->
-
-# Deprecated since 3.10
-
-Use `Image:icon-name` instead.
 <!-- trait ImageExt::fn get_property_pixel-size -->
 The "pixel-size" property can be used to specify a fixed size
 overriding the `Image:icon-size` property for images of type
@@ -20630,16 +18861,6 @@ overriding the `Image:icon-size` property for images of type
 A path to a resource file to display.
 <!-- trait ImageExt::fn set_property_resource -->
 A path to a resource file to display.
-<!-- trait ImageExt::fn get_property_stock -->
-
-# Deprecated since 3.10
-
-Use `Image:icon-name` instead.
-<!-- trait ImageExt::fn set_property_stock -->
-
-# Deprecated since 3.10
-
-Use `Image:icon-name` instead.
 <!-- trait ImageExt::fn get_property_use-fallback -->
 Whether the icon displayed in the `Image` will use
 standard icon names fallback. The value of this property
@@ -20718,192 +18939,6 @@ binding of Ctrl+M:
 # Implements
 
 [`GtkMenuItemExt`](trait.GtkMenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- impl ImageMenuItem::fn new -->
-Creates a new `ImageMenuItem` with an empty label.
-
-# Deprecated since 3.10
-
-Use `MenuItem::new` instead.
-
-# Returns
-
-a new `ImageMenuItem`
-<!-- impl ImageMenuItem::fn new_from_stock -->
-Creates a new `ImageMenuItem` containing the image and text from a
-stock item. Some stock ids have preprocessor macros like `GTK_STOCK_OK`
-and `GTK_STOCK_APPLY`.
-
-If you want this menu item to have changeable accelerators, then pass in
-`None` for accel_group. Next call `GtkMenuItemExt::set_accel_path` with an
-appropriate path for the menu item, use `gtk_stock_lookup` to look up the
-standard accelerator for the stock item, and if one is found, call
-`AccelMap::add_entry` to register it.
-
-# Deprecated since 3.10
-
-Use `MenuItem::new_with_mnemonic` instead.
-## `stock_id`
-the name of the stock item.
-## `accel_group`
-the `AccelGroup` to add the menu items
- accelerator to, or `None`.
-
-# Returns
-
-a new `ImageMenuItem`.
-<!-- impl ImageMenuItem::fn new_with_label -->
-Creates a new `ImageMenuItem` containing a label.
-
-# Deprecated since 3.10
-
-Use `MenuItem::new_with_label` instead.
-## `label`
-the text of the menu item.
-
-# Returns
-
-a new `ImageMenuItem`.
-<!-- impl ImageMenuItem::fn new_with_mnemonic -->
-Creates a new `ImageMenuItem` containing a label. The label
-will be created using `Label::new_with_mnemonic`, so underscores
-in `label` indicate the mnemonic for the menu item.
-
-# Deprecated since 3.10
-
-Use `MenuItem::new_with_mnemonic` instead.
-## `label`
-the text of the menu item, with an underscore in front of the
- mnemonic character
-
-# Returns
-
-a new `ImageMenuItem`
-<!-- impl ImageMenuItem::fn get_always_show_image -->
-Returns whether the menu item will ignore the `Settings:gtk-menu-images`
-setting and always show the image, if available.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-`true` if the menu item will always show the image
-<!-- impl ImageMenuItem::fn get_image -->
-Gets the widget that is currently set as the image of `self`.
-See `ImageMenuItem::set_image`.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-the widget set as image of `self`
-<!-- impl ImageMenuItem::fn get_use_stock -->
-Checks whether the label set in the menuitem is used as a
-stock id to select the stock item for the item.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-`true` if the label set in the menuitem is used as a
- stock id to select the stock item for the item
-<!-- impl ImageMenuItem::fn set_accel_group -->
-Specifies an `accel_group` to add the menu items accelerator to
-(this only applies to stock items so a stock item must already
-be set, make sure to call `ImageMenuItem::set_use_stock`
-and `GtkMenuItemExt::set_label` with a valid stock item first).
-
-If you want this menu item to have changeable accelerators then
-you shouldnt need this (see `ImageMenuItem::new_from_stock`).
-
-# Deprecated since 3.10
-
-## `accel_group`
-the `AccelGroup`
-<!-- impl ImageMenuItem::fn set_always_show_image -->
-If `true`, the menu item will ignore the `Settings:gtk-menu-images`
-setting and always show the image, if available.
-
-Use this property if the menuitem would be useless or hard to use
-without the image.
-
-# Deprecated since 3.10
-
-## `always_show`
-`true` if the menuitem should always show the image
-<!-- impl ImageMenuItem::fn set_image -->
-Sets the image of `self` to the given widget.
-Note that it depends on the show-menu-images setting whether
-the image will be displayed or not.
-
-# Deprecated since 3.10
-
-## `image`
-a widget to set as the image for the menu item.
-<!-- impl ImageMenuItem::fn set_use_stock -->
-If `true`, the label set in the menuitem is used as a
-stock id to select the stock item for the item.
-
-# Deprecated since 3.10
-
-## `use_stock`
-`true` if the menuitem should use a stock item
-<!-- trait ImageMenuItemExt::fn set_property_accel-group -->
-The Accel Group to use for stock accelerator keys
-
-# Deprecated since 3.10
-
-Use `WidgetExt::add_accelerator` instead
-<!-- trait ImageMenuItemExt::fn get_property_always-show-image -->
-If `true`, the menu item will always show the image, if available.
-
-Use this property only if the menuitem would be useless or hard to use
-without the image.
-
-# Deprecated since 3.10
-
-Use a `MenuItem` containing a `Box` with
- a `AccelLabel` and a `Image` instead
-<!-- trait ImageMenuItemExt::fn set_property_always-show-image -->
-If `true`, the menu item will always show the image, if available.
-
-Use this property only if the menuitem would be useless or hard to use
-without the image.
-
-# Deprecated since 3.10
-
-Use a `MenuItem` containing a `Box` with
- a `AccelLabel` and a `Image` instead
-<!-- trait ImageMenuItemExt::fn get_property_image -->
-Child widget to appear next to the menu text.
-
-# Deprecated since 3.10
-
-Use a `MenuItem` containing a `Box` with
- a `AccelLabel` and a `Image` instead
-<!-- trait ImageMenuItemExt::fn set_property_image -->
-Child widget to appear next to the menu text.
-
-# Deprecated since 3.10
-
-Use a `MenuItem` containing a `Box` with
- a `AccelLabel` and a `Image` instead
-<!-- trait ImageMenuItemExt::fn get_property_use-stock -->
-If `true`, the label set in the menuitem is used as a
-stock id to select the stock item for the item.
-
-# Deprecated since 3.10
-
-Use a named icon from the `IconTheme` instead
-<!-- trait ImageMenuItemExt::fn set_property_use-stock -->
-If `true`, the label set in the menuitem is used as a
-stock id to select the stock item for the item.
-
-# Deprecated since 3.10
-
-Use a named icon from the `IconTheme` instead
 <!-- enum ImageType -->
 Describes the image data representation used by a `Image`. If you
 want to get the image from the widget, you can only get the
@@ -22113,21 +20148,6 @@ Retrieve the bin window of the layout used for drawing operations.
 # Returns
 
 a `gdk::Window`
-<!-- trait LayoutExt::fn get_hadjustment -->
-This function should only be called after the layout has been
-placed in a `ScrolledWindow` or otherwise configured for
-scrolling. It returns the `Adjustment` used for communication
-between the horizontal scrollbar and `self`.
-
-See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_hadjustment`
-
-# Returns
-
-horizontal scroll adjustment
 <!-- trait LayoutExt::fn get_size -->
 Gets the size that has been set on the layout, and that determines
 the total extents of the layout’s scrollbar area. See
@@ -22138,21 +20158,6 @@ location to store the width set on
 ## `height`
 location to store the height set on
  `self`, or `None`
-<!-- trait LayoutExt::fn get_vadjustment -->
-This function should only be called after the layout has been
-placed in a `ScrolledWindow` or otherwise configured for
-scrolling. It returns the `Adjustment` used for communication
-between the vertical scrollbar and `self`.
-
-See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_vadjustment`
-
-# Returns
-
-vertical scroll adjustment
 <!-- trait LayoutExt::fn move -->
 Moves a current child of `self` to a new position.
 ## `child_widget`
@@ -22170,32 +20175,12 @@ child widget
 X position of child widget
 ## `y`
 Y position of child widget
-<!-- trait LayoutExt::fn set_hadjustment -->
-Sets the horizontal scroll adjustment for the layout.
-
-See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_hadjustment`
-## `adjustment`
-new scroll adjustment
 <!-- trait LayoutExt::fn set_size -->
 Sets the size of the scrollable area of the layout.
 ## `width`
 width of entire scrollable area
 ## `height`
 height of entire scrollable area
-<!-- trait LayoutExt::fn set_vadjustment -->
-Sets the vertical scroll adjustment for the layout.
-
-See `ScrolledWindow`, `Scrollbar`, `Adjustment` for details.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_vadjustment`
-## `adjustment`
-new scroll adjustment
 <!-- struct LevelBar -->
 The `LevelBar` is a bar widget that can be used
 as a level indicator. Typical use cases are displaying the strength
@@ -23625,27 +21610,6 @@ icons, regardless of their actual presence.
 # Returns
 
 Whether the menu reserves toggle space
-<!-- trait GtkMenuExt::fn get_tearoff_state -->
-Returns whether the menu is torn off.
-See `Menu::set_tearoff_state`.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-`true` if the menu is currently torn off.
-<!-- trait GtkMenuExt::fn get_title -->
-Returns the title of the menu. See `Menu::set_title`.
-
-# Deprecated since 3.10
-
-
-# Returns
-
-the title of the menu, or `None` if the menu
- has no title set on it. This string is owned by GTK+
- and should not be modified or freed.
 <!-- trait GtkMenuExt::fn place_on_monitor -->
 Places `self` on the given monitor.
 
@@ -23906,29 +21870,6 @@ Sets the `gdk::Screen` on which the menu will be displayed.
 ## `screen`
 a `gdk::Screen`, or `None` if the screen should be
  determined by the widget the menu is attached to
-<!-- trait GtkMenuExt::fn set_tearoff_state -->
-Changes the tearoff state of the menu. A menu is normally
-displayed as drop down menu which persists as long as the menu is
-active. It can also be displayed as a tearoff menu which persists
-until it is closed or reattached.
-
-# Deprecated since 3.10
-
-## `torn_off`
-If `true`, menu is displayed as a tearoff menu.
-<!-- trait GtkMenuExt::fn set_title -->
-Sets the title string for the menu.
-
-The title is displayed when the menu is shown as a tearoff
-menu. If `title` is `None`, the menu will see if it is attached
-to a parent menu item, and if so it will try to use the same
-text as that menu item’s label.
-
-# Deprecated since 3.10
-
-## `title`
-a string containing the title for the menu, or `None` to
- inherit the title of the parent menu item, if any
 <!-- trait GtkMenuExt::fn connect_move_scroll -->
 ## `scroll_type`
 a `ScrollType`
@@ -24102,28 +22043,6 @@ This property should only be changed from its default value
 for special-purposes such as tabular menus. Regular menus that
 are connected to a menu bar or context menus should reserve
 toggle space for consistency.
-<!-- trait GtkMenuExt::fn get_property_tearoff-state -->
-A boolean that indicates whether the menu is torn-off.
-
-# Deprecated since 3.10
-
-<!-- trait GtkMenuExt::fn set_property_tearoff-state -->
-A boolean that indicates whether the menu is torn-off.
-
-# Deprecated since 3.10
-
-<!-- trait GtkMenuExt::fn get_property_tearoff-title -->
-A title that may be displayed by the window manager when this
-menu is torn-off.
-
-# Deprecated since 3.10
-
-<!-- trait GtkMenuExt::fn set_property_tearoff-title -->
-A title that may be displayed by the window manager when this
-menu is torn-off.
-
-# Deprecated since 3.10
-
 <!-- struct MenuBar -->
 The `MenuBar` is a subclass of `MenuShell` which contains one or
 more ``GtkMenuItems``. The result is a standard menu bar which can hold
@@ -24551,18 +22470,6 @@ or not.
 
 `true` if `self` always reserves space for the
  submenu indicator
-<!-- trait GtkMenuItemExt::fn get_right_justified -->
-Gets whether the menu item appears justified at the right
-side of the menu bar.
-
-# Deprecated since 3.2
-
-See `MenuItem::set_right_justified`
-
-# Returns
-
-`true` if the menu item will appear at the
- far right if added to a menu bar.
 <!-- trait GtkMenuItemExt::fn get_submenu -->
 Gets the submenu underneath this menu item, if any.
 See `GtkMenuItemExt::set_submenu`.
@@ -24616,20 +22523,6 @@ There should be little need for applications to call
 this functions.
 ## `reserve`
 the new value
-<!-- trait GtkMenuItemExt::fn set_right_justified -->
-Sets whether the menu item appears justified at the right
-side of a menu bar. This was traditionally done for “Help”
-menu items, but is now considered a bad idea. (If the widget
-layout is reversed for a right-to-left language like Hebrew
-or Arabic, right-justified-menu-items appear at the left.)
-
-# Deprecated since 3.2
-
-If you insist on using it, use
- `WidgetExt::set_hexpand` and `WidgetExt::set_halign`.
-## `right_justified`
-if `true` the menu item will appear at the
- far right if added to a menu bar
 <!-- trait GtkMenuItemExt::fn set_submenu -->
 Sets or replaces the menu item’s submenu, or removes it when a `None`
 submenu is passed.
@@ -24955,20 +22848,6 @@ a string that will be used as label, or `None`
 # Returns
 
 the new `MenuToolButton`
-<!-- impl MenuToolButton::fn new_from_stock -->
-Creates a new `MenuToolButton`.
-The new `MenuToolButton` will contain an icon and label from
-the stock item indicated by `stock_id`.
-
-# Deprecated since 3.10
-
-Use `MenuToolButton::new` instead.
-## `stock_id`
-the name of a stock item
-
-# Returns
-
-the new `MenuToolButton`
 <!-- trait MenuToolButtonExt::fn get_menu -->
 Gets the `Menu` associated with `MenuToolButton`.
 
@@ -25154,16 +23033,6 @@ Sets the secondary text of the message dialog to be `message_format`
 (with `printf`-style).
 ## `message_format`
 `printf`-style format string, or `None`
-<!-- trait MessageDialogExt::fn get_image -->
-Gets the dialog’s image.
-
-# Deprecated since 3.12
-
-Use `Dialog` for dialogs with images
-
-# Returns
-
-the dialog’s image
 <!-- trait MessageDialogExt::fn get_message_area -->
 Returns the message area of the dialog. This is the box where the
 dialog’s primary and secondary labels are packed. You can add your
@@ -25175,31 +23044,11 @@ function in the parent `Dialog`.
 
 A `Box` corresponding to the
  “message area” in the `self`.
-<!-- trait MessageDialogExt::fn set_image -->
-Sets the dialog’s image to `image`.
-
-# Deprecated since 3.12
-
-Use `Dialog` to create dialogs with images
-## `image`
-the image
 <!-- trait MessageDialogExt::fn set_markup -->
 Sets the text of the message dialog to be `str`, which is marked
 up with the [Pango text markup language][PangoMarkupFormat].
 ## `str`
 markup string (see [Pango markup format][PangoMarkupFormat])
-<!-- trait MessageDialogExt::fn get_property_image -->
-The image for this dialog.
-
-# Deprecated since 3.12
-
-Use `Dialog` to create dialogs with images
-<!-- trait MessageDialogExt::fn set_property_image -->
-The image for this dialog.
-
-# Deprecated since 3.12
-
-Use `Dialog` to create dialogs with images
 <!-- trait MessageDialogExt::fn get_property_message-area -->
 The `Box` that corresponds to the message area of this dialog. See
 `MessageDialogExt::get_message_area` for a detailed description of this
@@ -25262,118 +23111,6 @@ this fact, all `Misc` API has been deprecated.
 # Implements
 
 [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- impl Misc::fn get_alignment -->
-Gets the X and Y alignment of the widget within its allocation.
-See `Misc::set_alignment`.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties.
-## `xalign`
-location to store X alignment of `self`, or `None`
-## `yalign`
-location to store Y alignment of `self`, or `None`
-<!-- impl Misc::fn get_padding -->
-Gets the padding in the X and Y directions of the widget.
-See `Misc::set_padding`.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties.
-## `xpad`
-location to store padding in the X
- direction, or `None`
-## `ypad`
-location to store padding in the Y
- direction, or `None`
-<!-- impl Misc::fn set_alignment -->
-Sets the alignment of the widget.
-
-# Deprecated since 3.14
-
-Use `Widget`'s alignment (`Widget:halign` and `Widget:valign`) and margin properties or `Label`'s `Label:xalign` and `Label:yalign` properties.
-## `xalign`
-the horizontal alignment, from 0 (left) to 1 (right).
-## `yalign`
-the vertical alignment, from 0 (top) to 1 (bottom).
-<!-- impl Misc::fn set_padding -->
-Sets the amount of space to add around the widget.
-
-# Deprecated since 3.14
-
-Use `Widget` alignment and margin properties.
-## `xpad`
-the amount of space to add on the left and right of the widget,
- in pixels.
-## `ypad`
-the amount of space to add on the top and bottom of the widget,
- in pixels.
-<!-- trait MiscExt::fn get_property_xalign -->
-The horizontal alignment. A value of 0.0 means left alignment (or right
-on RTL locales); a value of 1.0 means right alignment (or left on RTL
-locales).
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_halign` instead. If you are using
- `Label`, use `Label:xalign` instead.
-<!-- trait MiscExt::fn set_property_xalign -->
-The horizontal alignment. A value of 0.0 means left alignment (or right
-on RTL locales); a value of 1.0 means right alignment (or left on RTL
-locales).
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_halign` instead. If you are using
- `Label`, use `Label:xalign` instead.
-<!-- trait MiscExt::fn get_property_xpad -->
-The amount of space to add on the left and right of the widget, in
-pixels.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_start` and
- `WidgetExt::set_margin_end` instead
-<!-- trait MiscExt::fn set_property_xpad -->
-The amount of space to add on the left and right of the widget, in
-pixels.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_start` and
- `WidgetExt::set_margin_end` instead
-<!-- trait MiscExt::fn get_property_yalign -->
-The vertical alignment. A value of 0.0 means top alignment;
-a value of 1.0 means bottom alignment.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_valign` instead. If you are using
- `Label`, use `Label:yalign` instead.
-<!-- trait MiscExt::fn set_property_yalign -->
-The vertical alignment. A value of 0.0 means top alignment;
-a value of 1.0 means bottom alignment.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_valign` instead. If you are using
- `Label`, use `Label:yalign` instead.
-<!-- trait MiscExt::fn get_property_ypad -->
-The amount of space to add on the top and bottom of the widget, in
-pixels.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_top` and
- `WidgetExt::set_margin_bottom` instead
-<!-- trait MiscExt::fn set_property_ypad -->
-The amount of space to add on the top and bottom of the widget, in
-pixels.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::set_margin_top` and
- `WidgetExt::set_margin_bottom` instead
 <!-- struct ModelButton -->
 `ModelButton` is a button class that can use a `gio::Action` as its model.
 In contrast to `ToggleButton` or `RadioButton`, which can also
@@ -26082,16 +23819,6 @@ a child `Widget`
 # Returns
 
 `true` if the tab is detachable.
-<!-- trait NotebookExt::fn get_tab_hborder -->
-Returns the horizontal width of a tab border.
-
-# Deprecated since 3.4
-
-this function returns zero
-
-# Returns
-
-horizontal width of a tab border
 <!-- trait NotebookExt::fn get_tab_label -->
 Returns the tab label widget for the page `child`.
 `None` is returned if `child` is not in `self` or
@@ -26128,16 +23855,6 @@ a child `Widget`
 # Returns
 
 `true` if the tab is reorderable.
-<!-- trait NotebookExt::fn get_tab_vborder -->
-Returns the vertical width of a tab border.
-
-# Deprecated since 3.4
-
-this function returns zero
-
-# Returns
-
-vertical width of a tab border
 <!-- trait NotebookExt::fn insert_page -->
 Insert a page into `self` at the given position.
 ## `child`
@@ -30843,23 +28560,6 @@ An
 # Returns
 
 The new `RadioToolButton`
-<!-- impl RadioToolButton::fn new_from_stock -->
-Creates a new `RadioToolButton`, adding it to `group`.
-The new `RadioToolButton` will contain an icon and label from the
-stock item indicated by `stock_id`.
-
-# Deprecated since 3.10
-
-Use `RadioToolButton::new` instead.
-## `group`
-an existing radio button
- group, or `None` if you are creating a new group
-## `stock_id`
-the name of a stock item
-
-# Returns
-
-The new `RadioToolButton`
 <!-- impl RadioToolButton::fn new_from_widget -->
 Creates a new `RadioToolButton` adding it to the same group as `gruup`
 ## `group`
@@ -30868,22 +28568,6 @@ An existing `RadioToolButton`, or `None`
 # Returns
 
 The new `RadioToolButton`
-<!-- impl RadioToolButton::fn new_with_stock_from_widget -->
-Creates a new `RadioToolButton` adding it to the same group as `group`.
-The new `RadioToolButton` will contain an icon and label from the
-stock item indicated by `stock_id`.
-
-# Deprecated since 3.10
-
-gtk_radio_tool_button_new_from_widget
-## `group`
-An existing `RadioToolButton`.
-## `stock_id`
-the name of a stock item
-
-# Returns
-
-A new `RadioToolButton`
 <!-- trait RadioToolButtonExt::fn get_group -->
 Returns the radio button group `self` belongs to.
 
@@ -33175,30 +30859,6 @@ vertical adjustment
 # Returns
 
 a new scrolled window
-<!-- trait ScrolledWindowExt::fn add_with_viewport -->
-Used to add children without native scrolling capabilities. This
-is simply a convenience function; it is equivalent to adding the
-unscrollable child to a viewport, then adding the viewport to the
-scrolled window. If a child has native scrolling, use
-`ContainerExt::add` instead of this function.
-
-The viewport scrolls the child by moving its `gdk::Window`, and takes
-the size of the child to be the size of its toplevel `gdk::Window`.
-This will be very wrong for most widgets that support native scrolling;
-for example, if you add a widget such as `TreeView` with a viewport,
-the whole widget will scroll, including the column headings. Thus,
-widgets with native scrolling support should not be used with the
-`Viewport` proxy.
-
-A widget supports scrolling natively if it implements the
-`Scrollable` interface.
-
-# Deprecated since 3.8
-
-`ContainerExt::add` will automatically add
-a `Viewport` if the child doesn’t implement `Scrollable`.
-## `child`
-the widget you want to scroll
 <!-- trait ScrolledWindowExt::fn get_capture_button_press -->
 Return whether button presses are captured during kinetic
 scrolling. See `ScrolledWindowExt::set_capture_button_press`.
@@ -33593,22 +31253,6 @@ enough space for the natural size of the child.
 
 Feature: `v3_22`
 
-<!-- trait ScrolledWindowExt::fn get_property_window-placement-set -->
-Whether "window-placement" should be used to determine the location
-of the contents with respect to the scrollbars.
-
-# Deprecated since 3.10
-
-This value is ignored and
-`ScrolledWindow:window-placement` value is always honored.
-<!-- trait ScrolledWindowExt::fn set_property_window-placement-set -->
-Whether "window-placement" should be used to determine the location
-of the contents with respect to the scrollbars.
-
-# Deprecated since 3.10
-
-This value is ignored and
-`ScrolledWindow:window-placement` value is always honored.
 <!-- struct SearchBar -->
 `SearchBar` is a container made to have a search entry (possibly
 with additional connex widgets, such as drop-down menus, or buttons)
@@ -34242,13 +31886,6 @@ Use `gobject::ObjectExt::set` instead.
 # Deprecated since 3.16
 
 Use `gobject::ObjectExt::set` instead.
-<!-- trait SettingsExt::fn get_property_color-hash -->
-Holds a hash table representation of the `Settings:gtk-color-scheme`
-setting, mapping color names to ``GdkColors``.
-
-# Deprecated since 3.8
-
-Will always return an empty hash table.
 <!-- trait SettingsExt::fn get_property_gtk-alternative-sort-arrows -->
 Controls the direction of the sort indicators in sorted list and tree
 views. By default an arrow pointing down means the column is sorted
@@ -34281,120 +31918,6 @@ the distraction of the chrome.
 
 Dark themes should not be used for documents, where large spaces are white/light
 and the dark chrome creates too much contrast (web browser, text editor...).
-<!-- trait SettingsExt::fn get_property_gtk-auto-mnemonics -->
-Whether mnemonics should be automatically shown and hidden when the user
-presses the mnemonic activator.
-
-# Deprecated since 3.10
-
-This setting is ignored
-<!-- trait SettingsExt::fn set_property_gtk-auto-mnemonics -->
-Whether mnemonics should be automatically shown and hidden when the user
-presses the mnemonic activator.
-
-# Deprecated since 3.10
-
-This setting is ignored
-<!-- trait SettingsExt::fn get_property_gtk-button-images -->
-Whether images should be shown on buttons
-
-# Deprecated since 3.10
-
-This setting is deprecated. Application developers
- control whether a button should show an icon or not, on a
- per-button basis. If a `Button` should show an icon, use the
- `Button:always-show-image` property of `Button`, and pack a
- `Image` inside the `Button`
-<!-- trait SettingsExt::fn set_property_gtk-button-images -->
-Whether images should be shown on buttons
-
-# Deprecated since 3.10
-
-This setting is deprecated. Application developers
- control whether a button should show an icon or not, on a
- per-button basis. If a `Button` should show an icon, use the
- `Button:always-show-image` property of `Button`, and pack a
- `Image` inside the `Button`
-<!-- trait SettingsExt::fn get_property_gtk-can-change-accels -->
-Whether menu accelerators can be changed by pressing a key over the menu item.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-can-change-accels -->
-Whether menu accelerators can be changed by pressing a key over the menu item.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-color-palette -->
-Palette to use in the deprecated color selector.
-
-# Deprecated since 3.10
-
-Only used by the deprecated color selector widget.
-<!-- trait SettingsExt::fn set_property_gtk-color-palette -->
-Palette to use in the deprecated color selector.
-
-# Deprecated since 3.10
-
-Only used by the deprecated color selector widget.
-<!-- trait SettingsExt::fn get_property_gtk-color-scheme -->
-A palette of named colors for use in themes. The format of the string is
-
-```text
-name1: color1
-name2: color2
-...
-```
-Color names must be acceptable as identifiers in the
-[gtkrc][gtk3-Resource-Files] syntax, and
-color specifications must be in the format accepted by
-`gdk::Color::parse`.
-
-Note that due to the way the color tables from different sources are
-merged, color specifications will be converted to hexadecimal form
-when getting this property.
-
-Starting with GTK+ 2.12, the entries can alternatively be separated
-by ';' instead of newlines:
-
-```text
-name1: color1; name2: color2; ...
-```
-
-# Deprecated since 3.8
-
-Color scheme support was dropped and is no longer supported.
- You can still set this property, but it will be ignored.
-<!-- trait SettingsExt::fn set_property_gtk-color-scheme -->
-A palette of named colors for use in themes. The format of the string is
-
-```text
-name1: color1
-name2: color2
-...
-```
-Color names must be acceptable as identifiers in the
-[gtkrc][gtk3-Resource-Files] syntax, and
-color specifications must be in the format accepted by
-`gdk::Color::parse`.
-
-Note that due to the way the color tables from different sources are
-merged, color specifications will be converted to hexadecimal form
-when getting this property.
-
-Starting with GTK+ 2.12, the entries can alternatively be separated
-by ';' instead of newlines:
-
-```text
-name1: color1; name2: color2; ...
-```
-
-# Deprecated since 3.8
-
-Color scheme support was dropped and is no longer supported.
- You can still set this property, but it will be ignored.
 <!-- trait SettingsExt::fn get_property_gtk-cursor-blink -->
 Whether the cursor should blink.
 
@@ -34511,40 +32034,12 @@ for more information on event sounds and sound themes.
 
 GTK+ itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.
-<!-- trait SettingsExt::fn get_property_gtk-enable-mnemonics -->
-Whether labels and menu items should have visible mnemonics which
-can be activated.
-
-# Deprecated since 3.10
-
-This setting can still be used for application
- overrides, but will be ignored in the future
-<!-- trait SettingsExt::fn set_property_gtk-enable-mnemonics -->
-Whether labels and menu items should have visible mnemonics which
-can be activated.
-
-# Deprecated since 3.10
-
-This setting can still be used for application
- overrides, but will be ignored in the future
 <!-- trait SettingsExt::fn get_property_gtk-enable-primary-paste -->
 Whether a middle click on a mouse should paste the
 'PRIMARY' clipboard content at the cursor location.
 <!-- trait SettingsExt::fn set_property_gtk-enable-primary-paste -->
 Whether a middle click on a mouse should paste the
 'PRIMARY' clipboard content at the cursor location.
-<!-- trait SettingsExt::fn get_property_gtk-enable-tooltips -->
-Whether tooltips should be shown on widgets.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-enable-tooltips -->
-Whether tooltips should be shown on widgets.
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-entry-password-hint-timeout -->
 How long to show the last input character in hidden
 entries. This value is in milliseconds. 0 disables showing the
@@ -34565,64 +32060,10 @@ will cause a beep. Since the error bell is implemented using
 `gdk::WindowExt::beep`, the windowing system may offer ways to
 configure the error bell in many ways, such as flashing the
 window or similar visual effects.
-<!-- trait SettingsExt::fn get_property_gtk-fallback-icon-theme -->
-Name of a icon theme to fall back to.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-fallback-icon-theme -->
-Name of a icon theme to fall back to.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-file-chooser-backend -->
-Name of the `FileChooser` backend to use by default.
-
-# Deprecated since 3.10
-
-This setting is ignored. `FileChooser` uses GIO by default.
-<!-- trait SettingsExt::fn set_property_gtk-file-chooser-backend -->
-Name of the `FileChooser` backend to use by default.
-
-# Deprecated since 3.10
-
-This setting is ignored. `FileChooser` uses GIO by default.
 <!-- trait SettingsExt::fn get_property_gtk-font-name -->
 The default font to use. GTK+ uses the family name and size from this string.
 <!-- trait SettingsExt::fn set_property_gtk-font-name -->
 The default font to use. GTK+ uses the family name and size from this string.
-<!-- trait SettingsExt::fn get_property_gtk-icon-sizes -->
-A list of icon sizes. The list is separated by colons, and
-item has the form:
-
-`size-name` = `width` , `height`
-
-E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48".
-GTK+ itself use the following named icon sizes: gtk-menu,
-gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd,
-gtk-dialog. Applications can register their own named icon
-sizes with `IconSize::register`.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-icon-sizes -->
-A list of icon sizes. The list is separated by colons, and
-item has the form:
-
-`size-name` = `width` , `height`
-
-E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48".
-GTK+ itself use the following named icon sizes: gtk-menu,
-gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd,
-gtk-dialog. Applications can register their own named icon
-sizes with `IconSize::register`.
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-im-module -->
 Which IM (input method) module should be used by default. This is the
 input method that will be used if the user has not explicitly chosen
@@ -34639,48 +32080,6 @@ This also can be a colon-separated list of input methods, which GTK+
 will try in turn until it finds one available on the system.
 
 See `IMContext`.
-<!-- trait SettingsExt::fn get_property_gtk-im-preedit-style -->
-How to draw the input method preedit string.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-im-preedit-style -->
-How to draw the input method preedit string.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-im-status-style -->
-How to draw the input method statusbar.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-im-status-style -->
-How to draw the input method statusbar.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-keynav-cursor-only -->
-When `true`, keyboard navigation should be able to reach all widgets
-by using the cursor keys only. Tab, Shift etc. keys can't be expected
-to be present on the used input device.
-
-# Deprecated since 3.10
-
-Generally, the behavior for touchscreen input should be
- performed dynamically based on `gdk_event_get_source_device`.
-<!-- trait SettingsExt::fn set_property_gtk-keynav-cursor-only -->
-When `true`, keyboard navigation should be able to reach all widgets
-by using the cursor keys only. Tab, Shift etc. keys can't be expected
-to be present on the used input device.
-
-# Deprecated since 3.10
-
-Generally, the behavior for touchscreen input should be
- performed dynamically based on `gdk_event_get_source_device`.
 <!-- trait SettingsExt::fn get_property_gtk-keynav-use-caret -->
 Whether GTK+ should make sure that text can be navigated with
 a caret, even if it is not editable. This is useful when using
@@ -34695,94 +32094,10 @@ a screen reader.
 
 Feature: `v3_20`
 
-<!-- trait SettingsExt::fn get_property_gtk-keynav-wrap-around -->
-When `true`, some widgets will wrap around when doing keyboard
-navigation, such as menus, menubars and notebooks.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-keynav-wrap-around -->
-When `true`, some widgets will wrap around when doing keyboard
-navigation, such as menus, menubars and notebooks.
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-long-press-time -->
 The time for a button or touch press to be considered a "long press".
 <!-- trait SettingsExt::fn set_property_gtk-long-press-time -->
 The time for a button or touch press to be considered a "long press".
-<!-- trait SettingsExt::fn get_property_gtk-menu-bar-accel -->
-Keybinding to activate the menu bar.
-
-# Deprecated since 3.10
-
-This setting can still be used for application
- overrides, but will be ignored in the future
-<!-- trait SettingsExt::fn set_property_gtk-menu-bar-accel -->
-Keybinding to activate the menu bar.
-
-# Deprecated since 3.10
-
-This setting can still be used for application
- overrides, but will be ignored in the future
-<!-- trait SettingsExt::fn get_property_gtk-menu-bar-popup-delay -->
-Delay before the submenus of a menu bar appear.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-menu-bar-popup-delay -->
-Delay before the submenus of a menu bar appear.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-menu-images -->
-Whether images should be shown in menu items
-
-# Deprecated since 3.10
-
-This setting is deprecated. Application developers
- control whether or not a `MenuItem` should have an icon or not,
- on a per widget basis. Either use a `MenuItem` with a `Box`
- containing a `Image` and a `AccelLabel`, or describe your menus
- using a `gio::Menu` XML description
-<!-- trait SettingsExt::fn set_property_gtk-menu-images -->
-Whether images should be shown in menu items
-
-# Deprecated since 3.10
-
-This setting is deprecated. Application developers
- control whether or not a `MenuItem` should have an icon or not,
- on a per widget basis. Either use a `MenuItem` with a `Box`
- containing a `Image` and a `AccelLabel`, or describe your menus
- using a `gio::Menu` XML description
-<!-- trait SettingsExt::fn get_property_gtk-menu-popdown-delay -->
-The time before hiding a submenu when the pointer is moving towards the submenu.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-menu-popdown-delay -->
-The time before hiding a submenu when the pointer is moving towards the submenu.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-menu-popup-delay -->
-Minimum time the pointer must stay over a menu item before the submenu appear.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-menu-popup-delay -->
-Minimum time the pointer must stay over a menu item before the submenu appear.
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-primary-button-warps-slider -->
 If the value of this setting is `true`, clicking the primary button in a
 `Range` trough will move the slider, and hence set the range’s value, to
@@ -34835,22 +32150,6 @@ resources list. If set to `false`, the list will always be empty.
 <!-- trait SettingsExt::fn set_property_gtk-recent-files-enabled -->
 Whether GTK+ should keep track of items inside the recently used
 resources list. If set to `false`, the list will always be empty.
-<!-- trait SettingsExt::fn get_property_gtk-recent-files-limit -->
-The number of recently used files that should be displayed by default by
-`RecentChooser` implementations and by the `FileChooser`. A value of
--1 means every recently used file stored.
-
-# Deprecated since 3.10
-
-This setting is ignored
-<!-- trait SettingsExt::fn set_property_gtk-recent-files-limit -->
-The number of recently used files that should be displayed by default by
-`RecentChooser` implementations and by the `FileChooser`. A value of
--1 means every recently used file stored.
-
-# Deprecated since 3.10
-
-This setting is ignored
 <!-- trait SettingsExt::fn get_property_gtk-recent-files-max-age -->
 The maximum age, in days, of the items inside the recently used
 resources list. Items older than this setting will be excised
@@ -34861,40 +32160,6 @@ The maximum age, in days, of the items inside the recently used
 resources list. Items older than this setting will be excised
 from the list. If set to 0, the list will always be empty; if
 set to -1, no item will be removed.
-<!-- trait SettingsExt::fn get_property_gtk-scrolled-window-placement -->
-Where the contents of scrolled windows are located with respect to the
-scrollbars, if not overridden by the scrolled window's own placement.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-scrolled-window-placement -->
-Where the contents of scrolled windows are located with respect to the
-scrollbars, if not overridden by the scrolled window's own placement.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-show-input-method-menu -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-show-input-method-menu -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-show-unicode-menu -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-show-unicode-menu -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-sound-theme-name -->
 The XDG sound theme to use for event sounds.
 
@@ -34911,36 +32176,6 @@ for more information on event sounds and sound themes.
 
 GTK+ itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.
-<!-- trait SettingsExt::fn get_property_gtk-timeout-expand -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-timeout-expand -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-timeout-initial -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-timeout-initial -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-timeout-repeat -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-timeout-repeat -->
-
-# Deprecated since 3.10
-
-This setting is ignored.
 <!-- trait SettingsExt::fn get_property_gtk-titlebar-double-click -->
 This setting determines the action to take when a double-click
 occurs on the titlebar of client-side decorated windows.
@@ -34977,124 +32212,6 @@ occurs on the titlebar of client-side decorated windows.
 
 Recognized actions are minimize, toggle-maximize, menu, lower
 or none.
-<!-- trait SettingsExt::fn get_property_gtk-toolbar-icon-size -->
-The size of icons in default toolbars.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-toolbar-icon-size -->
-The size of icons in default toolbars.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-toolbar-style -->
-The size of icons in default toolbars.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-toolbar-style -->
-The size of icons in default toolbars.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-tooltip-browse-mode-timeout -->
-Amount of time, in milliseconds, after which the browse mode
-will be disabled.
-
-See `Settings:gtk-tooltip-browse-timeout` for more information
-about browse mode.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-tooltip-browse-mode-timeout -->
-Amount of time, in milliseconds, after which the browse mode
-will be disabled.
-
-See `Settings:gtk-tooltip-browse-timeout` for more information
-about browse mode.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-tooltip-browse-timeout -->
-Controls the time after which tooltips will appear when
-browse mode is enabled, in milliseconds.
-
-Browse mode is enabled when the mouse pointer moves off an object
-where a tooltip was currently being displayed. If the mouse pointer
-hits another object before the browse mode timeout expires (see
-`Settings:gtk-tooltip-browse-mode-timeout`), it will take the
-amount of milliseconds specified by this setting to popup the tooltip
-for the new object.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-tooltip-browse-timeout -->
-Controls the time after which tooltips will appear when
-browse mode is enabled, in milliseconds.
-
-Browse mode is enabled when the mouse pointer moves off an object
-where a tooltip was currently being displayed. If the mouse pointer
-hits another object before the browse mode timeout expires (see
-`Settings:gtk-tooltip-browse-mode-timeout`), it will take the
-amount of milliseconds specified by this setting to popup the tooltip
-for the new object.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-tooltip-timeout -->
-Time, in milliseconds, after which a tooltip could appear if the
-cursor is hovering on top of a widget.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn set_property_gtk-tooltip-timeout -->
-Time, in milliseconds, after which a tooltip could appear if the
-cursor is hovering on top of a widget.
-
-# Deprecated since 3.10
-
-This setting is ignored.
-<!-- trait SettingsExt::fn get_property_gtk-touchscreen-mode -->
-When `true`, there are no motion notify events delivered on this screen,
-and widgets can't use the pointer hovering them for any essential
-functionality.
-
-# Deprecated since 3.4
-
-Generally, the behavior for touchscreen input should be
- performed dynamically based on `gdk_event_get_source_device`.
-<!-- trait SettingsExt::fn set_property_gtk-touchscreen-mode -->
-When `true`, there are no motion notify events delivered on this screen,
-and widgets can't use the pointer hovering them for any essential
-functionality.
-
-# Deprecated since 3.4
-
-Generally, the behavior for touchscreen input should be
- performed dynamically based on `gdk_event_get_source_device`.
-<!-- trait SettingsExt::fn get_property_gtk-visible-focus -->
-Whether 'focus rectangles' should be always visible, never visible,
-or hidden until the user starts to use the keyboard.
-
-# Deprecated since 3.10
-
-This setting is ignored
-<!-- trait SettingsExt::fn set_property_gtk-visible-focus -->
-Whether 'focus rectangles' should be always visible, never visible,
-or hidden until the user starts to use the keyboard.
-
-# Deprecated since 3.10
-
-This setting is ignored
 <!-- enum ShadowType -->
 Used to change the appearance of an outline typically provided by a `Frame`.
 
@@ -36346,34 +33463,6 @@ Cover the old page sliding down or uncover the new page sliding up, according to
 Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14
 <!-- enum StackTransitionType::variant OverRightLeft -->
 Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14
-<!-- enum StateType -->
-This type indicates the current state of a widget; the state determines how
-the widget is drawn. The `StateType` enumeration is also used to
-identify different colors in a `Style` for drawing, so states can be
-used for subparts of a widget as well as entire widgets.
-
-# Deprecated since 3.14
-
-All APIs that are using this enumeration have been deprecated
- in favor of alternatives using `StateFlags`.
-<!-- enum StateType::variant Normal -->
-State during normal operation.
-<!-- enum StateType::variant Active -->
-State of a currently active widget, such as a depressed button.
-<!-- enum StateType::variant Prelight -->
-State indicating that the mouse pointer is over
- the widget and the widget will respond to mouse clicks.
-<!-- enum StateType::variant Selected -->
-State of a selected item, such the selected row in a list.
-<!-- enum StateType::variant Insensitive -->
-State indicating that the widget is
- unresponsive to user actions.
-<!-- enum StateType::variant Inconsistent -->
-The widget is inconsistent, such as checkbuttons
- or radiobuttons that aren’t either set to `true` nor `false`,
- or buttons requiring the user attention.
-<!-- enum StateType::variant Focused -->
-The widget has the keyboard focus.
 <!-- struct StatusIcon -->
 The “system tray” or notification area is normally used for transient icons
 that indicate some special state. For example, a system tray icon might
@@ -36418,517 +33507,6 @@ Trait containing all `StatusIcon` methods.
 # Implementors
 
 [`StatusIcon`](struct.StatusIcon.html)
-<!-- impl StatusIcon::fn new -->
-Creates an empty status icon object.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn new_from_file -->
-Creates a status icon displaying the file `filename`.
-
-The image will be scaled down to fit in the available
-space in the notification area, if necessary.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-## `filename`
-a filename
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn new_from_gicon -->
-Creates a status icon displaying a `gio::Icon`. If the icon is a
-themed icon, it will be updated when the theme changes.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-## `icon`
-a `gio::Icon`
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn new_from_icon_name -->
-Creates a status icon displaying an icon from the current icon theme.
-If the current icon theme is changed, the icon will be updated
-appropriately.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-## `icon_name`
-an icon name
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn new_from_pixbuf -->
-Creates a status icon displaying `pixbuf`.
-
-The image will be scaled down to fit in the available
-space in the notification area, if necessary.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-## `pixbuf`
-a `gdk_pixbuf::Pixbuf`
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn new_from_stock -->
-Creates a status icon displaying a stock icon. Sample stock icon
-names are `GTK_STOCK_OPEN`, `GTK_STOCK_QUIT`. You can register your
-own stock icon names, see `IconFactory::add_default` and
-`IconFactory::add`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications
-## `stock_id`
-a stock icon id
-
-# Returns
-
-a new `StatusIcon`
-<!-- impl StatusIcon::fn position_menu -->
-Menu positioning function to use with `GtkMenuExt::popup`
-to position `menu` aligned to the status icon `user_data`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; notifications do not have menus,
- but can have buttons, and actions associated with each button
-## `menu`
-the `Menu`
-## `x`
-return location for the x position
-## `y`
-return location for the y position
-## `push_in`
-whether the first menu item should be offset
- (pushed in) to be aligned with the menu popup position
- (only useful for `GtkOptionMenu`).
-## `user_data`
-the status icon to position the menu on
-<!-- trait StatusIconExt::fn get_geometry -->
-Obtains information about the location of the status icon
-on screen. This information can be used to e.g. position
-popups like notification bubbles.
-
-See `StatusIcon::position_menu` for a more convenient
-alternative for positioning menus.
-
-Note that some platforms do not allow GTK+ to provide
-this information, and even on platforms that do allow it,
-the information is not reliable unless the status icon
-is embedded in a notification area, see
-`StatusIcon::is_embedded`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as the platform is responsible for the
- presentation of notifications
-## `screen`
-return location for
- the screen, or `None` if the information is not needed
-## `area`
-return location for the area occupied by
- the status icon, or `None`
-## `orientation`
-return location for the
- orientation of the panel in which the status icon is embedded,
- or `None`. A panel at the top or bottom of the screen is
- horizontal, a panel at the left or right is vertical.
-
-# Returns
-
-`true` if the location information has
- been filled in
-<!-- trait StatusIconExt::fn get_gicon -->
-Retrieves the `gio::Icon` being displayed by the `StatusIcon`.
-The storage type of the status icon must be `ImageType::Empty` or
-`ImageType::Gicon` (see `StatusIcon::get_storage_type`).
-The caller of this function does not own a reference to the
-returned `gio::Icon`.
-
-If this function fails, `icon` is left unchanged;
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-the displayed icon, or `None` if the image is empty
-<!-- trait StatusIconExt::fn get_has_tooltip -->
-Returns the current value of the has-tooltip property.
-See `StatusIcon:has-tooltip` for more information.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-current value of has-tooltip on `self`.
-<!-- trait StatusIconExt::fn get_icon_name -->
-Gets the name of the icon being displayed by the `StatusIcon`.
-The storage type of the status icon must be `ImageType::Empty` or
-`ImageType::IconName` (see `StatusIcon::get_storage_type`).
-The returned string is owned by the `StatusIcon` and should not
-be freed or modified.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-name of the displayed icon, or `None` if the image is empty.
-<!-- trait StatusIconExt::fn get_pixbuf -->
-Gets the `gdk_pixbuf::Pixbuf` being displayed by the `StatusIcon`.
-The storage type of the status icon must be `ImageType::Empty` or
-`ImageType::Pixbuf` (see `StatusIcon::get_storage_type`).
-The caller of this function does not own a reference to the
-returned pixbuf.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-the displayed pixbuf,
- or `None` if the image is empty.
-<!-- trait StatusIconExt::fn get_screen -->
-Returns the `gdk::Screen` associated with `self`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as notifications are managed by the platform
-
-# Returns
-
-a `gdk::Screen`.
-<!-- trait StatusIconExt::fn get_size -->
-Gets the size in pixels that is available for the image.
-Stock icons and named icons adapt their size automatically
-if the size of the notification area changes. For other
-storage types, the size-changed signal can be used to
-react to size changes.
-
-Note that the returned size is only meaningful while the
-status icon is embedded (see `StatusIcon::is_embedded`).
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as the representation of a notification
- is left to the platform
-
-# Returns
-
-the size that is available for the image
-<!-- trait StatusIconExt::fn get_stock -->
-Gets the id of the stock icon being displayed by the `StatusIcon`.
-The storage type of the status icon must be `ImageType::Empty` or
-`ImageType::Stock` (see `StatusIcon::get_storage_type`).
-The returned string is owned by the `StatusIcon` and should not
-be freed or modified.
-
-# Deprecated since 3.10
-
-Use `StatusIcon::get_icon_name` instead.
-
-# Returns
-
-stock id of the displayed stock icon,
- or `None` if the image is empty.
-<!-- trait StatusIconExt::fn get_storage_type -->
-Gets the type of representation being used by the `StatusIcon`
-to store image data. If the `StatusIcon` has no image data,
-the return value will be `ImageType::Empty`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, and `gio::Notification` only supports `gio::Icon`
- instances
-
-# Returns
-
-the image representation being used
-<!-- trait StatusIconExt::fn get_title -->
-Gets the title of this tray icon. See `StatusIcon::set_title`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-the title of the status icon
-<!-- trait StatusIconExt::fn get_tooltip_markup -->
-Gets the contents of the tooltip for `self`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-the tooltip text, or `None`. You should free the
- returned string with `g_free` when done.
-<!-- trait StatusIconExt::fn get_tooltip_text -->
-Gets the contents of the tooltip for `self`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-the tooltip text, or `None`. You should free the
- returned string with `g_free` when done.
-<!-- trait StatusIconExt::fn get_visible -->
-Returns whether the status icon is visible or not.
-Note that being visible does not guarantee that
-the user can actually see the icon, see also
-`StatusIcon::is_embedded`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-`true` if the status icon is visible
-<!-- trait StatusIconExt::fn get_x11_window_id -->
-This function is only useful on the X11/freedesktop.org platform.
-
-It returns a window ID for the widget in the underlying
-status icon implementation. This is useful for the Galago
-notification service, which can send a window ID in the protocol
-in order for the server to position notification windows
-pointing to a status icon reliably.
-
-This function is not intended for other use cases which are
-more likely to be met by one of the non-X11 specific methods, such
-as `StatusIcon::position_menu`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-An 32 bit unsigned integer identifier for the
-underlying X11 Window
-<!-- trait StatusIconExt::fn is_embedded -->
-Returns whether the status icon is embedded in a notification
-area.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-
-# Returns
-
-`true` if the status icon is embedded in
- a notification area.
-<!-- trait StatusIconExt::fn set_from_file -->
-Makes `self` display the file `filename`.
-See `StatusIcon::new_from_file` for details.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; you can use `gio::Notification::set_icon`
- to associate a `gio::Icon` with a notification
-## `filename`
-a filename
-<!-- trait StatusIconExt::fn set_from_gicon -->
-Makes `self` display the `gio::Icon`.
-See `StatusIcon::new_from_gicon` for details.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; you can use `gio::Notification::set_icon`
- to associate a `gio::Icon` with a notification
-## `icon`
-a GIcon
-<!-- trait StatusIconExt::fn set_from_icon_name -->
-Makes `self` display the icon named `icon_name` from the
-current icon theme.
-See `StatusIcon::new_from_icon_name` for details.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; you can use `gio::Notification::set_icon`
- to associate a `gio::Icon` with a notification
-## `icon_name`
-an icon name
-<!-- trait StatusIconExt::fn set_from_pixbuf -->
-Makes `self` display `pixbuf`.
-See `StatusIcon::new_from_pixbuf` for details.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; you can use `gio::Notification::set_icon`
- to associate a `gio::Icon` with a notification
-## `pixbuf`
-a `gdk_pixbuf::Pixbuf` or `None`
-<!-- trait StatusIconExt::fn set_from_stock -->
-Makes `self` display the stock icon with the id `stock_id`.
-See `StatusIcon::new_from_stock` for details.
-
-# Deprecated since 3.10
-
-Use `StatusIcon::set_from_icon_name` instead.
-## `stock_id`
-a stock icon id
-<!-- trait StatusIconExt::fn set_has_tooltip -->
-Sets the has-tooltip property on `self` to `has_tooltip`.
-See `StatusIcon:has-tooltip` for more information.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, but notifications can display an arbitrary
- amount of text using `gio::Notification::set_body`
-## `has_tooltip`
-whether or not `self` has a tooltip
-<!-- trait StatusIconExt::fn set_name -->
-Sets the name of this tray icon.
-This should be a string identifying this icon. It is may be
-used for sorting the icons in the tray and will not be shown to
-the user.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as notifications are associated with a
- unique application identifier by `gio::Application`
-## `name`
-the name
-<!-- trait StatusIconExt::fn set_screen -->
-Sets the `gdk::Screen` where `self` is displayed; if
-the icon is already mapped, it will be unmapped, and
-then remapped on the new screen.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as GTK typically only has one `gdk::Screen`
- and notifications are managed by the platform
-## `screen`
-a `gdk::Screen`
-<!-- trait StatusIconExt::fn set_title -->
-Sets the title of this tray icon.
-This should be a short, human-readable, localized string
-describing the tray icon. It may be used by tools like screen
-readers to render the tray icon.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; you should use `gio::Notification::set_title`
- and `gio::Notification::set_body` to present text inside your notification
-## `title`
-the title
-<!-- trait StatusIconExt::fn set_tooltip_markup -->
-Sets `markup` as the contents of the tooltip, which is marked up with
- the [Pango text markup language][PangoMarkupFormat].
-
-This function will take care of setting `StatusIcon:has-tooltip` to `true`
-and of the default handler for the `StatusIcon::query-tooltip` signal.
-
-See also the `StatusIcon:tooltip-markup` property and
-`Tooltip::set_markup`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-## `markup`
-the contents of the tooltip for `self`, or `None`
-<!-- trait StatusIconExt::fn set_tooltip_text -->
-Sets `text` as the contents of the tooltip.
-
-This function will take care of setting `StatusIcon:has-tooltip` to
-`true` and of the default handler for the `StatusIcon::query-tooltip`
-signal.
-
-See also the `StatusIcon:tooltip-text` property and
-`Tooltip::set_text`.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function
-## `text`
-the contents of the tooltip for `self`
-<!-- trait StatusIconExt::fn set_visible -->
-Shows or hides a status icon.
-
-# Deprecated since 3.14
-
-Use `gio::Notification` and `Application` to
- provide status notifications; there is no direct replacement
- for this function, as notifications are managed by the platform
-## `visible`
-`true` to show the status icon, `false` to hide it
 <!-- trait StatusIconExt::fn connect_activate -->
 Gets emitted when the user activates the status icon.
 If and how status icons can activated is platform-dependent.
@@ -37072,16 +33650,6 @@ For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
 <!-- trait StatusIconExt::fn get_property_orientation -->
 The orientation of the tray in which the statusicon
 is embedded.
-<!-- trait StatusIconExt::fn get_property_stock -->
-
-# Deprecated since 3.10
-
-Use `StatusIcon:icon-name` instead.
-<!-- trait StatusIconExt::fn set_property_stock -->
-
-# Deprecated since 3.10
-
-Use `StatusIcon:icon-name` instead.
 <!-- trait StatusIconExt::fn get_property_title -->
 The title of this tray icon. This should be a short, human-readable,
 localized string describing the tray icon. It may be used by tools
@@ -37405,55 +33973,6 @@ the priority of the style provider. The lower
  construction. Typically this will be in the range
  between `GTK_STYLE_PROVIDER_PRIORITY_FALLBACK` and
  `GTK_STYLE_PROVIDER_PRIORITY_USER`
-<!-- trait StyleContextExt::fn add_region -->
-Adds a region to `self`, so posterior calls to
-`StyleContextExt::get` or any of the gtk_render_*()
-functions will make use of this new region for styling.
-
-In the CSS file format, a `TreeView` defining a “row”
-region, would be matched by:
-
-
-```CSS
-treeview row { ... }
-```
-
-Pseudo-classes are used for matching `flags`, so the two
-following rules:
-
-```CSS
-treeview row:nth-child(even) { ... }
-treeview row:nth-child(odd) { ... }
-```
-
-would apply to even and odd rows, respectively.
-
-Region names must only contain lowercase letters
-and “-”, starting always with a lowercase letter.
-
-# Deprecated since 3.14
-
-## `region_name`
-region name to use in styling
-## `flags`
-flags that apply to the region
-<!-- trait StyleContextExt::fn cancel_animations -->
-Stops all running animations for `region_id` and all animatable
-regions underneath.
-
-A `None` `region_id` will stop all ongoing animations in `self`,
-when dealing with a `StyleContext` obtained through
-`WidgetExt::get_style_context`, this is normally done for you
-in all circumstances you would expect all widget to be stopped,
-so this should be only used in complex widgets with different
-animatable regions.
-
-# Deprecated since 3.6
-
-This function does nothing.
-## `region_id`
-animatable region to stop, or `None`.
- See `StyleContext::push_animatable_region`
 <!-- trait StyleContextExt::fn get -->
 Retrieves several style property values from `self` for a
 given state.
@@ -37508,35 +34027,6 @@ See `StyleContext::get_property` and
 state to retrieve the color for
 ## `color`
 return value for the foreground color
-<!-- trait StyleContextExt::fn get_direction -->
-Returns the widget direction used for rendering.
-
-# Deprecated since 3.8
-
-Use `StyleContextExt::get_state` and
- check for `StateFlags::DirLtr` and
- `StateFlags::DirRtl` instead.
-
-# Returns
-
-the widget direction
-<!-- trait StyleContextExt::fn get_font -->
-Returns the font description for a given state. The returned
-object is const and will remain valid until the
-`StyleContext::changed` signal happens.
-
-# Deprecated since 3.8
-
-Use `StyleContextExt::get` for "font" or
- subproperties instead.
-## `state`
-state to retrieve the font for
-
-# Returns
-
-the `pango::FontDescription` for the given
- state. This object is owned by GTK+ and should not be
- freed.
 <!-- trait StyleContextExt::fn get_frame_clock -->
 Returns the `gdk::FrameClock` to which `self` is attached.
 
@@ -37676,29 +34166,6 @@ a class name
 # Returns
 
 `true` if `self` has `class_name` defined
-<!-- trait StyleContextExt::fn has_region -->
-Returns `true` if `self` has the region defined.
-If `flags_return` is not `None`, it is set to the flags
-affecting the region.
-
-# Deprecated since 3.14
-
-## `region_name`
-a region name
-## `flags_return`
-return location for region flags
-
-# Returns
-
-`true` if region is defined
-<!-- trait StyleContextExt::fn invalidate -->
-Invalidates `self` style information, so it will be reconstructed
-again. It is useful if you modify the `self` and need the new
-information immediately.
-
-# Deprecated since 3.12
-
-Style contexts are invalidated automatically.
 <!-- trait StyleContextExt::fn list_classes -->
 Returns the list of classes currently defined in `self`.
 
@@ -37706,18 +34173,6 @@ Returns the list of classes currently defined in `self`.
 
 a `glib::List` of
  strings with the currently defined classes. The contents
- of the list are owned by GTK+, but you must free the list
- itself with `glib::List::free` when you are done with it.
-<!-- trait StyleContextExt::fn list_regions -->
-Returns the list of regions currently defined in `self`.
-
-# Deprecated since 3.14
-
-
-# Returns
-
-a `glib::List` of
- strings with the currently defined regions. The contents
  of the list are owned by GTK+, but you must free the list
  itself with `glib::List::free` when you are done with it.
 <!-- trait StyleContextExt::fn lookup_color -->
@@ -37730,100 +34185,6 @@ Return location for the looked up color
 # Returns
 
 `true` if `color_name` was found and resolved, `false` otherwise
-<!-- trait StyleContextExt::fn lookup_icon_set -->
-Looks up `stock_id` in the icon factories associated to `self` and
-the default icon factory, returning an icon set if found, otherwise
-`None`.
-
-# Deprecated since 3.10
-
-Use `IconThemeExt::lookup_icon` instead.
-## `stock_id`
-an icon name
-
-# Returns
-
-The looked up `IconSet`, or `None`
-<!-- trait StyleContextExt::fn notify_state_change -->
-Notifies a state change on `self`, so if the current style makes use
-of transition animations, one will be started so all rendered elements
-under `region_id` are animated for state `state` being set to value
-`state_value`.
-
-The `window` parameter is used in order to invalidate the rendered area
-as the animation runs, so make sure it is the same window that is being
-rendered on by the gtk_render_*() functions.
-
-If `region_id` is `None`, all rendered elements using `self` will be
-affected by this state transition.
-
-As a practical example, a `Button` notifying a state transition on
-the prelight state:
-
-```C
-gtk_style_context_notify_state_change (context,
-                                       gtk_widget_get_window (widget),
-                                       NULL,
-                                       GTK_STATE_PRELIGHT,
-                                       button->in_button);
-```
-
-Can be handled in the CSS file like this:
-
-```CSS
-button {
-    background-color: #f00
-}
-
-button:hover {
-    background-color: #fff;
-    transition: 200ms linear
-}
-```
-
-This combination will animate the button background from red to white
-if a pointer enters the button, and back to red if the pointer leaves
-the button.
-
-Note that `state` is used when finding the transition parameters, which
-is why the style places the transition under the :hover pseudo-class.
-
-# Deprecated since 3.6
-
-This function does nothing.
-## `window`
-a `gdk::Window`
-## `region_id`
-animatable region to notify on, or `None`.
- See `StyleContext::push_animatable_region`
-## `state`
-state to trigger transition for
-## `state_value`
-`true` if `state` is the state we are changing to,
- `false` if we are changing away from it
-<!-- trait StyleContextExt::fn pop_animatable_region -->
-Pops an animatable region from `self`.
-See `StyleContext::push_animatable_region`.
-
-# Deprecated since 3.6
-
-This function does nothing.
-<!-- trait StyleContextExt::fn push_animatable_region -->
-Pushes an animatable region, so all further gtk_render_*() calls between
-this call and the following `StyleContext::pop_animatable_region`
-will potentially show transition animations for this region if
-`StyleContext::notify_state_change` is called for a given state,
-and the current theme/style defines transition animations for state
-changes.
-
-The `region_id` used must be unique in `self` so the themes
-can uniquely identify rendered elements subject to a state transition.
-
-# Deprecated since 3.6
-
-This function does nothing.
-## `region_id`
-unique identifier for the animatable region
 <!-- trait StyleContextExt::fn remove_class -->
 Removes `class_name` from `self`.
 ## `class_name`
@@ -37832,13 +34193,6 @@ class name to remove
 Removes `provider` from the style providers list in `self`.
 ## `provider`
 a `StyleProvider`
-<!-- trait StyleContextExt::fn remove_region -->
-Removes a region from `self`.
-
-# Deprecated since 3.14
-
-## `region_name`
-region name to unset
 <!-- trait StyleContextExt::fn restore -->
 Restores `self` state to a previous stage.
 See `StyleContextExt::save`.
@@ -37850,22 +34204,6 @@ in one go through `StyleContextExt::restore`.
 
 The matching call to `StyleContextExt::restore` must be done
 before GTK returns to the main loop.
-<!-- trait StyleContextExt::fn scroll_animations -->
-This function is analogous to `gdk::WindowExt::scroll`, and
-should be called together with it so the invalidation
-areas for any ongoing animation are scrolled together
-with it.
-
-# Deprecated since 3.6
-
-This function does nothing.
-## `window`
-a `gdk::Window` used previously in
- `StyleContext::notify_state_change`
-## `dx`
-Amount to scroll in the X axis
-## `dy`
-Amount to scroll in the Y axis
 <!-- trait StyleContextExt::fn set_background -->
 Sets the background of `window` to the background pattern or
 color specified in `self` for its current state.
@@ -37877,20 +34215,6 @@ Use `gtk_render_background` instead.
  for calling this function again whenever `self` is invalidated.
 ## `window`
 a `gdk::Window`
-<!-- trait StyleContextExt::fn set_direction -->
-Sets the reading direction for rendering purposes.
-
-If you are using a `StyleContext` returned from
-`WidgetExt::get_style_context`, you do not need to
-call this yourself.
-
-# Deprecated since 3.8
-
-Use `StyleContextExt::set_state` with
- `StateFlags::DirLtr` and `StateFlags::DirRtl`
- instead.
-## `direction`
-the new direction.
 <!-- trait StyleContextExt::fn set_frame_clock -->
 Attaches `self` to the given frame clock.
 
@@ -37953,27 +34277,6 @@ a `gdk::Screen`
 Sets the state to be used for style matching.
 ## `flags`
 state to represent
-<!-- trait StyleContextExt::fn state_is_running -->
-Returns `true` if there is a transition animation running for the
-current region (see `StyleContext::push_animatable_region`).
-
-If `progress` is not `None`, the animation progress will be returned
-there, 0.0 means the state is closest to being unset, while 1.0 means
-it’s closest to being set. This means transition animation will
-run from 0 to 1 when `state` is being set and from 1 to 0 when
-it’s being unset.
-
-# Deprecated since 3.6
-
-This function always returns `false`
-## `state`
-a widget state
-## `progress`
-return location for the transition progress
-
-# Returns
-
-`true` if there is a running transition animation for `state`.
 <!-- trait StyleContextExt::fn to_string -->
 Converts the style context into a string representation.
 
@@ -38045,38 +34348,6 @@ Returns a newly created `StyleProperties`
 # Returns
 
 a new `StyleProperties`
-<!-- impl StyleProperties::fn lookup_property -->
-Returns `true` if a property has been registered, if `pspec` or
-`parse_func` are not `None`, the `gobject::ParamSpec` and parsing function
-will be respectively returned.
-
-# Deprecated since 3.8
-
-This code could only look up custom properties and
- those are deprecated.
-## `property_name`
-property name to look up
-## `parse_func`
-return location for the parse function
-## `pspec`
-return location for the `gobject::ParamSpec`
-
-# Returns
-
-`true` if the property is registered, `false` otherwise
-<!-- impl StyleProperties::fn register_property -->
-Registers a property so it can be used in the CSS file format.
-This function is the low-level equivalent of
-`ThemingEngine::register_property`, if you are implementing
-a theming engine, you want to use that function instead.
-
-# Deprecated since 3.8
-
-Code should use the default properties provided by CSS.
-## `parse_func`
-parsing function to use, or `None`
-## `pspec`
-the `gobject::ParamSpec` for the new property
 <!-- trait StylePropertiesExt::fn clear -->
 Clears all style information from `self`.
 
@@ -38119,30 +34390,6 @@ Retrieves several style property values from `self` for a given state.
 state to retrieve the property values for
 ## `args`
 va_list of property name/return location pairs, followed by `None`
-<!-- trait StylePropertiesExt::fn lookup_color -->
-Returns the symbolic color that is mapped
-to `name`.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `name`
-color name to lookup
-
-# Returns
-
-The mapped color
-<!-- trait StylePropertiesExt::fn map_color -->
-Maps `color` so it can be referenced by `name`. See
-`StyleProperties::lookup_color`
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `name`
-color name
-## `color`
-`SymbolicColor` to map `name` to
 <!-- trait StylePropertiesExt::fn merge -->
 Merges into `self` all the style information contained
 in `props_to_merge`. If `replace` is `true`, the values
@@ -38209,34 +34456,6 @@ Trait containing all `StyleProvider` methods.
 # Implementors
 
 [`CssProvider`](struct.CssProvider.html), [`Settings`](struct.Settings.html), [`StyleProperties`](struct.StyleProperties.html), [`StyleProvider`](struct.StyleProvider.html)
-<!-- trait StyleProviderExt::fn get_icon_factory -->
-Returns the `IconFactory` defined to be in use for `path`, or `None` if none
-is defined.
-
-# Deprecated since 3.8
-
-Will always return `None` for all GTK-provided style providers.
-## `path`
-`WidgetPath` to query
-
-# Returns
-
-The icon factory to use for `path`, or `None`
-<!-- trait StyleProviderExt::fn get_style -->
-Returns the style settings affecting a widget defined by `path`, or `None` if
-`self` doesn’t contemplate styling `path`.
-
-# Deprecated since 3.8
-
-Will always return `None` for all GTK-provided style providers
- as the interface cannot correctly work the way CSS is specified.
-## `path`
-`WidgetPath` to query
-
-# Returns
-
-a `StyleProperties` containing the
-style settings affecting `path`
 <!-- trait StyleProviderExt::fn get_style_property -->
 Looks up a widget style property as defined by `self` for
 the widget represented by `path`.
@@ -38363,156 +34582,6 @@ since they are mostly used behind the scenes by `StyleContext` and
 
 `SymbolicColor` is deprecated. Symbolic colors are considered an
 implementation detail of GTK+.
-<!-- impl SymbolicColor::fn new_alpha -->
-Creates a symbolic color by modifying the relative alpha
-value of `color`. A factor < 1.0 would resolve to a more
-transparent color, while > 1.0 would resolve to a more
-opaque color.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `color`
-another `SymbolicColor`
-## `factor`
-factor to apply to `color` alpha
-
-# Returns
-
-A newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn new_literal -->
-Creates a symbolic color pointing to a literal color.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `color`
-a `gdk::RGBA`
-
-# Returns
-
-a newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn new_mix -->
-Creates a symbolic color defined as a mix of another
-two colors. a mix factor of 0 would resolve to `color1`,
-while a factor of 1 would resolve to `color2`.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `color1`
-color to mix
-## `color2`
-another color to mix
-## `factor`
-mix factor
-
-# Returns
-
-A newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn new_name -->
-Creates a symbolic color pointing to an unresolved named
-color. See `StyleContextExt::lookup_color` and
-`StyleProperties::lookup_color`.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `name`
-color name
-
-# Returns
-
-a newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn new_shade -->
-Creates a symbolic color defined as a shade of
-another color. A factor > 1.0 would resolve to
-a brighter color, while < 1.0 would resolve to
-a darker color.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `color`
-another `SymbolicColor`
-## `factor`
-shading factor to apply to `color`
-
-# Returns
-
-A newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn new_win32 -->
-Creates a symbolic color based on the current win32
-theme.
-
-Note that while this call is available on all platforms
-the actual value returned is not reliable on non-win32
-platforms.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `theme_class`
-The theme class to pull color from
-## `id`
-The color id
-
-# Returns
-
-A newly created `SymbolicColor`
-<!-- impl SymbolicColor::fn ref -->
-Increases the reference count of `self`
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-
-# Returns
-
-the same `self`
-<!-- impl SymbolicColor::fn resolve -->
-If `self` is resolvable, `resolved_color` will be filled in
-with the resolved color, and `true` will be returned. Generally,
-if `self` can’t be resolved, it is due to it being defined on
-top of a named color that doesn’t exist in `props`.
-
-When `props` is `None`, resolving of named colors will fail, so if
-your `self` is or references such a color, this function will
-return `false`.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-## `props`
-`StyleProperties` to use when resolving
- named colors, or `None`
-## `resolved_color`
-return location for the resolved color
-
-# Returns
-
-`true` if the color has been resolved
-<!-- impl SymbolicColor::fn to_string -->
-Converts the given `self` to a string representation. This is useful
-both for debugging and for serialization of strings. The format of
-the string may change between different versions of GTK, but it is
-guaranteed that the GTK css parser is able to read the string and
-create the same symbolic color from it.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
-
-# Returns
-
-a new string representing `self`
-<!-- impl SymbolicColor::fn unref -->
-Decreases the reference count of `self`, freeing its memory if the
-reference count reaches 0.
-
-# Deprecated since 3.8
-
-`SymbolicColor` is deprecated.
 <!-- struct TargetEntry -->
 A `TargetEntry` represents a single type of
 data than can be supplied for by a widget for a selection
@@ -40966,18 +37035,6 @@ Whether the margins accumulate or override each other.
 When set to `true` the margins of this tag are added to the margins
 of any other non-accumulative margins present. When set to `false`
 the margins override one another (the default).
-<!-- trait TextTagExt::fn get_property_background-gdk -->
-Background color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:background-rgba` instead.
-<!-- trait TextTagExt::fn set_property_background-gdk -->
-Background color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:background-rgba` instead.
 <!-- trait TextTagExt::fn get_property_background-rgba -->
 Background color as a `gdk::RGBA`.
 <!-- trait TextTagExt::fn set_property_background-rgba -->
@@ -41018,18 +37075,6 @@ OpenType font features, as a string.
 
 Feature: `v3_18`
 
-<!-- trait TextTagExt::fn get_property_foreground-gdk -->
-Foreground color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:foreground-rgba` instead.
-<!-- trait TextTagExt::fn set_property_foreground-gdk -->
-Foreground color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:foreground-rgba` instead.
 <!-- trait TextTagExt::fn get_property_foreground-rgba -->
 Foreground color as a `gdk::RGBA`.
 <!-- trait TextTagExt::fn set_property_foreground-rgba -->
@@ -41072,18 +37117,6 @@ Feature: `v3_16`
 
 <!-- trait TextTagExt::fn set_property_paragraph-background -->
 The paragraph background color as a string.
-<!-- trait TextTagExt::fn get_property_paragraph-background-gdk -->
-The paragraph background color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:paragraph-background-rgba` instead.
-<!-- trait TextTagExt::fn set_property_paragraph-background-gdk -->
-The paragraph background color as a `gdk::Color`.
-
-# Deprecated since 3.4
-
-Use `TextTag:paragraph-background-rgba` instead.
 <!-- trait TextTagExt::fn get_property_paragraph-background-rgba -->
 The paragraph background color as a `gdk::RGBA`.
 <!-- trait TextTagExt::fn set_property_paragraph-background-rgba -->
@@ -41481,16 +37514,6 @@ buffer may override this setting for some ranges of text.
 # Returns
 
 whether text is editable by default
-<!-- trait TextViewExt::fn get_hadjustment -->
-Gets the horizontal-scrolling `Adjustment`.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_hadjustment`
-
-# Returns
-
-pointer to the horizontal `Adjustment`
 <!-- trait TextViewExt::fn get_indent -->
 Gets the default indentation of paragraphs in `self`.
 Tags in the view’s buffer may override the default.
@@ -41654,16 +37677,6 @@ Feature: `v3_18`
 # Returns
 
 top margin in pixels
-<!-- trait TextViewExt::fn get_vadjustment -->
-Gets the vertical-scrolling `Adjustment`.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_vadjustment`
-
-# Returns
-
-pointer to the vertical `Adjustment`
 <!-- trait TextViewExt::fn get_visible_rect -->
 Fills `visible_rect` with the currently-visible
 region of the buffer, in buffer coordinates. Convert to window coordinates
@@ -42522,22 +38535,6 @@ Returns a new `ToggleToolButton`
 # Returns
 
 a newly created `ToggleToolButton`
-<!-- impl ToggleToolButton::fn new_from_stock -->
-Creates a new `ToggleToolButton` containing the image and text from a
-stock item. Some stock ids have preprocessor macros like `GTK_STOCK_OK`
-and `GTK_STOCK_APPLY`.
-
-It is an error if `stock_id` is not a name of a stock item.
-
-# Deprecated since 3.10
-
-Use `ToggleToolButton::new` instead.
-## `stock_id`
-the name of the stock item
-
-# Returns
-
-A new `ToggleToolButton`
 <!-- trait ToggleToolButtonExt::fn get_active -->
 Queries a `ToggleToolButton` and returns its current state.
 Returns `true` if the toggle button is pressed in and `false` if it is raised.
@@ -42601,23 +38598,6 @@ a string that will be used as label, or `None`
 # Returns
 
 A new `ToolButton`
-<!-- impl ToolButton::fn new_from_stock -->
-Creates a new `ToolButton` containing the image and text from a
-stock item. Some stock ids have preprocessor macros like `GTK_STOCK_OK`
-and `GTK_STOCK_APPLY`.
-
-It is an error if `stock_id` is not a name of a stock item.
-
-# Deprecated since 3.10
-
-Use `ToolButton::new` together with
-`Image::new_from_icon_name` instead.
-## `stock_id`
-the name of the stock item
-
-# Returns
-
-A new `ToolButton`
 <!-- trait ToolButtonExt::fn get_icon_name -->
 Returns the name of the themed icon for the tool button,
 see `ToolButtonExt::set_icon_name`.
@@ -42650,17 +38630,6 @@ See `ToolButtonExt::set_label_widget`.
 
 The widget used as label
  on `self`, or `None`.
-<!-- trait ToolButtonExt::fn get_stock_id -->
-Returns the name of the stock item. See `ToolButton::set_stock_id`.
-The returned string is owned by GTK+ and must not be freed or modifed.
-
-# Deprecated since 3.10
-
-Use `ToolButtonExt::get_icon_name` instead.
-
-# Returns
-
-the name of the stock item for `self`.
 <!-- trait ToolButtonExt::fn get_use_underline -->
 Returns whether underscores in the label property are used as mnemonics
 on menu items on the overflow menu. See `ToolButtonExt::set_use_underline`.
@@ -42700,16 +38669,6 @@ determined by the `ToolButton:stock-id` property is used as label. If
 `ToolButton:stock-id` is also `None`, `self` does not have a label.
 ## `label_widget`
 the widget used as label, or `None`
-<!-- trait ToolButtonExt::fn set_stock_id -->
-Sets the name of the stock item. See `ToolButton::new_from_stock`.
-The stock_id property only has an effect if not overridden by non-`None`
-`ToolButton:label-widget` and `ToolButton:icon-widget` properties.
-
-# Deprecated since 3.10
-
-Use `ToolButtonExt::set_icon_name` instead.
-## `stock_id`
-a name of a stock item, or `None`
 <!-- trait ToolButtonExt::fn set_use_underline -->
 If set, an underline in the label property indicates that the next character
 should be used for the mnemonic accelerator key in the overflow menu. For
@@ -42734,16 +38693,6 @@ The name of the themed icon displayed on the item.
 This property only has an effect if not overridden by
 `ToolButton:label-widget`, `ToolButton:icon-widget` or
 `ToolButton:stock-id` properties.
-<!-- trait ToolButtonExt::fn get_property_stock-id -->
-
-# Deprecated since 3.10
-
-Use `ToolButton:icon-name` instead.
-<!-- trait ToolButtonExt::fn set_property_stock-id -->
-
-# Deprecated since 3.10
-
-Use `ToolButton:icon-name` instead.
 <!-- struct ToolItem -->
 ``GtkToolItems`` are widgets that can appear on a toolbar. To
 create a toolbar item that contain something else than a button, use
@@ -43329,16 +39278,6 @@ a `ToolItemGroup`
 # Returns
 
 the index of group or -1 if `group` is not a child of `self`
-<!-- trait ToolPaletteExt::fn get_hadjustment -->
-Gets the horizontal adjustment of the tool palette.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_hadjustment`
-
-# Returns
-
-the horizontal adjustment of `self`
 <!-- trait ToolPaletteExt::fn get_icon_size -->
 Gets the size of icons in the tool palette.
 See `ToolPaletteExt::set_icon_size`.
@@ -43352,16 +39291,6 @@ Gets the style (icons, text or both) of items in the tool palette.
 # Returns
 
 the `ToolbarStyle` of items in the tool palette.
-<!-- trait ToolPaletteExt::fn get_vadjustment -->
-Gets the vertical adjustment of the tool palette.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_vadjustment`
-
-# Returns
-
-the vertical adjustment of `self`
 <!-- trait ToolPaletteExt::fn set_drag_source -->
 Sets the tool palette as a drag source.
 Enables all groups and items in the tool palette as drag sources
@@ -43814,18 +39743,6 @@ the icon indicated by `icon_name` with the size indicated
 by `size`. If `icon_name` is `None`, the image will be hidden.
 ## `icon_name`
 an icon name, or `None`
-## `size`
-a stock icon size (`IconSize`)
-<!-- impl Tooltip::fn set_icon_from_stock -->
-Sets the icon of the tooltip (which is in front of the text) to be
-the stock item indicated by `stock_id` with the size indicated
-by `size`. If `stock_id` is `None`, the image will be hidden.
-
-# Deprecated since 3.10
-
-Use `Tooltip::set_icon_from_icon_name` instead.
-## `stock_id`
-a stock id, or `None`
 ## `size`
 a stock icon size (`IconSize`)
 <!-- impl Tooltip::fn set_markup -->
@@ -46116,17 +42033,6 @@ Returns which grid lines are enabled in `self`.
 
 a `TreeViewGridLines` value indicating which grid lines
 are enabled.
-<!-- trait TreeViewExt::fn get_hadjustment -->
-Gets the `Adjustment` currently being used for the horizontal aspect.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_hadjustment`
-
-# Returns
-
-A `Adjustment` object, or `None`
- if none is currently being used.
 <!-- trait TreeViewExt::fn get_headers_clickable -->
 Returns whether all header columns are clickable.
 
@@ -46232,15 +42138,6 @@ user to select multiple rows by dragging the mouse.
 # Returns
 
 `true` if rubber banding in `self` is enabled.
-<!-- trait TreeViewExt::fn get_rules_hint -->
-Gets the setting set by `TreeView::set_rules_hint`.
-
-# Deprecated since 3.14
-
-
-# Returns
-
-`true` if the hint is set
 <!-- trait TreeViewExt::fn get_search_column -->
 Gets the column searched on by the interactive search code.
 
@@ -46317,17 +42214,6 @@ a pointer to receive a `TreeIter` or `None`
 # Returns
 
 whether or not the given tooltip context points to a row.
-<!-- trait TreeViewExt::fn get_vadjustment -->
-Gets the `Adjustment` currently being used for the vertical aspect.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_vadjustment`
-
-# Returns
-
-A `Adjustment` object, or `None`
- if none is currently being used.
 <!-- trait TreeViewExt::fn get_visible_range -->
 Sets `start_path` and `end_path` to be the first and last visible path.
 Note that there may be invisible paths in between.
@@ -46585,20 +42471,6 @@ A `TreeViewColumn`, or `None`
 A `CellRenderer`, or `None`
 ## `start_editing`
 `true` if the specified cell should start being edited.
-<!-- trait TreeViewExt::fn set_destroy_count_func -->
-This function should almost never be used. It is meant for private use by
-ATK for determining the number of visible children that are removed when the
-user collapses a row, or a row is deleted.
-
-# Deprecated since 3.4
-
-Accessibility does not need the function anymore.
-## `func`
-Function to be called when a view row is destroyed, or `None`
-## `data`
-User data to be passed to `func`, or `None`
-## `destroy`
-Destroy notifier for `data`, or `None`
 <!-- trait TreeViewExt::fn set_drag_dest_row -->
 Sets the row that is highlighted for feedback.
 If `path` is `None`, an existing highlight is removed.
@@ -46641,14 +42513,6 @@ Sets which grid lines to draw in `self`.
 ## `grid_lines`
 a `TreeViewGridLines` value indicating which grid lines to
 enable.
-<!-- trait TreeViewExt::fn set_hadjustment -->
-Sets the `Adjustment` for the current horizontal aspect.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_hadjustment`
-## `adjustment`
-The `Adjustment` to set, or `None`
 <!-- trait TreeViewExt::fn set_headers_clickable -->
 Allow the column title buttons to be clicked.
 ## `setting`
@@ -46717,27 +42581,6 @@ is `SelectionMode::Multiple`, rubber banding will allow the user to select
 multiple rows by dragging the mouse.
 ## `enable`
 `true` to enable rubber banding
-<!-- trait TreeViewExt::fn set_rules_hint -->
-Sets a hint for the theme to draw even/odd rows in the `self`
-with different colors, also known as "zebra striping".
-
-This function tells the GTK+ theme that the user interface for your
-application requires users to read across tree rows and associate
-cells with one another.
-
-Do not use it just because you prefer the appearance of the ruled
-tree; that’s a question for the theme. Some themes will draw tree
-rows in alternating colors even when rules are turned off, and
-users who prefer that appearance all the time can choose those
-themes. You should call this function only as a semantic hint to
-the theme engine that your tree makes alternating colors useful
-from a functional standpoint (since it has lots of columns,
-generally).
-
-# Deprecated since 3.14
-
-## `setting`
-`true` if the tree requires reading across rows
 <!-- trait TreeViewExt::fn set_search_column -->
 Sets `column` as the column where the interactive search code should
 search in for the current model.
@@ -46828,14 +42671,6 @@ See also `Tooltip::set_tip_area`.
 a `Tooltip`
 ## `path`
 a `TreePath`
-<!-- trait TreeViewExt::fn set_vadjustment -->
-Sets the `Adjustment` for the current vertical aspect.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_vadjustment`
-## `adjustment`
-The `Adjustment` to set, or `None`
 <!-- trait TreeViewExt::fn unset_rows_drag_dest -->
 Undoes the effect of
 `TreeView::enable_model_drag_dest`. Calling this method sets
@@ -46975,20 +42810,6 @@ in `ComboBox` or `EntryCompletion`.
 Extra indentation for each level.
 <!-- trait TreeViewExt::fn set_property_level-indentation -->
 Extra indentation for each level.
-<!-- trait TreeViewExt::fn get_property_rules-hint -->
-Sets a hint to the theme to draw rows in alternating colors.
-
-# Deprecated since 3.14
-
-The theme is responsible for drawing rows
- using zebra striping
-<!-- trait TreeViewExt::fn set_property_rules-hint -->
-Sets a hint to the theme to draw rows in alternating colors.
-
-# Deprecated since 3.14
-
-The theme is responsible for drawing rows
- using zebra striping
 <!-- trait TreeViewExt::fn get_property_show-expanders -->
 `true` if the view has expanders.
 <!-- trait TreeViewExt::fn set_property_show-expanders -->
@@ -47518,16 +43339,6 @@ Gets the bin window of the `Viewport`.
 # Returns
 
 a `gdk::Window`
-<!-- trait ViewportExt::fn get_hadjustment -->
-Returns the horizontal adjustment of the viewport.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_hadjustment`
-
-# Returns
-
-the horizontal adjustment of `self`.
 <!-- trait ViewportExt::fn get_shadow_type -->
 Gets the shadow type of the `Viewport`. See
 `ViewportExt::set_shadow_type`.
@@ -47535,42 +43346,16 @@ Gets the shadow type of the `Viewport`. See
 # Returns
 
 the shadow type
-<!-- trait ViewportExt::fn get_vadjustment -->
-Returns the vertical adjustment of the viewport.
-
-# Deprecated since 3.0
-
-Use `Scrollable::get_vadjustment`
-
-# Returns
-
-the vertical adjustment of `self`.
 <!-- trait ViewportExt::fn get_view_window -->
 Gets the view window of the `Viewport`.
 
 # Returns
 
 a `gdk::Window`
-<!-- trait ViewportExt::fn set_hadjustment -->
-Sets the horizontal adjustment of the viewport.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_hadjustment`
-## `adjustment`
-a `Adjustment`.
 <!-- trait ViewportExt::fn set_shadow_type -->
 Sets the shadow type of the viewport.
 ## `type_`
 the new shadow type.
-<!-- trait ViewportExt::fn set_vadjustment -->
-Sets the vertical adjustment of the viewport.
-
-# Deprecated since 3.0
-
-Use `Scrollable::set_vadjustment`
-## `adjustment`
-a `Adjustment`.
 <!-- struct VolumeButton -->
 `VolumeButton` is a subclass of `ScaleButton` that has
 been tailored for use as a volume control widget with suitable
@@ -47923,39 +43708,6 @@ Obtains the current default reading direction. See
 # Returns
 
 the current default direction.
-<!-- impl Widget::fn get_default_style -->
-Returns the default style used by all widgets initially.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead, and
- `CssProvider::get_default` to obtain a `StyleProvider`
- with the default widget style information.
-
-# Returns
-
-the default style. This `Style`
- object is owned by GTK+ and should not be modified or freed.
-<!-- impl Widget::fn pop_composite_child -->
-Cancels the effect of a previous call to `Widget::push_composite_child`.
-
-# Deprecated since 3.10
-
-Use `WidgetClass::set_template`, or don’t use this API at all.
-<!-- impl Widget::fn push_composite_child -->
-Makes all newly-created widgets as composite children until
-the corresponding `Widget::pop_composite_child` call.
-
-A composite child is a child that’s an implementation detail of the
-container it’s inside and should not be visible to people using the
-container. Composite children aren’t treated differently by GTK+ (but
-see `ContainerExt::foreach` vs. `ContainerExt::forall`), but e.g. GUI
-builders might want to treat them in a different way.
-
-# Deprecated since 3.10
-
-This API never really worked well and was mostly unused, now
-we have a more complete mechanism for composite children, see `WidgetClass::set_template`.
 <!-- impl Widget::fn set_default_direction -->
 Sets the default reading direction for widgets where the
 direction has not been explicitly set by `WidgetExt::set_direction`.
@@ -48095,22 +43847,6 @@ Also see `ContainerExt::child_notify`.
 ## `child_property`
 the name of a child property installed on the
  class of `self`’s parent
-<!-- trait WidgetExt::fn class_path -->
-Same as `Widget::path`, but always uses the name of a widget’s type,
-never uses a custom name set with `WidgetExt::set_name`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::get_path` instead
-## `path_length`
-location to store the length of the
- class path, or `None`
-## `path`
-location to store the class path as an
- allocated string, or `None`
-## `path_reversed`
-location to store the reverse
- class path as an allocated string, or `None`
 <!-- trait WidgetExt::fn compute_expand -->
 Computes whether a container should give this widget extra space
 when possible. Containers should check this, rather than
@@ -48207,27 +43943,6 @@ a `gdk::Device`
 
 `true` if there is an ongoing grab on `device`
  by another `Widget` than `self`.
-<!-- trait WidgetExt::fn drag_begin -->
-This function is equivalent to `WidgetExt::drag_begin_with_coordinates`,
-passing -1, -1 as coordinates.
-
-# Deprecated since 3.10
-
-Use `WidgetExt::drag_begin_with_coordinates` instead
-## `targets`
-The targets (data formats) in which the
- source can provide the data
-## `actions`
-A bitmask of the allowed drag actions for this drag
-## `button`
-The button the user clicked to start the drag
-## `event`
-The event that triggered the start of the drag,
- or `None` if none can be obtained.
-
-# Returns
-
-the context for this drag
 <!-- trait WidgetExt::fn drag_begin_with_coordinates -->
 Initiates a drag on the source side. The function only needs to be used
 when the application is starting drags itself, and is not needed when
@@ -48502,15 +44217,6 @@ from a `gdk_pixbuf::Pixbuf`. GTK+ retains a reference for `pixbuf` and will
 release it when it is no longer needed.
 ## `pixbuf`
 the `gdk_pixbuf::Pixbuf` for the drag icon
-<!-- trait WidgetExt::fn drag_source_set_icon_stock -->
-Sets the icon that will be used for drags from a particular source
-to a stock icon.
-
-# Deprecated since 3.10
-
-Use `WidgetExt::drag_source_set_icon_name` instead.
-## `stock_id`
-the ID of the stock icon to use
 <!-- trait WidgetExt::fn drag_source_set_target_list -->
 Changes the target types that this widget offers for drag-and-drop.
 The widget must first be made into a drag source with
@@ -48542,16 +44248,6 @@ rendering to the screen and might appear differently on screen
 and when rendered using `WidgetExt::draw`.
 ## `cr`
 a cairo context to draw to
-<!-- trait WidgetExt::fn ensure_style -->
-Ensures that `self` has a style (`self`->style).
-
-Not a very useful function; most of the time, if you
-want the style, the widget is realized, and realized
-widgets are guaranteed to have a style already.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead
 <!-- trait WidgetExt::fn error_bell -->
 Notifies the user about an input-related error on this widget.
 If the `Settings:gtk-error-bell` setting is `true`, it calls
@@ -48714,31 +44410,6 @@ Determines whether `self` can own the input focus. See
 # Returns
 
 `true` if `self` can own the input focus, `false` otherwise
-<!-- trait WidgetExt::fn get_child_requisition -->
-This function is only for use in widget implementations. Obtains
-`self`->requisition, unless someone has forced a particular
-geometry on the widget (e.g. with `WidgetExt::set_size_request`),
-in which case it returns that geometry instead of the widget's
-requisition.
-
-This function differs from `Widget::size_request` in that
-it retrieves the last size request value from `self`->requisition,
-while `Widget::size_request` actually calls the "size_request" method
-on `self` to compute the size request and fill in `self`->requisition,
-and only then returns `self`->requisition.
-
-Because this function does not call the “size_request” method, it
-can only be used when you know that `self`->requisition is
-up-to-date, that is, `Widget::size_request` has been called
-since the last time a resize was queued. In general, only container
-implementations have this information; applications should use
-`Widget::size_request`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::get_preferred_size` instead.
-## `requisition`
-a `Requisition` to be filled in
 <!-- trait WidgetExt::fn get_child_visible -->
 Gets the value set with `WidgetExt::set_child_visible`.
 If you feel a need to use this function, your code probably
@@ -48778,18 +44449,6 @@ the appropriate clipboard object. If no
  clipboard already exists, a new one will
  be created. Once a clipboard object has
  been created, it is persistent for all time.
-<!-- trait WidgetExt::fn get_composite_name -->
-Obtains the composite name of a widget.
-
-# Deprecated since 3.10
-
-Use `WidgetClass::set_template`, or don’t use this API at all.
-
-# Returns
-
-the composite name of `self`, or `None` if `self` is not
- a composite child. The string should be freed when it is no
- longer needed.
 <!-- trait WidgetExt::fn get_device_enabled -->
 Returns whether `device` can interact with `self` and its
 children. See `WidgetExt::set_device_enabled`.
@@ -48981,26 +44640,6 @@ Gets the value of the `Widget:margin-end` property.
 # Returns
 
 The end margin of `self`
-<!-- trait WidgetExt::fn get_margin_left -->
-Gets the value of the `Widget:margin-left` property.
-
-# Deprecated since 3.12
-
-Use `WidgetExt::get_margin_start` instead.
-
-# Returns
-
-The left margin of `self`
-<!-- trait WidgetExt::fn get_margin_right -->
-Gets the value of the `Widget:margin-right` property.
-
-# Deprecated since 3.12
-
-Use `WidgetExt::get_margin_end` instead.
-
-# Returns
-
-The right margin of `self`
 <!-- trait WidgetExt::fn get_margin_start -->
 Gets the value of the `Widget:margin-start` property.
 
@@ -49024,30 +44663,6 @@ the use case for the modifier mask
 # Returns
 
 the modifier mask used for `intent`.
-<!-- trait WidgetExt::fn get_modifier_style -->
-Returns the current modifier style for the widget. (As set by
-`Widget::modify_style`.) If no style has previously set, a new
-`RcStyle` will be created with all values unset, and set as the
-modifier style for the widget. If you make changes to this rc
-style, you must call `Widget::modify_style`, passing in the
-returned rc style, to make sure that your changes take effect.
-
-Caution: passing the style back to `Widget::modify_style` will
-normally end up destroying it, because `Widget::modify_style` copies
-the passed-in style and sets the copy as the new modifier style,
-thus dropping any reference to the old modifier style. Add a reference
-to the modifier style if you want to keep it alive.
-
-# Deprecated since 3.0
-
-Use `StyleContext` with a custom `StyleProvider` instead
-
-# Returns
-
-the modifier style for the widget.
- This rc style is owned by the widget. If you want to keep a
- pointer to value this around, you must add a refcount using
- `gobject::ObjectExt::ref`.
 <!-- trait WidgetExt::fn get_name -->
 Retrieves the name of a widget. See `WidgetExt::set_name` for the
 significance of widget names.
@@ -49104,20 +44719,6 @@ created.
 # Returns
 
 The `WidgetPath` representing `self`
-<!-- trait WidgetExt::fn get_pointer -->
-Obtains the location of the mouse pointer in widget coordinates.
-Widget coordinates are a bit odd; for historical reasons, they are
-defined as `self`->window coordinates for widgets that return `true` for
-`WidgetExt::get_has_window`; and are relative to `self`->allocation.x,
-`self`->allocation.y otherwise.
-
-# Deprecated since 3.4
-
-Use `gdk::WindowExt::get_device_position` instead.
-## `x`
-return location for the X coordinate, or `None`
-## `y`
-return location for the Y coordinate, or `None`
 <!-- trait WidgetExt::fn get_preferred_height -->
 Retrieves a widget’s initial minimum and natural height.
 
@@ -49245,40 +44846,6 @@ capabilities.
 # Returns
 
 The `SizeRequestMode` preferred by `self`.
-<!-- trait WidgetExt::fn get_requisition -->
-Retrieves the widget’s requisition.
-
-This function should only be used by widget implementations in
-order to figure whether the widget’s requisition has actually
-changed after some internal state change (so that they can call
-`WidgetExt::queue_resize` instead of `WidgetExt::queue_draw`).
-
-Normally, `Widget::size_request` should be used.
-
-# Deprecated since 3.0
-
-The `Requisition` cache on the widget was
-removed, If you need to cache sizes across requests and allocations,
-add an explicit cache to the widget in question instead.
-## `requisition`
-a pointer to a `Requisition` to copy to
-<!-- trait WidgetExt::fn get_root_window -->
-Get the root window where this widget is located. This function can
-only be called after the widget has been added to a widget
-hierarchy with `Window` at the top.
-
-The root window is useful for such purposes as creating a popup
-`gdk::Window` associated with the window. In general, you should only
-create display specific resources when a widget has been realized,
-and you should free those resources when the widget is unrealized.
-
-# Deprecated since 3.12
-
-Use `gdk::Screen::get_root_window` instead
-
-# Returns
-
-the `gdk::Window` root window for the toplevel for this widget.
 <!-- trait WidgetExt::fn get_scale_factor -->
 Retrieves the internal scale factor that maps from window coordinates
 to the actual device pixels. On traditional systems this is 1, on
@@ -49334,16 +44901,6 @@ this function.
 return location for width, or `None`
 ## `height`
 return location for height, or `None`
-<!-- trait WidgetExt::fn get_state -->
-Returns the widget’s state. See `Widget::set_state`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::get_state_flags` instead.
-
-# Returns
-
-the state of `self`.
 <!-- trait WidgetExt::fn get_state_flags -->
 Returns the widget state as a flag set. It is worth mentioning
 that the effective `StateFlags::Insensitive` state will be
@@ -49357,16 +44914,6 @@ should look at `StyleContextExt::get_state`.
 # Returns
 
 The state flags for widget
-<!-- trait WidgetExt::fn get_style -->
-Simply an accessor function that returns `self`->style.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead
-
-# Returns
-
-the widget’s `Style`
 <!-- trait WidgetExt::fn get_style_context -->
 Returns the style context associated to `self`. The returned object is
 guaranteed to be the same for the lifetime of `self`.
@@ -49583,17 +45130,6 @@ See also `WidgetExt::grab_add`.
 # Returns
 
 `true` if the widget is in the grab_widgets stack
-<!-- trait WidgetExt::fn has_rc_style -->
-Determines if the widget style has been looked up through the rc mechanism.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead
-
-# Returns
-
-`true` if the widget has been looked up through the rc
- mechanism, `false` otherwise.
 <!-- trait WidgetExt::fn has_screen -->
 Checks whether there is a `gdk::Screen` is associated with
 this widget. All toplevel widgets have an associated
@@ -49847,146 +45383,6 @@ Emits the `Widget::mnemonic-activate` signal.
 # Returns
 
 `true` if the signal has been handled
-<!-- trait WidgetExt::fn modify_base -->
-Sets the base color for a widget in a particular state.
-All other style values are left untouched. The base color
-is the background color used along with the text color
-(see `Widget::modify_text`) for widgets such as `Entry`
-and `TextView`. See also `Widget::modify_style`.
-
-> Note that “no window” widgets (which have the `GTK_NO_WINDOW`
-> flag set) draw on their parent container’s window and thus may
-> not draw any background themselves. This is the case for e.g.
-> `Label`.
->
-> To modify the background of such widgets, you have to set the
-> base color on their parent; if you want to set the background
-> of a rectangular area around a label, try placing the label in
-> a `EventBox` widget and setting the base color on that.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_background_color` instead
-## `state`
-the state for which to set the base color
-## `color`
-the color to assign (does not need to
- be allocated), or `None` to undo the effect of previous
- calls to of `Widget::modify_base`.
-<!-- trait WidgetExt::fn modify_bg -->
-Sets the background color for a widget in a particular state.
-
-All other style values are left untouched.
-See also `Widget::modify_style`.
-
-> Note that “no window” widgets (which have the `GTK_NO_WINDOW`
-> flag set) draw on their parent container’s window and thus may
-> not draw any background themselves. This is the case for e.g.
-> `Label`.
->
-> To modify the background of such widgets, you have to set the
-> background color on their parent; if you want to set the background
-> of a rectangular area around a label, try placing the label in
-> a `EventBox` widget and setting the background color on that.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_background_color` instead
-## `state`
-the state for which to set the background color
-## `color`
-the color to assign (does not need
- to be allocated), or `None` to undo the effect of previous
- calls to of `Widget::modify_bg`.
-<!-- trait WidgetExt::fn modify_cursor -->
-Sets the cursor color to use in a widget, overriding the `Widget`
-cursor-color and secondary-cursor-color
-style properties.
-
-All other style values are left untouched.
-See also `Widget::modify_style`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_cursor` instead.
-## `primary`
-the color to use for primary cursor (does not
- need to be allocated), or `None` to undo the effect of previous
- calls to of `Widget::modify_cursor`.
-## `secondary`
-the color to use for secondary cursor (does
- not need to be allocated), or `None` to undo the effect of
- previous calls to of `Widget::modify_cursor`.
-<!-- trait WidgetExt::fn modify_fg -->
-Sets the foreground color for a widget in a particular state.
-
-All other style values are left untouched.
-See also `Widget::modify_style`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_color` instead
-## `state`
-the state for which to set the foreground color
-## `color`
-the color to assign (does not need to be allocated),
- or `None` to undo the effect of previous calls to
- of `Widget::modify_fg`.
-<!-- trait WidgetExt::fn modify_font -->
-Sets the font to use for a widget.
-
-All other style values are left untouched.
-See also `Widget::modify_style`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_font` instead
-## `font_desc`
-the font description to use, or `None`
- to undo the effect of previous calls to `Widget::modify_font`
-<!-- trait WidgetExt::fn modify_style -->
-Modifies style values on the widget.
-
-Modifications made using this technique take precedence over
-style values set via an RC file, however, they will be overridden
-if a style is explicitly set on the widget using `Widget::set_style`.
-The `RcStyle`-struct is designed so each field can either be
-set or unset, so it is possible, using this function, to modify some
-style values and leave the others unchanged.
-
-Note that modifications made with this function are not cumulative
-with previous calls to `Widget::modify_style` or with such
-functions as `Widget::modify_fg`. If you wish to retain
-previous values, you must first call `Widget::get_modifier_style`,
-make your modifications to the returned style, then call
-`Widget::modify_style` with that style. On the other hand,
-if you first call `Widget::modify_style`, subsequent calls
-to such functions `Widget::modify_fg` will have a cumulative
-effect with the initial modifications.
-
-# Deprecated since 3.0
-
-Use `StyleContext` with a custom `StyleProvider` instead
-## `style`
-the `RcStyle`-struct holding the style modifications
-<!-- trait WidgetExt::fn modify_text -->
-Sets the text color for a widget in a particular state.
-
-All other style values are left untouched.
-The text color is the foreground color used along with the
-base color (see `Widget::modify_base`) for widgets such
-as `Entry` and `TextView`.
-See also `Widget::modify_style`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::override_color` instead
-## `state`
-the state for which to set the text color
-## `color`
-the color to assign (does not need to
- be allocated), or `None` to undo the effect of previous
- calls to of `Widget::modify_text`.
 <!-- trait WidgetExt::fn override_background_color -->
 Sets the background color to use for a widget.
 
@@ -50096,32 +45492,6 @@ the name of the symbolic color to modify
 the color to assign (does not need
  to be allocated), or `None` to undo the effect of previous
  calls to `WidgetExt::override_symbolic_color`
-<!-- trait WidgetExt::fn path -->
-Obtains the full path to `self`. The path is simply the name of a
-widget and all its parents in the container hierarchy, separated by
-periods. The name of a widget comes from
-`WidgetExt::get_name`. Paths are used to apply styles to a widget
-in gtkrc configuration files. Widget names are the type of the
-widget by default (e.g. “`Button`”) or can be set to an
-application-specific value with `WidgetExt::set_name`. By setting
-the name of a widget, you allow users or theme authors to apply
-styles to that specific widget in their gtkrc
-file. `path_reversed_p` fills in the path in reverse order,
-i.e. starting with `self`’s name instead of starting with the name
-of `self`’s outermost ancestor.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::get_path` instead
-## `path_length`
-location to store length of the path,
- or `None`
-## `path`
-location to store allocated path string,
- or `None`
-## `path_reversed`
-location to store allocated reverse
- path string, or `None`
 <!-- trait WidgetExt::fn queue_allocate -->
 This function is only for use in widget implementations.
 
@@ -50209,25 +45579,6 @@ need it, a better approach is to connect to a signal that will be
 called after the widget is realized automatically, such as
 `Widget::draw`. Or simply g_signal_connect () to the
 `Widget::realize` signal.
-<!-- trait WidgetExt::fn region_intersect -->
-Computes the intersection of a `self`’s area and `region`, returning
-the intersection. The result may be empty, use `cairo_region_is_empty` to
-check.
-
-# Deprecated since 3.14
-
-Use `WidgetExt::get_allocation` and
- `cairo_region_intersect_rectangle` to get the same behavior.
-## `region`
-a `cairo::Region`, in the same coordinate system as
- `self`->allocation. That is, relative to `self`->window
- for widgets which return `false` from `WidgetExt::get_has_window`;
- relative to the parent window of `self`->window otherwise.
-
-# Returns
-
-A newly allocated region holding the intersection of `self`
- and `region`.
 <!-- trait WidgetExt::fn register_window -->
 Registers a `gdk::Window` with the widget and sets it up so that
 the widget receives events for it. Call `WidgetExt::unregister_window`
@@ -50265,79 +45616,6 @@ Removes a tick callback previously registered with
 `Widget::add_tick_callback`.
 ## `id`
 an id returned by `Widget::add_tick_callback`
-<!-- trait WidgetExt::fn render_icon -->
-A convenience function that uses the theme settings for `self`
-to look up `stock_id` and render it to a pixbuf. `stock_id` should
-be a stock icon ID such as `GTK_STOCK_OPEN` or `GTK_STOCK_OK`. `size`
-should be a size such as `IconSize::Menu`. `detail` should be a
-string that identifies the widget or code doing the rendering, so
-that theme engines can special-case rendering for that widget or
-code.
-
-The pixels in the returned `gdk_pixbuf::Pixbuf` are shared with the rest of
-the application and should not be modified. The pixbuf should be
-freed after use with `gobject::ObjectExt::unref`.
-
-# Deprecated since 3.0
-
-Use `Widget::render_icon_pixbuf` instead.
-## `stock_id`
-a stock ID
-## `size`
-a stock size (`IconSize`). A size of `(GtkIconSize)-1`
- means render at the size of the source and don’t scale (if there are
- multiple source sizes, GTK+ picks one of the available sizes).
-## `detail`
-render detail to pass to theme engine
-
-# Returns
-
-a new pixbuf, or `None` if the
- stock ID wasn’t known
-<!-- trait WidgetExt::fn render_icon_pixbuf -->
-A convenience function that uses the theme engine and style
-settings for `self` to look up `stock_id` and render it to
-a pixbuf. `stock_id` should be a stock icon ID such as
-`GTK_STOCK_OPEN` or `GTK_STOCK_OK`. `size` should be a size
-such as `IconSize::Menu`.
-
-The pixels in the returned `gdk_pixbuf::Pixbuf` are shared with the rest of
-the application and should not be modified. The pixbuf should be freed
-after use with `gobject::ObjectExt::unref`.
-
-# Deprecated since 3.10
-
-Use `IconThemeExt::load_icon` instead.
-## `stock_id`
-a stock ID
-## `size`
-a stock size (`IconSize`). A size of `(GtkIconSize)-1`
- means render at the size of the source and don’t scale (if there are
- multiple source sizes, GTK+ picks one of the available sizes).
-
-# Returns
-
-a new pixbuf, or `None` if the
- stock ID wasn’t known
-<!-- trait WidgetExt::fn reparent -->
-Moves a widget from one `Container` to another, handling reference
-count issues to avoid destroying the widget.
-
-# Deprecated since 3.14
-
-Use `ContainerExt::remove` and `ContainerExt::add`.
-## `new_parent`
-a `Container` to move the widget into
-<!-- trait WidgetExt::fn reset_rc_styles -->
-Reset the styles of `self` and all descendents, so when
-they are looked up again, they get the correct values
-for the currently loaded RC file settings.
-
-This function is not useful for applications.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead, and `WidgetExt::reset_style`
 <!-- trait WidgetExt::fn reset_style -->
 Updates the style context of `self` and all descendants
 by updating its widget path. ``GtkContainers`` may want
@@ -50497,15 +45775,6 @@ If this function is not called by `self` during a ::size-allocate handler,
 the clip will be set to `self`'s allocation.
 ## `clip`
 a pointer to a `Allocation` to copy from
-<!-- trait WidgetExt::fn set_composite_name -->
-Sets a widgets composite name. The widget must be
-a composite child of its parent; see `Widget::push_composite_child`.
-
-# Deprecated since 3.10
-
-Use `WidgetClass::set_template`, or don’t use this API at all.
-## `name`
-the name to set
 <!-- trait WidgetExt::fn set_device_enabled -->
 Enables or disables a `gdk::Device` to interact with `self`
 and all its children.
@@ -50548,40 +45817,6 @@ If the direction is set to `TextDirection::None`, then the value
 set by `Widget::set_default_direction` will be used.
 ## `dir`
 the new direction
-<!-- trait WidgetExt::fn set_double_buffered -->
-Widgets are double buffered by default; you can use this function
-to turn off the buffering. “Double buffered” simply means that
-`gdk::WindowExt::begin_draw_frame` and `gdk::WindowExt::end_draw_frame` are called
-automatically around expose events sent to the
-widget. `gdk::WindowExt::begin_draw_frame` diverts all drawing to a widget's
-window to an offscreen buffer, and `gdk::WindowExt::end_draw_frame` draws the
-buffer to the screen. The result is that users see the window
-update in one smooth step, and don’t see individual graphics
-primitives being rendered.
-
-In very simple terms, double buffered widgets don’t flicker,
-so you would only use this function to turn off double buffering
-if you had special needs and really knew what you were doing.
-
-Note: if you turn off double-buffering, you have to handle
-expose events, since even the clearing to the background color or
-pixmap will not happen automatically (as it is done in
-`gdk::WindowExt::begin_draw_frame`).
-
-In 3.10 GTK and GDK have been restructured for translucent drawing. Since
-then expose events for double-buffered widgets are culled into a single
-event to the toplevel GDK window. If you now unset double buffering, you
-will cause a separate rendering pass for every widget. This will likely
-cause rendering problems - in particular related to stacking - and usually
-increases rendering times significantly.
-
-# Deprecated since 3.14
-
-This function does not work under non-X11 backends or with
-non-native windows.
-It should not be used in newly written code.
-## `double_buffered`
-`true` to double-buffer a widget
 <!-- trait WidgetExt::fn set_events -->
 Sets the event mask (see `gdk::EventMask`) for a widget. The event
 mask determines which events a widget will receive. Keep in mind
@@ -50710,24 +45945,6 @@ Sets the end margin of `self`.
 See the `Widget:margin-end` property.
 ## `margin`
 the end margin
-<!-- trait WidgetExt::fn set_margin_left -->
-Sets the left margin of `self`.
-See the `Widget:margin-left` property.
-
-# Deprecated since 3.12
-
-Use `WidgetExt::set_margin_start` instead.
-## `margin`
-the left margin
-<!-- trait WidgetExt::fn set_margin_right -->
-Sets the right margin of `self`.
-See the `Widget:margin-right` property.
-
-# Deprecated since 3.12
-
-Use `WidgetExt::set_margin_end` instead.
-## `margin`
-the right margin
 <!-- trait WidgetExt::fn set_margin_start -->
 Sets the start margin of `self`.
 See the `Widget:margin-start` property.
@@ -50875,16 +46092,6 @@ or border properties set by any subclass of `Widget`.
 width `self` should request, or -1 to unset
 ## `height`
 height `self` should request, or -1 to unset
-<!-- trait WidgetExt::fn set_state -->
-This function is for use in widget implementations. Sets the state
-of a widget (insensitive, prelighted, etc.) Usually you should set
-the state using wrapper functions such as `WidgetExt::set_sensitive`.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::set_state_flags` instead.
-## `state`
-new state for `self`
 <!-- trait WidgetExt::fn set_state_flags -->
 This function is for use in widget implementations. Turns on flag
 values in the current widget state (insensitive, prelighted, etc.).
@@ -50903,17 +46110,6 @@ state flag down the hierarchy, both `WidgetExt::get_state_flags` and
 State flags to turn on
 ## `clear`
 Whether to clear state before turning on `flags`
-<!-- trait WidgetExt::fn set_style -->
-Used to set the `Style` for a widget (`self`->style). Since
-GTK 3, this function does nothing, the passed in style is ignored.
-
-# Deprecated since 3.0
-
-Use `StyleContext` instead
-## `style`
-a `Style`, or `None` to remove the effect
- of a previous call to `Widget::set_style` and go back to
- the default style
 <!-- trait WidgetExt::fn set_support_multidevice -->
 Enables or disables multiple pointer awareness. If this setting is `true`,
 `self` will start receiving multiple, per device enter/leave events. Note
@@ -51060,42 +46256,6 @@ baseline argument is ignored and -1 is used instead.
 position and size to be allocated to `self`
 ## `baseline`
 The baseline of the child, or -1
-<!-- trait WidgetExt::fn size_request -->
-This function is typically used when implementing a `Container`
-subclass. Obtains the preferred size of a widget. The container
-uses this information to arrange its child widgets and decide what
-size allocations to give them with `WidgetExt::size_allocate`.
-
-You can also call this function from an application, with some
-caveats. Most notably, getting a size request requires the widget
-to be associated with a screen, because font information may be
-needed. Multihead-aware applications should keep this in mind.
-
-Also remember that the size request is not necessarily the size
-a widget will actually be allocated.
-
-# Deprecated since 3.0
-
-Use `WidgetExt::get_preferred_size` instead.
-## `requisition`
-a `Requisition` to be filled in
-<!-- trait WidgetExt::fn style_attach -->
-This function attaches the widget’s `Style` to the widget's
-`gdk::Window`. It is a replacement for
-
-
-```text
-widget->style = gtk_style_attach (widget->style, widget->window);
-```
-
-and should only ever be called in a derived widget’s “realize”
-implementation which does not chain up to its parent class'
-“realize” implementation, because one of the parent classes
-(finally `Widget`) would attach the style itself.
-
-# Deprecated since 3.0
-
-This step is unnecessary with `StyleContext`.
 <!-- trait WidgetExt::fn style_get -->
 Gets the values of a multiple style properties of `self`.
 ## `first_property_name`
@@ -51948,35 +47108,11 @@ The ::show signal is emitted when `widget` is shown, for example with
 ## `allocation`
 the region which has been
  allocated to the widget.
-<!-- trait WidgetExt::fn connect_state_changed -->
-The ::state-changed signal is emitted when the widget state changes.
-See `Widget::get_state`.
-
-# Deprecated since 3.0
-
-Use `Widget::state-flags-changed` instead.
-## `state`
-the previous state
 <!-- trait WidgetExt::fn connect_state_flags_changed -->
 The ::state-flags-changed signal is emitted when the widget state
 changes, see `WidgetExt::get_state_flags`.
 ## `flags`
 The previous state flags.
-<!-- trait WidgetExt::fn connect_style_set -->
-The ::style-set signal is emitted when a new style has been set
-on a widget. Note that style-modifying functions like
-`Widget::modify_base` also cause this signal to be emitted.
-
-Note that this signal is emitted for changes to the deprecated
-`Style`. To track changes to the `StyleContext` associated
-with a widget, use the `Widget::style-updated` signal.
-
-# Deprecated since 3.0
-
-Use the `Widget::style-updated` signal
-## `previous_style`
-the previous style, or `None` if the widget
- just got its initial style
 <!-- trait WidgetExt::fn connect_style_updated -->
 The ::style-updated signal is a convenience signal that is emitted when the
 `StyleContext::changed` signal is emitted on the `widget`'s associated
@@ -52010,27 +47146,6 @@ The ::unrealize signal is emitted when the `gdk::Window` associated with
 `widget` is destroyed, which means that `WidgetExt::unrealize` has been
 called or the widget has been unmapped (that is, it is going to be
 hidden).
-<!-- trait WidgetExt::fn connect_visibility_notify_event -->
-The ::visibility-notify-event will be emitted when the `widget`'s
-window is obscured or unobscured.
-
-To receive this signal the `gdk::Window` associated to the widget needs
-to enable the `gdk::EventMask::VisibilityNotifyMask` mask.
-
-# Deprecated since 3.12
-
-Modern composited windowing systems with pervasive
- transparency make it impossible to track the visibility of a window
- reliably, so this signal can not be guaranteed to provide useful
- information.
-## `event`
-the `gdk::EventVisibility` which
- triggered this signal.
-
-# Returns
-
-`true` to stop other handlers from being invoked for the event.
- `false` to propagate the event further.
 <!-- trait WidgetExt::fn connect_window_state_event -->
 The ::window-state-event will be emitted when the state of the
 toplevel window associated to the `widget` changes.
@@ -52046,18 +47161,6 @@ the `gdk::EventWindowState` which
 
 `true` to stop other handlers from being invoked for the
  event. `false` to propagate the event further.
-<!-- trait WidgetExt::fn get_property_double-buffered -->
-Whether the widget is double buffered.
-
-# Deprecated since 3.14
-
-Widgets should not use this property.
-<!-- trait WidgetExt::fn set_property_double-buffered -->
-Whether the widget is double buffered.
-
-# Deprecated since 3.14
-
-Widgets should not use this property.
 <!-- trait WidgetExt::fn get_property_expand -->
 Whether to expand in both directions. Setting this sets both `Widget:hexpand` and `Widget:vexpand`
 <!-- trait WidgetExt::fn set_property_expand -->
@@ -52146,46 +47249,6 @@ left-to-right and right-to-left text directions.
 This property adds margin outside of the widget's normal size
 request, the margin will be added in addition to the size from
 `WidgetExt::set_size_request` for example.
-<!-- trait WidgetExt::fn get_property_margin-left -->
-Margin on left side of widget.
-
-This property adds margin outside of the widget's normal size
-request, the margin will be added in addition to the size from
-`WidgetExt::set_size_request` for example.
-
-# Deprecated since 3.12
-
-Use `Widget:margin-start` instead.
-<!-- trait WidgetExt::fn set_property_margin-left -->
-Margin on left side of widget.
-
-This property adds margin outside of the widget's normal size
-request, the margin will be added in addition to the size from
-`WidgetExt::set_size_request` for example.
-
-# Deprecated since 3.12
-
-Use `Widget:margin-start` instead.
-<!-- trait WidgetExt::fn get_property_margin-right -->
-Margin on right side of widget.
-
-This property adds margin outside of the widget's normal size
-request, the margin will be added in addition to the size from
-`WidgetExt::set_size_request` for example.
-
-# Deprecated since 3.12
-
-Use `Widget:margin-end` instead.
-<!-- trait WidgetExt::fn set_property_margin-right -->
-Margin on right side of widget.
-
-This property adds margin outside of the widget's normal size
-request, the margin will be added in addition to the size from
-`WidgetExt::set_size_request` for example.
-
-# Deprecated since 3.12
-
-Use `Widget:margin-end` instead.
 <!-- trait WidgetExt::fn get_property_margin-start -->
 Margin on start of widget, horizontally. This property supports
 left-to-right and right-to-left text directions.
@@ -52441,35 +47504,9 @@ the hierarchy defined in `self`. See
 position to modify, -1 for the path head
 ## `name`
 a class name
-<!-- impl WidgetPath::fn iter_add_region -->
-Adds the region `name` to the widget at position `pos` in
-the hierarchy defined in `self`. See
-`StyleContext::add_region`.
-
-Region names must only contain lowercase letters
-and “-”, starting always with a lowercase letter.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
-## `pos`
-position to modify, -1 for the path head
-## `name`
-region name
-## `flags`
-flags affecting the region
 <!-- impl WidgetPath::fn iter_clear_classes -->
 Removes all classes from the widget at position `pos` in the
 hierarchy defined in `self`.
-## `pos`
-position to modify, -1 for the path head
-<!-- impl WidgetPath::fn iter_clear_regions -->
-Removes all regions from the widget at position `pos` in the
-hierarchy defined in `self`.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
 ## `pos`
 position to modify, -1 for the path head
 <!-- impl WidgetPath::fn iter_get_name -->
@@ -52577,40 +47614,6 @@ widget name as a `glib::Quark`
 # Returns
 
 `true` if the widget at `pos` has this name
-<!-- impl WidgetPath::fn iter_has_qregion -->
-See `WidgetPath::iter_has_region`. This is a version that operates
-with GQuarks.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
-## `pos`
-position to query, -1 for the path head
-## `qname`
-region name as a `glib::Quark`
-## `flags`
-return location for the region flags
-
-# Returns
-
-`true` if the widget at `pos` has the region defined.
-<!-- impl WidgetPath::fn iter_has_region -->
-Returns `true` if the widget at position `pos` has the class `name`
-defined, `false` otherwise.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
-## `pos`
-position to query, -1 for the path head
-## `name`
-region name
-## `flags`
-return location for the region flags
-
-# Returns
-
-`true` if the class `name` is defined for the widget at `pos`
 <!-- impl WidgetPath::fn iter_list_classes -->
 Returns a list with all the class names defined for the widget
 at position `pos` in the hierarchy defined in `self`.
@@ -52623,22 +47626,6 @@ The list of
  classes, This is a list of strings, the `glib::SList` contents
  are owned by GTK+, but you should use `glib::SList::free` to
  free the list itself.
-<!-- impl WidgetPath::fn iter_list_regions -->
-Returns a list with all the region names defined for the widget
-at position `pos` in the hierarchy defined in `self`.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
-## `pos`
-position to query, -1 for the path head
-
-# Returns
-
-The list of
- regions, This is a list of strings, the `glib::SList` contents
- are owned by GTK+, but you should use `glib::SList::free` to
- free the list itself.
 <!-- impl WidgetPath::fn iter_remove_class -->
 Removes the class `name` from the widget at position `pos` in
 the hierarchy defined in `self`.
@@ -52646,17 +47633,6 @@ the hierarchy defined in `self`.
 position to modify, -1 for the path head
 ## `name`
 class name
-<!-- impl WidgetPath::fn iter_remove_region -->
-Removes the region `name` from the widget at position `pos` in
-the hierarchy defined in `self`.
-
-# Deprecated since 3.14
-
-The use of regions is deprecated.
-## `pos`
-position to modify, -1 for the path head
-## `name`
-region name
 <!-- impl WidgetPath::fn iter_set_name -->
 Sets the widget name for the widget found at position `pos`
 in the widget hierarchy defined by `self`.
@@ -53098,16 +48074,6 @@ window group.
 # Returns
 
 the `WindowGroup` for a window or the default group
-<!-- trait GtkWindowExt::fn get_has_resize_grip -->
-Determines whether the window may have a resize grip.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
-
-# Returns
-
-`true` if the window has a resize grip
 <!-- trait GtkWindowExt::fn get_hide_titlebar_when_maximized -->
 Returns whether the window has requested to have its titlebar hidden
 when maximized. See gtk_window_set_hide_titlebar_when_maximized ().
@@ -53162,17 +48128,6 @@ Returns whether the window is modal. See `GtkWindowExt::set_modal`.
 
 `true` if the window is set to be modal and
  establishes a grab when shown
-<!-- trait GtkWindowExt::fn get_opacity -->
-Fetches the requested opacity for this window. See
-`Window::set_opacity`.
-
-# Deprecated since 3.8
-
-Use gtk_widget_get_opacity instead.
-
-# Returns
-
-the requested opacity for this window.
 <!-- trait GtkWindowExt::fn get_position -->
 This function returns the position you need to pass to
 `GtkWindowExt::move` to keep `self` in its current position.
@@ -53222,20 +48177,6 @@ Gets the value set by `GtkWindowExt::set_resizable`.
 # Returns
 
 `true` if the user can resize the window
-<!-- trait GtkWindowExt::fn get_resize_grip_area -->
-If a window has a resize grip, this will retrieve the grip
-position, width and height into the specified `gdk::Rectangle`.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
-## `rect`
-a pointer to a `gdk::Rectangle` which we should store
- the resize grip area
-
-# Returns
-
-`true` if the resize grip’s area was retrieved
 <!-- trait GtkWindowExt::fn get_role -->
 Returns the role of the window. See `GtkWindowExt::set_role` for
 further explanation.
@@ -53634,16 +48575,6 @@ Removes a mnemonic from this window.
 the mnemonic
 ## `target`
 the widget that gets activated by the mnemonic
-<!-- trait GtkWindowExt::fn reshow_with_initial_size -->
-Hides `self`, then reshows it, resetting the
-default size and position of the window. Used
-by GUI builders only.
-
-# Deprecated since 3.10
-
-GUI builders can call `WidgetExt::hide`,
- `WidgetExt::unrealize` and then `WidgetExt::show` on `self`
- themselves, if they still need this functionality.
 <!-- trait GtkWindowExt::fn resize -->
 Resizes the window as if the user had done so, obeying geometry
 constraints. The default geometry constraint is that windows may
@@ -53677,16 +48608,6 @@ a larger window.
 width in pixels to resize the window to
 ## `height`
 height in pixels to resize the window to
-<!-- trait GtkWindowExt::fn resize_grip_is_visible -->
-Determines whether a resize grip is visible for the specified window.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
-
-# Returns
-
-`true` if a resize grip exists and is visible
 <!-- trait GtkWindowExt::fn resize_to_geometry -->
 Like `GtkWindowExt::resize`, but `width` and `height` are interpreted
 in terms of the base size and increment set with
@@ -53874,19 +48795,6 @@ The default window gravity is `gdk::Gravity::NorthWest` which will
 typically “do what you mean.”
 ## `gravity`
 window gravity
-<!-- trait GtkWindowExt::fn set_has_resize_grip -->
-Sets whether `self` has a corner resize grip.
-
-Note that the resize grip is only shown if the window
-is actually resizable and not maximized. Use
-`Window::resize_grip_is_visible` to find out if the
-resize grip is currently shown.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
-## `value`
-`true` to allow a resize grip
 <!-- trait GtkWindowExt::fn set_has_user_ref_count -->
 Tells GTK+ whether to drop its extra reference to the window
 when `WidgetExt::destroy` is called.
@@ -54045,22 +48953,6 @@ parent; most [window managers][gtk-X11-arch]
 will then disallow lowering the dialog below the parent.
 ## `modal`
 whether the window is modal
-<!-- trait GtkWindowExt::fn set_opacity -->
-Request the windowing system to make `self` partially transparent,
-with opacity 0 being fully transparent and 1 fully opaque. (Values
-of the opacity parameter are clamped to the [0,1] range.) On X11
-this has any effect only on X screens with a compositing manager
-running. See `WidgetExt::is_composited`. On Windows it should work
-always.
-
-Note that setting a window’s opacity after the window has been
-shown causes it to flicker once on Windows.
-
-# Deprecated since 3.8
-
-Use gtk_widget_set_opacity instead.
-## `opacity`
-desired opacity, between 0 and 1
 <!-- trait GtkWindowExt::fn set_position -->
 Sets a position constraint for this window. If the old or new
 constraint is `WindowPosition::CenterAlways`, this will also cause
@@ -54336,28 +49228,6 @@ more details about window gravity.
 <!-- trait GtkWindowExt::fn set_property_gravity -->
 The window gravity of the window. See `GtkWindowExt::move` and `gdk::Gravity` for
 more details about window gravity.
-<!-- trait GtkWindowExt::fn get_property_has-resize-grip -->
-Whether the window has a corner resize grip.
-
-Note that the resize grip is only shown if the window is
-actually resizable and not maximized. Use
-`Window:resize-grip-visible` to find out if the resize
-grip is currently shown.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
-<!-- trait GtkWindowExt::fn set_property_has-resize-grip -->
-Whether the window has a corner resize grip.
-
-Note that the resize grip is only shown if the window is
-actually resizable and not maximized. Use
-`Window:resize-grip-visible` to find out if the resize
-grip is currently shown.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
 <!-- trait GtkWindowExt::fn get_property_hide-titlebar-when-maximized -->
 Whether the titlebar should be hidden during maximization.
 <!-- trait GtkWindowExt::fn set_property_hide-titlebar-when-maximized -->
@@ -54378,12 +49248,6 @@ Whether mnemonics are currently visible in this window.
 
 This property is maintained by GTK+ based on user input,
 and should not be set by applications.
-<!-- trait GtkWindowExt::fn get_property_resize-grip-visible -->
-Whether a corner resize grip is currently shown.
-
-# Deprecated since 3.14
-
-Resize grips have been removed.
 <!-- trait GtkWindowExt::fn set_property_startup-id -->
 The :startup-id is a write-only property for setting window's
 startup notification identifier. See `GtkWindowExt::set_startup_id`

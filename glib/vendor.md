@@ -2457,15 +2457,6 @@ whose `MainContext` has been destroyed is an error.
 the `MainContext` with which the
  source is associated, or `None` if the context has not
  yet been added to a source.
-<!-- impl Source::fn get_current_time -->
-This function ignores `self` and is otherwise the same as
-`g_get_current_time`.
-
-# Deprecated since 2.28
-
-use `Source::get_time` instead
-## `timeval`
-`TimeVal` structure in which to store current time.
 <!-- impl Source::fn get_id -->
 Returns the numeric ID for a particular source. The ID of a source
 is a positive integer which is unique within a particular main loop

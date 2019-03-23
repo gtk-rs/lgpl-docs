@@ -25,16 +25,6 @@ g_object_unref (context);
 # Implements
 
 [`gio::AppLaunchContextExt`](../gio/trait.AppLaunchContextExt.html)
-<!-- impl AppLaunchContext::fn new -->
-Creates a new `AppLaunchContext`.
-
-# Deprecated since 3.0
-
-Use `Display::get_app_launch_context` instead
-
-# Returns
-
-a new `AppLaunchContext`
 <!-- impl AppLaunchContext::fn set_desktop -->
 Sets the workspace on which applications will be launched when
 using this context when running under a window manager that
@@ -46,15 +36,6 @@ it is up to the window manager to pick one, typically it will
 be the current workspace.
 ## `desktop`
 the number of a workspace, or -1
-<!-- impl AppLaunchContext::fn set_display -->
-Sets the display on which applications will be launched when
-using this context. See also `AppLaunchContext::set_screen`.
-
-# Deprecated since 3.0
-
-Use `Display::get_app_launch_context` instead
-## `display`
-a `Display`
 <!-- impl AppLaunchContext::fn set_icon -->
 Sets the icon for applications that are launched with this
 context.
@@ -376,23 +357,6 @@ Location to store the hotspot y position,
 
 a `cairo::Surface`
  representing `self`, or `None`
-<!-- impl Cursor::fn ref -->
-Adds a reference to `self`.
-
-# Deprecated since 3.0
-
-Use `gobject::Object::ref` instead
-
-# Returns
-
-Same `self` that was passed in
-<!-- impl Cursor::fn unref -->
-Removes a reference from `self`, deallocating the cursor
-if no references remain.
-
-# Deprecated since 3.0
-
-Use `gobject::Object::unref` instead
 <!-- enum CursorType -->
 Predefined cursors.
 
@@ -1642,16 +1606,6 @@ Feature: `v3_22`
 # Returns
 
 the number of monitors
-<!-- impl Display::fn get_n_screens -->
-Gets the number of screen managed by the `self`.
-
-# Deprecated since 3.10
-
-The number of screens is always 1.
-
-# Returns
-
-number of screens.
 <!-- impl Display::fn get_name -->
 Gets the name of the display.
 
@@ -1659,22 +1613,6 @@ Gets the name of the display.
 
 a string representing the display name. This string is owned
 by GDK and should not be modified or freed.
-<!-- impl Display::fn get_pointer -->
-Gets the current location of the pointer and the current modifier
-mask for a given display.
-
-# Deprecated since 3.0
-
-Use `Device::get_position` instead.
-## `screen`
-location to store the screen that the
- cursor is on, or `None`.
-## `x`
-location to store root window X coordinate of pointer, or `None`.
-## `y`
-location to store root window Y coordinate of pointer, or `None`.
-## `mask`
-location to store current modifier mask, or `None`
 <!-- impl Display::fn get_primary_monitor -->
 Gets the primary monitor for the display.
 
@@ -1702,26 +1640,6 @@ the screen number
 # Returns
 
 the `Screen` object
-<!-- impl Display::fn get_window_at_pointer -->
-Obtains the window underneath the mouse pointer, returning the location
-of the pointer in that window in `win_x`, `win_y` for `screen`. Returns `None`
-if the window under the mouse pointer is not known to GDK (for example,
-belongs to another application).
-
-# Deprecated since 3.0
-
-Use `Device::get_window_at_position` instead.
-## `win_x`
-return location for x coordinate of the pointer location relative
- to the window origin, or `None`
-## `win_y`
-return location for y coordinate of the pointer location relative
- & to the window origin, or `None`
-
-# Returns
-
-the window under the mouse
- pointer, or `None`
 <!-- impl Display::fn has_pending -->
 Returns whether the display has events that are waiting
 to be processed.
@@ -1735,27 +1653,6 @@ Finds out if the display has been closed.
 # Returns
 
 `true` if the display is closed.
-<!-- impl Display::fn keyboard_ungrab -->
-Release any keyboard grab
-
-# Deprecated since 3.0
-
-Use `Device::ungrab`, together with `Device::grab`
- instead.
-## `time_`
-a timestap (e.g `GDK_CURRENT_TIME`).
-<!-- impl Display::fn list_devices -->
-Returns the list of available input devices attached to `self`.
-The list is statically allocated and should not be freed.
-
-# Deprecated since 3.0
-
-Use `DeviceManager::list_devices` instead.
-
-# Returns
-
-
- a list of `Device`
 <!-- impl Display::fn list_seats -->
 Returns the list of seats known to `self`.
 
@@ -1788,25 +1685,6 @@ that have already been moved to the GDK event queue.)
 a copy of the first ``GdkEvent`` on the event
 queue, or `None` if no events are in the queue. The returned
 ``GdkEvent`` should be freed with `gdk_event_free`.
-<!-- impl Display::fn pointer_is_grabbed -->
-Test if the pointer is grabbed.
-
-# Deprecated since 3.0
-
-Use `Display::device_is_grabbed` instead.
-
-# Returns
-
-`true` if an active X pointer grab is in effect
-<!-- impl Display::fn pointer_ungrab -->
-Release any pointer grab.
-
-# Deprecated since 3.0
-
-Use `Device::ungrab`, together with `Device::grab`
- instead.
-## `time_`
-a timestap (e.g. `GDK_CURRENT_TIME`).
 <!-- impl Display::fn put_event -->
 Appends a copy of the given event onto the front of the event
 queue for `self`.
@@ -1925,28 +1803,6 @@ removed.
 
 This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.
-<!-- impl Display::fn warp_pointer -->
-Warps the pointer of `self` to the point `x`,`y` on
-the screen `screen`, unless the pointer is confined
-to a window by a grab, in which case it will be moved
-as far as allowed by the grab. Warping the pointer
-creates events as if the user had moved the mouse
-instantaneously to the destination.
-
-Note that the pointer should normally be under the
-control of the user. This function was added to cover
-some rare use cases like keyboard navigation support
-for the color picker in the ``GtkColorSelectionDialog``.
-
-# Deprecated since 3.0
-
-Use `Device::warp` instead.
-## `screen`
-the screen of `self` to warp the pointer to
-## `x`
-the x coordinate of the destination
-## `y`
-the y coordinate of the destination
 <!-- trait DisplayExt::fn connect_closed -->
 The ::closed signal is emitted when the connection to the windowing
 system for `display` is closed.
@@ -2604,15 +2460,6 @@ A tablet pad group mode change. This event type was
  added in 3.22.
 <!-- enum EventType::variant EventLast -->
 marks the end of the `EventType` enumeration. Added in 2.18
-<!-- struct EventVisibility -->
-`[Deprecated since 3.12]` Generated when the window visibility status has changed.
-
-# Deprecated since 3.12
-
-Modern composited windowing systems with pervasive
- transparency make it impossible to track the visibility of a window
- reliably, so this event can not be guaranteed to provide useful
- information.
 <!-- struct EventWindowState -->
 Generated when the state of a toplevel window changes.
 <!-- struct FrameClock -->
@@ -4588,27 +4435,6 @@ mask indicating which
 # Returns
 
 the new `Window`
-<!-- impl Window::fn at_pointer -->
-Obtains the window underneath the mouse pointer, returning the
-location of that window in `win_x`, `win_y`. Returns `None` if the
-window under the mouse pointer is not known to GDK (if the window
-belongs to another application and a `Window` hasn’t been created
-for it with `gdk_window_foreign_new`)
-
-NOTE: For multihead-aware widgets or applications use
-`Display::get_window_at_pointer` instead.
-
-# Deprecated since 3.0
-
-Use `Device::get_window_at_position` instead.
-## `win_x`
-return location for origin of the window under the pointer
-## `win_y`
-return location for origin of the window under the pointer
-
-# Returns
-
-window under the mouse pointer
 <!-- impl Window::fn constrain_size -->
 Constrains a desired width and height according to a
 set of geometry hints (such as minimum and maximum size).
@@ -4832,12 +4658,6 @@ root window X coordinate of mouse click that began the drag
 root window Y coordinate of mouse click that began the drag
 ## `timestamp`
 timestamp of mouse click that began the drag (use `gdk_event_get_time`)
-<!-- trait WindowExt::fn configure_finished -->
-Does nothing, present only for compatiblity.
-
-# Deprecated since 3.8
-
-this function is no longer needed
 <!-- trait WindowExt::fn coords_from_parent -->
 Transforms window coordinates from a parent window to a child
 window, where the parent window is the normal parent as returned by
@@ -4994,12 +4814,6 @@ destroyed, but the children’s reference counts are not decremented.
 
 Note that a window will not be destroyed automatically when its reference count
 reaches zero. You must call this function yourself before that happens.
-<!-- trait WindowExt::fn enable_synchronized_configure -->
-Does nothing, present only for compatiblity.
-
-# Deprecated since 3.8
-
-this function is no longer needed
 <!-- trait WindowExt::fn end_draw_frame -->
 Indicates that the drawing of the contents of `self` started with
 `gdk_window_begin_frame` has been completed.
@@ -5033,11 +4847,6 @@ Some backends may not support native child windows.
 # Returns
 
 `true` if the window has a native window, `false` otherwise
-<!-- trait WindowExt::fn flush -->
-This function does nothing.
-
-# Deprecated since 3.14
-
 <!-- trait WindowExt::fn focus -->
 Sets keyboard focus to `self`. In most cases, `gtk_window_present`
 should be used on a ``GtkWindow``, rather than calling this function.
@@ -5409,29 +5218,6 @@ See `WindowExt::set_pass_through` for details
 
 Feature: `v3_18`
 
-<!-- trait WindowExt::fn get_pointer -->
-Obtains the current pointer position and modifier state.
-The position is given in coordinates relative to the upper left
-corner of `self`.
-
-# Deprecated since 3.0
-
-Use `WindowExt::get_device_position` instead.
-## `x`
-return location for X coordinate of pointer or `None` to not
- return the X coordinate
-## `y`
-return location for Y coordinate of pointer or `None` to not
- return the Y coordinate
-## `mask`
-return location for modifier mask or `None` to not return the
- modifier mask
-
-# Returns
-
-the window containing the
-pointer (as with `Window::at_pointer`), or `None` if the window
-containing the pointer isn’t known to GDK
 <!-- trait WindowExt::fn get_position -->
 Obtains the position of the window as reported in the
 most-recently-processed `EventConfigure`. Contrast with
@@ -5933,19 +5719,6 @@ On X, it is the responsibility of the window manager to interpret this
 hint. ICCCM-compliant window manager usually respect it.
 ## `accept_focus`
 `true` if the window should receive input focus
-<!-- trait WindowExt::fn set_background -->
-Sets the background color of `self`.
-
-However, when using GTK+, influence the background of a widget
-using a style class or CSS — if you’re an application — or with
-`gtk_style_context_set_background` — if you're implementing a
-custom widget.
-
-# Deprecated since 3.4
-
-Don't use this function
-## `color`
-a `Color`
 <!-- trait WindowExt::fn set_background_pattern -->
 Sets the background of `self`.
 

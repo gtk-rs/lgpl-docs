@@ -96,16 +96,6 @@ the newly allocated
  `pango::FontMap` of suitable type which should be freed
  with `gobject::Object::unref`, or `None` if the requested
  cairo font backend is not supported / compiled in.
-<!-- trait FontMapExt::fn create_context -->
-Create a `pango::Context` for the given fontmap.
-
-# Deprecated since 1.22
-
-Use `pango::FontMapExt::create_context` instead.
-
-# Returns
-
-the newly created context; free with `gobject::Object::unref`.
 <!-- trait FontMapExt::fn get_font_type -->
 Gets the type of Cairo font backend that `self` uses.
 
