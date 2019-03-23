@@ -324,9 +324,6 @@ cursor sizes.
 
 On the X backend, support for RGBA cursors requires a
 sufficently new version of the X Render extension.
-
-Feature: `v3_10`
-
 ## `display`
 the `Display` for which the cursor will be created
 ## `surface`
@@ -368,9 +365,6 @@ Returns a cairo image surface with the image used to display the cursor.
 Note that depending on the capabilities of the windowing system and
 on the cursor, GDK may not be able to obtain the image data. In this
 case, `None` is returned.
-
-Feature: `v3_10`
-
 ## `x_hot`
 Location to store the hotspot x position,
  or `None`
@@ -727,9 +721,6 @@ has a pointer grab, or this application has a grab with owner_events = `false`,
 `None` may be returned even if the pointer is physically over one of this
 application's windows.
 
-Feature: `v3_12`
-
-
 # Returns
 
 the last window the device
@@ -774,9 +765,6 @@ Gets the current location of `self` in double precision. As a slave device's
 coordinates are those of its master pointer, this function
 may not be called on devices of type `DeviceType::Slave`,
 unless there is an ongoing grab on them. See `Device::grab`.
-
-Feature: `v3_10`
-
 ## `screen`
 location to store the `Screen`
  the `self` is on, or `None`.
@@ -2107,7 +2095,7 @@ Determines the bitmask of actions proposed by the source if
 
 the `DragAction` flags
 <!-- impl DragContext::fn get_dest_window -->
-Returns the destination windw for the DND operation.
+Returns the destination window for the DND operation.
 
 # Returns
 
@@ -2133,7 +2121,7 @@ Feature: `v3_20`
 
 the drag window, or `None`
 <!-- impl DragContext::fn get_protocol -->
-Returns the drag protocol thats used by this context.
+Returns the drag protocol that is used by this context.
 
 # Returns
 
@@ -2662,15 +2650,11 @@ time between an initial value from `FrameClockExt::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
 
-Feature: `v3_8`
-
 # Implements
 
 [`FrameClockExt`](trait.FrameClockExt.html)
 <!-- trait FrameClockExt -->
 Trait containing all `FrameClock` methods.
-
-Feature: `v3_8`
 
 # Implementors
 
@@ -2682,20 +2666,11 @@ request a new frame with the `FrameClockPhase::Update` phase.
 This function may be called multiple times and frames will be
 requested until `FrameClockExt::end_updating` is called the same
 number of times.
-
-Feature: `v3_8`
-
 <!-- trait FrameClockExt::fn end_updating -->
 Stops updates for an animation. See the documentation for
 `FrameClockExt::begin_updating`.
-
-Feature: `v3_8`
-
 <!-- trait FrameClockExt::fn get_current_timings -->
 Gets the frame timings for the current frame.
-
-Feature: `v3_8`
-
 
 # Returns
 
@@ -2706,9 +2681,6 @@ the `FrameTimings` for the frame currently
 <!-- trait FrameClockExt::fn get_frame_counter -->
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
-
-Feature: `v3_8`
-
 
 # Returns
 
@@ -2723,9 +2695,6 @@ the time of the conceptual “previous frame,” which may be either
 the actual previous frame time, or if that’s too old, an updated
 time.
 
-Feature: `v3_8`
-
-
 # Returns
 
 a timestamp in microseconds, in the timescale of
@@ -2738,9 +2707,6 @@ is the set from the counter values given by
 `FrameClockExt::get_history_start` and
 `FrameClockExt::get_frame_counter`, inclusive.
 
-Feature: `v3_8`
-
-
 # Returns
 
 the frame counter value for the oldest frame
@@ -2752,9 +2718,6 @@ known presentation time and refresh interval, and assuming that
 presentation times are separated by the refresh interval,
 predicts a presentation time that is a multiple of the refresh
 interval after the last presentation time, and later than `base_time`.
-
-Feature: `v3_8`
-
 ## `base_time`
 base time for determining a presentaton time
 ## `refresh_interval_return`
@@ -2769,9 +2732,6 @@ a location to store the next
 Retrieves a `FrameTimings` object holding timing information
 for the current frame or a recent frame. The `FrameTimings`
 object may not yet be complete: see `FrameTimings::get_complete`.
-
-Feature: `v3_8`
-
 ## `frame_counter`
 the frame counter value identifying the frame to
  be received.
@@ -2792,9 +2752,6 @@ content and want to continually request the
 you should use `FrameClockExt::begin_updating` instead, since
 this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
-
-Feature: `v3_8`
-
 ## `phase`
 the phase that is requested
 <!-- trait FrameClockExt::fn connect_after_paint -->
@@ -2836,8 +2793,6 @@ use `FrameClockExt::get_timings` or `FrameClockExt::get_current_timings`.
 The information in `FrameTimings` is useful for precise synchronization
 of video with the event or audio streams, and for measuring
 quality metrics for the application’s display, such as latency and jitter.
-
-Feature: `v3_8`
 <!-- impl FrameTimings::fn get_complete -->
 The timing information in a `FrameTimings` is filled in
 incrementally as the frame as drawn and passed off to the
@@ -2849,9 +2804,6 @@ available at all. Once `FrameTimings::get_complete` returns
 `true` for a frame, you can be certain that no further values
 will become available and be stored in the `FrameTimings`.
 
-Feature: `v3_8`
-
-
 # Returns
 
 `true` if all information that will be available
@@ -2860,9 +2812,6 @@ Feature: `v3_8`
 Gets the frame counter value of the `FrameClock` when this
 this frame was drawn.
 
-Feature: `v3_8`
-
-
 # Returns
 
 the frame counter value for this frame
@@ -2870,9 +2819,6 @@ the frame counter value for this frame
 Returns the frame time for the frame. This is the time value
 that is typically used to time animations for the frame. See
 `FrameClockExt::get_frame_time`.
-
-Feature: `v3_8`
-
 
 # Returns
 
@@ -2889,9 +2835,6 @@ than this function, but this function is useful for applications
 that want exact control over latency. For example, a movie player
 may want this information for Audio/Video synchronization.
 
-Feature: `v3_8`
-
-
 # Returns
 
 The predicted time at which the frame will be presented,
@@ -2900,9 +2843,6 @@ The predicted time at which the frame will be presented,
 <!-- impl FrameTimings::fn get_presentation_time -->
 Reurns the presentation time. This is the time at which the frame
 became visible to the user.
-
-Feature: `v3_8`
-
 
 # Returns
 
@@ -2914,9 +2854,6 @@ Gets the natural interval between presentation times for
 the display that this frame was displayed on. Frame presentation
 usually happens during the “vertical blanking interval”.
 
-Feature: `v3_8`
-
-
 # Returns
 
 the refresh interval of the display, in microseconds,
@@ -2925,18 +2862,12 @@ the refresh interval of the display, in microseconds,
 <!-- impl FrameTimings::fn ref -->
 Increases the reference count of `self`.
 
-Feature: `v3_8`
-
-
 # Returns
 
 `self`
 <!-- impl FrameTimings::fn unref -->
 Decreases the reference count of `self`. If `self`
 is no longer referenced, it will be freed.
-
-Feature: `v3_8`
-
 <!-- enum FullscreenMode -->
 Indicates which monitor (in a multi-head setup) a window should span over
 when in fullscreen mode.
@@ -2944,9 +2875,6 @@ when in fullscreen mode.
 Fullscreen on current monitor only.
 <!-- enum FullscreenMode::variant AllMonitors -->
 Span across all monitors when fullscreen.
-
-Feature: `v3_8`
-
 <!-- struct GLContext -->
 `GLContext` is an object representing the platform-specific
 OpenGL drawing context.
@@ -3934,9 +3862,6 @@ on very high density outputs this can be a higher value (often 2).
 This can be used if you want to create pixel based data for a
 particular monitor, but most of the time you’re drawing to a window
 where it is better to use `WindowExt::get_scale_factor` instead.
-
-Feature: `v3_10`
-
 
 # Deprecated since 3.22
 
@@ -5012,9 +4937,6 @@ use:
 Note that unlike `cairo_surface_create_similar_image`, the new
 surface's device scale is set to `scale`, or to the scale factor of
 `self` if `scale` is 0.
-
-Feature: `v3_10`
-
 ## `format`
 the format for the new surface
 ## `width`
@@ -5175,9 +5097,7 @@ the window does not want to receive input focus.
 
 whether or not the window should receive input focus.
 <!-- trait WindowExt::fn get_background_pattern -->
-Gets the pattern used to clear the background on `self`. If `self`
-does not have its own background and reuses the parent's, `None` is
-returned and you’ll have to query it yourself.
+Gets the pattern used to clear the background on `self`.
 
 # Deprecated since 3.22
 
@@ -5186,7 +5106,7 @@ Don't use this function
 # Returns
 
 The pattern to use for the
-background or `None` to use the parent’s background.
+background or `None` if there is no background.
 <!-- trait WindowExt::fn get_children -->
 Gets the list of children of `self` known to GDK.
 This function only returns children created via GDK,
@@ -5209,9 +5129,6 @@ list need not be.
 
 The list is returned in (relative) stacking order, i.e. the
 lowest window is first.
-
-Feature: `v3_10`
-
 ## `user_data`
 user data to look for
 
@@ -5310,9 +5227,6 @@ window is not known to GDK.
 Obtains the current device position in doubles and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
-
-Feature: `v3_10`
-
 ## `device`
 pointer `Device` to query to.
 ## `x`
@@ -5367,9 +5281,6 @@ the effective toplevel window containing `self`
 <!-- trait WindowExt::fn get_event_compression -->
 Get the current event compression setting for this window.
 
-Feature: `v3_12`
-
-
 # Returns
 
 `true` if motion events will be compressed
@@ -5393,9 +5304,6 @@ Gets the frame clock for the window. The frame clock for a window
 never changes unless the window is reparented to a new toplevel
 window.
 
-Feature: `v3_8`
-
-
 # Returns
 
 the frame clock
@@ -5408,9 +5316,6 @@ the frame) in root window coordinates, use `WindowExt::get_origin`.
 rectangle to fill with bounding box of the window frame
 <!-- trait WindowExt::fn get_fullscreen_mode -->
 Obtains the `FullscreenMode` of the `self`.
-
-Feature: `v3_8`
-
 
 # Returns
 
@@ -5572,9 +5477,6 @@ with higher resolution data.
 
 The scale of a window may change during runtime, if this happens
 a configure event will be sent to the toplevel window.
-
-Feature: `v3_10`
-
 
 # Returns
 
@@ -5900,6 +5802,38 @@ new Y position relative to window’s parent
 new width
 ## `height`
 new height
+<!-- trait WindowExt::fn move_to_rect -->
+Moves `self` to `rect`, aligning their anchor points.
+
+`rect` is relative to the top-left corner of the window that `self` is
+transient for. `rect_anchor` and `window_anchor` determine anchor points on
+`rect` and `self` to pin together. `rect`'s anchor point can optionally be
+offset by `rect_anchor_dx` and `rect_anchor_dy`, which is equivalent to
+offsetting the position of `self`.
+
+`anchor_hints` determines how `self` will be moved if the anchor points cause
+it to move off-screen. For example, `AnchorHints::FlipX` will replace
+`Gravity::NorthWest` with `Gravity::NorthEast` and vice versa if
+`self` extends beyond the left or right edges of the monitor.
+
+Connect to the `Window::moved-to-rect` signal to find out how it was
+actually positioned.
+
+Feature: `v3_24`
+
+## `rect`
+the destination `Rectangle` to align `self` with
+## `rect_anchor`
+the point on `rect` to align with `self`'s anchor point
+## `window_anchor`
+the point on `self` to align with `rect`'s anchor point
+## `anchor_hints`
+positioning hints to use when limited on space
+## `rect_anchor_dx`
+horizontal offset to shift `self`, i.e. `rect`'s anchor
+ point
+## `rect_anchor_dy`
+vertical offset to shift `self`, i.e. `rect`'s anchor point
 <!-- trait WindowExt::fn peek_children -->
 Like `WindowExt::get_children`, but does not copy the list of
 children, so the list does not need to be freed.
@@ -6015,8 +5949,9 @@ a `Color`
 <!-- trait WindowExt::fn set_background_pattern -->
 Sets the background of `self`.
 
-A background of `None` means that the window will inherit its
-background from its parent window.
+A background of `None` means that the window won't have any background. On the
+X11 backend it's also possible to inherit the background from the parent
+window using `gdk_x11_get_parent_relative_pattern`.
 
 The windowing system will normally fill a window with its background
 when the window is obscured then exposed.
@@ -6137,9 +6072,6 @@ Some types of applications, e.g. paint programs, need to see all
 motion events and will benefit from turning off event compression.
 
 By default, event compression is enabled.
-
-Feature: `v3_12`
-
 ## `event_compression`
 `true` if motion events should be compressed
 <!-- trait WindowExt::fn set_events -->
@@ -6181,9 +6113,6 @@ has no effect.
 Not all window managers support this, so you can’t rely on the fullscreen
 window to span over the multiple monitors when `FullscreenMode::AllMonitors`
 is specified.
-
-Feature: `v3_8`
-
 ## `mode`
 fullscreen mode
 <!-- trait WindowExt::fn set_functions -->
@@ -6279,9 +6208,6 @@ useful if you are keeping an offscreen copy of some region
 and want to keep it up to date. You can also modify the
 invalidated region in case you’re doing some effect where
 e.g. a child widget appears in multiple places.
-
-Feature: `v3_10`
-
 ## `handler`
 a ``GdkWindowInvalidateHandlerFunc`` callback function
 <!-- trait WindowExt::fn set_keep_above -->
@@ -6354,9 +6280,6 @@ GTK+ will update this property automatically if
 the `self` background is opaque, as we know where the opaque regions
 are. If your window background is not opaque, please update this
 property in your ``GtkWidget`::style-updated` handler.
-
-Feature: `v3_10`
-
 ## `region`
 a region, or `None`
 <!-- trait WindowExt::fn set_override_redirect -->
@@ -6419,9 +6342,6 @@ don’t feel like windows are snapping against random invisible edges.
 Note that this property is automatically updated by GTK+, so this
 function should only be used by applications which do not use GTK+
 to create toplevel windows.
-
-Feature: `v3_12`
-
 ## `left`
 The left extent
 ## `right`
@@ -6574,9 +6494,6 @@ is the menu shown when right-clicking the titlebar on traditional
 windows managed by the window manager. This is useful for windows
 using client-side decorations, activating it with a right-click
 on the window decorations.
-
-Feature: `v3_14`
-
 ## `event`
 a ``GdkEvent`` to show the menu for
 
