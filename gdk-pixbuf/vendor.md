@@ -6,15 +6,13 @@ the gdk-pixbuf library. Currently only RGB is supported.
 Indicates a red/green/blue additive color space.
 <!-- enum InterpType -->
 This enumeration describes the different interpolation modes that
- can be used with the scaling functions. `InterpType::Nearest` is
- the fastest scaling method, but has horrible quality when
- scaling down. `InterpType::Bilinear` is the best choice if you
- aren't sure what to choose, it has a good speed/quality balance.
+can be used with the scaling functions. `InterpType::Nearest` is
+the fastest scaling method, but has horrible quality when
+scaling down. `InterpType::Bilinear` is the best choice if you
+aren't sure what to choose, it has a good speed/quality balance.
 
- `<note>`
-    Cubic filtering is missing from the list; hyperbolic
-    interpolation is just as fast and results in higher quality.
- `</note>`
+**Note**: Cubic filtering is missing from the list; hyperbolic
+interpolation is just as fast and results in higher quality.
 <!-- enum InterpType::variant Nearest -->
 Nearest neighbor sampling; this is the fastest
  and lowest quality mode. Quality is normally unacceptable when scaling
@@ -37,6 +35,9 @@ This is the slowest and highest quality
  Wolberg's "Digital Image Warping", and is formally defined as the
  hyperbolic-filter sampling the ideal hyperbolic-filter interpolated
  image (the filter is designed to be idempotent for 1:1 pixel mapping).
+ **Deprecated**: this interpolation filter is deprecated, as in reality
+ it has a lower quality than the `InterpType::Bilinear` filter
+ (Since: 2.38)
 <!-- struct Pixbuf -->
 This is the main structure in the gdk-pixbuf library. It is
 used to represent images. It contains information about the
@@ -130,7 +131,8 @@ Creates a new pixbuf by loading an image from a file. The file format is
 detected automatically. If `None` is returned, then `error` will be set.
 Possible errors are in the `GDK_PIXBUF_ERROR` and `G_FILE_ERROR` domains.
 ## `filename`
-Name of file to load, in the GLib file name encoding
+Name of file to load, in the GLib file
+ name encoding
 
 # Returns
 
@@ -152,7 +154,8 @@ aspect ratio, a `width` or `height` of -1 means to not scale the image
 at all in that dimension. Negative values for `width` and `height` are
 allowed since 2.8.
 ## `filename`
-Name of file to load, in the GLib file name encoding
+Name of file to load, in the GLib file
+ name encoding
 ## `width`
 The width the image should have or -1 to not constrain the width
 ## `height`
@@ -178,7 +181,8 @@ than `width` x `height`, if the aspect ratio requires it. To load
 and image at the requested size, regardless of aspect ratio, use
 `Pixbuf::new_from_file_at_scale`.
 ## `filename`
-Name of file to load, in the GLib file name encoding
+Name of file to load, in the GLib file
+ name encoding
 ## `width`
 The width the image should have or -1 to not constrain the width
 ## `height`
@@ -233,7 +237,7 @@ Length in bytes of the `data` argument or -1 to
  disable length checks
 ## `data`
 Byte data containing a
- serialized `Pixdata` structure
+ serialized ``GdkPixdata`` structure
 ## `copy_pixels`
 Whether to copy the pixel data, or use direct pointers
  `data` for the resulting pixbuf
@@ -385,23 +389,6 @@ Height of image in pixels, must be > 0
 # Returns
 
 the rowstride for the given values, or -1 in case of error.
-<!-- impl Pixbuf::fn from_pixdata -->
-Converts a `Pixdata` to a `Pixbuf`. If `copy_pixels` is `true` or
-if the pixel data is run-length-encoded, the pixel data is copied into
-newly-allocated memory; otherwise it is reused.
-
-# Deprecated since 2.32
-
-Use `gio::Resource` instead.
-## `pixdata`
-a `Pixdata` to convert into a `Pixbuf`.
-## `copy_pixels`
-whether to copy raw pixel data; run-length encoded
- pixel data is always copied.
-
-# Returns
-
-a new `Pixbuf`.
 <!-- impl Pixbuf::fn get_file_info -->
 Parses an image file far enough to determine its format and size.
 ## `filename`
@@ -795,7 +782,7 @@ Queries a pointer to the pixel data of a pixbuf.
 # Returns
 
 A pointer to the pixbuf's pixel data.
-Please see the section on [image data](image-data) for information
+Please see the section on [image data][image-data] for information
 about how the pixel data is stored in memory.
 
 This function will cause an implicit copy of the pixbuf data if the
@@ -808,7 +795,7 @@ The length of the binary data.
 # Returns
 
 A pointer to the pixbuf's
-pixel data. Please see the section on [image data](image-data)
+pixel data. Please see the section on [image data][image-data]
 for information about how the pixel data is stored in memory.
 
 This function will cause an implicit copy of the pixbuf data if the
@@ -848,6 +835,10 @@ height of region in `self`
 
 a new pixbuf
 <!-- impl Pixbuf::fn read_pixel_bytes -->
+Provides a `glib::Bytes` buffer containing the raw pixel data; the data
+must not be modified. This function allows skipping the implicit
+copy that must be made if `Pixbuf::get_pixels` is called on a
+read-only pixbuf.
 
 Feature: `v2_32`
 
@@ -855,17 +846,21 @@ Feature: `v2_32`
 # Returns
 
 A new reference to a read-only copy of
-the pixel data. Note that for mutable pixbufs, this function will
-incur a one-time copy of the pixel data for conversion into the
-returned `glib::Bytes`.
+ the pixel data. Note that for mutable pixbufs, this function will
+ incur a one-time copy of the pixel data for conversion into the
+ returned `glib::Bytes`.
 <!-- impl Pixbuf::fn read_pixels -->
-Returns a read-only pointer to the raw pixel data; must not be
+Provides a read-only pointer to the raw pixel data; must not be
 modified. This function allows skipping the implicit copy that
 must be made if `Pixbuf::get_pixels` is called on a read-only
 pixbuf.
 
 Feature: `v2_32`
 
+
+# Returns
+
+a read-only pointer to the raw pixel data
 <!-- impl Pixbuf::fn ref -->
 Adds a reference to a pixbuf.
 
@@ -1315,7 +1310,8 @@ detected automatically. If the file's format does not support multi-frame
 images, then an animation with a single frame will be created. Possible errors
 are in the `GDK_PIXBUF_ERROR` and `G_FILE_ERROR` domains.
 ## `filename`
-Name of file to load, in the GLib file name encoding
+Name of file to load, in the GLib file
+ name encoding
 
 # Returns
 
@@ -1328,9 +1324,6 @@ Creates a new pixbuf animation by loading an image from an resource.
 
 The file format is detected automatically. If `None` is returned, then
 `error` will be set.
-
-Feature: `v2_28`
-
 ## `resource_path`
 the path of the resource file
 
@@ -1350,9 +1343,6 @@ from another thread. If the operation was cancelled, the error
 the `GDK_PIXBUF_ERROR` and `G_IO_ERROR` domains.
 
 The stream is not closed.
-
-Feature: `v2_28`
-
 ## `stream`
 a `gio::InputStream` to load the pixbuf from
 ## `cancellable`
@@ -1367,9 +1357,6 @@ the stream contained invalid data, or the operation was cancelled.
 <!-- impl PixbufAnimation::fn new_from_stream_finish -->
 Finishes an asynchronous pixbuf animation creation operation started with
 `PixbufAnimation::new_from_stream_async`.
-
-Feature: `v2_28`
-
 ## `async_result`
 a `gio::AsyncResult`
 
@@ -1386,9 +1373,6 @@ version of this function.
 When the operation is finished, `callback` will be called in the main thread.
 You can then call `PixbufAnimation::new_from_stream_finish` to get the
 result of the operation.
-
-Feature: `v2_28`
-
 ## `stream`
 a `gio::InputStream` from which to load the animation
 ## `cancellable`
@@ -1821,9 +1805,6 @@ returned, `error` will be set to an error from the `GDK_PIXBUF_ERROR`
 or `G_FILE_ERROR` domains.
 
 See also: `PixbufLoaderExt::write`
-
-Feature: `v2_30`
-
 ## `buffer`
 The image data as a `glib::Bytes`
 

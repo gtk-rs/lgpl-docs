@@ -47,9 +47,6 @@ plus '-' and '.'. The empty string is not a valid action name.
 
 It is an error to call this function with a non-utf8 `action_name`.
 `action_name` must not be `None`.
-
-Feature: `v2_38`
-
 ## `action_name`
 an potential action name
 
@@ -81,9 +78,6 @@ two sets of parens, for example: "app.action((1,2,3))". A string
 target can be specified this way as well: "app.action('target')".
 For strings, this third format must be used if * target value is
 empty or contains characters other than alphanumerics, '-' and '.'.
-
-Feature: `v2_38`
-
 ## `detailed_name`
 a detailed action name
 ## `action_name`
@@ -105,9 +99,6 @@ and `target_value` by that function.
 
 See that function for the types of strings that will be printed by
 this function.
-
-Feature: `v2_38`
-
 ## `action_name`
 a valid action name
 ## `target_value`
@@ -936,9 +927,6 @@ This function does not take in consideration associations added with
 `AppInfo::add_supports_type`, but only those exported directly by
 the application.
 
-Feature: `v2_34`
-
-
 # Returns
 
 
@@ -1072,8 +1060,6 @@ The reason for this is that changes to the list of installed
 applications often come in groups (like during system updates) and
 rescanning the list on every change is pointless and expensive.
 
-Feature: `v2_40`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
@@ -1087,9 +1073,6 @@ applications (as reported by `AppInfo::get_all`) may have changed.
 
 You must only call `gobject::ObjectExt::unref` on the return value from under
 the same main context as you created it.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -1176,9 +1159,6 @@ the environment variable to remove
 The ::launch-failed signal is emitted when a `AppInfo` launch
 fails. The startup notification id is provided, so that the launcher
 can cancel the startup notification.
-
-Feature: `v2_36`
-
 ## `startup_notify_id`
 the startup notification id for the failed launch
 <!-- trait AppLaunchContextExt::fn connect_launched -->
@@ -1187,9 +1167,6 @@ launched. The `platform_data` is an GVariant dictionary mapping
 strings to variants (ie a{sv}), which contains additional,
 platform-specific data about this launch. On UNIX, at least the
 "pid" and "startup-notification-id" keys will be present.
-
-Feature: `v2_36`
-
 ## `info`
 the `AppInfo` that was just launched
 ## `platform_data`
@@ -1420,9 +1397,6 @@ be sent to the primary instance. See
 `ApplicationExt::add_main_option_entries` for more details.
 
 See `glib::OptionEntry` for more documentation of the arguments.
-
-Feature: `v2_42`
-
 ## `long_name`
 the long name of an option used to specify it in a commandline
 ## `short_name`
@@ -1491,9 +1465,6 @@ the options with `glib::VariantDict::lookup`:
 - for `glib::OptionArg::Filename`, use ^ay
 - for `glib::OptionArg::StringArray`, use &as
 - for `glib::OptionArg::FilenameArray`, use ^aay
-
-Feature: `v2_40`
-
 ## `entries`
 a
  `None`-terminated list of `GOptionEntrys`
@@ -1523,9 +1494,6 @@ Calling this function will cause the options in the supplied option
 group to be parsed, but it does not cause you to be "opted in" to the
 new functionality whereby unrecognised options are rejected even if
 `ApplicationFlags::HandlesCommandLine` was given.
-
-Feature: `v2_40`
-
 ## `group`
 a `glib::OptionGroup`
 <!-- trait ApplicationExt::fn bind_busy_property -->
@@ -1563,9 +1531,6 @@ normally be in use but we were unable to connect to the bus.
 This function must not be called before the application has been
 registered. See `ApplicationExt::get_is_registered`.
 
-Feature: `v2_34`
-
-
 # Returns
 
 a `DBusConnection`, or `None`
@@ -1584,9 +1549,6 @@ normally be in use but we were unable to connect to the bus.
 
 This function must not be called before the application has been
 registered. See `ApplicationExt::get_is_registered`.
-
-Feature: `v2_34`
-
 
 # Returns
 
@@ -1647,9 +1609,6 @@ Gets the resource base path of `self`.
 
 See `ApplicationExt::set_resource_base_path` for more information.
 
-Feature: `v2_42`
-
-
 # Returns
 
 the base resource path, if one is set
@@ -1672,9 +1631,6 @@ use that information to indicate the state to the user (e.g. with a
 spinner).
 
 To cancel the busy indication, use `ApplicationExt::unmark_busy`.
-
-Feature: `v2_38`
-
 <!-- trait ApplicationExt::fn open -->
 Opens the given files.
 
@@ -1866,9 +1822,6 @@ notifications without an id.
 
 If `notification` is no longer relevant, it can be withdrawn with
 `ApplicationExt::withdraw_notification`.
-
-Feature: `v2_40`
-
 ## `id`
 id of the notification, or `None`
 ## `notification`
@@ -1990,9 +1943,6 @@ a sub-class of `Application` you should either set the
 this function during the instance initialization. Alternatively, you
 can call this function in the `ApplicationClass.startup` virtual function,
 before chaining up to the parent implementation.
-
-Feature: `v2_42`
-
 ## `resource_path`
 the resource path to use
 <!-- trait ApplicationExt::fn unbind_busy_property -->
@@ -2014,9 +1964,6 @@ to other processes.
 
 This function must only be called to cancel the effect of a previous
 call to `ApplicationExt::mark_busy`.
-
-Feature: `v2_38`
-
 <!-- trait ApplicationExt::fn withdraw_notification -->
 Withdraws a notification that was sent with
 `ApplicationExt::send_notification`.
@@ -2031,9 +1978,6 @@ the sent notification.
 Note that notifications are dismissed when the user clicks on one
 of the buttons in a notification or triggers its default action, so
 there is no need to explicitly withdraw the notification in that case.
-
-Feature: `v2_40`
-
 ## `id`
 id of a previously sent notification
 <!-- trait ApplicationExt::fn connect_activate -->
@@ -2093,9 +2037,6 @@ chain up then this signal will never be emitted.
 You can override `local_command_line` if you need more powerful
 capabilities than what is provided here, but this should not
 normally be required.
-
-Feature: `v2_40`
-
 ## `options`
 the options dictionary
 
@@ -2301,9 +2242,6 @@ of the invocation of `self`.
 This differs from `File::new_for_commandline_arg` in that it
 resolves relative pathnames using the current working directory of
 the invoking process rather than the local process.
-
-Feature: `v2_36`
-
 ## `arg`
 an argument from `self`
 
@@ -2387,9 +2325,6 @@ modified from your GApplication::handle-local-options handler.
 If no options were sent then an empty dictionary is returned so that
 you don't need to check for `None`.
 
-Feature: `v2_40`
-
-
 # Returns
 
 a `glib::VariantDict` with the options
@@ -2417,9 +2352,6 @@ If stdin is not available then `None` will be returned. In the
 future, support may be expanded to other platforms.
 
 You must only call this function once per commandline invocation.
-
-Feature: `v2_34`
-
 
 # Returns
 
@@ -2722,16 +2654,11 @@ a `gsize`.
 `BytesIcon` specifies an image held in memory in a common format (usually
 png) to be used as icon.
 
-Feature: `v2_38`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html), [`LoadableIconExt`](trait.LoadableIconExt.html)
 <!-- impl BytesIcon::fn new -->
 Creates a new icon for a bytes.
-
-Feature: `v2_38`
-
 ## `bytes`
 a `glib::Bytes`.
 
@@ -2741,9 +2668,6 @@ a `Icon` for the given
  `bytes`, or `None` on error.
 <!-- impl BytesIcon::fn get_bytes -->
 Gets the `glib::Bytes` associated with the given `self`.
-
-Feature: `v2_38`
-
 
 # Returns
 
@@ -3319,9 +3243,6 @@ method is only available on UNIX platforms.
 This operation can fail if `Credentials` is not supported on the
 OS or if the native credentials type does not contain information
 about the UNIX process ID.
-
-Feature: `v2_36`
-
 
 # Returns
 
@@ -3956,7 +3877,8 @@ the desktop file id
 
 # Returns
 
-a new `DesktopAppInfo`, or `None` if no desktop file with that id
+a new `DesktopAppInfo`, or `None` if no desktop
+ file with that id exists.
 <!-- impl DesktopAppInfo::fn new_from_filename -->
 Creates a new `DesktopAppInfo`.
 ## `filename`
@@ -3979,9 +3901,6 @@ Gets all applications that implement `interface`.
 
 An application implements an interface if that interface is listed in
 the Implements= line of the desktop file of the application.
-
-Feature: `v2_42`
-
 ## `interface`
 the name of the interface
 
@@ -4027,9 +3946,6 @@ action" specified by `action_name`.
 
 This corresponds to the "Name" key within the keyfile group for the
 action.
-
-Feature: `v2_38`
-
 ## `action_name`
 the name of the action as from
  `DesktopAppInfoExt::list_actions`
@@ -4041,9 +3957,6 @@ the locale-specific action name
 Looks up a boolean value in the keyfile backing `self`.
 
 The `key` is looked up in the "Desktop Entry" group.
-
-Feature: `v2_36`
-
 ## `key`
 the key to look up
 
@@ -4134,9 +4047,6 @@ Retrieves the StartupWMClass field from `self`. This represents the
 WM_CLASS property of the main window of the application, if launched
 through `self`.
 
-Feature: `v2_34`
-
-
 # Returns
 
 the startup WM class, or `None` if none is set
@@ -4145,9 +4055,6 @@ in the desktop file.
 Looks up a string value in the keyfile backing `self`.
 
 The `key` is looked up in the "Desktop Entry" group.
-
-Feature: `v2_36`
-
 ## `key`
 the key to look up
 
@@ -4158,9 +4065,6 @@ a newly allocated string, or `None` if the key
 <!-- trait DesktopAppInfoExt::fn has_key -->
 Returns whether `key` exists in the "Desktop Entry" group
 of the keyfile backing `self`.
-
-Feature: `v2_36`
-
 ## `key`
 the key to look up
 
@@ -4183,9 +4087,6 @@ actions, as per the desktop file specification.
 
 As with `AppInfo::launch` there is no way to detect failures that
 occur while using this function.
-
-Feature: `v2_38`
-
 ## `action_name`
 the name of the action as from
  `DesktopAppInfoExt::list_actions`
@@ -4197,11 +4098,12 @@ but is intended primarily for operating system components that
 launch applications. Ordinary applications should use
 `AppInfo::launch_uris`.
 
-If the application is launched via traditional UNIX `fork`/`exec`
-then `spawn_flags`, `user_setup` and `user_setup_data` are used for the
-call to `g_spawn_async`. Additionally, `pid_callback` (with
-`pid_callback_data`) will be called to inform about the PID of the
-created process.
+If the application is launched via GSpawn, then `spawn_flags`, `user_setup`
+and `user_setup_data` are used for the call to `g_spawn_async`.
+Additionally, `pid_callback` (with `pid_callback_data`) will be called to
+inform about the PID of the created process. See `g_spawn_async_with_pipes`
+for information on certain parameter conditions that can enable an
+optimized `posix_spawn` codepath to be used.
 
 If application launching occurs via some other mechanism (eg: D-Bus
 activation) then `spawn_flags`, `user_setup`, `user_setup_data`,
@@ -4225,15 +4127,47 @@ User data for `callback`
 # Returns
 
 `true` on successful launch, `false` otherwise.
+<!-- trait DesktopAppInfoExt::fn launch_uris_as_manager_with_fds -->
+Equivalent to `DesktopAppInfoExt::launch_uris_as_manager` but allows
+you to pass in file descriptors for the stdin, stdout and stderr streams
+of the launched process.
+
+If application launching occurs via some non-spawn mechanism (e.g. D-Bus
+activation) then `stdin_fd`, `stdout_fd` and `stderr_fd` are ignored.
+
+Feature: `v2_58`
+
+## `uris`
+List of URIs
+## `launch_context`
+a `AppLaunchContext`
+## `spawn_flags`
+`glib::SpawnFlags`, used for each process
+## `user_setup`
+a `GSpawnChildSetupFunc`, used once
+ for each process.
+## `user_setup_data`
+User data for `user_setup`
+## `pid_callback`
+Callback for child processes
+## `pid_callback_data`
+User data for `callback`
+## `stdin_fd`
+file descriptor to use for child's stdin, or -1
+## `stdout_fd`
+file descriptor to use for child's stdout, or -1
+## `stderr_fd`
+file descriptor to use for child's stderr, or -1
+
+# Returns
+
+`true` on successful launch, `false` otherwise.
 <!-- trait DesktopAppInfoExt::fn list_actions -->
 Returns the list of "additional application actions" supported on the
 desktop file, as per the desktop file specification.
 
 As per the specification, this is the list of actions that are
 explicitly listed in the "Actions" key of the [Desktop Entry] group.
-
-Feature: `v2_38`
-
 
 # Returns
 
@@ -4383,14 +4317,16 @@ Gets the icon for `self`.
 `Icon` for the `self`.
  Free the returned object with `gobject::ObjectExt::unref`.
 <!-- trait DriveExt::fn get_identifier -->
-Gets the identifier of the given kind for `self`.
+Gets the identifier of the given kind for `self`. The only
+identifier currently available is
+`G_DRIVE_IDENTIFIER_KIND_UNIX_DEVICE`.
 ## `kind`
 the kind of identifier to return
 
 # Returns
 
 a newly allocated string containing the
- requested identfier, or `None` if the `Drive`
+ requested identifier, or `None` if the `Drive`
  doesn't have this kind of identifier.
 <!-- trait DriveExt::fn get_name -->
 Gets the name of `self`.
@@ -4413,9 +4349,6 @@ Gets a hint about how a drive can be started/stopped.
 A value from the `DriveStartStopType` enumeration.
 <!-- trait DriveExt::fn get_symbolic_icon -->
 Gets the icon for `self`.
-
-Feature: `v2_34`
-
 
 # Returns
 
@@ -4819,9 +4752,6 @@ This is useful if the commandline argument was given in a context
 other than the invocation of the current process.
 
 See also `ApplicationCommandLineExt::create_file_for_arg`.
-
-Feature: `v2_36`
-
 ## `arg`
 a command line string
 ## `cwd`
@@ -5209,9 +5139,6 @@ optional `Cancellable` object,
 Asynchronously delete a file. If the `self` is a directory, it will
 only be deleted if it is empty. This has the same semantics as
 `g_unlink`.
-
-Feature: `v2_34`
-
 ## `io_priority`
 the [I/O priority][io-priority] of the request
 ## `cancellable`
@@ -5224,9 +5151,6 @@ a `GAsyncReadyCallback` to call
 the data to pass to callback function
 <!-- trait FileExt::fn delete_finish -->
 Finishes deleting a file started with `File::delete_async`.
-
-Feature: `v2_34`
-
 ## `result`
 a `AsyncResult`
 
@@ -5237,6 +5161,11 @@ a `AsyncResult`
 Duplicates a `File` handle. This operation does not duplicate
 the actual file or directory represented by the `File`; see
 `File::copy` if attempting to copy a file.
+
+`File::dup` is useful when a second handle is needed to the same underlying
+file, for use in a separate thread (`File` is not thread-safe). For use
+within the same thread, use `gobject::ObjectExt::ref` to increment the existing object’s
+reference count.
 
 This call does no blocking I/O.
 
@@ -5644,7 +5573,7 @@ This call does no blocking I/O.
 <!-- trait FileExt::fn is_native -->
 Checks to see if a file is native to the platform.
 
-A native file s one expressed in the platform-native filename format,
+A native file is one expressed in the platform-native filename format,
 e.g. "C:\Windows" or "/usr/bin/". This does not mean the file is local,
 as it might be on a locally mounted remote filesystem.
 
@@ -5857,9 +5786,6 @@ optional `Cancellable` object,
 `true` on successful creation, `false` otherwise.
 <!-- trait FileExt::fn make_directory_async -->
 Asynchronously creates a directory.
-
-Feature: `v2_38`
-
 ## `io_priority`
 the [I/O priority][io-priority] of the request
 ## `cancellable`
@@ -5873,9 +5799,6 @@ the data to pass to callback function
 <!-- trait FileExt::fn make_directory_finish -->
 Finishes an asynchronous directory creation, started with
 `File::make_directory_async`.
-
-Feature: `v2_38`
-
 ## `result`
 a `AsyncResult`
 
@@ -5940,9 +5863,6 @@ in a user interface.
 periodic progress updates while scanning. See the documentation for
 `GFileMeasureProgressCallback` for information about when and how the
 callback will be invoked.
-
-Feature: `v2_38`
-
 ## `flags`
 `FileMeasureFlags`
 ## `cancellable`
@@ -5967,9 +5887,6 @@ Recursively measures the disk usage of `self`.
 
 This is the asynchronous version of `File::measure_disk_usage`. See
 there for more information.
-
-Feature: `v2_38`
-
 ## `flags`
 `FileMeasureFlags`
 ## `io_priority`
@@ -5988,9 +5905,6 @@ the data to pass to callback function
 Collects the results from an earlier call to
 `File::measure_disk_usage_async`. See `File::measure_disk_usage` for
 more information.
-
-Feature: `v2_38`
-
 ## `result`
 the `AsyncResult` passed to your `GAsyncReadyCallback`
 ## `disk_usage`
@@ -6760,9 +6674,6 @@ content without waiting for the callback.
 When this operation has completed, `callback` will be called with
 `user_user` data, and the operation can be finalized with
 `File::replace_contents_finish`.
-
-Feature: `v2_40`
-
 ## `contents`
 a `glib::Bytes`
 ## `etag`
@@ -7237,9 +7148,6 @@ optional `Cancellable` object,
 `true` on successful trash, `false` otherwise.
 <!-- trait FileExt::fn trash_async -->
 Asynchronously sends `self` to the Trash location, if possible.
-
-Feature: `v2_38`
-
 ## `io_priority`
 the [I/O priority][io-priority] of the request
 ## `cancellable`
@@ -7253,9 +7161,6 @@ the data to pass to callback function
 <!-- trait FileExt::fn trash_finish -->
 Finishes an asynchronous file trashing operation, started with
 `File::trash_async`.
-
-Feature: `v2_38`
-
 ## `result`
 a `AsyncResult`
 
@@ -7661,9 +7566,6 @@ Returns the `glib::DateTime` representing the deletion date of the file, as
 available in G_FILE_ATTRIBUTE_TRASH_DELETION_DATE. If the
 G_FILE_ATTRIBUTE_TRASH_DELETION_DATE attribute is unset, `None` is returned.
 
-Feature: `v2_36`
-
-
 # Returns
 
 a `glib::DateTime`, or `None`.
@@ -7744,9 +7646,6 @@ a `gint32` containing the value of the "standard::sort_order" attribute.
 <!-- trait FileInfoExt::fn get_symbolic_icon -->
 Gets the symbolic icon for a file.
 
-Feature: `v2_34`
-
-
 # Returns
 
 `Icon` for the given `self`.
@@ -7792,7 +7691,7 @@ Removes all cases of `attribute` from `self` if it exists.
 a file attribute key.
 <!-- trait FileInfoExt::fn set_attribute -->
 Sets the `attribute` to contain the given value, if possible. To unset the
-attribute, use `G_ATTRIBUTE_TYPE_INVALID` for `type_`.
+attribute, use `FileAttributeType::Invalid` for `type_`.
 ## `attribute`
 a file attribute key.
 ## `type_`
@@ -7941,9 +7840,6 @@ a sort order integer.
 <!-- trait FileInfoExt::fn set_symbolic_icon -->
 Sets the symbolic icon for a given `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON`.
-
-Feature: `v2_34`
-
 ## `icon`
 a `Icon`.
 <!-- trait FileInfoExt::fn set_symlink_target -->
@@ -8711,9 +8607,6 @@ Trait containing all `Icon` methods.
 [`BytesIcon`](struct.BytesIcon.html), [`Emblem`](struct.Emblem.html), [`EmblemedIcon`](struct.EmblemedIcon.html), [`FileIcon`](struct.FileIcon.html), [`Icon`](struct.Icon.html), [`LoadableIcon`](struct.LoadableIcon.html), [`ThemedIcon`](struct.ThemedIcon.html)
 <!-- impl Icon::fn deserialize -->
 Deserializes a `Icon` previously serialized using `Icon::serialize`.
-
-Feature: `v2_38`
-
 ## `value`
 a `glib::Variant` created with `Icon::serialize`
 
@@ -8758,9 +8651,6 @@ As serialization will avoid using raw icon data when possible, it only
 makes sense to transfer the `glib::Variant` between processes on the same machine,
 (as opposed to over the network), and within the same file system namespace.
 
-Feature: `v2_38`
-
-
 # Returns
 
 a `glib::Variant`, or `None` when serialization fails.
@@ -8779,8 +8669,8 @@ in the following two cases
  native, the returned string is the result of `File::get_uri`
  (such as `sftp://path/to/my%20icon.png`).
 
-- If `self` is a `ThemedIcon` with exactly one name, the encoding is
- simply the name (such as `network-server`).
+- If `self` is a `ThemedIcon` with exactly one name and no fallbacks,
+ the encoding is simply the name (such as `network-server`).
 
 # Returns
 
@@ -9089,9 +8979,6 @@ Creates a new `InetSocketAddress` for `address` and `port`.
 
 If `address` is an IPv6 address, it can also contain a scope ID
 (separated from the address by a `%`).
-
-Feature: `v2_40`
-
 ## `address`
 the string form of an IP address
 ## `port`
@@ -9401,9 +9288,6 @@ operation was partially finished when the operation was cancelled the
 partial result will be returned, without an error.
 
 On error `None` is returned and `error` is set accordingly.
-
-Feature: `v2_34`
-
 ## `count`
 maximum number of bytes that will be read from the stream. Common
 values include 4096 and 8192.
@@ -9434,9 +9318,6 @@ many bytes as requested. Zero is returned on end of file (or if
 Any outstanding I/O request with higher priority (lower numerical
 value) will be executed before an outstanding request with lower
 priority. Default priority is `G_PRIORITY_DEFAULT`.
-
-Feature: `v2_34`
-
 ## `count`
 the number of bytes that will be read from the stream
 ## `io_priority`
@@ -9449,9 +9330,6 @@ callback to call when the request is satisfied
 the data to pass to callback function
 <!-- trait InputStreamExt::fn read_bytes_finish -->
 Finishes an asynchronous stream read-into-`glib::Bytes` operation.
-
-Feature: `v2_34`
-
 ## `result`
 a `AsyncResult`.
 
@@ -9921,9 +9799,6 @@ Creates a new empty `MemoryInputStream`.
 a new `InputStream`
 <!-- impl MemoryInputStream::fn new_from_bytes -->
 Creates a new `MemoryInputStream` with data from the given `bytes`.
-
-Feature: `v2_34`
-
 ## `bytes`
 a `glib::Bytes`
 
@@ -9944,9 +9819,6 @@ function that is called to free `data`, or `None`
 new `InputStream` read from `data` of `len` bytes.
 <!-- trait MemoryInputStreamExt::fn add_bytes -->
 Appends `bytes` to data that can be read from the input stream.
-
-Feature: `v2_34`
-
 ## `bytes`
 input data
 <!-- trait MemoryInputStreamExt::fn add_data -->
@@ -10033,9 +9905,6 @@ A newly created `MemoryOutputStream` object.
 <!-- impl MemoryOutputStream::fn new_resizable -->
 Creates a new `MemoryOutputStream`, using `g_realloc` and `g_free`
 for memory allocation.
-
-Feature: `v2_36`
-
 <!-- trait MemoryOutputStreamExt::fn get_data -->
 Gets any loaded data from the `self`.
 
@@ -10076,9 +9945,6 @@ the number of bytes allocated for the data buffer
 <!-- trait MemoryOutputStreamExt::fn steal_as_bytes -->
 Returns data from the `self` as a `glib::Bytes`. `self` must be
 closed before calling this function.
-
-Feature: `v2_34`
-
 
 # Returns
 
@@ -10270,9 +10136,6 @@ identity of the item itself is not preserved).
 the position of the item to remove
 <!-- impl Menu::fn remove_all -->
 Removes all items in the menu.
-
-Feature: `v2_38`
-
 <!-- struct MenuAttributeIter -->
 `MenuAttributeIter` is an opaque structure type. You must access it
 using the functions below.
@@ -10372,9 +10235,6 @@ Creates a `MenuItem` as an exact copy of an existing menu item in a
 
 `item_index` must be valid (ie: be sure to call
 `MenuModelExt::get_n_items` first).
-
-Feature: `v2_34`
-
 ## `model`
 a `MenuModel`
 ## `item_index`
@@ -10477,9 +10337,6 @@ value into the positional parameters and `true` is returned.
 If the attribute does not exist, or it does exist but has the wrong
 type, then the positional parameters are ignored and `false` is
 returned.
-
-Feature: `v2_34`
-
 ## `attribute`
 the attribute name to query
 ## `format_string`
@@ -10495,9 +10352,6 @@ Queries the named `attribute` on `self`.
 If `expected_type` is specified and the attribute does not have this
 type, `None` is returned. `None` is also returned if the attribute
 simply does not exist.
-
-Feature: `v2_34`
-
 ## `attribute`
 the attribute name to query
 ## `expected_type`
@@ -10508,9 +10362,6 @@ the expected type of the attribute
 the attribute value, or `None`
 <!-- impl MenuItem::fn get_link -->
 Queries the named `link` on `self`.
-
-Feature: `v2_34`
-
 ## `link`
 the link name to query
 
@@ -10655,9 +10506,6 @@ menu items corresponding to verbs (eg: stock icons for 'Save' or
 'Quit').
 
 If `icon` is `None` then the icon is unset.
-
-Feature: `v2_38`
-
 ## `icon`
 a `Icon`, or `None`
 <!-- impl MenuItem::fn set_label -->
@@ -11156,7 +11004,8 @@ using that object to get the `Drive`.
 
 # Returns
 
-a `Drive` or `None` if `self` is not associated with a volume or a drive.
+a `Drive` or `None` if `self` is not
+ associated with a volume or a drive.
  The returned object should be unreffed with
  `gobject::ObjectExt::unref` when no longer needed.
 <!-- trait MountExt::fn get_icon -->
@@ -11192,9 +11041,6 @@ Sorting key for `self` or `None` if no such key is available.
 <!-- trait MountExt::fn get_symbolic_icon -->
 Gets the symbolic icon for `self`.
 
-Feature: `v2_34`
-
-
 # Returns
 
 a `Icon`.
@@ -11208,7 +11054,8 @@ available.
 
 # Returns
 
-the UUID for `self` or `None` if no UUID can be computed.
+the UUID for `self` or `None` if no UUID
+ can be computed.
  The returned string should be freed with `g_free`
  when no longer needed.
 <!-- trait MountExt::fn get_volume -->
@@ -11216,7 +11063,8 @@ Gets the volume for the `self`.
 
 # Returns
 
-a `Volume` or `None` if `self` is not associated with a volume.
+a `Volume` or `None` if `self` is not
+ associated with a volume.
  The returned object should be unreffed with
  `gobject::ObjectExt::unref` when no longer needed.
 <!-- trait MountExt::fn guess_content_type -->
@@ -11424,6 +11272,12 @@ various callbacks to show the required dialogs, such as
 when automounting filesystems at login time), usually `None` can be
 passed, see each method taking a `MountOperation` for details.
 
+The term ‘TCRYPT’ is used to mean ‘compatible with TrueCrypt and VeraCrypt’.
+[TrueCrypt](https://en.wikipedia.org/wiki/TrueCrypt) is a discontinued system for
+encrypting file containers, partitions or whole disks, typically used with Windows.
+[VeraCrypt](https://www.veracrypt.fr/) is a maintained fork of TrueCrypt with various
+improvements and auditing fixes.
+
 # Implements
 
 [`MountOperationExt`](trait.MountOperationExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
@@ -11459,6 +11313,26 @@ Gets the domain of the mount operation.
 # Returns
 
 a string set to the domain.
+<!-- trait MountOperationExt::fn get_is_tcrypt_hidden_volume -->
+Check to see whether the mount operation is being used
+for a TCRYPT hidden volume.
+
+Feature: `v2_58`
+
+
+# Returns
+
+`true` if mount operation is for hidden volume.
+<!-- trait MountOperationExt::fn get_is_tcrypt_system_volume -->
+Check to see whether the mount operation is being used
+for a TCRYPT system volume.
+
+Feature: `v2_58`
+
+
+# Returns
+
+`true` if mount operation is for system volume.
 <!-- trait MountOperationExt::fn get_password -->
 Gets a password from the mount operation.
 
@@ -11471,6 +11345,15 @@ Gets the state of saving passwords for the mount operation.
 # Returns
 
 a `PasswordSave` flag.
+<!-- trait MountOperationExt::fn get_pim -->
+Gets a PIM from the mount operation.
+
+Feature: `v2_58`
+
+
+# Returns
+
+The VeraCrypt PIM within `self`.
 <!-- trait MountOperationExt::fn get_username -->
 Get the user name from the mount operation.
 
@@ -11493,6 +11376,20 @@ an integer.
 Sets the mount operation's domain.
 ## `domain`
 the domain to set.
+<!-- trait MountOperationExt::fn set_is_tcrypt_hidden_volume -->
+Sets the mount operation to use a hidden volume if `hidden_volume` is `true`.
+
+Feature: `v2_58`
+
+## `hidden_volume`
+boolean value.
+<!-- trait MountOperationExt::fn set_is_tcrypt_system_volume -->
+Sets the mount operation to use a system volume if `system_volume` is `true`.
+
+Feature: `v2_58`
+
+## `system_volume`
+boolean value.
 <!-- trait MountOperationExt::fn set_password -->
 Sets the mount operation's password to `password`.
 ## `password`
@@ -11501,6 +11398,13 @@ password to set.
 Sets the state of saving passwords for the mount operation.
 ## `save`
 a set of `PasswordSave` flags.
+<!-- trait MountOperationExt::fn set_pim -->
+Sets the mount operation's PIM to `pim`.
+
+Feature: `v2_58`
+
+## `pim`
+an unsigned integer.
 <!-- trait MountOperationExt::fn set_username -->
 Sets the user name within `self` to `username`.
 ## `username`
@@ -11577,9 +11481,6 @@ of completion, when `bytes_left` reaches zero.
 If the message contains a line break, the first line should be
 presented as a heading. For example, it may be used as the
 primary text in a ``GtkMessageDialog``.
-
-Feature: `v2_34`
-
 ## `message`
 string containing a mesage to display to the user
 ## `time_left`
@@ -11603,6 +11504,36 @@ mount operation. See the `MountOperation::ask-question` signal.
 The domain to use for the mount operation.
 <!-- trait MountOperationExt::fn set_property_domain -->
 The domain to use for the mount operation.
+<!-- trait MountOperationExt::fn get_property_is-tcrypt-hidden-volume -->
+Whether the device to be unlocked is a TCRYPT hidden volume.
+See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
+
+Feature: `v2_58`
+
+<!-- trait MountOperationExt::fn set_property_is-tcrypt-hidden-volume -->
+Whether the device to be unlocked is a TCRYPT hidden volume.
+See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
+
+Feature: `v2_58`
+
+<!-- trait MountOperationExt::fn get_property_is-tcrypt-system-volume -->
+Whether the device to be unlocked is a TCRYPT system volume.
+In this context, a system volume is a volume with a bootloader
+and operating system installed. This is only supported for Windows
+operating systems. For further documentation, see
+https://www.veracrypt.fr/en/System`20Encryption.html`.
+
+Feature: `v2_58`
+
+<!-- trait MountOperationExt::fn set_property_is-tcrypt-system-volume -->
+Whether the device to be unlocked is a TCRYPT system volume.
+In this context, a system volume is a volume with a bootloader
+and operating system installed. This is only supported for Windows
+operating systems. For further documentation, see
+https://www.veracrypt.fr/en/System`20Encryption.html`.
+
+Feature: `v2_58`
+
 <!-- trait MountOperationExt::fn get_property_password -->
 The password that is used for authentication when carrying out
 the mount operation.
@@ -11613,6 +11544,18 @@ the mount operation.
 Determines if and how the password information should be saved.
 <!-- trait MountOperationExt::fn set_property_password-save -->
 Determines if and how the password information should be saved.
+<!-- trait MountOperationExt::fn get_property_pim -->
+The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See
+https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html.
+
+Feature: `v2_58`
+
+<!-- trait MountOperationExt::fn set_property_pim -->
+The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See
+https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html.
+
+Feature: `v2_58`
+
 <!-- trait MountOperationExt::fn get_property_username -->
 The user name that is used for authentication when carrying out
 the mount operation.
@@ -12033,8 +11976,6 @@ clicked.
 
 A notification can be sent with `ApplicationExt::send_notification`.
 
-Feature: `v2_40`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
@@ -12045,9 +11986,6 @@ After populating `notification` with more details, it can be sent to
 the desktop shell with `ApplicationExt::send_notification`. Changing
 any properties after this call will not have any effect until
 resending `notification`.
-
-Feature: `v2_40`
-
 ## `title`
 the title of the notification
 
@@ -12063,9 +12001,6 @@ its parameter.
 
 See `Action::parse_detailed_name` for a description of the format
 for `detailed_action`.
-
-Feature: `v2_40`
-
 ## `label`
 label of the button
 ## `detailed_action`
@@ -12078,9 +12013,6 @@ If `target_format` is given, it is used to collect remaining
 positional parameters into a `glib::Variant` instance, similar to
 `glib::Variant::new`. `action` will be activated with that `glib::Variant` as its
 parameter.
-
-Feature: `v2_40`
-
 ## `label`
 label of the button
 ## `action`
@@ -12093,9 +12025,6 @@ Adds a button to `self` that activates `action` when clicked.
 
 If `target` is non-`None`, `action` will be activated with `target` as
 its parameter.
-
-Feature: `v2_40`
-
 ## `label`
 label of the button
 ## `action`
@@ -12104,9 +12033,6 @@ an action name
 a `glib::Variant` to use as `action`'s parameter, or `None`
 <!-- impl Notification::fn set_body -->
 Sets the body of `self` to `body`.
-
-Feature: `v2_40`
-
 ## `body`
 the new body for `self`, or `None`
 <!-- impl Notification::fn set_default_action -->
@@ -12121,9 +12047,6 @@ for `detailed_action`.
 
 When no default action is set, the application that the notification
 was sent on is activated.
-
-Feature: `v2_40`
-
 ## `detailed_action`
 a detailed action name
 <!-- impl Notification::fn set_default_action_and_target -->
@@ -12138,9 +12061,6 @@ parameter.
 
 When no default action is set, the application that the notification
 was sent on is activated.
-
-Feature: `v2_40`
-
 ## `action`
 an action name
 ## `target_format`
@@ -12155,40 +12075,25 @@ its parameter.
 
 When no default action is set, the application that the notification
 was sent on is activated.
-
-Feature: `v2_40`
-
 ## `action`
 an action name
 ## `target`
 a `glib::Variant` to use as `action`'s parameter, or `None`
 <!-- impl Notification::fn set_icon -->
 Sets the icon of `self` to `icon`.
-
-Feature: `v2_40`
-
 ## `icon`
 the icon to be shown in `self`, as a `Icon`
 <!-- impl Notification::fn set_priority -->
 Sets the priority of `self` to `priority`. See
 `NotificationPriority` for possible values.
-
-Feature: `v2_42`
-
 ## `priority`
 a `NotificationPriority`
 <!-- impl Notification::fn set_title -->
 Sets the title of `self` to `title`.
-
-Feature: `v2_40`
-
 ## `title`
 the new title for `self`
 <!-- impl Notification::fn set_urgent -->
 Deprecated in favor of `Notification::set_priority`.
-
-Feature: `v2_40`
-
 
 # Deprecated since 2.42
 
@@ -12214,9 +12119,6 @@ for events that require more attention,
 for urgent notifications, or notifications
  that require a response in a short space of time (for example phone calls
  or emergency warnings)
-
-Feature: `v2_42`
-
 <!-- struct OutputStream -->
 `OutputStream` has functions to write to a stream (`OutputStreamExt::write`),
 to close a stream (`OutputStreamExt::close`) and to flush pending writes
@@ -12378,9 +12280,6 @@ function due to the variable length of the written string, if you
 need precise control over partial write failures, you need to
 create you own `printf`-like wrapper around `OutputStreamExt::write`
 or `OutputStream::write_all`.
-
-Feature: `v2_40`
-
 ## `bytes_written`
 location to store the number of bytes that was
  written to the stream
@@ -12462,9 +12361,6 @@ function due to the variable length of the written string, if you
 need precise control over partial write failures, you need to
 create you own `printf`-like wrapper around `OutputStreamExt::write`
 or `OutputStream::write_all`.
-
-Feature: `v2_40`
-
 ## `bytes_written`
 location to store the number of bytes that was
  written to the stream
@@ -13097,8 +12993,6 @@ property of a ``GtkStack`` if this value is actually stored in
 `Settings`, see `SettingsExt::create_action` instead, and possibly
 combine its use with `SettingsExt::bind`.
 
-Feature: `v2_38`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionExt`](trait.ActionExt.html)
@@ -13111,9 +13005,6 @@ construct-only).
 
 This function takes a reference on `object` and doesn't release it
 until the action is destroyed.
-
-Feature: `v2_38`
-
 ## `name`
 the name of the action to create
 ## `object`
@@ -13130,9 +13021,6 @@ If `action` is currently enabled.
 
 If the action is disabled then calls to `Action::activate` and
 `Action::change_state` have no effect.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn get_property_invert-boolean -->
 If `true`, the state of the action will be the negation of the
 property value, provided the property is boolean.
@@ -13148,47 +13036,26 @@ Feature: `v2_46`
 <!-- trait PropertyActionExt::fn get_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `ActionMap`.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn set_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `ActionMap`.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn set_property_object -->
 The object to wrap a property on.
 
 The object must be a non-`None` `gobject::Object` with properties.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn get_property_parameter-type -->
 The type of the parameter that must be given when activating the
 action.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn set_property_property-name -->
 The name of the property to wrap on the object.
 
 The property must exist on the passed-in object and it must be
 readable and writable (and not construct-only).
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn get_property_state -->
 The state of the action, or `None` if the action is stateless.
-
-Feature: `v2_38`
-
 <!-- trait PropertyActionExt::fn get_property_state-type -->
 The `glib::VariantType` of the state that the action has, or `None` if the
 action is stateless.
-
-Feature: `v2_38`
-
 <!-- struct Proxy -->
 A `Proxy` handles connecting to a remote host via a given type of
 proxy server. It is implemented by the 'gio-proxy' extension point.
@@ -13324,9 +13191,6 @@ the `self`'s destination port
 Gets the protocol that is being spoken to the destination
 server; eg, "http" or "ftp".
 
-Feature: `v2_34`
-
-
 # Returns
 
 the `self`'s destination protocol
@@ -13345,9 +13209,6 @@ the `self`'s protocol
 <!-- trait ProxyAddressExt::fn get_uri -->
 Gets the proxy URI that `self` was constructed from.
 
-Feature: `v2_34`
-
-
 # Returns
 
 the `self`'s URI, or `None` if unknown
@@ -13360,27 +13221,15 @@ the `self`'s username
 <!-- trait ProxyAddressExt::fn get_property_destination-protocol -->
 The protocol being spoke to the destination host, or `None` if
 the `ProxyAddress` doesn't know.
-
-Feature: `v2_34`
-
 <!-- trait ProxyAddressExt::fn set_property_destination-protocol -->
 The protocol being spoke to the destination host, or `None` if
 the `ProxyAddress` doesn't know.
-
-Feature: `v2_34`
-
 <!-- trait ProxyAddressExt::fn get_property_uri -->
 The URI string that the proxy was constructed from (or `None`
 if the creator didn't specify this).
-
-Feature: `v2_34`
-
 <!-- trait ProxyAddressExt::fn set_property_uri -->
 The URI string that the proxy was constructed from (or `None`
 if the creator didn't specify this).
-
-Feature: `v2_34`
-
 <!-- struct ProxyResolver -->
 `ProxyResolver` provides synchronous and asynchronous network proxy
 resolution. `ProxyResolver` is used within `SocketClient` through
@@ -13686,9 +13535,6 @@ a value from `ResolverError` and `None` will be returned.
 If `cancellable` is non-`None`, it can be used to cancel the
 operation, in which case `error` (if non-`None`) will be set to
 `IOErrorEnum::Cancelled`.
-
-Feature: `v2_34`
-
 ## `rrname`
 the DNS name to lookup the record for
 ## `record_type`
@@ -13707,9 +13553,6 @@ Begins asynchronously performing a DNS lookup for the given
 `rrname`, and eventually calls `callback`, which must call
 `ResolverExt::lookup_records_finish` to get the final result. See
 `ResolverExt::lookup_records` for more details.
-
-Feature: `v2_34`
-
 ## `rrname`
 the DNS name to lookup the record for
 ## `record_type`
@@ -13729,9 +13572,6 @@ records contain.
 If the DNS resolution failed, `error` (if non-`None`) will be set to
 a value from `ResolverError`. If the operation was cancelled,
 `error` will be set to `IOErrorEnum::Cancelled`.
-
-Feature: `v2_34`
-
 ## `result`
 the result passed to your `GAsyncReadyCallback`
 
@@ -13859,9 +13699,6 @@ lookup DNS TXT records for a name
 lookup DNS SOA records for a zone
 <!-- enum ResolverRecordType::variant Ns -->
 lookup DNS NS records for a domain
-
-Feature: `v2_34`
-
 <!-- struct Resource -->
 Applications and libraries often contain binary or textual data that is
 really part of the application, rather than user data. For instance
@@ -14002,6 +13839,8 @@ to register it with `g_resources_register`.
 Note: `data` must be backed by memory that is at least pointer aligned.
 Otherwise this function will internally create a copy of the memory since
 GLib 2.56, or in older versions fail and exit the process.
+
+If `data` is empty or corrupt, `ResourceError::Internal` will be returned.
 ## `data`
 A `glib::Bytes`
 
@@ -14100,6 +13939,11 @@ you to query it for data.
 
 If you want to use this resource in the global resource namespace you need
 to register it with `g_resources_register`.
+
+If `filename` is empty or the data in it is corrupt,
+`ResourceError::Internal` will be returned. If `filename` doesn’t exist, or
+there is an error in reading it, an error from `glib::MappedFile::new` will be
+returned.
 ## `filename`
 the path of a filename to load, in the GLib filename encoding
 
@@ -14833,9 +14677,6 @@ the default value was before the user set it.
 
 It is a programmer error to give a `key` that isn't contained in the
 schema for `self`.
-
-Feature: `v2_40`
-
 ## `key`
 the key to get the default value for
 
@@ -15052,9 +14893,6 @@ for providing indication that a particular value has been changed.
 
 It is a programmer error to give a `key` that isn't contained in the
 schema for `self`.
-
-Feature: `v2_40`
-
 ## `key`
 the key to get the user value for
 
@@ -15087,8 +14925,7 @@ The list is exactly the list of strings for which it is not an error
 to call `SettingsExt::get_child`.
 
 For GSettings objects that are lists, this value can change at any
-time and you should connect to the "children-changed" signal to watch
-for those changes. Note that there is a race condition here: you may
+time. Note that there is a race condition here: you may
 request a child after listing it only for it to have been destroyed
 in the meantime. For this reason, `SettingsExt::get_child` may return
 `None` even for a child that was listed by this function.
@@ -15770,9 +15607,6 @@ Gets the key named `name` from `self`.
 
 It is a programmer error to request a key that does not exist. See
 `SettingsSchema::list_keys`.
-
-Feature: `v2_40`
-
 ## `name`
 the name of a key
 
@@ -15795,9 +15629,6 @@ relocatable schemas, this function will return `None`.
 the path of the schema, or `None`
 <!-- impl SettingsSchema::fn has_key -->
 Checks if `self` has a key named `name`.
-
-Feature: `v2_40`
-
 ## `name`
 the name of a key
 
@@ -15841,16 +15672,11 @@ Decrease the reference count of `self`, possibly freeing it.
 <!-- struct SettingsSchemaKey -->
 `SettingsSchemaKey` is an opaque data structure and can only be accessed
 using the following functions.
-
-Feature: `v2_40`
 <!-- impl SettingsSchemaKey::fn get_default_value -->
 Gets the default value for `self`.
 
 Note that this is the default value according to the schema. System
 administrator defaults and lockdown are not visible via this API.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -15870,9 +15696,6 @@ This function is slow. The summary and description information for
 the schemas is not stored in the compiled schema database so this
 function has to parse all of the source XML files in the schema
 directory.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -15924,9 +15747,6 @@ forms may be added to the possibilities described above.
 You should free the returned value with `glib::Variant::unref` when it is
 no longer needed.
 
-Feature: `v2_40`
-
-
 # Returns
 
 a `glib::Variant` describing the range
@@ -15945,17 +15765,11 @@ the schemas is not stored in the compiled schema database so this
 function has to parse all of the source XML files in the schema
 directory.
 
-Feature: `v2_40`
-
-
 # Returns
 
 the summary for `self`, or `None`
 <!-- impl SettingsSchemaKey::fn get_value_type -->
 Gets the `glib::VariantType` of `self`.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -15966,9 +15780,6 @@ permitted range for `self`.
 
 It is a programmer error if `value` is not of the correct type -- you
 must check for this first.
-
-Feature: `v2_40`
-
 ## `value`
 the value to check
 
@@ -15978,17 +15789,11 @@ the value to check
 <!-- impl SettingsSchemaKey::fn ref -->
 Increase the reference count of `self`, returning a new reference.
 
-Feature: `v2_40`
-
-
 # Returns
 
 a new reference to `self`
 <!-- impl SettingsSchemaKey::fn unref -->
 Decrease the reference count of `self`, possibly freeing it.
-
-Feature: `v2_40`
-
 <!-- struct SettingsSchemaSource -->
 This is an opaque structure type. You may not access it directly.
 <!-- impl SettingsSchemaSource::fn new_from_directory -->
@@ -16006,6 +15811,9 @@ corrupted. This assumption has a performance advantage, but can result
 in crashes or inconsistent behaviour in the case of a corrupted file.
 Generally, you should set `trusted` to `true` for files installed by the
 system and to `false` for files in the home directory.
+
+In either case, an empty file or some types of corruption in the file will
+result in `glib::FileError::Inval` being returned.
 
 If `parent` is non-`None` then there are two effects.
 
@@ -16039,9 +15847,6 @@ use `Settings::new_with_path`.
 
 Do not call this function from normal programs. This is designed for
 use by database editors, commandline tools, etc.
-
-Feature: `v2_40`
-
 ## `recursive`
 if we should recurse
 ## `non_relocatable`
@@ -16108,11 +15913,13 @@ See also ``GtkAction``.
 <!-- impl SimpleAction::fn new -->
 Creates a new action.
 
-The created action is stateless. See `SimpleAction::new_stateful`.
+The created action is stateless. See `SimpleAction::new_stateful` to create
+an action that has state.
 ## `name`
 the name of the action
 ## `parameter_type`
-the type of parameter to the activate function
+the type of parameter that will be passed to
+ handlers for the `SimpleAction::activate` signal, or `None` for no parameter
 
 # Returns
 
@@ -16120,14 +15927,15 @@ a new `SimpleAction`
 <!-- impl SimpleAction::fn new_stateful -->
 Creates a new stateful action.
 
-`state` is the initial state of the action. All future state values
-must have the same `glib::VariantType` as the initial state.
+All future state values must have the same `glib::VariantType` as the initial
+`state`.
 
-If the `state` GVariant is floating, it is consumed.
+If the `state` `glib::Variant` is floating, it is consumed.
 ## `name`
 the name of the action
 ## `parameter_type`
-the type of the parameter to the activate function
+the type of the parameter that will be passed to
+ handlers for the `SimpleAction::activate` signal, or `None` for no parameter
 ## `state`
 the initial state of the action
 
@@ -16170,8 +15978,9 @@ a `glib::Variant` representing the state hint
 <!-- trait SimpleActionExt::fn connect_activate -->
 Indicates that the action was just activated.
 
-`parameter` will always be of the expected type. In the event that
-an incorrect type was given, no signal will be emitted.
+`parameter` will always be of the expected type, i.e. the parameter type
+specified when the action was created. If an incorrect type is given when
+activating the action, this signal is not emitted.
 
 Since GLib 2.40, if no handler is connected to this signal then the
 default behaviour for boolean-stated actions with a `None` parameter
@@ -16181,13 +15990,16 @@ type, the default is to forward them directly to
 `SimpleAction::change-state`. This should allow almost all users
 of `SimpleAction` to connect only one handler or the other.
 ## `parameter`
-the parameter to the activation
+the parameter to the activation, or `None` if it has
+ no parameter
 <!-- trait SimpleActionExt::fn connect_change_state -->
 Indicates that the action just received a request to change its
 state.
 
-`value` will always be of the correct state type. In the event that
-an incorrect type was given, no signal will be emitted.
+`value` will always be of the correct state type, i.e. the type of the
+initial state passed to `SimpleAction::new_stateful`. If an incorrect
+type is given when requesting to change the state, this signal is not
+emitted.
 
 If no handler is connected to this signal then the default
 behaviour is to call `SimpleAction::set_state` to set the state
@@ -16252,20 +16064,14 @@ implementing the `ActionGroup` and `ActionMap` interfaces.
 
 # Implements
 
-[`SimpleActionGroupExt`](trait.SimpleActionGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
-<!-- trait SimpleActionGroupExt -->
-Trait containing all `SimpleActionGroup` methods.
-
-# Implementors
-
-[`SimpleActionGroup`](struct.SimpleActionGroup.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ActionGroupExt`](trait.ActionGroupExt.html), [`ActionMapExt`](trait.ActionMapExt.html)
 <!-- impl SimpleActionGroup::fn new -->
 Creates a new, empty, `SimpleActionGroup`.
 
 # Returns
 
 a new `SimpleActionGroup`
-<!-- trait SimpleActionGroupExt::fn add_entries -->
+<!-- impl SimpleActionGroup::fn add_entries -->
 A convenience function for creating multiple `SimpleAction` instances
 and adding them to the action group.
 
@@ -16279,7 +16085,7 @@ a pointer to the first item in
 the length of `entries`, or -1
 ## `user_data`
 the user data for signal connections
-<!-- trait SimpleActionGroupExt::fn insert -->
+<!-- impl SimpleActionGroup::fn insert -->
 Adds an action to the action group.
 
 If the action group already contains an action with the same name as
@@ -16292,7 +16098,7 @@ The action group takes its own reference on `action`.
 Use `ActionMap::add_action`
 ## `action`
 a `Action`
-<!-- trait SimpleActionGroupExt::fn lookup -->
+<!-- impl SimpleActionGroup::fn lookup -->
 Looks up the action with the name `action_name` in the group.
 
 If no such action exists, returns `None`.
@@ -16306,7 +16112,7 @@ the name of an action
 # Returns
 
 a `Action`, or `None`
-<!-- trait SimpleActionGroupExt::fn remove -->
+<!-- impl SimpleActionGroup::fn remove -->
 Removes the named action from the action group.
 
 If no action of this name is in the group then nothing happens.
@@ -16814,9 +16620,6 @@ headers.
 Note that even for socket options that are a single byte in size,
 `value` is still a pointer to a `gint` variable, not a `guchar`;
 `SocketExt::get_option` will handle the conversion internally.
-
-Feature: `v2_36`
-
 ## `level`
 the "API level" of the option (eg, `SOL_SOCKET`)
 ## `optname`
@@ -17463,9 +17266,6 @@ header pulls in system headers that will define most of the
 standard/portable socket options. For unusual socket protocols or
 platform-dependent options, you may need to include additional
 headers.
-
-Feature: `v2_36`
-
 ## `level`
 the "API level" of the option (eg, `SOL_SOCKET`)
 ## `optname`
@@ -17984,9 +17784,6 @@ Gets the `ProxyResolver` being used by `self`. Normally, this will
 be the resolver returned by `ProxyResolver::get_default`, but you
 can override it with `SocketClientExt::set_proxy_resolver`.
 
-Feature: `v2_36`
-
-
 # Returns
 
 The `ProxyResolver` being used by
@@ -18068,9 +17865,6 @@ default proxy settings.
 Note that whether or not the proxy resolver is actually used
 depends on the setting of `SocketClient:enable-proxy`, which is not
 changed by this function (but which is `true` by default)
-
-Feature: `v2_36`
-
 ## `proxy_resolver`
 a `ProxyResolver`, or `None` for the
  default.
@@ -18176,14 +17970,8 @@ the `SocketConnectable` that `event` is occurring on
 the current representation of the connection
 <!-- trait SocketClientExt::fn get_property_proxy-resolver -->
 The proxy resolver to use
-
-Feature: `v2_36`
-
 <!-- trait SocketClientExt::fn set_property_proxy-resolver -->
 The proxy resolver to use
-
-Feature: `v2_36`
-
 <!-- enum SocketClientEvent -->
 Describes an event occurring on a `SocketClient`. See the
 `SocketClient::event` signal for more details.
@@ -18457,9 +18245,16 @@ A `SocketListener` is an object that keeps track of a set
 of server sockets and helps you accept sockets from any of the
 socket, either sync or async.
 
+Add addresses and ports to listen on using `SocketListenerExt::add_address`
+and `SocketListenerExt::add_inet_port`. These will be listened on until
+`SocketListenerExt::close` is called. Dropping your final reference to the
+`SocketListener` will not cause `SocketListenerExt::close` to be called
+implicitly, as some references to the `SocketListener` may be held
+internally.
+
 If you want to implement a network server, also look at `SocketService`
-and `ThreadedSocketService` which are subclass of `SocketListener`
-that makes this even easier.
+and `ThreadedSocketService` which are subclasses of `SocketListener`
+that make this even easier.
 
 # Implements
 
@@ -18585,6 +18380,10 @@ be set to the address that the binding actually occurred at. This
 is helpful for determining the port number that was used for when
 requesting a binding to port 0 (ie: "any port"). This address, if
 requested, belongs to the caller and must be freed.
+
+Call `SocketListenerExt::close` to stop listening on `address`; this will not
+be done automatically when you drop your final reference to `self`, as
+references may be held internally.
 ## `address`
 a `SocketAddress`
 ## `type_`
@@ -18625,6 +18424,10 @@ supported) on the specified port on all interfaces.
 to accept to identify this particular source, which is
 useful if you're listening on multiple addresses and do
 different things depending on what address is connected to.
+
+Call `SocketListenerExt::close` to stop listening on `port`; this will not
+be done automatically when you drop your final reference to `self`, as
+references may be held internally.
 ## `port`
 an IP port number (non-zero)
 ## `source_object`
@@ -18968,8 +18771,6 @@ A typical use of `Subprocess` will involve calling
 checked using functions such as `Subprocess::get_if_exited` (which
 are similar to the familiar WIFEXITED-style POSIX macros).
 
-Feature: `v2_40`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
@@ -18981,9 +18782,6 @@ stdout/stderr will be inherited from the parent. You can use
 `flags` to control this behavior.
 
 The argument list must be terminated with `None`.
-
-Feature: `v2_40`
-
 ## `flags`
 flags that define the behaviour of the subprocess
 ## `error`
@@ -18999,9 +18797,6 @@ A newly created `Subprocess`, or `None` on error (and `error`
 Create a new process with the given flags and argument list.
 
 The argument list is expected to be `None`-terminated.
-
-Feature: `v2_40`
-
 ## `argv`
 commandline arguments for the subprocess
 ## `flags`
@@ -19053,9 +18848,6 @@ starting this function, since they may be left in strange states,
 even if the operation was cancelled. You should especially not
 attempt to interact with the pipes while the operation is in progress
 (either from another thread or if using the asynchronous version).
-
-Feature: `v2_40`
-
 ## `stdin_buf`
 data to send to the stdin of the subprocess, or `None`
 ## `cancellable`
@@ -19071,9 +18863,6 @@ data read from the subprocess stderr
 <!-- impl Subprocess::fn communicate_async -->
 Asynchronous version of `Subprocess::communicate`. Complete
 invocation with `Subprocess::communicate_finish`.
-
-Feature: `v2_40`
-
 ## `stdin_buf`
 Input data, or `None`
 ## `cancellable`
@@ -19084,9 +18873,6 @@ Callback
 User data
 <!-- impl Subprocess::fn communicate_finish -->
 Complete an invocation of `Subprocess::communicate_async`.
-
-Feature: `v2_40`
-
 ## `result`
 Result
 ## `stdout_buf`
@@ -19096,9 +18882,6 @@ Return location for stderr data
 <!-- impl Subprocess::fn communicate_utf8 -->
 Like `Subprocess::communicate`, but validates the output of the
 process as UTF-8, and returns it as a regular NUL terminated string.
-
-Feature: `v2_40`
-
 ## `stdin_buf`
 data to send to the stdin of the subprocess, or `None`
 ## `cancellable`
@@ -19110,9 +18893,6 @@ data read from the subprocess stderr
 <!-- impl Subprocess::fn communicate_utf8_async -->
 Asynchronous version of `Subprocess::communicate_utf8`. Complete
 invocation with `Subprocess::communicate_utf8_finish`.
-
-Feature: `v2_40`
-
 ## `stdin_buf`
 Input data, or `None`
 ## `cancellable`
@@ -19123,9 +18903,6 @@ Callback
 User data
 <!-- impl Subprocess::fn communicate_utf8_finish -->
 Complete an invocation of `Subprocess::communicate_utf8_async`.
-
-Feature: `v2_40`
-
 ## `result`
 Result
 ## `stdout_buf`
@@ -19140,9 +18917,6 @@ however, you can use `Subprocess::wait` to monitor the status of
 the process after calling this function.
 
 On Unix, this function sends `SIGKILL`.
-
-Feature: `v2_40`
-
 <!-- impl Subprocess::fn get_exit_status -->
 Check the exit status of the subprocess, given that it exited
 normally. This is the value passed to the `exit` system call or the
@@ -19153,18 +18927,12 @@ This is equivalent to the system WEXITSTATUS macro.
 It is an error to call this function before `Subprocess::wait` and
 unless `Subprocess::get_if_exited` returned `true`.
 
-Feature: `v2_40`
-
-
 # Returns
 
 the exit status
 <!-- impl Subprocess::fn get_identifier -->
 On UNIX, returns the process ID as a decimal string.
 On Windows, returns the result of GetProcessId() also as a string.
-
-Feature: `v2_40`
-
 <!-- impl Subprocess::fn get_if_exited -->
 Check if the given subprocess exited normally (ie: by way of `exit`
 or return from `main`).
@@ -19173,9 +18941,6 @@ This is equivalent to the system WIFEXITED macro.
 
 It is an error to call this function before `Subprocess::wait` has
 returned.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -19187,9 +18952,6 @@ This is equivalent to the system WIFSIGNALED macro.
 
 It is an error to call this function before `Subprocess::wait` has
 returned.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -19207,9 +18969,6 @@ followed by `Subprocess::get_exit_status`.
 It is an error to call this function before `Subprocess::wait` has
 returned.
 
-Feature: `v2_40`
-
-
 # Returns
 
 the (meaningless) `waitpid` exit status from the kernel
@@ -19219,9 +18978,6 @@ Gets the `InputStream` from which to read the stderr output of
 
 The process must have been created with
 `SubprocessFlags::StderrPipe`.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -19233,9 +18989,6 @@ to the stdin of `self`.
 The process must have been created with
 `SubprocessFlags::StdinPipe`.
 
-Feature: `v2_40`
-
-
 # Returns
 
 the stdout pipe
@@ -19245,9 +18998,6 @@ Gets the `InputStream` from which to read the stdout output of
 
 The process must have been created with
 `SubprocessFlags::StdoutPipe`.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -19259,9 +19009,6 @@ way of the `exit` system call or return from `main`.
 
 It is an error to call this function before `Subprocess::wait` has
 returned.
-
-Feature: `v2_40`
-
 
 # Returns
 
@@ -19275,9 +19022,6 @@ This is equivalent to the system WTERMSIG macro.
 It is an error to call this function before `Subprocess::wait` and
 unless `Subprocess::get_if_signaled` returned `true`.
 
-Feature: `v2_40`
-
-
 # Returns
 
 the signal causing termination
@@ -19289,9 +19033,6 @@ This API is race-free. If the subprocess has terminated, it will not
 be signalled.
 
 This API is not available on Windows.
-
-Feature: `v2_40`
-
 ## `signal_num`
 the signal number to send
 <!-- impl Subprocess::fn wait -->
@@ -19306,9 +19047,6 @@ abnormal termination. See `Subprocess::wait_check` for that.
 
 Cancelling `cancellable` doesn't kill the subprocess. Call
 `Subprocess::force_exit` if it is desirable.
-
-Feature: `v2_40`
-
 ## `cancellable`
 a `Cancellable`
 
@@ -19319,9 +19057,6 @@ a `Cancellable`
 Wait for the subprocess to terminate.
 
 This is the asynchronous version of `Subprocess::wait`.
-
-Feature: `v2_40`
-
 ## `cancellable`
 a `Cancellable`, or `None`
 ## `callback`
@@ -19330,9 +19065,6 @@ a `GAsyncReadyCallback` to call when the operation is complete
 user_data for `callback`
 <!-- impl Subprocess::fn wait_check -->
 Combines `Subprocess::wait` with `g_spawn_check_exit_status`.
-
-Feature: `v2_40`
-
 ## `cancellable`
 a `Cancellable`
 
@@ -19344,9 +19076,6 @@ a `Cancellable`
 Combines `Subprocess::wait_async` with `g_spawn_check_exit_status`.
 
 This is the asynchronous version of `Subprocess::wait_check`.
-
-Feature: `v2_40`
-
 ## `cancellable`
 a `Cancellable`, or `None`
 ## `callback`
@@ -19356,9 +19085,6 @@ user_data for `callback`
 <!-- impl Subprocess::fn wait_check_finish -->
 Collects the result of a previous call to
 `Subprocess::wait_check_async`.
-
-Feature: `v2_40`
-
 ## `result`
 the `AsyncResult` passed to your `GAsyncReadyCallback`
 
@@ -19368,9 +19094,6 @@ the `AsyncResult` passed to your `GAsyncReadyCallback`
 <!-- impl Subprocess::fn wait_finish -->
 Collects the result of a previous call to
 `Subprocess::wait_async`.
-
-Feature: `v2_40`
-
 ## `result`
 the `AsyncResult` passed to your `GAsyncReadyCallback`
 
@@ -19387,8 +19110,6 @@ popular cases, use of this class allows access to more advanced
 options. It can also be used to launch multiple subprocesses with
 a similar configuration.
 
-Feature: `v2_40`
-
 # Implements
 
 [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
@@ -19398,9 +19119,6 @@ Creates a new `SubprocessLauncher`.
 The launcher is created with the default options. A copy of the
 environment of the calling process is made at the time of this call
 and will be used as the environment that the process is launched in.
-
-Feature: `v2_40`
-
 ## `flags`
 `SubprocessFlags`
 <!-- impl SubprocessLauncher::fn getenv -->
@@ -19409,9 +19127,6 @@ environment of processes launched from this launcher.
 
 On UNIX, the returned string can be an arbitrary byte string.
 On Windows, it will be UTF-8.
-
-Feature: `v2_40`
-
 ## `variable`
 the environment variable to get
 
@@ -19433,9 +19148,6 @@ given.
 `None` can be given as `child_setup` to disable the functionality.
 
 Child setup functions are only available on UNIX.
-
-Feature: `v2_40`
-
 ## `child_setup`
 a `GSpawnChildSetupFunc` to use as the child setup function
 ## `user_data`
@@ -19448,9 +19160,6 @@ with.
 
 By default processes are launched with the current working directory
 of the launching process at the time of launch.
-
-Feature: `v2_40`
-
 ## `cwd`
 the cwd for launched processes
 <!-- impl SubprocessLauncher::fn set_environ -->
@@ -19473,9 +19182,6 @@ etc.) before launching the subprocess.
 
 On UNIX, all strings in this array can be arbitrary byte strings.
 On Windows, they should be in UTF-8.
-
-Feature: `v2_40`
-
 ## `env`
 
  the replacement environment
@@ -19492,9 +19198,6 @@ handle a particular stdio stream (eg: specifying both
 You may also not set a flag that conflicts with a previous call to a
 function like `SubprocessLauncher::set_stdin_file_path` or
 `SubprocessLauncher::take_stdout_fd`.
-
-Feature: `v2_40`
-
 ## `flags`
 `SubprocessFlags`
 <!-- impl SubprocessLauncher::fn set_stderr_file_path -->
@@ -19512,9 +19215,6 @@ You may not set a stderr file path if a stderr fd is already set or
 if the launcher flags contain any flags directing stderr elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 ## `path`
 a filename or `None`
 <!-- impl SubprocessLauncher::fn set_stdin_file_path -->
@@ -19528,9 +19228,6 @@ You may not set a stdin file path if a stdin fd is already set or if
 the launcher flags contain any flags directing stdin elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 <!-- impl SubprocessLauncher::fn set_stdout_file_path -->
 Sets the file path to use as the stdout for spawned processes.
 
@@ -19543,9 +19240,6 @@ You may not set a stdout file path if a stdout fd is already set or
 if the launcher flags contain any flags directing stdout elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 ## `path`
 a filename or `None`
 <!-- impl SubprocessLauncher::fn setenv -->
@@ -19555,9 +19249,6 @@ processes launched from this launcher.
 On UNIX, both the variable's name and value can be arbitrary byte
 strings, except that the variable's name cannot contain '='.
 On Windows, they should be in UTF-8.
-
-Feature: `v2_40`
-
 ## `variable`
 the environment variable to set,
  must not contain '='
@@ -19567,9 +19258,6 @@ the new value for the variable
 whether to change the variable if it already exists
 <!-- impl SubprocessLauncher::fn spawn -->
 Creates a `Subprocess` given a provided varargs list of arguments.
-
-Feature: `v2_40`
-
 ## `error`
 Error
 ## `argv0`
@@ -19580,9 +19268,6 @@ Command line arguments
 A new `Subprocess`, or `None` on error (and `error` will be set)
 <!-- impl SubprocessLauncher::fn spawnv -->
 Creates a `Subprocess` given a provided array of arguments.
-
-Feature: `v2_40`
-
 ## `argv`
 Command line arguments
 
@@ -19602,9 +19287,6 @@ descriptor in the child.
 An example use case is GNUPG, which has a command line argument
 --passphrase-fd providing a file descriptor number where it expects
 the passphrase to be written.
-
-Feature: `v2_40`
-
 ## `source_fd`
 File descriptor in parent process
 ## `target_fd`
@@ -19626,9 +19308,6 @@ You may not set a stderr fd if a stderr file path is already set or
 if the launcher flags contain any flags directing stderr elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 ## `fd`
 a file descriptor, or -1
 <!-- impl SubprocessLauncher::fn take_stdin_fd -->
@@ -19650,9 +19329,6 @@ You may not set a stdin fd if a stdin file path is already set or if
 the launcher flags contain any flags directing stdin elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 ## `fd`
 a file descriptor, or -1
 <!-- impl SubprocessLauncher::fn take_stdout_fd -->
@@ -19673,9 +19349,6 @@ You may not set a stdout fd if a stdout file path is already set or
 if the launcher flags contain any flags directing stdout elsewhere.
 
 This feature is only available on UNIX.
-
-Feature: `v2_40`
-
 ## `fd`
 a file descriptor, or -1
 <!-- impl SubprocessLauncher::fn unsetenv -->
@@ -19684,9 +19357,6 @@ processes launched from this launcher.
 
 On UNIX, the variable's name can be an arbitrary byte string not
 containing '='. On Windows, it should be in UTF-8.
-
-Feature: `v2_40`
-
 ## `variable`
 the environment variable to unset,
  must not contain '='
@@ -20011,9 +19681,6 @@ The raw DER byte data of the two certificates are checked for equality.
 This has the effect that two certificates may compare equal even if
 their `TlsCertificate:issuer`, `TlsCertificate:private-key`, or
 `TlsCertificate:private-key-pem` properties differ.
-
-Feature: `v2_34`
-
 ## `cert_two`
 second certificate to compare
 
@@ -20101,9 +19768,6 @@ Flags for `TlsInteractionExt::request_certificate`,
 `TlsInteractionExt::invoke_request_certificate`.
 <!-- enum TlsCertificateRequestFlags::variant None -->
 No flags
-
-Feature: `v2_40`
-
 <!-- struct TlsClientConnection -->
 `TlsClientConnection` is the client-side subclass of
 `TlsConnection`, representing a client-side TLS connection.
@@ -20195,14 +19859,19 @@ performing `TlsCertificateFlags::BadIdentity` validation, if enabled.
 ## `identity`
 a `SocketConnectable` describing the expected server identity
 <!-- trait TlsClientConnectionExt::fn set_use_ssl3 -->
-If `use_ssl3` is `true`, this forces `self` to use the lowest-supported
-TLS protocol version rather than trying to properly negotiate the
-highest mutually-supported protocol version with the peer. This can
-be used when talking to broken TLS servers that exhibit protocol
-version intolerance.
+Since 2.42.1, if `use_ssl3` is `true`, this forces `self` to use the
+lowest-supported TLS protocol version rather than trying to properly
+negotiate the highest mutually-supported protocol version with the
+peer. Be aware that SSL 3.0 is generally disabled by the
+`TlsBackend`, so the lowest-supported protocol version is probably
+not SSL 3.0.
 
-Be aware that SSL 3.0 is generally disabled by the `TlsBackend`, so
-the lowest-supported protocol version is probably not SSL 3.0.
+Since 2.58, this may additionally cause an RFC 7507 fallback SCSV to
+be sent to the server, causing modern TLS servers to immediately
+terminate the connection. You should generally only use this function
+if you need to connect to broken servers that exhibit TLS protocol
+version intolerance, and when an initial attempt to connect to a
+server normally has already failed.
 
 # Deprecated since 2.56
 
@@ -20257,14 +19926,7 @@ virtual hosts.
 <!-- trait TlsClientConnectionExt::fn get_property_use-ssl3 -->
 If `true`, forces the connection to use a fallback version of TLS
 or SSL, rather than trying to negotiate the best version of TLS
-to use. This can be used when talking to servers that don't
-implement version negotiation correctly and therefore refuse to
-handshake at all with a modern TLS handshake.
-
-Despite the property name, the fallback version is usually not
-SSL 3.0, because SSL 3.0 is generally disabled by the `TlsBackend`.
-`TlsClientConnection` will use the next-highest available version
-as the fallback version.
+to use. See `TlsClientConnection::set_use_ssl3`.
 
 # Deprecated since 2.56
 
@@ -20273,14 +19935,7 @@ generally enable or disable it, despite its name.
 <!-- trait TlsClientConnectionExt::fn set_property_use-ssl3 -->
 If `true`, forces the connection to use a fallback version of TLS
 or SSL, rather than trying to negotiate the best version of TLS
-to use. This can be used when talking to servers that don't
-implement version negotiation correctly and therefore refuse to
-handshake at all with a modern TLS handshake.
-
-Despite the property name, the fallback version is usually not
-SSL 3.0, because SSL 3.0 is generally disabled by the `TlsBackend`.
-`TlsClientConnection` will use the next-highest available version
-as the fallback version.
+to use. See `TlsClientConnection::set_use_ssl3`.
 
 # Deprecated since 2.56
 
@@ -20381,7 +20036,7 @@ when the connection is closed. See
 notification.
 <!-- trait TlsConnectionExt::fn get_use_system_certdb -->
 Gets whether `self` uses the system certificate database to verify
-peer certificates. See `TlsConnectionExt::set_use_system_certdb`.
+peer certificates. See `TlsConnection::set_use_system_certdb`.
 
 # Deprecated since 2.30
 
@@ -20409,7 +20064,10 @@ Likewise, on the server side, although a handshake is necessary at
 the beginning of the communication, you do not need to call this
 function explicitly unless you want clearer error reporting.
 However, you may call `TlsConnectionExt::handshake` later on to
-renegotiate parameters (encryption methods, etc) with the client.
+rehandshake, if TLS 1.2 or older is in use. With TLS 1.3, the
+behavior is undefined but guaranteed to be reasonable and
+nondestructive, so most older code should be expected to continue to
+work without changes.
 
 `TlsConnection::accept_certificate` may be emitted during the
 handshake.
@@ -20482,7 +20140,8 @@ should occur for this connection.
 ## `interaction`
 an interaction object, or `None`
 <!-- trait TlsConnectionExt::fn set_rehandshake_mode -->
-Sets how `self` behaves with respect to rehandshaking requests.
+Sets how `self` behaves with respect to rehandshaking requests, when
+TLS 1.2 or older is in use.
 
 `TlsRehandshakeMode::Never` means that it will never agree to
 rehandshake after the initial handshake is complete. (For a client,
@@ -20657,7 +20316,7 @@ See `TlsConnectionExt::set_require_close_notify`.
 <!-- trait TlsConnectionExt::fn get_property_use-system-certdb -->
 Whether or not the system certificate database will be used to
 verify peer certificates. See
-`TlsConnectionExt::set_use_system_certdb`.
+`TlsConnection::set_use_system_certdb`.
 
 # Deprecated since 2.30
 
@@ -20665,7 +20324,7 @@ Use GTlsConnection:database instead
 <!-- trait TlsConnectionExt::fn set_property_use-system-certdb -->
 Whether or not the system certificate database will be used to
 verify peer certificates. See
-`TlsConnectionExt::set_use_system_certdb`.
+`TlsConnection::set_use_system_certdb`.
 
 # Deprecated since 2.30
 
@@ -21128,9 +20787,6 @@ If the interaction is cancelled by the cancellation object, or by the
 user then `TlsInteractionResult::Failed` will be returned with an error that
 contains a `IOErrorEnum::Cancelled` error code. Certain implementations may
 not support immediate cancellation.
-
-Feature: `v2_40`
-
 ## `connection`
 a `TlsConnection` object
 ## `flags`
@@ -21158,9 +20814,6 @@ If the interaction is cancelled by the cancellation object, or by the
 user then `TlsInteractionResult::Failed` will be returned with an error that
 contains a `IOErrorEnum::Cancelled` error code. Certain implementations may
 not support immediate cancellation.
-
-Feature: `v2_40`
-
 ## `connection`
 a `TlsConnection` object
 ## `flags`
@@ -21180,9 +20833,6 @@ Derived subclasses usually implement a certificate selector, although they may
 also choose to provide a certificate from elsewhere. `callback` will be called
 when the operation completes. Alternatively the user may abort this certificate
 request, which will usually abort the TLS connection.
-
-Feature: `v2_40`
-
 ## `connection`
 a `TlsConnection` object
 ## `flags`
@@ -21204,9 +20854,6 @@ passed to `TlsInteractionExt::request_certificate_async` will have had its
 If the interaction is cancelled by the cancellation object, or by the
 user then `TlsInteractionResult::Failed` will be returned with an error that
 contains a `IOErrorEnum::Cancelled` error code.
-
-Feature: `v2_40`
-
 ## `result`
 the result passed to the callback
 
@@ -21708,7 +21355,7 @@ allows to obtain an 'identifier' for the volume. There can be
 different kinds of identifiers, such as Hal UDIs, filesystem labels,
 traditional Unix devices (e.g. `/dev/sda2`), UUIDs. GIO uses predefined
 strings as names for the different kinds of identifiers:
-`G_VOLUME_IDENTIFIER_KIND_HAL_UDI`, `G_VOLUME_IDENTIFIER_KIND_LABEL`, etc.
+`G_VOLUME_IDENTIFIER_KIND_UUID`, `G_VOLUME_IDENTIFIER_KIND_LABEL`, etc.
 Use `Volume::get_identifier` to obtain an identifier for a volume.
 
 
@@ -21860,7 +21507,7 @@ the kind of identifier to return
 # Returns
 
 a newly allocated string containing the
- requested identfier, or `None` if the `Volume`
+ requested identifier, or `None` if the `Volume`
  doesn't have this kind of identifier
 <!-- trait VolumeExt::fn get_mount -->
 Gets the mount for the `self`.
@@ -21886,9 +21533,6 @@ Sorting key for `self` or `None` if no such key is available
 <!-- trait VolumeExt::fn get_symbolic_icon -->
 Gets the symbolic icon for `self`.
 
-Feature: `v2_34`
-
-
 # Returns
 
 a `Icon`.
@@ -21902,7 +21546,8 @@ available.
 
 # Returns
 
-the UUID for `self` or `None` if no UUID can be computed.
+the UUID for `self` or `None` if no UUID
+ can be computed.
  The returned string should be freed with `g_free`
  when no longer needed.
 <!-- trait VolumeExt::fn mount -->
@@ -21976,7 +21621,7 @@ it in its `Mount::get_volume` implementation. The caller must
 also listen for the "removed" signal on the returned object
 and give up its reference when handling that signal
 
-Similary, if implementing `VolumeMonitor::adopt_orphan_mount`,
+Similarly, if implementing `VolumeMonitor::adopt_orphan_mount`,
 the implementor must take a reference to `mount` and return it in
 its `Volume::get_mount` implemented. Also, the implementor must
 listen for the "unmounted" signal on `mount` and give up its

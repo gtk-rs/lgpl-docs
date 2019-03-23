@@ -11,15 +11,16 @@ use stripper_lib::{
 
 #[derive(Clone, Copy, Debug)]
 pub enum Library {
+    Atk,
     Cairo,
     Gdk,
     GdkPixbuf,
-    Glib,
     Gio,
+    Glib,
     Gtk,
     Pango,
-    SourceView,
     PangoCairo,
+    SourceView,
 }
 
 fn docs(lib: Library) -> Option<&'static str> {
@@ -36,13 +37,14 @@ fn docs(lib: Library) -> Option<&'static str> {
 
 fn vendor_docs(lib: Library) -> Option<&'static str> {
     match lib {
+        Library::Atk => Some(include_str!("../atk/vendor.md")),
         Library::Glib => Some(include_str!("../glib/vendor.md")),
         Library::Gio => Some(include_str!("../gio/vendor.md")),
         Library::Pango => Some(include_str!("../pango/vendor.md")),
         Library::Gdk => Some(include_str!("../gdk/vendor.md")),
         Library::GdkPixbuf => Some(include_str!("../gdk-pixbuf/vendor.md")),
         Library::Gtk => Some(include_str!("../gtk/vendor.md")),
-        Library::SourceView => Some(include_str!("../gtksource/vendor.md")),
+        Library::SourceView => Some(include_str!("../sourceview/vendor.md")),
         Library::PangoCairo => Some(include_str!("../pangocairo/vendor.md")),
         _ => None,
     }

@@ -413,9 +413,6 @@ This function is only useful when implementing a new backend
 for Pango, something applications won't do. Backends should
 call this function if they have attached extra data to the context
 and such data is changed.
-
-Feature: `v1_32_4`
-
 <!-- trait ContextExt::fn get_base_dir -->
 Retrieves the base direction for the context. See
 `ContextExt::set_base_dir`.
@@ -513,9 +510,6 @@ can wrap, never compare it with "less than", always use "not equals".
 This can be used to automatically detect changes to a `Context`, and
 is only useful when implementing objects that need update when their
 `Context` changes, like `Layout`.
-
-Feature: `v1_32_4`
-
 
 # Returns
 
@@ -1007,6 +1001,19 @@ Gets the variant field of a `FontDescription`. See
 the variant field for the font description. Use
  `FontDescription::get_set_fields` to find out if
  the field was explicitly set or not.
+<!-- impl FontDescription::fn get_variations -->
+Gets the variations field of a font description. See
+`FontDescription::set_variations`.
+
+Feature: `v1_42`
+
+
+# Returns
+
+the varitions field for the font
+ description, or `None` if not previously set. This
+ has the same life-time as the font description itself
+ and should not be freed.
 <!-- impl FontDescription::fn get_weight -->
 Gets the weight field of a font description. See
 `FontDescription::set_weight`.
@@ -1115,6 +1122,31 @@ Sets the variant field of a font description. The `Variant`
 can either be `Variant::Normal` or `Variant::SmallCaps`.
 ## `variant`
 the variant type for the font description.
+<!-- impl FontDescription::fn set_variations -->
+Sets the variations field of a font description. OpenType
+font variations allow to select a font instance by specifying
+values for a number of axes, such as width or weight.
+
+The format of the variations string is AXIS1=VALUE,AXIS2=VALUE...,
+with each AXIS a 4 character tag that identifies a font axis,
+and each VALUE a floating point number. Unknown axes are ignored,
+and values are clamped to their allowed range.
+
+Pango does not currently have a way to find supported axes of
+a font. Both harfbuzz or freetype have API for this.
+
+Feature: `v1_42`
+
+<!-- impl FontDescription::fn set_variations_static -->
+Like `FontDescription::set_variations`, except that no
+copy of `variations` is made. The caller must make sure that the
+string passed in stays around until `self` has been freed
+or the name is set again. This function can be used if
+`variations` is a static string such as a C string literal, or
+if `self` is only needed temporarily.
+
+Feature: `v1_42`
+
 <!-- impl FontDescription::fn set_weight -->
 Sets the weight field of a font description. The weight field
 specifies how bold or light the font should be. In addition
@@ -1298,9 +1330,6 @@ This function is only useful when implementing a new backend
 for Pango, something applications won't do. Backends should
 call this function if they have attached extra data to the context
 and such data is changed.
-
-Feature: `v1_34`
-
 <!-- trait FontMapExt::fn create_context -->
 Creates a `Context` connected to `self`. This is equivalent
 to `Context::new` followed by `ContextExt::set_font_map`.
@@ -1327,9 +1356,6 @@ fontmap resolution.
 
 This can be used to automatically detect changes to a `FontMap`, like
 in `Context`.
-
-Feature: `v1_32_4`
-
 
 # Returns
 
@@ -2405,9 +2431,6 @@ can wrap, never compare it with "less than", always use "not equals".
 This can be used to automatically detect changes to a `Layout`, and
 is useful for example to decide whether a layout needs redrawing.
 To force the serial to be increased, use `LayoutExt::context_changed`.
-
-Feature: `v1_32_4`
-
 
 # Returns
 

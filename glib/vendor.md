@@ -99,14 +99,21 @@ a new `Bytes`
 <!-- impl Bytes::fn compare -->
 Compares the two `Bytes` values.
 
-This function can be used to sort GBytes instances in lexographical order.
+This function can be used to sort GBytes instances in lexicographical order.
+
+If `self` and `bytes2` have different length but the shorter one is a
+prefix of the longer one then the shorter one is considered to be less than
+the longer one. Otherwise the first byte where both differ is used for
+comparison. If `self` has a smaller value at that position it is
+considered less, otherwise greater than `bytes2`.
 ## `bytes2`
 a pointer to a `Bytes` to compare with `self`
 
 # Returns
 
-a negative value if bytes2 is lesser, a positive value if bytes2 is
- greater, and zero if bytes2 is equal to bytes1
+a negative value if `self` is less than `bytes2`, a positive value
+ if `self` is greater than `bytes2`, and zero if `self` is equal to
+ `bytes2`
 <!-- impl Bytes::fn equal -->
 Compares the two `Bytes` values being pointed to and returns
 `true` if they are equal.
@@ -862,6 +869,15 @@ including the fractional part.
 # Returns
 
 the number of seconds
+<!-- impl DateTime::fn get_timezone -->
+Get the time zone for this `self`.
+
+Feature: `v2_58`
+
+
+# Returns
+
+the time zone
 <!-- impl DateTime::fn get_timezone_abbreviation -->
 Determines the time zone abbreviation to be used at the time and in
 the time zone of `self`.
@@ -1660,9 +1676,6 @@ Writes the contents of `self` to `filename` using
 
 This function can fail for any of the reasons that
 `g_file_set_contents` may fail.
-
-Feature: `v2_40`
-
 ## `filename`
 the name of the file to write to
 
@@ -2159,6 +2172,10 @@ as with `MainContext::acquire`. But if another thread
 is the owner, atomically drop `mutex` and wait on `cond` until
 that owner releases ownership or until `cond` is signaled, then
 try again (once) to become the owner.
+
+# Deprecated since 2.58
+
+Use `MainContext::is_owner` and separate locking instead.
 ## `cond`
 a condition variable
 ## `mutex`
@@ -2395,9 +2412,6 @@ This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
 
 As the name suggests, this function is not available on Windows.
-
-Feature: `v2_36`
-
 ## `fd`
 the fd to monitor
 ## `events`
@@ -2457,6 +2471,11 @@ Returns the numeric ID for a particular source. The ID of a source
 is a positive integer which is unique within a particular main loop
 context. The reverse
 mapping from ID to source is done by `MainContext::find_source_by_id`.
+
+You can only call this function while the source is associated to a
+`MainContext` instance; calling this function before `Source::attach`
+or after `Source::destroy` yields undefined behavior. The ID returned
+is unique within the `MainContext` instance passed to `Source::attach`.
 
 # Returns
 
@@ -2581,9 +2600,6 @@ This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
 
 As the name suggests, this function is not available on Windows.
-
-Feature: `v2_36`
-
 ## `tag`
 the tag from `Source::add_unix_fd`
 ## `new_events`
@@ -2599,9 +2615,6 @@ This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
 
 As the name suggests, this function is not available on Windows.
-
-Feature: `v2_36`
-
 ## `tag`
 the tag from `Source::add_unix_fd`
 
@@ -2641,9 +2654,6 @@ This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
 
 As the name suggests, this function is not available on Windows.
-
-Feature: `v2_36`
-
 ## `tag`
 the tag from `Source::add_unix_fd`
 <!-- impl Source::fn set_callback -->
@@ -2652,7 +2662,8 @@ called from the source's dispatch function.
 
 The exact type of `func` depends on the type of source; ie. you
 should not count on `func` being called with `data` as its first
-parameter.
+parameter. Cast `func` with G_SOURCE_FUNC() to avoid warnings about
+incompatible function types.
 
 See [memory management of sources][mainloop-memory-management] for details
 on how to handle memory management of `data`.
@@ -2742,9 +2753,6 @@ destroyed with `Source::destroy`.
 
 This API is only intended to be used by implementations of `Source`.
 Do not call this API on a `Source` that you did not create.
-
-Feature: `v2_36`
-
 ## `ready_time`
 the monotonic time at which the source will be ready,
  0 for "immediately", -1 for "never"
@@ -2923,6 +2931,21 @@ when you are done with it.
 # Returns
 
 the local timezone
+<!-- impl TimeZone::fn new_offset -->
+Creates a `TimeZone` corresponding to the given constant offset from UTC,
+in seconds.
+
+This is equivalent to calling `TimeZone::new` with a string in the form
+`[+|-]hh[:mm[:ss]]`.
+
+Feature: `v2_58`
+
+## `seconds`
+offset to UTC, in seconds
+
+# Returns
+
+a timezone at the given offset from UTC
 <!-- impl TimeZone::fn new_utc -->
 Creates a `TimeZone` corresponding to UTC.
 
@@ -3000,6 +3023,22 @@ an interval within the timezone
 # Returns
 
 the time zone abbreviation, which belongs to `self`
+<!-- impl TimeZone::fn get_identifier -->
+Get the identifier of this `TimeZone`, as passed to `TimeZone::new`.
+If the identifier passed at construction time was not recognised, `UTC` will
+be returned. If it was `None`, the identifier of the local timezone at
+construction time will be returned.
+
+The identifier will be returned in the same format as provided at
+construction time: if provided as a time offset, that will be returned by
+this function.
+
+Feature: `v2_58`
+
+
+# Returns
+
+identifier for this timezone
 <!-- impl TimeZone::fn get_offset -->
 Determines the offset to UTC in effect during a particular `interval`
 of time in the time zone `self`.
@@ -3461,9 +3500,6 @@ inner interface for creation of new serialised values that gets
 called from various functions in gvariant.c.
 
 A reference is taken on `bytes`.
-
-Feature: `v2_36`
-
 ## `type_`
 a `VariantType`
 ## `bytes`
@@ -3673,9 +3709,6 @@ Creates a string-type GVariant using printf formatting.
 This is similar to calling `g_strdup_printf` and then
 `Variant::new_string` but it saves a temporary variable and an
 unnecessary copy.
-
-Feature: `v2_38`
-
 ## `format_string`
 a printf-style format string
 
@@ -3730,9 +3763,6 @@ when it is no longer required.
 You must not modify or access `string` in any other way after passing
 it to this function. It is even possible that `string` is immediately
 freed.
-
-Feature: `v2_38`
-
 ## `string`
 a normal UTF-8 nul-terminated string
 
@@ -3872,9 +3902,6 @@ check fails then a `g_critical` is printed and `false` is returned.
 This function is meant to be used by functions that wish to provide
 varargs accessors to `Variant` values of uncertain values (eg:
 `Variant::lookup` or `g_menu_model_get_item_attribute`).
-
-Feature: `v2_34`
-
 ## `format_string`
 a valid `Variant` format string
 ## `copy_only`
@@ -4041,7 +4068,7 @@ other than `G_VARIANT_TYPE_BYTE`.
 
 # Returns
 
-a `guchar`
+a `guint8`
 <!-- impl Variant::fn get_bytestring -->
 Returns the string value of a `Variant` instance with an
 array-of-bytes type. The string has no particular encoding.
@@ -4109,6 +4136,11 @@ in the container. See `Variant::n_children`.
 The returned value is never floating. You should free it with
 `Variant::unref` when you're done with it.
 
+There may be implementation specific restrictions on deeply nested values,
+which would result in the unit tuple being returned as the child value,
+instead of further nested children. `Variant` is guaranteed to handle
+nesting up to at least 64 levels.
+
 This function is O(1).
 ## `index_`
 the index of the child to fetch
@@ -4152,9 +4184,6 @@ The semantics of this function are exactly the same as
 `Variant::get_data`, except that the returned `Bytes` holds
 a reference to the variant data.
 
-Feature: `v2_36`
-
-
 # Returns
 
 A new `Bytes` representing the variant data
@@ -4183,7 +4212,7 @@ as an array of the given C type, with `element_size` set to the size
 the appropriate type:
 - `G_VARIANT_TYPE_INT16` (etc.): `gint16` (etc.)
 - `G_VARIANT_TYPE_BOOLEAN`: `guchar` (not `gboolean`!)
-- `G_VARIANT_TYPE_BYTE`: `guchar`
+- `G_VARIANT_TYPE_BYTE`: `guint8`
 - `G_VARIANT_TYPE_HANDLE`: `guint32`
 - `G_VARIANT_TYPE_DOUBLE`: `gdouble`
 
@@ -4479,6 +4508,9 @@ If `self` is found to be in normal form then it will be marked as
 being trusted. If the value was already marked as being trusted then
 this function will immediately return `true`.
 
+There may be implementation specific restrictions on deeply nested values.
+GVariant is guaranteed to handle nesting up to at least 64 levels.
+
 # Returns
 
 `true` if `self` is in normal form
@@ -4693,10 +4725,10 @@ Determines if a given string is a valid D-Bus object path. You
 should ensure that a string is a valid D-Bus object path before
 passing it to `Variant::new_object_path`.
 
-A valid object path starts with '/' followed by zero or more
-sequences of characters separated by '/' characters. Each sequence
-must contain only the characters "[A-Z][a-z][0-9]_". No sequence
-(including the one following the final '/' character) may be empty.
+A valid object path starts with `/` followed by zero or more
+sequences of characters separated by `/` characters. Each sequence
+must contain only the characters `[A-Z][a-z][0-9]_`. No sequence
+(including the one following the final `/` character) may be empty.
 ## `string`
 a normal C nul-terminated string
 
@@ -4792,9 +4824,6 @@ The format of the message may change in a future version.
 If `source_str` was not nul-terminated when you passed it to
 `Variant::parse` then you must add nul termination before using this
 function.
-
-Feature: `v2_40`
-
 ## `error`
 a `Error` from the `VariantParseError` domain
 ## `source_str`
@@ -4890,7 +4919,10 @@ The valid basic type strings are "b", "y", "n", "q", "i", "u", "x", "t",
 
 The above definition is recursive to arbitrary depth. "aaaaai" and
 "(ui(nq((y)))s)" are both valid type strings, as is
-"a(aa(ui)(qna{ya(yd)}))".
+"a(aa(ui)(qna{ya(yd)}))". In order to not hit memory limits, `Variant`
+imposes a limit on recursion depth of 65 nested containers. This is the
+limit in the D-Bus specification (64) plus one to allow a `GDBusMessage` to
+be nested in a top-level tuple.
 
 The meaning of each of the characters is as follows:
 - `b`: the type string of `G_VARIANT_TYPE_BOOLEAN`; a boolean value.
