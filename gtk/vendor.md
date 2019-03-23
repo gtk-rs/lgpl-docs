@@ -813,7 +813,7 @@ Trait containing all `Actionable` methods.
 
 # Implementors
 
-[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`LockButton`](struct.LockButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`ModelButton`](struct.ModelButton.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
+[`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`FontButton`](struct.FontButton.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`LockButton`](struct.LockButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`ModelButton`](struct.ModelButton.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait ActionableExt::fn get_action_name -->
 Gets the action name for `self`.
 
@@ -1152,28 +1152,6 @@ center natural width of widget inside the
  allocation
 <!-- enum Align::variant Baseline -->
 align the widget according to the baseline. Since 3.10.
-<!-- struct Alignment -->
-The `Alignment` widget controls the alignment and size of its child widget.
-It has four settings: xscale, yscale, xalign, and yalign.
-
-The scale settings are used to specify how much the child widget should
-expand to fill the space allocated to the `Alignment`.
-The values can range from 0 (meaning the child doesn’t expand at all) to
-1 (meaning the child expands to fill all of the available space).
-
-The align settings are used to place the child widget within the available
-area. The values range from 0 (top or left) to 1 (bottom or right).
-Of course, if the scale settings are both set to 1, the alignment settings
-have no effect.
-
-`Alignment` has been deprecated in 3.14 and should not be used in
-newly-written code. The desired effect can be achieved by using the
-`Widget:halign`, `Widget:valign` and `Widget:margin` properties on the
-child widget.
-
-# Implements
-
-[`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- struct AppChooser -->
 `AppChooser` is an interface that can be implemented by widgets which
 allow the user to choose an application (typically for the purpose of
@@ -2230,37 +2208,6 @@ and `GtkApplicationExt::set_menubar`.
 
 If `false`, the window will not display a menubar, regardless
 of whether the desktop shell is showing the menus or not.
-<!-- struct Arrow -->
-`Arrow` should be used to draw simple arrows that need to point in
-one of the four cardinal directions (up, down, left, or right). The
-style of the arrow can be one of shadow in, shadow out, etched in, or
-etched out. Note that these directions and style types may be
-amended in versions of GTK+ to come.
-
-`Arrow` will fill any space alloted to it, but since it is inherited
-from `Misc`, it can be padded and/or aligned, to fill exactly the
-space the programmer desires.
-
-Arrows are created with a call to `Arrow::new`. The direction or
-style of an arrow can be changed after creation by using `Arrow::set`.
-
-`Arrow` has been deprecated; you can simply use a `Image` with a
-suitable icon name, such as “pan-down-symbolic“. When replacing
-`Arrow` by an image, pay attention to the fact that `Arrow` is
-doing automatic flipping between `ArrowType::Left` and `ArrowType::Right`,
-depending on the text direction. To get the same effect with an image,
-use the icon names “pan-start-symbolic“ and “pan-end-symbolic“, which
-react to the text direction.
-
-# Implements
-
-[`ArrowExt`](trait.ArrowExt.html), [`MiscExt`](trait.MiscExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- trait ArrowExt -->
-Trait containing all `Arrow` methods.
-
-# Implementors
-
-[`Arrow`](struct.Arrow.html)
 <!-- enum ArrowType -->
 Used to indicate the direction in which an arrow should point.
 <!-- enum ArrowType::variant Up -->
@@ -2671,7 +2618,7 @@ Trait containing all `Bin` methods.
 
 # Implementors
 
-[`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`Bin`](struct.Bin.html), [`Button`](struct.Button.html), [`ComboBox`](struct.ComboBox.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`Frame`](struct.Frame.html), [`ListBoxRow`](struct.ListBoxRow.html), [`MenuItem`](struct.MenuItem.html), [`Overlay`](struct.Overlay.html), [`Popover`](struct.Popover.html), [`Revealer`](struct.Revealer.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`StackSidebar`](struct.StackSidebar.html), [`ToolItem`](struct.ToolItem.html), [`Viewport`](struct.Viewport.html), [`Window`](struct.Window.html)
+[`ActionBar`](struct.ActionBar.html), [`Bin`](struct.Bin.html), [`Button`](struct.Button.html), [`ComboBox`](struct.ComboBox.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`Frame`](struct.Frame.html), [`ListBoxRow`](struct.ListBoxRow.html), [`MenuItem`](struct.MenuItem.html), [`Overlay`](struct.Overlay.html), [`Popover`](struct.Popover.html), [`Revealer`](struct.Revealer.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`StackSidebar`](struct.StackSidebar.html), [`ToolItem`](struct.ToolItem.html), [`Viewport`](struct.Viewport.html), [`Window`](struct.Window.html)
 <!-- trait BinExt::fn get_child -->
 Gets the child of the `Bin`, or `None` if the bin contains
 no child widget. The returned widget does not have a reference
@@ -2953,7 +2900,7 @@ Trait containing all `Buildable` methods.
 
 # Implementors
 
-[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`Alignment`](struct.Alignment.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`Arrow`](struct.Arrow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconFactory`](struct.IconFactory.html), [`IconView`](struct.IconView.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
 <!-- trait BuildableExt::fn add_child -->
 Adds a child to `self`. `type_` is an optional string
 describing how the child should be added.
@@ -16893,82 +16840,6 @@ This causes the currently active slave of `self` to be
 replaced by the slave corresponding to the new context id.
 ## `context_id`
 the id to use
-<!-- struct IconFactory -->
-An icon factory manages a collection of `IconSet`; a `IconSet` manages a
-set of variants of a particular icon (i.e. a `IconSet` contains variants for
-different sizes and widget states). Icons in an icon factory are named by a
-stock ID, which is a simple string identifying the icon. Each `Style` has a
-list of `IconFactory` derived from the current theme; those icon factories
-are consulted first when searching for an icon. If the theme doesn’t set a
-particular icon, GTK+ looks for the icon in a list of default icon factories,
-maintained by `IconFactory::add_default` and
-`IconFactory::remove_default`. Applications with icons should add a default
-icon factory with their icons, which will allow themes to override the icons
-for the application.
-
-To display an icon, always use `Style::lookup_icon_set` on the widget that
-will display the icon, or the convenience function
-`Widget::render_icon`. These functions take the theme into account when
-looking up the icon to use for a given stock ID.
-
-# `IconFactory` as `Buildable` # {`IconFactory`-BUILDER-UI}
-
-`IconFactory` supports a custom `<sources>` element, which can contain
-multiple `<source>` elements. The following attributes are allowed:
-
-- stock-id
-
- The stock id of the source, a string. This attribute is
- mandatory
-
-- filename
-
- The filename of the source, a string. This attribute is
- optional
-
-- icon-name
-
- The icon name for the source, a string. This attribute is
- optional.
-
-- size
-
- Size of the icon, a `IconSize` enum value. This attribute is
- optional.
-
-- direction
-
- Direction of the source, a `TextDirection` enum value. This
- attribute is optional.
-
-- state
-
- State of the source, a `StateType` enum value. This
- attribute is optional.
-
-
-## A `IconFactory` UI definition fragment. ##
-
-
-```text
-<object class="GtkIconFactory" id="iconfactory1">
-  <sources>
-    <source stock-id="apple-red" filename="apple-red.png"/>
-  </sources>
-</object>
-<object class="GtkWindow" id="window1">
-  <child>
-    <object class="GtkButton" id="apple_button">
-      <property name="label">apple-red</property>
-      <property name="use-stock">True</property>
-    </object>
-  </child>
-</object>
-```
-
-# Implements
-
-[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- struct IconInfo -->
 Contains information found when looking up an icon in
 an icon theme.
@@ -17231,7 +17102,6 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
-<!-- struct IconSet -->
 <!-- enum IconSize -->
 Built-in stock icon sizes.
 <!-- enum IconSize::variant Invalid -->
@@ -17248,7 +17118,6 @@ Size appropriate for buttons (16px)
 Size appropriate for drag and drop (32px)
 <!-- enum IconSize::variant Dialog -->
 Size appropriate for dialogs (48px)
-<!-- struct IconSource -->
 <!-- struct IconTheme -->
 `IconTheme` provides a facility for looking up icons by name
 and size. The main reason for using a name rather than simply
@@ -18871,74 +18740,6 @@ Whether the icon displayed in the `Image` will use
 standard icon names fallback. The value of this property
 is only relevant for images of type `ImageType::IconName`
 and `ImageType::Gicon`.
-<!-- struct ImageMenuItem -->
-A `ImageMenuItem` is a menu item which has an icon next to the text label.
-
-This is functionally equivalent to:
-
-
-```C
-  GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-  GtkWidget *icon = gtk_image_new_from_icon_name ("folder-music-symbolic", GTK_ICON_SIZE_MENU);
-  GtkWidget *label = gtk_label_new ("Music");
-  GtkWidget *menu_item = gtk_menu_item_new ();
-
-  gtk_container_add (GTK_CONTAINER (box), icon);
-  gtk_container_add (GTK_CONTAINER (box), label);
-
-  gtk_container_add (GTK_CONTAINER (menu_item), box);
-
-  gtk_widget_show_all (menu_item);
-```
-
-Note that the user may disable display of menu icons using
-the `Settings:gtk-menu-images` setting, so make sure to still
-fill in the text label. If you want to ensure that your menu items
-show an icon you are strongly encouraged to use a `MenuItem`
-with a `Image` instead.
-
-`ImageMenuItem` has been deprecated since GTK+ 3.10. If you want to
-display an icon in a menu item, you should use `MenuItem` and pack a
-`Box` with a `Image` and a `Label` instead. You should also consider
-using `Builder` and the XML `gio::Menu` description for creating menus, by
-following the [GMenu guide][https://developer.gnome.org/GMenu/]. You should
-consider using icons in menu items only sparingly, and for "objects" (or
-"nouns") elements only, like bookmarks, files, and links; "actions" (or
-"verbs") should not have icons.
-
-Furthermore, if you would like to display keyboard accelerator, you must
-pack the accel label into the box using `BoxExt::pack_end` and align the
-label, otherwise the accelerator will not display correctly. The following
-code snippet adds a keyboard accelerator to the menu item, with a key
-binding of Ctrl+M:
-
-
-```C
-  GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-  GtkWidget *icon = gtk_image_new_from_icon_name ("folder-music-symbolic", GTK_ICON_SIZE_MENU);
-  GtkWidget *label = gtk_accel_label_new ("Music");
-  GtkWidget *menu_item = gtk_menu_item_new ();
-  GtkAccelGroup *accel_group = gtk_accel_group_new ();
-
-  gtk_container_add (GTK_CONTAINER (box), icon);
-
-  gtk_label_set_use_underline (GTK_LABEL (label), TRUE);
-  gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-
-  gtk_widget_add_accelerator (menu_item, "activate", accel_group,
-                              GDK_KEY_m, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-  gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (label), menu_item);
-
-  gtk_box_pack_end (GTK_BOX (box), label, TRUE, TRUE, 0);
-
-  gtk_container_add (GTK_CONTAINER (menu_item), box);
-
-  gtk_widget_show_all (menu_item);
-```
-
-# Implements
-
-[`GtkMenuItemExt`](trait.GtkMenuItemExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- enum ImageType -->
 Describes the image data representation used by a `Image`. If you
 want to get the image from the widget, you can only get the
@@ -22414,7 +22215,7 @@ Trait containing all `MenuItem` methods.
 
 # Implementors
 
-[`CheckMenuItem`](struct.CheckMenuItem.html), [`ImageMenuItem`](struct.ImageMenuItem.html), [`MenuItem`](struct.MenuItem.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html)
+[`CheckMenuItem`](struct.CheckMenuItem.html), [`MenuItem`](struct.MenuItem.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html)
 <!-- impl MenuItem::fn new -->
 Creates a new `MenuItem`.
 
@@ -33463,253 +33264,6 @@ Cover the old page sliding down or uncover the new page sliding up, according to
 Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14
 <!-- enum StackTransitionType::variant OverRightLeft -->
 Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14
-<!-- struct StatusIcon -->
-The “system tray” or notification area is normally used for transient icons
-that indicate some special state. For example, a system tray icon might
-appear to tell the user that they have new mail, or have an incoming instant
-message, or something along those lines. The basic idea is that creating an
-icon in the notification area is less annoying than popping up a dialog.
-
-A `StatusIcon` object can be used to display an icon in a “system tray”.
-The icon can have a tooltip, and the user can interact with it by
-activating it or popping up a context menu.
-
-It is very important to notice that status icons depend on the existence
-of a notification area being available to the user; you should not use status
-icons as the only way to convey critical information regarding your application,
-as the notification area may not exist on the user's environment, or may have
-been removed. You should always check that a status icon has been embedded into
-a notification area by using `StatusIcon::is_embedded`, and gracefully
-recover if the function returns `false`.
-
-On X11, the implementation follows the
-[FreeDesktop System Tray Specification](http://www.freedesktop.org/wiki/Specifications/systemtray-spec).
-Implementations of the “tray” side of this specification can
-be found e.g. in the GNOME 2 and KDE panel applications.
-
-Note that a `StatusIcon` is not a widget, but just a `gobject::Object`. Making it a
-widget would be impractical, since the system tray on Windows doesn’t allow
-to embed arbitrary widgets.
-
-`StatusIcon` has been deprecated in 3.14. You should consider using
-notifications or more modern platform-specific APIs instead. GLib provides
-the `gio::Notification` API which works well with `Application` on multiple
-platforms and environments, and should be the preferred mechanism to notify
-the users of transient status updates. See this [HowDoI](https://wiki.gnome.org/HowDoI/GNotification)
-for code examples.
-
-# Implements
-
-[`StatusIconExt`](trait.StatusIconExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait StatusIconExt -->
-Trait containing all `StatusIcon` methods.
-
-# Implementors
-
-[`StatusIcon`](struct.StatusIcon.html)
-<!-- trait StatusIconExt::fn connect_activate -->
-Gets emitted when the user activates the status icon.
-If and how status icons can activated is platform-dependent.
-
-Unlike most G_SIGNAL_ACTION signals, this signal is meant to
-be used by applications and should be wrapped by language bindings.
-<!-- trait StatusIconExt::fn connect_button_press_event -->
-The ::button-press-event signal will be emitted when a button
-(typically from a mouse) is pressed.
-
-Whether this event is emitted is platform-dependent. Use the ::activate
-and ::popup-menu signals in preference.
-## `event`
-the `gdk::EventButton` which triggered
- this signal
-
-# Returns
-
-`true` to stop other handlers from being invoked
-for the event. `false` to propagate the event further.
-<!-- trait StatusIconExt::fn connect_button_release_event -->
-The ::button-release-event signal will be emitted when a button
-(typically from a mouse) is released.
-
-Whether this event is emitted is platform-dependent. Use the ::activate
-and ::popup-menu signals in preference.
-## `event`
-the `gdk::EventButton` which triggered
- this signal
-
-# Returns
-
-`true` to stop other handlers from being invoked
-for the event. `false` to propagate the event further.
-<!-- trait StatusIconExt::fn connect_popup_menu -->
-Gets emitted when the user brings up the context menu
-of the status icon. Whether status icons can have context
-menus and how these are activated is platform-dependent.
-
-The `button` and `activate_time` parameters should be
-passed as the last to arguments to `GtkMenuExt::popup`.
-
-Unlike most G_SIGNAL_ACTION signals, this signal is meant to
-be used by applications and should be wrapped by language bindings.
-## `button`
-the button that was pressed, or 0 if the
- signal is not emitted in response to a button press event
-## `activate_time`
-the timestamp of the event that
- triggered the signal emission
-<!-- trait StatusIconExt::fn connect_query_tooltip -->
-Emitted when the hover timeout has expired with the
-cursor hovering above `status_icon`; or emitted when `status_icon` got
-focus in keyboard mode.
-
-Using the given coordinates, the signal handler should determine
-whether a tooltip should be shown for `status_icon`. If this is
-the case `true` should be returned, `false` otherwise. Note that if
-`keyboard_mode` is `true`, the values of `x` and `y` are undefined and
-should not be used.
-
-The signal handler is free to manipulate `tooltip` with the therefore
-destined function calls.
-
-Whether this signal is emitted is platform-dependent.
-For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
-## `x`
-the x coordinate of the cursor position where the request has been
- emitted, relative to `status_icon`
-## `y`
-the y coordinate of the cursor position where the request has been
- emitted, relative to `status_icon`
-## `keyboard_mode`
-`true` if the tooltip was trigged using the keyboard
-## `tooltip`
-a `Tooltip`
-
-# Returns
-
-`true` if `tooltip` should be shown right now, `false` otherwise.
-<!-- trait StatusIconExt::fn connect_scroll_event -->
-The ::scroll-event signal is emitted when a button in the 4 to 7
-range is pressed. Wheel mice are usually configured to generate
-button press events for buttons 4 and 5 when the wheel is turned.
-
-Whether this event is emitted is platform-dependent.
-## `event`
-the `gdk::EventScroll` which triggered
- this signal
-
-# Returns
-
-`true` to stop other handlers from being invoked for the event.
- `false` to propagate the event further.
-<!-- trait StatusIconExt::fn connect_size_changed -->
-Gets emitted when the size available for the image
-changes, e.g. because the notification area got resized.
-## `size`
-the new size
-
-# Returns
-
-`true` if the icon was updated for the new
-size. Otherwise, GTK+ will scale the icon as necessary.
-<!-- trait StatusIconExt::fn get_property_embedded -->
-`true` if the statusicon is embedded in a notification area.
-<!-- trait StatusIconExt::fn get_property_gicon -->
-The `gio::Icon` displayed in the `StatusIcon`. For themed icons,
-the image will be updated automatically if the theme changes.
-<!-- trait StatusIconExt::fn set_property_gicon -->
-The `gio::Icon` displayed in the `StatusIcon`. For themed icons,
-the image will be updated automatically if the theme changes.
-<!-- trait StatusIconExt::fn get_property_has-tooltip -->
-Enables or disables the emission of `StatusIcon::query-tooltip` on
-`status_icon`. A value of `true` indicates that `status_icon` can have a
-tooltip, in this case the status icon will be queried using
-`StatusIcon::query-tooltip` to determine whether it will provide a
-tooltip or not.
-
-Note that setting this property to `true` for the first time will change
-the event masks of the windows of this status icon to include leave-notify
-and motion-notify events. This will not be undone when the property is set
-to `false` again.
-
-Whether this property is respected is platform dependent.
-For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
-<!-- trait StatusIconExt::fn set_property_has-tooltip -->
-Enables or disables the emission of `StatusIcon::query-tooltip` on
-`status_icon`. A value of `true` indicates that `status_icon` can have a
-tooltip, in this case the status icon will be queried using
-`StatusIcon::query-tooltip` to determine whether it will provide a
-tooltip or not.
-
-Note that setting this property to `true` for the first time will change
-the event masks of the windows of this status icon to include leave-notify
-and motion-notify events. This will not be undone when the property is set
-to `false` again.
-
-Whether this property is respected is platform dependent.
-For plain text tooltips, use `StatusIcon:tooltip-text` in preference.
-<!-- trait StatusIconExt::fn get_property_orientation -->
-The orientation of the tray in which the statusicon
-is embedded.
-<!-- trait StatusIconExt::fn get_property_title -->
-The title of this tray icon. This should be a short, human-readable,
-localized string describing the tray icon. It may be used by tools
-like screen readers to render the tray icon.
-<!-- trait StatusIconExt::fn set_property_title -->
-The title of this tray icon. This should be a short, human-readable,
-localized string describing the tray icon. It may be used by tools
-like screen readers to render the tray icon.
-<!-- trait StatusIconExt::fn get_property_tooltip-markup -->
-Sets the text of tooltip to be the given string, which is marked up
-with the [Pango text markup language][PangoMarkupFormat].
-Also see `Tooltip::set_markup`.
-
-This is a convenience property which will take care of getting the
-tooltip shown if the given string is not `None`.
-`StatusIcon:has-tooltip` will automatically be set to `true` and
-the default handler for the `StatusIcon::query-tooltip` signal
-will take care of displaying the tooltip.
-
-On some platforms, embedded markup will be ignored.
-<!-- trait StatusIconExt::fn set_property_tooltip-markup -->
-Sets the text of tooltip to be the given string, which is marked up
-with the [Pango text markup language][PangoMarkupFormat].
-Also see `Tooltip::set_markup`.
-
-This is a convenience property which will take care of getting the
-tooltip shown if the given string is not `None`.
-`StatusIcon:has-tooltip` will automatically be set to `true` and
-the default handler for the `StatusIcon::query-tooltip` signal
-will take care of displaying the tooltip.
-
-On some platforms, embedded markup will be ignored.
-<!-- trait StatusIconExt::fn get_property_tooltip-text -->
-Sets the text of tooltip to be the given string.
-
-Also see `Tooltip::set_text`.
-
-This is a convenience property which will take care of getting the
-tooltip shown if the given string is not `None`.
-`StatusIcon:has-tooltip` will automatically be set to `true` and
-the default handler for the `StatusIcon::query-tooltip` signal
-will take care of displaying the tooltip.
-
-Note that some platforms have limitations on the length of tooltips
-that they allow on status icons, e.g. Windows only shows the first
-64 characters.
-<!-- trait StatusIconExt::fn set_property_tooltip-text -->
-Sets the text of tooltip to be the given string.
-
-Also see `Tooltip::set_text`.
-
-This is a convenience property which will take care of getting the
-tooltip shown if the given string is not `None`.
-`StatusIcon:has-tooltip` will automatically be set to `true` and
-the default handler for the `StatusIcon::query-tooltip` signal
-will take care of displaying the tooltip.
-
-Note that some platforms have limitations on the length of tooltips
-that they allow on status icons, e.g. Windows only shows the first
-64 characters.
 <!-- struct Statusbar -->
 A `Statusbar` is usually placed along the bottom of an application's
 main `Window`. It may provide a regular commentary of the application's
@@ -34566,22 +34120,6 @@ See `Switch::state-set` for details.
 <!-- trait SwitchExt::fn set_property_state -->
 The backend state that is controlled by the switch.
 See `Switch::state-set` for details.
-<!-- struct SymbolicColor -->
-`SymbolicColor` is a boxed type that represents a symbolic color.
-It is the result of parsing a
-[color expression][gtkcssprovider-symbolic-colors].
-To obtain the color represented by a `SymbolicColor`, it has to
-be resolved with `SymbolicColor::resolve`, which replaces all
-symbolic color references by the colors they refer to (in a given
-context) and evaluates mix, shade and other expressions, resulting
-in a `gdk::RGBA` value.
-
-It is not normally necessary to deal directly with ``GtkSymbolicColors``,
-since they are mostly used behind the scenes by `StyleContext` and
-`CssProvider`.
-
-`SymbolicColor` is deprecated. Symbolic colors are considered an
-implementation detail of GTK+.
 <!-- struct TargetEntry -->
 A `TargetEntry` represents a single type of
 data than can be supplied for by a widget for a selection
