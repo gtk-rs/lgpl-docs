@@ -3554,7 +3554,7 @@ See the [`Widget` documentation][composite-templates] for details.
 
 # Implements
 
-[`BuilderExt`](trait.BuilderExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`BuilderExt`](trait.BuilderExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuilderExtManual`](prelude/trait.BuilderExtManual.html)
 <!-- trait BuilderExt -->
 Trait containing all `Builder` methods.
 
@@ -48043,7 +48043,7 @@ function to call to free `user_data` when the callback is removed.
 # Returns
 
 an id for the connection of this callback. Remove the callback
- by passing it to `WidgetExt::remove_tick_callback`
+ by passing it to `Widget::remove_tick_callback`
 <!-- trait WidgetExt::fn can_activate_accel -->
 Determines whether an accelerator that activates the signal
 identified by `signal_id` can currently be activated.
@@ -50262,9 +50262,9 @@ a `Widget` that was previously set as a mnemonic label for
  `self` with `WidgetExt::add_mnemonic_label`.
 <!-- trait WidgetExt::fn remove_tick_callback -->
 Removes a tick callback previously registered with
-`WidgetExt::add_tick_callback`.
+`Widget::add_tick_callback`.
 ## `id`
-an id returned by `WidgetExt::add_tick_callback`
+an id returned by `Widget::add_tick_callback`
 <!-- trait WidgetExt::fn render_icon -->
 A convenience function that uses the theme settings for `self`
 to look up `stock_id` and render it to a pixbuf. `stock_id` should
