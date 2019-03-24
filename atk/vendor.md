@@ -162,22 +162,6 @@ Trait containing all `Component` methods.
 # Implementors
 
 [`Component`](struct.Component.html), [`NoOpObject`](struct.NoOpObject.html), [`Plug`](struct.Plug.html), [`Socket`](struct.Socket.html)
-<!-- trait ComponentExt::fn add_focus_handler -->
-Add the specified handler to the set of functions to be called
-when this object receives focus events (in or out). If the handler is
-already added it is not added again
-
-# Deprecated since 2.9.4
-
-If you need to track when an object gains or
-lose the focus, use the `Object::state-change` "focused" notification instead.
-## `handler`
-The `AtkFocusHandler` to be attached to `self`
-
-# Returns
-
-a handler id which can be used in `Component::remove_focus_handler`
-or zero if the handler was already added.
 <!-- trait ComponentExt::fn contains -->
 Checks whether the specified point is within the extent of the `self`.
 
@@ -277,18 +261,6 @@ or to the components top level window
 
 a reference to the accessible
 child, if one exists
-<!-- trait ComponentExt::fn remove_focus_handler -->
-Remove the handler specified by `handler_id` from the list of
-functions to be executed when this object receives focus events
-(in or out).
-
-# Deprecated since 2.9.4
-
-If you need to track when an object gains or
-lose the focus, use the `Object::state-change` "focused" notification instead.
-## `handler_id`
-the handler id of the focus handler to be removed
-from `self`
 <!-- trait ComponentExt::fn scroll_to -->
 Makes `self` visible on the screen by scrolling all necessary parents.
 
@@ -448,22 +420,6 @@ ask for the document type if it applies.
 # Returns
 
 a string indicating the document type
-<!-- trait DocumentExt::fn get_locale -->
-Gets a UTF-8 string indicating the POSIX-style LC_MESSAGES locale
- of the content of this document instance. Individual
- text substrings or images within this document may have
- a different locale, see atk_text_get_attributes and
- atk_image_get_image_locale.
-
-# Deprecated since 2.7.90
-
-Please use `AtkObjectExt::get_object_locale` instead.
-
-# Returns
-
-a UTF-8 string indicating the POSIX-style LC_MESSAGES
- locale of the document content as a whole, or NULL if
- the document content does not specify a locale.
 <!-- trait DocumentExt::fn get_page_count -->
 
 # Returns
@@ -686,17 +642,6 @@ Indicates whether the link currently displays some or all of its
 # Returns
 
 whether or not this link displays its content inline.
-<!-- trait HyperlinkExt::fn is_selected_link -->
-Determines whether this AtkHyperlink is selected
-
-# Deprecated since 1.8
-
-Please use ATK_STATE_FOCUSABLE for all links,
-and ATK_STATE_FOCUSED for focused links.
-
-# Returns
-
-True if the AtkHyperlink is selected, False otherwise
 <!-- trait HyperlinkExt::fn is_valid -->
 Since the document that a link is associated with may have changed
 this method returns `true` if the link is still valid (with
@@ -707,13 +652,6 @@ respect to the document it references) and `false` otherwise.
 whether or not this link is still valid
 <!-- trait HyperlinkExt::fn connect_link_activated -->
 The signal link-activated is emitted when a link is activated.
-<!-- trait HyperlinkExt::fn get_property_selected-link -->
-Selected link
-
-# Deprecated since 1.8
-
-Please use ATK_STATE_FOCUSABLE for all links, and
-ATK_STATE_FOCUSED for focused links.
 <!-- struct HyperlinkImpl -->
 AtkHyperlinkImpl allows AtkObjects to refer to their associated
 AtkHyperlink instance, if one exists. AtkHyperlinkImpl differs
@@ -1237,16 +1175,6 @@ A gpointer to the child AtkObject which was added or
 removed. If the child was removed, it is possible that it is not
 available for the implementor. In that case this pointer can be
 NULL.
-<!-- trait AtkObjectExt::fn connect_focus_event -->
-The signal "focus-event" is emitted when an object gained or lost
-focus.
-
-# Deprecated since 2.9.4
-
-Use the `Object::state-change` signal instead.
-## `arg1`
-a boolean value which indicates whether the object gained
-or lost focus.
 <!-- trait AtkObjectExt::fn connect_property_change -->
 The signal "property-change" is emitted when an object's property
 value changes. `arg1` contains an `PropertyValues` with the name
@@ -3229,26 +3157,6 @@ an ending character offset within `self`, or -1 for the end of the string.
 
 a newly allocated string containing the text from `start_offset` up
  to, but not including `end_offset`. Use `g_free` to free the returned string.
-<!-- trait TextExt::fn get_text_after_offset -->
-Gets the specified text.
-
-# Deprecated since 2.9.3
-
-Please use `Text::get_string_at_offset` instead.
-## `offset`
-position
-## `boundary_type`
-An `TextBoundary`
-## `start_offset`
-the starting character offset of the returned string
-## `end_offset`
-the offset of the first character after the
- returned substring
-
-# Returns
-
-a newly allocated string containing the text after `offset` bounded
- by the specified `boundary_type`. Use `g_free` to free the returned string.
 <!-- trait TextExt::fn get_text_at_offset -->
 Gets the specified text.
 
@@ -3293,26 +3201,6 @@ the offset of the first character after the
 
 a newly allocated string containing the text at `offset` bounded by
  the specified `boundary_type`. Use `g_free` to free the returned string.
-<!-- trait TextExt::fn get_text_before_offset -->
-Gets the specified text.
-
-# Deprecated since 2.9.3
-
-Please use `Text::get_string_at_offset` instead.
-## `offset`
-position
-## `boundary_type`
-An `TextBoundary`
-## `start_offset`
-the starting character offset of the returned string
-## `end_offset`
-the offset of the first character after the
- returned substring
-
-# Returns
-
-a newly allocated string containing the text before `offset` bounded
- by the specified `boundary_type`. Use `g_free` to free the returned string.
 <!-- trait TextExt::fn remove_selection -->
 Removes the specified selection.
 ## `selection_num`
@@ -3360,21 +3248,6 @@ position of the text of an object which implements AtkText
 changes.
 ## `arg1`
 The new position of the text caret.
-<!-- trait TextExt::fn connect_text_changed -->
-The "text-changed" signal is emitted when the text of the
-object which implements the AtkText interface changes, This
-signal will have a detail which is either "insert" or
-"delete" which identifies whether the text change was an
-insertion or a deletion.
-
-# Deprecated since 2.9.4
-
-Use `Object::text-insert` or
-`Object::text-remove` instead.
-## `arg1`
-The position (character offset) of the insertion or deletion.
-## `arg2`
-The length (in characters) of text inserted or deleted.
 <!-- trait TextExt::fn connect_text_insert -->
 The "text-insert" signal is emitted when a new text is
 inserted. If the signal was not triggered by the user
