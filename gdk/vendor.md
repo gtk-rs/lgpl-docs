@@ -2127,19 +2127,7 @@ and will be valid until a call to `WindowExt::end_draw_frame`.
 `DrawingContext` is available since GDK 3.22
 
 Feature: `v3_22`
-
-# Implements
-
-[`DrawingContextExt`](trait.DrawingContextExt.html)
-<!-- trait DrawingContextExt -->
-Trait containing all `DrawingContext` methods.
-
-Feature: `v3_22`
-
-# Implementors
-
-[`DrawingContext`](struct.DrawingContext.html)
-<!-- trait DrawingContextExt::fn get_cairo_context -->
+<!-- impl DrawingContext::fn get_cairo_context -->
 Retrieves a Cairo context to be used to draw on the `Window`
 that created the `DrawingContext`.
 
@@ -2155,7 +2143,7 @@ Feature: `v3_22`
 a Cairo context to be used to draw
  the contents of the `Window`. The context is owned by the
  `DrawingContext` and should not be destroyed
-<!-- trait DrawingContextExt::fn get_clip -->
+<!-- impl DrawingContext::fn get_clip -->
 Retrieves a copy of the clip region used when creating the `self`.
 
 Feature: `v3_22`
@@ -2164,7 +2152,7 @@ Feature: `v3_22`
 # Returns
 
 a Cairo region
-<!-- trait DrawingContextExt::fn get_window -->
+<!-- impl DrawingContext::fn get_window -->
 Retrieves the window that created the drawing `self`.
 
 Feature: `v3_22`
@@ -2173,7 +2161,7 @@ Feature: `v3_22`
 # Returns
 
 a `Window`
-<!-- trait DrawingContextExt::fn is_valid -->
+<!-- impl DrawingContext::fn is_valid -->
 Checks whether the given `DrawingContext` is valid.
 
 Feature: `v3_22`
@@ -2477,46 +2465,36 @@ implementation or with mozRequestAnimationFrame in Firefox,
 for example.
 
 A frame clock is idle until someone requests a frame with
-`FrameClockExt::request_phase`. At some later point that makes
+`FrameClock::request_phase`. At some later point that makes
 sense for the synchronization being implemented, the clock will
 process a frame and emit signals for each phase that has been
 requested. (See the signals of the `FrameClock` class for
 documentation of the phases. `FrameClockPhase::Update` and the
 `FrameClock::update` signal are most interesting for application
 writers, and are used to update the animations, using the frame time
-given by `FrameClockExt::get_frame_time`.
+given by `FrameClock::get_frame_time`.
 
 The frame time is reported in microseconds and generally in the same
 timescale as `g_get_monotonic_time`, however, it is not the same
 as `g_get_monotonic_time`. The frame time does not advance during
 the time a frame is being painted, and outside of a frame, an attempt
-is made so that all calls to `FrameClockExt::get_frame_time` that
+is made so that all calls to `FrameClock::get_frame_time` that
 are called at a “similar” time get the same value. This means that
 if different animations are timed by looking at the difference in
-time between an initial value from `FrameClockExt::get_frame_time`
+time between an initial value from `FrameClock::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
-
-# Implements
-
-[`FrameClockExt`](trait.FrameClockExt.html)
-<!-- trait FrameClockExt -->
-Trait containing all `FrameClock` methods.
-
-# Implementors
-
-[`FrameClock`](struct.FrameClock.html)
-<!-- trait FrameClockExt::fn begin_updating -->
+<!-- impl FrameClock::fn begin_updating -->
 Starts updates for an animation. Until a matching call to
-`FrameClockExt::end_updating` is made, the frame clock will continually
+`FrameClock::end_updating` is made, the frame clock will continually
 request a new frame with the `FrameClockPhase::Update` phase.
 This function may be called multiple times and frames will be
-requested until `FrameClockExt::end_updating` is called the same
+requested until `FrameClock::end_updating` is called the same
 number of times.
-<!-- trait FrameClockExt::fn end_updating -->
+<!-- impl FrameClock::fn end_updating -->
 Stops updates for an animation. See the documentation for
-`FrameClockExt::begin_updating`.
-<!-- trait FrameClockExt::fn get_current_timings -->
+`FrameClock::begin_updating`.
+<!-- impl FrameClock::fn get_current_timings -->
 Gets the frame timings for the current frame.
 
 # Returns
@@ -2525,7 +2503,7 @@ the `FrameTimings` for the frame currently
  being processed, or even no frame is being processed, for the
  previous frame. Before any frames have been processed, returns
  `None`.
-<!-- trait FrameClockExt::fn get_frame_counter -->
+<!-- impl FrameClock::fn get_frame_counter -->
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
 
@@ -2534,7 +2512,7 @@ each frame drawn.
 inside frame processing, the value of the frame counter
  for the current frame. Outside of frame processing, the frame
  counter for the last frame.
-<!-- trait FrameClockExt::fn get_frame_time -->
+<!-- impl FrameClock::fn get_frame_time -->
 Gets the time that should currently be used for animations. Inside
 the processing of a frame, it’s the time used to compute the
 animation position of everything in a frame. Outside of a frame, it's
@@ -2546,20 +2524,20 @@ time.
 
 a timestamp in microseconds, in the timescale of
  of `g_get_monotonic_time`.
-<!-- trait FrameClockExt::fn get_history_start -->
+<!-- impl FrameClock::fn get_history_start -->
 `FrameClock` internally keeps a history of `FrameTimings`
 objects for recent frames that can be retrieved with
-`FrameClockExt::get_timings`. The set of stored frames
+`FrameClock::get_timings`. The set of stored frames
 is the set from the counter values given by
-`FrameClockExt::get_history_start` and
-`FrameClockExt::get_frame_counter`, inclusive.
+`FrameClock::get_history_start` and
+`FrameClock::get_frame_counter`, inclusive.
 
 # Returns
 
 the frame counter value for the oldest frame
  that is available in the internal frame history of the
  `FrameClock`.
-<!-- trait FrameClockExt::fn get_refresh_info -->
+<!-- impl FrameClock::fn get_refresh_info -->
 Using the frame history stored in the frame clock, finds the last
 known presentation time and refresh interval, and assuming that
 presentation times are separated by the refresh interval,
@@ -2575,7 +2553,7 @@ determined refresh interval, or `None`. A default refresh interval of
 a location to store the next
  candidate presentation time after the given base time.
  0 will be will be stored if no history is present.
-<!-- trait FrameClockExt::fn get_timings -->
+<!-- impl FrameClock::fn get_timings -->
 Retrieves a `FrameTimings` object holding timing information
 for the current frame or a recent frame. The `FrameTimings`
 object may not yet be complete: see `FrameTimings::get_complete`.
@@ -2587,16 +2565,16 @@ the frame counter value identifying the frame to
 
 the `FrameTimings` object for the specified
  frame, or `None` if it is not available. See
- `FrameClockExt::get_history_start`.
-<!-- trait FrameClockExt::fn request_phase -->
+ `FrameClock::get_history_start`.
+<!-- impl FrameClock::fn request_phase -->
 Asks the frame clock to run a particular phase. The signal
 corresponding the requested phase will be emitted the next
 time the frame clock processes. Multiple calls to
-`FrameClockExt::request_phase` will be combined together
+`FrameClock::request_phase` will be combined together
 and only one frame processed. If you are displaying animated
 content and want to continually request the
 `FrameClockPhase::Update` phase for a period of time,
-you should use `FrameClockExt::begin_updating` instead, since
+you should use `FrameClock::begin_updating` instead, since
 this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
 ## `phase`
@@ -2629,14 +2607,14 @@ event processing. Applications should not handle this signal.
 <!-- trait FrameClockExt::fn connect_update -->
 This signal is emitted as the first step of toolkit and
 application processing of the frame. Animations should
-be updated using `FrameClockExt::get_frame_time`.
+be updated using `FrameClock::get_frame_time`.
 Applications can connect directly to this signal, or
 use `gtk_widget_add_tick_callback` as a more convenient
 interface.
 <!-- struct FrameTimings -->
 A `FrameTimings` object holds timing information for a single frame
 of the application’s displays. To retrieve `FrameTimings` objects,
-use `FrameClockExt::get_timings` or `FrameClockExt::get_current_timings`.
+use `FrameClock::get_timings` or `FrameClock::get_current_timings`.
 The information in `FrameTimings` is useful for precise synchronization
 of video with the event or audio streams, and for measuring
 quality metrics for the application’s display, such as latency and jitter.
@@ -2665,7 +2643,7 @@ the frame counter value for this frame
 <!-- impl FrameTimings::fn get_frame_time -->
 Returns the frame time for the frame. This is the time value
 that is typically used to time animations for the frame. See
-`FrameClockExt::get_frame_time`.
+`FrameClock::get_frame_time`.
 
 # Returns
 
@@ -2677,7 +2655,7 @@ no predicted time may be available, if one is available, it will
 be available while the frame is being generated, in contrast to
 `FrameTimings::get_presentation_time`, which is only available
 after the frame has been presented. In general, if you are simply
-animating, you should use `FrameClockExt::get_frame_time` rather
+animating, you should use `FrameClock::get_frame_time` rather
 than this function, but this function is useful for applications
 that want exact control over latency. For example, a movie player
 may want this information for Audio/Video synchronization.
@@ -3203,19 +3181,7 @@ to find particular monitors with `Display::get_primary_monitor` or
 APIs in `Screen` to obtain monitor-related information.
 
 Feature: `v3_22`
-
-# Implements
-
-[`MonitorExt`](trait.MonitorExt.html)
-<!-- trait MonitorExt -->
-Trait containing all `Monitor` methods.
-
-Feature: `v3_22`
-
-# Implementors
-
-[`Monitor`](struct.Monitor.html)
-<!-- trait MonitorExt::fn get_display -->
+<!-- impl Monitor::fn get_display -->
 Gets the display that this monitor belongs to.
 
 Feature: `v3_22`
@@ -3224,16 +3190,16 @@ Feature: `v3_22`
 # Returns
 
 the display
-<!-- trait MonitorExt::fn get_geometry -->
+<!-- impl Monitor::fn get_geometry -->
 Retrieves the size and position of an individual monitor within the
 display coordinate space. The returned geometry is in ”application pixels”,
-not in ”device pixels” (see `MonitorExt::get_scale_factor`).
+not in ”device pixels” (see `Monitor::get_scale_factor`).
 
 Feature: `v3_22`
 
 ## `geometry`
 a `Rectangle` to be filled with the monitor geometry
-<!-- trait MonitorExt::fn get_height_mm -->
+<!-- impl Monitor::fn get_height_mm -->
 Gets the height in millimeters of the monitor.
 
 Feature: `v3_22`
@@ -3242,7 +3208,7 @@ Feature: `v3_22`
 # Returns
 
 the physical height of the monitor
-<!-- trait MonitorExt::fn get_manufacturer -->
+<!-- impl Monitor::fn get_manufacturer -->
 Gets the name of the monitor's manufacturer, if available.
 
 Feature: `v3_22`
@@ -3251,7 +3217,7 @@ Feature: `v3_22`
 # Returns
 
 the name of the manufacturer, or `None`
-<!-- trait MonitorExt::fn get_model -->
+<!-- impl Monitor::fn get_model -->
 Gets the a string identifying the monitor model, if available.
 
 Feature: `v3_22`
@@ -3260,7 +3226,7 @@ Feature: `v3_22`
 # Returns
 
 the monitor model, or `None`
-<!-- trait MonitorExt::fn get_refresh_rate -->
+<!-- impl Monitor::fn get_refresh_rate -->
 Gets the refresh rate of the monitor, if available.
 
 The value is in milli-Hertz, so a refresh rate of 60Hz
@@ -3272,7 +3238,7 @@ Feature: `v3_22`
 # Returns
 
 the refresh rate in milli-Hertz, or 0
-<!-- trait MonitorExt::fn get_scale_factor -->
+<!-- impl Monitor::fn get_scale_factor -->
 Gets the internal scale factor that maps from monitor coordinates
 to the actual device pixels. On traditional systems this is 1, but
 on very high density outputs this can be a higher value (often 2).
@@ -3287,7 +3253,7 @@ Feature: `v3_22`
 # Returns
 
 the scale factor
-<!-- trait MonitorExt::fn get_subpixel_layout -->
+<!-- impl Monitor::fn get_subpixel_layout -->
 Gets information about the layout of red, green and blue
 primaries for each pixel in this monitor, if available.
 
@@ -3297,7 +3263,7 @@ Feature: `v3_22`
 # Returns
 
 the subpixel layout
-<!-- trait MonitorExt::fn get_width_mm -->
+<!-- impl Monitor::fn get_width_mm -->
 Gets the width in millimeters of the monitor.
 
 Feature: `v3_22`
@@ -3306,11 +3272,11 @@ Feature: `v3_22`
 # Returns
 
 the physical width of the monitor
-<!-- trait MonitorExt::fn get_workarea -->
+<!-- impl Monitor::fn get_workarea -->
 Retrieves the size and position of the “work area” on a monitor
 within the display coordinate space. The returned geometry is in
 ”application pixels”, not in ”device pixels” (see
-`MonitorExt::get_scale_factor`).
+`Monitor::get_scale_factor`).
 
 The work area should be considered when positioning menus and
 similar popups, to avoid placing them below panels, docks or other
@@ -3325,7 +3291,7 @@ Feature: `v3_22`
 ## `workarea`
 a `Rectangle` to be filled with
  the monitor workarea
-<!-- trait MonitorExt::fn is_primary -->
+<!-- impl Monitor::fn is_primary -->
 Gets whether this monitor should be considered primary
 (see `Display::get_primary_monitor`).
 
@@ -3668,7 +3634,7 @@ Note that the size of the entire screen area can be retrieved via
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_geometry` instead
+Use `Monitor::get_geometry` instead
 ## `monitor_num`
 the monitor number
 ## `dest`
@@ -3679,7 +3645,7 @@ Gets the height in millimeters of the specified monitor.
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_height_mm` instead
+Use `Monitor::get_height_mm` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -3693,7 +3659,7 @@ product name of the display device.
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_model` instead
+Use `Monitor::get_model` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -3712,7 +3678,7 @@ where it is better to use `WindowExt::get_scale_factor` instead.
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_scale_factor` instead
+Use `Monitor::get_scale_factor` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -3724,7 +3690,7 @@ Gets the width in millimeters of the specified monitor, if available.
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_width_mm` instead
+Use `Monitor::get_width_mm` instead
 ## `monitor_num`
 number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
 
@@ -3750,7 +3716,7 @@ Monitor numbers start at 0. To obtain the number of monitors of
 
 # Deprecated since 3.22
 
-Use `MonitorExt::get_workarea` instead
+Use `Monitor::get_workarea` instead
 ## `monitor_num`
 the monitor number
 ## `dest`

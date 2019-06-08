@@ -3193,13 +3193,7 @@ credential type is a ucred_t. This corresponds to
 
 # Implements
 
-[`CredentialsExt`](trait.CredentialsExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait CredentialsExt -->
-Trait containing all `Credentials` methods.
-
-# Implementors
-
-[`Credentials`](struct.Credentials.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl Credentials::fn new -->
 Creates a new `Credentials` object with credentials matching the
 the current process.
@@ -3207,7 +3201,7 @@ the current process.
 # Returns
 
 A `Credentials`. Free with `gobject::ObjectExt::unref`.
-<!-- trait CredentialsExt::fn get_native -->
+<!-- impl Credentials::fn get_native -->
 Gets a pointer to native credentials of type `native_type` from
 `self`.
 
@@ -3223,7 +3217,7 @@ The pointer to native credentials or `None` if the
 operation there is no `Credentials` support for the OS or if
 `native_type` isn't supported by the OS. Do not free the returned
 data, it is owned by `self`.
-<!-- trait CredentialsExt::fn get_unix_pid -->
+<!-- impl Credentials::fn get_unix_pid -->
 Tries to get the UNIX process identifier from `self`. This
 method is only available on UNIX platforms.
 
@@ -3234,7 +3228,7 @@ about the UNIX process ID.
 # Returns
 
 The UNIX process ID, or -1 if `error` is set.
-<!-- trait CredentialsExt::fn get_unix_user -->
+<!-- impl Credentials::fn get_unix_user -->
 Tries to get the UNIX user identifier from `self`. This
 method is only available on UNIX platforms.
 
@@ -3245,7 +3239,7 @@ about the UNIX user.
 # Returns
 
 The UNIX user identifier or -1 if `error` is set.
-<!-- trait CredentialsExt::fn is_same_user -->
+<!-- impl Credentials::fn is_same_user -->
 Checks if `self` and `other_credentials` is the same user.
 
 This operation can fail if `Credentials` is not supported on the
@@ -3257,7 +3251,7 @@ A `Credentials`.
 
 `true` if `self` and `other_credentials` has the same
 user, `false` otherwise or if `error` is set.
-<!-- trait CredentialsExt::fn set_native -->
+<!-- impl Credentials::fn set_native -->
 Copies the native credentials of type `native_type` from `native`
 into `self`.
 
@@ -3268,7 +3262,7 @@ the OS or if `native_type` isn't supported by the OS.
 The type of native credentials to set.
 ## `native`
 A pointer to native credentials.
-<!-- trait CredentialsExt::fn set_unix_user -->
+<!-- impl Credentials::fn set_unix_user -->
 Tries to set the UNIX user identifier on `self`. This method
 is only available on UNIX platforms.
 
@@ -3282,7 +3276,7 @@ The UNIX user identifier to set.
 # Returns
 
 `true` if `uid` was set, `false` if error is set.
-<!-- trait CredentialsExt::fn to_string -->
+<!-- impl Credentials::fn to_string -->
 Creates a human-readable textual representation of `self`
 that can be used in logging and debug messages. The format of the
 returned string may change in future GLib release.
@@ -4457,13 +4451,7 @@ supported. More may be added in the future.
 
 # Implements
 
-[`EmblemExt`](trait.EmblemExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
-<!-- trait EmblemExt -->
-Trait containing all `Emblem` methods.
-
-# Implementors
-
-[`Emblem`](struct.Emblem.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
 <!-- impl Emblem::fn new -->
 Creates a new emblem for `icon`.
 ## `icon`
@@ -4482,14 +4470,14 @@ a GEmblemOrigin enum defining the emblem's origin
 # Returns
 
 a new `Emblem`.
-<!-- trait EmblemExt::fn get_icon -->
+<!-- impl Emblem::fn get_icon -->
 Gives back the icon from `self`.
 
 # Returns
 
 a `Icon`. The returned object belongs to
  the emblem and should not be modified or freed.
-<!-- trait EmblemExt::fn get_origin -->
+<!-- impl Emblem::fn get_origin -->
 Gets the origin of the emblem.
 
 # Returns
@@ -7106,6 +7094,139 @@ a `AsyncResult`
 
 `true` if the operation finished successfully.
  `false` otherwise.
+<!-- struct FileAttributeMatcher -->
+Determines if a string matches a file attribute.
+<!-- impl FileAttributeMatcher::fn new -->
+Creates a new file attribute matcher, which matches attributes
+against a given string. `GFileAttributeMatchers` are reference
+counted structures, and are created with a reference count of 1. If
+the number of references falls to 0, the `FileAttributeMatcher` is
+automatically destroyed.
+
+The `attribute` string should be formatted with specific keys separated
+from namespaces with a double colon. Several "namespace::key" strings may be
+concatenated with a single comma (e.g. "standard::type,standard::is-hidden").
+The wildcard "*" may be used to match all keys and namespaces, or
+"namespace::*" will match all keys in a given namespace.
+
+## Examples of file attribute matcher strings and results
+
+- `"*"`: matches all attributes.
+- `"standard::is-hidden"`: matches only the key is-hidden in the
+ standard namespace.
+- `"standard::type,unix::*"`: matches the type key in the standard
+ namespace and all keys in the unix namespace.
+## `attributes`
+an attribute string to match.
+
+# Returns
+
+a `FileAttributeMatcher`
+<!-- impl FileAttributeMatcher::fn enumerate_namespace -->
+Checks if the matcher will match all of the keys in a given namespace.
+This will always return `true` if a wildcard character is in use (e.g. if
+matcher was created with "standard::*" and `ns` is "standard", or if matcher was created
+using "*" and namespace is anything.)
+
+TODO: this is awkwardly worded.
+## `ns`
+a string containing a file attribute namespace.
+
+# Returns
+
+`true` if the matcher matches all of the entries
+in the given `ns`, `false` otherwise.
+<!-- impl FileAttributeMatcher::fn enumerate_next -->
+Gets the next matched attribute from a `FileAttributeMatcher`.
+
+# Returns
+
+a string containing the next attribute or `None` if
+no more attribute exist.
+<!-- impl FileAttributeMatcher::fn matches -->
+Checks if an attribute will be matched by an attribute matcher. If
+the matcher was created with the "*" matching string, this function
+will always return `true`.
+## `attribute`
+a file attribute key.
+
+# Returns
+
+`true` if `attribute` matches `self`. `false` otherwise.
+<!-- impl FileAttributeMatcher::fn matches_only -->
+Checks if a attribute matcher only matches a given attribute. Always
+returns `false` if "*" was used when creating the matcher.
+## `attribute`
+a file attribute key.
+
+# Returns
+
+`true` if the matcher only matches `attribute`. `false` otherwise.
+<!-- impl FileAttributeMatcher::fn ref -->
+References a file attribute matcher.
+
+# Returns
+
+a `FileAttributeMatcher`.
+<!-- impl FileAttributeMatcher::fn subtract -->
+Subtracts all attributes of `subtract` from `self` and returns
+a matcher that supports those attributes.
+
+Note that currently it is not possible to remove a single
+attribute when the `self` matches the whole namespace - or remove
+a namespace or attribute when the matcher matches everything. This
+is a limitation of the current implementation, but may be fixed
+in the future.
+## `subtract`
+The matcher to subtract
+
+# Returns
+
+A file attribute matcher matching all attributes of
+ `self` that are not matched by `subtract`
+<!-- impl FileAttributeMatcher::fn to_string -->
+Prints what the matcher is matching against. The format will be
+equal to the format passed to `FileAttributeMatcher::new`.
+The output however, might not be identical, as the matcher may
+decide to use a different order or omit needless parts.
+
+# Returns
+
+a string describing the attributes the matcher matches
+ against or `None` if `self` was `None`.
+<!-- impl FileAttributeMatcher::fn unref -->
+Unreferences `self`. If the reference count falls below 1,
+the `self` is automatically freed.
+<!-- enum FileAttributeStatus -->
+Used by `File::set_attributes_from_info` when setting file attributes.
+<!-- enum FileAttributeStatus::variant Unset -->
+Attribute value is unset (empty).
+<!-- enum FileAttributeStatus::variant Set -->
+Attribute value is set.
+<!-- enum FileAttributeStatus::variant ErrorSetting -->
+Indicates an error in setting the value.
+<!-- enum FileAttributeType -->
+The data types for file attributes.
+<!-- enum FileAttributeType::variant Invalid -->
+indicates an invalid or uninitalized type.
+<!-- enum FileAttributeType::variant String -->
+a null terminated UTF8 string.
+<!-- enum FileAttributeType::variant ByteString -->
+a zero terminated string of non-zero bytes.
+<!-- enum FileAttributeType::variant Boolean -->
+a boolean value.
+<!-- enum FileAttributeType::variant Uint32 -->
+an unsigned 4-byte/32-bit integer.
+<!-- enum FileAttributeType::variant Int32 -->
+a signed 4-byte/32-bit integer.
+<!-- enum FileAttributeType::variant Uint64 -->
+an unsigned 8-byte/64-bit integer.
+<!-- enum FileAttributeType::variant Int64 -->
+a signed 8-byte/64-bit integer.
+<!-- enum FileAttributeType::variant Object -->
+a `gobject::Object`.
+<!-- enum FileAttributeType::variant Stringv -->
+a `None` terminated char **. Since 2.22
 <!-- struct FileIOStream -->
 GFileIOStream provides io streams that both read and write to the same
 file handle.
@@ -7203,13 +7324,7 @@ to be used as icon.
 
 # Implements
 
-[`FileIconExt`](trait.FileIconExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html), [`LoadableIconExt`](trait.LoadableIconExt.html)
-<!-- trait FileIconExt -->
-Trait containing all `FileIcon` methods.
-
-# Implementors
-
-[`FileIcon`](struct.FileIcon.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html), [`LoadableIconExt`](trait.LoadableIconExt.html)
 <!-- impl FileIcon::fn new -->
 Creates a new icon for a file.
 ## `file`
@@ -7219,7 +7334,7 @@ a `File`.
 
 a `Icon` for the given
  `file`, or `None` on error.
-<!-- trait FileIconExt::fn get_file -->
+<!-- impl FileIcon::fn get_file -->
 Gets the `File` associated with the given `self`.
 
 # Returns
@@ -7247,7 +7362,7 @@ attribute in the `FileInfo` and call `File::set_attributes_from_info`
 or `File::set_attributes_async` on a GFile.
 
 However, not all attributes can be changed in the file. For instance,
-the actual size of a file cannot be changed via `FileInfoExt::set_size`.
+the actual size of a file cannot be changed via `FileInfo::set_size`.
 You may call `File::query_settable_attributes` and
 `File::query_writable_namespaces` to discover the settable attributes
 of a particular file at runtime.
@@ -7257,33 +7372,27 @@ attributes.
 
 # Implements
 
-[`FileInfoExt`](trait.FileInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait FileInfoExt -->
-Trait containing all `FileInfo` methods.
-
-# Implementors
-
-[`FileInfo`](struct.FileInfo.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl FileInfo::fn new -->
 Creates a new file info structure.
 
 # Returns
 
 a `FileInfo`.
-<!-- trait FileInfoExt::fn clear_status -->
+<!-- impl FileInfo::fn clear_status -->
 Clears the status information from `self`.
-<!-- trait FileInfoExt::fn copy_into -->
+<!-- impl FileInfo::fn copy_into -->
 First clears all of the [GFileAttribute][gio-GFileAttribute] of `dest_info`,
 and then copies all of the file attributes from `self` to `dest_info`.
 ## `dest_info`
 destination to copy attributes to.
-<!-- trait FileInfoExt::fn dup -->
+<!-- impl FileInfo::fn dup -->
 Duplicates a file info structure.
 
 # Returns
 
 a duplicate `FileInfo` of `self`.
-<!-- trait FileInfoExt::fn get_attribute_as_string -->
+<!-- impl FileInfo::fn get_attribute_as_string -->
 Gets the value of a attribute, formated as a string.
 This escapes things as needed to make the string valid
 utf8.
@@ -7294,7 +7403,7 @@ a file attribute key.
 
 a UTF-8 string associated with the given `attribute`.
  When you're done with the string it must be freed with `g_free`.
-<!-- trait FileInfoExt::fn get_attribute_boolean -->
+<!-- impl FileInfo::fn get_attribute_boolean -->
 Gets the value of a boolean attribute. If the attribute does not
 contain a boolean value, `false` will be returned.
 ## `attribute`
@@ -7303,7 +7412,7 @@ a file attribute key.
 # Returns
 
 the boolean value contained within the attribute.
-<!-- trait FileInfoExt::fn get_attribute_byte_string -->
+<!-- impl FileInfo::fn get_attribute_byte_string -->
 Gets the value of a byte string attribute. If the attribute does
 not contain a byte string, `None` will be returned.
 ## `attribute`
@@ -7313,7 +7422,7 @@ a file attribute key.
 
 the contents of the `attribute` value as a byte string, or
 `None` otherwise.
-<!-- trait FileInfoExt::fn get_attribute_data -->
+<!-- impl FileInfo::fn get_attribute_data -->
 Gets the attribute type, value and status for an attribute key.
 ## `attribute`
 a file attribute key
@@ -7329,7 +7438,7 @@ return location for the attribute status, or `None`
 
 `true` if `self` has an attribute named `attribute`,
  `false` otherwise.
-<!-- trait FileInfoExt::fn get_attribute_int32 -->
+<!-- impl FileInfo::fn get_attribute_int32 -->
 Gets a signed 32-bit integer contained within the attribute. If the
 attribute does not contain a signed 32-bit integer, or is invalid,
 0 will be returned.
@@ -7339,7 +7448,7 @@ a file attribute key.
 # Returns
 
 a signed 32-bit integer from the attribute.
-<!-- trait FileInfoExt::fn get_attribute_int64 -->
+<!-- impl FileInfo::fn get_attribute_int64 -->
 Gets a signed 64-bit integer contained within the attribute. If the
 attribute does not contain an signed 64-bit integer, or is invalid,
 0 will be returned.
@@ -7349,7 +7458,7 @@ a file attribute key.
 # Returns
 
 a signed 64-bit integer from the attribute.
-<!-- trait FileInfoExt::fn get_attribute_object -->
+<!-- impl FileInfo::fn get_attribute_object -->
 Gets the value of a `gobject::Object` attribute. If the attribute does
 not contain a `gobject::Object`, `None` will be returned.
 ## `attribute`
@@ -7359,7 +7468,7 @@ a file attribute key.
 
 a `gobject::Object` associated with the given `attribute`, or
 `None` otherwise.
-<!-- trait FileInfoExt::fn get_attribute_status -->
+<!-- impl FileInfo::fn get_attribute_status -->
 Gets the attribute status for an attribute key.
 ## `attribute`
 a file attribute key
@@ -7368,7 +7477,7 @@ a file attribute key
 
 a `FileAttributeStatus` for the given `attribute`, or
  `FileAttributeStatus::Unset` if the key is invalid.
-<!-- trait FileInfoExt::fn get_attribute_string -->
+<!-- impl FileInfo::fn get_attribute_string -->
 Gets the value of a string attribute. If the attribute does
 not contain a string, `None` will be returned.
 ## `attribute`
@@ -7378,7 +7487,7 @@ a file attribute key.
 
 the contents of the `attribute` value as a UTF-8 string, or
 `None` otherwise.
-<!-- trait FileInfoExt::fn get_attribute_stringv -->
+<!-- impl FileInfo::fn get_attribute_stringv -->
 Gets the value of a stringv attribute. If the attribute does
 not contain a stringv, `None` will be returned.
 ## `attribute`
@@ -7388,7 +7497,7 @@ a file attribute key.
 
 the contents of the `attribute` value as a stringv, or
 `None` otherwise. Do not free. These returned strings are UTF-8.
-<!-- trait FileInfoExt::fn get_attribute_type -->
+<!-- impl FileInfo::fn get_attribute_type -->
 Gets the attribute type for an attribute key.
 ## `attribute`
 a file attribute key.
@@ -7397,7 +7506,7 @@ a file attribute key.
 
 a `FileAttributeType` for the given `attribute`, or
 `FileAttributeType::Invalid` if the key is not set.
-<!-- trait FileInfoExt::fn get_attribute_uint32 -->
+<!-- impl FileInfo::fn get_attribute_uint32 -->
 Gets an unsigned 32-bit integer contained within the attribute. If the
 attribute does not contain an unsigned 32-bit integer, or is invalid,
 0 will be returned.
@@ -7407,7 +7516,7 @@ a file attribute key.
 # Returns
 
 an unsigned 32-bit integer from the attribute.
-<!-- trait FileInfoExt::fn get_attribute_uint64 -->
+<!-- impl FileInfo::fn get_attribute_uint64 -->
 Gets a unsigned 64-bit integer contained within the attribute. If the
 attribute does not contain an unsigned 64-bit integer, or is invalid,
 0 will be returned.
@@ -7417,13 +7526,13 @@ a file attribute key.
 # Returns
 
 a unsigned 64-bit integer from the attribute.
-<!-- trait FileInfoExt::fn get_content_type -->
+<!-- impl FileInfo::fn get_content_type -->
 Gets the file's content type.
 
 # Returns
 
 a string containing the file's content type.
-<!-- trait FileInfoExt::fn get_deletion_date -->
+<!-- impl FileInfo::fn get_deletion_date -->
 Returns the `glib::DateTime` representing the deletion date of the file, as
 available in G_FILE_ATTRIBUTE_TRASH_DELETION_DATE. If the
 G_FILE_ATTRIBUTE_TRASH_DELETION_DATE attribute is unset, `None` is returned.
@@ -7431,93 +7540,93 @@ G_FILE_ATTRIBUTE_TRASH_DELETION_DATE attribute is unset, `None` is returned.
 # Returns
 
 a `glib::DateTime`, or `None`.
-<!-- trait FileInfoExt::fn get_display_name -->
+<!-- impl FileInfo::fn get_display_name -->
 Gets a display name for a file.
 
 # Returns
 
 a string containing the display name.
-<!-- trait FileInfoExt::fn get_edit_name -->
+<!-- impl FileInfo::fn get_edit_name -->
 Gets the edit name for a file.
 
 # Returns
 
 a string containing the edit name.
-<!-- trait FileInfoExt::fn get_etag -->
+<!-- impl FileInfo::fn get_etag -->
 Gets the [entity tag][gfile-etag] for a given
 `FileInfo`. See `G_FILE_ATTRIBUTE_ETAG_VALUE`.
 
 # Returns
 
 a string containing the value of the "etag:value" attribute.
-<!-- trait FileInfoExt::fn get_file_type -->
+<!-- impl FileInfo::fn get_file_type -->
 Gets a file's type (whether it is a regular file, symlink, etc).
-This is different from the file's content type, see `FileInfoExt::get_content_type`.
+This is different from the file's content type, see `FileInfo::get_content_type`.
 
 # Returns
 
 a `FileType` for the given file.
-<!-- trait FileInfoExt::fn get_icon -->
+<!-- impl FileInfo::fn get_icon -->
 Gets the icon for a file.
 
 # Returns
 
 `Icon` for the given `self`.
-<!-- trait FileInfoExt::fn get_is_backup -->
+<!-- impl FileInfo::fn get_is_backup -->
 Checks if a file is a backup file.
 
 # Returns
 
 `true` if file is a backup file, `false` otherwise.
-<!-- trait FileInfoExt::fn get_is_hidden -->
+<!-- impl FileInfo::fn get_is_hidden -->
 Checks if a file is hidden.
 
 # Returns
 
 `true` if the file is a hidden file, `false` otherwise.
-<!-- trait FileInfoExt::fn get_is_symlink -->
+<!-- impl FileInfo::fn get_is_symlink -->
 Checks if a file is a symlink.
 
 # Returns
 
 `true` if the given `self` is a symlink.
-<!-- trait FileInfoExt::fn get_modification_time -->
+<!-- impl FileInfo::fn get_modification_time -->
 Gets the modification time of the current `self` and sets it
 in `result`.
 ## `result`
 a `glib::TimeVal`.
-<!-- trait FileInfoExt::fn get_name -->
+<!-- impl FileInfo::fn get_name -->
 Gets the name for a file.
 
 # Returns
 
 a string containing the file name.
-<!-- trait FileInfoExt::fn get_size -->
+<!-- impl FileInfo::fn get_size -->
 Gets the file's size.
 
 # Returns
 
 a `goffset` containing the file's size.
-<!-- trait FileInfoExt::fn get_sort_order -->
+<!-- impl FileInfo::fn get_sort_order -->
 Gets the value of the sort_order attribute from the `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER`.
 
 # Returns
 
 a `gint32` containing the value of the "standard::sort_order" attribute.
-<!-- trait FileInfoExt::fn get_symbolic_icon -->
+<!-- impl FileInfo::fn get_symbolic_icon -->
 Gets the symbolic icon for a file.
 
 # Returns
 
 `Icon` for the given `self`.
-<!-- trait FileInfoExt::fn get_symlink_target -->
+<!-- impl FileInfo::fn get_symlink_target -->
 Gets the symlink target for a given `FileInfo`.
 
 # Returns
 
 a string containing the symlink target.
-<!-- trait FileInfoExt::fn has_attribute -->
+<!-- impl FileInfo::fn has_attribute -->
 Checks if a file info structure has an attribute named `attribute`.
 ## `attribute`
 a file attribute key.
@@ -7526,7 +7635,7 @@ a file attribute key.
 
 `true` if `Ginfo` has an attribute named `attribute`,
  `false` otherwise.
-<!-- trait FileInfoExt::fn has_namespace -->
+<!-- impl FileInfo::fn has_namespace -->
 Checks if a file info structure has an attribute in the
 specified `name_space`.
 ## `name_space`
@@ -7536,7 +7645,7 @@ a file attribute namespace.
 
 `true` if `Ginfo` has an attribute in `name_space`,
  `false` otherwise.
-<!-- trait FileInfoExt::fn list_attributes -->
+<!-- impl FileInfo::fn list_attributes -->
 Lists the file info structure's attributes.
 ## `name_space`
 a file attribute key's namespace, or `None` to list
@@ -7547,11 +7656,11 @@ a file attribute key's namespace, or `None` to list
 a
 null-terminated array of strings of all of the possible attribute
 types for the given `name_space`, or `None` on error.
-<!-- trait FileInfoExt::fn remove_attribute -->
+<!-- impl FileInfo::fn remove_attribute -->
 Removes all cases of `attribute` from `self` if it exists.
 ## `attribute`
 a file attribute key.
-<!-- trait FileInfoExt::fn set_attribute -->
+<!-- impl FileInfo::fn set_attribute -->
 Sets the `attribute` to contain the given value, if possible. To unset the
 attribute, use `FileAttributeType::Invalid` for `type_`.
 ## `attribute`
@@ -7560,46 +7669,46 @@ a file attribute key.
 a `FileAttributeType`
 ## `value_p`
 pointer to the value
-<!-- trait FileInfoExt::fn set_attribute_boolean -->
+<!-- impl FileInfo::fn set_attribute_boolean -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 a boolean value.
-<!-- trait FileInfoExt::fn set_attribute_byte_string -->
+<!-- impl FileInfo::fn set_attribute_byte_string -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 a byte string.
-<!-- trait FileInfoExt::fn set_attribute_int32 -->
+<!-- impl FileInfo::fn set_attribute_int32 -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 a signed 32-bit integer
-<!-- trait FileInfoExt::fn set_attribute_int64 -->
+<!-- impl FileInfo::fn set_attribute_int64 -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 attribute name to set.
 ## `attr_value`
 int64 value to set attribute to.
-<!-- trait FileInfoExt::fn set_attribute_mask -->
+<!-- impl FileInfo::fn set_attribute_mask -->
 Sets `mask` on `self` to match specific attribute types.
 ## `mask`
 a `FileAttributeMatcher`.
-<!-- trait FileInfoExt::fn set_attribute_object -->
+<!-- impl FileInfo::fn set_attribute_object -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 a `gobject::Object`.
-<!-- trait FileInfoExt::fn set_attribute_status -->
+<!-- impl FileInfo::fn set_attribute_status -->
 Sets the attribute status for an attribute key. This is only
 needed by external code that implement `File::set_attributes_from_info`
 or similar functions.
@@ -7614,14 +7723,14 @@ a `FileAttributeStatus`
 # Returns
 
 `true` if the status was changed, `false` if the key was not set.
-<!-- trait FileInfoExt::fn set_attribute_string -->
+<!-- impl FileInfo::fn set_attribute_string -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 a UTF-8 string.
-<!-- trait FileInfoExt::fn set_attribute_stringv -->
+<!-- impl FileInfo::fn set_attribute_stringv -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 
@@ -7630,87 +7739,87 @@ Sinze: 2.22
 a file attribute key
 ## `attr_value`
 a `None` terminated array of UTF-8 strings.
-<!-- trait FileInfoExt::fn set_attribute_uint32 -->
+<!-- impl FileInfo::fn set_attribute_uint32 -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 an unsigned 32-bit integer.
-<!-- trait FileInfoExt::fn set_attribute_uint64 -->
+<!-- impl FileInfo::fn set_attribute_uint64 -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
 ## `attribute`
 a file attribute key.
 ## `attr_value`
 an unsigned 64-bit integer.
-<!-- trait FileInfoExt::fn set_content_type -->
+<!-- impl FileInfo::fn set_content_type -->
 Sets the content type attribute for a given `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE`.
 ## `content_type`
 a content type. See [GContentType][gio-GContentType]
-<!-- trait FileInfoExt::fn set_display_name -->
+<!-- impl FileInfo::fn set_display_name -->
 Sets the display name for the current `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME`.
 ## `display_name`
 a string containing a display name.
-<!-- trait FileInfoExt::fn set_edit_name -->
+<!-- impl FileInfo::fn set_edit_name -->
 Sets the edit name for the current file.
 See `G_FILE_ATTRIBUTE_STANDARD_EDIT_NAME`.
 ## `edit_name`
 a string containing an edit name.
-<!-- trait FileInfoExt::fn set_file_type -->
+<!-- impl FileInfo::fn set_file_type -->
 Sets the file type in a `FileInfo` to `type_`.
 See `G_FILE_ATTRIBUTE_STANDARD_TYPE`.
 ## `type_`
 a `FileType`.
-<!-- trait FileInfoExt::fn set_icon -->
+<!-- impl FileInfo::fn set_icon -->
 Sets the icon for a given `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_ICON`.
 ## `icon`
 a `Icon`.
-<!-- trait FileInfoExt::fn set_is_hidden -->
+<!-- impl FileInfo::fn set_is_hidden -->
 Sets the "is_hidden" attribute in a `FileInfo` according to `is_hidden`.
 See `G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN`.
 ## `is_hidden`
 a `gboolean`.
-<!-- trait FileInfoExt::fn set_is_symlink -->
+<!-- impl FileInfo::fn set_is_symlink -->
 Sets the "is_symlink" attribute in a `FileInfo` according to `is_symlink`.
 See `G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK`.
 ## `is_symlink`
 a `gboolean`.
-<!-- trait FileInfoExt::fn set_modification_time -->
+<!-- impl FileInfo::fn set_modification_time -->
 Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute in the file
 info to the given time value.
 ## `mtime`
 a `glib::TimeVal`.
-<!-- trait FileInfoExt::fn set_name -->
+<!-- impl FileInfo::fn set_name -->
 Sets the name attribute for the current `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_NAME`.
 ## `name`
 a string containing a name.
-<!-- trait FileInfoExt::fn set_size -->
+<!-- impl FileInfo::fn set_size -->
 Sets the `G_FILE_ATTRIBUTE_STANDARD_SIZE` attribute in the file info
 to the given size.
 ## `size`
 a `goffset` containing the file's size.
-<!-- trait FileInfoExt::fn set_sort_order -->
+<!-- impl FileInfo::fn set_sort_order -->
 Sets the sort order attribute in the file info structure. See
 `G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER`.
 ## `sort_order`
 a sort order integer.
-<!-- trait FileInfoExt::fn set_symbolic_icon -->
+<!-- impl FileInfo::fn set_symbolic_icon -->
 Sets the symbolic icon for a given `FileInfo`.
 See `G_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON`.
 ## `icon`
 a `Icon`.
-<!-- trait FileInfoExt::fn set_symlink_target -->
+<!-- impl FileInfo::fn set_symlink_target -->
 Sets the `G_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET` attribute in the file info
 to the given symlink target.
 ## `symlink_target`
 a static string containing a path to a symlink target.
-<!-- trait FileInfoExt::fn unset_attribute_mask -->
-Unsets a mask set by `FileInfoExt::set_attribute_mask`, if one
+<!-- impl FileInfo::fn unset_attribute_mask -->
+Unsets a mask set by `FileInfo::set_attribute_mask`, if one
 is set.
 <!-- struct FileInputStream -->
 GFileInputStream provides input streams that take their
@@ -8902,7 +9011,7 @@ Trait containing all `InputStream` methods.
 
 # Implementors
 
-[`FileInputStream`](struct.FileInputStream.html), [`FilterInputStream`](struct.FilterInputStream.html), [`InputStream`](struct.InputStream.html), [`MemoryInputStream`](struct.MemoryInputStream.html), [`PollableInputStream`](struct.PollableInputStream.html)
+[`FileInputStream`](struct.FileInputStream.html), [`FilterInputStream`](struct.FilterInputStream.html), [`InputStream`](struct.InputStream.html), [`MemoryInputStream`](struct.MemoryInputStream.html), [`PollableInputStream`](struct.PollableInputStream.html), [`UnixInputStream`](struct.UnixInputStream.html)
 <!-- trait InputStreamExt::fn clear_pending -->
 Clears the pending flag on `self`.
 <!-- trait InputStreamExt::fn close -->
@@ -11935,7 +12044,7 @@ Trait containing all `OutputStream` methods.
 
 # Implementors
 
-[`FileOutputStream`](struct.FileOutputStream.html), [`FilterOutputStream`](struct.FilterOutputStream.html), [`MemoryOutputStream`](struct.MemoryOutputStream.html), [`OutputStream`](struct.OutputStream.html), [`PollableOutputStream`](struct.PollableOutputStream.html)
+[`FileOutputStream`](struct.FileOutputStream.html), [`FilterOutputStream`](struct.FilterOutputStream.html), [`MemoryOutputStream`](struct.MemoryOutputStream.html), [`OutputStream`](struct.OutputStream.html), [`PollableOutputStream`](struct.PollableOutputStream.html), [`UnixOutputStream`](struct.UnixOutputStream.html)
 <!-- trait OutputStreamExt::fn clear_pending -->
 Clears the pending flag on `self`.
 <!-- trait OutputStreamExt::fn close -->
@@ -12582,7 +12691,7 @@ Trait containing all `PollableInputStream` methods.
 
 # Implementors
 
-[`ConverterInputStream`](struct.ConverterInputStream.html), [`MemoryInputStream`](struct.MemoryInputStream.html), [`PollableInputStream`](struct.PollableInputStream.html)
+[`ConverterInputStream`](struct.ConverterInputStream.html), [`MemoryInputStream`](struct.MemoryInputStream.html), [`PollableInputStream`](struct.PollableInputStream.html), [`UnixInputStream`](struct.UnixInputStream.html)
 <!-- trait PollableInputStreamExt::fn can_poll -->
 Checks if `self` is actually pollable. Some classes may implement
 `PollableInputStream` but have only certain instances of that class
@@ -12664,7 +12773,7 @@ Trait containing all `PollableOutputStream` methods.
 
 # Implementors
 
-[`ConverterOutputStream`](struct.ConverterOutputStream.html), [`MemoryOutputStream`](struct.MemoryOutputStream.html), [`PollableOutputStream`](struct.PollableOutputStream.html)
+[`ConverterOutputStream`](struct.ConverterOutputStream.html), [`MemoryOutputStream`](struct.MemoryOutputStream.html), [`PollableOutputStream`](struct.PollableOutputStream.html), [`UnixOutputStream`](struct.UnixOutputStream.html)
 <!-- trait PollableOutputStreamExt::fn can_poll -->
 Checks if `self` is actually pollable. Some classes may implement
 `PollableOutputStream` but have only certain instances of that
@@ -19067,13 +19176,7 @@ themes that inherit other themes.
 
 # Implements
 
-[`ThemedIconExt`](trait.ThemedIconExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
-<!-- trait ThemedIconExt -->
-Trait containing all `ThemedIcon` methods.
-
-# Implementors
-
-[`ThemedIcon`](struct.ThemedIcon.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IconExt`](trait.IconExt.html)
 <!-- impl ThemedIcon::fn new -->
 Creates a new themed icon for `iconname`.
 ## `iconname`
@@ -19116,20 +19219,20 @@ a string containing an icon name
 # Returns
 
 a new `ThemedIcon`.
-<!-- trait ThemedIconExt::fn append_name -->
+<!-- impl ThemedIcon::fn append_name -->
 Append a name to the list of icons from within `self`.
 
 Note that doing so invalidates the hash computed by prior calls
 to `Icon::hash`.
 ## `iconname`
 name of icon to append to list of icons from within `self`.
-<!-- trait ThemedIconExt::fn get_names -->
+<!-- impl ThemedIcon::fn get_names -->
 Gets the names of icons from within `self`.
 
 # Returns
 
 a list of icon names.
-<!-- trait ThemedIconExt::fn prepend_name -->
+<!-- impl ThemedIcon::fn prepend_name -->
 Prepend a name to the list of icons from within `self`.
 
 Note that doing so invalidates the hash computed by prior calls
@@ -20637,6 +20740,124 @@ rehandshake with a different mode from the initial handshake.
 The `TlsAuthenticationMode` for the server. This can be changed
 before calling `TlsConnectionExt::handshake` if you want to
 rehandshake with a different mode from the initial handshake.
+<!-- struct UnixInputStream -->
+`UnixInputStream` implements `InputStream` for reading from a UNIX
+file descriptor, including asynchronous operations. (If the file
+descriptor refers to a socket or pipe, this will use `poll` to do
+asynchronous I/O. If it refers to a regular file, it will fall back
+to doing asynchronous I/O in another thread.)
+
+Note that `<gio/gunixinputstream.h>` belongs to the UNIX-specific GIO
+interfaces, thus you have to use the `gio-unix-2.0.pc` pkg-config
+file when using it.
+
+# Implements
+
+[`UnixInputStreamExt`](trait.UnixInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableInputStreamExt`](trait.PollableInputStreamExt.html), [`UnixInputStreamExtManual`](prelude/trait.UnixInputStreamExtManual.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html), [`PollableInputStreamExtManual`](prelude/trait.PollableInputStreamExtManual.html)
+<!-- trait UnixInputStreamExt -->
+Trait containing all `UnixInputStream` methods.
+
+# Implementors
+
+[`UnixInputStream`](struct.UnixInputStream.html)
+<!-- impl UnixInputStream::fn new -->
+Creates a new `UnixInputStream` for the given `fd`.
+
+If `close_fd` is `true`, the file descriptor will be closed
+when the stream is closed.
+## `fd`
+a UNIX file descriptor
+## `close_fd`
+`true` to close the file descriptor when done
+
+# Returns
+
+a new `UnixInputStream`
+<!-- trait UnixInputStreamExt::fn get_close_fd -->
+Returns whether the file descriptor of `self` will be
+closed when the stream is closed.
+
+# Returns
+
+`true` if the file descriptor is closed when done
+<!-- trait UnixInputStreamExt::fn get_fd -->
+Return the UNIX file descriptor that the stream reads from.
+
+# Returns
+
+The file descriptor of `self`
+<!-- trait UnixInputStreamExt::fn set_close_fd -->
+Sets whether the file descriptor of `self` shall be closed
+when the stream is closed.
+## `close_fd`
+`true` to close the file descriptor when done
+<!-- trait UnixInputStreamExt::fn get_property_close-fd -->
+Whether to close the file descriptor when the stream is closed.
+<!-- trait UnixInputStreamExt::fn set_property_close-fd -->
+Whether to close the file descriptor when the stream is closed.
+<!-- trait UnixInputStreamExt::fn get_property_fd -->
+The file descriptor that the stream reads from.
+<!-- trait UnixInputStreamExt::fn set_property_fd -->
+The file descriptor that the stream reads from.
+<!-- struct UnixOutputStream -->
+`UnixOutputStream` implements `OutputStream` for writing to a UNIX
+file descriptor, including asynchronous operations. (If the file
+descriptor refers to a socket or pipe, this will use `poll` to do
+asynchronous I/O. If it refers to a regular file, it will fall back
+to doing asynchronous I/O in another thread.)
+
+Note that `<gio/gunixoutputstream.h>` belongs to the UNIX-specific GIO
+interfaces, thus you have to use the `gio-unix-2.0.pc` pkg-config file
+when using it.
+
+# Implements
+
+[`UnixOutputStreamExt`](trait.UnixOutputStreamExt.html), [`OutputStreamExt`](trait.OutputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PollableOutputStreamExt`](trait.PollableOutputStreamExt.html), [`UnixOutputStreamExtManual`](prelude/trait.UnixOutputStreamExtManual.html), [`OutputStreamExtManual`](prelude/trait.OutputStreamExtManual.html), [`PollableOutputStreamExtManual`](prelude/trait.PollableOutputStreamExtManual.html)
+<!-- trait UnixOutputStreamExt -->
+Trait containing all `UnixOutputStream` methods.
+
+# Implementors
+
+[`UnixOutputStream`](struct.UnixOutputStream.html)
+<!-- impl UnixOutputStream::fn new -->
+Creates a new `UnixOutputStream` for the given `fd`.
+
+If `close_fd`, is `true`, the file descriptor will be closed when
+the output stream is destroyed.
+## `fd`
+a UNIX file descriptor
+## `close_fd`
+`true` to close the file descriptor when done
+
+# Returns
+
+a new `OutputStream`
+<!-- trait UnixOutputStreamExt::fn get_close_fd -->
+Returns whether the file descriptor of `self` will be
+closed when the stream is closed.
+
+# Returns
+
+`true` if the file descriptor is closed when done
+<!-- trait UnixOutputStreamExt::fn get_fd -->
+Return the UNIX file descriptor that the stream writes to.
+
+# Returns
+
+The file descriptor of `self`
+<!-- trait UnixOutputStreamExt::fn set_close_fd -->
+Sets whether the file descriptor of `self` shall be closed
+when the stream is closed.
+## `close_fd`
+`true` to close the file descriptor when done
+<!-- trait UnixOutputStreamExt::fn get_property_close-fd -->
+Whether to close the file descriptor when the stream is closed.
+<!-- trait UnixOutputStreamExt::fn set_property_close-fd -->
+Whether to close the file descriptor when the stream is closed.
+<!-- trait UnixOutputStreamExt::fn get_property_fd -->
+The file descriptor that the stream writes to.
+<!-- trait UnixOutputStreamExt::fn set_property_fd -->
+The file descriptor that the stream writes to.
 <!-- struct UnixSocketAddress -->
 Support for UNIX-domain (also known as local) sockets.
 

@@ -10500,7 +10500,7 @@ width in chars
 Converts from a position in the entry contents (returned
 by `EntryExt::get_text`) to a position in the
 entry’s `pango::Layout` (returned by `EntryExt::get_layout`,
-with text retrieved via `pango::LayoutExt::get_text`).
+with text retrieved via `pango::Layout::get_text`).
 ## `text_index`
 byte index into the entry contents
 
@@ -11138,7 +11138,7 @@ matching iter.
 
 # Implements
 
-[`EntryCompletionExt`](trait.EntryCompletionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+[`EntryCompletionExt`](trait.EntryCompletionExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`EntryCompletionExtManual`](prelude/trait.EntryCompletionExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- trait EntryCompletionExt -->
 Trait containing all `EntryCompletion` methods.
 
@@ -15771,13 +15771,7 @@ signal will be emitted.
 
 # Implements
 
-[`GestureLongPressExt`](trait.GestureLongPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GestureLongPressExt -->
-Trait containing all `GestureLongPress` methods.
-
-# Implementors
-
-[`GestureLongPress`](struct.GestureLongPress.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GestureLongPress::fn new -->
 Returns a newly created `Gesture` that recognizes long presses.
 ## `widget`
@@ -15804,19 +15798,13 @@ clicks exceed the GTK+ defaults, `GestureMultiPress::stopped` is emitted,
 and the click counter is reset.
 
 Callers may also restrict the area that is considered valid for a >1
-touch/button press through `GestureMultiPressExt::set_area`, so any
+touch/button press through `GestureMultiPress::set_area`, so any
 click happening outside that area is considered to be a first click of
 its own.
 
 # Implements
 
-[`GestureMultiPressExt`](trait.GestureMultiPressExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GestureMultiPressExt -->
-Trait containing all `GestureMultiPress` methods.
-
-# Implementors
-
-[`GestureMultiPress`](struct.GestureMultiPress.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GestureMultiPress::fn new -->
 Returns a newly created `Gesture` that recognizes single and multiple
 presses.
@@ -15826,10 +15814,10 @@ a `Widget`
 # Returns
 
 a newly created `GestureMultiPress`
-<!-- trait GestureMultiPressExt::fn get_area -->
-If an area was set through `GestureMultiPressExt::set_area`,
+<!-- impl GestureMultiPress::fn get_area -->
+If an area was set through `GestureMultiPress::set_area`,
 this function will return `true` and fill in `rect` with the
-press area. See `GestureMultiPressExt::set_area` for more
+press area. See `GestureMultiPress::set_area` for more
 details on what the press area represents.
 ## `rect`
 return location for the press area
@@ -15837,7 +15825,7 @@ return location for the press area
 # Returns
 
 `true` if `rect` was filled with the press area
-<!-- trait GestureMultiPressExt::fn set_area -->
+<!-- impl GestureMultiPress::fn set_area -->
 If `rect` is non-`None`, the press area will be checked to be
 confined within the rectangle, otherwise the button count
 will be reset so the press is seen as being the first one.
@@ -15876,7 +15864,7 @@ been exceeded.
 pan gestures, those are drags that are locked to happen along one
 axis. The axis that a `GesturePan` handles is defined at
 construct time, and can be changed through
-`GesturePanExt::set_orientation`.
+`GesturePan::set_orientation`.
 
 When the gesture starts to be recognized, `GesturePan` will
 attempt to determine as early as possible whether the sequence
@@ -15889,13 +15877,7 @@ are received, containing the offset in the given axis.
 
 # Implements
 
-[`GesturePanExt`](trait.GesturePanExt.html), [`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GesturePanExt -->
-Trait containing all `GesturePan` methods.
-
-# Implementors
-
-[`GesturePan`](struct.GesturePan.html)
+[`GestureDragExt`](trait.GestureDragExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GesturePan::fn new -->
 Returns a newly created `Gesture` that recognizes pan gestures.
 ## `widget`
@@ -15906,13 +15888,13 @@ expected orientation
 # Returns
 
 a newly created `GesturePan`
-<!-- trait GesturePanExt::fn get_orientation -->
+<!-- impl GesturePan::fn get_orientation -->
 Returns the orientation of the pan gestures that this `self` expects.
 
 # Returns
 
 the expected orientation for pan gestures
-<!-- trait GesturePanExt::fn set_orientation -->
+<!-- impl GesturePan::fn set_orientation -->
 Sets the orientation to be expected on pan gestures.
 ## `orientation`
 expected orientation
@@ -15934,13 +15916,7 @@ changes, the `GestureRotate::angle-changed` signal is emitted.
 
 # Implements
 
-[`GestureRotateExt`](trait.GestureRotateExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GestureRotateExt -->
-Trait containing all `GestureRotate` methods.
-
-# Implementors
-
-[`GestureRotate`](struct.GestureRotate.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GestureRotate::fn new -->
 Returns a newly created `Gesture` that recognizes 2-touch
 rotation gestures.
@@ -15950,7 +15926,7 @@ a `Widget`
 # Returns
 
 a newly created `GestureRotate`
-<!-- trait GestureRotateExt::fn get_angle_delta -->
+<!-- impl GestureRotate::fn get_angle_delta -->
 If `self` is active, this function returns the angle difference
 in radians since the gesture was first recognized. If `self` is
 not active, 0 is returned.
@@ -16062,20 +16038,14 @@ swipes, after a press/move/.../move/release sequence happens, the
 and directionality of the sequence at the time it was lifted.
 
 If the velocity is desired in intermediate points,
-`GestureSwipeExt::get_velocity` can be called on eg. a
+`GestureSwipe::get_velocity` can be called on eg. a
 `Gesture::update` handler.
 
 All velocities are reported in pixels/sec units.
 
 # Implements
 
-[`GestureSwipeExt`](trait.GestureSwipeExt.html), [`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GestureSwipeExt -->
-Trait containing all `GestureSwipe` methods.
-
-# Implementors
-
-[`GestureSwipe`](struct.GestureSwipe.html)
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GestureSwipe::fn new -->
 Returns a newly created `Gesture` that recognizes swipes.
 ## `widget`
@@ -16084,7 +16054,7 @@ a `Widget`
 # Returns
 
 a newly created `GestureSwipe`
-<!-- trait GestureSwipeExt::fn get_velocity -->
+<!-- impl GestureSwipe::fn get_velocity -->
 If the gesture is recognized, this function returns `true` and fill in
 `velocity_x` and `velocity_y` with the recorded velocity, as per the
 last event(s) processed.
@@ -16111,13 +16081,7 @@ emitted to report the scale factor.
 
 # Implements
 
-[`GestureZoomExt`](trait.GestureZoomExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait GestureZoomExt -->
-Trait containing all `GestureZoom` methods.
-
-# Implementors
-
-[`GestureZoom`](struct.GestureZoom.html)
+[`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl GestureZoom::fn new -->
 Returns a newly created `Gesture` that recognizes zoom
 in/out gestures (usually known as pinch/zoom).
@@ -16127,7 +16091,7 @@ a `Widget`
 # Returns
 
 a newly created `GestureZoom`
-<!-- trait GestureZoomExt::fn get_scale_delta -->
+<!-- impl GestureZoom::fn get_scale_delta -->
 If `self` is active, this function returns the zooming difference
 since the gesture was recognized (hence the starting point is
 considered 1:1). If `self` is not active, 1 is returned.
@@ -16846,13 +16810,7 @@ an icon theme.
 
 # Implements
 
-[`IconInfoExt`](trait.IconInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
-<!-- trait IconInfoExt -->
-Trait containing all `IconInfo` methods.
-
-# Implementors
-
-[`IconInfo`](struct.IconInfo.html)
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl IconInfo::fn new_for_pixbuf -->
 Creates a `IconInfo` for a `gdk_pixbuf::Pixbuf`.
 ## `icon_theme`
@@ -16863,7 +16821,7 @@ the pixbuf to wrap in a `IconInfo`
 # Returns
 
 a `IconInfo`
-<!-- trait IconInfoExt::fn get_base_scale -->
+<!-- impl IconInfo::fn get_base_scale -->
 Gets the base scale for the icon. The base scale is a scale
 for the icon that was specified by the icon theme creator.
 For instance an icon drawn for a high-dpi screen with window
@@ -16873,7 +16831,7 @@ a base scale of 2.
 # Returns
 
 the base scale
-<!-- trait IconInfoExt::fn get_base_size -->
+<!-- impl IconInfo::fn get_base_size -->
 Gets the base size for the icon. The base size
 is a size for the icon that was specified by
 the icon theme creator. This may be different
@@ -16890,7 +16848,7 @@ not include the base scale.
 
 the base size, or 0, if no base
  size is known for the icon.
-<!-- trait IconInfoExt::fn get_filename -->
+<!-- impl IconInfo::fn get_filename -->
 Gets the filename for the icon. If the `IconLookupFlags::UseBuiltin`
 flag was passed to `IconThemeExt::lookup_icon`, there may be no
 filename if a builtin icon is returned; in this case, you should
@@ -16902,7 +16860,7 @@ the filename for the icon, or `None`
  if `IconInfo::get_builtin_pixbuf` should be used instead.
  The return value is owned by GTK+ and should not be modified
  or freed.
-<!-- trait IconInfoExt::fn is_symbolic -->
+<!-- impl IconInfo::fn is_symbolic -->
 Checks if the icon is symbolic or not. This currently uses only
 the file name and not the file contents for determining this.
 This behaviour may change in the future.
@@ -16910,7 +16868,7 @@ This behaviour may change in the future.
 # Returns
 
 `true` if the icon is symbolic, `false` otherwise
-<!-- trait IconInfoExt::fn load_icon -->
+<!-- impl IconInfo::fn load_icon -->
 Renders an icon previously looked up in an icon theme using
 `IconThemeExt::lookup_icon`; the size will be based on the size
 passed to `IconThemeExt::lookup_icon`. Note that the resulting
@@ -16929,11 +16887,11 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
-<!-- trait IconInfoExt::fn load_icon_async -->
+<!-- impl IconInfo::fn load_icon_async -->
 Asynchronously load, render and scale an icon previously looked up
 from the icon theme using `IconThemeExt::lookup_icon`.
 
-For more details, see `IconInfoExt::load_icon` which is the synchronous
+For more details, see `IconInfo::load_icon` which is the synchronous
 version of this call.
 ## `cancellable`
 optional `gio::Cancellable` object, `None` to ignore
@@ -16942,8 +16900,8 @@ a `GAsyncReadyCallback` to call when the
  request is satisfied
 ## `user_data`
 the data to pass to callback function
-<!-- trait IconInfoExt::fn load_icon_finish -->
-Finishes an async icon load, see `IconInfoExt::load_icon_async`.
+<!-- impl IconInfo::fn load_icon_finish -->
+Finishes an async icon load, see `IconInfo::load_icon_async`.
 ## `res`
 a `gio::AsyncResult`
 
@@ -16953,7 +16911,7 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
-<!-- trait IconInfoExt::fn load_surface -->
+<!-- impl IconInfo::fn load_surface -->
 Renders an icon previously looked up in an icon theme using
 `IconThemeExt::lookup_icon`; the size will be based on the size
 passed to `IconThemeExt::lookup_icon`. Note that the resulting
@@ -16974,10 +16932,10 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `cairo_surface_destroy` to release your
  reference to the icon.
-<!-- trait IconInfoExt::fn load_symbolic -->
+<!-- impl IconInfo::fn load_symbolic -->
 Loads an icon, modifying it to match the system colours for the foreground,
 success, warning and error colors provided. If the icon is not a symbolic
-one, the function will return the result from `IconInfoExt::load_icon`.
+one, the function will return the result from `IconInfo::load_icon`.
 
 This allows loading symbolic icons that will match the system theme.
 
@@ -17010,11 +16968,11 @@ a `gboolean`, returns whether the
 # Returns
 
 a `gdk_pixbuf::Pixbuf` representing the loaded icon
-<!-- trait IconInfoExt::fn load_symbolic_async -->
+<!-- impl IconInfo::fn load_symbolic_async -->
 Asynchronously load, render and scale a symbolic icon previously looked up
 from the icon theme using `IconThemeExt::lookup_icon`.
 
-For more details, see `IconInfoExt::load_symbolic` which is the synchronous
+For more details, see `IconInfo::load_symbolic` which is the synchronous
 version of this call.
 ## `fg`
 a `gdk::RGBA` representing the foreground color of the icon
@@ -17035,8 +16993,8 @@ a `GAsyncReadyCallback` to call when the
  request is satisfied
 ## `user_data`
 the data to pass to callback function
-<!-- trait IconInfoExt::fn load_symbolic_finish -->
-Finishes an async icon load, see `IconInfoExt::load_symbolic_async`.
+<!-- impl IconInfo::fn load_symbolic_finish -->
+Finishes an async icon load, see `IconInfo::load_symbolic_async`.
 ## `res`
 a `gio::AsyncResult`
 ## `was_symbolic`
@@ -17050,17 +17008,17 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
-<!-- trait IconInfoExt::fn load_symbolic_for_context -->
+<!-- impl IconInfo::fn load_symbolic_for_context -->
 Loads an icon, modifying it to match the system colors for the foreground,
 success, warning and error colors provided. If the icon is not a symbolic
-one, the function will return the result from `IconInfoExt::load_icon`.
+one, the function will return the result from `IconInfo::load_icon`.
 This function uses the regular foreground color and the symbolic colors
 with the names “success_color”, “warning_color” and “error_color” from
 the context.
 
 This allows loading symbolic icons that will match the system theme.
 
-See `IconInfoExt::load_symbolic` for more details.
+See `IconInfo::load_symbolic` for more details.
 ## `context`
 a `StyleContext`
 ## `was_symbolic`
@@ -17071,11 +17029,11 @@ a `gboolean`, returns whether the
 # Returns
 
 a `gdk_pixbuf::Pixbuf` representing the loaded icon
-<!-- trait IconInfoExt::fn load_symbolic_for_context_async -->
+<!-- impl IconInfo::fn load_symbolic_for_context_async -->
 Asynchronously load, render and scale a symbolic icon previously
 looked up from the icon theme using `IconThemeExt::lookup_icon`.
 
-For more details, see `IconInfoExt::load_symbolic_for_context`
+For more details, see `IconInfo::load_symbolic_for_context`
 which is the synchronous version of this call.
 ## `context`
 a `StyleContext`
@@ -17087,8 +17045,8 @@ a `GAsyncReadyCallback` to call when the
  request is satisfied
 ## `user_data`
 the data to pass to callback function
-<!-- trait IconInfoExt::fn load_symbolic_for_context_finish -->
-Finishes an async icon load, see `IconInfoExt::load_symbolic_for_context_async`.
+<!-- impl IconInfo::fn load_symbolic_for_context_finish -->
+Finishes an async icon load, see `IconInfo::load_symbolic_for_context_async`.
 ## `res`
 a `gio::AsyncResult`
 ## `was_symbolic`
@@ -17259,7 +17217,7 @@ directory name to append to the icon path
 Looks up a named icon and returns a `IconInfo` containing
 information such as the filename of the icon. The icon
 can then be rendered into a pixbuf using
-`IconInfoExt::load_icon`. (`IconThemeExt::load_icon`
+`IconInfo::load_icon`. (`IconThemeExt::load_icon`
 combines these two steps if all you need is the pixbuf.)
 
 If `icon_names` contains more than one name, this function
@@ -17282,7 +17240,7 @@ found.
 Looks up a named icon for a particular window scale and returns
 a `IconInfo` containing information such as the filename of the
 icon. The icon can then be rendered into a pixbuf using
-`IconInfoExt::load_icon`. (`IconThemeExt::load_icon`
+`IconInfo::load_icon`. (`IconThemeExt::load_icon`
 combines these two steps if all you need is the pixbuf.)
 
 If `icon_names` contains more than one name, this function
@@ -17379,7 +17337,7 @@ a `glib::List` list
 Looks up an icon in an icon theme, scales it to the given size
 and renders it into a pixbuf. This is a convenience function;
 if more details about the icon are needed, use
-`IconThemeExt::lookup_icon` followed by `IconInfoExt::load_icon`.
+`IconThemeExt::lookup_icon` followed by `IconInfo::load_icon`.
 
 Note that you probably want to listen for icon theme changes and
 update the icon. This is usually done by connecting to the
@@ -17392,7 +17350,7 @@ icon theme loaded, which would be a waste of memory.
 the name of the icon to lookup
 ## `size`
 the desired icon size. The resulting icon may not be
- exactly this size; see `IconInfoExt::load_icon`.
+ exactly this size; see `IconInfo::load_icon`.
 ## `flags`
 flags modifying the behavior of the icon lookup
 
@@ -17407,7 +17365,7 @@ Looks up an icon in an icon theme for a particular window scale,
 scales it to the given size and renders it into a pixbuf. This is a
 convenience function; if more details about the icon are needed,
 use `IconThemeExt::lookup_icon` followed by
-`IconInfoExt::load_icon`.
+`IconInfo::load_icon`.
 
 Note that you probably want to listen for icon theme changes and
 update the icon. This is usually done by connecting to the
@@ -17420,7 +17378,7 @@ icon theme loaded, which would be a waste of memory.
 the name of the icon to lookup
 ## `size`
 the desired icon size. The resulting icon may not be
- exactly this size; see `IconInfoExt::load_icon`.
+ exactly this size; see `IconInfo::load_icon`.
 ## `scale`
 desired scale
 ## `flags`
@@ -17437,7 +17395,7 @@ Looks up an icon in an icon theme for a particular window scale,
 scales it to the given size and renders it into a cairo surface. This is a
 convenience function; if more details about the icon are needed,
 use `IconThemeExt::lookup_icon` followed by
-`IconInfoExt::load_surface`.
+`IconInfo::load_surface`.
 
 Note that you probably want to listen for icon theme changes and
 update the icon. This is usually done by connecting to the
@@ -17446,7 +17404,7 @@ update the icon. This is usually done by connecting to the
 the name of the icon to lookup
 ## `size`
 the desired icon size. The resulting icon may not be
- exactly this size; see `IconInfoExt::load_icon`.
+ exactly this size; see `IconInfo::load_icon`.
 ## `scale`
 desired scale
 ## `for_window`
@@ -17464,7 +17422,7 @@ the rendered icon; this may be
 <!-- trait IconThemeExt::fn lookup_by_gicon -->
 Looks up an icon and returns a `IconInfo` containing information
 such as the filename of the icon. The icon can then be rendered
-into a pixbuf using `IconInfoExt::load_icon`.
+into a pixbuf using `IconInfo::load_icon`.
 
 When rendering on displays with high pixel densities you should not
 use a `size` multiplied by the scaling factor returned by functions
@@ -17486,7 +17444,7 @@ a `IconInfo` containing
 <!-- trait IconThemeExt::fn lookup_by_gicon_for_scale -->
 Looks up an icon and returns a `IconInfo` containing information
 such as the filename of the icon. The icon can then be rendered into
-a pixbuf using `IconInfoExt::load_icon`.
+a pixbuf using `IconInfo::load_icon`.
 ## `icon`
 the `gio::Icon` to look up
 ## `size`
@@ -17505,7 +17463,7 @@ a `IconInfo` containing
 Looks up a named icon and returns a `IconInfo` containing
 information such as the filename of the icon. The icon
 can then be rendered into a pixbuf using
-`IconInfoExt::load_icon`. (`IconThemeExt::load_icon`
+`IconInfo::load_icon`. (`IconThemeExt::load_icon`
 combines these two steps if all you need is the pixbuf.)
 
 When rendering on displays with high pixel densities you should not
@@ -17529,7 +17487,7 @@ a `IconInfo` object
 Looks up a named icon for a particular window scale and returns a
 `IconInfo` containing information such as the filename of the
 icon. The icon can then be rendered into a pixbuf using
-`IconInfoExt::load_icon`. (`IconThemeExt::load_icon` combines
+`IconInfo::load_icon`. (`IconThemeExt::load_icon` combines
 these two steps if all you need is the pixbuf.)
 ## `icon_name`
 the name of the icon to lookup
@@ -21650,7 +21608,7 @@ the index of the menu item to select. Index values are
  from 0 to n-1
 <!-- trait GtkMenuExt::fn set_monitor -->
 Informs GTK+ on which monitor a menu should be popped up.
-See `gdk::MonitorExt::get_geometry`.
+See `gdk::Monitor::get_geometry`.
 
 This function should be called from a ``GtkMenuPositionFunc``
 if the menu should not appear on the same monitor as the pointer.
@@ -24259,15 +24217,7 @@ Feature: `v3_22`
 
 # Implements
 
-[`PadControllerExt`](trait.PadControllerExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PadControllerExtManual`](prelude/trait.PadControllerExtManual.html)
-<!-- trait PadControllerExt -->
-Trait containing all `PadController` methods.
-
-Feature: `v3_22`
-
-# Implementors
-
-[`PadController`](struct.PadController.html)
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PadControllerExtManual`](prelude/trait.PadControllerExtManual.html)
 <!-- impl PadController::fn new -->
 Creates a new `PadController` that will associate events from `pad` to
 actions. A `None` pad may be provided so the controller manages all pad devices
@@ -24277,7 +24227,7 @@ guaranteed.
 
 The `PadController` is created with no mapped actions. In order to map pad
 events to actions, use `PadController::set_action_entries` or
-`PadControllerExt::set_action`.
+`PadController::set_action`.
 
 Feature: `v3_22`
 
@@ -24291,7 +24241,7 @@ A `gdk::InputSource::TabletPad` device, or `None` to handle all pads
 # Returns
 
 A newly created `PadController`
-<!-- trait PadControllerExt::fn set_action -->
+<!-- impl PadController::fn set_action -->
 Adds an individual action to `self`. This action will only be activated
 if the given button/ring/strip number in `index` is interacted while
 the current mode is `mode`. -1 may be used for simple cases, so the action
@@ -24314,9 +24264,9 @@ Human readable description of this action, this string should
  be deemed user-visible.
 ## `action_name`
 action name that will be activated in the `gio::ActionGroup`
-<!-- trait PadControllerExt::fn set_action_entries -->
+<!-- impl PadController::fn set_action_entries -->
 This is a convenience function to add a group of action entries on
-`self`. See `PadActionEntry` and `PadControllerExt::set_action`.
+`self`. See `PadActionEntry` and `PadController::set_action`.
 
 Feature: `v3_22`
 
@@ -25120,12 +25070,12 @@ of the sidebar.
 While bookmarks are completely in control of the user, the places sidebar also
 allows individual applications to provide extra shortcut folders that are unique
 to each application. For example, a Paint program may want to add a shortcut
-for a Clipart folder. You can do this with `PlacesSidebarExt::add_shortcut`.
+for a Clipart folder. You can do this with `PlacesSidebar::add_shortcut`.
 
 To make use of the places sidebar, an application at least needs to connect
 to the `PlacesSidebar::open-location` signal. This is emitted when the
 user selects in the sidebar a location to open. The application should also
-call `PlacesSidebarExt::set_location` when it changes the currently-viewed
+call `PlacesSidebar::set_location` when it changes the currently-viewed
 location.
 
 # CSS nodes
@@ -25141,13 +25091,7 @@ be used:
 
 # Implements
 
-[`PlacesSidebarExt`](trait.PlacesSidebarExt.html), [`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
-<!-- trait PlacesSidebarExt -->
-Trait containing all `PlacesSidebar` methods.
-
-# Implementors
-
-[`PlacesSidebar`](struct.PlacesSidebar.html)
+[`ScrolledWindowExt`](trait.ScrolledWindowExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- impl PlacesSidebar::fn new -->
 Creates a new `PlacesSidebar` widget.
 
@@ -25158,7 +25102,7 @@ when the user makes a selection in the sidebar.
 # Returns
 
 a newly created `PlacesSidebar`
-<!-- trait PlacesSidebarExt::fn add_shortcut -->
+<!-- impl PlacesSidebar::fn add_shortcut -->
 Applications may want to present some folders in the places sidebar if
 they could be immediately useful to users. For example, a drawing
 program could add a “/usr/share/clipart” location when the sidebar is
@@ -25171,15 +25115,15 @@ is called multiple times with different locations, then they are added
 to the sidebar’s list in the same order as the function is called.
 ## `location`
 location to add as an application-specific shortcut
-<!-- trait PlacesSidebarExt::fn get_local_only -->
-Returns the value previously set with `PlacesSidebarExt::set_local_only`.
+<!-- impl PlacesSidebar::fn get_local_only -->
+Returns the value previously set with `PlacesSidebar::set_local_only`.
 
 # Returns
 
 `true` if the sidebar will only show local files.
-<!-- trait PlacesSidebarExt::fn get_location -->
+<!-- impl PlacesSidebar::fn get_location -->
 Gets the currently selected location in the `self`. This can be `None` when
-nothing is selected, for example, when `PlacesSidebarExt::set_location` has
+nothing is selected, for example, when `PlacesSidebar::set_location` has
 been called with a location that is not among the sidebar’s list of places to
 show.
 
@@ -25192,7 +25136,7 @@ for your menu items.
 
 a `gio::File` with the selected location, or
 `None` if nothing is visually selected.
-<!-- trait PlacesSidebarExt::fn get_nth_bookmark -->
+<!-- impl PlacesSidebar::fn get_nth_bookmark -->
 This function queries the bookmarks added by the user to the places sidebar,
 and returns one of them. This function is used by `FileChooser` to implement
 the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the cooresponding bookmark.
@@ -25204,14 +25148,14 @@ index of the bookmark to query
 The bookmark specified by the index `n`, or
 `None` if no such index exist. Note that the indices start at 0, even though
 the file chooser starts them with the keyboard shortcut "Alt-1".
-<!-- trait PlacesSidebarExt::fn get_open_flags -->
+<!-- impl PlacesSidebar::fn get_open_flags -->
 Gets the open flags.
 
 # Returns
 
 the `PlacesOpenFlags` of `self`
-<!-- trait PlacesSidebarExt::fn get_show_connect_to_server -->
-Returns the value previously set with `PlacesSidebarExt::set_show_connect_to_server`
+<!-- impl PlacesSidebar::fn get_show_connect_to_server -->
+Returns the value previously set with `PlacesSidebar::set_show_connect_to_server`
 
 # Deprecated since 3.18
 
@@ -25221,20 +25165,20 @@ It is recommended to group this functionality with the drives
 # Returns
 
 `true` if the sidebar will display a “Connect to Server” item.
-<!-- trait PlacesSidebarExt::fn get_show_desktop -->
-Returns the value previously set with `PlacesSidebarExt::set_show_desktop`
+<!-- impl PlacesSidebar::fn get_show_desktop -->
+Returns the value previously set with `PlacesSidebar::set_show_desktop`
 
 # Returns
 
 `true` if the sidebar will display a builtin shortcut to the desktop folder.
-<!-- trait PlacesSidebarExt::fn get_show_enter_location -->
-Returns the value previously set with `PlacesSidebarExt::set_show_enter_location`
+<!-- impl PlacesSidebar::fn get_show_enter_location -->
+Returns the value previously set with `PlacesSidebar::set_show_enter_location`
 
 # Returns
 
 `true` if the sidebar will display an “Enter Location” item.
-<!-- trait PlacesSidebarExt::fn get_show_other_locations -->
-Returns the value previously set with `PlacesSidebarExt::set_show_other_locations`
+<!-- impl PlacesSidebar::fn get_show_other_locations -->
+Returns the value previously set with `PlacesSidebar::set_show_other_locations`
 
 Feature: `v3_18`
 
@@ -25242,8 +25186,8 @@ Feature: `v3_18`
 # Returns
 
 `true` if the sidebar will display an “Other Locations” item.
-<!-- trait PlacesSidebarExt::fn get_show_recent -->
-Returns the value previously set with `PlacesSidebarExt::set_show_recent`
+<!-- impl PlacesSidebar::fn get_show_recent -->
+Returns the value previously set with `PlacesSidebar::set_show_recent`
 
 Feature: `v3_18`
 
@@ -25251,8 +25195,8 @@ Feature: `v3_18`
 # Returns
 
 `true` if the sidebar will display a builtin shortcut for recent files
-<!-- trait PlacesSidebarExt::fn get_show_starred_location -->
-Returns the value previously set with `PlacesSidebarExt::set_show_starred_location`
+<!-- impl PlacesSidebar::fn get_show_starred_location -->
+Returns the value previously set with `PlacesSidebar::set_show_starred_location`
 
 Feature: `v3_22_26`
 
@@ -25260,8 +25204,8 @@ Feature: `v3_22_26`
 # Returns
 
 `true` if the sidebar will display a Starred item.
-<!-- trait PlacesSidebarExt::fn get_show_trash -->
-Returns the value previously set with `PlacesSidebarExt::set_show_trash`
+<!-- impl PlacesSidebar::fn get_show_trash -->
+Returns the value previously set with `PlacesSidebar::set_show_trash`
 
 Feature: `v3_18`
 
@@ -25269,26 +25213,26 @@ Feature: `v3_18`
 # Returns
 
 `true` if the sidebar will display a “Trash” item.
-<!-- trait PlacesSidebarExt::fn list_shortcuts -->
+<!-- impl PlacesSidebar::fn list_shortcuts -->
 Gets the list of shortcuts.
 
 # Returns
 
 
  A `glib::SList` of `gio::File` of the locations that have been added as
- application-specific shortcuts with `PlacesSidebarExt::add_shortcut`.
+ application-specific shortcuts with `PlacesSidebar::add_shortcut`.
  To free this list, you can use
 
 ```C
 g_slist_free_full (list, (GDestroyNotify) g_object_unref);
 ```
-<!-- trait PlacesSidebarExt::fn remove_shortcut -->
+<!-- impl PlacesSidebar::fn remove_shortcut -->
 Removes an application-specific shortcut that has been previously been
-inserted with `PlacesSidebarExt::add_shortcut`. If the `location` is not a
+inserted with `PlacesSidebar::add_shortcut`. If the `location` is not a
 shortcut in the sidebar, then nothing is done.
 ## `location`
 location to remove
-<!-- trait PlacesSidebarExt::fn set_drop_targets_visible -->
+<!-- impl PlacesSidebar::fn set_drop_targets_visible -->
 Make the `PlacesSidebar` show drop targets, so it can show the available
 drop targets and a "new bookmark" row. This improves the Drag-and-Drop
 experience of the user and allows applications to show all available
@@ -25306,11 +25250,11 @@ whether to show the valid targets or not.
 ## `context`
 drag context used to ask the source about the action that wants to
  perform, so hints are more accurate.
-<!-- trait PlacesSidebarExt::fn set_local_only -->
+<!-- impl PlacesSidebar::fn set_local_only -->
 Sets whether the `self` should only show local files.
 ## `local_only`
 whether to show only local files
-<!-- trait PlacesSidebarExt::fn set_location -->
+<!-- impl PlacesSidebar::fn set_location -->
 Sets the location that is being shown in the widgets surrounding the
 `self`, for example, in a folder view in a file manager. In turn, the
 `self` will highlight that location if it is being shown in the list of
@@ -25318,7 +25262,7 @@ places, or it will unhighlight everything if the `location` is not among the
 places in the list.
 ## `location`
 location to select, or `None` for no current path
-<!-- trait PlacesSidebarExt::fn set_open_flags -->
+<!-- impl PlacesSidebar::fn set_open_flags -->
 Sets the way in which the calling application can open new locations from
 the places sidebar. For example, some applications only open locations
 “directly” into their main view, while others may support opening locations
@@ -25330,13 +25274,13 @@ the “Open in new tab” and “Open in new window” menu items as appropriate
 
 When the `PlacesSidebar::open-location` signal is emitted, its flags
 argument will be set to one of the `flags` that was passed in
-`PlacesSidebarExt::set_open_flags`.
+`PlacesSidebar::set_open_flags`.
 
 Passing 0 for `flags` will cause `PlacesOpenFlags::Normal` to always be sent
 to callbacks for the “open-location” signal.
 ## `flags`
 Bitmask of modes in which the calling application can open locations
-<!-- trait PlacesSidebarExt::fn set_show_connect_to_server -->
+<!-- impl PlacesSidebar::fn set_show_connect_to_server -->
 Sets whether the `self` should show an item for connecting to a network server;
 this is off by default. An application may want to turn this on if it implements
 a way for the user to connect to network servers directly.
@@ -25350,14 +25294,14 @@ It is recommended to group this functionality with the drives
  and network location under the new 'Other Location' item
 ## `show_connect_to_server`
 whether to show an item for the Connect to Server command
-<!-- trait PlacesSidebarExt::fn set_show_desktop -->
+<!-- impl PlacesSidebar::fn set_show_desktop -->
 Sets whether the `self` should show an item for the Desktop folder.
 The default value for this option is determined by the desktop
 environment and the user’s configuration, but this function can be
 used to override it on a per-application basis.
 ## `show_desktop`
 whether to show an item for the Desktop folder
-<!-- trait PlacesSidebarExt::fn set_show_enter_location -->
+<!-- impl PlacesSidebar::fn set_show_enter_location -->
 Sets whether the `self` should show an item for entering a location;
 this is off by default. An application may want to turn this on if manually
 entering URLs is an expected user action.
@@ -25366,7 +25310,7 @@ If you enable this, you should connect to the
 `PlacesSidebar::show-enter-location` signal.
 ## `show_enter_location`
 whether to show an item to enter a location
-<!-- trait PlacesSidebarExt::fn set_show_other_locations -->
+<!-- impl PlacesSidebar::fn set_show_other_locations -->
 Sets whether the `self` should show an item for the application to show
 an Other Locations view; this is off by default. When set to `true`, persistent
 devices such as hard drives are hidden, otherwise they are shown in the sidebar.
@@ -25380,7 +25324,7 @@ Feature: `v3_18`
 
 ## `show_other_locations`
 whether to show an item for the Other Locations view
-<!-- trait PlacesSidebarExt::fn set_show_recent -->
+<!-- impl PlacesSidebar::fn set_show_recent -->
 Sets whether the `self` should show an item for recent files.
 The default value for this option is determined by the desktop
 environment, but this function can be used to override it on a
@@ -25390,7 +25334,7 @@ Feature: `v3_18`
 
 ## `show_recent`
 whether to show an item for recent files
-<!-- trait PlacesSidebarExt::fn set_show_starred_location -->
+<!-- impl PlacesSidebar::fn set_show_starred_location -->
 If you enable this, you should connect to the
 `PlacesSidebar::show-starred-location` signal.
 
@@ -25398,7 +25342,7 @@ Feature: `v3_22_26`
 
 ## `show_starred_location`
 whether to show an item for Starred files
-<!-- trait PlacesSidebarExt::fn set_show_trash -->
+<!-- impl PlacesSidebar::fn set_show_trash -->
 Sets whether the `self` should show an item for the Trash location.
 
 Feature: `v3_18`
@@ -25477,7 +25421,7 @@ add extra items to the menu as appropriate. For example, a file manager
 may want to add a "Properties" command to the menu.
 
 It is not necessary to store the `selected_item` for each menu item;
-during their callbacks, the application can use `PlacesSidebarExt::get_location`
+during their callbacks, the application can use `PlacesSidebar::get_location`
 to get the file to which the item refers.
 
 The `selected_item` argument may be `None` in case the selection refers to
@@ -43315,7 +43259,7 @@ would trigger that (for example, changing the text of a `Label`),
 then you will have to call `WidgetExt::queue_resize` or
 `WidgetExt::queue_draw_area` yourself.
 
-`gdk::FrameClockExt::get_frame_time` should generally be used for timing
+`gdk::FrameClock::get_frame_time` should generally be used for timing
 continuous animations and
 `gdk::FrameTimings::get_predicted_presentation_time` if you are
 trying to display isolated frames at particular times.
@@ -44078,13 +44022,13 @@ the `cairo::FontOptions` or `None` if not set
 Obtains the frame clock for a widget. The frame clock is a global
 “ticker” that can be used to drive animations and repaints. The
 most common reason to get the frame clock is to call
-`gdk::FrameClockExt::get_frame_time`, in order to get a time to use for
+`gdk::FrameClock::get_frame_time`, in order to get a time to use for
 animating. For example you might record the start of the animation
-with an initial value from `gdk::FrameClockExt::get_frame_time`, and
+with an initial value from `gdk::FrameClock::get_frame_time`, and
 then update the animation by calling
-`gdk::FrameClockExt::get_frame_time` again during each repaint.
+`gdk::FrameClock::get_frame_time` again during each repaint.
 
-`gdk::FrameClockExt::request_phase` will result in a new frame on the
+`gdk::FrameClock::request_phase` will result in a new frame on the
 clock, but won’t necessarily repaint any widgets. To repaint a
 widget, you have to use `WidgetExt::queue_draw` which invalidates
 the widget (thus scheduling it to receive a draw on the next

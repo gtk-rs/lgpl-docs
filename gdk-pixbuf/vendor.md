@@ -1830,13 +1830,7 @@ An opaque struct representing a simple animation.
 
 # Implements
 
-[`PixbufSimpleAnimExt`](trait.PixbufSimpleAnimExt.html), [`PixbufAnimationExt`](trait.PixbufAnimationExt.html)
-<!-- trait PixbufSimpleAnimExt -->
-Trait containing all `PixbufSimpleAnim` methods.
-
-# Implementors
-
-[`PixbufSimpleAnim`](struct.PixbufSimpleAnim.html)
+[`PixbufAnimationExt`](trait.PixbufAnimationExt.html)
 <!-- impl PixbufSimpleAnim::fn new -->
 Creates a new, empty animation.
 ## `width`
@@ -1849,19 +1843,19 @@ the speed of the animation, in frames per second
 # Returns
 
 a newly allocated `PixbufSimpleAnim`
-<!-- trait PixbufSimpleAnimExt::fn add_frame -->
+<!-- impl PixbufSimpleAnim::fn add_frame -->
 Adds a new frame to `self`. The `pixbuf` must
 have the dimensions specified when the animation
 was constructed.
 ## `pixbuf`
 the pixbuf to add
-<!-- trait PixbufSimpleAnimExt::fn get_loop -->
+<!-- impl PixbufSimpleAnim::fn get_loop -->
 Gets whether `self` should loop indefinitely when it reaches the end.
 
 # Returns
 
 `true` if the animation loops forever, `false` otherwise
-<!-- trait PixbufSimpleAnimExt::fn set_loop -->
+<!-- impl PixbufSimpleAnim::fn set_loop -->
 Sets whether `self` should loop indefinitely when it reaches the end.
 ## `loop_`
 whether to loop the animation
