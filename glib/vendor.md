@@ -1,4 +1,177 @@
 <!-- file * -->
+<!-- struct ByteArray -->
+Contains the public fields of a GByteArray.
+<!-- impl ByteArray::fn append -->
+Adds the given bytes to the end of the `ByteArray`.
+The array will grow in size automatically if necessary.
+## `array`
+a `ByteArray`
+## `data`
+the byte data to be added
+## `len`
+the number of bytes to add
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn free -->
+Frees the memory allocated by the `ByteArray`. If `free_segment` is
+`true` it frees the actual byte data. If the reference count of
+`array` is greater than one, the `ByteArray` wrapper is preserved but
+the size of `array` will be set to zero.
+## `array`
+a `ByteArray`
+## `free_segment`
+if `true` the actual byte data is freed as well
+
+# Returns
+
+the element data if `free_segment` is `false`, otherwise
+ `None`. The element data should be freed using `g_free`.
+<!-- impl ByteArray::fn free_to_bytes -->
+Transfers the data from the `ByteArray` into a new immutable `Bytes`.
+
+The `ByteArray` is freed unless the reference count of `array` is greater
+than one, the `ByteArray` wrapper is preserved but the size of `array`
+will be set to zero.
+
+This is identical to using `Bytes::new_take` and `ByteArray::free`
+together.
+## `array`
+a `ByteArray`
+
+# Returns
+
+a new immutable `Bytes` representing same
+ byte data that was in the array
+<!-- impl ByteArray::fn new -->
+Creates a new `ByteArray` with a reference count of 1.
+
+# Returns
+
+the new `ByteArray`
+<!-- impl ByteArray::fn new_take -->
+Create byte array containing the data. The data will be owned by the array
+and will be freed with `g_free`, i.e. it could be allocated using `g_strdup`.
+## `data`
+byte data for the array
+## `len`
+length of `data`
+
+# Returns
+
+a new `ByteArray`
+<!-- impl ByteArray::fn prepend -->
+Adds the given data to the start of the `ByteArray`.
+The array will grow in size automatically if necessary.
+## `array`
+a `ByteArray`
+## `data`
+the byte data to be added
+## `len`
+the number of bytes to add
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn ref -->
+Atomically increments the reference count of `array` by one.
+This function is thread-safe and may be called from any thread.
+## `array`
+A `ByteArray`
+
+# Returns
+
+The passed in `ByteArray`
+<!-- impl ByteArray::fn remove_index -->
+Removes the byte at the given index from a `ByteArray`.
+The following bytes are moved down one place.
+## `array`
+a `ByteArray`
+## `index_`
+the index of the byte to remove
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn remove_index_fast -->
+Removes the byte at the given index from a `ByteArray`. The last
+element in the array is used to fill in the space, so this function
+does not preserve the order of the `ByteArray`. But it is faster
+than `ByteArray::remove_index`.
+## `array`
+a `ByteArray`
+## `index_`
+the index of the byte to remove
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn remove_range -->
+Removes the given number of bytes starting at the given index from a
+`ByteArray`. The following elements are moved to close the gap.
+## `array`
+a `ByteArray`
+## `index_`
+the index of the first byte to remove
+## `length`
+the number of bytes to remove
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn set_size -->
+Sets the size of the `ByteArray`, expanding it if necessary.
+## `array`
+a `ByteArray`
+## `length`
+the new size of the `ByteArray`
+
+# Returns
+
+the `ByteArray`
+<!-- impl ByteArray::fn sized_new -->
+Creates a new `ByteArray` with `reserved_size` bytes preallocated.
+This avoids frequent reallocation, if you are going to add many
+bytes to the array. Note however that the size of the array is still
+0.
+## `reserved_size`
+number of bytes preallocated
+
+# Returns
+
+the new `ByteArray`
+<!-- impl ByteArray::fn sort -->
+Sorts a byte array, using `compare_func` which should be a
+`qsort`-style comparison function (returns less than zero for first
+arg is less than second arg, zero for equal, greater than zero if
+first arg is greater than second arg).
+
+If two array elements compare equal, their order in the sorted array
+is undefined. If you want equal elements to keep their order (i.e.
+you want a stable sort) you can write a comparison function that,
+if two elements would otherwise compare equal, compares them by
+their addresses.
+## `array`
+a `ByteArray`
+## `compare_func`
+comparison function
+<!-- impl ByteArray::fn sort_with_data -->
+Like `ByteArray::sort`, but the comparison function takes an extra
+user data argument.
+## `array`
+a `ByteArray`
+## `compare_func`
+comparison function
+## `user_data`
+data to pass to `compare_func`
+<!-- impl ByteArray::fn unref -->
+Atomically decrements the reference count of `array` by one. If the
+reference count drops to 0, all memory allocated by the array is
+released. This function is thread-safe and may be called from any
+thread.
+## `array`
+A `ByteArray`
 <!-- struct Bytes -->
 A simple refcounted data type representing an immutable sequence of zero or
 more bytes from an unspecified origin.

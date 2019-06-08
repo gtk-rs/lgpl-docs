@@ -2,7 +2,7 @@
 <!-- enum Alignment -->
 A `Alignment` describes how to align the lines of a `Layout` within the
 available space. If the `Layout` is set to justify
-using `LayoutExt::set_justify`, this only has effect for partial lines.
+using `Layout::set_justify`, this only has effect for partial lines.
 <!-- enum Alignment::variant Left -->
 Put all available space on the right
 <!-- enum Alignment::variant Center -->
@@ -377,21 +377,11 @@ a newly-allocated text string that must be freed with `g_free`.
 <!-- struct Context -->
 The `Context` structure stores global information
 used to control the itemization process.
-
-# Implements
-
-[`ContextExt`](trait.ContextExt.html)
-<!-- trait ContextExt -->
-Trait containing all `Context` methods.
-
-# Implementors
-
-[`Context`](struct.Context.html)
 <!-- impl Context::fn new -->
 Creates a new `Context` initialized to default values.
 
 This function is not particularly useful as it should always
-be followed by a `ContextExt::set_font_map` call, and the
+be followed by a `Context::set_font_map` call, and the
 function `FontMapExt::create_context` does these two steps
 together and hence users are recommended to use that.
 
@@ -405,7 +395,7 @@ For instance, the GTK+ toolkit has, among others,
 
 the newly allocated `Context`, which should
  be freed with `gobject::Object::unref`.
-<!-- trait ContextExt::fn changed -->
+<!-- impl Context::fn changed -->
 Forces a change in the context, which will cause any `Layout`
 using this context to re-layout.
 
@@ -413,66 +403,66 @@ This function is only useful when implementing a new backend
 for Pango, something applications won't do. Backends should
 call this function if they have attached extra data to the context
 and such data is changed.
-<!-- trait ContextExt::fn get_base_dir -->
+<!-- impl Context::fn get_base_dir -->
 Retrieves the base direction for the context. See
-`ContextExt::set_base_dir`.
+`Context::set_base_dir`.
 
 # Returns
 
 the base direction for the context.
-<!-- trait ContextExt::fn get_base_gravity -->
+<!-- impl Context::fn get_base_gravity -->
 Retrieves the base gravity for the context. See
-`ContextExt::set_base_gravity`.
+`Context::set_base_gravity`.
 
 # Returns
 
 the base gravity for the context.
-<!-- trait ContextExt::fn get_font_description -->
+<!-- impl Context::fn get_font_description -->
 Retrieve the default font description for the context.
 
 # Returns
 
 a pointer to the context's default font
  description. This value must not be modified or freed.
-<!-- trait ContextExt::fn get_font_map -->
+<!-- impl Context::fn get_font_map -->
 Gets the `FontMap` used to look up fonts for this context.
 
 # Returns
 
 the font map for the `Context`.
  This value is owned by Pango and should not be unreferenced.
-<!-- trait ContextExt::fn get_gravity -->
+<!-- impl Context::fn get_gravity -->
 Retrieves the gravity for the context. This is similar to
-`ContextExt::get_base_gravity`, except for when the base gravity
+`Context::get_base_gravity`, except for when the base gravity
 is `Gravity::Auto` for which `Gravity::get_for_matrix` is used
 to return the gravity from the current context matrix.
 
 # Returns
 
 the resolved gravity for the context.
-<!-- trait ContextExt::fn get_gravity_hint -->
+<!-- impl Context::fn get_gravity_hint -->
 Retrieves the gravity hint for the context. See
-`ContextExt::set_gravity_hint` for details.
+`Context::set_gravity_hint` for details.
 
 # Returns
 
 the gravity hint for the context.
-<!-- trait ContextExt::fn get_language -->
+<!-- impl Context::fn get_language -->
 Retrieves the global language tag for the context.
 
 # Returns
 
 the global language tag.
-<!-- trait ContextExt::fn get_matrix -->
+<!-- impl Context::fn get_matrix -->
 Gets the transformation matrix that will be applied when
-rendering with this context. See `ContextExt::set_matrix`.
+rendering with this context. See `Context::set_matrix`.
 
 # Returns
 
 the matrix, or `None` if no matrix has
  been set (which is the same as the identity matrix). The returned
  matrix is owned by Pango and must not be modified or freed.
-<!-- trait ContextExt::fn get_metrics -->
+<!-- impl Context::fn get_metrics -->
 Get overall metric information for a particular font
 description. Since the metrics may be substantially different for
 different scripts, a language tag can be provided to indicate that
@@ -499,7 +489,7 @@ language tag used to determine which script to get
 
 a `FontMetrics` object. The caller must call `FontMetrics::unref`
  when finished using the object.
-<!-- trait ContextExt::fn get_serial -->
+<!-- impl Context::fn get_serial -->
 Returns the current serial number of `self`. The serial number is
 initialized to an small number larger than zero when a new context
 is created and is increased whenever the context is changed using any
@@ -514,7 +504,7 @@ is only useful when implementing objects that need update when their
 # Returns
 
 The current serial number of `self`.
-<!-- trait ContextExt::fn list_families -->
+<!-- impl Context::fn list_families -->
 List all families for a context.
 ## `families`
 location to store a pointer to
@@ -522,7 +512,7 @@ location to store a pointer to
  with `g_free`.
 ## `n_families`
 location to store the number of elements in `descs`
-<!-- trait ContextExt::fn load_font -->
+<!-- impl Context::fn load_font -->
 Loads the font in one of the fontmaps in the context
 that is the closest match for `desc`.
 ## `desc`
@@ -532,7 +522,7 @@ a `FontDescription` describing the font to load
 
 the newly allocated `Font`
  that was loaded, or `None` if no font matched.
-<!-- trait ContextExt::fn load_fontset -->
+<!-- impl Context::fn load_fontset -->
 Load a set of fonts in the context that can be used to render
 a font matching `desc`.
 ## `desc`
@@ -544,7 +534,7 @@ a `Language` the fonts will be used for
 
 the newly allocated
  `Fontset` loaded, or `None` if no font matched.
-<!-- trait ContextExt::fn set_base_dir -->
+<!-- impl Context::fn set_base_dir -->
 Sets the base direction for the context.
 
 The base direction is used in applying the Unicode bidirectional
@@ -555,37 +545,37 @@ direction in the Unicode bidirectional algorithm. A value of
 for paragraphs that do not contain any strong characters themselves.
 ## `direction`
 the new base direction
-<!-- trait ContextExt::fn set_base_gravity -->
+<!-- impl Context::fn set_base_gravity -->
 Sets the base gravity for the context.
 
 The base gravity is used in laying vertical text out.
 ## `gravity`
 the new base gravity
-<!-- trait ContextExt::fn set_font_description -->
+<!-- impl Context::fn set_font_description -->
 Set the default font description for the context
 ## `desc`
 the new pango font description
-<!-- trait ContextExt::fn set_font_map -->
+<!-- impl Context::fn set_font_map -->
 Sets the font map to be searched when fonts are looked-up in this context.
 This is only for internal use by Pango backends, a `Context` obtained
 via one of the recommended methods should already have a suitable font map.
 ## `font_map`
 the `FontMap` to set.
-<!-- trait ContextExt::fn set_gravity_hint -->
+<!-- impl Context::fn set_gravity_hint -->
 Sets the gravity hint for the context.
 
 The gravity hint is used in laying vertical text out, and is only relevant
-if gravity of the context as returned by `ContextExt::get_gravity`
+if gravity of the context as returned by `Context::get_gravity`
 is set `Gravity::East` or `Gravity::West`.
 ## `hint`
 the new gravity hint
-<!-- trait ContextExt::fn set_language -->
+<!-- impl Context::fn set_language -->
 Sets the global language tag for the context. The default language
 for the locale of the running process can be found using
 `Language::get_default`.
 ## `language`
 the new language tag.
-<!-- trait ContextExt::fn set_matrix -->
+<!-- impl Context::fn set_matrix -->
 Sets the transformation matrix that will be applied when rendering
 with this context. Note that reported metrics are in the user space
 coordinates before the application of the matrix, not device-space
@@ -1332,7 +1322,7 @@ call this function if they have attached extra data to the context
 and such data is changed.
 <!-- trait FontMapExt::fn create_context -->
 Creates a `Context` connected to `self`. This is equivalent
-to `Context::new` followed by `ContextExt::set_font_map`.
+to `Context::new` followed by `Context::set_font_map`.
 
 If you are using Pango as part of a higher-level system,
 that system may have it's own way of create a `Context`.
@@ -1549,13 +1539,7 @@ which the creator provides when constructing the
 
 # Implements
 
-[`FontsetSimpleExt`](trait.FontsetSimpleExt.html), [`FontsetExt`](trait.FontsetExt.html)
-<!-- trait FontsetSimpleExt -->
-Trait containing all `FontsetSimple` methods.
-
-# Implementors
-
-[`FontsetSimple`](struct.FontsetSimple.html)
+[`FontsetExt`](trait.FontsetExt.html)
 <!-- impl FontsetSimple::fn new -->
 Creates a new `FontsetSimple` for the given language.
 ## `language`
@@ -1565,11 +1549,11 @@ a `Language` tag
 
 the newly allocated `FontsetSimple`, which should
  be freed with `gobject::Object::unref`.
-<!-- trait FontsetSimpleExt::fn append -->
+<!-- impl FontsetSimple::fn append -->
 Adds a font to the fontset.
 ## `font`
 a `Font`.
-<!-- trait FontsetSimpleExt::fn size -->
+<!-- impl FontsetSimple::fn size -->
 Returns the number of fonts in the fontset.
 
 # Returns
@@ -1889,8 +1873,8 @@ those situations, the layout is rotated using a non-identity PangoMatrix,
 and then glyph orientation is controlled using `Gravity`.
 Not every value in this enumeration makes sense for every usage of
 `Gravity`; for example, `Gravity::Auto` only can be passed to
-`ContextExt::set_base_gravity` and can only be returned by
-`ContextExt::get_base_gravity`.
+`Context::set_base_gravity` and can only be returned by
+`Context::get_base_gravity`.
 
 See also: `GravityHint`
 <!-- enum Gravity::variant South -->
@@ -2138,16 +2122,6 @@ treat the results of a `Layout` as a list of lines.
 
 The `Layout` structure is opaque, and has no user-visible
 fields.
-
-# Implements
-
-[`LayoutExt`](trait.LayoutExt.html)
-<!-- trait LayoutExt -->
-Trait containing all `Layout` methods.
-
-# Implementors
-
-[`Layout`](struct.Layout.html)
 <!-- impl Layout::fn new -->
 Create a new `Layout` object with attributes initialized to
 default values for a particular `Context`.
@@ -2159,12 +2133,12 @@ a `Context`
 the newly allocated `Layout`, with a reference
  count of one, which should be freed with
  `gobject::Object::unref`.
-<!-- trait LayoutExt::fn context_changed -->
+<!-- impl Layout::fn context_changed -->
 Forces recomputation of any state in the `Layout` that
 might depend on the layout's context. This function should
 be called if you make changes to the context subsequent
 to creating the layout.
-<!-- trait LayoutExt::fn copy -->
+<!-- impl Layout::fn copy -->
 Does a deep copy-by-value of the `self` layout. The attribute list,
 tab array, and text from the original layout are all copied by
 value.
@@ -2174,35 +2148,35 @@ value.
 the newly allocated `Layout`,
  with a reference count of one, which should be freed
  with `gobject::Object::unref`.
-<!-- trait LayoutExt::fn get_alignment -->
+<!-- impl Layout::fn get_alignment -->
 Gets the alignment for the layout: how partial lines are
 positioned within the horizontal space available.
 
 # Returns
 
 the alignment.
-<!-- trait LayoutExt::fn get_attributes -->
+<!-- impl Layout::fn get_attributes -->
 Gets the attribute list for the layout, if any.
 
 # Returns
 
 a `AttrList`.
-<!-- trait LayoutExt::fn get_auto_dir -->
+<!-- impl Layout::fn get_auto_dir -->
 Gets whether to calculate the bidirectional base direction
 for the layout according to the contents of the layout.
-See `LayoutExt::set_auto_dir`.
+See `Layout::set_auto_dir`.
 
 # Returns
 
 `true` if the bidirectional base direction
  is computed from the layout's contents, `false` otherwise.
-<!-- trait LayoutExt::fn get_baseline -->
+<!-- impl Layout::fn get_baseline -->
 Gets the Y position of baseline of the first line in `self`.
 
 # Returns
 
 baseline of first line, from top of `self`.
-<!-- trait LayoutExt::fn get_character_count -->
+<!-- impl Layout::fn get_character_count -->
 Returns the number of Unicode characters in the
 the text of `self`.
 
@@ -2210,7 +2184,7 @@ the text of `self`.
 
 the number of Unicode characters
  in the text of `self`
-<!-- trait LayoutExt::fn get_context -->
+<!-- impl Layout::fn get_context -->
 Retrieves the `Context` used for this layout.
 
 # Returns
@@ -2218,7 +2192,7 @@ Retrieves the `Context` used for this layout.
 the `Context` for the layout.
 This does not have an additional refcount added, so if you want to
 keep a copy of this around, you must reference it yourself.
-<!-- trait LayoutExt::fn get_cursor_pos -->
+<!-- impl Layout::fn get_cursor_pos -->
 Given an index within a layout, determines the positions that of the
 strong and weak cursors if the insertion point is at that
 index. The position of each cursor is stored as a zero-width
@@ -2234,17 +2208,17 @@ location to store the strong cursor position
  (may be `None`)
 ## `weak_pos`
 location to store the weak cursor position (may be `None`)
-<!-- trait LayoutExt::fn get_ellipsize -->
+<!-- impl Layout::fn get_ellipsize -->
 Gets the type of ellipsization being performed for `self`.
-See `LayoutExt::set_ellipsize`
+See `Layout::set_ellipsize`
 
 # Returns
 
 the current ellipsization mode for `self`.
 
-Use `LayoutExt::is_ellipsized` to query whether any paragraphs
+Use `Layout::is_ellipsized` to query whether any paragraphs
 were actually ellipsized.
-<!-- trait LayoutExt::fn get_extents -->
+<!-- impl Layout::fn get_extents -->
 Computes the logical and ink extents of `self`. Logical extents
 are usually what you want for positioning things. Note that both extents
 may have non-zero x and y. You may want to use those to offset where you
@@ -2262,7 +2236,7 @@ rectangle used to store the extents of the
 rectangle used to store the logical
  extents of the layout or `None` to indicate that the
  result is not needed.
-<!-- trait LayoutExt::fn get_font_description -->
+<!-- impl Layout::fn get_font_description -->
 Gets the font description for the layout, if any.
 
 # Returns
@@ -2271,39 +2245,39 @@ a pointer to the layout's font
  description, or `None` if the font description from the layout's
  context is inherited. This value is owned by the layout and must
  not be modified or freed.
-<!-- trait LayoutExt::fn get_height -->
+<!-- impl Layout::fn get_height -->
 Gets the height of layout used for ellipsization. See
-`LayoutExt::set_height` for details.
+`Layout::set_height` for details.
 
 # Returns
 
 the height, in Pango units if positive, or
 number of lines if negative.
-<!-- trait LayoutExt::fn get_indent -->
+<!-- impl Layout::fn get_indent -->
 Gets the paragraph indent width in Pango units. A negative value
 indicates a hanging indentation.
 
 # Returns
 
 the indent in Pango units.
-<!-- trait LayoutExt::fn get_iter -->
+<!-- impl Layout::fn get_iter -->
 Returns an iterator to iterate over the visual extents of the layout.
 
 # Returns
 
 the new `LayoutIter` that should be freed using
  `LayoutIter::free`.
-<!-- trait LayoutExt::fn get_justify -->
+<!-- impl Layout::fn get_justify -->
 Gets whether each complete line should be stretched to fill the entire
 width of the layout.
 
 # Returns
 
 the justify.
-<!-- trait LayoutExt::fn get_line -->
+<!-- impl Layout::fn get_line -->
 Retrieves a particular line from a `Layout`.
 
-Use the faster `LayoutExt::get_line_readonly` if you do not plan
+Use the faster `Layout::get_line_readonly` if you do not plan
 to modify the contents of the line (glyphs, glyph widths, etc.).
 ## `line`
 the index of a line, which must be between 0 and
@@ -2316,16 +2290,16 @@ the requested
  range. This layout line can be ref'ed and retained,
  but will become invalid if changes are made to the
  `Layout`.
-<!-- trait LayoutExt::fn get_line_count -->
+<!-- impl Layout::fn get_line_count -->
 Retrieves the count of lines for the `self`.
 
 # Returns
 
 the line count.
-<!-- trait LayoutExt::fn get_line_readonly -->
+<!-- impl Layout::fn get_line_readonly -->
 Retrieves a particular line from a `Layout`.
 
-This is a faster alternative to `LayoutExt::get_line`,
+This is a faster alternative to `Layout::get_line`,
 but the user is not expected
 to modify the contents of the line (glyphs, glyph widths, etc.).
 ## `line`
@@ -2339,10 +2313,10 @@ the requested
  range. This layout line can be ref'ed and retained,
  but will become invalid if changes are made to the
  `Layout`. No changes should be made to the line.
-<!-- trait LayoutExt::fn get_lines -->
+<!-- impl Layout::fn get_lines -->
 Returns the lines of the `self` as a list.
 
-Use the faster `LayoutExt::get_lines_readonly` if you do not plan
+Use the faster `Layout::get_lines_readonly` if you do not plan
 to modify the contents of the lines (glyphs, glyph widths, etc.).
 
 # Returns
@@ -2351,10 +2325,10 @@ a `glib::SList` containing
 the lines in the layout. This points to internal data of the `Layout`
 and must be used with care. It will become invalid on any change to the layout's
 text or properties.
-<!-- trait LayoutExt::fn get_lines_readonly -->
+<!-- impl Layout::fn get_lines_readonly -->
 Returns the lines of the `self` as a list.
 
-This is a faster alternative to `LayoutExt::get_lines`,
+This is a faster alternative to `Layout::get_lines`,
 but the user is not expected
 to modify the contents of the lines (glyphs, glyph widths, etc.).
 
@@ -2364,7 +2338,7 @@ a `glib::SList` containing
 the lines in the layout. This points to internal data of the `Layout` and
 must be used with care. It will become invalid on any change to the layout's
 text or properties. No changes should be made to the lines.
-<!-- trait LayoutExt::fn get_log_attrs -->
+<!-- impl Layout::fn get_log_attrs -->
 Retrieves an array of logical attributes for each character in
 the `self`.
 ## `attrs`
@@ -2377,11 +2351,11 @@ location to store the number of the attributes in the
  of characters in the layout, since there need to be attributes
  corresponding to both the position before the first character
  and the position after the last character.)
-<!-- trait LayoutExt::fn get_log_attrs_readonly -->
+<!-- impl Layout::fn get_log_attrs_readonly -->
 Retrieves an array of logical attributes for each character in
 the `self`.
 
-This is a faster alternative to `LayoutExt::get_log_attrs`.
+This is a faster alternative to `Layout::get_log_attrs`.
 The returned array is part of `self` and must not be modified.
 Modifying the layout will invalidate the returned array.
 
@@ -2396,9 +2370,9 @@ location to store the number of the attributes in
 # Returns
 
 an array of logical attributes
-<!-- trait LayoutExt::fn get_pixel_extents -->
+<!-- impl Layout::fn get_pixel_extents -->
 Computes the logical and ink extents of `self` in device units.
-This function just calls `LayoutExt::get_extents` followed by
+This function just calls `Layout::get_extents` followed by
 two `pango_extents_to_pixels` calls, rounding `ink_rect` and `logical_rect`
 such that the rounded rectangles fully contain the unrounded one (that is,
 passes them as first argument to `pango_extents_to_pixels`).
@@ -2410,17 +2384,17 @@ rectangle used to store the extents of the
 rectangle used to store the logical
  extents of the layout or `None` to indicate that the
  result is not needed.
-<!-- trait LayoutExt::fn get_pixel_size -->
+<!-- impl Layout::fn get_pixel_size -->
 Determines the logical width and height of a `Layout`
-in device units. (`LayoutExt::get_size` returns the width
+in device units. (`Layout::get_size` returns the width
 and height scaled by `PANGO_SCALE`.) This
 is simply a convenience function around
-`LayoutExt::get_pixel_extents`.
+`Layout::get_pixel_extents`.
 ## `width`
 location to store the logical width, or `None`
 ## `height`
 location to store the logical height, or `None`
-<!-- trait LayoutExt::fn get_serial -->
+<!-- impl Layout::fn get_serial -->
 Returns the current serial number of `self`. The serial number is
 initialized to an small number larger than zero when a new layout
 is created and is increased whenever the layout is changed using any
@@ -2430,33 +2404,33 @@ can wrap, never compare it with "less than", always use "not equals".
 
 This can be used to automatically detect changes to a `Layout`, and
 is useful for example to decide whether a layout needs redrawing.
-To force the serial to be increased, use `LayoutExt::context_changed`.
+To force the serial to be increased, use `Layout::context_changed`.
 
 # Returns
 
 The current serial number of `self`.
-<!-- trait LayoutExt::fn get_single_paragraph_mode -->
-Obtains the value set by `LayoutExt::set_single_paragraph_mode`.
+<!-- impl Layout::fn get_single_paragraph_mode -->
+Obtains the value set by `Layout::set_single_paragraph_mode`.
 
 # Returns
 
 `true` if the layout does not break paragraphs at
 paragraph separator characters, `false` otherwise.
-<!-- trait LayoutExt::fn get_size -->
+<!-- impl Layout::fn get_size -->
 Determines the logical width and height of a `Layout`
 in Pango units (device units scaled by `PANGO_SCALE`). This
-is simply a convenience function around `LayoutExt::get_extents`.
+is simply a convenience function around `Layout::get_extents`.
 ## `width`
 location to store the logical width, or `None`
 ## `height`
 location to store the logical height, or `None`
-<!-- trait LayoutExt::fn get_spacing -->
+<!-- impl Layout::fn get_spacing -->
 Gets the amount of spacing between the lines of the layout.
 
 # Returns
 
 the spacing in Pango units.
-<!-- trait LayoutExt::fn get_tabs -->
+<!-- impl Layout::fn get_tabs -->
 Gets the current `TabArray` used by this layout. If no
 `TabArray` has been set, then the default tabs are in use
 and `None` is returned. Default tabs are every 8 spaces.
@@ -2466,14 +2440,14 @@ The return value should be freed with `TabArray::free`.
 
 a copy of the tabs for this layout, or
 `None`.
-<!-- trait LayoutExt::fn get_text -->
+<!-- impl Layout::fn get_text -->
 Gets the text in the layout. The returned text should not
 be freed or modified.
 
 # Returns
 
 the text in the `self`.
-<!-- trait LayoutExt::fn get_unknown_glyphs_count -->
+<!-- impl Layout::fn get_unknown_glyphs_count -->
 Counts the number unknown glyphs in `self`. That is, zero if
 glyphs for all characters in the layout text were found, or more
 than zero otherwise.
@@ -2486,22 +2460,22 @@ certain font supports all the characters in the string.
 # Returns
 
 The number of unknown glyphs in `self`.
-<!-- trait LayoutExt::fn get_width -->
+<!-- impl Layout::fn get_width -->
 Gets the width to which the lines of the `Layout` should wrap.
 
 # Returns
 
 the width in Pango units, or -1 if no width set.
-<!-- trait LayoutExt::fn get_wrap -->
+<!-- impl Layout::fn get_wrap -->
 Gets the wrap mode for the layout.
 
-Use `LayoutExt::is_wrapped` to query whether any paragraphs
+Use `Layout::is_wrapped` to query whether any paragraphs
 were actually wrapped.
 
 # Returns
 
 active wrap mode.
-<!-- trait LayoutExt::fn index_to_line_x -->
+<!-- impl Layout::fn index_to_line_x -->
 Converts from byte `index_` within the `self` to line and X position.
 (X position is measured from the left edge of the line)
 ## `index_`
@@ -2516,7 +2490,7 @@ location to store resulting line index. (which will
 ## `x_pos`
 location to store resulting position within line
  (`PANGO_SCALE` units per device unit), or `None`
-<!-- trait LayoutExt::fn index_to_pos -->
+<!-- impl Layout::fn index_to_pos -->
 Converts from an index within a `Layout` to the onscreen position
 corresponding to the grapheme at that index, which is represented
 as rectangle. Note that `<literal>`pos->x`</literal>` is always the leading
@@ -2527,7 +2501,7 @@ then `<literal>`pos->width`</literal>` will be negative.
 byte index within `self`
 ## `pos`
 rectangle in which to store the position of the grapheme
-<!-- trait LayoutExt::fn is_ellipsized -->
+<!-- impl Layout::fn is_ellipsized -->
 Queries whether the layout had to ellipsize any paragraphs.
 
 This returns `true` if the ellipsization mode for `self`
@@ -2539,7 +2513,7 @@ ellipsized.
 
 `true` if any paragraphs had to be ellipsized, `false`
 otherwise.
-<!-- trait LayoutExt::fn is_wrapped -->
+<!-- impl Layout::fn is_wrapped -->
 Queries whether the layout had to wrap any paragraphs.
 
 This returns `true` if a positive width is set on `self`,
@@ -2551,7 +2525,7 @@ to be wrapped.
 
 `true` if any paragraphs had to be wrapped, `false`
 otherwise.
-<!-- trait LayoutExt::fn move_cursor_visually -->
+<!-- impl Layout::fn move_cursor_visually -->
 Computes a new cursor position from an old position and
 a count of positions to move visually. If `direction` is positive,
 then the new strong cursor position will be one position
@@ -2565,7 +2539,7 @@ of the current run, and there may be jumps when the cursor
 is moved off of the end of a run.
 
 Motion here is in cursor positions, not in characters, so a
-single call to `LayoutExt::move_cursor_visually` may move the
+single call to `Layout::move_cursor_visually` may move the
 cursor over multiple characters when multiple characters combine
 to form a single grapheme.
 ## `strong`
@@ -2594,17 +2568,17 @@ number of characters to move forward from the
  line from the position at the end of the preceding
  line. `new_index` is always on the line where the
  cursor should be displayed.
-<!-- trait LayoutExt::fn set_alignment -->
+<!-- impl Layout::fn set_alignment -->
 Sets the alignment for the layout: how partial lines are
 positioned within the horizontal space available.
 ## `alignment`
 the alignment
-<!-- trait LayoutExt::fn set_attributes -->
+<!-- impl Layout::fn set_attributes -->
 Sets the text attributes for a layout object.
 References `attrs`, so the caller can unref its reference.
 ## `attrs`
 a `AttrList`, can be `None`
-<!-- trait LayoutExt::fn set_auto_dir -->
+<!-- impl Layout::fn set_auto_dir -->
 Sets whether to calculate the bidirectional base direction
 for the layout according to the contents of the layout;
 when this flag is on (the default), then paragraphs in
@@ -2616,7 +2590,7 @@ characters get their direction from the surrounding paragraphs.
 
 When `false`, the choice between left-to-right and
 right-to-left layout is done according to the base direction
-of the layout's `Context`. (See `ContextExt::set_base_dir`).
+of the layout's `Context`. (See `Context::set_base_dir`).
 
 When the auto-computed direction of a paragraph differs from the
 base direction of the context, the interpretation of
@@ -2624,28 +2598,28 @@ base direction of the context, the interpretation of
 ## `auto_dir`
 if `true`, compute the bidirectional base direction
  from the layout's contents.
-<!-- trait LayoutExt::fn set_ellipsize -->
+<!-- impl Layout::fn set_ellipsize -->
 Sets the type of ellipsization being performed for `self`.
 Depending on the ellipsization mode `ellipsize` text is
 removed from the start, middle, or end of text so they
 fit within the width and height of layout set with
-`LayoutExt::set_width` and `LayoutExt::set_height`.
+`Layout::set_width` and `Layout::set_height`.
 
 If the layout contains characters such as newlines that
 force it to be layed out in multiple paragraphs, then whether
 each paragraph is ellipsized separately or the entire layout
 is ellipsized as a whole depends on the set height of the layout.
-See `LayoutExt::set_height` for details.
+See `Layout::set_height` for details.
 ## `ellipsize`
 the new ellipsization mode for `self`
-<!-- trait LayoutExt::fn set_font_description -->
+<!-- impl Layout::fn set_font_description -->
 Sets the default font description for the layout. If no font
 description is set on the layout, the font description from
 the layout's context is used.
 ## `desc`
 the new `FontDescription`, or `None` to unset the
  current font description
-<!-- trait LayoutExt::fn set_height -->
+<!-- impl Layout::fn set_height -->
 Sets the height to which the `Layout` should be ellipsized at. There
 are two different behaviors, based on whether `height` is positive or
 negative.
@@ -2673,7 +2647,7 @@ future.
 ## `height`
 the desired height of the layout in Pango units if positive,
  or desired number of lines if negative.
-<!-- trait LayoutExt::fn set_indent -->
+<!-- impl Layout::fn set_indent -->
 Sets the width in Pango units to indent each paragraph. A negative value
 of `indent` will produce a hanging indentation. That is, the first line will
 have the full width, and subsequent lines will be indented by the
@@ -2683,7 +2657,7 @@ The indent setting is ignored if layout alignment is set to
 `Alignment::Center`.
 ## `indent`
 the amount by which to indent.
-<!-- trait LayoutExt::fn set_justify -->
+<!-- impl Layout::fn set_justify -->
 Sets whether each complete line should be stretched to
 fill the entire width of the layout. This stretching is typically
 done by adding whitespace, but for some scripts (such as Arabic),
@@ -2694,15 +2668,15 @@ Note that this setting is not implemented and so is ignored in Pango
 older than 1.18.
 ## `justify`
 whether the lines in the layout should be justified.
-<!-- trait LayoutExt::fn set_markup -->
-Same as `LayoutExt::set_markup_with_accel`, but
+<!-- impl Layout::fn set_markup -->
+Same as `Layout::set_markup_with_accel`, but
 the markup text isn't scanned for accelerators.
 ## `markup`
 marked-up text
 ## `length`
 length of marked-up text in bytes, or -1 if `markup` is
  null-terminated
-<!-- trait LayoutExt::fn set_markup_with_accel -->
+<!-- impl Layout::fn set_markup_with_accel -->
 Sets the layout text and attribute list from marked-up text (see
 <link linkend="PangoMarkupFormat">markup format`</link>`). Replaces
 the current text and attribute list.
@@ -2725,31 +2699,31 @@ marker for accelerators in the text
 ## `accel_char`
 return location
  for first located accelerator, or `None`
-<!-- trait LayoutExt::fn set_single_paragraph_mode -->
+<!-- impl Layout::fn set_single_paragraph_mode -->
 If `setting` is `true`, do not treat newlines and similar characters
 as paragraph separators; instead, keep all text in a single paragraph,
 and display a glyph for paragraph separator characters. Used when
 you want to allow editing of newlines on a single text line.
 ## `setting`
 new setting
-<!-- trait LayoutExt::fn set_spacing -->
+<!-- impl Layout::fn set_spacing -->
 Sets the amount of spacing in Pango unit between the lines of the
 layout.
 ## `spacing`
 the amount of spacing
-<!-- trait LayoutExt::fn set_tabs -->
+<!-- impl Layout::fn set_tabs -->
 Sets the tabs to use for `self`, overriding the default tabs
 (by default, tabs are every 8 spaces). If `tabs` is `None`, the default
 tabs are reinstated. `tabs` is copied into the layout; you must
 free your copy of `tabs` yourself.
 ## `tabs`
 a `TabArray`, or `None`
-<!-- trait LayoutExt::fn set_text -->
+<!-- impl Layout::fn set_text -->
 Sets the text of the layout.
 
 Note that if you have used
-`LayoutExt::set_markup` or `LayoutExt::set_markup_with_accel` on
-`self` before, you may want to call `LayoutExt::set_attributes` to clear
+`Layout::set_markup` or `Layout::set_markup_with_accel` on
+`self` before, you may want to call `Layout::set_attributes` to clear
 the attributes set on the layout from the markup as this function does not
 clear attributes.
 ## `text`
@@ -2760,19 +2734,19 @@ maximum length of `text`, in bytes. -1 indicates that
  calculated. The text will also be truncated on
  encountering a nul-termination even when `length` is
  positive.
-<!-- trait LayoutExt::fn set_width -->
+<!-- impl Layout::fn set_width -->
 Sets the width to which the lines of the `Layout` should wrap or
 ellipsized. The default value is -1: no width set.
 ## `width`
 the desired width in Pango units, or -1 to indicate that no
  wrapping or ellipsization should be performed.
-<!-- trait LayoutExt::fn set_wrap -->
+<!-- impl Layout::fn set_wrap -->
 Sets the wrap mode; the wrap mode only has effect if a width
-is set on the layout with `LayoutExt::set_width`.
+is set on the layout with `Layout::set_width`.
 To turn off wrapping, set the width to -1.
 ## `wrap`
 the wrap mode
-<!-- trait LayoutExt::fn xy_to_index -->
+<!-- impl Layout::fn xy_to_index -->
 Converts from X and Y position within a layout to the byte
 index to the character at that logical position. If the
 Y position is not inside the layout, the closest position is chosen
@@ -2903,7 +2877,7 @@ Divides the vertical space in the `Layout` being iterated over
 between the lines in the layout, and returns the space belonging to
 the current line. A line's range includes the line's logical
 extents, plus half of the spacing above and below the line, if
-`LayoutExt::set_spacing` has been called to set layout spacing.
+`Layout::set_spacing` has been called to set layout spacing.
 The Y positions are in layout coordinates (origin at top left of the
 entire layout).
 ## `y0_`
@@ -2974,7 +2948,7 @@ whether motion was possible.
 <!-- struct LayoutLine -->
 The `LayoutLine` structure represents one of the lines resulting
 from laying out a paragraph via `Layout`. `LayoutLine`
-structures are obtained by calling `LayoutExt::get_line` and
+structures are obtained by calling `Layout::get_line` and
 are only valid until the text, attributes, or settings of the
 parent `Layout` are modified.
 

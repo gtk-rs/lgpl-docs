@@ -1393,7 +1393,7 @@ Feature: `v3_14`
 the current locale encoding.
 <!-- impl Encoding::fn get_default_candidates -->
 Gets the list of default candidate encodings to try when loading a file. See
-`FileLoaderExt::set_candidate_encodings`.
+`FileLoader::set_candidate_encodings`.
 
 This function returns a different list depending on the current locale (i.e.
 language, country and default encoding). The UTF-8 encoding and the current
@@ -4777,17 +4777,7 @@ Feature: `v3_24`
 
 <!-- struct Style -->
 
-
-# Implements
-
-[`StyleExt`](trait.StyleExt.html)
-<!-- trait StyleExt -->
-Trait containing all `Style` methods.
-
-# Implementors
-
-[`Style`](struct.Style.html)
-<!-- trait StyleExt::fn apply -->
+<!-- impl Style::fn apply -->
 This function modifies the `gtk::TextTag` properties that are related to the
 `Style` properties. Other `gtk::TextTag` properties are left untouched.
 
@@ -4800,7 +4790,7 @@ Feature: `v3_22`
 
 ## `tag`
 a `gtk::TextTag` to apply styles to.
-<!-- trait StyleExt::fn copy -->
+<!-- impl Style::fn copy -->
 Creates a copy of `self`, that is a new `Style` instance which
 has the same attributes set.
 
