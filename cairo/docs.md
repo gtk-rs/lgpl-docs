@@ -1271,10 +1271,6 @@ destroyed until a matching call to ScaledFont drop trait is made.
 
 The number of references to a cairo_scaled_font_t can be get using
 ScaledFont::get_reference_count().
-<!-- file lib.rs -->
-<!-- file_comment -->
-
-
 <!-- file matrices.rs -->
 <!-- file_comment -->
 Generic matrix operations
@@ -1989,3 +1985,20 @@ which is why a lifetime parameter is required.
 
 If you would like the surface to own the write object
 instead, use `Writer`.
+<!-- file user_data.rs -->
+<!-- struct UserDataKey -->
+A key for indexing user data in various cairo types.
+
+Some types like [`Surface`] have `get_user_data`, `set_user_data`, and `remove_user_data`
+methods that take `&'static UserDataKey`, where the address of that reference is significant.
+
+To reliably have a stable address, the expected usage is to define a `static` item:
+
+```
+use cairo::UserDataKey;
+static FOO: UserDataKey<String> = UserDataKey::new();
+
+# fn foo(surface: &cairo::Surface) {
+surface.get_user_data(&FOO)
+# ; }
+```
