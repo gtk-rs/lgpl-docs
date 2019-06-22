@@ -18066,7 +18066,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 a `SocketConnection` on success, `None` on error.
-<!-- trait SocketListenerExt::fn accept_async -->
+<!-- trait SocketListenerExtManual::fn accept_async -->
 This is the asynchronous version of `SocketListenerExt::accept`.
 
 When the operation is finished `callback` will be
@@ -18079,7 +18079,7 @@ a `GAsyncReadyCallback`
 ## `user_data`
 user data for the callback
 <!-- trait SocketListenerExt::fn accept_finish -->
-Finishes an async accept operation. See `SocketListenerExt::accept_async`
+Finishes an async accept operation. See `SocketListenerExtManual::accept_async`
 ## `result`
 a `AsyncResult`.
 ## `source_object`
