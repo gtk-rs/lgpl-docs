@@ -974,7 +974,7 @@ the screen to warp `self` to.
 the X coordinate of the destination.
 ## `y`
 the Y coordinate of the destination.
-<!-- trait DeviceExt::fn connect_changed -->
+<!-- impl Device::fn connect_changed -->
 The ::changed signal is emitted either when the `Device`
 has changed the number of either axes or keys. For example
 In X this will normally happen when the slave device routing
@@ -982,7 +982,7 @@ events through the master device changes (for example, user
 switches from the USB mouse to a tablet), in that case the
 master device will change to reflect the new slave device
 axes and keys.
-<!-- trait DeviceExt::fn connect_tool_changed -->
+<!-- impl Device::fn connect_tool_changed -->
 The ::tool-changed signal is emitted on pen/eraser
 ``GdkDevices`` whenever tools enter or leave proximity.
 
@@ -990,82 +990,82 @@ Feature: `v3_22`
 
 ## `tool`
 The new current tool
-<!-- trait DeviceExt::fn get_property_associated-device -->
+<!-- impl Device::fn get_property_associated_device -->
 Associated pointer or keyboard with this device, if any. Devices of type `DeviceType::Master`
 always come in keyboard/pointer pairs. Other device types will have a `None` associated device.
-<!-- trait DeviceExt::fn get_property_axes -->
+<!-- impl Device::fn get_property_axes -->
 The axes currently available for this device.
 
 Feature: `v3_22`
 
-<!-- trait DeviceExt::fn get_property_device-manager -->
+<!-- impl Device::fn get_property_device_manager -->
 The `DeviceManager` the `Device` pertains to.
-<!-- trait DeviceExt::fn set_property_device-manager -->
+<!-- impl Device::fn set_property_device_manager -->
 The `DeviceManager` the `Device` pertains to.
-<!-- trait DeviceExt::fn get_property_display -->
+<!-- impl Device::fn get_property_display -->
 The `Display` the `Device` pertains to.
-<!-- trait DeviceExt::fn set_property_display -->
+<!-- impl Device::fn set_property_display -->
 The `Display` the `Device` pertains to.
-<!-- trait DeviceExt::fn get_property_has-cursor -->
+<!-- impl Device::fn get_property_has_cursor -->
 Whether the device is represented by a cursor on the screen. Devices of type
 `DeviceType::Master` will have `true` here.
-<!-- trait DeviceExt::fn set_property_has-cursor -->
+<!-- impl Device::fn set_property_has_cursor -->
 Whether the device is represented by a cursor on the screen. Devices of type
 `DeviceType::Master` will have `true` here.
-<!-- trait DeviceExt::fn get_property_input-source -->
+<!-- impl Device::fn get_property_input_source -->
 Source type for the device.
-<!-- trait DeviceExt::fn set_property_input-source -->
+<!-- impl Device::fn set_property_input_source -->
 Source type for the device.
-<!-- trait DeviceExt::fn get_property_n-axes -->
+<!-- impl Device::fn get_property_n_axes -->
 Number of axes in the device.
-<!-- trait DeviceExt::fn get_property_name -->
+<!-- impl Device::fn get_property_name -->
 The device name.
-<!-- trait DeviceExt::fn set_property_name -->
+<!-- impl Device::fn set_property_name -->
 The device name.
-<!-- trait DeviceExt::fn get_property_num-touches -->
+<!-- impl Device::fn get_property_num_touches -->
 The maximal number of concurrent touches on a touch device.
 Will be 0 if the device is not a touch device or if the number
 of touches is unknown.
 
 Feature: `v3_20`
 
-<!-- trait DeviceExt::fn set_property_num-touches -->
+<!-- impl Device::fn set_property_num_touches -->
 The maximal number of concurrent touches on a touch device.
 Will be 0 if the device is not a touch device or if the number
 of touches is unknown.
 
 Feature: `v3_20`
 
-<!-- trait DeviceExt::fn get_property_product-id -->
+<!-- impl Device::fn get_property_product_id -->
 Product ID of this device, see `Device::get_product_id`.
 
 Feature: `v3_16`
 
-<!-- trait DeviceExt::fn set_property_product-id -->
+<!-- impl Device::fn set_property_product_id -->
 Product ID of this device, see `Device::get_product_id`.
 
 Feature: `v3_16`
 
-<!-- trait DeviceExt::fn get_property_seat -->
+<!-- impl Device::fn get_property_seat -->
 `Seat` of this device.
 
 Feature: `v3_20`
 
-<!-- trait DeviceExt::fn set_property_seat -->
+<!-- impl Device::fn set_property_seat -->
 `Seat` of this device.
 
 Feature: `v3_20`
 
-<!-- trait DeviceExt::fn get_property_type -->
+<!-- impl Device::fn get_property_type -->
 Device role in the device manager.
-<!-- trait DeviceExt::fn set_property_type -->
+<!-- impl Device::fn set_property_type -->
 Device role in the device manager.
-<!-- trait DeviceExt::fn get_property_vendor-id -->
+<!-- impl Device::fn get_property_vendor_id -->
 Vendor ID of this device, see `Device::get_vendor_id`.
 
 Feature: `v3_16`
 
-<!-- trait DeviceExt::fn set_property_vendor-id -->
+<!-- impl Device::fn set_property_vendor_id -->
 Vendor ID of this device, see `Device::get_vendor_id`.
 
 Feature: `v3_16`
@@ -1227,13 +1227,13 @@ a list of
  ``GdkDevices``. The returned list must be
  freed with g_list_free (). The list elements are owned by
  GTK+ and must not be freed or unreffed.
-<!-- trait DeviceManagerExt::fn connect_device_added -->
+<!-- impl DeviceManager::fn connect_device_added -->
 The ::device-added signal is emitted either when a new master
 pointer is created, or when a slave (Hardware) input device
 is plugged in.
 ## `device`
 the newly added `Device`.
-<!-- trait DeviceManagerExt::fn connect_device_changed -->
+<!-- impl DeviceManager::fn connect_device_changed -->
 The ::device-changed signal is emitted whenever a device
 has changed in the hierarchy, either slave devices being
 disconnected from their master device or connected to
@@ -1246,7 +1246,7 @@ If a slave device is detached from all master devices
 if it's attached, it will change to `DeviceType::Slave`.
 ## `device`
 the `Device` that changed.
-<!-- trait DeviceManagerExt::fn connect_device_removed -->
+<!-- impl DeviceManager::fn connect_device_removed -->
 The ::device-removed signal is emitted either when a master
 pointer is removed, or when a slave (Hardware) input device
 is unplugged.
@@ -1803,12 +1803,12 @@ removed.
 
 This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.
-<!-- trait DisplayExt::fn connect_closed -->
+<!-- impl Display::fn connect_closed -->
 The ::closed signal is emitted when the connection to the windowing
 system for `display` is closed.
 ## `is_error`
 `true` if the display was closed due to an error
-<!-- trait DisplayExt::fn connect_monitor_added -->
+<!-- impl Display::fn connect_monitor_added -->
 The ::monitor-added signal is emitted whenever a monitor is
 added.
 
@@ -1816,7 +1816,7 @@ Feature: `v3_22`
 
 ## `monitor`
 the monitor that was just added
-<!-- trait DisplayExt::fn connect_monitor_removed -->
+<!-- impl Display::fn connect_monitor_removed -->
 The ::monitor-removed signal is emitted whenever a monitor is
 removed.
 
@@ -1824,10 +1824,10 @@ Feature: `v3_22`
 
 ## `monitor`
 the monitor that was just removed
-<!-- trait DisplayExt::fn connect_opened -->
+<!-- impl Display::fn connect_opened -->
 The ::opened signal is emitted when the connection to the windowing
 system for `display` is opened.
-<!-- trait DisplayExt::fn connect_seat_added -->
+<!-- impl Display::fn connect_seat_added -->
 The ::seat-added signal is emitted whenever a new seat is made
 known to the windowing system.
 
@@ -1835,7 +1835,7 @@ Feature: `v3_20`
 
 ## `seat`
 the seat that was just added
-<!-- trait DisplayExt::fn connect_seat_removed -->
+<!-- impl Display::fn connect_seat_removed -->
 The ::seat-removed signal is emitted whenever a seat is removed
 by the windowing system.
 
@@ -1926,7 +1926,7 @@ a `Display`, or `None` if the
 Sets `display` as the default display.
 ## `display`
 a `Display`
-<!-- trait DisplayManagerExt::fn connect_display_opened -->
+<!-- impl DisplayManager::fn connect_display_opened -->
 The ::display-opened signal is emitted when a display is opened.
 ## `display`
 the opened display
@@ -2050,7 +2050,7 @@ Feature: `v3_20`
 x coordinate of the drag window hotspot
 ## `hot_y`
 y coordinate of the drag window hotspot
-<!-- trait DragContextExt::fn connect_action_changed -->
+<!-- impl DragContext::fn connect_action_changed -->
 A new action is being chosen for the drag and drop operation.
 
 This signal will only be emitted if the `DragContext` manages
@@ -2061,7 +2061,7 @@ Feature: `v3_20`
 
 ## `action`
 The action currently chosen
-<!-- trait DragContextExt::fn connect_cancel -->
+<!-- impl DragContext::fn connect_cancel -->
 The drag and drop operation was cancelled.
 
 This signal will only be emitted if the `DragContext` manages
@@ -2072,7 +2072,7 @@ Feature: `v3_20`
 
 ## `reason`
 The reason the context was cancelled
-<!-- trait DragContextExt::fn connect_dnd_finished -->
+<!-- impl DragContext::fn connect_dnd_finished -->
 The drag and drop operation was finished, the drag destination
 finished reading all data. The drag source can now free all
 miscellaneous data.
@@ -2083,7 +2083,7 @@ for more information.
 
 Feature: `v3_20`
 
-<!-- trait DragContextExt::fn connect_drop_performed -->
+<!-- impl DragContext::fn connect_drop_performed -->
 The drag and drop operation was performed on an accepting client.
 
 This signal will only be emitted if the `DragContext` manages
@@ -2170,22 +2170,22 @@ Feature: `v3_22`
 # Returns
 
 `true` if the context is valid
-<!-- trait DrawingContextExt::fn get_property_clip -->
+<!-- impl DrawingContext::fn get_property_clip -->
 The clip region applied to the drawing context.
 
 Feature: `v3_22`
 
-<!-- trait DrawingContextExt::fn set_property_clip -->
+<!-- impl DrawingContext::fn set_property_clip -->
 The clip region applied to the drawing context.
 
 Feature: `v3_22`
 
-<!-- trait DrawingContextExt::fn get_property_window -->
+<!-- impl DrawingContext::fn get_property_window -->
 The `Window` that created the drawing context.
 
 Feature: `v3_22`
 
-<!-- trait DrawingContextExt::fn set_property_window -->
+<!-- impl DrawingContext::fn set_property_window -->
 The `Window` that created the drawing context.
 
 Feature: `v3_22`
@@ -2579,32 +2579,32 @@ this allows GTK+ to adjust system parameters to get maximally
 smooth animations.
 ## `phase`
 the phase that is requested
-<!-- trait FrameClockExt::fn connect_after_paint -->
+<!-- impl FrameClock::fn connect_after_paint -->
 This signal ends processing of the frame. Applications
 should generally not handle this signal.
-<!-- trait FrameClockExt::fn connect_before_paint -->
+<!-- impl FrameClock::fn connect_before_paint -->
 This signal begins processing of the frame. Applications
 should generally not handle this signal.
-<!-- trait FrameClockExt::fn connect_flush_events -->
+<!-- impl FrameClock::fn connect_flush_events -->
 This signal is used to flush pending motion events that
 are being batched up and compressed together. Applications
 should not handle this signal.
-<!-- trait FrameClockExt::fn connect_layout -->
+<!-- impl FrameClock::fn connect_layout -->
 This signal is emitted as the second step of toolkit and
 application processing of the frame. Any work to update
 sizes and positions of application elements should be
 performed. GTK+ normally handles this internally.
-<!-- trait FrameClockExt::fn connect_paint -->
+<!-- impl FrameClock::fn connect_paint -->
 This signal is emitted as the third step of toolkit and
 application processing of the frame. The frame is
 repainted. GDK normally handles this internally and
 produces expose events, which are turned into GTK+
 ``GtkWidget`::draw` signals.
-<!-- trait FrameClockExt::fn connect_resume_events -->
+<!-- impl FrameClock::fn connect_resume_events -->
 This signal is emitted after processing of the frame is
 finished, and is handled internally by GTK+ to resume normal
 event processing. Applications should not handle this signal.
-<!-- trait FrameClockExt::fn connect_update -->
+<!-- impl FrameClock::fn connect_update -->
 This signal is emitted as the first step of toolkit and
 application processing of the frame. Animations should
 be updated using `FrameClock::get_frame_time`.
@@ -2947,32 +2947,32 @@ Feature: `v3_22`
 ## `use_es`
 whether the context should use OpenGL ES instead of OpenGL,
  or -1 to allow auto-detection
-<!-- trait GLContextExt::fn get_property_display -->
+<!-- impl GLContext::fn get_property_display -->
 The `Display` used to create the `GLContext`.
 
 Feature: `v3_16`
 
-<!-- trait GLContextExt::fn set_property_display -->
+<!-- impl GLContext::fn set_property_display -->
 The `Display` used to create the `GLContext`.
 
 Feature: `v3_16`
 
-<!-- trait GLContextExt::fn get_property_shared-context -->
+<!-- impl GLContext::fn get_property_shared_context -->
 The `GLContext` that this context is sharing data with, or `None`
 
 Feature: `v3_16`
 
-<!-- trait GLContextExt::fn set_property_shared-context -->
+<!-- impl GLContext::fn set_property_shared_context -->
 The `GLContext` that this context is sharing data with, or `None`
 
 Feature: `v3_16`
 
-<!-- trait GLContextExt::fn get_property_window -->
+<!-- impl GLContext::fn get_property_window -->
 The `Window` the gl context is bound to.
 
 Feature: `v3_16`
 
-<!-- trait GLContextExt::fn set_property_window -->
+<!-- impl GLContext::fn set_property_window -->
 The `Window` the gl context is bound to.
 
 Feature: `v3_16`
@@ -3926,16 +3926,16 @@ font will be 13 units high. (10 * 96. / 72. = 13.3).
 ## `dpi`
 the resolution in “dots per inch”. (Physical inches aren’t actually
  involved; the terminology is conventional.)
-<!-- trait ScreenExt::fn connect_composited_changed -->
+<!-- impl Screen::fn connect_composited_changed -->
 The ::composited-changed signal is emitted when the composited
 status of the screen changes
-<!-- trait ScreenExt::fn connect_monitors_changed -->
+<!-- impl Screen::fn connect_monitors_changed -->
 The ::monitors-changed signal is emitted when the number, size
 or position of the monitors attached to the screen change.
 
 Only for X11 and OS X for now. A future implementation for Win32
 may be a possibility.
-<!-- trait ScreenExt::fn connect_size_changed -->
+<!-- impl Screen::fn connect_size_changed -->
 The ::size-changed signal is emitted when the pixel width or
 height of a screen changes.
 <!-- enum ScrollDirection -->
@@ -4070,7 +4070,7 @@ Releases a grab added through `Seat::grab`.
 
 Feature: `v3_20`
 
-<!-- trait SeatExt::fn connect_device_added -->
+<!-- impl Seat::fn connect_device_added -->
 The ::device-added signal is emitted when a new input
 device is related to this seat.
 
@@ -4078,7 +4078,7 @@ Feature: `v3_20`
 
 ## `device`
 the newly added `Device`.
-<!-- trait SeatExt::fn connect_device_removed -->
+<!-- impl Seat::fn connect_device_removed -->
 The ::device-removed signal is emitted when an
 input device is removed (e.g. unplugged).
 
@@ -4086,7 +4086,7 @@ Feature: `v3_20`
 
 ## `device`
 the just removed `Device`.
-<!-- trait SeatExt::fn connect_tool_added -->
+<!-- impl Seat::fn connect_tool_added -->
 The ::tool-added signal is emitted whenever a new tool
 is made known to the seat. The tool may later be assigned
 to a device (i.e. on proximity with a tablet). The device
@@ -4098,7 +4098,7 @@ Feature: `v3_22`
 
 ## `tool`
 the new `DeviceTool` known to the seat
-<!-- trait SeatExt::fn connect_tool_removed -->
+<!-- impl Seat::fn connect_tool_removed -->
 This signal is emitted whenever a tool is no longer known
 to this `seat`.
 
@@ -4106,12 +4106,12 @@ Feature: `v3_22`
 
 ## `tool`
 the just removed `DeviceTool`
-<!-- trait SeatExt::fn get_property_display -->
+<!-- impl Seat::fn get_property_display -->
 `Display` of this seat.
 
 Feature: `v3_20`
 
-<!-- trait SeatExt::fn set_property_display -->
+<!-- impl Seat::fn set_property_display -->
 `Display` of this seat.
 
 Feature: `v3_20`
