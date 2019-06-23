@@ -2994,7 +2994,7 @@ a window’s geometry constraints. Normally you would set these on
 the GTK+ level using `gtk_window_set_geometry_hints`. ``GtkWindow``
 then sets the hints on the `Window` it creates.
 
-`WindowExt::set_geometry_hints` expects the hints to be fully valid already
+`Window::set_geometry_hints` expects the hints to be fully valid already
 and simply passes them to the window manager; in contrast,
 `gtk_window_set_geometry_hints` performs some interpretation. For example,
 ``GtkWindow`` will apply the hints to the geometry widget instead of the
@@ -4871,7 +4871,7 @@ the window does not want to receive input focus.
 # Returns
 
 whether or not the window should receive input focus.
-<!-- trait WindowExt::fn get_background_pattern -->
+<!-- trait WindowExtManual::fn get_background_pattern -->
 Gets the pattern used to clear the background on `self`.
 
 # Deprecated since 3.22
@@ -5294,9 +5294,9 @@ calling `cairo_region_destroy` on the returned region if it’s non-`None`.
 # Returns
 
 the update area for `self`
-<!-- trait WindowExt::fn get_user_data -->
+<!-- trait WindowExtManual::fn get_user_data -->
 Retrieves the user data for `self`, which is normally the widget
-that `self` belongs to. See `WindowExt::set_user_data`.
+that `self` belongs to. See `Window::set_user_data`.
 ## `data`
 return location for user data
 <!-- trait WindowExt::fn get_visible_region -->
@@ -5685,7 +5685,7 @@ On X, it is the responsibility of the window manager to interpret this
 hint. ICCCM-compliant window manager usually respect it.
 ## `accept_focus`
 `true` if the window should receive input focus
-<!-- trait WindowExt::fn set_background_pattern -->
+<!-- trait WindowExtManual::fn set_background_pattern -->
 Sets the background of `self`.
 
 A background of `None` means that the window won't have any background. On the
@@ -5870,7 +5870,7 @@ it doesn’t include `WMFunction::All`, it indicates which functions to
 enable.
 ## `functions`
 bitmask of operations to allow on `self`
-<!-- trait WindowExt::fn set_geometry_hints -->
+<!-- trait WindowExtManual::fn set_geometry_hints -->
 Sets the geometry hints for `self`. Hints flagged in `geom_mask`
 are set, hints not flagged in `geom_mask` are unset.
 To unset all hints, use a `geom_mask` of 0 and a `geometry` of `None`.
@@ -6178,7 +6178,7 @@ Toggles whether a window needs the user's
 urgent attention.
 ## `urgent`
 `true` if the window is urgent
-<!-- trait WindowExt::fn set_user_data -->
+<!-- trait WindowExtManual::fn set_user_data -->
 For most purposes this function is deprecated in favor of
 `gobject::Object::set_data`. However, for historical reasons GTK+ stores
 the ``GtkWidget`` that owns a `Window` as user data on the

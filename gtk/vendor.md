@@ -1231,7 +1231,7 @@ To track changes in the selected application, use the
 
 # Implements
 
-[`AppChooserButtonExt`](trait.AppChooserButtonExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`AppChooserExt`](trait.AppChooserExt.html), [`ColorBoxExtManual`](prelude/trait.ColorBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+[`AppChooserButtonExt`](trait.AppChooserButtonExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`AppChooserExt`](trait.AppChooserExt.html), [`ComboBoxExtManual`](prelude/trait.ComboBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- trait AppChooserButtonExt -->
 Trait containing all `AppChooserButton` methods.
 
@@ -2973,7 +2973,7 @@ name of child
 # Returns
 
 the internal child of the buildable object
-<!-- trait BuildableExt::fn get_name -->
+<!-- trait BuildableExtManual::fn get_name -->
 Gets the name of the `self` object.
 
 `Builder` sets the name based on the
@@ -2999,7 +2999,7 @@ a `Builder`
 name of property
 ## `value`
 value of property
-<!-- trait BuildableExt::fn set_name -->
+<!-- trait BuildableExtManual::fn set_name -->
 Sets the name of the `self` object.
 ## `name`
 name to set
@@ -3272,7 +3272,7 @@ A convenience function to add many callbacks instead of calling
 The name of the callback, as expected in the XML
 ## `first_callback_symbol`
 The callback pointer
-<!-- trait BuilderExt::fn add_from_file -->
+<!-- trait BuilderExtManual::fn add_from_file -->
 Parses a file containing a [`Builder` UI definition][BUILDER-UI]
 and merges it with the current contents of `self`.
 
@@ -3334,7 +3334,7 @@ the length of `buffer` (may be -1 if `buffer` is nul-terminated)
 # Returns
 
 A positive value on success, 0 if an error occurred
-<!-- trait BuilderExt::fn add_objects_from_file -->
+<!-- trait BuilderExtManual::fn add_objects_from_file -->
 Parses a file containing a [`Builder` UI definition][BUILDER-UI]
 building only the requested objects and merges
 them with the current contents of `self`.
@@ -3466,7 +3466,7 @@ for constructing proxies, use `BuilderExt::set_application`.
 
 the application being used by the builder,
  or `None`
-<!-- trait BuilderExt::fn get_object -->
+<!-- trait BuilderExtManual::fn get_object -->
 Gets the object named `name`. Note that this function does not
 increment the reference count of the returned object.
 ## `name`
@@ -6101,9 +6101,9 @@ or "pixbuf" properties.
 The name of the themed icon to display.
 This property only has an effect if not overridden by "stock_id"
 or "pixbuf" properties.
-<!-- trait CellRendererPixbufExt::fn get_property_stock_size -->
+<!-- trait CellRendererPixbufExtManual::fn get_property_stock_size -->
 The `IconSize` value that specifies the size of the rendered icon.
-<!-- trait CellRendererPixbufExt::fn set_property_stock_size -->
+<!-- trait CellRendererPixbufExtManual::fn set_property_stock_size -->
 The `IconSize` value that specifies the size of the rendered icon.
 <!-- struct CellRendererProgress -->
 `CellRendererProgress` renders a numeric value as a progress par in a cell.
@@ -7388,7 +7388,7 @@ Gets the title of the color selection dialog.
 # Returns
 
 An internal string, do not free the return value
-<!-- trait ColorButtonExt::fn set_color -->
+<!-- trait ColorButtonExtManual::fn set_color -->
 Sets the current color to be `color`.
 
 # Deprecated
@@ -7465,7 +7465,7 @@ Trait containing all `ColorChooser` methods.
 # Implementors
 
 [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ColorChooser`](struct.ColorChooser.html)
-<!-- trait ColorChooserExt::fn add_palette -->
+<!-- trait ColorChooserExtManual::fn add_palette -->
 Adds a palette to the color chooser. If `orientation` is horizontal,
 the colors are grouped in rows, with `colors_per_line` colors
 in each row. If `horizontal` is `false`, the colors are grouped
@@ -7670,7 +7670,7 @@ The button also contains another node with name arrow.
 
 # Implements
 
-[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ColorBoxExtManual`](prelude/trait.ColorBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+[`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ComboBoxExtManual`](prelude/trait.ComboBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- trait ComboBoxExt -->
 Trait containing all `ComboBox` methods.
 
@@ -7724,7 +7724,7 @@ A `TreeModel`
 # Returns
 
 A new `ComboBox`
-<!-- trait ComboBoxExt::fn get_active -->
+<!-- trait ComboBoxExtManual::fn get_active -->
 Returns the index of the currently active item, or -1 if there’s no
 active item. If the model is a non-flat treemodel, and the active item
 is not an immediate child of the root of the tree, this function returns
@@ -7871,7 +7871,7 @@ will be grabbed so only `device` and its associated pointer/keyboard
 are the only ``GdkDevices`` able to send events to it.
 ## `device`
 a `gdk::Device`
-<!-- trait ComboBoxExt::fn set_active -->
+<!-- trait ComboBoxExtManual::fn set_active -->
 Sets the active item of `self` to be the item at `index`.
 ## `index_`
 An index in the model passed during construction, or -1 to have
@@ -8180,7 +8180,7 @@ children, and the .linked class to the node of its internal box.
 
 # Implements
 
-[`ComboBoxTextExt`](trait.ComboBoxTextExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ColorBoxExtManual`](prelude/trait.ColorBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+[`ComboBoxTextExt`](trait.ComboBoxTextExt.html), [`ComboBoxExt`](trait.ComboBoxExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellEditableExt`](trait.CellEditableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`ComboBoxExtManual`](prelude/trait.ComboBoxExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
 <!-- trait ComboBoxTextExt -->
 Trait containing all `ComboBoxText` methods.
 
@@ -9745,7 +9745,7 @@ indicates that the position should be set after the last character
 of the editable. Note that `position` is in characters, not in bytes.
 ## `position`
 the position of the cursor
-<!-- trait EditableExt::fn connect_changed -->
+<!-- trait EditableSignals::fn connect_changed -->
 The ::changed signal is emitted at the end of a single
 user-visible operation on the contents of the `Editable`.
 
@@ -9754,7 +9754,7 @@ selection will cause only one signal emission (even though it
 is implemented by first deleting the selection, then inserting
 the new content, and may cause multiple ::notify::text signals
 to be emitted).
-<!-- trait EditableExt::fn connect_delete_text -->
+<!-- trait EditableSignals::fn connect_delete_text -->
 This signal is emitted when text is deleted from
 the widget by the user. The default handler for
 this signal will normally be responsible for deleting
@@ -9768,7 +9768,7 @@ and `end_pos` parameters are interpreted as for
 the starting position
 ## `end_pos`
 the end position
-<!-- trait EditableExt::fn connect_insert_text -->
+<!-- trait EditableSignals::fn connect_insert_text -->
 This signal is emitted when text is inserted into
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
@@ -11191,7 +11191,7 @@ the completion or `None` if there’s no completion ongoing.
 # Returns
 
 the prefix for the current completion
-<!-- trait EntryCompletionExt::fn get_entry -->
+<!-- trait EntryCompletionExtManual::fn get_entry -->
 Gets the entry `self` has been attached to.
 
 # Returns
@@ -19028,7 +19028,7 @@ a `gdk::Screen` which identifies on which
 # Returns
 
 a newly created `Invisible` object
-<!-- trait InvisibleExt::fn get_screen -->
+<!-- trait InvisibleExtManual::fn get_screen -->
 Returns the `gdk::Screen` object associated with `self`
 
 # Returns
@@ -21048,7 +21048,7 @@ A valid `TreeIter`
 # Returns
 
 `true` if `iter` is valid, `false` if not.
-<!-- trait GtkListStoreExt::fn reorder -->
+<!-- trait GtkListStoreExtManual::fn reorder -->
 Reorders `self` to follow the order indicated by `new_order`. Note that
 this function only works with unsorted stores.
 ## `new_order`
@@ -21084,7 +21084,7 @@ bindings.
 A valid `TreeIter` for the row being modified
 ## `var_args`
 va_list of column/value pairs
-<!-- trait GtkListStoreExt::fn set_value -->
+<!-- trait GtkListStoreExtManual::fn set_value -->
 Sets the data in the cell specified by `iter` and `column`.
 The type of `value` must be convertible to the type of the
 column.
@@ -23444,7 +23444,7 @@ Creates a new `Notebook` widget with no pages.
 # Returns
 
 the newly created `Notebook`
-<!-- trait NotebookExt::fn append_page -->
+<!-- trait NotebookExtManual::fn append_page -->
 Appends a page to `self`.
 ## `child`
 the `Widget` to use as the contents of the page
@@ -23456,7 +23456,7 @@ the `Widget` to be used as the label
 
 the index (starting from 0) of the appended
  page in the notebook, or -1 if function fails
-<!-- trait NotebookExt::fn append_page_menu -->
+<!-- trait NotebookExtManual::fn append_page_menu -->
 Appends a page to `self`, specifying the widget to use as the
 label in the popup menu.
 ## `child`
@@ -23497,7 +23497,7 @@ pack type of the action widget to receive
 
 The action widget with the given
 `pack_type` or `None` when this action widget has not been set
-<!-- trait NotebookExt::fn get_current_page -->
+<!-- trait NotebookExtManual::fn get_current_page -->
 Returns the page number of the current page.
 
 # Returns
@@ -23533,13 +23533,13 @@ the text of the tab label, or `None` if the widget does
 not have a menu label other than the default menu label, or the menu label
 widget is not a `Label`. The string is owned by the widget and must not be
 freed.
-<!-- trait NotebookExt::fn get_n_pages -->
+<!-- trait NotebookExtManual::fn get_n_pages -->
 Gets the number of pages in a notebook.
 
 # Returns
 
 the number of pages in the notebook
-<!-- trait NotebookExt::fn get_nth_page -->
+<!-- trait NotebookExtManual::fn get_nth_page -->
 Returns the child widget contained in page number `page_num`.
 ## `page_num`
 the index of a page in the notebook, or -1
@@ -23614,7 +23614,7 @@ a child `Widget`
 # Returns
 
 `true` if the tab is reorderable.
-<!-- trait NotebookExt::fn insert_page -->
+<!-- trait NotebookExtManual::fn insert_page -->
 Insert a page into `self` at the given position.
 ## `child`
 the `Widget` to use as the contents of the page
@@ -23629,7 +23629,7 @@ the index (starting at 0) at which to insert the page,
 
 the index (starting from 0) of the inserted
  page in the notebook, or -1 if function fails
-<!-- trait NotebookExt::fn insert_page_menu -->
+<!-- trait NotebookExtManual::fn insert_page_menu -->
 Insert a page into `self` at the given position, specifying
 the widget to use as the label in the popup menu.
 ## `child`
@@ -23655,7 +23655,7 @@ the index (starting from 0) of the inserted
 <!-- trait NotebookExt::fn next_page -->
 Switches to the next page. Nothing happens if the current page is
 the last page.
-<!-- trait NotebookExt::fn page_num -->
+<!-- trait NotebookExtManual::fn page_num -->
 Finds the index of the page which contains the given child
 widget.
 ## `child`
@@ -23671,7 +23671,7 @@ Disables the popup menu.
 Enables the popup menu: if the user clicks with the right
 mouse button on the tab labels, a menu with all the pages
 will be popped up.
-<!-- trait NotebookExt::fn prepend_page -->
+<!-- trait NotebookExtManual::fn prepend_page -->
 Prepends a page to `self`.
 ## `child`
 the `Widget` to use as the contents of the page
@@ -23683,7 +23683,7 @@ the `Widget` to be used as the label
 
 the index (starting from 0) of the prepended
  page in the notebook, or -1 if function fails
-<!-- trait NotebookExt::fn prepend_page_menu -->
+<!-- trait NotebookExtManual::fn prepend_page_menu -->
 Prepends a page to `self`, specifying the widget to use as the
 label in the popup menu.
 ## `child`
@@ -23706,13 +23706,13 @@ the index (starting from 0) of the prepended
 <!-- trait NotebookExt::fn prev_page -->
 Switches to the previous page. Nothing happens if the current page
 is the first page.
-<!-- trait NotebookExt::fn remove_page -->
+<!-- trait NotebookExtManual::fn remove_page -->
 Removes a page from the notebook given its index
 in the notebook.
 ## `page_num`
 the index of a notebook page, starting
  from 0. If -1, the last page will be removed.
-<!-- trait NotebookExt::fn reorder_child -->
+<!-- trait NotebookExtManual::fn reorder_child -->
 Reorders the page containing `child`, so that it appears in position
 `position`. If `position` is greater than or equal to the number of
 children in the list or negative, `child` will be moved to the end
@@ -23732,7 +23732,7 @@ not included in the list returned from `ContainerExt::foreach`.
 a `Widget`
 ## `pack_type`
 pack type of the action widget
-<!-- trait NotebookExt::fn set_current_page -->
+<!-- trait NotebookExtManual::fn set_current_page -->
 Switches to the page number `page_num`.
 
 Note that due to historical reasons, `Notebook` refuses
@@ -35191,7 +35191,7 @@ See also: `TextBufferExt::insert_pixbuf`.
 position to insert `pixbuf` in `textbuffer`
 ## `pixbuf`
 the `gdk_pixbuf::Pixbuf` to be inserted
-<!-- trait TextBufferExt::fn connect_insert_text -->
+<!-- trait TextBufferExtManual::fn connect_insert_text -->
 The ::insert-text signal is emitted to insert text in a `TextBuffer`.
 Insertion actually occurs in the default handler.
 
@@ -40798,7 +40798,7 @@ Trait containing all `TreeSortable` methods.
 # Implementors
 
 [`ListStore`](struct.ListStore.html), [`TreeModelSort`](struct.TreeModelSort.html), [`TreeSortable`](struct.TreeSortable.html), [`TreeStore`](struct.TreeStore.html)
-<!-- trait TreeSortableExt::fn get_sort_column_id -->
+<!-- trait TreeSortableExtManual::fn get_sort_column_id -->
 Fills in `sort_column_id` and `order` with the current sort column and the
 order. It returns `true` unless the `sort_column_id` is
 `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID` or
@@ -40820,7 +40820,7 @@ go back to the default state, or not.
 # Returns
 
 `true`, if the model has a default sort function
-<!-- trait TreeSortableExt::fn set_default_sort_func -->
+<!-- trait TreeSortableExtManual::fn set_default_sort_func -->
 Sets the default comparison function used when sorting to be `sort_func`.
 If the current sort column id of `self` is
 `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID`, then the model will sort using
@@ -40836,7 +40836,7 @@ The comparison function
 User data to pass to `sort_func`, or `None`
 ## `destroy`
 Destroy notifier of `user_data`, or `None`
-<!-- trait TreeSortableExt::fn set_sort_column_id -->
+<!-- trait TreeSortableExtManual::fn set_sort_column_id -->
 Sets the current sort column to be `sort_column_id`. The `self` will
 resort itself to reflect this change, after emitting a
 `TreeSortable::sort-column-changed` signal. `sort_column_id` may either be
@@ -40850,7 +40850,7 @@ a regular column id, or one of the following special values:
 the sort column id to set
 ## `order`
 The sort order of the column
-<!-- trait TreeSortableExt::fn set_sort_func -->
+<!-- trait TreeSortableExtManual::fn set_sort_func -->
 Sets the comparison function used when sorting to be `sort_func`. If the
 current sort column id of `self` is the same as `sort_column_id`, then
 the model will sort using this function.
@@ -41098,7 +41098,7 @@ A valid `TreeIter`
 # Returns
 
 `true` if `iter` is still valid, `false` if not.
-<!-- trait TreeStoreExt::fn reorder -->
+<!-- trait TreeStoreExtManual::fn reorder -->
 Reorders the children of `parent` in `self` to follow the order
 indicated by `new_order`. Note that this function only works with
 unsorted stores.
@@ -41136,7 +41136,7 @@ use by language bindings.
 A valid `TreeIter` for the row being modified
 ## `var_args`
 va_list of column/value pairs
-<!-- trait TreeStoreExt::fn set_value -->
+<!-- trait TreeStoreExtManual::fn set_value -->
 Sets the data in the cell specified by `iter` and `column`.
 The type of `value` must be convertible to the type of the
 column.
@@ -43231,7 +43231,7 @@ Adds the device events in the bitfield `events` to the event mask for
 a `gdk::Device`
 ## `events`
 an event mask, see `gdk::EventMask`
-<!-- trait WidgetExt::fn add_events -->
+<!-- trait WidgetExtManual::fn add_events -->
 Adds the events in the bitfield `events` to the event mask for
 `self`. See `Widget::set_events` and the
 [input handling overview][event-masks] for details.
@@ -43246,7 +43246,7 @@ its internal state at this point as well, by using a connection
 to the `Widget::destroy` signal or a weak notifier.
 ## `label`
 a `Widget` that acts as a mnemonic label for `self`
-<!-- trait WidgetExt::fn add_tick_callback -->
+<!-- trait WidgetExtManual::fn add_tick_callback -->
 Queues an animation frame update and adds a callback to be called
 before each frame. Until the tick callback is removed, it will be
 called frequently (usually at the frame rate of the output device
@@ -43540,7 +43540,7 @@ emit `Widget::drag-motion` signals.
 
 `true` if the widget always emits
  `Widget::drag-motion` events
-<!-- trait WidgetExt::fn drag_dest_set -->
+<!-- trait WidgetExtManual::fn drag_dest_set -->
 Sets a widget as a potential drop destination, and adds default behaviors.
 
 The default behaviors listed in `flags` have an effect similar
@@ -43671,7 +43671,7 @@ drag-and-drop.
 # Returns
 
 the `TargetList`, or `None` if none
-<!-- trait WidgetExt::fn drag_source_set -->
+<!-- trait WidgetExtManual::fn drag_source_set -->
 Sets up a widget so that GTK+ will start a drag operation when the user
 clicks and drags on the widget. The widget must have a window.
 ## `start_button_mask`
@@ -43976,7 +43976,7 @@ See `Widget::set_double_buffered`
 # Returns
 
 `true` if the widget is double buffered
-<!-- trait WidgetExt::fn get_events -->
+<!-- trait WidgetExtManual::fn get_events -->
 Returns the event mask (see `gdk::EventMask`) for the widget. These are the
 events that the widget will receive.
 
@@ -44694,7 +44694,7 @@ from `self`.
 the prefix for actions in `group`
 ## `group`
 a `gio::ActionGroup`, or `None`
-<!-- trait WidgetExt::fn intersect -->
+<!-- trait WidgetExtManual::fn intersect -->
 Computes the intersection of a `self`’s area and `area`, storing
 the intersection in `intersection`, and returns `true` if there was
 an intersection. `intersection` may be `None` if you’re only
@@ -44942,7 +44942,7 @@ the color to use for primary cursor (does not need to be
 the color to use for secondary cursor (does not
  need to be allocated), or `None` to undo the effect of previous
  calls to of `WidgetExt::override_cursor`.
-<!-- trait WidgetExt::fn override_font -->
+<!-- trait WidgetExtManual::fn override_font -->
 Sets the font to use for a widget. All other style values are
 left untouched. See `WidgetExt::override_color`.
 
@@ -44954,7 +44954,7 @@ This function is not useful in the context of CSS-based
  `StyleProvider` and a CSS style class.
 ## `font_desc`
 the font description to use, or `None` to undo
- the effect of previous calls to `WidgetExt::override_font`
+ the effect of previous calls to `Widget::override_font`
 <!-- trait WidgetExt::fn override_symbolic_color -->
 Sets a symbolic color for a widget.
 
@@ -45299,7 +45299,7 @@ If the direction is set to `TextDirection::None`, then the value
 set by `Widget::set_default_direction` will be used.
 ## `dir`
 the new direction
-<!-- trait WidgetExt::fn set_events -->
+<!-- trait WidgetExtManual::fn set_events -->
 Sets the event mask (see `gdk::EventMask`) for a widget. The event
 mask determines which events a widget will receive. Keep in mind
 that different widgets have different default event masks, and by
@@ -46397,7 +46397,7 @@ be emitted.
 The ::map signal can be used to determine whether a widget will be drawn,
 for instance it can resume an animation that was stopped during the
 emission of `Widget::unmap`.
-<!-- trait WidgetExt::fn connect_map_event -->
+<!-- trait WidgetExtManual::fn connect_map_event -->
 The ::map-event signal will be emitted when the `widget`'s window is
 mapped. A window is mapped when it becomes visible on the screen.
 
@@ -46609,7 +46609,7 @@ been set as hidden.
 
 As ::unmap indicates that a widget will not be shown any longer, it can be
 used to, for example, stop an animation on the widget.
-<!-- trait WidgetExt::fn connect_unmap_event -->
+<!-- trait WidgetExtManual::fn connect_unmap_event -->
 The ::unmap-event signal will be emitted when the `widget`'s window is
 unmapped. A window is unmapped when it becomes invisible on the screen.
 
@@ -48010,7 +48010,7 @@ geometry string
 # Returns
 
 `true` if string was parsed successfully
-<!-- trait GtkWindowExt::fn present -->
+<!-- trait GtkWindowExtManual::fn present -->
 Presents a window to the user. This may mean raising the window
 in the stacking order, deiconifying it, moving it to the current
 desktop, and/or giving it the keyboard focus, possibly dependent

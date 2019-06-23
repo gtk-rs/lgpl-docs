@@ -1710,7 +1710,7 @@ When the use count reaches zero, the application will stop running.
 
 Never call this function except to cancel the effect of a previous
 call to `ApplicationExt::hold`.
-<!-- trait ApplicationExt::fn run -->
+<!-- trait ApplicationExtManual::fn run -->
 Runs the application.
 
 This function is intended to be run from `main` and its return value
@@ -2033,7 +2033,7 @@ an exit code. If you have handled your options and want
 to exit the process, return a non-negative option, 0 for success,
 and a positive value for failure. To continue, return -1 to let
 the default option processing continue.
-<!-- trait ApplicationExt::fn connect_open -->
+<!-- trait ApplicationExtManual::fn connect_open -->
 The ::open signal is emitted on the primary instance when there are
 files to open. See `ApplicationExt::open` for more information.
 ## `files`
@@ -2978,7 +2978,7 @@ Trait containing all `Converter` methods.
 # Implementors
 
 [`CharsetConverter`](struct.CharsetConverter.html), [`Converter`](struct.Converter.html), [`ZlibCompressor`](struct.ZlibCompressor.html), [`ZlibDecompressor`](struct.ZlibDecompressor.html)
-<!-- trait ConverterExt::fn convert -->
+<!-- trait ConverterExtManual::fn convert -->
 This is the main operation used when converting data. It is to be called
 multiple times in a loop, and each time it will do some work, i.e.
 producing some output (in `outbuf`) or consuming some input (from `inbuf`) or
@@ -6520,7 +6520,7 @@ optional `Cancellable` object, `None` to ignore
 
 `true` if successful. If an error has occurred, this function
  will return `false` and set `error` appropriately if present.
-<!-- trait FileExt::fn replace_contents_async -->
+<!-- trait FileExtManual::fn replace_contents_async -->
 Starts an asynchronous replacement of `self` with the given
 `contents` of `length` bytes. `etag` will replace the document's
 current entity tag.
@@ -9083,7 +9083,7 @@ Checks if an input stream is closed.
 # Returns
 
 `true` if the stream is closed.
-<!-- trait InputStreamExt::fn read -->
+<!-- trait InputStreamExtManual::fn read -->
 Tries to read `count` bytes from the stream into the buffer starting at
 `buffer`. Will block during this read.
 
@@ -9116,7 +9116,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 Number of bytes read, or -1 on error, or 0 on end of file.
-<!-- trait InputStreamExt::fn read_all -->
+<!-- trait InputStreamExtManual::fn read_all -->
 Tries to read `count` bytes from the stream into the buffer starting at
 `buffer`. Will block during this read.
 
@@ -9149,7 +9149,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait InputStreamExt::fn read_all_async -->
+<!-- trait InputStreamExtManual::fn read_all_async -->
 Request an asynchronous read of `count` bytes from the stream into the
 buffer starting at `buffer`.
 
@@ -9197,7 +9197,7 @@ location to store the number of bytes that was read from the stream
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait InputStreamExt::fn read_async -->
+<!-- trait InputStreamExtManual::fn read_async -->
 Request an asynchronous read of `count` bytes from the stream into the buffer
 starting at `buffer`. When the operation is finished `callback` will be called.
 You can then call `InputStreamExt::read_finish` to get the result of the
@@ -9610,7 +9610,7 @@ Feature: `v2_44`
 the position at which to insert the new item
 ## `item`
 the new item
-<!-- trait ListStoreExt::fn insert_sorted -->
+<!-- trait ListStoreExtManual::fn insert_sorted -->
 Inserts `item` into `self` at a position to be determined by the
 `compare_func`.
 
@@ -9648,7 +9648,7 @@ Removes all items from `self`.
 
 Feature: `v2_44`
 
-<!-- trait ListStoreExt::fn sort -->
+<!-- trait ListStoreExtManual::fn sort -->
 Sort the items in `self` according to `compare_func`.
 
 Feature: `v2_46`
@@ -12311,7 +12311,7 @@ optional cancellable object
 # Returns
 
 Number of bytes written, or -1 on error
-<!-- trait OutputStreamExt::fn write_all -->
+<!-- trait OutputStreamExtManual::fn write_all -->
 Tries to write `count` bytes from `buffer` into the stream. Will block
 during the operation.
 
@@ -12344,7 +12344,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait OutputStreamExt::fn write_all_async -->
+<!-- trait OutputStreamExtManual::fn write_all_async -->
 Request an asynchronous write of `count` bytes from `buffer` into
 the stream. When the operation is finished `callback` will be called.
 You can then call `OutputStreamExt::write_all_finish` to get the result of the
@@ -12397,7 +12397,7 @@ location to store the number of bytes that was written to the stream
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait OutputStreamExt::fn write_async -->
+<!-- trait OutputStreamExtManual::fn write_async -->
 Request an asynchronous write of `count` bytes from `buffer` into
 the stream. When the operation is finished `callback` will be called.
 You can then call `OutputStreamExt::write_finish` to get the result of the
@@ -12704,7 +12704,7 @@ a stream cannot switch from pollable to non-pollable or vice versa.
 # Returns
 
 `true` if `self` is pollable, `false` if not.
-<!-- trait PollableInputStreamExt::fn create_source -->
+<!-- trait PollableInputStreamExtManual::fn create_source -->
 Creates a `glib::Source` that triggers when `self` can be read, or
 `cancellable` is triggered or an error occurs. The callback on the
 source is of the `GPollableSourceFunc` type.
@@ -12735,7 +12735,7 @@ non-blocking behavior, you should always use
  has occurred on `self`, this will result in
  `PollableInputStream::is_readable` returning `true`, and the
  next attempt to read will return the error.
-<!-- trait PollableInputStreamExt::fn read_nonblocking -->
+<!-- trait PollableInputStreamExtManual::fn read_nonblocking -->
 Attempts to read up to `count` bytes from `self` into `buffer`, as
 with `InputStream::read`. If `self` is not currently readable,
 this will immediately return `IOErrorEnum::WouldBlock`, and you can
@@ -12786,7 +12786,7 @@ a stream cannot switch from pollable to non-pollable or vice versa.
 # Returns
 
 `true` if `self` is pollable, `false` if not.
-<!-- trait PollableOutputStreamExt::fn create_source -->
+<!-- trait PollableOutputStreamExtManual::fn create_source -->
 Creates a `glib::Source` that triggers when `self` can be written, or
 `cancellable` is triggered or an error occurs. The callback on the
 source is of the `GPollableSourceFunc` type.
@@ -16245,7 +16245,7 @@ Creates a `SocketConnection` subclass of the right type for
 # Returns
 
 a `SocketConnection`
-<!-- trait SocketExt::fn create_source -->
+<!-- trait SocketExtManual::fn create_source -->
 Creates a `glib::Source` that can be attached to a `glib::MainContext` to monitor
 for the availability of the specified `condition` on the socket. The `glib::Source`
 keeps a reference to the `self`.
@@ -16331,7 +16331,7 @@ Gets the socket family of the socket.
 # Returns
 
 a `SocketFamily`
-<!-- trait SocketExt::fn get_fd -->
+<!-- trait SocketExtManual::fn get_fd -->
 Returns the underlying OS socket object. On unix this
 is a socket file descriptor, and on Windows this is
 a Winsock2 SOCKET handle. This may be useful for
@@ -16567,7 +16567,7 @@ To set the maximum amount of outstanding clients, use
 # Returns
 
 `true` on success, `false` on error.
-<!-- trait SocketExt::fn receive -->
+<!-- trait SocketExtManual::fn receive -->
 Receive data (up to `size` bytes) from a socket. This is mainly used by
 connection-oriented sockets; it is identical to `Socket::receive_from`
 with `address` set to `None`.
@@ -16603,7 +16603,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_from -->
+<!-- trait SocketExtManual::fn receive_from -->
 Receive data (up to `size` bytes) from a socket.
 
 If `address` is non-`None` then `address` will be set equal to the
@@ -16626,7 +16626,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_message -->
+<!-- trait SocketExtManual::fn receive_message -->
 Receive data from a socket. For receiving multiple messages, see
 `Socket::receive_messages`; for easier use, see
 `Socket::receive` and `Socket::receive_from`.
@@ -16708,7 +16708,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_messages -->
+<!-- trait SocketExtManual::fn receive_messages -->
 Receive multiple data messages from `self` in one go. This is the most
 complicated and fully-featured version of this call. For easier use, see
 `Socket::receive`, `Socket::receive_from`, and `Socket::receive_message`.
@@ -16776,7 +16776,7 @@ number of messages received, or -1 on error. Note that the number
  mode, if the peer closed the connection, or if `num_messages`
  was larger than `UIO_MAXIOV` (1024), in which case the caller may re-try
  to receive the remaining messages.
-<!-- trait SocketExt::fn receive_with_blocking -->
+<!-- trait SocketExtManual::fn receive_with_blocking -->
 This behaves exactly the same as `Socket::receive`, except that
 the choice of blocking or non-blocking behavior is determined by
 the `blocking` argument rather than by `self`'s properties.
@@ -16794,7 +16794,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn send -->
+<!-- trait SocketExtManual::fn send -->
 Tries to send `size` bytes from `buffer` on the socket. This is
 mainly used by connection-oriented sockets; it is identical to
 `Socket::send_to` with `address` set to `None`.
@@ -16821,7 +16821,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_message -->
+<!-- trait SocketExtManual::fn send_message -->
 Send data to `address` on `self`. For sending multiple messages see
 `Socket::send_messages`; for easier use, see
 `Socket::send` and `Socket::send_to`.
@@ -16879,7 +16879,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_messages -->
+<!-- trait SocketExtManual::fn send_messages -->
 Send multiple data messages from `self` in one go. This is the most
 complicated and fully-featured version of this call. For easier use, see
 `Socket::send`, `Socket::send_to`, and `Socket::send_message`.
@@ -16932,7 +16932,7 @@ number of messages sent, or -1 on error. Note that the number of
  messages sent may be smaller than `num_messages` if the socket is
  non-blocking or if `num_messages` was larger than UIO_MAXIOV (1024),
  in which case the caller may re-try to send the remaining messages.
-<!-- trait SocketExt::fn send_to -->
+<!-- trait SocketExtManual::fn send_to -->
 Tries to send `size` bytes from `buffer` to `address`. If `address` is
 `None` then the message is sent to the default receiver (set by
 `SocketExt::connect`).
@@ -16952,7 +16952,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_with_blocking -->
+<!-- trait SocketExtManual::fn send_with_blocking -->
 This behaves exactly the same as `Socket::send`, except that
 the choice of blocking or non-blocking behavior is determined by
 the `blocking` argument rather than by `self`'s properties.
@@ -18066,7 +18066,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 a `SocketConnection` on success, `None` on error.
-<!-- trait SocketListenerExt::fn accept_async -->
+<!-- trait SocketListenerExtManual::fn accept_async -->
 This is the asynchronous version of `SocketListenerExt::accept`.
 
 When the operation is finished `callback` will be
@@ -18111,7 +18111,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 a `Socket` on success, `None` on error.
-<!-- trait SocketListenerExt::fn accept_socket_async -->
+<!-- trait SocketListenerExtManual::fn accept_socket_async -->
 This is the asynchronous version of `SocketListenerExt::accept_socket`.
 
 When the operation is finished `callback` will be
@@ -20780,13 +20780,13 @@ closed when the stream is closed.
 # Returns
 
 `true` if the file descriptor is closed when done
-<!-- trait UnixInputStreamExt::fn get_fd -->
+<!-- trait UnixInputStreamExtManual::fn get_fd -->
 Return the UNIX file descriptor that the stream reads from.
 
 # Returns
 
 The file descriptor of `self`
-<!-- trait UnixInputStreamExt::fn set_close_fd -->
+<!-- trait UnixInputStreamExtManual::fn set_close_fd -->
 Sets whether the file descriptor of `self` shall be closed
 when the stream is closed.
 ## `close_fd`
@@ -20839,13 +20839,13 @@ closed when the stream is closed.
 # Returns
 
 `true` if the file descriptor is closed when done
-<!-- trait UnixOutputStreamExt::fn get_fd -->
+<!-- trait UnixOutputStreamExtManual::fn get_fd -->
 Return the UNIX file descriptor that the stream writes to.
 
 # Returns
 
 The file descriptor of `self`
-<!-- trait UnixOutputStreamExt::fn set_close_fd -->
+<!-- trait UnixOutputStreamExtManual::fn set_close_fd -->
 Sets whether the file descriptor of `self` shall be closed
 when the stream is closed.
 ## `close_fd`
@@ -20973,7 +20973,7 @@ Use `UnixSocketAddressExt::get_address_type`
 # Returns
 
 `true` if the address is abstract, `false` otherwise
-<!-- trait UnixSocketAddressExt::fn get_path -->
+<!-- trait UnixSocketAddressExtManual::fn get_path -->
 Gets `self`'s path, or for abstract sockets the "name".
 
 Guaranteed to be zero-terminated, but an abstract socket
