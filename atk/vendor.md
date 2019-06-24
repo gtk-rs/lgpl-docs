@@ -1203,75 +1203,75 @@ A boolean which indicates whether the state has been set or unset.
 <!-- trait AtkObjectExt::fn connect_visible_data_changed -->
 The "visible-data-changed" signal is emitted when the visual
 appearance of the object changed.
-<!-- trait AtkObjectExt::fn get_property_accessible-table-caption -->
+<!-- trait AtkObjectExt::fn get_property_accessible_table_caption -->
 Table caption.
 
 # Deprecated
 
 Since 1.3. Use table-caption-object instead.
-<!-- trait AtkObjectExt::fn set_property_accessible-table-caption -->
+<!-- trait AtkObjectExt::fn set_property_accessible_table_caption -->
 Table caption.
 
 # Deprecated
 
 Since 1.3. Use table-caption-object instead.
-<!-- trait AtkObjectExt::fn get_property_accessible-table-column-description -->
+<!-- trait AtkObjectExt::fn get_property_accessible_table_column_description -->
 Accessible table column description.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_column_description`
 and `Table::set_column_description` instead.
-<!-- trait AtkObjectExt::fn set_property_accessible-table-column-description -->
+<!-- trait AtkObjectExt::fn set_property_accessible_table_column_description -->
 Accessible table column description.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_column_description`
 and `Table::set_column_description` instead.
-<!-- trait AtkObjectExt::fn get_property_accessible-table-column-header -->
+<!-- trait AtkObjectExt::fn get_property_accessible_table_column_header -->
 Accessible table column header.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_column_header` and
 `Table::set_column_header` instead.
-<!-- trait AtkObjectExt::fn set_property_accessible-table-column-header -->
+<!-- trait AtkObjectExt::fn set_property_accessible_table_column_header -->
 Accessible table column header.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_column_header` and
 `Table::set_column_header` instead.
-<!-- trait AtkObjectExt::fn get_property_accessible-table-row-description -->
+<!-- trait AtkObjectExt::fn get_property_accessible_table_row_description -->
 Accessible table row description.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_row_description` and
 `Table::set_row_description` instead.
-<!-- trait AtkObjectExt::fn set_property_accessible-table-row-description -->
+<!-- trait AtkObjectExt::fn set_property_accessible_table_row_description -->
 Accessible table row description.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_row_description` and
 `Table::set_row_description` instead.
-<!-- trait AtkObjectExt::fn get_property_accessible-table-row-header -->
+<!-- trait AtkObjectExt::fn get_property_accessible_table_row_header -->
 Accessible table row header.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_row_header` and
 `Table::set_row_header` instead.
-<!-- trait AtkObjectExt::fn set_property_accessible-table-row-header -->
+<!-- trait AtkObjectExt::fn set_property_accessible_table_row_header -->
 Accessible table row header.
 
 # Deprecated
 
 Since 2.12. Use `Table::get_row_header` and
 `Table::set_row_header` instead.
-<!-- trait AtkObjectExt::fn get_property_accessible-value -->
+<!-- trait AtkObjectExt::fn get_property_accessible_value -->
 Numeric value of this object, in case being and AtkValue.
 
 # Deprecated
@@ -1279,7 +1279,7 @@ Numeric value of this object, in case being and AtkValue.
 Since 2.12. Use `Value::get_value_and_text` to get
 the value, and value-changed signal to be notified on their value
 changes.
-<!-- trait AtkObjectExt::fn set_property_accessible-value -->
+<!-- trait AtkObjectExt::fn set_property_accessible_value -->
 Numeric value of this object, in case being and AtkValue.
 
 # Deprecated

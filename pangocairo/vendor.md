@@ -29,7 +29,7 @@ on the particular font technology Cairo was compiled to use.
 
 # Implements
 
-[`FontMapExt`](trait.FontMapExt.html), [`pango::FontMapExt`](../pango/trait.FontMapExt.html)
+[`FontMapExt`](trait.FontMapExt.html), [`pango::FontMapExt`](../pango/trait.FontMapExt.html), [`FontMapExtManual`](prelude/trait.FontMapExtManual.html)
 <!-- trait FontMapExt -->
 Trait containing all `FontMap` methods.
 
@@ -96,7 +96,7 @@ the newly allocated
  `pango::FontMap` of suitable type which should be freed
  with `gobject::Object::unref`, or `None` if the requested
  cairo font backend is not supported / compiled in.
-<!-- trait FontMapExt::fn get_font_type -->
+<!-- trait FontMapExtManual::fn get_font_type -->
 Gets the type of Cairo font backend that `self` uses.
 
 # Returns

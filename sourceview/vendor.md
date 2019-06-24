@@ -454,37 +454,37 @@ the `Mark`
 <!-- trait BufferExt::fn connect_undo -->
 The ::undo signal is emitted to undo the last user action which
 modified the buffer.
-<!-- trait BufferExt::fn get_property_highlight-matching-brackets -->
+<!-- trait BufferExt::fn get_property_highlight_matching_brackets -->
 Whether to highlight matching brackets in the buffer.
-<!-- trait BufferExt::fn set_property_highlight-matching-brackets -->
+<!-- trait BufferExt::fn set_property_highlight_matching_brackets -->
 Whether to highlight matching brackets in the buffer.
-<!-- trait BufferExt::fn get_property_highlight-syntax -->
+<!-- trait BufferExt::fn get_property_highlight_syntax -->
 Whether to highlight syntax in the buffer.
-<!-- trait BufferExt::fn set_property_highlight-syntax -->
+<!-- trait BufferExt::fn set_property_highlight_syntax -->
 Whether to highlight syntax in the buffer.
-<!-- trait BufferExt::fn get_property_implicit-trailing-newline -->
+<!-- trait BufferExt::fn get_property_implicit_trailing_newline -->
 Whether the buffer has an implicit trailing newline. See
 `BufferExt::set_implicit_trailing_newline`.
 
 Feature: `v3_14`
 
-<!-- trait BufferExt::fn set_property_implicit-trailing-newline -->
+<!-- trait BufferExt::fn set_property_implicit_trailing_newline -->
 Whether the buffer has an implicit trailing newline. See
 `BufferExt::set_implicit_trailing_newline`.
 
 Feature: `v3_14`
 
-<!-- trait BufferExt::fn get_property_max-undo-levels -->
+<!-- trait BufferExt::fn get_property_max_undo_levels -->
 Number of undo levels for the buffer. -1 means no limit. This property
 will only affect the default undo manager.
-<!-- trait BufferExt::fn set_property_max-undo-levels -->
+<!-- trait BufferExt::fn set_property_max_undo_levels -->
 Number of undo levels for the buffer. -1 means no limit. This property
 will only affect the default undo manager.
-<!-- trait BufferExt::fn get_property_style-scheme -->
+<!-- trait BufferExt::fn get_property_style_scheme -->
 Style scheme. It contains styles for syntax highlighting, optionally
 foreground, background, cursor color, current line color, and matching
 brackets style.
-<!-- trait BufferExt::fn set_property_style-scheme -->
+<!-- trait BufferExt::fn set_property_style_scheme -->
 Style scheme. It contains styles for syntax highlighting, optionally
 foreground, background, cursor color, current line color, and matching
 brackets style.
@@ -684,13 +684,13 @@ example, to activate the first proposal, the user can press
 Number of keyboard accelerators to show for the first proposals. For
 example, to activate the first proposal, the user can press
 `<keycombo>``<keycap>`Alt`</keycap>``<keycap>`1`</keycap>``</keycombo>`.
-<!-- trait CompletionExt::fn get_property_auto-complete-delay -->
+<!-- trait CompletionExt::fn get_property_auto_complete_delay -->
 Determines the popup delay (in milliseconds) at which the completion
 will be shown for interactive completion.
-<!-- trait CompletionExt::fn set_property_auto-complete-delay -->
+<!-- trait CompletionExt::fn set_property_auto_complete_delay -->
 Determines the popup delay (in milliseconds) at which the completion
 will be shown for interactive completion.
-<!-- trait CompletionExt::fn get_property_proposal-page-size -->
+<!-- trait CompletionExt::fn get_property_proposal_page_size -->
 The scroll page size of the proposals in the completion window. In
 other words, when `<keycap>`PageDown`</keycap>` or
 `<keycap>`PageUp`</keycap>` is pressed, the selected
@@ -698,7 +698,7 @@ proposal becomes the one which is located one page size backward or
 forward.
 
 See also the `Completion::move-cursor` signal.
-<!-- trait CompletionExt::fn set_property_proposal-page-size -->
+<!-- trait CompletionExt::fn set_property_proposal_page_size -->
 The scroll page size of the proposals in the completion window. In
 other words, when `<keycap>`PageDown`</keycap>` or
 `<keycap>`PageUp`</keycap>` is pressed, the selected
@@ -706,38 +706,38 @@ proposal becomes the one which is located one page size backward or
 forward.
 
 See also the `Completion::move-cursor` signal.
-<!-- trait CompletionExt::fn get_property_provider-page-size -->
+<!-- trait CompletionExt::fn get_property_provider_page_size -->
 The scroll page size of the provider pages in the completion window.
 
 See the `Completion::move-page` signal.
-<!-- trait CompletionExt::fn set_property_provider-page-size -->
+<!-- trait CompletionExt::fn set_property_provider_page_size -->
 The scroll page size of the provider pages in the completion window.
 
 See the `Completion::move-page` signal.
-<!-- trait CompletionExt::fn get_property_remember-info-visibility -->
+<!-- trait CompletionExt::fn get_property_remember_info_visibility -->
 Determines whether the visibility of the info window should be
 saved when the completion is hidden, and restored when the completion
 is shown again.
-<!-- trait CompletionExt::fn set_property_remember-info-visibility -->
+<!-- trait CompletionExt::fn set_property_remember_info_visibility -->
 Determines whether the visibility of the info window should be
 saved when the completion is hidden, and restored when the completion
 is shown again.
-<!-- trait CompletionExt::fn get_property_select-on-show -->
+<!-- trait CompletionExt::fn get_property_select_on_show -->
 Determines whether the first proposal should be selected when the
 completion is first shown.
-<!-- trait CompletionExt::fn set_property_select-on-show -->
+<!-- trait CompletionExt::fn set_property_select_on_show -->
 Determines whether the first proposal should be selected when the
 completion is first shown.
-<!-- trait CompletionExt::fn get_property_show-headers -->
+<!-- trait CompletionExt::fn get_property_show_headers -->
 Determines whether provider headers should be shown in the proposal
 list. It can be useful to disable when there is only one provider.
-<!-- trait CompletionExt::fn set_property_show-headers -->
+<!-- trait CompletionExt::fn set_property_show_headers -->
 Determines whether provider headers should be shown in the proposal
 list. It can be useful to disable when there is only one provider.
-<!-- trait CompletionExt::fn get_property_show-icons -->
+<!-- trait CompletionExt::fn get_property_show_icons -->
 Determines whether provider and proposal icons should be shown in
 the completion popup.
-<!-- trait CompletionExt::fn set_property_show-icons -->
+<!-- trait CompletionExt::fn set_property_show_icons -->
 Determines whether provider and proposal icons should be shown in
 the completion popup.
 <!-- trait CompletionExt::fn get_property_view -->
@@ -992,12 +992,12 @@ Feature: `v3_18`
 The `gdk_pixbuf::Pixbuf` for the icon to be shown for this proposal.
 <!-- trait CompletionItemExt::fn set_property_icon -->
 The `gdk_pixbuf::Pixbuf` for the icon to be shown for this proposal.
-<!-- trait CompletionItemExt::fn get_property_icon-name -->
+<!-- trait CompletionItemExt::fn get_property_icon_name -->
 The icon name for the icon to be shown for this proposal.
 
 Feature: `v3_18`
 
-<!-- trait CompletionItemExt::fn set_property_icon-name -->
+<!-- trait CompletionItemExt::fn set_property_icon_name -->
 The icon name for the icon to be shown for this proposal.
 
 Feature: `v3_18`
@@ -1572,7 +1572,7 @@ the data to pass to the `callback` function.
 ## `notify`
 function to call on `user_data` when the `callback` is no
  longer needed, or `None`.
-<!-- trait FileExt::fn get_property_compression-type -->
+<!-- trait FileExt::fn get_property_compression_type -->
 The compression type.
 
 Feature: `v3_14`
@@ -1593,12 +1593,12 @@ The location.
 
 Feature: `v3_14`
 
-<!-- trait FileExt::fn get_property_newline-type -->
+<!-- trait FileExt::fn get_property_newline_type -->
 The line ending type.
 
 Feature: `v3_14`
 
-<!-- trait FileExt::fn get_property_read-only -->
+<!-- trait FileExt::fn get_property_read_only -->
 Whether the file is read-only or not. The value of this property is
 not updated automatically (there is no file monitors).
 
@@ -1793,13 +1793,13 @@ reference to the file.
 
 Feature: `v3_14`
 
-<!-- trait FileLoaderExt::fn get_property_input-stream -->
+<!-- trait FileLoaderExt::fn get_property_input_stream -->
 The `gio::InputStream` to load. Useful for reading stdin. If this property
 is set, the `FileLoader:location` property is ignored.
 
 Feature: `v3_14`
 
-<!-- trait FileLoaderExt::fn set_property_input-stream -->
+<!-- trait FileLoaderExt::fn set_property_input_stream -->
 The `gio::InputStream` to load. Useful for reading stdin. If this property
 is set, the `FileLoader:location` property is ignored.
 
@@ -2014,12 +2014,12 @@ weak reference to the buffer.
 
 Feature: `v3_14`
 
-<!-- trait FileSaverExt::fn get_property_compression-type -->
+<!-- trait FileSaverExt::fn get_property_compression_type -->
 The compression type.
 
 Feature: `v3_14`
 
-<!-- trait FileSaverExt::fn set_property_compression-type -->
+<!-- trait FileSaverExt::fn set_property_compression_type -->
 The compression type.
 
 Feature: `v3_14`
@@ -2068,12 +2068,12 @@ from the `File` at construction time.
 
 Feature: `v3_14`
 
-<!-- trait FileSaverExt::fn get_property_newline-type -->
+<!-- trait FileSaverExt::fn get_property_newline_type -->
 The newline type.
 
 Feature: `v3_14`
 
-<!-- trait FileSaverExt::fn set_property_newline-type -->
+<!-- trait FileSaverExt::fn set_property_newline_type -->
 The newline type.
 
 Feature: `v3_14`
@@ -2167,9 +2167,9 @@ Use `GutterRendererExt::set_padding` instead.
 The `View` of the gutter.
 <!-- trait GutterExt::fn set_property_view -->
 The `View` of the gutter.
-<!-- trait GutterExt::fn get_property_window-type -->
+<!-- trait GutterExt::fn get_property_window_type -->
 The text window type on which the window is placed.
-<!-- trait GutterExt::fn set_property_window-type -->
+<!-- trait GutterExt::fn set_property_window_type -->
 The text window type on which the window is placed.
 <!-- trait GutterExt::fn get_property_xpad -->
 The x-padding.
@@ -2453,12 +2453,12 @@ The ::queue-draw signal is emitted when the renderer needs
 to be redrawn. Use `GutterRendererExt::queue_draw`
 to emit this signal from an implementation of the
 `GutterRenderer` interface.
-<!-- trait GutterRendererExt::fn get_property_alignment-mode -->
+<!-- trait GutterRendererExt::fn get_property_alignment_mode -->
 The alignment mode of the renderer. This can be used to indicate
 that in the case a cell spans multiple lines (due to text wrapping)
 the alignment should work on either the full cell, the first line
 or the last line.
-<!-- trait GutterRendererExt::fn set_property_alignment-mode -->
+<!-- trait GutterRendererExt::fn set_property_alignment_mode -->
 The alignment mode of the renderer. This can be used to indicate
 that in the case a cell spans multiple lines (due to text wrapping)
 the alignment should work on either the full cell, the first line
@@ -2469,7 +2469,7 @@ The view on which the renderer is placed.
 The visibility of the renderer.
 <!-- trait GutterRendererExt::fn set_property_visible -->
 The visibility of the renderer.
-<!-- trait GutterRendererExt::fn get_property_window-type -->
+<!-- trait GutterRendererExt::fn get_property_window_type -->
 The window type of the view on which the renderer is placed (left,
 or right).
 <!-- trait GutterRendererExt::fn get_property_xalign -->
@@ -2560,13 +2560,13 @@ the pixbuf, or `None`.
 Don't use this function.
 ## `stock_id`
 the stock id
-<!-- trait GutterRendererPixbufExt::fn get_property_stock-id -->
+<!-- trait GutterRendererPixbufExt::fn get_property_stock_id -->
 The stock id.
 
 # Deprecated since 3.10
 
 Don't use this property.
-<!-- trait GutterRendererPixbufExt::fn set_property_stock-id -->
+<!-- trait GutterRendererPixbufExt::fn set_property_stock_id -->
 The stock id.
 
 # Deprecated since 3.10
@@ -3095,21 +3095,21 @@ A color used for background of a line.
 A `gio::Icon` that may be a base of a rendered icon.
 <!-- trait MarkAttributesExt::fn set_property_gicon -->
 A `gio::Icon` that may be a base of a rendered icon.
-<!-- trait MarkAttributesExt::fn get_property_icon-name -->
+<!-- trait MarkAttributesExt::fn get_property_icon_name -->
 An icon name that may be a base of a rendered icon.
-<!-- trait MarkAttributesExt::fn set_property_icon-name -->
+<!-- trait MarkAttributesExt::fn set_property_icon_name -->
 An icon name that may be a base of a rendered icon.
 <!-- trait MarkAttributesExt::fn get_property_pixbuf -->
 A `gdk_pixbuf::Pixbuf` that may be a base of a rendered icon.
 <!-- trait MarkAttributesExt::fn set_property_pixbuf -->
 A `gdk_pixbuf::Pixbuf` that may be a base of a rendered icon.
-<!-- trait MarkAttributesExt::fn get_property_stock-id -->
+<!-- trait MarkAttributesExt::fn get_property_stock_id -->
 A stock id that may be a base of a rendered icon.
 
 # Deprecated since 3.10
 
 Don't use this property.
-<!-- trait MarkAttributesExt::fn set_property_stock-id -->
+<!-- trait MarkAttributesExt::fn set_property_stock_id -->
 A stock id that may be a base of a rendered icon.
 
 # Deprecated since 3.10
@@ -3567,7 +3567,7 @@ This function cannot be called anymore after the first call to the
 `PrintCompositorExt::paginate` function.
 ## `wrap_mode`
 a `gtk::WrapMode`.
-<!-- trait PrintCompositorExt::fn get_property_body-font-name -->
+<!-- trait PrintCompositorExt::fn get_property_body_font_name -->
 Name of the font used for the text body.
 
 Accepted values are strings representing a font description Pango can understand.
@@ -3576,7 +3576,7 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_body-font-name -->
+<!-- trait PrintCompositorExt::fn set_property_body_font_name -->
 Name of the font used for the text body.
 
 Accepted values are strings representing a font description Pango can understand.
@@ -3589,7 +3589,7 @@ call to the `PrintCompositorExt::paginate` function.
 The `Buffer` object to print.
 <!-- trait PrintCompositorExt::fn set_property_buffer -->
 The `Buffer` object to print.
-<!-- trait PrintCompositorExt::fn get_property_footer-font-name -->
+<!-- trait PrintCompositorExt::fn get_property_footer_font_name -->
 Name of the font used to print page footer.
 If this property is unspecified, the text body font is used.
 
@@ -3599,7 +3599,7 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_footer-font-name -->
+<!-- trait PrintCompositorExt::fn set_property_footer_font_name -->
 Name of the font used to print page footer.
 If this property is unspecified, the text body font is used.
 
@@ -3609,7 +3609,7 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_header-font-name -->
+<!-- trait PrintCompositorExt::fn get_property_header_font_name -->
 Name of the font used to print page header.
 If this property is unspecified, the text body font is used.
 
@@ -3619,7 +3619,7 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_header-font-name -->
+<!-- trait PrintCompositorExt::fn set_property_header_font_name -->
 Name of the font used to print page header.
 If this property is unspecified, the text body font is used.
 
@@ -3629,17 +3629,17 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_highlight-syntax -->
+<!-- trait PrintCompositorExt::fn get_property_highlight_syntax -->
 Whether to print the document with highlighted syntax.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_highlight-syntax -->
+<!-- trait PrintCompositorExt::fn set_property_highlight_syntax -->
 Whether to print the document with highlighted syntax.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_line-numbers-font-name -->
+<!-- trait PrintCompositorExt::fn get_property_line_numbers_font_name -->
 Name of the font used to print line numbers on the left margin.
 If this property is unspecified, the text body font is used.
 
@@ -3649,7 +3649,7 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_line-numbers-font-name -->
+<!-- trait PrintCompositorExt::fn set_property_line_numbers_font_name -->
 Name of the font used to print line numbers on the left margin.
 If this property is unspecified, the text body font is used.
 
@@ -3659,10 +3659,10 @@ for a description of the format of the string representation.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_n-pages -->
+<!-- trait PrintCompositorExt::fn get_property_n_pages -->
 The number of pages in the document or `<code>`-1`</code>` if the
 document has not been completely paginated.
-<!-- trait PrintCompositorExt::fn get_property_print-footer -->
+<!-- trait PrintCompositorExt::fn get_property_print_footer -->
 Whether to print a footer in each page.
 
 Note that by default the footer format is unspecified, and if it is
@@ -3671,7 +3671,7 @@ this property.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_print-footer -->
+<!-- trait PrintCompositorExt::fn set_property_print_footer -->
 Whether to print a footer in each page.
 
 Note that by default the footer format is unspecified, and if it is
@@ -3680,7 +3680,7 @@ this property.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_print-header -->
+<!-- trait PrintCompositorExt::fn get_property_print_header -->
 Whether to print a header in each page.
 
 Note that by default the header format is unspecified, and if it is
@@ -3689,7 +3689,7 @@ this property.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_print-header -->
+<!-- trait PrintCompositorExt::fn set_property_print_header -->
 Whether to print a header in each page.
 
 Note that by default the header format is unspecified, and if it is
@@ -3698,36 +3698,36 @@ this property.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_print-line-numbers -->
+<!-- trait PrintCompositorExt::fn get_property_print_line_numbers -->
 Interval of printed line numbers. If this property is set to 0 no
 numbers will be printed. If greater than 0, a number will be
 printed every "print-line-numbers" lines (i.e. 1 will print all line numbers).
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_print-line-numbers -->
+<!-- trait PrintCompositorExt::fn set_property_print_line_numbers -->
 Interval of printed line numbers. If this property is set to 0 no
 numbers will be printed. If greater than 0, a number will be
 printed every "print-line-numbers" lines (i.e. 1 will print all line numbers).
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_tab-width -->
+<!-- trait PrintCompositorExt::fn get_property_tab_width -->
 Width of a tab character expressed in spaces.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_tab-width -->
+<!-- trait PrintCompositorExt::fn set_property_tab_width -->
 Width of a tab character expressed in spaces.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn get_property_wrap-mode -->
+<!-- trait PrintCompositorExt::fn get_property_wrap_mode -->
 Whether to wrap lines never, at word boundaries, or at character boundaries.
 
 The value of this property cannot be changed anymore after the first
 call to the `PrintCompositorExt::paginate` function.
-<!-- trait PrintCompositorExt::fn set_property_wrap-mode -->
+<!-- trait PrintCompositorExt::fn set_property_wrap_mode -->
 Whether to wrap lines never, at word boundaries, or at character boundaries.
 
 The value of this property cannot be changed anymore after the first
@@ -4384,24 +4384,24 @@ Highlight the search occurrences.
 
 Feature: `v3_10`
 
-<!-- trait SearchContextExt::fn get_property_match-style -->
+<!-- trait SearchContextExt::fn get_property_match_style -->
 A `Style`, or `None` for theme's scheme default style.
 
 Feature: `v3_16`
 
-<!-- trait SearchContextExt::fn set_property_match-style -->
+<!-- trait SearchContextExt::fn set_property_match_style -->
 A `Style`, or `None` for theme's scheme default style.
 
 Feature: `v3_16`
 
-<!-- trait SearchContextExt::fn get_property_occurrences-count -->
+<!-- trait SearchContextExt::fn get_property_occurrences_count -->
 The total number of search occurrences. If the search is disabled,
 the value is 0. If the buffer is not already fully scanned, the value
 is -1.
 
 Feature: `v3_10`
 
-<!-- trait SearchContextExt::fn get_property_regex-error -->
+<!-- trait SearchContextExt::fn get_property_regex_error -->
 If the regex search pattern doesn't follow all the rules, this
 property will be set. If the pattern is valid, the value is `None`.
 
@@ -4540,62 +4540,62 @@ Feature: `v3_10`
 
 ## `wrap_around`
 the setting.
-<!-- trait SearchSettingsExt::fn get_property_at-word-boundaries -->
+<!-- trait SearchSettingsExt::fn get_property_at_word_boundaries -->
 If `true`, a search match must start and end a word. The match can
 span multiple words.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn set_property_at-word-boundaries -->
+<!-- trait SearchSettingsExt::fn set_property_at_word_boundaries -->
 If `true`, a search match must start and end a word. The match can
 span multiple words.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn get_property_case-sensitive -->
+<!-- trait SearchSettingsExt::fn get_property_case_sensitive -->
 Whether the search is case sensitive.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn set_property_case-sensitive -->
+<!-- trait SearchSettingsExt::fn set_property_case_sensitive -->
 Whether the search is case sensitive.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn get_property_regex-enabled -->
+<!-- trait SearchSettingsExt::fn get_property_regex_enabled -->
 Search by regular expressions with
 `SearchSettings:search-text` as the pattern.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn set_property_regex-enabled -->
+<!-- trait SearchSettingsExt::fn set_property_regex_enabled -->
 Search by regular expressions with
 `SearchSettings:search-text` as the pattern.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn get_property_search-text -->
+<!-- trait SearchSettingsExt::fn get_property_search_text -->
 A search string, or `None` if the search is disabled. If the regular
 expression search is enabled, `SearchSettings:search-text` is
 the pattern.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn set_property_search-text -->
+<!-- trait SearchSettingsExt::fn set_property_search_text -->
 A search string, or `None` if the search is disabled. If the regular
 expression search is enabled, `SearchSettings:search-text` is
 the pattern.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn get_property_wrap-around -->
+<!-- trait SearchSettingsExt::fn get_property_wrap_around -->
 For a forward search, continue at the beginning of the buffer if no
 search occurrence is found. For a backward search, continue at the
 end of the buffer.
 
 Feature: `v3_10`
 
-<!-- trait SearchSettingsExt::fn set_property_wrap-around -->
+<!-- trait SearchSettingsExt::fn set_property_wrap_around -->
 For a forward search, continue at the beginning of the buffer if no
 search occurrence is found. For a backward search, continue at the
 end of the buffer.
@@ -4731,12 +4731,12 @@ Feature: `v3_24`
 one or several `SpaceLocationFlags`.
 ## `types`
 a combination of `SpaceTypeFlags`.
-<!-- trait SpaceDrawerExt::fn get_property_enable-matrix -->
+<!-- trait SpaceDrawerExt::fn get_property_enable_matrix -->
 Whether the `SpaceDrawer:matrix` property is enabled.
 
 Feature: `v3_24`
 
-<!-- trait SpaceDrawerExt::fn set_property_enable-matrix -->
+<!-- trait SpaceDrawerExt::fn set_property_enable_matrix -->
 Whether the `SpaceDrawer:matrix` property is enabled.
 
 Feature: `v3_24`
@@ -4798,12 +4798,12 @@ has the same attributes set.
 
 copy of `self`, call `gobject::Object::unref`
 when you are done with it.
-<!-- trait StyleExt::fn get_property_underline -->
+<!-- impl Style::fn get_property_underline -->
 
 # Deprecated since 3.18
 
 Use pango-underline.
-<!-- trait StyleExt::fn set_property_underline -->
+<!-- impl Style::fn set_property_underline -->
 
 # Deprecated since 3.18
 
@@ -4901,14 +4901,14 @@ Feature: `v3_16`
 
 ## `scheme`
 a `StyleScheme`
-<!-- trait StyleSchemeChooserExt::fn get_property_style-scheme -->
+<!-- trait StyleSchemeChooserExt::fn get_property_style_scheme -->
 The :style-scheme property contains the currently selected style
 scheme. The property can be set to change
 the current selection programmatically.
 
 Feature: `v3_16`
 
-<!-- trait StyleSchemeChooserExt::fn set_property_style-scheme -->
+<!-- trait StyleSchemeChooserExt::fn set_property_style_scheme -->
 The :style-scheme property contains the currently selected style
 scheme. The property can be set to change
 the current selection programmatically.
@@ -5057,7 +5057,7 @@ tag name, or `None`.
 # Returns
 
 a new `Tag`.
-<!-- trait TagExt::fn get_property_draw-spaces -->
+<!-- trait TagExt::fn get_property_draw_spaces -->
 Whether to draw white spaces. This property takes precedence over the value
 defined by the `SpaceDrawer`'s `SpaceDrawer:matrix` property
 (only where the tag is applied).
@@ -5067,7 +5067,7 @@ Setting this property also changes `Tag:draw-spaces-set` to
 
 Feature: `v3_20`
 
-<!-- trait TagExt::fn set_property_draw-spaces -->
+<!-- trait TagExt::fn set_property_draw_spaces -->
 Whether to draw white spaces. This property takes precedence over the value
 defined by the `SpaceDrawer`'s `SpaceDrawer:matrix` property
 (only where the tag is applied).
@@ -5077,13 +5077,13 @@ Setting this property also changes `Tag:draw-spaces-set` to
 
 Feature: `v3_20`
 
-<!-- trait TagExt::fn get_property_draw-spaces-set -->
+<!-- trait TagExt::fn get_property_draw_spaces_set -->
 Whether the `Tag:draw-spaces` property is set and must be
 taken into account.
 
 Feature: `v3_20`
 
-<!-- trait TagExt::fn set_property_draw-spaces-set -->
+<!-- trait TagExt::fn set_property_draw_spaces_set -->
 Whether the `Tag:draw-spaces` property is set and must be
 taken into account.
 
@@ -5537,19 +5537,19 @@ home/end.
 a `gtk::TextIter`
 ## `count`
 the count
-<!-- trait ViewExt::fn get_property_background-pattern -->
+<!-- trait ViewExt::fn get_property_background_pattern -->
 Draw a specific background pattern on the view.
 
 Feature: `v3_16`
 
-<!-- trait ViewExt::fn set_property_background-pattern -->
+<!-- trait ViewExt::fn set_property_background_pattern -->
 Draw a specific background pattern on the view.
 
 Feature: `v3_16`
 
 <!-- trait ViewExt::fn get_property_completion -->
 The completion object associated with the view
-<!-- trait ViewExt::fn get_property_draw-spaces -->
+<!-- trait ViewExt::fn get_property_draw_spaces -->
 Set if and how the spaces should be visualized.
 
 For a finer-grained method, there is also the `Tag`'s
@@ -5559,7 +5559,7 @@ For a finer-grained method, there is also the `Tag`'s
 
 Use the `SpaceDrawer:matrix` property
 instead.
-<!-- trait ViewExt::fn set_property_draw-spaces -->
+<!-- trait ViewExt::fn set_property_draw_spaces -->
 Set if and how the spaces should be visualized.
 
 For a finer-grained method, there is also the `Tag`'s
@@ -5569,48 +5569,48 @@ For a finer-grained method, there is also the `Tag`'s
 
 Use the `SpaceDrawer:matrix` property
 instead.
-<!-- trait ViewExt::fn get_property_indent-width -->
+<!-- trait ViewExt::fn get_property_indent_width -->
 Width of an indentation step expressed in number of spaces.
-<!-- trait ViewExt::fn set_property_indent-width -->
+<!-- trait ViewExt::fn set_property_indent_width -->
 Width of an indentation step expressed in number of spaces.
-<!-- trait ViewExt::fn get_property_right-margin-position -->
+<!-- trait ViewExt::fn get_property_right_margin_position -->
 Position of the right margin.
-<!-- trait ViewExt::fn set_property_right-margin-position -->
+<!-- trait ViewExt::fn set_property_right_margin_position -->
 Position of the right margin.
-<!-- trait ViewExt::fn get_property_show-line-marks -->
+<!-- trait ViewExt::fn get_property_show_line_marks -->
 Whether to display line mark pixbufs
-<!-- trait ViewExt::fn set_property_show-line-marks -->
+<!-- trait ViewExt::fn set_property_show_line_marks -->
 Whether to display line mark pixbufs
-<!-- trait ViewExt::fn get_property_show-line-numbers -->
+<!-- trait ViewExt::fn get_property_show_line_numbers -->
 Whether to display line numbers
-<!-- trait ViewExt::fn set_property_show-line-numbers -->
+<!-- trait ViewExt::fn set_property_show_line_numbers -->
 Whether to display line numbers
-<!-- trait ViewExt::fn get_property_show-right-margin -->
+<!-- trait ViewExt::fn get_property_show_right_margin -->
 Whether to display the right margin.
-<!-- trait ViewExt::fn set_property_show-right-margin -->
+<!-- trait ViewExt::fn set_property_show_right_margin -->
 Whether to display the right margin.
-<!-- trait ViewExt::fn get_property_smart-backspace -->
+<!-- trait ViewExt::fn get_property_smart_backspace -->
 Whether smart Backspace should be used.
 
 Feature: `v3_18`
 
-<!-- trait ViewExt::fn set_property_smart-backspace -->
+<!-- trait ViewExt::fn set_property_smart_backspace -->
 Whether smart Backspace should be used.
 
 Feature: `v3_18`
 
-<!-- trait ViewExt::fn get_property_smart-home-end -->
+<!-- trait ViewExt::fn get_property_smart_home_end -->
 Set the behavior of the HOME and END keys.
-<!-- trait ViewExt::fn set_property_smart-home-end -->
+<!-- trait ViewExt::fn set_property_smart_home_end -->
 Set the behavior of the HOME and END keys.
-<!-- trait ViewExt::fn get_property_space-drawer -->
+<!-- trait ViewExt::fn get_property_space_drawer -->
 The `SpaceDrawer` object associated with the view.
 
 Feature: `v3_24`
 
-<!-- trait ViewExt::fn get_property_tab-width -->
+<!-- trait ViewExt::fn get_property_tab_width -->
 Width of a tab character expressed in number of spaces.
-<!-- trait ViewExt::fn set_property_tab-width -->
+<!-- trait ViewExt::fn set_property_tab_width -->
 Width of a tab character expressed in number of spaces.
 <!-- enum ViewGutterPosition -->
 <!-- enum ViewGutterPosition::variant Lines -->

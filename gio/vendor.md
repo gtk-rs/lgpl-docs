@@ -219,13 +219,13 @@ If the action is disabled then calls to `Action::activate` and
 <!-- trait ActionExt::fn get_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `ActionGroup`. It is immutable.
-<!-- trait ActionExt::fn get_property_parameter-type -->
+<!-- trait ActionExt::fn get_property_parameter_type -->
 The type of the parameter that must be given when activating the
 action. This is immutable, and may be `None` if no parameter is needed when
 activating the action.
 <!-- trait ActionExt::fn get_property_state -->
 The state of the action, or `None` if the action is stateless.
-<!-- trait ActionExt::fn get_property_state-type -->
+<!-- trait ActionExt::fn get_property_state_type -->
 The `glib::VariantType` of the state that the action has, or `None` if the
 action is stateless. This is immutable.
 <!-- struct ActionGroup -->
@@ -1077,7 +1077,7 @@ the same main context as you created it.
 # Returns
 
 a reference to a `AppInfoMonitor`
-<!-- trait AppInfoMonitorExt::fn connect_changed -->
+<!-- impl AppInfoMonitor::fn connect_changed -->
 Signal emitted when the app info database for changes (ie: newly installed
 or removed applications).
 <!-- struct AppLaunchContext -->
@@ -1710,7 +1710,7 @@ When the use count reaches zero, the application will stop running.
 
 Never call this function except to cancel the effect of a previous
 call to `ApplicationExt::hold`.
-<!-- trait ApplicationExt::fn run -->
+<!-- trait ApplicationExtManual::fn run -->
 Runs the application.
 
 This function is intended to be run from `main` and its return value
@@ -2033,7 +2033,7 @@ an exit code. If you have handled your options and want
 to exit the process, return a non-negative option, 0 for success,
 and a positive value for failure. To continue, return -1 to let
 the default option processing continue.
-<!-- trait ApplicationExt::fn connect_open -->
+<!-- trait ApplicationExtManual::fn connect_open -->
 The ::open signal is emitted on the primary instance when there are
 files to open. See `ApplicationExt::open` for more information.
 ## `files`
@@ -2048,7 +2048,7 @@ immediately after the main loop terminates.
 <!-- trait ApplicationExt::fn connect_startup -->
 The ::startup signal is emitted on the primary instance immediately
 after registration. See `ApplicationExt::register`.
-<!-- trait ApplicationExt::fn get_property_is-busy -->
+<!-- trait ApplicationExt::fn get_property_is_busy -->
 Whether the application is currently marked as busy through
 `ApplicationExt::mark_busy` or `ApplicationExt::bind_busy_property`.
 
@@ -2659,9 +2659,9 @@ Gets the `glib::Bytes` associated with the given `self`.
 # Returns
 
 a `glib::Bytes`, or `None`.
-<!-- trait BytesIconExt::fn get_property_bytes -->
+<!-- impl BytesIcon::fn get_property_bytes -->
 The bytes containing the icon.
-<!-- trait BytesIconExt::fn set_property_bytes -->
+<!-- impl BytesIcon::fn set_property_bytes -->
 The bytes containing the icon.
 <!-- struct Cancellable -->
 GCancellable is a thread-safe operation cancellation stack used
@@ -2978,7 +2978,7 @@ Trait containing all `Converter` methods.
 # Implementors
 
 [`CharsetConverter`](struct.CharsetConverter.html), [`Converter`](struct.Converter.html), [`ZlibCompressor`](struct.ZlibCompressor.html), [`ZlibDecompressor`](struct.ZlibDecompressor.html)
-<!-- trait ConverterExt::fn convert -->
+<!-- trait ConverterExtManual::fn convert -->
 This is the main operation used when converting data. It is to be called
 multiple times in a loop, and each time it will do some work, i.e.
 producing some output (in `outbuf`) or consuming some input (from `inbuf`) or
@@ -3799,10 +3799,10 @@ optional `Cancellable` object, `None` to ignore.
 Sets the byte order of the data output stream to `order`.
 ## `order`
 a `DataStreamByteOrder`.
-<!-- trait DataOutputStreamExt::fn get_property_byte-order -->
+<!-- trait DataOutputStreamExt::fn get_property_byte_order -->
 Determines the byte ordering that is used when writing
 multi-byte entities (such as integers) to the stream.
-<!-- trait DataOutputStreamExt::fn set_property_byte-order -->
+<!-- trait DataOutputStreamExt::fn set_property_byte_order -->
 Determines the byte ordering that is used when writing
 multi-byte entities (such as integers) to the stream.
 <!-- enum DataStreamByteOrder -->
@@ -6520,7 +6520,7 @@ optional `Cancellable` object, `None` to ignore
 
 `true` if successful. If an error has occurred, this function
  will return `false` and set `error` appropriately if present.
-<!-- trait FileExt::fn replace_contents_async -->
+<!-- trait FileExtManual::fn replace_contents_async -->
 Starts an asynchronous replacement of `self` with the given
 `contents` of `length` bytes. `etag` will replace the document's
 current entity tag.
@@ -7340,9 +7340,9 @@ Gets the `File` associated with the given `self`.
 # Returns
 
 a `File`, or `None`.
-<!-- trait FileIconExt::fn get_property_file -->
+<!-- impl FileIcon::fn get_property_file -->
 The file containing the icon.
-<!-- trait FileIconExt::fn set_property_file -->
+<!-- impl FileIcon::fn set_property_file -->
 The file containing the icon.
 <!-- struct FileInfo -->
 Functionality for manipulating basic metadata for files. `FileInfo`
@@ -8813,34 +8813,34 @@ Converts `self` to string form.
 
 a representation of `self` as a string, which should be
 freed after use.
-<!-- trait InetAddressExt::fn get_property_is-any -->
+<!-- trait InetAddressExt::fn get_property_is_any -->
 Whether this is the "any" address for its family.
 See `InetAddressExt::get_is_any`.
-<!-- trait InetAddressExt::fn get_property_is-link-local -->
+<!-- trait InetAddressExt::fn get_property_is_link_local -->
 Whether this is a link-local address.
 See `InetAddressExt::get_is_link_local`.
-<!-- trait InetAddressExt::fn get_property_is-loopback -->
+<!-- trait InetAddressExt::fn get_property_is_loopback -->
 Whether this is the loopback address for its family.
 See `InetAddressExt::get_is_loopback`.
-<!-- trait InetAddressExt::fn get_property_is-mc-global -->
+<!-- trait InetAddressExt::fn get_property_is_mc_global -->
 Whether this is a global multicast address.
 See `InetAddressExt::get_is_mc_global`.
-<!-- trait InetAddressExt::fn get_property_is-mc-link-local -->
+<!-- trait InetAddressExt::fn get_property_is_mc_link_local -->
 Whether this is a link-local multicast address.
 See `InetAddressExt::get_is_mc_link_local`.
-<!-- trait InetAddressExt::fn get_property_is-mc-node-local -->
+<!-- trait InetAddressExt::fn get_property_is_mc_node_local -->
 Whether this is a node-local multicast address.
 See `InetAddressExt::get_is_mc_node_local`.
-<!-- trait InetAddressExt::fn get_property_is-mc-org-local -->
+<!-- trait InetAddressExt::fn get_property_is_mc_org_local -->
 Whether this is an organization-local multicast address.
 See `InetAddressExt::get_is_mc_org_local`.
-<!-- trait InetAddressExt::fn get_property_is-mc-site-local -->
+<!-- trait InetAddressExt::fn get_property_is_mc_site_local -->
 Whether this is a site-local multicast address.
 See `InetAddressExt::get_is_mc_site_local`.
-<!-- trait InetAddressExt::fn get_property_is-multicast -->
+<!-- trait InetAddressExt::fn get_property_is_multicast -->
 Whether this is a multicast address.
 See `InetAddressExt::get_is_multicast`.
-<!-- trait InetAddressExt::fn get_property_is-site-local -->
+<!-- trait InetAddressExt::fn get_property_is_site_local -->
 Whether this is a site-local address.
 See `InetAddressExt::get_is_loopback`.
 <!-- struct InetAddressMask -->
@@ -9083,7 +9083,7 @@ Checks if an input stream is closed.
 # Returns
 
 `true` if the stream is closed.
-<!-- trait InputStreamExt::fn read -->
+<!-- trait InputStreamExtManual::fn read -->
 Tries to read `count` bytes from the stream into the buffer starting at
 `buffer`. Will block during this read.
 
@@ -9116,7 +9116,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 Number of bytes read, or -1 on error, or 0 on end of file.
-<!-- trait InputStreamExt::fn read_all -->
+<!-- trait InputStreamExtManual::fn read_all -->
 Tries to read `count` bytes from the stream into the buffer starting at
 `buffer`. Will block during this read.
 
@@ -9149,7 +9149,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait InputStreamExt::fn read_all_async -->
+<!-- trait InputStreamExtManual::fn read_all_async -->
 Request an asynchronous read of `count` bytes from the stream into the
 buffer starting at `buffer`.
 
@@ -9197,7 +9197,7 @@ location to store the number of bytes that was read from the stream
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait InputStreamExt::fn read_async -->
+<!-- trait InputStreamExtManual::fn read_async -->
 Request an asynchronous read of `count` bytes from the stream into the buffer
 starting at `buffer`. When the operation is finished `callback` will be called.
 You can then call `InputStreamExt::read_finish` to get the result of the
@@ -9610,7 +9610,7 @@ Feature: `v2_44`
 the position at which to insert the new item
 ## `item`
 the new item
-<!-- trait ListStoreExt::fn insert_sorted -->
+<!-- trait ListStoreExtManual::fn insert_sorted -->
 Inserts `item` into `self` at a position to be determined by the
 `compare_func`.
 
@@ -9648,7 +9648,7 @@ Removes all items from `self`.
 
 Feature: `v2_44`
 
-<!-- trait ListStoreExt::fn sort -->
+<!-- trait ListStoreExtManual::fn sort -->
 Sort the items in `self` according to `compare_func`.
 
 Feature: `v2_46`
@@ -9682,13 +9682,13 @@ the number of items to remove
 the items to add
 ## `n_additions`
 the number of items to add
-<!-- trait ListStoreExt::fn get_property_item-type -->
+<!-- trait ListStoreExt::fn get_property_item_type -->
 The type of items contained in this list store. Items must be
 subclasses of `gobject::Object`.
 
 Feature: `v2_44`
 
-<!-- trait ListStoreExt::fn set_property_item-type -->
+<!-- trait ListStoreExt::fn set_property_item_type -->
 The type of items contained in this list store. Items must be
 subclasses of `gobject::Object`.
 
@@ -9936,15 +9936,15 @@ the stream's data, or `None` if it has previously
 Pointer to buffer where data will be written.
 <!-- trait MemoryOutputStreamExt::fn set_property_data -->
 Pointer to buffer where data will be written.
-<!-- trait MemoryOutputStreamExt::fn get_property_data-size -->
+<!-- trait MemoryOutputStreamExt::fn get_property_data_size -->
 Size of data written to the buffer.
-<!-- trait MemoryOutputStreamExt::fn get_property_destroy-function -->
+<!-- trait MemoryOutputStreamExt::fn get_property_destroy_function -->
 Function called with the buffer as argument when the stream is destroyed.
-<!-- trait MemoryOutputStreamExt::fn set_property_destroy-function -->
+<!-- trait MemoryOutputStreamExt::fn set_property_destroy_function -->
 Function called with the buffer as argument when the stream is destroyed.
-<!-- trait MemoryOutputStreamExt::fn get_property_realloc-function -->
+<!-- trait MemoryOutputStreamExt::fn get_property_realloc_function -->
 Function with realloc semantics called to enlarge the buffer.
-<!-- trait MemoryOutputStreamExt::fn set_property_realloc-function -->
+<!-- trait MemoryOutputStreamExt::fn set_property_realloc_function -->
 Function with realloc semantics called to enlarge the buffer.
 <!-- trait MemoryOutputStreamExt::fn get_property_size -->
 Current size of the data buffer.
@@ -11417,19 +11417,19 @@ mount operation. See the `MountOperation::ask-question` signal.
 The domain to use for the mount operation.
 <!-- trait MountOperationExt::fn set_property_domain -->
 The domain to use for the mount operation.
-<!-- trait MountOperationExt::fn get_property_is-tcrypt-hidden-volume -->
+<!-- trait MountOperationExt::fn get_property_is_tcrypt_hidden_volume -->
 Whether the device to be unlocked is a TCRYPT hidden volume.
 See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
 
 Feature: `v2_58`
 
-<!-- trait MountOperationExt::fn set_property_is-tcrypt-hidden-volume -->
+<!-- trait MountOperationExt::fn set_property_is_tcrypt_hidden_volume -->
 Whether the device to be unlocked is a TCRYPT hidden volume.
 See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
 
 Feature: `v2_58`
 
-<!-- trait MountOperationExt::fn get_property_is-tcrypt-system-volume -->
+<!-- trait MountOperationExt::fn get_property_is_tcrypt_system_volume -->
 Whether the device to be unlocked is a TCRYPT system volume.
 In this context, a system volume is a volume with a bootloader
 and operating system installed. This is only supported for Windows
@@ -11438,7 +11438,7 @@ https://www.veracrypt.fr/en/System`20Encryption.html`.
 
 Feature: `v2_58`
 
-<!-- trait MountOperationExt::fn set_property_is-tcrypt-system-volume -->
+<!-- trait MountOperationExt::fn set_property_is_tcrypt_system_volume -->
 Whether the device to be unlocked is a TCRYPT system volume.
 In this context, a system volume is a volume with a bootloader
 and operating system installed. This is only supported for Windows
@@ -11453,9 +11453,9 @@ the mount operation.
 <!-- trait MountOperationExt::fn set_property_password -->
 The password that is used for authentication when carrying out
 the mount operation.
-<!-- trait MountOperationExt::fn get_property_password-save -->
+<!-- trait MountOperationExt::fn get_property_password_save -->
 Determines if and how the password information should be saved.
-<!-- trait MountOperationExt::fn set_property_password-save -->
+<!-- trait MountOperationExt::fn set_property_password_save -->
 Determines if and how the password information should be saved.
 <!-- trait MountOperationExt::fn get_property_pim -->
 The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See
@@ -11762,7 +11762,7 @@ See `NetworkMonitor::get_connectivity` and
 
 Feature: `v2_44`
 
-<!-- trait NetworkMonitorExt::fn get_property_network-available -->
+<!-- trait NetworkMonitorExt::fn get_property_network_available -->
 Whether the network is considered available. That is, whether the
 system has a default route for at least one of IPv4 or IPv6.
 
@@ -11780,7 +11780,7 @@ hosts at all are reachable, and should indicate this to the user
 in its UI.)
 
 See also `NetworkMonitor::network-changed`.
-<!-- trait NetworkMonitorExt::fn get_property_network-metered -->
+<!-- trait NetworkMonitorExt::fn get_property_network_metered -->
 Whether the network is considered metered. That is, whether the
 system has traffic flowing through the default connection that is
 subject to limitations set by service providers. For example, traffic
@@ -12311,7 +12311,7 @@ optional cancellable object
 # Returns
 
 Number of bytes written, or -1 on error
-<!-- trait OutputStreamExt::fn write_all -->
+<!-- trait OutputStreamExtManual::fn write_all -->
 Tries to write `count` bytes from `buffer` into the stream. Will block
 during the operation.
 
@@ -12344,7 +12344,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait OutputStreamExt::fn write_all_async -->
+<!-- trait OutputStreamExtManual::fn write_all_async -->
 Request an asynchronous write of `count` bytes from `buffer` into
 the stream. When the operation is finished `callback` will be called.
 You can then call `OutputStreamExt::write_all_finish` to get the result of the
@@ -12397,7 +12397,7 @@ location to store the number of bytes that was written to the stream
 # Returns
 
 `true` on success, `false` if there was an error
-<!-- trait OutputStreamExt::fn write_async -->
+<!-- trait OutputStreamExtManual::fn write_async -->
 Request an asynchronous write of `count` bytes from `buffer` into
 the stream. When the operation is finished `callback` will be called.
 You can then call `OutputStreamExt::write_finish` to get the result of the
@@ -12671,10 +12671,10 @@ the `AsyncResult` given to the `GAsyncReadyCallback`
 <!-- trait PermissionExt::fn get_property_allowed -->
 `true` if the caller currently has permission to perform the action that
 `permission` represents the permission to perform.
-<!-- trait PermissionExt::fn get_property_can-acquire -->
+<!-- trait PermissionExt::fn get_property_can_acquire -->
 `true` if it is generally possible to acquire the permission by calling
 `PermissionExt::acquire`.
-<!-- trait PermissionExt::fn get_property_can-release -->
+<!-- trait PermissionExt::fn get_property_can_release -->
 `true` if it is generally possible to release the permission by calling
 `PermissionExt::release`.
 <!-- struct PollableInputStream -->
@@ -12704,7 +12704,7 @@ a stream cannot switch from pollable to non-pollable or vice versa.
 # Returns
 
 `true` if `self` is pollable, `false` if not.
-<!-- trait PollableInputStreamExt::fn create_source -->
+<!-- trait PollableInputStreamExtManual::fn create_source -->
 Creates a `glib::Source` that triggers when `self` can be read, or
 `cancellable` is triggered or an error occurs. The callback on the
 source is of the `GPollableSourceFunc` type.
@@ -12735,7 +12735,7 @@ non-blocking behavior, you should always use
  has occurred on `self`, this will result in
  `PollableInputStream::is_readable` returning `true`, and the
  next attempt to read will return the error.
-<!-- trait PollableInputStreamExt::fn read_nonblocking -->
+<!-- trait PollableInputStreamExtManual::fn read_nonblocking -->
 Attempts to read up to `count` bytes from `self` into `buffer`, as
 with `InputStream::read`. If `self` is not currently readable,
 this will immediately return `IOErrorEnum::WouldBlock`, and you can
@@ -12786,7 +12786,7 @@ a stream cannot switch from pollable to non-pollable or vice versa.
 # Returns
 
 `true` if `self` is pollable, `false` if not.
-<!-- trait PollableOutputStreamExt::fn create_source -->
+<!-- trait PollableOutputStreamExtManual::fn create_source -->
 Creates a `glib::Source` that triggers when `self` can be written, or
 `cancellable` is triggered or an error occurs. The callback on the
 source is of the `GPollableSourceFunc` type.
@@ -12920,44 +12920,44 @@ the name of the property
 # Returns
 
 a new `PropertyAction`
-<!-- trait PropertyActionExt::fn get_property_enabled -->
+<!-- impl PropertyAction::fn get_property_enabled -->
 If `action` is currently enabled.
 
 If the action is disabled then calls to `Action::activate` and
 `Action::change_state` have no effect.
-<!-- trait PropertyActionExt::fn get_property_invert-boolean -->
+<!-- impl PropertyAction::fn get_property_invert_boolean -->
 If `true`, the state of the action will be the negation of the
 property value, provided the property is boolean.
 
 Feature: `v2_46`
 
-<!-- trait PropertyActionExt::fn set_property_invert-boolean -->
+<!-- impl PropertyAction::fn set_property_invert_boolean -->
 If `true`, the state of the action will be the negation of the
 property value, provided the property is boolean.
 
 Feature: `v2_46`
 
-<!-- trait PropertyActionExt::fn get_property_name -->
+<!-- impl PropertyAction::fn get_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `ActionMap`.
-<!-- trait PropertyActionExt::fn set_property_name -->
+<!-- impl PropertyAction::fn set_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `ActionMap`.
-<!-- trait PropertyActionExt::fn set_property_object -->
+<!-- impl PropertyAction::fn set_property_object -->
 The object to wrap a property on.
 
 The object must be a non-`None` `gobject::Object` with properties.
-<!-- trait PropertyActionExt::fn get_property_parameter-type -->
+<!-- impl PropertyAction::fn get_property_parameter_type -->
 The type of the parameter that must be given when activating the
 action.
-<!-- trait PropertyActionExt::fn set_property_property-name -->
+<!-- impl PropertyAction::fn set_property_property_name -->
 The name of the property to wrap on the object.
 
 The property must exist on the passed-in object and it must be
 readable and writable (and not construct-only).
-<!-- trait PropertyActionExt::fn get_property_state -->
+<!-- impl PropertyAction::fn get_property_state -->
 The state of the action, or `None` if the action is stateless.
-<!-- trait PropertyActionExt::fn get_property_state-type -->
+<!-- impl PropertyAction::fn get_property_state_type -->
 The `glib::VariantType` of the state that the action has, or `None` if the
 action is stateless.
 <!-- struct Proxy -->
@@ -13122,10 +13122,10 @@ Gets `self`'s username.
 # Returns
 
 the `self`'s username
-<!-- trait ProxyAddressExt::fn get_property_destination-protocol -->
+<!-- trait ProxyAddressExt::fn get_property_destination_protocol -->
 The protocol being spoke to the destination host, or `None` if
 the `ProxyAddress` doesn't know.
-<!-- trait ProxyAddressExt::fn set_property_destination-protocol -->
+<!-- trait ProxyAddressExt::fn set_property_destination_protocol -->
 The protocol being spoke to the destination host, or `None` if
 the `ProxyAddress` doesn't know.
 <!-- trait ProxyAddressExt::fn get_property_uri -->
@@ -15128,23 +15128,23 @@ the key
 The name of the context that the settings are stored in.
 <!-- trait SettingsExt::fn set_property_backend -->
 The name of the context that the settings are stored in.
-<!-- trait SettingsExt::fn get_property_delay-apply -->
+<!-- trait SettingsExt::fn get_property_delay_apply -->
 Whether the `Settings` object is in 'delay-apply' mode. See
 `SettingsExt::delay` for details.
-<!-- trait SettingsExt::fn get_property_has-unapplied -->
+<!-- trait SettingsExt::fn get_property_has_unapplied -->
 If this property is `true`, the `Settings` object has outstanding
 changes that will be applied when `SettingsExt::apply` is called.
 <!-- trait SettingsExt::fn get_property_path -->
 The path within the backend where the settings are stored.
 <!-- trait SettingsExt::fn set_property_path -->
 The path within the backend where the settings are stored.
-<!-- trait SettingsExt::fn get_property_schema-id -->
+<!-- trait SettingsExt::fn get_property_schema_id -->
 The name of the schema that describes the types of keys
 for this `Settings` object.
-<!-- trait SettingsExt::fn set_property_schema-id -->
+<!-- trait SettingsExt::fn set_property_schema_id -->
 The name of the schema that describes the types of keys
 for this `Settings` object.
-<!-- trait SettingsExt::fn get_property_settings-schema -->
+<!-- trait SettingsExt::fn get_property_settings_schema -->
 The `SettingsSchema` describing the types of keys for this
 `Settings` object.
 
@@ -15152,7 +15152,7 @@ Ideally, this property would be called 'schema'. `SettingsSchema`
 has only existed since version 2.32, however, and before then the
 'schema' property was used to refer to the ID of the schema rather
 than the schema itself. Take care.
-<!-- trait SettingsExt::fn set_property_settings-schema -->
+<!-- trait SettingsExt::fn set_property_settings_schema -->
 The `SettingsSchema` describing the types of keys for this
 `Settings` object.
 
@@ -15799,7 +15799,7 @@ Feature: `v2_44`
 
 ## `state_hint`
 a `glib::Variant` representing the state hint
-<!-- trait SimpleActionExt::fn connect_activate -->
+<!-- impl SimpleAction::fn connect_activate -->
 Indicates that the action was just activated.
 
 `parameter` will always be of the expected type, i.e. the parameter type
@@ -15816,7 +15816,7 @@ of `SimpleAction` to connect only one handler or the other.
 ## `parameter`
 the parameter to the activation, or `None` if it has
  no parameter
-<!-- trait SimpleActionExt::fn connect_change_state -->
+<!-- impl SimpleAction::fn connect_change_state -->
 Indicates that the action just received a request to change its
 state.
 
@@ -15853,33 +15853,33 @@ The handler need not set the state to the requested value.
 It could set it to any value at all, or take some other action.
 ## `value`
 the requested value for the state
-<!-- trait SimpleActionExt::fn get_property_enabled -->
+<!-- impl SimpleAction::fn get_property_enabled -->
 If `action` is currently enabled.
 
 If the action is disabled then calls to `Action::activate` and
 `Action::change_state` have no effect.
-<!-- trait SimpleActionExt::fn set_property_enabled -->
+<!-- impl SimpleAction::fn set_property_enabled -->
 If `action` is currently enabled.
 
 If the action is disabled then calls to `Action::activate` and
 `Action::change_state` have no effect.
-<!-- trait SimpleActionExt::fn get_property_name -->
+<!-- impl SimpleAction::fn get_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `SimpleActionGroup`.
-<!-- trait SimpleActionExt::fn set_property_name -->
+<!-- impl SimpleAction::fn set_property_name -->
 The name of the action. This is mostly meaningful for identifying
 the action once it has been added to a `SimpleActionGroup`.
-<!-- trait SimpleActionExt::fn get_property_parameter-type -->
+<!-- impl SimpleAction::fn get_property_parameter_type -->
 The type of the parameter that must be given when activating the
 action.
-<!-- trait SimpleActionExt::fn set_property_parameter-type -->
+<!-- impl SimpleAction::fn set_property_parameter_type -->
 The type of the parameter that must be given when activating the
 action.
-<!-- trait SimpleActionExt::fn get_property_state -->
+<!-- impl SimpleAction::fn get_property_state -->
 The state of the action, or `None` if the action is stateless.
-<!-- trait SimpleActionExt::fn set_property_state -->
+<!-- impl SimpleAction::fn set_property_state -->
 The state of the action, or `None` if the action is stateless.
-<!-- trait SimpleActionExt::fn get_property_state-type -->
+<!-- impl SimpleAction::fn get_property_state_type -->
 The `glib::VariantType` of the state that the action has, or `None` if the
 action is stateless.
 <!-- struct SimpleActionGroup -->
@@ -16245,7 +16245,7 @@ Creates a `SocketConnection` subclass of the right type for
 # Returns
 
 a `SocketConnection`
-<!-- trait SocketExt::fn create_source -->
+<!-- trait SocketExtManual::fn create_source -->
 Creates a `glib::Source` that can be attached to a `glib::MainContext` to monitor
 for the availability of the specified `condition` on the socket. The `glib::Source`
 keeps a reference to the `self`.
@@ -16331,7 +16331,7 @@ Gets the socket family of the socket.
 # Returns
 
 a `SocketFamily`
-<!-- trait SocketExt::fn get_fd -->
+<!-- trait SocketExtManual::fn get_fd -->
 Returns the underlying OS socket object. On unix this
 is a socket file descriptor, and on Windows this is
 a Winsock2 SOCKET handle. This may be useful for
@@ -16567,7 +16567,7 @@ To set the maximum amount of outstanding clients, use
 # Returns
 
 `true` on success, `false` on error.
-<!-- trait SocketExt::fn receive -->
+<!-- trait SocketExtManual::fn receive -->
 Receive data (up to `size` bytes) from a socket. This is mainly used by
 connection-oriented sockets; it is identical to `Socket::receive_from`
 with `address` set to `None`.
@@ -16603,7 +16603,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_from -->
+<!-- trait SocketExtManual::fn receive_from -->
 Receive data (up to `size` bytes) from a socket.
 
 If `address` is non-`None` then `address` will be set equal to the
@@ -16626,7 +16626,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_message -->
+<!-- trait SocketExtManual::fn receive_message -->
 Receive data from a socket. For receiving multiple messages, see
 `Socket::receive_messages`; for easier use, see
 `Socket::receive` and `Socket::receive_from`.
@@ -16708,7 +16708,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn receive_messages -->
+<!-- trait SocketExtManual::fn receive_messages -->
 Receive multiple data messages from `self` in one go. This is the most
 complicated and fully-featured version of this call. For easier use, see
 `Socket::receive`, `Socket::receive_from`, and `Socket::receive_message`.
@@ -16776,7 +16776,7 @@ number of messages received, or -1 on error. Note that the number
  mode, if the peer closed the connection, or if `num_messages`
  was larger than `UIO_MAXIOV` (1024), in which case the caller may re-try
  to receive the remaining messages.
-<!-- trait SocketExt::fn receive_with_blocking -->
+<!-- trait SocketExtManual::fn receive_with_blocking -->
 This behaves exactly the same as `Socket::receive`, except that
 the choice of blocking or non-blocking behavior is determined by
 the `blocking` argument rather than by `self`'s properties.
@@ -16794,7 +16794,7 @@ a `Cancellable` or `None`
 
 Number of bytes read, or 0 if the connection was closed by
 the peer, or -1 on error
-<!-- trait SocketExt::fn send -->
+<!-- trait SocketExtManual::fn send -->
 Tries to send `size` bytes from `buffer` on the socket. This is
 mainly used by connection-oriented sockets; it is identical to
 `Socket::send_to` with `address` set to `None`.
@@ -16821,7 +16821,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_message -->
+<!-- trait SocketExtManual::fn send_message -->
 Send data to `address` on `self`. For sending multiple messages see
 `Socket::send_messages`; for easier use, see
 `Socket::send` and `Socket::send_to`.
@@ -16879,7 +16879,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_messages -->
+<!-- trait SocketExtManual::fn send_messages -->
 Send multiple data messages from `self` in one go. This is the most
 complicated and fully-featured version of this call. For easier use, see
 `Socket::send`, `Socket::send_to`, and `Socket::send_message`.
@@ -16932,7 +16932,7 @@ number of messages sent, or -1 on error. Note that the number of
  messages sent may be smaller than `num_messages` if the socket is
  non-blocking or if `num_messages` was larger than UIO_MAXIOV (1024),
  in which case the caller may re-try to send the remaining messages.
-<!-- trait SocketExt::fn send_to -->
+<!-- trait SocketExtManual::fn send_to -->
 Tries to send `size` bytes from `buffer` to `address`. If `address` is
 `None` then the message is sent to the default receiver (set by
 `SocketExt::connect`).
@@ -16952,7 +16952,7 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
-<!-- trait SocketExt::fn send_with_blocking -->
+<!-- trait SocketExtManual::fn send_with_blocking -->
 This behaves exactly the same as `Socket::send`, except that
 the choice of blocking or non-blocking behavior is determined by
 the `blocking` argument rather than by `self`'s properties.
@@ -17120,13 +17120,13 @@ of speaking IPv4.
 Whether the socket should allow sending to broadcast addresses.
 <!-- trait SocketExt::fn set_property_broadcast -->
 Whether the socket should allow sending to broadcast addresses.
-<!-- trait SocketExt::fn get_property_multicast-loopback -->
+<!-- trait SocketExt::fn get_property_multicast_loopback -->
 Whether outgoing multicast packets loop back to the local host.
-<!-- trait SocketExt::fn set_property_multicast-loopback -->
+<!-- trait SocketExt::fn set_property_multicast_loopback -->
 Whether outgoing multicast packets loop back to the local host.
-<!-- trait SocketExt::fn get_property_multicast-ttl -->
+<!-- trait SocketExt::fn get_property_multicast_ttl -->
 Time-to-live out outgoing multicast packets
-<!-- trait SocketExt::fn set_property_multicast-ttl -->
+<!-- trait SocketExt::fn set_property_multicast_ttl -->
 Time-to-live out outgoing multicast packets
 <!-- trait SocketExt::fn get_property_timeout -->
 The timeout in seconds on socket I/O
@@ -17741,9 +17741,9 @@ the event that is occurring
 the `SocketConnectable` that `event` is occurring on
 ## `connection`
 the current representation of the connection
-<!-- trait SocketClientExt::fn get_property_proxy-resolver -->
+<!-- trait SocketClientExt::fn get_property_proxy_resolver -->
 The proxy resolver to use
-<!-- trait SocketClientExt::fn set_property_proxy-resolver -->
+<!-- trait SocketClientExt::fn set_property_proxy_resolver -->
 The proxy resolver to use
 <!-- enum SocketClientEvent -->
 Describes an event occurring on a `SocketClient`. See the
@@ -18079,7 +18079,7 @@ a `GAsyncReadyCallback`
 ## `user_data`
 user data for the callback
 <!-- trait SocketListenerExt::fn accept_finish -->
-Finishes an async accept operation. See `SocketListenerExtManual::accept_async`
+Finishes an async accept operation. See `SocketListener::accept_async`
 ## `result`
 a `AsyncResult`.
 ## `source_object`
@@ -18111,7 +18111,7 @@ optional `Cancellable` object, `None` to ignore.
 # Returns
 
 a `Socket` on success, `None` on error.
-<!-- trait SocketListenerExt::fn accept_socket_async -->
+<!-- trait SocketListenerExtManual::fn accept_socket_async -->
 This is the asynchronous version of `SocketListenerExt::accept_socket`.
 
 When the operation is finished `callback` will be
@@ -19239,13 +19239,13 @@ Note that doing so invalidates the hash computed by prior calls
 to `Icon::hash`.
 ## `iconname`
 name of icon to prepend to list of icons from within `self`.
-<!-- trait ThemedIconExt::fn set_property_name -->
+<!-- impl ThemedIcon::fn set_property_name -->
 The icon name.
-<!-- trait ThemedIconExt::fn get_property_names -->
+<!-- impl ThemedIcon::fn get_property_names -->
 A `None`-terminated array of icon names.
-<!-- trait ThemedIconExt::fn set_property_names -->
+<!-- impl ThemedIcon::fn set_property_names -->
 A `None`-terminated array of icon names.
-<!-- trait ThemedIconExt::fn get_property_use-default-fallbacks -->
+<!-- impl ThemedIcon::fn get_property_use_default_fallbacks -->
 Whether to use the default fallbacks found by shortening the icon name
 at '-' characters. If the "names" array has more than one element,
 ignores any past the first.
@@ -19262,7 +19262,7 @@ would become
   NULL
 };
 ```
-<!-- trait ThemedIconExt::fn set_property_use-default-fallbacks -->
+<!-- impl ThemedIcon::fn set_property_use_default_fallbacks -->
 Whether to use the default fallbacks found by shortening the icon name
 at '-' characters. If the "names" array has more than one element,
 ignores any past the first.
@@ -19490,11 +19490,11 @@ represent the same data, just in different forms.
 The DER (binary) encoded representation of the certificate.
 This property and the `TlsCertificate:certificate-pem` property
 represent the same data, just in different forms.
-<!-- trait TlsCertificateExt::fn get_property_certificate-pem -->
+<!-- trait TlsCertificateExt::fn get_property_certificate_pem -->
 The PEM (ASCII) encoded representation of the certificate.
 This property and the `TlsCertificate:certificate`
 property represent the same data, just in different forms.
-<!-- trait TlsCertificateExt::fn set_property_certificate-pem -->
+<!-- trait TlsCertificateExt::fn set_property_certificate_pem -->
 The PEM (ASCII) encoded representation of the certificate.
 This property and the `TlsCertificate:certificate`
 property represent the same data, just in different forms.
@@ -19508,7 +19508,7 @@ A `TlsCertificate` representing the entity that issued this
 certificate. If `None`, this means that the certificate is either
 self-signed, or else the certificate of the issuer is not
 available.
-<!-- trait TlsCertificateExt::fn set_property_private-key -->
+<!-- trait TlsCertificateExt::fn set_property_private_key -->
 The DER (binary) encoded representation of the certificate's
 private key, in either PKCS`1` format or unencrypted PKCS`8`
 format. This property (or the `TlsCertificate:private-key-pem`
@@ -19518,7 +19518,7 @@ but cannot be read.
 PKCS`8` format is supported since 2.32; earlier releases only
 support PKCS`1`. You can use the `openssl rsa`
 tool to convert PKCS`8` keys to PKCS`1`.
-<!-- trait TlsCertificateExt::fn set_property_private-key-pem -->
+<!-- trait TlsCertificateExt::fn set_property_private_key_pem -->
 The PEM (ASCII) encoded representation of the certificate's
 private key in either PKCS`1` format ("`BEGIN RSA PRIVATE
 KEY`") or unencrypted PKCS`8` format ("`BEGIN
@@ -19652,7 +19652,7 @@ checks performed when validating a server certificate. By default,
 `TlsCertificateFlags::ValidateAll` is used.
 ## `flags`
 the `TlsCertificateFlags` to use
-<!-- trait TlsClientConnectionExt::fn get_property_accepted-cas -->
+<!-- trait TlsClientConnectionExt::fn get_property_accepted_cas -->
 A list of the distinguished names of the Certificate Authorities
 that the server will accept client certificates signed by. If the
 server requests a client certificate during the handshake, then
@@ -19660,7 +19660,7 @@ this property will be set after the handshake completes.
 
 Each item in the list is a `glib::ByteArray` which contains the complete
 subject DN of the certificate authority.
-<!-- trait TlsClientConnectionExt::fn get_property_server-identity -->
+<!-- trait TlsClientConnectionExt::fn get_property_server_identity -->
 A `SocketConnectable` describing the identity of the server that
 is expected on the other end of the connection.
 
@@ -19675,7 +19675,7 @@ In addition to its use in verifying the server certificate,
 this is also used to give a hint to the server about what
 certificate we expect, which is useful for servers that serve
 virtual hosts.
-<!-- trait TlsClientConnectionExt::fn set_property_server-identity -->
+<!-- trait TlsClientConnectionExt::fn set_property_server_identity -->
 A `SocketConnectable` describing the identity of the server that
 is expected on the other end of the connection.
 
@@ -19690,7 +19690,7 @@ In addition to its use in verifying the server certificate,
 this is also used to give a hint to the server about what
 certificate we expect, which is useful for servers that serve
 virtual hosts.
-<!-- trait TlsClientConnectionExt::fn get_property_use-ssl3 -->
+<!-- trait TlsClientConnectionExt::fn get_property_use_ssl3 -->
 If `true`, forces the connection to use a fallback version of TLS
 or SSL, rather than trying to negotiate the best version of TLS
 to use. See `TlsClientConnection::set_use_ssl3`.
@@ -19699,7 +19699,7 @@ to use. See `TlsClientConnection::set_use_ssl3`.
 
 SSL 3.0 is insecure, and this property does not
 generally enable or disable it, despite its name.
-<!-- trait TlsClientConnectionExt::fn set_property_use-ssl3 -->
+<!-- trait TlsClientConnectionExt::fn set_property_use_ssl3 -->
 If `true`, forces the connection to use a fallback version of TLS
 or SSL, rather than trying to negotiate the best version of TLS
 to use. See `TlsClientConnection::set_use_ssl3`.
@@ -19708,12 +19708,12 @@ to use. See `TlsClientConnection::set_use_ssl3`.
 
 SSL 3.0 is insecure, and this property does not
 generally enable or disable it, despite its name.
-<!-- trait TlsClientConnectionExt::fn get_property_validation-flags -->
+<!-- trait TlsClientConnectionExt::fn get_property_validation_flags -->
 What steps to perform when validating a certificate received from
 a server. Server certificates that fail to validate in all of the
 ways indicated here will be rejected unless the application
 overrides the default via `TlsConnection::accept-certificate`.
-<!-- trait TlsClientConnectionExt::fn set_property_validation-flags -->
+<!-- trait TlsClientConnectionExt::fn set_property_validation_flags -->
 What steps to perform when validating a certificate received from
 a server. Server certificates that fail to validate in all of the
 ways indicated here will be rejected unless the application
@@ -19994,13 +19994,13 @@ the problems with `peer_cert`.
 immediately end the signal emission). `false` to allow the signal
 emission to continue, which will cause the handshake to fail if
 no one else overrides it.
-<!-- trait TlsConnectionExt::fn get_property_base-io-stream -->
+<!-- trait TlsConnectionExt::fn get_property_base_io_stream -->
 The `IOStream` that the connection wraps. The connection holds a reference
 to this stream, and may run operations on the stream from other threads
 throughout its lifetime. Consequently, after the `IOStream` has been
 constructed, application code may only run its own operations on this
 stream when no `IOStream` operations are running.
-<!-- trait TlsConnectionExt::fn set_property_base-io-stream -->
+<!-- trait TlsConnectionExt::fn set_property_base_io_stream -->
 The `IOStream` that the connection wraps. The connection holds a reference
 to this stream, and may run operations on the stream from other threads
 throughout its lifetime. Consequently, after the `IOStream` has been
@@ -20028,7 +20028,7 @@ user for passwords where necessary.
 A `TlsInteraction` object to be used when the connection or certificate
 database need to interact with the user. This will be used to prompt the
 user for passwords where necessary.
-<!-- trait TlsConnectionExt::fn get_property_peer-certificate -->
+<!-- trait TlsConnectionExt::fn get_property_peer_certificate -->
 The connection's peer's certificate, after the TLS handshake has
 completed and the certificate has been accepted. Note in
 particular that this is not yet set during the emission of
@@ -20036,23 +20036,23 @@ particular that this is not yet set during the emission of
 
 (You can watch for a `gobject::Object::notify` signal on this property to
 detect when a handshake has occurred.)
-<!-- trait TlsConnectionExt::fn get_property_peer-certificate-errors -->
+<!-- trait TlsConnectionExt::fn get_property_peer_certificate_errors -->
 The errors noticed-and-ignored while verifying
 `TlsConnection:peer-certificate`. Normally this should be 0, but
 it may not be if `TlsClientConnection:validation-flags` is not
 `TlsCertificateFlags::ValidateAll`, or if
 `TlsConnection::accept-certificate` overrode the default
 behavior.
-<!-- trait TlsConnectionExt::fn get_property_rehandshake-mode -->
+<!-- trait TlsConnectionExt::fn get_property_rehandshake_mode -->
 The rehandshaking mode. See
 `TlsConnectionExt::set_rehandshake_mode`.
-<!-- trait TlsConnectionExt::fn set_property_rehandshake-mode -->
+<!-- trait TlsConnectionExt::fn set_property_rehandshake_mode -->
 The rehandshaking mode. See
 `TlsConnectionExt::set_rehandshake_mode`.
-<!-- trait TlsConnectionExt::fn get_property_require-close-notify -->
+<!-- trait TlsConnectionExt::fn get_property_require_close_notify -->
 Whether or not proper TLS close notification is required.
 See `TlsConnectionExt::set_require_close_notify`.
-<!-- trait TlsConnectionExt::fn set_property_require-close-notify -->
+<!-- trait TlsConnectionExt::fn set_property_require_close_notify -->
 Whether or not proper TLS close notification is required.
 See `TlsConnectionExt::set_require_close_notify`.
 <!-- struct TlsDatabase -->
@@ -20732,11 +20732,11 @@ the default server certificate, or `None`
 
 the new
 `TlsServerConnection`, or `None` on error
-<!-- trait TlsServerConnectionExt::fn get_property_authentication-mode -->
+<!-- trait TlsServerConnectionExt::fn get_property_authentication_mode -->
 The `TlsAuthenticationMode` for the server. This can be changed
 before calling `TlsConnectionExt::handshake` if you want to
 rehandshake with a different mode from the initial handshake.
-<!-- trait TlsServerConnectionExt::fn set_property_authentication-mode -->
+<!-- trait TlsServerConnectionExt::fn set_property_authentication_mode -->
 The `TlsAuthenticationMode` for the server. This can be changed
 before calling `TlsConnectionExt::handshake` if you want to
 rehandshake with a different mode from the initial handshake.
@@ -20780,20 +20780,20 @@ closed when the stream is closed.
 # Returns
 
 `true` if the file descriptor is closed when done
-<!-- trait UnixInputStreamExt::fn get_fd -->
+<!-- trait UnixInputStreamExtManual::fn get_fd -->
 Return the UNIX file descriptor that the stream reads from.
 
 # Returns
 
 The file descriptor of `self`
-<!-- trait UnixInputStreamExt::fn set_close_fd -->
+<!-- trait UnixInputStreamExtManual::fn set_close_fd -->
 Sets whether the file descriptor of `self` shall be closed
 when the stream is closed.
 ## `close_fd`
 `true` to close the file descriptor when done
-<!-- trait UnixInputStreamExt::fn get_property_close-fd -->
+<!-- trait UnixInputStreamExt::fn get_property_close_fd -->
 Whether to close the file descriptor when the stream is closed.
-<!-- trait UnixInputStreamExt::fn set_property_close-fd -->
+<!-- trait UnixInputStreamExt::fn set_property_close_fd -->
 Whether to close the file descriptor when the stream is closed.
 <!-- trait UnixInputStreamExt::fn get_property_fd -->
 The file descriptor that the stream reads from.
@@ -20839,20 +20839,20 @@ closed when the stream is closed.
 # Returns
 
 `true` if the file descriptor is closed when done
-<!-- trait UnixOutputStreamExt::fn get_fd -->
+<!-- trait UnixOutputStreamExtManual::fn get_fd -->
 Return the UNIX file descriptor that the stream writes to.
 
 # Returns
 
 The file descriptor of `self`
-<!-- trait UnixOutputStreamExt::fn set_close_fd -->
+<!-- trait UnixOutputStreamExtManual::fn set_close_fd -->
 Sets whether the file descriptor of `self` shall be closed
 when the stream is closed.
 ## `close_fd`
 `true` to close the file descriptor when done
-<!-- trait UnixOutputStreamExt::fn get_property_close-fd -->
+<!-- trait UnixOutputStreamExt::fn get_property_close_fd -->
 Whether to close the file descriptor when the stream is closed.
-<!-- trait UnixOutputStreamExt::fn set_property_close-fd -->
+<!-- trait UnixOutputStreamExt::fn set_property_close_fd -->
 Whether to close the file descriptor when the stream is closed.
 <!-- trait UnixOutputStreamExt::fn get_property_fd -->
 The file descriptor that the stream writes to.
@@ -20973,7 +20973,7 @@ Use `UnixSocketAddressExt::get_address_type`
 # Returns
 
 `true` if the address is abstract, `false` otherwise
-<!-- trait UnixSocketAddressExt::fn get_path -->
+<!-- trait UnixSocketAddressExtManual::fn get_path -->
 Gets `self`'s path, or for abstract sockets the "name".
 
 Guaranteed to be zero-terminated, but an abstract socket
@@ -21566,11 +21566,11 @@ progress; it may only be called immediately after creation of `self`,
 or after resetting it with `Converter::reset`.
 ## `file_info`
 a `FileInfo`
-<!-- trait ZlibCompressorExt::fn get_property_file-info -->
+<!-- trait ZlibCompressorExt::fn get_property_file_info -->
 If set to a non-`None` `FileInfo` object, and `ZlibCompressor:format` is
 `ZlibCompressorFormat::Gzip`, the compressor will write the file name
 and modification time from the file info to the GZIP header.
-<!-- trait ZlibCompressorExt::fn set_property_file-info -->
+<!-- trait ZlibCompressorExt::fn set_property_file_info -->
 If set to a non-`None` `FileInfo` object, and `ZlibCompressor:format` is
 `ZlibCompressorFormat::Gzip`, the compressor will write the file name
 and modification time from the file info to the GZIP header.
@@ -21613,7 +21613,7 @@ data stream at all.
 # Returns
 
 a `FileInfo`, or `None`
-<!-- trait ZlibDecompressorExt::fn get_property_file-info -->
+<!-- trait ZlibDecompressorExt::fn get_property_file_info -->
 A `FileInfo` containing the information found in the GZIP header
 of the data stream processed, or `None` if the header was not yet
 fully processed, is not present at all, or the compressor's
