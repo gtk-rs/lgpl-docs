@@ -2994,7 +2994,7 @@ a window’s geometry constraints. Normally you would set these on
 the GTK+ level using `gtk_window_set_geometry_hints`. ``GtkWindow``
 then sets the hints on the `Window` it creates.
 
-`Window::set_geometry_hints` expects the hints to be fully valid already
+`WindowExt::set_geometry_hints` expects the hints to be fully valid already
 and simply passes them to the window manager; in contrast,
 `gtk_window_set_geometry_hints` performs some interpretation. For example,
 ``GtkWindow`` will apply the hints to the geometry widget instead of the
@@ -5870,7 +5870,7 @@ it doesn’t include `WMFunction::All`, it indicates which functions to
 enable.
 ## `functions`
 bitmask of operations to allow on `self`
-<!-- trait WindowExtManual::fn set_geometry_hints -->
+<!-- trait WindowExt::fn set_geometry_hints -->
 Sets the geometry hints for `self`. Hints flagged in `geom_mask`
 are set, hints not flagged in `geom_mask` are unset.
 To unset all hints, use a `geom_mask` of 0 and a `geometry` of `None`.

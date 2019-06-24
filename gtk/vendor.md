@@ -24217,7 +24217,7 @@ Feature: `v3_22`
 
 # Implements
 
-[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`PadControllerExtManual`](prelude/trait.PadControllerExtManual.html)
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
 <!-- impl PadController::fn new -->
 Creates a new `PadController` that will associate events from `pad` to
 actions. A `None` pad may be provided so the controller manages all pad devices
