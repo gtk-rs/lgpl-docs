@@ -766,6 +766,10 @@ Utility function that launches the default application
 registered to handle the specified uri. Synchronous I/O
 is done on the uri to detect the type of the file if
 required.
+
+The D-Bus–activated applications don't have to be started if your application
+terminates too soon after this function. To prevent this, use
+`AppInfo::launch_default_for_uri_async` instead.
 ## `uri`
 the uri to show
 ## `context`
@@ -782,6 +786,10 @@ error information in the case where the application is
 sandboxed and the portal may present an application chooser
 dialog to the user.
 
+This is also useful if you want to be sure that the D-Bus–activated
+applications are really started before termination and if you are interested
+in receiving error information from their activation.
+
 Feature: `v2_50`
 
 ## `uri`
@@ -791,7 +799,7 @@ an optional `AppLaunchContext`
 ## `cancellable`
 a `Cancellable`
 ## `callback`
-a `GASyncReadyCallback` to call when the request is done
+a `GAsyncReadyCallback` to call when the request is done
 ## `user_data`
 data to pass to `callback`
 <!-- impl AppInfo::fn launch_default_for_uri_finish -->
@@ -982,6 +990,37 @@ no way to detect this.
 a `glib::List` containing URIs to launch.
 ## `context`
 a `AppLaunchContext` or `None`
+
+# Returns
+
+`true` on successful launch, `false` otherwise.
+<!-- trait AppInfoExt::fn launch_uris_async -->
+Async version of `AppInfo::launch_uris`.
+
+The `callback` is invoked immediately after the application launch, but it
+waits for activation in case of D-Bus–activated applications and also provides
+extended error information for sandboxed applications, see notes for
+`AppInfo::launch_default_for_uri_async`.
+
+Feature: `v2_60`
+
+## `uris`
+a `glib::List` containing URIs to launch.
+## `context`
+a `AppLaunchContext` or `None`
+## `cancellable`
+a `Cancellable`
+## `callback`
+a `GAsyncReadyCallback` to call when the request is done
+## `user_data`
+data to pass to `callback`
+<!-- trait AppInfoExt::fn launch_uris_finish -->
+Finishes a `AppInfo::launch_uris_async` operation.
+
+Feature: `v2_60`
+
+## `result`
+a `AsyncResult`
 
 # Returns
 
@@ -2033,6 +2072,19 @@ an exit code. If you have handled your options and want
 to exit the process, return a non-negative option, 0 for success,
 and a positive value for failure. To continue, return -1 to let
 the default option processing continue.
+<!-- trait ApplicationExt::fn connect_name_lost -->
+The ::name-lost signal is emitted only on the registered primary instance
+when a new instance has taken over. This can only happen if the application
+is using the `ApplicationFlags::AllowReplacement` flag.
+
+The default handler for this signal calls `ApplicationExt::quit`.
+
+Feature: `v2_60`
+
+
+# Returns
+
+`true` if the signal has been handled
 <!-- trait ApplicationExtManual::fn connect_open -->
 The ::open signal is emitted on the primary instance when there are
 files to open. See `ApplicationExt::open` for more information.
@@ -2778,7 +2830,7 @@ See also `CancellableExt::make_pollfd`.
 
 # Returns
 
-A valid file descriptor. %-1 if the file descriptor
+A valid file descriptor. `-1` if the file descriptor
 is not supported, or on errors.
 <!-- trait CancellableExt::fn is_cancelled -->
 Checks if a cancellable job has been cancelled.
@@ -4028,6 +4080,23 @@ the key to look up
 
 a newly allocated string, or `None` if the key
  is not found
+<!-- trait DesktopAppInfoExt::fn get_string_list -->
+Looks up a string list value in the keyfile backing `self`.
+
+The `key` is looked up in the "Desktop Entry" group.
+
+Feature: `v2_60`
+
+## `key`
+the key to look up
+## `length`
+return location for the number of returned strings, or `None`
+
+# Returns
+
+
+ a `None`-terminated string array or `None` if the specified
+ key cannot be found. The array should be freed with `g_strfreev`.
 <!-- trait DesktopAppInfoExt::fn has_key -->
 Returns whether `key` exists in the "Desktop Entry" group
 of the keyfile backing `self`.
@@ -5223,9 +5292,9 @@ the second `File`
 <!-- trait FileExt::fn find_enclosing_mount -->
 Gets a `Mount` for the `File`.
 
-If the `FileIface` for `self` does not have a mount (e.g.
-possibly a remote share), `error` will be set to `IOErrorEnum::NotFound`
-and `None` will be returned.
+`Mount` is returned only for user interesting locations, see
+`VolumeMonitor`. If the `FileIface` for `self` does not have a `mount`,
+`error` will be set to `IOErrorEnum::NotFound` and `None` `will` be returned.
 
 If `cancellable` is not `None`, then the operation can be cancelled by
 triggering the cancellable object from another thread. If the operation
@@ -5744,7 +5813,7 @@ reports the number of directories and non-directory files encountered
 
 By default, errors are only reported against the toplevel file
 itself. Errors found while recursing are silently ignored, unless
-`G_FILE_DISK_USAGE_REPORT_ALL_ERRORS` is given in `flags`.
+`FileMeasureFlags::ReportAnyError` is given in `flags`.
 
 The returned size, `disk_usage`, is in bytes and should be formatted
 with `g_format_size` in order to get something reasonable for showing
@@ -6110,6 +6179,32 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error `IOErrorEnum::Cancelled` will be returned.
 ## `cancellable`
 optional `Cancellable` object, `None` to ignore
+
+# Returns
+
+a `AppInfo` if the handle was found,
+ `None` if there were errors.
+ When you are done with it, release it with `gobject::ObjectExt::unref`
+<!-- trait FileExt::fn query_default_handler_async -->
+Async version of `File::query_default_handler`.
+
+Feature: `v2_60`
+
+## `io_priority`
+the [I/O priority][io-priority] of the request
+## `cancellable`
+optional `Cancellable` object, `None` to ignore
+## `callback`
+a `GAsyncReadyCallback` to call when the request is done
+## `user_data`
+data to pass to `callback`
+<!-- trait FileExt::fn query_default_handler_finish -->
+Finishes a `File::query_default_handler_async` operation.
+
+Feature: `v2_60`
+
+## `result`
+a `AsyncResult`
 
 # Returns
 
@@ -7227,6 +7322,238 @@ a signed 8-byte/64-bit integer.
 a `gobject::Object`.
 <!-- enum FileAttributeType::variant Stringv -->
 a `None` terminated char **. Since 2.22
+<!-- struct FileEnumerator -->
+`FileEnumerator` allows you to operate on a set of `GFiles`,
+returning a `FileInfo` structure for each file enumerated (e.g.
+`File::enumerate_children` will return a `FileEnumerator` for each
+of the children within a directory).
+
+To get the next file's information from a `FileEnumerator`, use
+`FileEnumeratorExt::next_file` or its asynchronous version,
+`FileEnumeratorExt::next_files_async`. Note that the asynchronous
+version will return a list of `GFileInfos`, whereas the
+synchronous will only return the next file in the enumerator.
+
+The ordering of returned files is unspecified for non-Unix
+platforms; for more information, see `glib::Dir::read_name`. On Unix,
+when operating on local files, returned files will be sorted by
+inode number. Effectively you can assume that the ordering of
+returned files will be stable between successive calls (and
+applications) assuming the directory is unchanged.
+
+If your application needs a specific ordering, such as by name or
+modification time, you will have to implement that in your
+application code.
+
+To close a `FileEnumerator`, use `FileEnumeratorExt::close`, or
+its asynchronous version, `FileEnumeratorExt::close_async`. Once
+a `FileEnumerator` is closed, no further actions may be performed
+on it, and it should be freed with `gobject::ObjectExt::unref`.
+
+# Implements
+
+[`FileEnumeratorExt`](trait.FileEnumeratorExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- trait FileEnumeratorExt -->
+Trait containing all `FileEnumerator` methods.
+
+# Implementors
+
+[`FileEnumerator`](struct.FileEnumerator.html)
+<!-- trait FileEnumeratorExt::fn close -->
+Releases all resources used by this enumerator, making the
+enumerator return `IOErrorEnum::Closed` on all calls.
+
+This will be automatically called when the last reference
+is dropped, but you might want to call this function to make
+sure resources are released as early as possible.
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+
+# Returns
+
+`true` on success or `false` on error.
+<!-- trait FileEnumeratorExt::fn close_async -->
+Asynchronously closes the file enumerator.
+
+If `cancellable` is not `None`, then the operation can be cancelled by
+triggering the cancellable object from another thread. If the operation
+was cancelled, the error `IOErrorEnum::Cancelled` will be returned in
+`FileEnumeratorExt::close_finish`.
+## `io_priority`
+the [I/O priority][io-priority] of the request
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+## `callback`
+a `GAsyncReadyCallback` to call when the request is satisfied
+## `user_data`
+the data to pass to callback function
+<!-- trait FileEnumeratorExt::fn close_finish -->
+Finishes closing a file enumerator, started from `FileEnumeratorExt::close_async`.
+
+If the file enumerator was already closed when `FileEnumeratorExt::close_async`
+was called, then this function will report `IOErrorEnum::Closed` in `error`, and
+return `false`. If the file enumerator had pending operation when the close
+operation was started, then this function will report `IOErrorEnum::Pending`, and
+return `false`. If `cancellable` was not `None`, then the operation may have been
+cancelled by triggering the cancellable object from another thread. If the operation
+was cancelled, the error `IOErrorEnum::Cancelled` will be set, and `false` will be
+returned.
+## `result`
+a `AsyncResult`.
+
+# Returns
+
+`true` if the close operation has finished successfully.
+<!-- trait FileEnumeratorExt::fn get_child -->
+Return a new `File` which refers to the file named by `info` in the source
+directory of `self`. This function is primarily intended to be used
+inside loops with `FileEnumeratorExt::next_file`.
+
+This is a convenience method that's equivalent to:
+
+```C
+  gchar *name = g_file_info_get_name (info);
+  GFile *child = g_file_get_child (g_file_enumerator_get_container (enumr),
+                                   name);
+```
+## `info`
+a `FileInfo` gotten from `FileEnumeratorExt::next_file`
+ or the async equivalents.
+
+# Returns
+
+a `File` for the `FileInfo` passed it.
+<!-- trait FileEnumeratorExt::fn get_container -->
+Get the `File` container which is being enumerated.
+
+# Returns
+
+the `File` which is being enumerated.
+<!-- trait FileEnumeratorExt::fn has_pending -->
+Checks if the file enumerator has pending operations.
+
+# Returns
+
+`true` if the `self` has pending operations.
+<!-- trait FileEnumeratorExt::fn is_closed -->
+Checks if the file enumerator has been closed.
+
+# Returns
+
+`true` if the `self` is closed.
+<!-- trait FileEnumeratorExt::fn iterate -->
+This is a version of `FileEnumeratorExt::next_file` that's easier to
+use correctly from C programs. With `FileEnumeratorExt::next_file`,
+the gboolean return value signifies "end of iteration or error", which
+requires allocation of a temporary `glib::Error`.
+
+In contrast, with this function, a `false` return from
+`FileEnumerator::iterate` *always* means
+"error". End of iteration is signaled by `out_info` or `out_child` being `None`.
+
+Another crucial difference is that the references for `out_info` and
+`out_child` are owned by `self` (they are cached as hidden
+properties). You must not unref them in your own code. This makes
+memory management significantly easier for C code in combination
+with loops.
+
+Finally, this function optionally allows retrieving a `File` as
+well.
+
+You must specify at least one of `out_info` or `out_child`.
+
+The code pattern for correctly using `FileEnumerator::iterate` from C
+is:
+
+
+```text
+direnum = g_file_enumerate_children (file, ...);
+while (TRUE)
+  {
+    GFileInfo *info;
+    if (!g_file_enumerator_iterate (direnum, &info, NULL, cancellable, error))
+      goto out;
+    if (!info)
+      break;
+    ... do stuff with "info"; do not unref it! ...
+  }
+
+out:
+  g_object_unref (direnum); // Note: frees the last @info
+```
+
+Feature: `v2_44`
+
+## `out_info`
+Output location for the next `FileInfo`, or `None`
+## `out_child`
+Output location for the next `File`, or `None`
+## `cancellable`
+a `Cancellable`
+<!-- trait FileEnumeratorExt::fn next_file -->
+Returns information for the next file in the enumerated object.
+Will block until the information is available. The `FileInfo`
+returned from this function will contain attributes that match the
+attribute string that was passed when the `FileEnumerator` was created.
+
+See the documentation of `FileEnumerator` for information about the
+order of returned files.
+
+On error, returns `None` and sets `error` to the error. If the
+enumerator is at the end, `None` will be returned and `error` will
+be unset.
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+
+# Returns
+
+A `FileInfo` or `None` on error
+ or end of enumerator. Free the returned object with
+ `gobject::ObjectExt::unref` when no longer needed.
+<!-- trait FileEnumeratorExt::fn next_files_async -->
+Request information for a number of files from the enumerator asynchronously.
+When all i/o for the operation is finished the `callback` will be called with
+the requested information.
+
+See the documentation of `FileEnumerator` for information about the
+order of returned files.
+
+The callback can be called with less than `num_files` files in case of error
+or at the end of the enumerator. In case of a partial error the callback will
+be called with any succeeding items and no error, and on the next request the
+error will be reported. If a request is cancelled the callback will be called
+with `IOErrorEnum::Cancelled`.
+
+During an async request no other sync and async calls are allowed, and will
+result in `IOErrorEnum::Pending` errors.
+
+Any outstanding i/o request with higher priority (lower numerical value) will
+be executed before an outstanding request with lower priority. Default
+priority is `G_PRIORITY_DEFAULT`.
+## `num_files`
+the number of file info objects to request
+## `io_priority`
+the [I/O priority][io-priority] of the request
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+## `callback`
+a `GAsyncReadyCallback` to call when the request is satisfied
+## `user_data`
+the data to pass to callback function
+<!-- trait FileEnumeratorExt::fn next_files_finish -->
+Finishes the asynchronous operation started with `FileEnumeratorExt::next_files_async`.
+## `result`
+a `AsyncResult`.
+
+# Returns
+
+a `glib::List` of `GFileInfos`. You must free the list with
+ `glib::List::free` and unref the infos with `gobject::ObjectExt::unref` when you're
+ done with them.
+<!-- trait FileEnumeratorExt::fn set_pending -->
+Sets the file enumerator as having pending operations.
+## `pending`
+a boolean value.
 <!-- struct FileIOStream -->
 GFileIOStream provides io streams that both read and write to the same
 file handle.
@@ -7395,13 +7722,14 @@ a duplicate `FileInfo` of `self`.
 <!-- impl FileInfo::fn get_attribute_as_string -->
 Gets the value of a attribute, formated as a string.
 This escapes things as needed to make the string valid
-utf8.
+UTF-8.
 ## `attribute`
 a file attribute key.
 
 # Returns
 
-a UTF-8 string associated with the given `attribute`.
+a UTF-8 string associated with the given `attribute`, or
+ `None` if the attribute wasn’t set.
  When you're done with the string it must be freed with `g_free`.
 <!-- impl FileInfo::fn get_attribute_boolean -->
 Gets the value of a boolean attribute. If the attribute does not
@@ -7590,9 +7918,24 @@ Checks if a file is a symlink.
 # Returns
 
 `true` if the given `self` is a symlink.
+<!-- impl FileInfo::fn get_modification_date_time -->
+Gets the modification time of the current `self` and returns it as a
+`glib::DateTime`.
+
+Feature: `v2_62`
+
+
+# Returns
+
+modification time, or `None` if unknown
 <!-- impl FileInfo::fn get_modification_time -->
 Gets the modification time of the current `self` and sets it
 in `result`.
+
+# Deprecated since 2.62
+
+Use `FileInfo::get_modification_date_time` instead, as
+ `glib::TimeVal` is deprecated due to the year 2038 problem.
 ## `result`
 a `glib::TimeVal`.
 <!-- impl FileInfo::fn get_name -->
@@ -7738,7 +8081,8 @@ Sinze: 2.22
 ## `attribute`
 a file attribute key
 ## `attr_value`
-a `None` terminated array of UTF-8 strings.
+a `None`
+ terminated array of UTF-8 strings.
 <!-- impl FileInfo::fn set_attribute_uint32 -->
 Sets the `attribute` to contain the given `attr_value`,
 if possible.
@@ -7788,9 +8132,22 @@ Sets the "is_symlink" attribute in a `FileInfo` according to `is_symlink`.
 See `G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK`.
 ## `is_symlink`
 a `gboolean`.
+<!-- impl FileInfo::fn set_modification_date_time -->
+Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute in the file
+info to the given date/time value.
+
+Feature: `v2_62`
+
+## `mtime`
+a `glib::DateTime`.
 <!-- impl FileInfo::fn set_modification_time -->
 Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute in the file
 info to the given time value.
+
+# Deprecated since 2.62
+
+Use `FileInfo::set_modification_date_time` instead, as
+ `glib::TimeVal` is deprecated due to the year 2038 problem.
 ## `mtime`
 a `glib::TimeVal`.
 <!-- impl FileInfo::fn set_name -->
@@ -8095,6 +8452,15 @@ a `AsyncResult`.
 A `FileInfo` for the finished query.
 <!-- enum FileType -->
 Indicates the file's on-disk type.
+
+On Windows systems a file will never have `FileType::SymbolicLink` type;
+use `FileInfo` and `G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK` to determine
+whether a file is a symlink or not. This is due to the fact that NTFS does
+not have a single filesystem object type for symbolic links - it has
+files that symlink to files, and directories that symlink to directories.
+`FileType` enumeration cannot precisely represent this important distinction,
+which is why all Windows symlinks will continue to be reported as
+`FileType::Regular` or `FileType::Directory`.
 <!-- enum FileType::variant Unknown -->
 File's type is unknown.
 <!-- enum FileType::variant Regular -->
@@ -8238,6 +8604,9 @@ if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_FAILED))
 ```
 but should instead treat all unrecognized error codes the same as
 `IOErrorEnum::Failed`.
+
+See also `PollableReturn` for a cheaper way of returning
+`IOErrorEnum::WouldBlock` to callers without allocating a `glib::Error`.
 <!-- enum IOErrorEnum::variant Failed -->
 Generic error condition for when an operation fails
  and no more specific `IOErrorEnum` value is defined.
@@ -9106,8 +9475,8 @@ partial result will be returned, without an error.
 
 On error -1 is returned and `error` is set accordingly.
 ## `buffer`
-a buffer to
- read data into (which should be at least count bytes long).
+
+ a buffer to read data into (which should be at least count bytes long).
 ## `count`
 the number of bytes that will be read from the stream
 ## `cancellable`
@@ -9137,8 +9506,8 @@ read before the error was encountered. This functionality is only
 available from C. If you need it from another language then you must
 write your own loop around `InputStream::read`.
 ## `buffer`
-a buffer to
- read data into (which should be at least count bytes long).
+
+ a buffer to read data into (which should be at least count bytes long).
 ## `count`
 the number of bytes that will be read from the stream
 ## `bytes_read`
@@ -9164,8 +9533,8 @@ priority. Default priority is `G_PRIORITY_DEFAULT`.
 Feature: `v2_44`
 
 ## `buffer`
-a buffer to
- read data into (which should be at least count bytes long)
+
+ a buffer to read data into (which should be at least count bytes long)
 ## `count`
 the number of bytes that will be read from the stream
 ## `io_priority`
@@ -9222,8 +9591,8 @@ The asynchronous methods have a default fallback that uses threads to implement
 asynchronicity, so they are optional for inheriting classes. However, if you
 override one you must override all.
 ## `buffer`
-a buffer to
- read data into (which should be at least count bytes long).
+
+ a buffer to read data into (which should be at least count bytes long).
 ## `count`
 the number of bytes that will be read from the stream
 ## `io_priority`
@@ -9387,7 +9756,7 @@ a `AsyncResult`.
 
 # Returns
 
-the size of the bytes skipped, or %-1 on error.
+the size of the bytes skipped, or `-1` on error.
 <!-- struct ListModel -->
 `ListModel` is an interface that represents a mutable list of
 `GObjects`. Its main intention is as a model for various widgets in
@@ -9538,9 +9907,12 @@ the number of items removed
 ## `added`
 the number of items added
 <!-- trait ListModelExt::fn connect_items_changed -->
-This signal is emitted whenever items were added or removed to
-`list`. At `position`, `removed` items were removed and `added` items
-were added in their place.
+This signal is emitted whenever items were added to or removed
+from `list`. At `position`, `removed` items were removed and `added`
+items were added in their place.
+
+Note: If `removed` != `added`, the positions of all later items
+in the model change.
 
 Feature: `v2_44`
 
@@ -11419,13 +11791,13 @@ The domain to use for the mount operation.
 The domain to use for the mount operation.
 <!-- trait MountOperationExt::fn get_property_is_tcrypt_hidden_volume -->
 Whether the device to be unlocked is a TCRYPT hidden volume.
-See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
+See [the VeraCrypt documentation](https://www.veracrypt.fr/en/Hidden`20Volume.html`).
 
 Feature: `v2_58`
 
 <!-- trait MountOperationExt::fn set_property_is_tcrypt_hidden_volume -->
 Whether the device to be unlocked is a TCRYPT hidden volume.
-See https://www.veracrypt.fr/en/Hidden`20Volume.html`.
+See [the VeraCrypt documentation](https://www.veracrypt.fr/en/Hidden`20Volume.html`).
 
 Feature: `v2_58`
 
@@ -11434,7 +11806,7 @@ Whether the device to be unlocked is a TCRYPT system volume.
 In this context, a system volume is a volume with a bootloader
 and operating system installed. This is only supported for Windows
 operating systems. For further documentation, see
-https://www.veracrypt.fr/en/System`20Encryption.html`.
+[the VeraCrypt documentation](https://www.veracrypt.fr/en/System`20Encryption.html`).
 
 Feature: `v2_58`
 
@@ -11443,7 +11815,7 @@ Whether the device to be unlocked is a TCRYPT system volume.
 In this context, a system volume is a volume with a bootloader
 and operating system installed. This is only supported for Windows
 operating systems. For further documentation, see
-https://www.veracrypt.fr/en/System`20Encryption.html`.
+[the VeraCrypt documentation](https://www.veracrypt.fr/en/System`20Encryption.html`).
 
 Feature: `v2_58`
 
@@ -11459,13 +11831,13 @@ Determines if and how the password information should be saved.
 Determines if and how the password information should be saved.
 <!-- trait MountOperationExt::fn get_property_pim -->
 The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See
-https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html.
+[the VeraCrypt documentation](https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html).
 
 Feature: `v2_58`
 
 <!-- trait MountOperationExt::fn set_property_pim -->
 The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See
-https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html.
+[the VeraCrypt documentation](https://www.veracrypt.fr/en/Personal`20Iterations`%20Multiplier`20`(PIM).html).
 
 Feature: `v2_58`
 
@@ -11492,7 +11864,11 @@ The request was unhandled (i.e. not
 then attempt to connect to that host, handling the possibility of
 multiple IP addresses and multiple address families.
 
-See `SocketConnectable` for and example of using the connectable
+The enumeration results of resolved addresses *may* be cached as long
+as this object is kept alive which may have unexpected results if
+alive for too long.
+
+See `SocketConnectable` for an example of using the connectable
 interface.
 
 # Implements
@@ -11533,7 +11909,7 @@ regardless of how the host resolves `localhost`. By contrast,
 resolving `localhost`, and an IPv6 address for `localhost6`.
 
 `NetworkAddressExt::get_hostname` will always return `localhost` for
-`GNetworkAddresses` created with this constructor.
+a `NetworkAddress` created with this constructor.
 
 Feature: `v2_44`
 
@@ -11809,7 +12185,7 @@ service priority/weighting, multiple IP addresses, and multiple
 address families.
 
 See `SrvTarget` for more information about SRV records, and see
-`SocketConnectable` for and example of using the connectable
+`SocketConnectable` for an example of using the connectable
 interface.
 
 # Implements
@@ -12505,6 +12881,198 @@ a `AsyncResult`.
 # Returns
 
 a `gssize` containing the number of bytes written to the stream.
+<!-- trait OutputStreamExt::fn writev -->
+Tries to write the bytes contained in the `n_vectors` `vectors` into the
+stream. Will block during the operation.
+
+If `n_vectors` is 0 or the sum of all bytes in `vectors` is 0, returns 0 and
+does nothing.
+
+On success, the number of bytes written to the stream is returned.
+It is not an error if this is not the same as the requested size, as it
+can happen e.g. on a partial I/O error, or if there is not enough
+storage in the stream. All writes block until at least one byte
+is written or an error occurs; 0 is never returned (unless
+`n_vectors` is 0 or the sum of all bytes in `vectors` is 0).
+
+If `cancellable` is not `None`, then the operation can be cancelled by
+triggering the cancellable object from another thread. If the operation
+was cancelled, the error `IOErrorEnum::Cancelled` will be returned. If an
+operation was partially finished when the operation was cancelled the
+partial result will be returned, without an error.
+
+Some implementations of `OutputStreamExt::writev` may have limitations on the
+aggregate buffer size, and will return `IOErrorEnum::InvalidArgument` if these
+are exceeded. For example, when writing to a local file on UNIX platforms,
+the aggregate buffer size must not exceed `G_MAXSSIZE` bytes.
+
+Feature: `v2_60`
+
+## `vectors`
+the buffer containing the `GOutputVectors` to write.
+## `n_vectors`
+the number of vectors to write
+## `bytes_written`
+location to store the number of bytes that were
+ written to the stream
+## `cancellable`
+optional cancellable object
+
+# Returns
+
+`true` on success, `false` if there was an error
+<!-- trait OutputStreamExt::fn writev_all -->
+Tries to write the bytes contained in the `n_vectors` `vectors` into the
+stream. Will block during the operation.
+
+This function is similar to `OutputStreamExt::writev`, except it tries to
+write as many bytes as requested, only stopping on an error.
+
+On a successful write of all `n_vectors` vectors, `true` is returned, and
+`bytes_written` is set to the sum of all the sizes of `vectors`.
+
+If there is an error during the operation `false` is returned and `error`
+is set to indicate the error status.
+
+As a special exception to the normal conventions for functions that
+use `glib::Error`, if this function returns `false` (and sets `error`) then
+`bytes_written` will be set to the number of bytes that were
+successfully written before the error was encountered. This
+functionality is only available from C. If you need it from another
+language then you must write your own loop around
+`OutputStreamExt::write`.
+
+The content of the individual elements of `vectors` might be changed by this
+function.
+
+Feature: `v2_60`
+
+## `vectors`
+the buffer containing the `GOutputVectors` to write.
+## `n_vectors`
+the number of vectors to write
+## `bytes_written`
+location to store the number of bytes that were
+ written to the stream
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+
+# Returns
+
+`true` on success, `false` if there was an error
+<!-- trait OutputStreamExt::fn writev_all_async -->
+Request an asynchronous write of the bytes contained in the `n_vectors` `vectors` into
+the stream. When the operation is finished `callback` will be called.
+You can then call `OutputStreamExt::writev_all_finish` to get the result of the
+operation.
+
+This is the asynchronous version of `OutputStreamExt::writev_all`.
+
+Call `OutputStreamExt::writev_all_finish` to collect the result.
+
+Any outstanding I/O request with higher priority (lower numerical
+value) will be executed before an outstanding request with lower
+priority. Default priority is `G_PRIORITY_DEFAULT`.
+
+Note that no copy of `vectors` will be made, so it must stay valid
+until `callback` is called. The content of the individual elements
+of `vectors` might be changed by this function.
+
+Feature: `v2_60`
+
+## `vectors`
+the buffer containing the `GOutputVectors` to write.
+## `n_vectors`
+the number of vectors to write
+## `io_priority`
+the I/O priority of the request
+## `cancellable`
+optional `Cancellable` object, `None` to ignore
+## `callback`
+callback to call when the request is satisfied
+## `user_data`
+the data to pass to callback function
+<!-- trait OutputStreamExt::fn writev_all_finish -->
+Finishes an asynchronous stream write operation started with
+`OutputStreamExt::writev_all_async`.
+
+As a special exception to the normal conventions for functions that
+use `glib::Error`, if this function returns `false` (and sets `error`) then
+`bytes_written` will be set to the number of bytes that were
+successfully written before the error was encountered. This
+functionality is only available from C. If you need it from another
+language then you must write your own loop around
+`OutputStreamExt::writev_async`.
+
+Feature: `v2_60`
+
+## `result`
+a `AsyncResult`
+## `bytes_written`
+location to store the number of bytes that were written to the stream
+
+# Returns
+
+`true` on success, `false` if there was an error
+<!-- trait OutputStreamExt::fn writev_async -->
+Request an asynchronous write of the bytes contained in `n_vectors` `vectors` into
+the stream. When the operation is finished `callback` will be called.
+You can then call `OutputStreamExt::writev_finish` to get the result of the
+operation.
+
+During an async request no other sync and async calls are allowed,
+and will result in `IOErrorEnum::Pending` errors.
+
+On success, the number of bytes written will be passed to the
+`callback`. It is not an error if this is not the same as the
+requested size, as it can happen e.g. on a partial I/O error,
+but generally we try to write as many bytes as requested.
+
+You are guaranteed that this method will never fail with
+`IOErrorEnum::WouldBlock` — if `self` can't accept more data, the
+method will just wait until this changes.
+
+Any outstanding I/O request with higher priority (lower numerical
+value) will be executed before an outstanding request with lower
+priority. Default priority is `G_PRIORITY_DEFAULT`.
+
+The asynchronous methods have a default fallback that uses threads
+to implement asynchronicity, so they are optional for inheriting
+classes. However, if you override one you must override all.
+
+For the synchronous, blocking version of this function, see
+`OutputStreamExt::writev`.
+
+Note that no copy of `vectors` will be made, so it must stay valid
+until `callback` is called.
+
+Feature: `v2_60`
+
+## `vectors`
+the buffer containing the `GOutputVectors` to write.
+## `n_vectors`
+the number of vectors to write
+## `io_priority`
+the I/O priority of the request.
+## `cancellable`
+optional `Cancellable` object, `None` to ignore.
+## `callback`
+callback to call when the request is satisfied
+## `user_data`
+the data to pass to callback function
+<!-- trait OutputStreamExt::fn writev_finish -->
+Finishes a stream writev operation.
+
+Feature: `v2_60`
+
+## `result`
+a `AsyncResult`.
+## `bytes_written`
+location to store the number of bytes that were written to the stream
+
+# Returns
+
+`true` on success, `false` if there was an error
 <!-- enum PasswordSave -->
 `PasswordSave` is used to indicate the lifespan of a saved password.
 
@@ -12831,7 +13399,8 @@ may happen if you call this method after a source triggers due
 to having been cancelled.
 
 Also note that if `IOErrorEnum::WouldBlock` is returned some underlying
-transports like D/TLS require that you send the same `buffer` and `count`.
+transports like D/TLS require that you re-send the same `buffer` and
+`count` in the next write call.
 ## `buffer`
 a buffer to write
  data from
@@ -12844,6 +13413,42 @@ a `Cancellable`, or `None`
 
 the number of bytes written, or -1 on error (including
  `IOErrorEnum::WouldBlock`).
+<!-- trait PollableOutputStreamExt::fn writev_nonblocking -->
+Attempts to write the bytes contained in the `n_vectors` `vectors` to `self`,
+as with `OutputStreamExt::writev`. If `self` is not currently writable,
+this will immediately return %`PollableReturn::WouldBlock`, and you can
+use `PollableOutputStream::create_source` to create a `glib::Source`
+that will be triggered when `self` is writable. `error` will *not* be
+set in that case.
+
+Note that since this method never blocks, you cannot actually
+use `cancellable` to cancel it. However, it will return an error
+if `cancellable` has already been cancelled when you call, which
+may happen if you call this method after a source triggers due
+to having been cancelled.
+
+Also note that if `PollableReturn::WouldBlock` is returned some underlying
+transports like D/TLS require that you re-send the same `vectors` and
+`n_vectors` in the next write call.
+
+Feature: `v2_60`
+
+## `vectors`
+the buffer containing the `GOutputVectors` to write.
+## `n_vectors`
+the number of vectors to write
+## `bytes_written`
+location to store the number of bytes that were
+ written to the stream
+## `cancellable`
+a `Cancellable`, or `None`
+
+# Returns
+
+%`PollableReturn::Ok` on success, `PollableReturn::WouldBlock`
+if the stream is not currently writable (and `error` is *not* set), or
+`PollableReturn::Failed` if there was an error in which case `error` will
+be set.
 <!-- struct PropertyAction -->
 A `PropertyAction` is a way to get a `Action` with a state value
 reflecting and controlling the value of a `gobject::Object` property.
@@ -12978,8 +13583,8 @@ Trait containing all `Proxy` methods.
 
 [`Proxy`](struct.Proxy.html)
 <!-- impl Proxy::fn get_default_for_protocol -->
-Lookup "gio-proxy" extension point for a proxy implementation that supports
-specified protocol.
+Find the `gio-proxy` extension point for a proxy implementation that supports
+the specified protocol.
 ## `protocol`
 the proxy protocol name (e.g. http, socks, etc)
 
@@ -13428,6 +14033,62 @@ the result passed to your `GAsyncReadyCallback`
 a `glib::List`
 of `InetAddress`, or `None` on error. See `ResolverExt::lookup_by_name`
 for more details.
+<!-- trait ResolverExt::fn lookup_by_name_with_flags -->
+This differs from `ResolverExt::lookup_by_name` in that you can modify
+the lookup behavior with `flags`. For example this can be used to limit
+results with `ResolverNameLookupFlags::Ipv4Only`.
+
+Feature: `v2_60`
+
+## `hostname`
+the hostname to look up
+## `flags`
+extra `ResolverNameLookupFlags` for the lookup
+## `cancellable`
+a `Cancellable`, or `None`
+
+# Returns
+
+a non-empty `glib::List`
+of `InetAddress`, or `None` on error. You
+must unref each of the addresses and free the list when you are
+done with it. (You can use `Resolver::free_addresses` to do this.)
+<!-- trait ResolverExt::fn lookup_by_name_with_flags_async -->
+Begins asynchronously resolving `hostname` to determine its
+associated IP address(es), and eventually calls `callback`, which
+must call `ResolverExt::lookup_by_name_with_flags_finish` to get the result.
+See `ResolverExt::lookup_by_name` for more details.
+
+Feature: `v2_60`
+
+## `hostname`
+the hostname to look up the address of
+## `flags`
+extra `ResolverNameLookupFlags` for the lookup
+## `cancellable`
+a `Cancellable`, or `None`
+## `callback`
+callback to call after resolution completes
+## `user_data`
+data for `callback`
+<!-- trait ResolverExt::fn lookup_by_name_with_flags_finish -->
+Retrieves the result of a call to
+`ResolverExt::lookup_by_name_with_flags_async`.
+
+If the DNS resolution failed, `error` (if non-`None`) will be set to
+a value from `ResolverError`. If the operation was cancelled,
+`error` will be set to `IOErrorEnum::Cancelled`.
+
+Feature: `v2_60`
+
+## `result`
+the result passed to your `GAsyncReadyCallback`
+
+# Returns
+
+a `glib::List`
+of `InetAddress`, or `None` on error. See `ResolverExt::lookup_by_name`
+for more details.
 <!-- trait ResolverExt::fn lookup_records -->
 Synchronously performs a DNS record lookup for the given `rrname` and returns
 a list of records as `glib::Variant` tuples. See `ResolverRecordType` for
@@ -13440,9 +14101,9 @@ If `cancellable` is non-`None`, it can be used to cancel the
 operation, in which case `error` (if non-`None`) will be set to
 `IOErrorEnum::Cancelled`.
 ## `rrname`
-the DNS name to lookup the record for
+the DNS name to look up the record for
 ## `record_type`
-the type of DNS record to lookup
+the type of DNS record to look up
 ## `cancellable`
 a `Cancellable`, or `None`
 
@@ -13458,9 +14119,9 @@ Begins asynchronously performing a DNS lookup for the given
 `ResolverExt::lookup_records_finish` to get the final result. See
 `ResolverExt::lookup_records` for more details.
 ## `rrname`
-the DNS name to lookup the record for
+the DNS name to look up the record for
 ## `record_type`
-the type of DNS record to lookup
+the type of DNS record to look up
 ## `cancellable`
 a `Cancellable`, or `None`
 ## `callback`
@@ -13575,34 +14236,40 @@ as lists of `glib::Variant` tuples. Each record type has different values in
 the variant tuples returned.
 
 `ResolverRecordType::Srv` records are returned as variants with the signature
-'(qqqs)', containing a guint16 with the priority, a guint16 with the
-weight, a guint16 with the port, and a string of the hostname.
+`(qqqs)`, containing a `guint16` with the priority, a `guint16` with the
+weight, a `guint16` with the port, and a string of the hostname.
 
 `ResolverRecordType::Mx` records are returned as variants with the signature
-'(qs)', representing a guint16 with the preference, and a string containing
+`(qs)`, representing a `guint16` with the preference, and a string containing
 the mail exchanger hostname.
 
 `ResolverRecordType::Txt` records are returned as variants with the signature
-'(as)', representing an array of the strings in the text record.
+`(as)`, representing an array of the strings in the text record. Note: Most TXT
+records only contain a single string, but
+[RFC 1035](https://tools.ietf.org/html/rfc1035`section`-3.3.14) does allow a
+record to contain multiple strings. The RFC which defines the interpretation
+of a specific TXT record will likely require concatenation of multiple
+strings if they are present, as with
+[RFC 7208](https://tools.ietf.org/html/rfc7208`section`-3.3).
 
 `ResolverRecordType::Soa` records are returned as variants with the signature
-'(ssuuuuu)', representing a string containing the primary name server, a
-string containing the administrator, the serial as a guint32, the refresh
-interval as guint32, the retry interval as a guint32, the expire timeout
-as a guint32, and the ttl as a guint32.
+`(ssuuuuu)`, representing a string containing the primary name server, a
+string containing the administrator, the serial as a `guint32`, the refresh
+interval as a `guint32`, the retry interval as a `guint32`, the expire timeout
+as a `guint32`, and the TTL as a `guint32`.
 
 `ResolverRecordType::Ns` records are returned as variants with the signature
-'(s)', representing a string of the hostname of the name server.
+`(s)`, representing a string of the hostname of the name server.
 <!-- enum ResolverRecordType::variant Srv -->
-lookup DNS SRV records for a domain
+look up DNS SRV records for a domain
 <!-- enum ResolverRecordType::variant Mx -->
-lookup DNS MX records for a domain
+look up DNS MX records for a domain
 <!-- enum ResolverRecordType::variant Txt -->
-lookup DNS TXT records for a name
+look up DNS TXT records for a name
 <!-- enum ResolverRecordType::variant Soa -->
-lookup DNS SOA records for a zone
+look up DNS SOA records for a zone
 <!-- enum ResolverRecordType::variant Ns -->
-lookup DNS NS records for a domain
+look up DNS NS records for a domain
 <!-- struct Resource -->
 Applications and libraries often contain binary or textual data that is
 really part of the application, rather than user data. For instance
@@ -13634,7 +14301,7 @@ the preprocessing step is skipped.
 
 `to-pixdata` which will use the gdk-pixbuf-pixdata command to convert
 images to the `GdkPixdata` format, which allows you to create pixbufs directly using the data inside
-the resource file, rather than an (uncompressed) copy if it. For this, the gdk-pixbuf-pixdata
+the resource file, rather than an (uncompressed) copy of it. For this, the gdk-pixbuf-pixdata
 program must be in the PATH, or the `GDK_PIXBUF_PIXDATA` environment variable must be
 set to the full path to the gdk-pixbuf-pixdata executable; otherwise the resource compiler will
 abort.
@@ -13709,7 +14376,7 @@ are for your own resources, and resource data is often used once, during parsing
 When debugging a program or testing a change to an installed version, it is often useful to be able to
 replace resources in the program or library, without recompiling, for debugging or quick hacking and testing
 purposes. Since GLib 2.50, it is possible to use the `G_RESOURCE_OVERLAYS` environment variable to selectively overlay
-resources with replacements from the filesystem. It is a colon-separated list of substitutions to perform
+resources with replacements from the filesystem. It is a `G_SEARCHPATH_SEPARATOR`-separated list of substitutions to perform
 during resource lookups.
 
 A substitution has the form
@@ -13869,7 +14536,7 @@ Seekable streams largely fall into two categories: resizable and
 fixed-size.
 
 `Seekable` on fixed-sized streams is approximately the same as POSIX
-`lseek` on a block device (for example: attmepting to seek past the
+`lseek` on a block device (for example: attempting to seek past the
 end of the device is an error). Fixed streams typically cannot be
 truncated.
 
@@ -14074,6 +14741,11 @@ An example for default value:
 
     <key name="box" type="(ii)">
       <default>(20,30)</default>
+    </key>
+
+    <key name="empty-string" type="s">
+      <default>""</default>
+      <summary>Empty strings have to be provided in GVariant form</summary>
     </key>
 
   </schema>
@@ -14793,23 +15465,17 @@ Gets the list of children on `self`.
 The list is exactly the list of strings for which it is not an error
 to call `SettingsExt::get_child`.
 
-For GSettings objects that are lists, this value can change at any
-time. Note that there is a race condition here: you may
-request a child after listing it only for it to have been destroyed
-in the meantime. For this reason, `SettingsExt::get_child` may return
-`None` even for a child that was listed by this function.
-
-For GSettings objects that are not lists, you should probably not be
-calling this function from "normal" code (since you should already
-know what children are in your schema). This function may still be
-useful there for introspection reasons, however.
+There is little reason to call this function from "normal" code, since
+you should already know what children are in your schema. This function
+may still be useful there for introspection reasons, however.
 
 You should free the return value with `g_strfreev` when you are done
 with it.
 
 # Returns
 
-a list of the children on `self`
+a list of the children on
+ `self`, in no defined order
 <!-- trait SettingsExt::fn list_keys -->
 Introspects the list of keys on `self`.
 
@@ -14820,14 +15486,19 @@ function is intended for introspection reasons.
 You should free the return value with `g_strfreev` when you are done
 with it.
 
+# Deprecated since 2.46
+
+Use g_settings_schema_list_keys `instead`.
+
 # Returns
 
-a list of the keys on `self`
+a list of the keys on
+ `self`, in no defined order
 <!-- trait SettingsExt::fn reset -->
 Resets `key` to its default value.
 
 This call resets the key, as much as possible, to its default value.
-That might the value specified in the schema or the one set by the
+That might be the value specified in the schema or the one set by the
 administrator.
 ## `key`
 the name of a key
@@ -15470,7 +16141,8 @@ Feature: `v2_44`
 
 # Returns
 
-a list of the children on `settings`
+a list of the children on
+ `settings`, in no defined order
 <!-- impl SettingsSchema::fn list_keys -->
 Introspects the list of keys on `self`.
 
@@ -15484,7 +16156,7 @@ Feature: `v2_46`
 # Returns
 
 a list of the keys on
- `self`
+ `self`, in no defined order
 <!-- impl SettingsSchema::fn ref -->
 Increase the reference count of `self`, returning a new reference.
 
@@ -15675,10 +16347,10 @@ use by database editors, commandline tools, etc.
 if we should recurse
 ## `non_relocatable`
 the
- list of non-relocatable schemas
+ list of non-relocatable schemas, in no defined order
 ## `relocatable`
 the list
- of relocatable schemas
+ of relocatable schemas, in no defined order
 <!-- impl SettingsSchemaSource::fn lookup -->
 Looks up a schema with the identifier `schema_id` in `self`.
 
@@ -16168,25 +16840,25 @@ a `glib::IOCondition` mask to check
 
 the `glib::IOCondition` mask of the current state
 <!-- trait SocketExt::fn condition_timed_wait -->
-Waits for up to `timeout` microseconds for `condition` to become true
+Waits for up to `timeout_us` microseconds for `condition` to become true
 on `self`. If the condition is met, `true` is returned.
 
 If `cancellable` is cancelled before the condition is met, or if
-`timeout` (or the socket's `Socket:timeout`) is reached before the
+`timeout_us` (or the socket's `Socket:timeout`) is reached before the
 condition is met, then `false` is returned and `error`, if non-`None`,
 is set to the appropriate value (`IOErrorEnum::Cancelled` or
 `IOErrorEnum::TimedOut`).
 
 If you don't want a timeout, use `SocketExt::condition_wait`.
-(Alternatively, you can pass -1 for `timeout`.)
+(Alternatively, you can pass -1 for `timeout_us`.)
 
-Note that although `timeout` is in microseconds for consistency with
+Note that although `timeout_us` is in microseconds for consistency with
 other GLib APIs, this function actually only has millisecond
-resolution, and the behavior is undefined if `timeout` is not an
+resolution, and the behavior is undefined if `timeout_us` is not an
 exact number of milliseconds.
 ## `condition`
 a `glib::IOCondition` mask to wait for
-## `timeout`
+## `timeout_us`
 the maximum time (in microseconds) to wait, or -1
 ## `cancellable`
 a `Cancellable`, or `None`
@@ -16315,6 +16987,13 @@ sockets).
 If this operation isn't supported on the OS, the method fails with
 the `IOErrorEnum::NotSupported` error. On Linux this is implemented
 by reading the `SO_PEERCRED` option on the underlying socket.
+
+This method can be expected to be available on the following platforms:
+
+- Linux since GLib 2.26
+- OpenBSD since GLib 2.30
+- Solaris, Illumos and OpenSolaris since GLib 2.40
+- NetBSD since GLib 2.42
 
 Other ways to obtain credentials from a foreign peer includes the
 `UnixCredentialsMessage` type and
@@ -16700,7 +17379,9 @@ a pointer
 a pointer which will be filled with the number of
  elements in `messages`, or `None`
 ## `flags`
-a pointer to an int containing `SocketMsgFlags` flags
+a pointer to an int containing `SocketMsgFlags` flags,
+ which may additionally contain
+ [other platform specific flags](http://man7.org/linux/man-pages/man2/recv.2.html)
 ## `cancellable`
 a `Cancellable` or `None`
 
@@ -16765,7 +17446,9 @@ an array of `InputMessage` structs
 ## `num_messages`
 the number of elements in `messages`
 ## `flags`
-an int containing `SocketMsgFlags` flags for the overall operation
+an int containing `SocketMsgFlags` flags for the overall operation,
+ which may additionally contain
+ [other platform specific flags](http://man7.org/linux/man-pages/man2/recv.2.html)
 ## `cancellable`
 a `Cancellable` or `None`
 
@@ -16871,7 +17554,8 @@ a pointer to an
 ## `num_messages`
 number of elements in `messages`, or -1.
 ## `flags`
-an int containing `SocketMsgFlags` flags
+an int containing `SocketMsgFlags` flags, which may additionally
+ contain [other platform specific flags](http://man7.org/linux/man-pages/man2/recv.2.html)
 ## `cancellable`
 a `Cancellable` or `None`
 
@@ -16879,6 +17563,43 @@ a `Cancellable` or `None`
 
 Number of bytes written (which may be less than `size`), or -1
 on error
+<!-- trait SocketExtManual::fn send_message_with_timeout -->
+This behaves exactly the same as `Socket::send_message`, except that
+the choice of timeout behavior is determined by the `timeout_us` argument
+rather than by `self`'s properties.
+
+On error `PollableReturn::Failed` is returned and `error` is set accordingly, or
+if the socket is currently not writable `PollableReturn::WouldBlock` is
+returned. `bytes_written` will contain 0 in both cases.
+
+Feature: `v2_60`
+
+## `address`
+a `SocketAddress`, or `None`
+## `vectors`
+an array of `OutputVector` structs
+## `num_vectors`
+the number of elements in `vectors`, or -1
+## `messages`
+a pointer to an
+ array of `GSocketControlMessages`, or `None`.
+## `num_messages`
+number of elements in `messages`, or -1.
+## `flags`
+an int containing `SocketMsgFlags` flags, which may additionally
+ contain [other platform specific flags](http://man7.org/linux/man-pages/man2/recv.2.html)
+## `timeout_us`
+the maximum time (in microseconds) to wait, or -1
+## `bytes_written`
+location to store the number of bytes that were written to the socket
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+`PollableReturn::Ok` if all data was successfully written,
+`PollableReturn::WouldBlock` if the socket is currently not writable, or
+`PollableReturn::Failed` if an error happened and `error` is set.
 <!-- trait SocketExtManual::fn send_messages -->
 Send multiple data messages from `self` in one go. This is the most
 complicated and fully-featured version of this call. For easier use, see
@@ -16922,7 +17643,8 @@ an array of `OutputMessage` structs
 ## `num_messages`
 the number of elements in `messages`
 ## `flags`
-an int containing `SocketMsgFlags` flags
+an int containing `SocketMsgFlags` flags, which may additionally
+ contain [other platform specific flags](http://man7.org/linux/man-pages/man2/recv.2.html)
 ## `cancellable`
 a `Cancellable` or `None`
 
@@ -17195,8 +17917,20 @@ the size of `dest`. Must be at least as large as
 
 `true` if `dest` was filled in, `false` on error
 <!-- struct SocketAddressEnumerator -->
-Enumerator type for objects that contain or generate
-`SocketAddress` instances.
+`SocketAddressEnumerator` is an enumerator type for `SocketAddress`
+instances. It is returned by enumeration functions such as
+`SocketConnectable::enumerate`, which returns a `SocketAddressEnumerator`
+to list each `SocketAddress` which could be used to connect to that
+`SocketConnectable`.
+
+Enumeration is typically a blocking operation, so the asynchronous methods
+`SocketAddressEnumeratorExt::next_async` and
+`SocketAddressEnumeratorExt::next_finish` should be used where possible.
+
+Each `SocketAddressEnumerator` can only be enumerated once. Once
+`SocketAddressEnumeratorExt::next` has returned `None` (and no error), further
+enumeration with that `SocketAddressEnumerator` is not possible, and it can
+be unreffed.
 
 # Implements
 
@@ -17233,6 +17967,8 @@ a `SocketAddress` (owned by the caller), or `None` on
 Asynchronously retrieves the next `SocketAddress` from `self`
 and then calls `callback`, which must call
 `SocketAddressEnumeratorExt::next_finish` to get the result.
+
+It is an error to call this multiple times before the previous callback has finished.
 ## `cancellable`
 optional `Cancellable` object, `None` to ignore.
 ## `callback`
@@ -17626,7 +18362,7 @@ Sets the protocol of the socket client.
 The sockets created by this object will use of the specified
 protocol.
 
-If `protocol` is `0` that means to use the default
+If `protocol` is `SocketProtocol::Default` that means to use the default
 protocol for the socket family and type.
 ## `protocol`
 a `SocketProtocol`
@@ -17852,7 +18588,7 @@ Creates a `SocketAddressEnumerator` for `self`.
 a new `SocketAddressEnumerator`.
 <!-- trait SocketConnectableExt::fn proxy_enumerate -->
 Creates a `SocketAddressEnumerator` for `self` that will
-return `GProxyAddresses` for addresses that you must connect
+return a `ProxyAddress` for each of its addresses that you must connect
 to via a proxy.
 
 If `self` does not implement
@@ -18234,7 +18970,9 @@ Optional `gobject::Object` identifying this source
 <!-- trait SocketListenerExt::fn close -->
 Closes all the sockets in the listener.
 <!-- trait SocketListenerExt::fn set_backlog -->
-Sets the listen backlog on the sockets in the listener.
+Sets the listen backlog on the sockets in the listener. This must be called
+before adding any sockets, addresses or ports to the `SocketListener` (for
+example, by calling `SocketListenerExt::add_inet_port`) to be effective.
 
 See `SocketExt::set_listen_backlog` for details
 ## `listen_backlog`
@@ -18655,6 +19393,9 @@ Return location for stderr data
 <!-- impl Subprocess::fn communicate_utf8 -->
 Like `Subprocess::communicate`, but validates the output of the
 process as UTF-8, and returns it as a regular NUL terminated string.
+
+On error, `stdout_buf` and `stderr_buf` will be set to undefined values and
+should not be used.
 ## `stdin_buf`
 data to send to the stdin of the subprocess, or `None`
 ## `cancellable`
@@ -18706,6 +19447,12 @@ the exit status
 <!-- impl Subprocess::fn get_identifier -->
 On UNIX, returns the process ID as a decimal string.
 On Windows, returns the result of GetProcessId() also as a string.
+If the subprocess has terminated, this will return `None`.
+
+# Returns
+
+the subprocess identifier, or `None` if the subprocess
+ has terminated
 <!-- impl Subprocess::fn get_if_exited -->
 Check if the given subprocess exited normally (ie: by way of `exit`
 or return from `main`).
@@ -19769,6 +20516,21 @@ no user interaction will occur for this connection.
 # Returns
 
 The interaction object.
+<!-- trait TlsConnectionExt::fn get_negotiated_protocol -->
+Gets the name of the application-layer protocol negotiated during
+the handshake.
+
+If the peer did not use the ALPN extension, or did not advertise a
+protocol that matched one of `self`'s protocols, or the TLS backend
+does not support ALPN, then this will be `None`. See
+`TlsConnectionExt::set_advertised_protocols`.
+
+Feature: `v2_60`
+
+
+# Returns
+
+the negotiated protocol, or `None`
 <!-- trait TlsConnectionExt::fn get_peer_certificate -->
 Gets `self`'s peer's certificate after the handshake has completed.
 (It is not set during the emission of
@@ -19788,6 +20550,12 @@ during the emission of `TlsConnection::accept-certificate`.)
 <!-- trait TlsConnectionExt::fn get_rehandshake_mode -->
 Gets `self` rehandshaking mode. See
 `TlsConnectionExt::set_rehandshake_mode` for details.
+
+# Deprecated since 2.60
+
+Changing the rehandshake mode is no longer
+ required for compatibility. Also, rehandshaking has been removed
+ from the TLS protocol in TLS 1.3.
 
 # Returns
 
@@ -19819,11 +20587,15 @@ before or after completing the handshake).
 Likewise, on the server side, although a handshake is necessary at
 the beginning of the communication, you do not need to call this
 function explicitly unless you want clearer error reporting.
-However, you may call `TlsConnectionExt::handshake` later on to
-rehandshake, if TLS 1.2 or older is in use. With TLS 1.3, the
-behavior is undefined but guaranteed to be reasonable and
-nondestructive, so most older code should be expected to continue to
-work without changes.
+
+If TLS 1.2 or older is in use, you may call
+`TlsConnectionExt::handshake` after the initial handshake to
+rehandshake; however, this usage is deprecated because rehandshaking
+is no longer part of the TLS protocol in TLS 1.3. Accordingly, the
+behavior of calling this function after the initial handshake is now
+undefined, except it is guaranteed to be reasonable and
+nondestructive so as to preserve compatibility with code written for
+older versions of GLib.
 
 `TlsConnection::accept_certificate` may be emitted during the
 handshake.
@@ -19854,6 +20626,23 @@ a `AsyncResult`.
 
 `true` on success, `false` on failure, in which
 case `error` will be set.
+<!-- trait TlsConnectionExt::fn set_advertised_protocols -->
+Sets the list of application-layer protocols to advertise that the
+caller is willing to speak on this connection. The
+Application-Layer Protocol Negotiation (ALPN) extension will be
+used to negotiate a compatible protocol with the peer; use
+`TlsConnectionExt::get_negotiated_protocol` to find the negotiated
+protocol after the handshake. Specifying `None` for the the value
+of `protocols` will disable ALPN negotiation.
+
+See [IANA TLS ALPN Protocol IDs](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml`alpn`-protocol-ids)
+for a list of registered protocol IDs.
+
+Feature: `v2_60`
+
+## `protocols`
+a `None`-terminated
+ array of ALPN protocol names (eg, "http/1.1", "h2"), or `None`
 <!-- trait TlsConnectionExt::fn set_certificate -->
 This sets the certificate that `self` will present to its peer
 during the TLS handshake. For a `TlsServerConnection`, it is
@@ -19917,6 +20706,12 @@ the server side in particular, this is not recommended, since it
 leaves the server open to certain attacks. However, this mode is
 necessary if you need to allow renegotiation with older client
 software.
+
+# Deprecated since 2.60
+
+Changing the rehandshake mode is no longer
+ required for compatibility. Also, rehandshaking has been removed
+ from the TLS protocol in TLS 1.3.
 ## `mode`
 the rehandshaking mode
 <!-- trait TlsConnectionExt::fn set_require_close_notify -->
@@ -19975,8 +20770,8 @@ the user before returning from the signal handler. If you want to
 let the user decide whether or not to accept the certificate, you
 would have to return `false` from the signal handler on the first
 attempt, and then after the connection attempt returns a
-`TlsError::Handshake`, you can interact with the user, and if
-the user decides to accept the certificate, remember that fact,
+`TlsError::BadCertificate`, you can interact with the user, and
+if the user decides to accept the certificate, remember that fact,
 create a new connection, and return `true` from the signal handler
 the next time.
 
@@ -19994,6 +20789,20 @@ the problems with `peer_cert`.
 immediately end the signal emission). `false` to allow the signal
 emission to continue, which will cause the handshake to fail if
 no one else overrides it.
+<!-- trait TlsConnectionExt::fn get_property_advertised_protocols -->
+The list of application-layer protocols that the connection
+advertises that it is willing to speak. See
+`TlsConnectionExt::set_advertised_protocols`.
+
+Feature: `v2_60`
+
+<!-- trait TlsConnectionExt::fn set_property_advertised_protocols -->
+The list of application-layer protocols that the connection
+advertises that it is willing to speak. See
+`TlsConnectionExt::set_advertised_protocols`.
+
+Feature: `v2_60`
+
 <!-- trait TlsConnectionExt::fn get_property_base_io_stream -->
 The `IOStream` that the connection wraps. The connection holds a reference
 to this stream, and may run operations on the stream from other threads
@@ -20028,6 +20837,12 @@ user for passwords where necessary.
 A `TlsInteraction` object to be used when the connection or certificate
 database need to interact with the user. This will be used to prompt the
 user for passwords where necessary.
+<!-- trait TlsConnectionExt::fn get_property_negotiated_protocol -->
+The application-layer protocol negotiated during the TLS
+handshake. See `TlsConnectionExt::get_negotiated_protocol`.
+
+Feature: `v2_60`
+
 <!-- trait TlsConnectionExt::fn get_property_peer_certificate -->
 The connection's peer's certificate, after the TLS handshake has
 completed and the certificate has been accepted. Note in
@@ -20056,9 +20871,12 @@ See `TlsConnectionExt::set_require_close_notify`.
 Whether or not proper TLS close notification is required.
 See `TlsConnectionExt::set_require_close_notify`.
 <!-- struct TlsDatabase -->
-`TlsDatabase` is used to lookup certificates and other information
+`TlsDatabase` is used to look up certificates and other information
 from a certificate or key store. It is an abstract base class which
 TLS library specific subtypes override.
+
+A `TlsDatabase` may be accessed from multiple threads by the TLS backend.
+All implementations are required to be fully thread-safe.
 
 Most common client applications will not directly interact with
 `TlsDatabase`. It is used internally by `TlsConnection`.
@@ -20089,7 +20907,7 @@ certificate for which to create a handle.
 a newly allocated string containing the
 handle.
 <!-- trait TlsDatabaseExt::fn lookup_certificate_for_handle -->
-Lookup a certificate by its handle.
+Look up a certificate by its handle.
 
 The handle should have been created by calling
 `TlsDatabaseExt::create_certificate_handle` on a `TlsDatabase` object of
@@ -20115,7 +20933,7 @@ a `Cancellable`, or `None`
 a newly allocated
 `TlsCertificate`, or `None`. Use `gobject::ObjectExt::unref` to release the certificate.
 <!-- trait TlsDatabaseExt::fn lookup_certificate_for_handle_async -->
-Asynchronously lookup a certificate by its handle in the database. See
+Asynchronously look up a certificate by its handle in the database. See
 `TlsDatabaseExt::lookup_certificate_for_handle` for more information.
 ## `handle`
 a certificate handle
@@ -20131,7 +20949,7 @@ callback to call when the operation completes
 the data to pass to the callback function
 <!-- trait TlsDatabaseExt::fn lookup_certificate_for_handle_finish -->
 Finish an asynchronous lookup of a certificate by its handle. See
-`g_tls_database_lookup_certificate_by_handle` for more information.
+`TlsDatabaseExt::lookup_certificate_for_handle` for more information.
 
 If the handle is no longer valid, or does not point to a certificate in
 this database, then `None` will be returned.
@@ -20143,9 +20961,9 @@ a `AsyncResult`.
 a newly allocated `TlsCertificate` object.
 Use `gobject::ObjectExt::unref` to release the certificate.
 <!-- trait TlsDatabaseExt::fn lookup_certificate_issuer -->
-Lookup the issuer of `certificate` in the database.
+Look up the issuer of `certificate` in the database.
 
-The `issuer` property
+The `TlsCertificate:issuer` property
 of `certificate` is not modified, and the two certificates are not hooked
 into a chain.
 
@@ -20165,7 +20983,7 @@ a `Cancellable`, or `None`
 a newly allocated issuer `TlsCertificate`,
 or `None`. Use `gobject::ObjectExt::unref` to release the certificate.
 <!-- trait TlsDatabaseExt::fn lookup_certificate_issuer_async -->
-Asynchronously lookup the issuer of `certificate` in the database. See
+Asynchronously look up the issuer of `certificate` in the database. See
 `TlsDatabaseExt::lookup_certificate_issuer` for more information.
 ## `certificate`
 a `TlsCertificate`
@@ -20190,7 +21008,7 @@ a `AsyncResult`.
 a newly allocated issuer `TlsCertificate`,
 or `None`. Use `gobject::ObjectExt::unref` to release the certificate.
 <!-- trait TlsDatabaseExt::fn lookup_certificates_issued_by -->
-Lookup certificates issued by this issuer in the database.
+Look up certificates issued by this issuer in the database.
 
 This function can block, use `TlsDatabaseExt::lookup_certificates_issued_by_async` to perform
 the lookup operation asynchronously.
@@ -20208,7 +21026,7 @@ a `Cancellable`, or `None`
 a newly allocated list of `TlsCertificate`
 objects. Use `gobject::ObjectExt::unref` on each certificate, and `glib::List::free` on the release the list.
 <!-- trait TlsDatabaseExt::fn lookup_certificates_issued_by_async -->
-Asynchronously lookup certificates issued by this issuer in the database. See
+Asynchronously look up certificates issued by this issuer in the database. See
 `TlsDatabaseExt::lookup_certificates_issued_by` for more information.
 
 The database may choose to hold a reference to the issuer byte array for the duration
@@ -20697,6 +21515,12 @@ The user readable warning
 <!-- enum TlsRehandshakeMode -->
 When to allow rehandshaking. See
 `TlsConnectionExt::set_rehandshake_mode`.
+
+# Deprecated since 2.60
+
+Changing the rehandshake mode is no longer
+ required for compatibility. Also, rehandshaking has been removed
+ from the TLS protocol in TLS 1.3.
 <!-- enum TlsRehandshakeMode::variant Never -->
 Never allow rehandshaking
 <!-- enum TlsRehandshakeMode::variant Safely -->
@@ -20799,6 +21623,100 @@ Whether to close the file descriptor when the stream is closed.
 The file descriptor that the stream reads from.
 <!-- trait UnixInputStreamExt::fn set_property_fd -->
 The file descriptor that the stream reads from.
+<!-- struct UnixMountEntry -->
+Defines a Unix mount entry (e.g. `<filename>`/media/cdrom`</filename>`).
+This corresponds roughly to a mtab entry.
+<!-- struct UnixMountPoint -->
+Defines a Unix mount point (e.g. `<filename>`/dev`</filename>`).
+This corresponds roughly to a fstab entry.
+<!-- impl UnixMountPoint::fn compare -->
+Compares two unix mount points.
+## `mount2`
+a `GUnixMount`.
+
+# Returns
+
+1, 0 or -1 if `self` is greater than, equal to,
+or less than `mount2`, respectively.
+<!-- impl UnixMountPoint::fn copy -->
+Makes a copy of `self`.
+
+Feature: `v2_54`
+
+
+# Returns
+
+a new `UnixMountPoint`
+<!-- impl UnixMountPoint::fn free -->
+Frees a unix mount point.
+<!-- impl UnixMountPoint::fn get_device_path -->
+Gets the device path for a unix mount point.
+
+# Returns
+
+a string containing the device path.
+<!-- impl UnixMountPoint::fn get_fs_type -->
+Gets the file system type for the mount point.
+
+# Returns
+
+a string containing the file system type.
+<!-- impl UnixMountPoint::fn get_mount_path -->
+Gets the mount path for a unix mount point.
+
+# Returns
+
+a string containing the mount path.
+<!-- impl UnixMountPoint::fn get_options -->
+Gets the options for the mount point.
+
+# Returns
+
+a string containing the options.
+<!-- impl UnixMountPoint::fn guess_can_eject -->
+Guesses whether a Unix mount point can be ejected.
+
+# Returns
+
+`true` if `self` is deemed to be ejectable.
+<!-- impl UnixMountPoint::fn guess_icon -->
+Guesses the icon of a Unix mount point.
+
+# Returns
+
+a `Icon`
+<!-- impl UnixMountPoint::fn guess_name -->
+Guesses the name of a Unix mount point.
+The result is a translated string.
+
+# Returns
+
+A newly allocated string that must
+ be freed with `g_free`
+<!-- impl UnixMountPoint::fn guess_symbolic_icon -->
+Guesses the symbolic icon of a Unix mount point.
+
+# Returns
+
+a `Icon`
+<!-- impl UnixMountPoint::fn is_loopback -->
+Checks if a unix mount point is a loopback device.
+
+# Returns
+
+`true` if the mount point is a loopback. `false` otherwise.
+<!-- impl UnixMountPoint::fn is_readonly -->
+Checks if a unix mount point is read only.
+
+# Returns
+
+`true` if a mount point is read only.
+<!-- impl UnixMountPoint::fn is_user_mountable -->
+Checks if a unix mount point is mountable by the user.
+
+# Returns
+
+`true` if the mount point is user mountable.
 <!-- struct UnixOutputStream -->
 `UnixOutputStream` implements `OutputStream` for writing to a UNIX
 file descriptor, including asynchronous operations. (If the file
@@ -21183,10 +22101,10 @@ starts since it's not desirable to put up a lot of dialogs asking
 for credentials.
 
 The callback will be fired when the operation has resolved (either
-with success or failure), and a `GAsyncReady` structure will be
+with success or failure), and a `AsyncResult` instance will be
 passed to the callback. That callback should then call
 `Volume::mount_finish` with the `Volume` instance and the
-`GAsyncReady` data to see if the operation was completed
+`AsyncResult` data to see if the operation was completed
 successfully. If an `error` is present when `Volume::mount_finish`
 is called, then it will be filled with any error information.
 
@@ -21414,6 +22332,9 @@ would show in a sidebar.
 [thread-default-context aware][g-main-context-push-thread-default],
 and so should not be used other than from the main thread, with no
 thread-default-context active.
+
+In order to receive updates about volumes and mounts monitored through GVFS,
+a main loop must be running.
 
 # Implements
 

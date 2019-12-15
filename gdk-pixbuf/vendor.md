@@ -456,6 +456,25 @@ A list of
 ``GdkPixbufFormats`` describing the supported image formats. The list should
 be freed when it is no longer needed, but the structures themselves are
 owned by `Pixbuf` and should not be freed.
+<!-- impl Pixbuf::fn init_modules -->
+Initalizes the gdk-pixbuf loader modules referenced by the loaders.cache
+file present inside that directory.
+
+This is to be used by applications that want to ship certain loaders
+in a different location from the system ones.
+
+This is needed when the OS or runtime ships a minimal number of loaders
+so as to reduce the potential attack surface of carefully crafted image
+files, especially for uncommon file types. Applications that require
+broader image file types coverage, such as image viewers, would be
+expected to ship the gdk-pixbuf modules in a separate location, bundled
+with the application in a separate directory from the OS or runtime-
+provided modules.
+
+Feature: `v2_40`
+
+## `path`
+Path to directory where the loaders.cache is installed
 <!-- impl Pixbuf::fn new_from_stream_async -->
 Creates a new pixbuf by asynchronously loading an image from an input stream.
 

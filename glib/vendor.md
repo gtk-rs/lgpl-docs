@@ -622,6 +622,11 @@ of the supported range of `DateTime`.
 
 You should release the return value by calling `DateTime::unref`
 when you are done with it.
+
+# Deprecated since 2.62
+
+`TimeVal` is not year-2038-safe. Use
+ `DateTime::new_from_unix_local` instead.
 ## `tv`
 a `TimeVal`
 
@@ -639,6 +644,11 @@ of the supported range of `DateTime`.
 
 You should release the return value by calling `DateTime::unref`
 when you are done with it.
+
+# Deprecated since 2.62
+
+`TimeVal` is not year-2038-safe. Use
+ `DateTime::new_from_unix_utc` instead.
 ## `tv`
 a `TimeVal`
 
@@ -983,6 +993,19 @@ a newly allocated string formatted to the requested format
  or `None` in the case that there was an error (such as a format specifier
  not being supported in the current locale). The string
  should be freed with `g_free`.
+<!-- impl DateTime::fn format_iso8601 -->
+Format `self` in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601),
+including the date, time and time zone, and return that as a UTF-8 encoded
+string.
+
+Feature: `v2_62`
+
+
+# Returns
+
+a newly allocated string formatted in ISO 8601 format
+ or `None` in the case that there was an error. The string
+ should be freed with `g_free`.
 <!-- impl DateTime::fn get_day_of_month -->
 Retrieves the day of the month represented by `self` in the gregorian
 calendar.
@@ -1185,6 +1208,11 @@ systems, this function returns `false` to indicate that the time is
 out of range.
 
 On systems where 'long' is 64bit, this function never fails.
+
+# Deprecated since 2.62
+
+`TimeVal` is not year-2038-safe. Use
+ `DateTime::to_unix` instead.
 ## `tv`
 a `TimeVal` to modify
 
@@ -1417,7 +1445,9 @@ If `key` is `None` then `comment` will be read from above
 `group_name`. If both `key` and `group_name` are `None`, then
 `comment` will be read from above the first group in the file.
 
-Note that the returned string includes the '#' comment markers.
+Note that the returned string does not include the '#' comment markers,
+but does include any whitespace after them (on each line). It includes
+the line breaks between lines, but does not include the final line break.
 ## `group_name`
 a group name, or `None`
 ## `key`
@@ -2124,7 +2154,7 @@ the source, if one was found, otherwise `None`
 <!-- impl MainContext::fn find_source_by_id -->
 Finds a `Source` given a pair of context and ID.
 
-It is a programmer error to attempt to lookup a non-existent source.
+It is a programmer error to attempt to look up a non-existent source.
 
 More specifically: source IDs can be reissued after a source has been
 destroyed and therefore it is never valid to use this function with a
@@ -2482,14 +2512,15 @@ option: `--name arg` or combined in a single argument: `--name=arg`.
 <!-- enum OptionArg::variant None -->
 No extra argument. This is useful for simple flags.
 <!-- enum OptionArg::variant String -->
-The option takes a string argument.
+The option takes a UTF-8 string argument.
 <!-- enum OptionArg::variant Int -->
 The option takes an integer argument.
 <!-- enum OptionArg::variant Callback -->
 The option provides a callback (of type
  `GOptionArgFunc`) to parse the extra argument.
 <!-- enum OptionArg::variant Filename -->
-The option takes a filename as argument.
+The option takes a filename as argument, which will
+ be in the GLib filename encoding rather than UTF-8.
 <!-- enum OptionArg::variant StringArray -->
 The option takes a string argument, multiple
  uses of the option are collected into an array of strings.
@@ -2608,6 +2639,9 @@ Removes a source from its `MainContext`, if any, and mark it as
 destroyed. The source cannot be subsequently added to another
 context. It is safe to call this on sources which have already been
 removed from their context.
+
+This does not unref the `Source`: if you still hold a reference, use
+`Source::unref` to drop it.
 <!-- impl Source::fn get_can_recurse -->
 Checks whether a source is allowed to be called recursively.
 see `Source::set_can_recurse`.
@@ -2833,7 +2867,11 @@ See [memory management of sources][mainloop-memory-management] for details
 on how to handle memory management of `data`.
 
 Typically, you won't use this function. Instead use functions specific
-to the type of source you are using.
+to the type of source you are using, such as `g_idle_add` or `g_timeout_add`.
+
+It is safe to call this function multiple times on a source which has already
+been attached to a context. The changes will take effect for the next time
+the source is dispatched after this call returns.
 ## `func`
 a callback function
 ## `data`
@@ -2847,6 +2885,10 @@ Sets the callback function storing the data as a refcounted callback
 an initial reference count on `callback_data`, and thus
 `callback_funcs`->unref will eventually be called once more
 than `callback_funcs`->ref.
+
+It is safe to call this function multiple times on a source which has already
+been attached to a context. The changes will take effect for the next time
+the source is dispatched after this call returns.
 ## `callback_data`
 pointer to callback data "object"
 ## `callback_funcs`
@@ -3448,7 +3490,7 @@ This means that in total, for our "a{sv}" example, 91 bytes of
 type information would be allocated.
 
 The type information cache, additionally, uses a `HashTable` to
-store and lookup the cached items and stores a pointer to this
+store and look up the cached items and stores a pointer to this
 hash table in static storage. The hash table is freed when there
 are zero items in the type cache.
 
@@ -3664,6 +3706,10 @@ inner interface for creation of new serialised values that gets
 called from various functions in gvariant.c.
 
 A reference is taken on `bytes`.
+
+The data in `bytes` must be aligned appropriately for the `type_` being loaded.
+Otherwise this function will internally create a copy of the memory (since
+GLib 2.60) or (in older versions) fail and exit the process.
 ## `type_`
 a `VariantType`
 ## `bytes`
@@ -3699,6 +3745,11 @@ endianness. `Variant::byteswap` can be used to recover the original values.
 `notify` will be called with `user_data` when `data` is no longer
 needed. The exact time of this call is unspecified and might even be
 before this function returns.
+
+Note: `data` must be backed by memory that is aligned appropriately for the
+`type_` being loaded. Otherwise this function will internally create a copy of
+the memory (since GLib 2.60) or (in older versions) fail and exit the
+process.
 ## `type_`
 a definite `VariantType`
 ## `data`
@@ -4715,7 +4766,7 @@ see the section on
 This function is currently implemented with a linear scan. If you
 plan to do many lookups then `VariantDict` may be more efficient.
 ## `key`
-the key to lookup in the dictionary
+the key to look up in the dictionary
 ## `format_string`
 a GVariant format string
 
@@ -4733,7 +4784,7 @@ In the event that `self` has the type a{sv}, the `expected_type`
 string specifies what type of value is expected to be inside of the
 variant. If the value inside the variant has a different type then
 `None` is returned. In the event that `self` has a value type other
-than v then `expected_type` must directly match the key type and it is
+than v then `expected_type` must directly match the value type and it is
 used to unpack the value directly or an error occurs.
 
 In either case, if `key` is not found in `self`, `None` is returned.
@@ -4745,7 +4796,7 @@ value will have this type.
 This function is currently implemented with a linear scan. If you
 plan to do many lookups then `VariantDict` may be more efficient.
 ## `key`
-the key to lookup in the dictionary
+the key to look up in the dictionary
 ## `expected_type`
 a `VariantType`, or `None`
 

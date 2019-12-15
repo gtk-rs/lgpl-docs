@@ -440,7 +440,7 @@ Creates a new `AccelGroup`.
 a new `AccelGroup` object
 <!-- impl AccelGroup::fn from_accel_closure -->
 Finds the `AccelGroup` to which `closure` is connected;
-see `AccelGroupExt::connect`.
+see `AccelGroup::connect`.
 ## `closure`
 a `gobject::Closure`
 
@@ -502,7 +502,7 @@ path used for determining key and modifiers
 closure to be executed upon accelerator activation
 <!-- trait AccelGroupExt::fn disconnect -->
 Removes an accelerator previously installed through
-`AccelGroupExt::connect`.
+`AccelGroup::connect`.
 
 Since 2.20 `closure` can be `None`.
 ## `closure`
@@ -514,7 +514,7 @@ the closure to remove from this accelerator
 `true` if the closure was found and got disconnected
 <!-- trait AccelGroupExt::fn disconnect_key -->
 Removes an accelerator previously installed through
-`AccelGroupExt::connect`.
+`AccelGroup::connect`.
 ## `accel_key`
 key value of the accelerator
 ## `accel_mods`
@@ -731,7 +731,7 @@ a keyval, or 0
 the modifier mask for the accel
 <!-- trait AccelLabelExt::fn set_accel_closure -->
 Sets the closure to be monitored by this accelerator label. The closure
-must be connected to an accelerator group; see `AccelGroupExt::connect`.
+must be connected to an accelerator group; see `AccelGroup::connect`.
 Passing `None` for `accel_closure` will dissociate `self` from its
 current closure, if any.
 ## `accel_closure`
@@ -2004,6 +2004,15 @@ Removes an inhibitor that has been established with `GtkApplicationExt::inhibit`
 Inhibitors are also cleared when the application exits.
 ## `cookie`
 a cookie that was returned by `GtkApplicationExt::inhibit`
+<!-- trait GtkApplicationExt::fn connect_query_end -->
+Emitted when the session manager is about to end the session, only
+if `Application::register-session` is `true`. Applications can
+connect to this signal and call `GtkApplicationExt::inhibit` with
+`ApplicationInhibitFlags::Logout` to delay the end of the session
+until state has been saved.
+
+Feature: `v3_24_8`
+
 <!-- trait GtkApplicationExt::fn connect_window_added -->
 Emitted when a `Window` is added to `application` through
 `GtkApplicationExt::add_window`.
@@ -2725,7 +2734,7 @@ Trait containing all `Box` methods.
 
 # Implementors
 
-[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`InfoBar`](struct.InfoBar.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html)
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`InfoBar`](struct.InfoBar.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html)
 <!-- impl Box::fn new -->
 Creates a new `Box`.
 ## `orientation`
@@ -2900,7 +2909,7 @@ Trait containing all `Buildable` methods.
 
 # Implementors
 
-[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
 <!-- trait BuildableExt::fn add_child -->
 Adds a child to `self`. `type_` is an optional string
 describing how the child should be added.
@@ -3127,7 +3136,7 @@ attribute specifies the name of the signal, and the “handler” attribute
 specifies the function to connect to the signal. By default, GTK+ tries
 to find the handler using `gmodule::Module::symbol`, but this can be changed by
 passing a custom ``GtkBuilderConnectFunc`` to
-`BuilderExt::connect_signals_full`. The remaining attributes, “after”,
+`Builder::connect_signals_full`. The remaining attributes, “after”,
 “swapped” and “object”, have the same meaning as the corresponding
 parameters of the `g_signal_connect_object` or
 `g_signal_connect_data` functions. A “last_modification_time”
@@ -3396,7 +3405,7 @@ nul-terminated array of objects to build
 
 A positive value on success, 0 if an error occurred
 <!-- trait BuilderExt::fn connect_signals -->
-This method is a simpler variation of `BuilderExt::connect_signals_full`.
+This method is a simpler variation of `Builder::connect_signals_full`.
 It uses symbols explicitly added to `self` with prior calls to
 `BuilderExt::add_callback_symbol`. In the case that symbols are not
 explicitly added; it uses `gmodule::Module`’s introspective features (by opening the module `None`)
@@ -3510,7 +3519,7 @@ with `BuilderExt::add_callback_symbols`
 
 This function is intended for possible use in language bindings
 or for any case that one might be cusomizing signal connections
-using `BuilderExt::connect_signals_full`
+using `Builder::connect_signals_full`
 ## `callback_name`
 The name of the callback
 
@@ -12873,6 +12882,11 @@ The `FileChooserButton` supports the ``GtkFileChooserActions``
 > such a way that other interface elements give space to the
 > widget.
 
+# CSS nodes
+
+`FileChooserButton` has a CSS node with name “filechooserbutton”, containing
+a subnode for the internal button with name “button” and style class “.file”.
+
 # Implements
 
 [`FileChooserButtonExt`](trait.FileChooserButtonExt.html), [`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`FileChooserExt`](trait.FileChooserExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
@@ -18430,7 +18444,8 @@ can then be loaded into a `gdk_pixbuf::Pixbuf` using
 
 # CSS nodes
 
-`Image` has a single CSS node with the name image.
+`Image` has a single CSS node with the name image. The style classes
+may appear on image CSS nodes: .icon-dropshadow, .lowres-icon.
 
 # Implements
 
@@ -20361,6 +20376,12 @@ the user tries to activate it. If it is selectable, the row will be marked
 as selected when the user tries to select it.
 
 The `ListBox` widget was added in GTK+ 3.10.
+
+# `ListBox` as `Buildable`
+
+The `ListBox` implementation of the `Buildable` interface supports
+setting a child as the placeholder by specifying “placeholder” as the “type”
+attribute of a `<child>` element. See `ListBoxExt::set_placeholder` for info.
 
 # CSS nodes
 
@@ -24001,7 +24022,7 @@ Trait containing all `Orientable` methods.
 
 # Implementors
 
-[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`CellView`](struct.CellView.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FlowBox`](struct.FlowBox.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Grid`](struct.Grid.html), [`InfoBar`](struct.InfoBar.html), [`LevelBar`](struct.LevelBar.html), [`Orientable`](struct.Orientable.html), [`Paned`](struct.Paned.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`Separator`](struct.Separator.html), [`SpinButton`](struct.SpinButton.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`VolumeButton`](struct.VolumeButton.html)
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`CellView`](struct.CellView.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FlowBox`](struct.FlowBox.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Grid`](struct.Grid.html), [`InfoBar`](struct.InfoBar.html), [`LevelBar`](struct.LevelBar.html), [`Orientable`](struct.Orientable.html), [`Paned`](struct.Paned.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`SpinButton`](struct.SpinButton.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait OrientableExt::fn get_orientation -->
 Retrieves the orientation of the `self`.
 
@@ -24037,6 +24058,9 @@ properties of the child to non-zero values.
 
 More complicated placement of overlays is possible by connecting
 to the `Overlay::get-child-position` signal.
+
+An overlay’s minimum and natural sizes are those of its main child. The sizes
+of overlay children are not considered when measuring these preferred sizes.
 
 # `Overlay` as `Buildable`
 
@@ -24090,7 +24114,7 @@ whether the widget is a pass through child.
 <!-- trait OverlayExt::fn reorder_overlay -->
 Moves `child` to a new `index` in the list of `self` children.
 The list contains overlays in the order that these were
-added to `self`.
+added to `self` by default. See also `Overlay:index`.
 
 A widget’s index in the `self` children list determines which order
 the children are drawn if they overlap. The first child is drawn at
@@ -24100,7 +24124,7 @@ Feature: `v3_18`
 
 ## `child`
 the overlaid `Widget` to move
-## `position`
+## `index_`
 the new index for `child` in the list of overlay children
  of `self`, starting from 0. If negative, indicates the end of
  the list
@@ -30746,7 +30770,7 @@ This setting only has an effect if kinetic scrolling is enabled.
 <!-- trait ScrolledWindowExt::fn set_hadjustment -->
 Sets the `Adjustment` for the horizontal scrollbar.
 ## `hadjustment`
-horizontal scroll adjustment
+the `Adjustment` to use, or `None` to create a new one
 <!-- trait ScrolledWindowExt::fn set_kinetic_scrolling -->
 Turns kinetic scrolling on or off.
 Kinetic scrolling only applies to devices with source
@@ -30852,7 +30876,7 @@ kind of shadow to draw around scrolled window contents
 <!-- trait ScrolledWindowExt::fn set_vadjustment -->
 Sets the `Adjustment` for the vertical scrollbar.
 ## `vadjustment`
-vertical scroll adjustment
+the `Adjustment` to use, or `None` to create a new one
 <!-- trait ScrolledWindowExt::fn unset_placement -->
 Unsets the placement of the contents with respect to the scrollbars
 for the scrolled window. If no window placement is set for a scrolled
@@ -30952,6 +30976,9 @@ scrollbars are only added as traditional widgets when a mouse
 is present. Otherwise, they are overlayed on top of the content,
 as narrow indicators.
 
+Note that overlay scrolling can also be globally disabled, with
+the `Settings::gtk-overlay-scrolling` setting.
+
 Feature: `v3_16`
 
 <!-- trait ScrolledWindowExt::fn set_property_overlay_scrolling -->
@@ -30959,6 +30986,9 @@ Whether overlay scrolling is enabled or not. If it is, the
 scrollbars are only added as traditional widgets when a mouse
 is present. Otherwise, they are overlayed on top of the content,
 as narrow indicators.
+
+Note that overlay scrolling can also be globally disabled, with
+the `Settings::gtk-overlay-scrolling` setting.
 
 Feature: `v3_16`
 
@@ -31843,6 +31873,20 @@ Feature: `v3_20`
 The time for a button or touch press to be considered a "long press".
 <!-- trait SettingsExt::fn set_property_gtk_long_press_time -->
 The time for a button or touch press to be considered a "long press".
+<!-- trait SettingsExt::fn get_property_gtk_overlay_scrolling -->
+Whether scrolled windows may use overlayed scrolling indicators.
+If this is set to `false`, scrolled windows will have permanent
+scrollbars.
+
+Feature: `v3_24_9`
+
+<!-- trait SettingsExt::fn set_property_gtk_overlay_scrolling -->
+Whether scrolled windows may use overlayed scrolling indicators.
+If this is set to `false`, scrolled windows will have permanent
+scrollbars.
+
+Feature: `v3_24_9`
+
 <!-- trait SettingsExt::fn get_property_gtk_primary_button_warps_slider -->
 If the value of this setting is `true`, clicking the primary button in a
 `Range` trough will move the slider, and hence set the range’s value, to
@@ -31973,6 +32017,81 @@ The outline is bevelled outwards like a button.
 The outline has a sunken 3d appearance.
 <!-- enum ShadowType::variant EtchedOut -->
 The outline has a raised 3d appearance.
+<!-- struct ShortcutLabel -->
+`ShortcutLabel` is a widget that represents a single keyboard shortcut or gesture
+in the user interface.
+
+Feature: `v3_22`
+
+# Implements
+
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+<!-- impl ShortcutLabel::fn new -->
+Creates a new `ShortcutLabel` with `accelerator` set.
+
+Feature: `v3_22`
+
+## `accelerator`
+the initial accelerator
+
+# Returns
+
+a newly-allocated `ShortcutLabel`
+<!-- impl ShortcutLabel::fn get_accelerator -->
+Retrieves the current accelerator of `self`.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the current accelerator.
+<!-- impl ShortcutLabel::fn get_disabled_text -->
+Retrieves the text that is displayed when no accelerator is set.
+
+Feature: `v3_22`
+
+
+# Returns
+
+the current text displayed when no
+accelerator is set.
+<!-- impl ShortcutLabel::fn set_accelerator -->
+Sets the accelerator to be displayed by `self`.
+
+Feature: `v3_22`
+
+## `accelerator`
+the new accelerator
+<!-- impl ShortcutLabel::fn set_disabled_text -->
+Sets the text to be displayed by `self` when no accelerator is set.
+
+Feature: `v3_22`
+
+## `disabled_text`
+the text to be displayed when no accelerator is set
+<!-- impl ShortcutLabel::fn get_property_accelerator -->
+The accelerator that `self_` displays. See `ShortcutsShortcut:accelerator`
+for the accepted syntax.
+
+Feature: `v3_22`
+
+<!-- impl ShortcutLabel::fn set_property_accelerator -->
+The accelerator that `self_` displays. See `ShortcutsShortcut:accelerator`
+for the accepted syntax.
+
+Feature: `v3_22`
+
+<!-- impl ShortcutLabel::fn get_property_disabled_text -->
+The text that is displayed when no accelerator is set.
+
+Feature: `v3_22`
+
+<!-- impl ShortcutLabel::fn set_property_disabled_text -->
+The text that is displayed when no accelerator is set.
+
+Feature: `v3_22`
+
 <!-- struct ShortcutsWindow -->
 A `ShortcutsWindow` shows brief information about the keyboard shortcuts
 and gestures of an application. The shortcuts can be grouped, and you can
@@ -44145,7 +44264,7 @@ the use case for the modifier mask
 # Returns
 
 the modifier mask used for `intent`.
-<!-- trait WidgetExt::fn get_name -->
+<!-- trait WidgetExt::fn get_widget_name -->
 Retrieves the name of a widget. See `WidgetExt::set_name` for the
 significance of widget names.
 
@@ -44817,7 +44936,7 @@ direction of focus movement
  navigation attempt in its parent container(s).
 <!-- trait WidgetExt::fn list_accel_closures -->
 Lists the closures used by `self` for accelerator group connections
-with `AccelGroupExt::connect_by_path` or `AccelGroupExt::connect`.
+with `AccelGroup::connect_by_path` or `AccelGroup::connect`.
 The closures can be used to monitor accelerator changes on `self`,
 by connecting to the `AccelGroup::accel-changed` signal of the
 `AccelGroup` of a closure which can be found out with
@@ -44942,7 +45061,7 @@ the color to use for primary cursor (does not need to be
 the color to use for secondary cursor (does not
  need to be allocated), or `None` to undo the effect of previous
  calls to of `WidgetExt::override_cursor`.
-<!-- trait WidgetExtManual::fn override_font -->
+<!-- trait WidgetExt::fn override_font -->
 Sets the font to use for a widget. All other style values are
 left untouched. See `WidgetExt::override_color`.
 
@@ -44954,7 +45073,7 @@ This function is not useful in the context of CSS-based
  `StyleProvider` and a CSS style class.
 ## `font_desc`
 the font description to use, or `None` to undo
- the effect of previous calls to `Widget::override_font`
+ the effect of previous calls to `WidgetExt::override_font`
 <!-- trait WidgetExt::fn override_symbolic_color -->
 Sets a symbolic color for a widget.
 
@@ -45437,7 +45556,7 @@ Sets the top margin of `self`.
 See the `Widget:margin-top` property.
 ## `margin`
 the top margin
-<!-- trait WidgetExt::fn set_name -->
+<!-- trait WidgetExt::fn set_widget_name -->
 Widgets can be named, which allows you to refer to them from a
 CSS file. You can apply a style to widgets with a particular name
 in the CSS file. See the documentation for the CSS syntax (on the
@@ -48011,6 +48130,10 @@ geometry string
 
 `true` if string was parsed successfully
 <!-- trait GtkWindowExtManual::fn present -->
+Presents a window to the user. This function should not be used
+as when it is called, it is too late to gather a valid timestamp
+to allow focus stealing prevention to work correctly.
+<!-- trait GtkWindowExt::fn present_with_time -->
 Presents a window to the user. This may mean raising the window
 in the stacking order, deiconifying it, moving it to the current
 desktop, and/or giving it the keyboard focus, possibly dependent
@@ -48025,12 +48148,10 @@ currently open, and the user chooses Preferences from the menu
 a second time; use `Window::present` to move the already-open dialog
 where the user can see it.
 
-If you are calling this function in response to a user interaction,
-it is preferable to use `GtkWindowExt::present_with_time`.
-<!-- trait GtkWindowExt::fn present_with_time -->
-Presents a window to the user in response to a user interaction.
-If you need to present a window without a timestamp, use
-`Window::present`. See `Window::present` for details.
+Presents a window to the user in response to a user interaction. The
+timestamp should be gathered when the window was requested to be shown
+(when clicking a link for example), rather than once the window is
+ready to be shown.
 ## `timestamp`
 the timestamp of the user interaction (typically a
  button or key press event) which triggered this call
