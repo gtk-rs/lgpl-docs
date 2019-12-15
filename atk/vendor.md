@@ -371,6 +371,7 @@ Trait containing all `Document` methods.
 
 [`Document`](struct.Document.html), [`NoOpObject`](struct.NoOpObject.html)
 <!-- trait DocumentExt::fn get_attribute_value -->
+Retrieves the value of the given `attribute_name` inside `self`.
 ## `attribute_name`
 a character string representing the name of the attribute
  whose value is being queried.
@@ -378,7 +379,7 @@ a character string representing the name of the attribute
 # Returns
 
 a string value associated with the named
- attribute for this document, or NULL if a value for
+ attribute for this document, or `None` if a value for
  `attribute_name` has not been specified for this document.
 <!-- trait DocumentExt::fn get_attributes -->
 Gets an AtkAttributeSet which describes document-wide
@@ -390,11 +391,12 @@ An AtkAttributeSet containing the explicitly
  set name-value-pair attributes associated with this document
  as a whole.
 <!-- trait DocumentExt::fn get_current_page_number -->
+Retrieves the current page number inside `self`.
 
 # Returns
 
-current page number inside `self`. -1 if not
-implemented, not know by the implementor or irrelevant.
+the current page number inside `self`, or -1 if
+ not implemented, not know by the implementor, or irrelevant.
 <!-- trait DocumentExt::fn get_document -->
 Gets a `gpointer` that points to an instance of the DOM. It is
 up to the caller to check atk_document_get_type to determine
@@ -421,12 +423,14 @@ ask for the document type if it applies.
 
 a string indicating the document type
 <!-- trait DocumentExt::fn get_page_count -->
+Retrieves the total number of pages inside `self`.
 
 # Returns
 
-total page count of `self`. -1 if not implemented, not
-know by the implementor or irrelevant.
+total page count of `self`, or -1 if not implemented,
+ not know by the implementor or irrelevant.
 <!-- trait DocumentExt::fn set_attribute_value -->
+Sets the value for the given `attribute_name` inside `self`.
 ## `attribute_name`
 a character string representing the name of the attribute
  whose value is being set.
@@ -435,9 +439,9 @@ a string value to be associated with `attribute_name`.
 
 # Returns
 
-TRUE if `value` is successfully associated with `attribute_name`
- for this document, FALSE otherwise (e.g. if the document does not
- allow the attribute to be modified).
+`true` if `attribute_value` is successfully associated
+ with `attribute_name` for this `self`, and `false` if if the
+ document does not allow the attribute to be modified
 <!-- trait DocumentExt::fn connect_load_complete -->
 The 'load-complete' signal is emitted when a pending load of
 a static document has completed. This signal is to be
@@ -780,12 +784,13 @@ Get a textual description of this image.
 
 a string representing the image description
 <!-- trait AtkImageExt::fn get_image_locale -->
+Retrieves the locale identifier associated to the `Image`.
 
 # Returns
 
 a string corresponding to the POSIX
-LC_MESSAGES locale used by the image description, or `None` if the
-image does not specify a locale.
+ `LC_MESSAGES` locale used by the image description, or
+ `None` if the image does not specify a locale.
 <!-- trait AtkImageExt::fn get_image_position -->
 Gets the position of the image in the form of a point specifying the
 images top-left corner.
@@ -955,19 +960,16 @@ The `Object` which is to be the target of the relation.
 # Returns
 
 TRUE if the relationship is added.
-<!-- trait AtkObjectExt::fn connect_property_change_handler -->
+<!-- trait AtkObjectExt::fn get_accessible_id -->
+Gets the accessible id of the accessible.
 
-# Deprecated
+Feature: `v2_34`
 
-Since 2.12. Connect directly to property-change or
-notify signals.
-## `handler`
-a function to be called when a property changes its value
 
 # Returns
 
-a `guint` which is the handler id used in
-`AtkObjectExt::remove_property_change_handler`
+a character string representing the accessible id of the object, or
+NULL if no such string was set.
 <!-- trait AtkObjectExt::fn get_attributes -->
 Get a list of properties applied to this object as a whole, as an `AttributeSet` consisting of
 name-value pairs. As such these attributes may be considered weakly-typed properties or annotations,
@@ -1114,15 +1116,6 @@ unreference it when it is no longer needed.
 
 a reference to an `StateSet` which is the state
 set of the accessible
-<!-- trait AtkObjectExt::fn remove_property_change_handler -->
-
-# Deprecated
-
-Since 2.12.
-
-Removes a property change handler.
-## `handler_id`
-a guint which identifies the handler to be removed.
 <!-- trait AtkObjectExt::fn remove_relationship -->
 Removes a relationship of the specified type with the specified target.
 ## `relationship`
@@ -1133,6 +1126,17 @@ The `Object` which is the target of the relation to be removed.
 # Returns
 
 TRUE if the relationship is removed.
+<!-- trait AtkObjectExt::fn set_accessible_id -->
+Sets the accessible ID of the accessible. This is not meant to be presented
+to the user, but to be an ID which is stable over application development.
+Typically, this is the gtkbuilder ID. Such an ID will be available for
+instance to identify a given well-known accessible object for tailored screen
+reading, or for automatic regression testing.
+
+Feature: `v2_34`
+
+## `name`
+a character string to be set as the accessible id
 <!-- trait AtkObjectExt::fn set_description -->
 Sets the accessible description of the accessible. You can't set
 the description to NULL. This is reserved for the initial value. In
@@ -1338,6 +1342,12 @@ Trait containing all `Plug` methods.
 # Implementors
 
 [`Plug`](struct.Plug.html)
+<!-- impl Plug::fn new -->
+Creates a new `Plug` instance.
+
+# Returns
+
+the newly created `Plug`
 <!-- trait AtkPlugExt::fn get_id -->
 Gets the unique ID of an `Plug` object, which can be used to
 embed inside of an `Socket` using `AtkSocketExt::embed`.
@@ -1673,9 +1683,9 @@ Not used, this value indicates the end of the enumeration.
 <!-- enum Role -->
 Describes the role of an object
 
-These are the built-in enumerated roles that UI components can have in
-ATK. Other roles may be added at runtime, so an AtkRole >=
-ATK_ROLE_LAST_DEFINED is not necessarily an error.
+These are the built-in enumerated roles that UI components can have
+in ATK. Other roles may be added at runtime, so an AtkRole >=
+`Role::LastDefined` is not necessarily an error.
 <!-- enum Role::variant Invalid -->
 Invalid role
 <!-- enum Role::variant AcceleratorLabel -->
@@ -1795,7 +1805,7 @@ The header for a row of a table
 <!-- enum Role::variant TearOffMenuItem -->
 A menu item used to tear off and reattach its menu
 <!-- enum Role::variant Terminal -->
-An object that represents an accessible terminal. `Since`: ATK-0.6
+An object that represents an accessible terminal. (Since: 0.6)
 <!-- enum Role::variant Text -->
 An interactive widget that supports multiple lines of text and
 optionally accepts user input, but whose purpose is not to solicit user input.
@@ -1813,7 +1823,7 @@ An object that provides information about another object
 <!-- enum Role::variant Tree -->
 An object used to represent hierarchical information to the user
 <!-- enum Role::variant TreeTable -->
-An object capable of expanding and collapsing rows as well as showing multiple columns of data. `Since`: ATK-0.7
+An object capable of expanding and collapsing rows as well as showing multiple columns of data. (Since: 0.7)
 <!-- enum Role::variant Unknown -->
 The object contains some Accessible information, but its role is not known
 <!-- enum Role::variant Viewport -->
@@ -1821,193 +1831,201 @@ An object usually used in a scroll pane
 <!-- enum Role::variant Window -->
 A top level window with no title or border.
 <!-- enum Role::variant Header -->
-An object that serves as a document header. `Since`: ATK-1.1.1
+An object that serves as a document header. (Since: 1.1.1)
 <!-- enum Role::variant Footer -->
-An object that serves as a document footer. `Since`: ATK-1.1.1
+An object that serves as a document footer. (Since: 1.1.1)
 <!-- enum Role::variant Paragraph -->
-An object which is contains a paragraph of text content. `Since`: ATK-1.1.1
+An object which is contains a paragraph of text content. (Since: 1.1.1)
 <!-- enum Role::variant Ruler -->
-An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such). `Since`: ATK-1.1.1
+An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such). (Since: 1.1.1)
 <!-- enum Role::variant Application -->
-The object is an application object, which may contain `Role::Frame` objects or other types of accessibles. The root accessible of any application's ATK hierarchy should have ATK_ROLE_APPLICATION. `Since`: ATK-1.1.4
+The object is an application object, which may contain `Role::Frame` objects or other types of accessibles. The root accessible of any application's ATK hierarchy should have ATK_ROLE_APPLICATION. (Since: 1.1.4)
 <!-- enum Role::variant Autocomplete -->
-The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry. `Since`: ATK-1.3
+The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry. (Since: 1.3)
 <!-- enum Role::variant EditBar -->
-The object is an editable text object in a toolbar. `Since`: ATK-1.5
+The object is an editable text object in a toolbar. (Since: 1.5)
 <!-- enum Role::variant Embedded -->
-The object is an embedded container within a document or panel. This role is a grouping "hint" indicating that the contained objects share a context. `Since`: ATK-1.7.2
+The object is an embedded container within a document or panel. This role is a grouping "hint" indicating that the contained objects share a context. (Since: 1.7.2)
 <!-- enum Role::variant Entry -->
-The object is a component whose textual content may be entered or modified by the user, provided `StateType::Editable` is present. `Since`: ATK-1.11
+The object is a component whose textual content may be entered or modified by the user, provided `StateType::Editable` is present. (Since: 1.11)
 <!-- enum Role::variant Chart -->
-The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property. `Since`: ATK-1.11
+The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property. (Since: 1.11)
 <!-- enum Role::variant Caption -->
-The object contains descriptive information, usually textual, about another user interface element such as a table, chart, or image. `Since`: ATK-1.11
+The object contains descriptive information, usually textual, about another user interface element such as a table, chart, or image. (Since: 1.11)
 <!-- enum Role::variant DocumentFrame -->
-The object is a visual frame or container which contains a view of document content. Document frames may occur within another Document instance, in which case the second document may be said to be embedded in the containing instance. HTML frames are often ROLE_DOCUMENT_FRAME. Either this object, or a singleton descendant, should implement the Document interface. `Since`: ATK-1.11
+The object is a visual frame or container which contains a view of document content. Document frames may occur within another Document instance, in which case the second document may be said to be embedded in the containing instance. HTML frames are often ROLE_DOCUMENT_FRAME. Either this object, or a singleton descendant, should implement the Document interface. (Since: 1.11)
 <!-- enum Role::variant Heading -->
 The object serves as a heading for content which follows it in a document. The 'heading level' of the heading, if availabe, may be obtained by querying the object's attributes.
 <!-- enum Role::variant Page -->
-The object is a containing instance which encapsulates a page of information. `Role::Page` is used in documents and content which support a paginated navigation model. `Since`: ATK-1.11
+The object is a containing instance which encapsulates a page of information. `Role::Page` is used in documents and content which support a paginated navigation model. (Since: 1.11)
 <!-- enum Role::variant Section -->
-The object is a containing instance of document content which constitutes a particular 'logical' section of the document. The type of content within a section, and the nature of the section division itself, may be obtained by querying the object's attributes. Sections may be nested. `Since`: ATK-1.11
+The object is a containing instance of document content which constitutes a particular 'logical' section of the document. The type of content within a section, and the nature of the section division itself, may be obtained by querying the object's attributes. Sections may be nested. (Since: 1.11)
 <!-- enum Role::variant RedundantObject -->
-The object is redundant with another object in the hierarchy, and is exposed for purely technical reasons. Objects of this role should normally be ignored by clients. `Since`: ATK-1.11
+The object is redundant with another object in the hierarchy, and is exposed for purely technical reasons. Objects of this role should normally be ignored by clients. (Since: 1.11)
 <!-- enum Role::variant Form -->
 The object is a container for form controls, for instance as part of a
 web form or user-input form within a document. This role is primarily a tag/convenience for
 clients when navigating complex documents, it is not expected that ordinary GUI containers will
-always have ATK_ROLE_FORM. `Since`: ATK-1.12.0
+always have ATK_ROLE_FORM. (Since: 1.12.0)
 <!-- enum Role::variant Link -->
 The object is a hypertext anchor, i.e. a "link" in a
 hypertext document. Such objects are distinct from 'inline'
 content which may also use the Hypertext/Hyperlink interfaces
 to indicate the range/location within a text object where
-an inline or embedded object lies. `Since`: ATK-1.12.1
+an inline or embedded object lies. (Since: 1.12.1)
 <!-- enum Role::variant InputMethodWindow -->
 The object is a window or similar viewport
 which is used to allow composition or input of a 'complex character',
-in other words it is an "input method window." `Since`: ATK-1.12.1
+in other words it is an "input method window." (Since: 1.12.1)
 <!-- enum Role::variant TableRow -->
-A row in a table. `Since`: ATK-2.1.0
+A row in a table. (Since: 2.1.0)
 <!-- enum Role::variant TreeItem -->
-An object that represents an element of a tree. `Since`: ATK-2.1.0
+An object that represents an element of a tree. (Since: 2.1.0)
 <!-- enum Role::variant DocumentSpreadsheet -->
-A document frame which contains a spreadsheet. `Since`: ATK-2.1.0
+A document frame which contains a spreadsheet. (Since: 2.1.0)
 <!-- enum Role::variant DocumentPresentation -->
-A document frame which contains a presentation or slide content. `Since`: ATK-2.1.0
+A document frame which contains a presentation or slide content. (Since: 2.1.0)
 <!-- enum Role::variant DocumentText -->
-A document frame which contains textual content, such as found in a word processing application. `Since`: ATK-2.1.0
+A document frame which contains textual content, such as found in a word processing application. (Since: 2.1.0)
 <!-- enum Role::variant DocumentWeb -->
-A document frame which contains HTML or other markup suitable for display in a web browser. `Since`: ATK-2.1.0
+A document frame which contains HTML or other markup suitable for display in a web browser. (Since: 2.1.0)
 <!-- enum Role::variant DocumentEmail -->
-A document frame which contains email content to be displayed or composed either in plain text or HTML. `Since`: ATK-2.1.0
+A document frame which contains email content to be displayed or composed either in plain text or HTML. (Since: 2.1.0)
 <!-- enum Role::variant Comment -->
-An object found within a document and designed to present a comment, note, or other annotation. In some cases, this object might not be visible until activated. `Since`: ATK-2.1.0
+An object found within a document and designed to present a comment, note, or other annotation. In some cases, this object might not be visible until activated. (Since: 2.1.0)
 <!-- enum Role::variant ListBox -->
-A non-collapsible list of choices the user can select from. `Since`: ATK-2.1.0
+A non-collapsible list of choices the user can select from. (Since: 2.1.0)
 <!-- enum Role::variant Grouping -->
-A group of related widgets. This group typically has a label. `Since`: ATK-2.1.0
+A group of related widgets. This group typically has a label. (Since: 2.1.0)
 <!-- enum Role::variant ImageMap -->
-An image map object. Usually a graphic with multiple hotspots, where each hotspot can be activated resulting in the loading of another document or section of a document. `Since`: ATK-2.1.0
+An image map object. Usually a graphic with multiple hotspots, where each hotspot can be activated resulting in the loading of another document or section of a document. (Since: 2.1.0)
 <!-- enum Role::variant Notification -->
-A transitory object designed to present a message to the user, typically at the desktop level rather than inside a particular application. `Since`: ATK-2.1.0
+A transitory object designed to present a message to the user, typically at the desktop level rather than inside a particular application. (Since: 2.1.0)
 <!-- enum Role::variant InfoBar -->
-An object designed to present a message to the user within an existing window. `Since`: ATK-2.1.0
+An object designed to present a message to the user within an existing window. (Since: 2.1.0)
 <!-- enum Role::variant LevelBar -->
-A bar that serves as a level indicator to, for instance, show the strength of a password or the state of a battery. `Since`: ATK-2.7.3
+A bar that serves as a level indicator to, for instance, show the strength of a password or the state of a battery. (Since: 2.7.3)
 <!-- enum Role::variant TitleBar -->
 A bar that serves as the title of a window or a
-dialog. `Since`: ATK-2.12
+dialog. (Since: 2.12)
 <!-- enum Role::variant BlockQuote -->
 An object which contains a text section
-that is quoted from another source. `Since`: ATK-2.12
+that is quoted from another source. (Since: 2.12)
 <!-- enum Role::variant Audio -->
-An object which represents an audio element. `Since`: ATK-2.12
+An object which represents an audio element. (Since: 2.12)
 <!-- enum Role::variant Video -->
-An object which represents a video element. `Since`: ATK-2.12
+An object which represents a video element. (Since: 2.12)
 <!-- enum Role::variant Definition -->
-A definition of a term or concept. `Since`: ATK-2.12
+A definition of a term or concept. (Since: 2.12)
 <!-- enum Role::variant Article -->
 A section of a page that consists of a
 composition that forms an independent part of a document, page, or
-site. Examples: A blog entry, a news story, a forum post. `Since`:
-ATK-2.12
+site. Examples: A blog entry, a news story, a forum post. (Since: 2.12)
 <!-- enum Role::variant Landmark -->
 A region of a web page intended as a
 navigational landmark. This is designed to allow Assistive
 Technologies to provide quick navigation among key regions within a
-document. `Since`: ATK-2.12
+document. (Since: 2.12)
 <!-- enum Role::variant Log -->
 A text widget or container holding log content, such
 as chat history and error logs. In this role there is a
 relationship between the arrival of new items in the log and the
 reading order. The log contains a meaningful sequence and new
 information is added only to the end of the log, not at arbitrary
-points. `Since`: ATK-2.12
+points. (Since: 2.12)
 <!-- enum Role::variant Marquee -->
 A container where non-essential information
 changes frequently. Common usages of marquee include stock tickers
 and ad banners. The primary difference between a marquee and a log
 is that logs usually have a meaningful order or sequence of
-important content changes. `Since`: ATK-2.12
+important content changes. (Since: 2.12)
 <!-- enum Role::variant Math -->
 A text widget or container that holds a mathematical
-expression. `Since`: ATK-2.12
+expression. (Since: 2.12)
 <!-- enum Role::variant Rating -->
 A widget whose purpose is to display a rating,
 such as the number of stars associated with a song in a media
 player. Objects of this role should also implement
-AtkValue. `Since`: ATK-2.12
+AtkValue. (Since: 2.12)
 <!-- enum Role::variant Timer -->
 An object containing a numerical counter which
 indicates an amount of elapsed time from a start point, or the time
-remaining until an end point. `Since`: ATK-2.12
+remaining until an end point. (Since: 2.12)
 <!-- enum Role::variant DescriptionList -->
 An object that represents a list of
 term-value groups. A term-value group represents a individual
 description and consist of one or more names
 (ATK_ROLE_DESCRIPTION_TERM) followed by one or more values
 (ATK_ROLE_DESCRIPTION_VALUE). For each list, there should not be
-more than one group with the same term name. `Since`: ATK-2.12
+more than one group with the same term name. (Since: 2.12)
 <!-- enum Role::variant DescriptionTerm -->
 An object that represents a term or phrase
-with a corresponding definition. `Since`: ATK-2.12
+with a corresponding definition. (Since: 2.12)
 <!-- enum Role::variant DescriptionValue -->
 An object that represents the
-description, definition or value of a term. `Since`: ATK-2.12
+description, definition or value of a term. (Since: 2.12)
 <!-- enum Role::variant Static -->
 A generic non-container object whose purpose is to display a
 brief amount of information to the user and whose role is known by the
 implementor but lacks semantic value for the user. Examples in which
-ATK_ROLE_STATIC is appropriate include the message displayed in a message box
-and an image used as an alternative means to display text. ATK_ROLE_STATIC
+`Role::Static` is appropriate include the message displayed in a message box
+and an image used as an alternative means to display text. `Role::Static`
 should not be applied to widgets which are traditionally interactive, objects
 which display a significant amount of content, or any object which has an
 accessible relation pointing to another object. Implementors should expose the
 displayed information through the accessible name of the object. If doing so seems
 inappropriate, it may indicate that a different role should be used. For
-labels which describe another widget, see ATK_ROLE_LABEL. For text views, see
-ATK_ROLE_TEXT. For generic containers, see ATK_ROLE_PANEL. For objects whose
-role is not known by the implementor, see ATK_ROLE_UNKNOWN. `Since`: ATK-2.16.
+labels which describe another widget, see `Role::Label`. For text views, see
+`Role::Text`. For generic containers, see `Role::Panel`. For objects whose
+role is not known by the implementor, see `Role::Unknown`. (Since: 2.16)
 <!-- enum Role::variant MathFraction -->
 An object that represents a mathematical fraction.
+(Since: 2.16)
 <!-- enum Role::variant MathRoot -->
 An object that represents a mathematical expression
-displayed with a radical. `Since`: ATK-2.16.
+displayed with a radical. (Since: 2.16)
 <!-- enum Role::variant Subscript -->
 An object that contains text that is displayed as a
-subscript. `Since`: ATK-2.16.
+subscript. (Since: 2.16)
 <!-- enum Role::variant Superscript -->
 An object that contains text that is displayed as a
-superscript. `Since`: ATK-2.16.
+superscript. (Since: 2.16)
 <!-- enum Role::variant Footnote -->
-An object that contains the text of a footnote. `Since`: ATK-2.26.
+An object that contains the text of a footnote. (Since: 2.26)
+<!-- enum Role::variant ContentDeletion -->
+Content previously deleted or proposed to be
+deleted, e.g. in revision history or a content view providing suggestions
+from reviewers. (Since: 2.34)
+<!-- enum Role::variant ContentInsertion -->
+Content previously inserted or proposed to be
+inserted, e.g. in revision history or a content view providing suggestions
+from reviewers. (Since: 2.34)
 <!-- enum Role::variant LastDefined -->
 not a valid role, used for finding end of the enumeration
 <!-- enum ScrollType -->
 Specifies where an object should be placed on the screen when using scroll_to.
 <!-- enum ScrollType::variant TopLeft -->
 Scroll the object vertically and horizontally to the top
-left corner of the window.
+ left corner of the window.
 <!-- enum ScrollType::variant BottomRight -->
 Scroll the object vertically and horizontally to the
-bottom right corner of the window.
+ bottom right corner of the window.
 <!-- enum ScrollType::variant TopEdge -->
 Scroll the object vertically to the top edge of the
  window.
 <!-- enum ScrollType::variant BottomEdge -->
 Scroll the object vertically to the bottom edge of
-the window.
+ the window.
 <!-- enum ScrollType::variant LeftEdge -->
 Scroll the object vertically and horizontally to the
-left edge of the window.
+ left edge of the window.
 <!-- enum ScrollType::variant RightEdge -->
 Scroll the object vertically and horizontally to the
-right edge of the window.
+ right edge of the window.
 <!-- enum ScrollType::variant Anywhere -->
 Scroll the object vertically and horizontally so that
-as much as possible of the object becomes visible. The exact placement is
-determined by the application.
+ as much as possible of the object becomes visible. The exact placement is
+ determined by the application.
 
 Feature: `v2_30`
 
@@ -2140,6 +2158,12 @@ Trait containing all `Socket` methods.
 # Implementors
 
 [`Socket`](struct.Socket.html)
+<!-- impl Socket::fn new -->
+Creates a new `Socket`.
+
+# Returns
+
+the newly created `Socket` instance
 <!-- trait AtkSocketExt::fn embed -->
 Embeds the children of an `Plug` as the children of the
 `Socket`. The plug may be in the same process or in a different
@@ -2353,6 +2377,16 @@ notification given when the cached data becomes obsolete.
 Indicates the orientation of this object is vertical
 <!-- enum StateType::variant Visible -->
 Indicates this object is visible, e.g. has been explicitly marked for exposure to the user.
+**note**: `StateType::Visible` is no guarantee that the object is actually unobscured on the screen, only
+that it is 'potentially' visible, barring obstruction, being scrolled or clipped out of the
+field of view, or having an ancestor container that has not yet made visible.
+A widget is potentially onscreen if it has both `StateType::Visible` and `StateType::Showing`.
+The absence of `StateType::Visible` and `StateType::Showing` is semantically equivalent to saying
+that an object is 'hidden'. See also `StateType::Truncated`, which applies if an object with
+`StateType::Visible` and `StateType::Showing` set lies within a viewport which means that its
+contents are clipped, e.g. a truncated spreadsheet cell or
+an image within a scrolling viewport. Mostly useful for screen-review and magnification
+algorithms.
 <!-- enum StateType::variant ManagesDescendants -->
 Indicates that "active-descendant-changed" event
 is sent when children become 'active' (i.e. are selected or navigated to onscreen).
@@ -2392,7 +2426,7 @@ Indicates that the object in question supports text selection. It should only be
 Indicates that the object is the "default" active component, i.e. the object which is activated by an end-user press of the "Enter" or "Return" key. Typically a "close" or "submit" button.
 <!-- enum StateType::variant Animated -->
 Indicates that the object changes its appearance dynamically as an inherent part of its presentation. This state may come and go if an object is only temporarily animated on the way to a 'final' onscreen presentation.
-`note` some applications, notably content viewers, may not be able to detect
+**note**: some applications, notably content viewers, may not be able to detect
 all kinds of animated content. Therefore the absence of this state should not
 be taken as definitive evidence that the object's visual representation is
 static; this state is advisory.
@@ -2962,7 +2996,7 @@ the offset of the first character after the selected region.
 
 # Returns
 
-`true` if success, `false` otherwise
+`true` if successful, `false` otherwise
 <!-- trait TextExt::fn get_bounded_ranges -->
 Get the ranges of text in the specified bounding box.
 ## `rect`
@@ -2983,7 +3017,9 @@ Gets the offset of the position of the caret (cursor).
 
 # Returns
 
-the character offset of position of the caret (cursor).
+the character offset of the position of the caret or -1 if
+ the caret is not located inside the element or in the case of
+ any other failure.
 <!-- trait TextExt::fn get_character_at_offset -->
 Gets the specified text.
 ## `offset`
@@ -2991,13 +3027,13 @@ a character offset within `self`
 
 # Returns
 
-the character at `offset`.
+the character at `offset` or 0 in the case of failure.
 <!-- trait TextExt::fn get_character_count -->
 Gets the character count.
 
 # Returns
 
-the number of characters.
+the number of characters or -1 in case of failure.
 <!-- trait TextExt::fn get_character_extents -->
 Get the bounding box containing the glyph representing the character at
  a particular text offset.
@@ -3021,16 +3057,15 @@ returned.
 
 # Returns
 
-an `AttributeSet` which contains the default
-values of attributes. at `offset`. this `atkattributeset` should be freed by
-a call to `Attribute::set_free`.
+an `AttributeSet` which contains the default text
+ attributes for this `Text`. This `AttributeSet` should be freed by
+ a call to `Attribute::set_free`.
 <!-- trait TextExt::fn get_n_selections -->
 Gets the number of selected regions.
 
 # Returns
 
-The number of selected regions, or -1 if a failure
- occurred.
+The number of selected regions, or -1 in the case of failure.
 <!-- trait TextExt::fn get_offset_at_point -->
 Gets the offset of the character located at coordinates `x` and `y`. `x` and `y`
 are interpreted as being relative to the screen or this widget's window
@@ -3045,8 +3080,8 @@ widget window
 
 # Returns
 
-the offset to the character which is located at
-the specified `x` and `y` coordinates.
+the offset to the character which is located at the specified
+ `x` and `y` coordinates of -1 in case of failure.
 <!-- trait TextExt::fn get_range_extents -->
 Get the bounding box for text within the specified range.
 ## `start_offset`
@@ -3078,8 +3113,8 @@ the address to put the end offset of the range
 # Returns
 
 an `AttributeSet` which contains the attributes
-explicitly set at `offset`. This `AttributeSet` should be freed by a call
-to `Attribute::set_free`.
+ explicitly set at `offset`. This `AttributeSet` should be freed by
+ a call to `Attribute::set_free`.
 <!-- trait TextExt::fn get_selection -->
 Gets the text from the specified selection.
 ## `selection_num`
@@ -3135,17 +3170,17 @@ position
 An `TextGranularity`
 ## `start_offset`
 the starting character offset of the returned string, or -1
- if an error has occurred (e.g. invalid offset, not implemented)
+ in the case of error (e.g. invalid offset, not implemented)
 ## `end_offset`
 the offset of the first character after the returned string,
- or -1 if an error has occurred (e.g. invalid offset, not implemented)
+ or -1 in the case of error (e.g. invalid offset, not implemented)
 
 # Returns
 
-a newly allocated string containing the text
- at the `offset` bounded by the specified `granularity`. Use
- `g_free` to free the returned string. Returns `None` if the
- offset is invalid or no implementation is available.
+a newly allocated string containing the text at
+ the `offset` bounded by the specified `granularity`. Use `g_free`
+ to free the returned string. Returns `None` if the offset is invalid
+ or no implementation is available.
 <!-- trait TextExt::fn get_text -->
 Gets the specified text.
 ## `start_offset`
@@ -3156,7 +3191,8 @@ an ending character offset within `self`, or -1 for the end of the string.
 # Returns
 
 a newly allocated string containing the text from `start_offset` up
- to, but not including `end_offset`. Use `g_free` to free the returned string.
+ to, but not including `end_offset`. Use `g_free` to free the returned
+ string.
 <!-- trait TextExt::fn get_text_at_offset -->
 Gets the specified text.
 
@@ -3199,8 +3235,9 @@ the offset of the first character after the
 
 # Returns
 
-a newly allocated string containing the text at `offset` bounded by
- the specified `boundary_type`. Use `g_free` to free the returned string.
+a newly allocated string containing the text at `offset` bounded
+ by the specified `boundary_type`. Use `g_free` to free the returned
+ string.
 <!-- trait TextExt::fn remove_selection -->
 Removes the specified selection.
 ## `selection_num`
@@ -3212,7 +3249,47 @@ moving or deleting a selected region can change the numbering.
 
 # Returns
 
-`true` if success, `false` otherwise
+`true` if successful, `false` otherwise
+<!-- trait TextExt::fn scroll_substring_to -->
+Makes `self` visible on the screen by scrolling all necessary parents.
+
+Contrary to atk_text_set_position, this does not actually move
+`self` in its parent, this only makes the parents scroll so that the
+object shows up on the screen, given its current position within the parents.
+
+Feature: `v2_32`
+
+## `start_offset`
+start position
+## `end_offset`
+end position, or -1 for the end of the string.
+## `type_`
+specify where the object should be made visible.
+
+# Returns
+
+whether scrolling was successful.
+<!-- trait TextExt::fn scroll_substring_to_point -->
+Makes an object visible on the screen at a given position by scrolling all
+necessary parents.
+
+Feature: `v2_32`
+
+## `start_offset`
+start position
+## `end_offset`
+end position, or -1 for the end of the string.
+## `coords`
+specify whether coordinates are relative to the screen or to the
+parent object.
+## `x`
+x-position where to scroll to
+## `y`
+y-position where to scroll to
+
+# Returns
+
+whether scrolling was successful.
 <!-- trait TextExt::fn set_caret_offset -->
 Sets the caret (cursor) position to the specified `offset`.
 ## `offset`
@@ -3220,7 +3297,7 @@ the character offset of the new caret position
 
 # Returns
 
-`true` if success, `false` otherwise.
+`true` if successful, `false` otherwise.
 <!-- trait TextExt::fn set_selection -->
 Changes the start and end offset of the specified selection.
 ## `selection_num`
@@ -3237,7 +3314,7 @@ the selection
 
 # Returns
 
-`true` if success, `false` otherwise
+`true` if successful, `false` otherwise
 <!-- trait TextExt::fn connect_text_attributes_changed -->
 The "text-attributes-changed" signal is emitted when the text
 attributes of the text of an object which implements AtkText
