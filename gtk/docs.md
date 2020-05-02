@@ -377,3 +377,19 @@ state to retrieve the font for
 # Returns
 
 the `pango::FontDescription` for the given state.
+<!-- impl TreeRowReference::fn reordered -->
+Lets a set of row reference created by
+`TreeRowReference::new_proxy` know that the
+model emitted the `TreeModel::rows-reordered` signal.
+## `proxy`
+a `gobject::Object`
+## `path`
+the parent path of the reordered signal
+## `iter`
+the iter pointing to the parent of the reordered
+## `new_order`
+the new order of rows
+
+# Safety
+The `proxy` must be a proxy returned by `gtk::TreeRowReference` and
+the `new_order` bounds **must** be valid as they cannot be checked.
