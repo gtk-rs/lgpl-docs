@@ -137,7 +137,7 @@ An example of a UI definition fragment specifying Pango attributes:
 
     // Pressing Alt+H will activate this button
     let button = Button::new();
-    let label = Label::new_with_mnemonic(Some("_Hello"));
+    let label = Label::with_mnemonic(Some("_Hello"));
     button.add(&label);
 ```
 
@@ -149,7 +149,7 @@ already inside:
     use gtk::Button;
 
     // Pressing Alt+H will activate this button
-    let button = Button::new_with_mnemonic("_Hello");
+    let button = Button::with_mnemonic("_Hello");
 ```
 
 To create a mnemonic for a widget alongside the label, such as a
@@ -163,7 +163,7 @@ To create a mnemonic for a widget alongside the label, such as a
 
     // Pressing Alt+H will focus the entry
     let entry = Entry::new();
-    let label = Label::new_with_mnemonic(Some("_Hello"));
+    let label = Label::with_mnemonic(Some("_Hello"));
     label.set_mnemonic_widget(Some(&entry));
 ```
 
