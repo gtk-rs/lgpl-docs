@@ -2002,3 +2002,22 @@ static FOO: UserDataKey<String> = UserDataKey::new();
 surface.get_user_data(&FOO)
 # ; }
 ```
+<!-- file image_surface.rs -->
+<!-- impl ImageSurface::fn get_data -->
+Get the pixel data of the image surface, for direct inspection or modification.
+
+Unlike the C API, this method calls `flush` on the surface.
+
+Returns an error if [`finish`] was called on this surface, or if the surface is being
+referenced by a [`Context`](struct.Context.html). See [`with_data`] if you need to access
+the data on an image surface that is being referenced by a `Context`.
+
+[`finish`]: struct.Surface.html#method.finish
+[`with_data`]: struct.ImageSurface.html#method.with_data
+<!-- impl ImageSurface::fn with_data -->
+Call the provided function with access to the pixel data of this image.
+
+Unlike [`get_data`], this can succeed even if there is a [`Context`](struct.Context.html)
+referencing this image.
+
+[`get_data`]: struct.ImageSurface.html#method.get_data
