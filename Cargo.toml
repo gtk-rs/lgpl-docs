@@ -1,6 +1,6 @@
 [package]
 name = "gtk-rs-lgpl-docs"
-version = "0.1.15"
+version = "0.1.16"
 authors = [
     "GTK+ Project Developers",
     "Gtk-rs Project Developers",
@@ -14,4 +14,4 @@ homepage = "http://gtk-rs.org/"
 name = "lgpl_docs"
 
 [dependencies]
-rustdoc-stripper = "0.1.6"
+rustdoc-stripper = "0.1.13"
