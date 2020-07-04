@@ -1,4 +1,41 @@
 <!-- file * -->
+<!-- struct AnchorHints -->
+Positioning hints for aligning a window relative to a rectangle.
+
+These hints determine how the window should be positioned in the case that
+the window would fall off-screen if placed in its ideal position.
+
+For example, `AnchorHints::FlipX` will replace `Gravity::NorthWest` with
+`Gravity::NorthEast` and vice versa if the window extends beyond the left
+or right edges of the monitor.
+
+If `AnchorHints::SlideX` is set, the window can be shifted horizontally to fit
+on-screen. If `AnchorHints::ResizeX` is set, the window can be shrunken
+horizontally to fit.
+
+In general, when multiple flags are set, flipping should take precedence over
+sliding, which should take precedence over resizing.
+<!-- struct AnchorHints::const FLIP_X -->
+allow flipping anchors horizontally
+<!-- struct AnchorHints::const FLIP_Y -->
+allow flipping anchors vertically
+<!-- struct AnchorHints::const SLIDE_X -->
+allow sliding window horizontally
+<!-- struct AnchorHints::const SLIDE_Y -->
+allow sliding window vertically
+<!-- struct AnchorHints::const RESIZE_X -->
+allow resizing window horizontally
+<!-- struct AnchorHints::const RESIZE_Y -->
+allow resizing window vertically
+<!-- struct AnchorHints::const FLIP -->
+allow flipping anchors on both axes
+<!-- struct AnchorHints::const SLIDE -->
+allow sliding window on both axes
+<!-- struct AnchorHints::const RESIZE -->
+allow resizing window on both axes
+
+Feature: `v3_22`
+
 <!-- struct AppLaunchContext -->
 `AppLaunchContext` is an implementation of `gio::AppLaunchContext` that
 handles launching an application in a graphical context. It provides
@@ -76,47 +113,29 @@ typing in another window. This is also known as 'focus stealing
 prevention'.
 ## `timestamp`
 a timestamp
-<!-- struct Atom -->
-An opaque type representing a string as an index into a table
-of strings on the X server.
-<!-- impl Atom::fn name -->
-Determines the string corresponding to an atom.
+<!-- struct AxisFlags -->
+Flags describing the current capabilities of a device/tool.
+<!-- struct AxisFlags::const X -->
+X axis is present
+<!-- struct AxisFlags::const Y -->
+Y axis is present
+<!-- struct AxisFlags::const PRESSURE -->
+Pressure axis is present
+<!-- struct AxisFlags::const XTILT -->
+X tilt axis is present
+<!-- struct AxisFlags::const YTILT -->
+Y tilt axis is present
+<!-- struct AxisFlags::const WHEEL -->
+Wheel axis is present
+<!-- struct AxisFlags::const DISTANCE -->
+Distance axis is present
+<!-- struct AxisFlags::const ROTATION -->
+Z-axis rotation is present
+<!-- struct AxisFlags::const SLIDER -->
+Slider axis is present
 
-# Returns
+Feature: `v3_22`
 
-a newly-allocated string containing the string
- corresponding to `self`. When you are done with the
- return value, you should free it using `g_free`.
-<!-- impl Atom::fn intern -->
-Finds or creates an atom corresponding to a given string.
-## `atom_name`
-a string.
-## `only_if_exists`
-if `true`, GDK is allowed to not create a new atom, but
- just return `GDK_NONE` if the requested atom doesn’t already
- exists. Currently, the flag is ignored, since checking the
- existance of an atom is as expensive as creating it.
-
-# Returns
-
-the atom corresponding to `atom_name`.
-<!-- impl Atom::fn intern_static_string -->
-Finds or creates an atom corresponding to a given string.
-
-Note that this function is identical to `Atom::intern` except
-that if a new `Atom` is created the string itself is used rather
-than a copy. This saves memory, but can only be used if the string
-will always exist. It can be used with statically
-allocated strings in the main program, but not with statically
-allocated memory in dynamically loaded modules, if you expect to
-ever unload the module again (e.g. do not use this function in
-GTK+ theme engines).
-## `atom_name`
-a static string
-
-# Returns
-
-the atom corresponding to `atom_name`
 <!-- enum AxisUse -->
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
@@ -1340,6 +1359,9 @@ a button
 a ring-shaped interactive area
 <!-- enum DevicePadFeature::variant Strip -->
 a straight interactive area
+
+Feature: `v3_22`
+
 <!-- struct DeviceTool -->
 
 
@@ -1930,6 +1952,24 @@ a `Display`
 The ::display-opened signal is emitted when a display is opened.
 ## `display`
 the opened display
+<!-- struct DragAction -->
+Used in `DragContext` to indicate what the destination
+should do with the dropped data.
+<!-- struct DragAction::const DEFAULT -->
+Means nothing, and should not be used.
+<!-- struct DragAction::const COPY -->
+Copy the data.
+<!-- struct DragAction::const MOVE -->
+Move the data, i.e. first copy it, then delete
+ it from the source using the DELETE target of the X selection protocol.
+<!-- struct DragAction::const LINK -->
+Add a link to the data. Note that this is only
+ useful if source and destination agree on what it means.
+<!-- struct DragAction::const PRIVATE -->
+Special action which tells the source that the
+ destination will do something that the source doesn’t understand.
+<!-- struct DragAction::const ASK -->
+Ask the user what to do with the data.
 <!-- enum DragCancelReason -->
 Used in `DragContext` to the reason of a cancelled DND operation.
 <!-- enum DragCancelReason::variant NoTarget -->
@@ -2190,123 +2230,87 @@ The `Window` that created the drawing context.
 
 Feature: `v3_22`
 
-<!-- struct EventAny -->
-Contains the fields which are common to all event structs.
-Any event pointer can safely be cast to a pointer to a `EventAny` to
-access these fields.
-<!-- struct EventButton -->
-Used for button press and button release events. The
-`type` field will be one of `EventType::ButtonPress`,
-`EventType::2buttonPress`, `EventType::3buttonPress` or `EventType::ButtonRelease`,
+<!-- struct EventMask -->
+A set of bit-flags to indicate which events a window is to receive.
+Most of these masks map onto one or more of the `EventType` event types
+above.
 
-Double and triple-clicks result in a sequence of events being received.
-For double-clicks the order of events will be:
+See the [input handling overview][chap-input-handling] for details of
+[event masks][event-masks] and [event propagation][event-propagation].
 
-- `EventType::ButtonPress`
-- `EventType::ButtonRelease`
-- `EventType::ButtonPress`
-- `EventType::2buttonPress`
-- `EventType::ButtonRelease`
+`EventMask::PointerMotionHintMask` is deprecated. It is a special mask
+to reduce the number of `EventType::MotionNotify` events received. When using
+`EventMask::PointerMotionHintMask`, fewer `EventType::MotionNotify` events will
+be sent, some of which are marked as a hint (the is_hint member is
+`true`). To receive more motion events after a motion hint event,
+the application needs to asks for more, by calling
+`gdk_event_request_motions`.
 
-Note that the first click is received just like a normal
-button press, while the second click results in a `EventType::2buttonPress`
-being received just after the `EventType::ButtonPress`.
+Since GTK 3.8, motion events are already compressed by default, independent
+of this mechanism. This compression can be disabled with
+`WindowExt::set_event_compression`. See the documentation of that function
+for details.
 
-Triple-clicks are very similar to double-clicks, except that
-`EventType::3buttonPress` is inserted after the third click. The order of the
-events is:
-
-- `EventType::ButtonPress`
-- `EventType::ButtonRelease`
-- `EventType::ButtonPress`
-- `EventType::2buttonPress`
-- `EventType::ButtonRelease`
-- `EventType::ButtonPress`
-- `EventType::3buttonPress`
-- `EventType::ButtonRelease`
-
-For a double click to occur, the second button press must occur within
-1/4 of a second of the first. For a triple click to occur, the third
-button press must also occur within 1/2 second of the first button press.
-<!-- struct EventConfigure -->
-Generated when a window size or position has changed.
-<!-- struct EventCrossing -->
-Generated when the pointer enters or leaves a window.
-<!-- struct EventDND -->
-Generated during DND operations.
-<!-- struct EventExpose -->
-Generated when all or part of a window becomes visible and needs to be
-redrawn.
-<!-- struct EventFocus -->
-Describes a change of keyboard focus.
-<!-- struct EventGrabBroken -->
-Generated when a pointer or keyboard grab is broken. On X11, this happens
-when the grab window becomes unviewable (i.e. it or one of its ancestors
-is unmapped), or if the same application grabs the pointer or keyboard
-again. Note that implicit grabs (which are initiated by button presses)
-can also cause `EventGrabBroken` events.
-<!-- struct EventKey -->
-Describes a key press or key release event.
-<!-- struct EventMotion -->
-Generated when the pointer moves.
-<!-- struct EventOwnerChange -->
-Generated when the owner of a selection changes. On X11, this
-information is only available if the X server supports the XFIXES
-extension.
-<!-- struct EventPadAxis -->
-Generated during `InputSource::TabletPad` interaction with tactile sensors.
-
-Feature: `v3_22`
-<!-- struct EventPadButton -->
-Generated during `InputSource::TabletPad` button presses and releases.
-
-Feature: `v3_22`
-<!-- struct EventPadGroupMode -->
-Generated during `InputSource::TabletPad` mode switches in a group.
-
-Feature: `v3_22`
-<!-- struct EventProperty -->
-Describes a property change on a window.
-<!-- struct EventProximity -->
-Proximity events are generated when using GDK’s wrapper for the
-XInput extension. The XInput extension is an add-on for standard X
-that allows you to use nonstandard devices such as graphics tablets.
-A proximity event indicates that the stylus has moved in or out of
-contact with the tablet, or perhaps that the user’s finger has moved
-in or out of contact with a touch screen.
-
-This event type will be used pretty rarely. It only is important for
-XInput aware programs that are drawing their own cursor.
-<!-- struct EventScroll -->
-Generated from button presses for the buttons 4 to 7. Wheel mice are
-usually configured to generate button press events for buttons 4 and 5
-when the wheel is turned.
-
-Some GDK backends can also generate “smooth” scroll events, which
-can be recognized by the `ScrollDirection::Smooth` scroll direction. For
-these, the scroll deltas can be obtained with
-`gdk_event_get_scroll_deltas`.
-<!-- struct EventSelection -->
-Generated when a selection is requested or ownership of a selection
-is taken over by another client application.
+If `EventMask::TouchMask` is enabled, the window will receive touch events
+from touch-enabled devices. Those will come as sequences of `EventTouch`
+with type `EventType::TouchUpdate`, enclosed by two events with
+type `EventType::TouchBegin` and `EventType::TouchEnd` (or `EventType::TouchCancel`).
+`gdk_event_get_event_sequence` returns the event sequence for these
+events, so different sequences may be distinguished.
+<!-- struct EventMask::const EXPOSURE_MASK -->
+receive expose events
+<!-- struct EventMask::const POINTER_MOTION_MASK -->
+receive all pointer motion events
+<!-- struct EventMask::const POINTER_MOTION_HINT_MASK -->
+deprecated. see the explanation above
+<!-- struct EventMask::const BUTTON_MOTION_MASK -->
+receive pointer motion events while any button is pressed
+<!-- struct EventMask::const BUTTON1_MOTION_MASK -->
+receive pointer motion events while 1 button is pressed
+<!-- struct EventMask::const BUTTON2_MOTION_MASK -->
+receive pointer motion events while 2 button is pressed
+<!-- struct EventMask::const BUTTON3_MOTION_MASK -->
+receive pointer motion events while 3 button is pressed
+<!-- struct EventMask::const BUTTON_PRESS_MASK -->
+receive button press events
+<!-- struct EventMask::const BUTTON_RELEASE_MASK -->
+receive button release events
+<!-- struct EventMask::const KEY_PRESS_MASK -->
+receive key press events
+<!-- struct EventMask::const KEY_RELEASE_MASK -->
+receive key release events
+<!-- struct EventMask::const ENTER_NOTIFY_MASK -->
+receive window enter events
+<!-- struct EventMask::const LEAVE_NOTIFY_MASK -->
+receive window leave events
+<!-- struct EventMask::const FOCUS_CHANGE_MASK -->
+receive focus change events
+<!-- struct EventMask::const STRUCTURE_MASK -->
+receive events about window configuration change
+<!-- struct EventMask::const PROPERTY_CHANGE_MASK -->
+receive property change events
+<!-- struct EventMask::const VISIBILITY_NOTIFY_MASK -->
+receive visibility change events
+<!-- struct EventMask::const PROXIMITY_IN_MASK -->
+receive proximity in events
+<!-- struct EventMask::const PROXIMITY_OUT_MASK -->
+receive proximity out events
+<!-- struct EventMask::const SUBSTRUCTURE_MASK -->
+receive events about window configuration changes of
+ child windows
+<!-- struct EventMask::const SCROLL_MASK -->
+receive scroll events
+<!-- struct EventMask::const TOUCH_MASK -->
+receive touch events. Since 3.4
+<!-- struct EventMask::const SMOOTH_SCROLL_MASK -->
+receive smooth scrolling events. Since 3.4
+<!-- struct EventMask::const TOUCHPAD_GESTURE_MASK -->
+receive touchpad gesture events. Since 3.18
+<!-- struct EventMask::const TABLET_PAD_MASK -->
+receive tablet pad events. Since 3.22
+<!-- struct EventMask::const ALL_EVENTS_MASK -->
+the combination of all the above event masks.
 <!-- struct EventSequence -->
-<!-- struct EventSetting -->
-Generated when a setting is modified.
-<!-- struct EventTouch -->
-Used for touch events.
-`type` field will be one of `EventType::TouchBegin`, `EventType::TouchUpdate`,
-`EventType::TouchEnd` or `EventType::TouchCancel`.
-
-Touch events are grouped into sequences by means of the `sequence`
-field, which can also be obtained with `gdk_event_get_event_sequence`.
-Each sequence begins with a `EventType::TouchBegin` event, followed by
-any number of `EventType::TouchUpdate` events, and ends with a `EventType::TouchEnd`
-(or `EventType::TouchCancel`) event. With multitouch devices, there may be
-several active sequences at the same time.
-<!-- struct EventTouchpadPinch -->
-Generated during touchpad swipe gestures.
-<!-- struct EventTouchpadSwipe -->
-Generated during touchpad swipe gestures.
 <!-- enum EventType -->
 Specifies the type of the event.
 
@@ -2448,8 +2452,6 @@ A tablet pad group mode change. This event type was
  added in 3.22.
 <!-- enum EventType::variant EventLast -->
 marks the end of the `EventType` enumeration. Added in 2.18
-<!-- struct EventWindowState -->
-Generated when the state of a toplevel window changes.
 <!-- struct FrameClock -->
 A `FrameClock` tells the application when to update and repaint a
 window. This may be synced to the vertical refresh rate of the
@@ -2611,6 +2613,26 @@ be updated using `FrameClock::get_frame_time`.
 Applications can connect directly to this signal, or
 use `gtk_widget_add_tick_callback` as a more convenient
 interface.
+<!-- struct FrameClockPhase -->
+`FrameClockPhase` is used to represent the different paint clock
+phases that can be requested. The elements of the enumeration
+correspond to the signals of `FrameClock`.
+<!-- struct FrameClockPhase::const NONE -->
+no phase
+<!-- struct FrameClockPhase::const FLUSH_EVENTS -->
+corresponds to `FrameClock`::flush-events. Should not be handled by applications.
+<!-- struct FrameClockPhase::const BEFORE_PAINT -->
+corresponds to `FrameClock`::before-paint. Should not be handled by applications.
+<!-- struct FrameClockPhase::const UPDATE -->
+corresponds to `FrameClock`::update.
+<!-- struct FrameClockPhase::const LAYOUT -->
+corresponds to `FrameClock`::layout.
+<!-- struct FrameClockPhase::const PAINT -->
+corresponds to `FrameClock`::paint.
+<!-- struct FrameClockPhase::const RESUME_EVENTS -->
+corresponds to `FrameClock`::resume-events. Should not be handled by applications.
+<!-- struct FrameClockPhase::const AFTER_PAINT -->
+corresponds to `FrameClock`::after-paint. Should not be handled by applications.
 <!-- struct FrameTimings -->
 A `FrameTimings` object holds timing information for a single frame
 of the application’s displays. To retrieve `FrameTimings` objects,
@@ -2988,63 +3010,6 @@ The requested profile is not supported
 
 Feature: `v3_16`
 
-<!-- struct Geometry -->
-The `Geometry` struct gives the window manager information about
-a window’s geometry constraints. Normally you would set these on
-the GTK+ level using `gtk_window_set_geometry_hints`. ``GtkWindow``
-then sets the hints on the `Window` it creates.
-
-`WindowExt::set_geometry_hints` expects the hints to be fully valid already
-and simply passes them to the window manager; in contrast,
-`gtk_window_set_geometry_hints` performs some interpretation. For example,
-``GtkWindow`` will apply the hints to the geometry widget instead of the
-toplevel window, if you set a geometry widget. Also, the
-`min_width`/`min_height`/`max_width`/`max_height` fields may be set to -1, and
-``GtkWindow`` will substitute the size request of the window or geometry widget.
-If the minimum size hint is not provided, ``GtkWindow`` will use its requisition
-as the minimum size. If the minimum size is provided and a geometry widget is
-set, ``GtkWindow`` will take the minimum size as the minimum size of the
-geometry widget rather than the entire window. The base size is treated
-similarly.
-
-The canonical use-case for `gtk_window_set_geometry_hints` is to get a
-terminal widget to resize properly. Here, the terminal text area should be
-the geometry widget; ``GtkWindow`` will then automatically set the base size to
-the size of other widgets in the terminal window, such as the menubar and
-scrollbar. Then, the `width_inc` and `height_inc` fields should be set to the
-size of one character in the terminal. Finally, the base size should be set
-to the size of one character. The net effect is that the minimum size of the
-terminal will have a 1x1 character terminal area, and only terminal sizes on
-the “character grid” will be allowed.
-
-Here’s an example of how the terminal example would be implemented, assuming
-a terminal area widget called “terminal” and a toplevel window “toplevel”:
-
-
-```C
-    GdkGeometry hints;
-
-    hints.base_width = terminal->char_width;
-        hints.base_height = terminal->char_height;
-        hints.min_width = terminal->char_width;
-        hints.min_height = terminal->char_height;
-        hints.width_inc = terminal->char_width;
-        hints.height_inc = terminal->char_height;
-
- gtk_window_set_geometry_hints (GTK_WINDOW (toplevel),
-                                GTK_WIDGET (terminal),
-                                &hints,
-                                GDK_HINT_RESIZE_INC |
-                                GDK_HINT_MIN_SIZE |
-                                GDK_HINT_BASE_SIZE);
-```
-
-The other useful fields are the `min_aspect` and `max_aspect` fields; these
-contain a width/height ratio as a floating point number. If a geometry widget
-is set, the aspect applies to the geometry widget rather than the entire
-window. The most common use of these hints is probably to set `min_aspect` and
-`max_aspect` to the same value, thus forcing the window to keep a constant
-aspect ratio.
 <!-- enum GrabOwnership -->
 Defines how device grabs interact with other devices.
 <!-- enum GrabOwnership::variant None -->
@@ -3384,8 +3349,6 @@ The ::keys-changed signal is emitted when the mapping represented by
 The ::state-changed signal is emitted when the state of the
 keyboard changes, e.g when Caps Lock is turned on or off.
 See `Keymap::get_caps_lock_state`.
-<!-- struct KeymapKey -->
-A `KeymapKey` is a hardware key that can be mapped to a keyval.
 <!-- enum ModifierIntent -->
 This enum is used with `Keymap::get_modifier_mask`
 in order to determine what modifiers the
@@ -3420,6 +3383,97 @@ as modifiers in accelerators. Needed because Command is mapped to MOD2 on
 OSX, which is widely used, but on X11 MOD2 is NumLock and using that for a
 mod key is problematic at best.
 Ref: https://bugzilla.gnome.org/show_bug.cgi?id=736125.
+<!-- struct ModifierType -->
+A set of bit-flags to indicate the state of modifier keys and mouse buttons
+in various event types. Typical modifier keys are Shift, Control, Meta,
+Super, Hyper, Alt, Compose, Apple, CapsLock or ShiftLock.
+
+Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
+
+Since 2.10, GDK recognizes which of the Meta, Super or Hyper keys are mapped
+to Mod2 - Mod5, and indicates this by setting `ModifierType::SuperMask`,
+`ModifierType::HyperMask` or `ModifierType::MetaMask` in the state field of key events.
+
+Note that GDK may add internal values to events which include
+reserved values such as `ModifierType::ModifierReserved13Mask`. Your code
+should preserve and ignore them. You can use `ModifierType::ModifierMask` to
+remove all reserved values.
+
+Also note that the GDK X backend interprets button press events for button
+4-7 as scroll events, so `ModifierType::Button4Mask` and `ModifierType::Button5Mask` will never
+be set.
+<!-- struct ModifierType::const SHIFT_MASK -->
+the Shift key.
+<!-- struct ModifierType::const LOCK_MASK -->
+a Lock key (depending on the modifier mapping of the
+ X server this may either be CapsLock or ShiftLock).
+<!-- struct ModifierType::const CONTROL_MASK -->
+the Control key.
+<!-- struct ModifierType::const MOD1_MASK -->
+the fourth modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier, but
+ normally it is the Alt key).
+<!-- struct ModifierType::const MOD2_MASK -->
+the fifth modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier).
+<!-- struct ModifierType::const MOD3_MASK -->
+the sixth modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier).
+<!-- struct ModifierType::const MOD4_MASK -->
+the seventh modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier).
+<!-- struct ModifierType::const MOD5_MASK -->
+the eighth modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier).
+<!-- struct ModifierType::const BUTTON1_MASK -->
+the first mouse button.
+<!-- struct ModifierType::const BUTTON2_MASK -->
+the second mouse button.
+<!-- struct ModifierType::const BUTTON3_MASK -->
+the third mouse button.
+<!-- struct ModifierType::const BUTTON4_MASK -->
+the fourth mouse button.
+<!-- struct ModifierType::const BUTTON5_MASK -->
+the fifth mouse button.
+<!-- struct ModifierType::const MODIFIER_RESERVED_13_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_14_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_15_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_16_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_17_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_18_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_19_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_20_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_21_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_22_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_23_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_24_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const MODIFIER_RESERVED_25_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const SUPER_MASK -->
+the Super modifier. Since 2.10
+<!-- struct ModifierType::const HYPER_MASK -->
+the Hyper modifier. Since 2.10
+<!-- struct ModifierType::const META_MASK -->
+the Meta modifier. Since 2.10
+<!-- struct ModifierType::const MODIFIER_RESERVED_29_MASK -->
+A reserved bit flag; do not use in your own code
+<!-- struct ModifierType::const RELEASE_MASK -->
+not used in GDK itself. GTK+ uses it to differentiate
+ between (keyval, modifiers) pairs from key press and release events.
+<!-- struct ModifierType::const MODIFIER_MASK -->
+a mask covering all modifier types.
 <!-- struct Monitor -->
 `Monitor` objects represent the individual outputs that are
 associated with a `Display`. `Display` has APIs to enumerate
@@ -4371,6 +4425,25 @@ Feature: `v3_20`
 
 Feature: `v3_20`
 
+<!-- struct SeatCapabilities -->
+Flags describing the seat capabilities.
+<!-- struct SeatCapabilities::const NONE -->
+No input capabilities
+<!-- struct SeatCapabilities::const POINTER -->
+The seat has a pointer (e.g. mouse)
+<!-- struct SeatCapabilities::const TOUCH -->
+The seat has touchscreen(s) attached
+<!-- struct SeatCapabilities::const TABLET_STYLUS -->
+The seat has drawing tablet(s) attached
+<!-- struct SeatCapabilities::const KEYBOARD -->
+The seat has keyboard(s) attached
+<!-- struct SeatCapabilities::const ALL_POINTING -->
+The union of all pointing capabilities
+<!-- struct SeatCapabilities::const ALL -->
+The union of all capabilities
+
+Feature: `v3_20`
+
 <!-- enum SettingAction -->
 Specifies the kind of modification applied to a setting in a
 `EventSetting`.
@@ -4398,8 +4471,6 @@ The layout is vertical, the order is BGR
 
 Feature: `v3_22`
 
-<!-- struct TimeCoord -->
-A `TimeCoord` stores a single event in a motion history.
 <!-- enum VisibilityState -->
 Specifies the visiblity status of a window for a `EventVisibility`.
 <!-- enum VisibilityState::variant Unobscured -->
@@ -4629,6 +4700,40 @@ Each pixel value contains red, green, and blue
  components as for `VisualType::TrueColor`, but the components are
  mapped via a color table into the final output table instead of
  being converted directly.
+<!-- struct WMDecoration -->
+These are hints originally defined by the Motif toolkit.
+The window manager can use them when determining how to decorate
+the window. The hint must be set before mapping the window.
+<!-- struct WMDecoration::const ALL -->
+all decorations should be applied.
+<!-- struct WMDecoration::const BORDER -->
+a frame should be drawn around the window.
+<!-- struct WMDecoration::const RESIZEH -->
+the frame should have resize handles.
+<!-- struct WMDecoration::const TITLE -->
+a titlebar should be placed above the window.
+<!-- struct WMDecoration::const MENU -->
+a button for opening a menu should be included.
+<!-- struct WMDecoration::const MINIMIZE -->
+a minimize button should be included.
+<!-- struct WMDecoration::const MAXIMIZE -->
+a maximize button should be included.
+<!-- struct WMFunction -->
+These are hints originally defined by the Motif toolkit. The window manager
+can use them when determining the functions to offer for the window. The
+hint must be set before mapping the window.
+<!-- struct WMFunction::const ALL -->
+all functions should be offered.
+<!-- struct WMFunction::const RESIZE -->
+the window should be resizable.
+<!-- struct WMFunction::const MOVE -->
+the window should be movable.
+<!-- struct WMFunction::const MINIMIZE -->
+the window should be minimizable.
+<!-- struct WMFunction::const MAXIMIZE -->
+the window should be maximizable.
+<!-- struct WMFunction::const CLOSE -->
+the window should be closable.
 <!-- struct Window -->
 
 
@@ -6658,6 +6763,73 @@ the lower left corner.
 the lower edge.
 <!-- enum WindowEdge::variant SouthEast -->
 the lower right corner.
+<!-- struct WindowHints -->
+Used to indicate which fields of a `Geometry` struct should be paid
+attention to. Also, the presence/absence of `WindowHints::Pos`,
+`WindowHints::UserPos`, and `WindowHints::UserSize` is significant, though they don't
+directly refer to `Geometry` fields. `WindowHints::UserPos` will be set
+automatically by ``GtkWindow`` if you call `gtk_window_move`.
+`WindowHints::UserPos` and `WindowHints::UserSize` should be set if the user
+specified a size/position using a --geometry command-line argument;
+`gtk_window_parse_geometry` automatically sets these flags.
+<!-- struct WindowHints::const POS -->
+indicates that the program has positioned the window
+<!-- struct WindowHints::const MIN_SIZE -->
+min size fields are set
+<!-- struct WindowHints::const MAX_SIZE -->
+max size fields are set
+<!-- struct WindowHints::const BASE_SIZE -->
+base size fields are set
+<!-- struct WindowHints::const ASPECT -->
+aspect ratio fields are set
+<!-- struct WindowHints::const RESIZE_INC -->
+resize increment fields are set
+<!-- struct WindowHints::const WIN_GRAVITY -->
+window gravity field is set
+<!-- struct WindowHints::const USER_POS -->
+indicates that the window’s position was explicitly set
+ by the user
+<!-- struct WindowHints::const USER_SIZE -->
+indicates that the window’s size was explicitly set by
+ the user
+<!-- struct WindowState -->
+Specifies the state of a toplevel window.
+<!-- struct WindowState::const WITHDRAWN -->
+the window is not shown.
+<!-- struct WindowState::const ICONIFIED -->
+the window is minimized.
+<!-- struct WindowState::const MAXIMIZED -->
+the window is maximized.
+<!-- struct WindowState::const STICKY -->
+the window is sticky.
+<!-- struct WindowState::const FULLSCREEN -->
+the window is maximized without
+ decorations.
+<!-- struct WindowState::const ABOVE -->
+the window is kept above other windows.
+<!-- struct WindowState::const BELOW -->
+the window is kept below other windows.
+<!-- struct WindowState::const FOCUSED -->
+the window is presented as focused (with active decorations).
+<!-- struct WindowState::const TILED -->
+the window is in a tiled state, Since 3.10. Since 3.22.23, this
+ is deprecated in favor of per-edge information.
+<!-- struct WindowState::const TOP_TILED -->
+whether the top edge is tiled, Since 3.22.23
+<!-- struct WindowState::const TOP_RESIZABLE -->
+whether the top edge is resizable, Since 3.22.23
+<!-- struct WindowState::const RIGHT_TILED -->
+whether the right edge is tiled, Since 3.22.23
+<!-- struct WindowState::const RIGHT_RESIZABLE -->
+whether the right edge is resizable, Since 3.22.23
+<!-- struct WindowState::const BOTTOM_TILED -->
+whether the bottom edge is tiled, Since 3.22.23
+<!-- struct WindowState::const BOTTOM_RESIZABLE -->
+whether the bottom edge is resizable, Since 3.22.23
+<!-- struct WindowState::const LEFT_TILED -->
+whether the left edge is tiled, Since 3.22.23
+<!-- struct WindowState::const LEFT_RESIZABLE -->
+whether the left edge is resizable, Since 3.22.23
 <!-- enum WindowType -->
 Describes the kind of window.
 <!-- enum WindowType::variant Root -->
