@@ -124,23 +124,6 @@ the description to be assigned to this action
 # Returns
 
 a gboolean representing if the description was successfully set;
-<!-- struct Attribute -->
-AtkAttribute is a string name/value pair representing a generic
-attribute. This can be used to expose additional information from
-an accessible object as a whole (see `AtkObjectExt::get_attributes`)
-or an document (see `Document::get_attributes`). In the case of
-text attributes (see `Text::get_default_attributes`),
-`TextAttribute` enum defines all the possible text attribute
-names. You can use `TextAttribute::get_name` to get the string
-name from the enum value. See also `TextAttribute::for_name`
-and `TextAttribute::get_value` for more information.
-
-A string name/value pair representing a generic attribute.
-<!-- impl Attribute::fn set_free -->
-Frees the memory used by an `AttributeSet`, including all its
-`AtkAttributes`.
-## `attrib_set`
-The `AttributeSet` to free
 <!-- struct Component -->
 `Component` should be implemented by most if not all UI elements
 with an actual on-screen presence, i.e. components which can be
@@ -485,7 +468,7 @@ See also: `Text`
 
 # Implements
 
-[`EditableTextExt`](trait.EditableTextExt.html)
+[`EditableTextExt`](trait.EditableTextExt.html), [`EditableTextExtManual`](prelude/trait.EditableTextExtManual.html)
 <!-- trait EditableTextExt -->
 Trait containing all `EditableText` methods.
 
@@ -702,6 +685,10 @@ Gets the hyperlink associated with this object.
 
 an AtkHyperlink object which points to this
 implementing AtkObject.
+<!-- struct HyperlinkStateFlags -->
+Describes the type of link
+<!-- struct HyperlinkStateFlags::const INLINE -->
+Link is inline
 <!-- struct Hypertext -->
 An interface used for objects which implement linking between
 multiple resource or content locations, or multiple 'markers'
@@ -894,7 +881,7 @@ factory type is specified.
 
 # Implements
 
-[`AtkObjectExt`](trait.AtkObjectExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AtkActionExt`](trait.AtkActionExt.html), [`ComponentExt`](trait.ComponentExt.html), [`DocumentExt`](trait.DocumentExt.html), [`EditableTextExt`](trait.EditableTextExt.html), [`HypertextExt`](trait.HypertextExt.html), [`AtkImageExt`](trait.AtkImageExt.html), [`SelectionExt`](trait.SelectionExt.html), [`TableExt`](trait.TableExt.html), [`TableCellExt`](trait.TableCellExt.html), [`TextExt`](trait.TextExt.html), [`ValueExt`](trait.ValueExt.html), [`AtkWindowExt`](trait.AtkWindowExt.html)
+[`AtkObjectExt`](trait.AtkObjectExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AtkActionExt`](trait.AtkActionExt.html), [`ComponentExt`](trait.ComponentExt.html), [`DocumentExt`](trait.DocumentExt.html), [`EditableTextExt`](trait.EditableTextExt.html), [`HypertextExt`](trait.HypertextExt.html), [`AtkImageExt`](trait.AtkImageExt.html), [`SelectionExt`](trait.SelectionExt.html), [`TableExt`](trait.TableExt.html), [`TableCellExt`](trait.TableCellExt.html), [`TextExt`](trait.TextExt.html), [`ValueExt`](trait.ValueExt.html), [`AtkWindowExt`](trait.AtkWindowExt.html), [`EditableTextExtManual`](prelude/trait.EditableTextExtManual.html), [`TableExtManual`](prelude/trait.TableExtManual.html)
 <!-- impl NoOpObject::fn new -->
 Provides a default (non-functioning stub) `Object`.
 Application maintainers should not use this method.
@@ -2556,7 +2543,7 @@ index-based methods are deprecated.
 
 # Implements
 
-[`TableExt`](trait.TableExt.html)
+[`TableExt`](trait.TableExt.html), [`TableExtManual`](prelude/trait.TableExtManual.html)
 <!-- trait TableExt -->
 Trait containing all `Table` methods.
 
@@ -3469,8 +3456,6 @@ starting at the beginning of the current paragraph and finishing at the beginnin
 the following one, if present.
 <!-- struct TextRange -->
 A structure used to describe a text range.
-<!-- struct TextRectangle -->
-A structure used to store a rectangle used by AtkText.
 <!-- struct Util -->
 A set of ATK utility functions which are used to support event
 registration of various types, and obtaining the 'root' accessible

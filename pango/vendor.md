@@ -9,14 +9,6 @@ Put all available space on the right
 Center the line within the available space
 <!-- enum Alignment::variant Right -->
 Put all available space on the left
-<!-- struct Analysis -->
-The `Analysis` structure stores information about
-the properties of a segment of text.
-<!-- struct AttrClass -->
-The `AttrClass` structure stores the type and operations for
-a particular type of attribute. The functions in this structure should
-not be called directly. Instead, one should use the wrapper functions
-provided for `Attribute`.
 <!-- struct AttrIterator -->
 The `AttrIterator` structure is used to represent an
 iterator through a `AttrList`. A new iterator is created
@@ -147,6 +139,18 @@ Data to be passed to `func`
 
 the new `AttrList` or
  `None` if no attributes of the given types were found.
+<!-- impl AttrList::fn get_attributes -->
+Gets a list of all attributes in `self`.
+
+Feature: `v1_44`
+
+
+# Returns
+
+
+ a list of all attributes in `self`. To free this value, call
+ `Attribute::destroy` on each value and `glib::SList::free`
+ on the list.
 <!-- impl AttrList::fn get_iterator -->
 Create a iterator initialized to the beginning of the list.
 `self` must not be modified until this iterator is freed.
@@ -198,6 +202,32 @@ the length of the spliced segment. (Note that this
 Decrease the reference count of the given attribute list by one.
 If the result is zero, free the attribute list and the attributes
 it contains.
+<!-- impl AttrList::fn update -->
+Update indices of attributes in `self` for
+a change in the text they refer to.
+
+The change that this function applies is
+removing `remove` bytes at position `pos`
+and inserting `add` bytes instead.
+
+Attributes that fall entirely in the
+(`pos`, `pos` + `remove`) range are removed.
+
+Attributes that start or end inside the
+(`pos`, `pos` + `remove`) range are shortened to
+reflect the removal.
+
+Attributes start and end positions are updated
+if they are behind `pos` + `remove`.
+
+Feature: `v1_44`
+
+## `pos`
+the position of the change
+## `remove`
+the number of removed bytes
+## `add`
+the number of added bytes
 <!-- enum AttrType -->
 The `AttrType`
 distinguishes between different types of attributes. Along with the
@@ -257,6 +287,12 @@ OpenType font features (`AttrString`). Since 1.38
 foreground alpha (`AttrInt`). Since 1.38
 <!-- enum AttrType::variant BackgroundAlpha -->
 background alpha (`AttrInt`). Since 1.38
+<!-- enum AttrType::variant AllowBreaks -->
+whether breaks are allowed (`AttrInt`). Since 1.44
+<!-- enum AttrType::variant Show -->
+how to render invisible characters (`AttrInt`). Since 1.44
+<!-- enum AttrType::variant InsertHyphens -->
+whether to insert hyphens at intra-word line breaks (`AttrInt`). Since 1.44
 <!-- struct Attribute -->
 The `Attribute` structure represents the common portions of all
 attributes. Particular types of attributes include this structure
@@ -295,6 +331,10 @@ a `AttrClass`
 The `BidiType` type represents the bidirectional character
 type of a Unicode character as specified by the
 <ulink url="http://www.unicode.org/reports/tr9/">Unicode bidirectional algorithm`</ulink>`.
+
+# Deprecated since 1.44
+
+Use fribidi for this information
 <!-- enum BidiType::variant L -->
 Left-to-Right
 <!-- enum BidiType::variant Lre -->
@@ -489,6 +529,12 @@ language tag used to determine which script to get
 
 a `FontMetrics` object. The caller must call `FontMetrics::unref`
  when finished using the object.
+<!-- impl Context::fn get_round_glyph_positions -->
+Returns whether font rendering with this context should
+round glyph positions and widths.
+
+Feature: `v1_44`
+
 <!-- impl Context::fn get_serial -->
 Returns the current serial number of `self`. The serial number is
 initialized to an small number larger than zero when a new context
@@ -585,9 +631,50 @@ matrices, depending on how the text is fit to the pixel grid.
 ## `matrix`
 a `Matrix`, or `None` to unset any existing
 matrix. (No matrix set is the same as setting the identity matrix.)
+<!-- impl Context::fn set_round_glyph_positions -->
+Sets whether font rendering with this context should
+round glyph positions and widths to integral positions,
+in device units.
+
+This is useful when the renderer can't handle subpixel
+positioning of glyphs.
+
+The default value is to round glyph positions, to remain
+compatible with previous Pango behavior.
+
+Feature: `v1_44`
+
+## `round_positions`
+whether to round glyph positions
 <!-- struct Coverage -->
 The `Coverage` structure represents a map from Unicode characters
 to `CoverageLevel`. It is an opaque structure with no public fields.
+<!-- impl Coverage::fn new -->
+Create a new `Coverage`
+
+# Returns
+
+the newly allocated `Coverage`,
+ initialized to `CoverageLevel::None`
+ with a reference count of one, which
+ should be freed with `Coverage::unref`.
+<!-- impl Coverage::fn from_bytes -->
+Convert data generated from `Coverage::to_bytes` back
+to a `Coverage`
+
+# Deprecated since 1.44
+
+This returns `None`
+## `bytes`
+binary data
+ representing a `Coverage`
+## `n_bytes`
+the size of `bytes` in bytes
+
+# Returns
+
+a newly allocated
+ `Coverage`, or `None` if the data was invalid.
 <!-- impl Coverage::fn copy -->
 Copy an existing `Coverage`. (This function may now be unnecessary
 since we refcount the structure. File a bug if you use it.)
@@ -609,6 +696,10 @@ the coverage level of `self` for character `index_`.
 Set the coverage for each index in `self` to be the max (better)
 value of the current coverage for the index and the coverage for
 the corresponding index in `other`.
+
+# Deprecated since 1.44
+
+This function does nothing
 ## `other`
 another `Coverage`
 <!-- impl Coverage::fn ref -->
@@ -625,6 +716,10 @@ the index to modify
 the new level for `index_`
 <!-- impl Coverage::fn to_bytes -->
 Convert a `Coverage` structure into a flat binary format
+
+# Deprecated since 1.44
+
+This returns `None`
 ## `bytes`
 
  location to store result (must be freed with `g_free`)
@@ -633,31 +728,12 @@ location to store size of result
 <!-- impl Coverage::fn unref -->
 Decrease the reference count on the `Coverage` by one.
 If the result is zero, free the coverage and all associated memory.
-<!-- impl Coverage::fn from_bytes -->
-Convert data generated from `Coverage::to_bytes` back
-to a `Coverage`
-## `bytes`
-binary data
- representing a `Coverage`
-## `n_bytes`
-the size of `bytes` in bytes
-
-# Returns
-
-a newly allocated
- `Coverage`, or `None` if the data was invalid.
-<!-- impl Coverage::fn new -->
-Create a new `Coverage`
-
-# Returns
-
-the newly allocated `Coverage`,
- initialized to `CoverageLevel::None`
- with a reference count of one, which
- should be freed with `Coverage::unref`.
 <!-- enum CoverageLevel -->
 Used to indicate how well a font can represent a particular Unicode
 character point for a particular script.
+
+Since 1.44, only `CoverageLevel::None` and `CoverageLevel::Exact`
+will be returned.
 <!-- enum CoverageLevel::variant None -->
 The character is not representable with the font.
 <!-- enum CoverageLevel::variant Fallback -->
@@ -687,6 +763,10 @@ values come from an earlier interpretation of this
 enumeration as the writing direction of a block of
 text and are no longer used; See `Gravity` for how
 vertical text is handled in Pango.
+
+If you are interested in text direction, you should
+really use fribidi directly. PangoDirection is only
+retained because it is used in some public apis.
 <!-- enum Direction::variant Ltr -->
 A strong left-to-right direction
 <!-- enum Direction::variant Rtl -->
@@ -782,6 +862,10 @@ a newly-allocated `FontDescription` object.
 <!-- trait FontExt::fn find_shaper -->
 Finds the best matching shaper for a font for a particular
 language tag and character point.
+
+# Deprecated
+
+Shape engines are no longer used
 ## `language`
 the language tag
 ## `ch`
@@ -799,6 +883,22 @@ the language tag
 
 a newly-allocated `Coverage`
  object.
+<!-- trait FontExt::fn get_features -->
+Obtain the OpenType features that are provided by the font.
+These are passed to the rendering system, together with features
+that have been explicitly set via attributes.
+
+Note that this does not include OpenType features which the
+rendering system enables by default.
+
+Feature: `v1_44`
+
+## `features`
+Array to features in
+## `len`
+the length of `features`
+## `num_features`
+the number of used items in `features`
 <!-- trait FontExt::fn get_font_map -->
 Gets the font map for which the font was created.
 
@@ -833,6 +933,20 @@ rectangle used to store the extents of the glyph
 ## `logical_rect`
 rectangle used to store the logical extents of
  the glyph or `None` to indicate that the result is not needed.
+<!-- trait FontExt::fn get_hb_font -->
+Get a hb_font_t object backing this font.
+
+Note that the objects returned by this function
+are cached and immutable. If you need to make
+changes to the hb_font_t, use `hb_font_create_sub_font`.
+
+Feature: `v1_44`
+
+
+# Returns
+
+the hb_font_t object backing the
+ font, or `None` if the font does not have one
 <!-- trait FontExt::fn get_metrics -->
 Gets overall metric information for a font. Since the metrics may be
 substantially different for different scripts, a language tag can
@@ -849,6 +963,15 @@ language tag used to determine which script to get the metrics
 
 a `FontMetrics` object. The caller must call `FontMetrics::unref`
  when finished using the object.
+<!-- trait FontExt::fn has_char -->
+Returns whether the font provides a glyph for this character.
+
+Returns `true` if `self` can render `wc`
+
+Feature: `v1_44`
+
+## `wc`
+a Unicode character
 <!-- struct FontDescription -->
 The `FontDescription` structure represents the description
 of an ideal font. These structures are used both to list
@@ -1127,6 +1250,8 @@ a font. Both harfbuzz or freetype have API for this.
 
 Feature: `v1_42`
 
+## `variations`
+a string representing the variations
 <!-- impl FontDescription::fn set_variations_static -->
 Like `FontDescription::set_variations`, except that no
 copy of `variations` is made. The caller must make sure that the
@@ -1137,6 +1262,8 @@ if `self` is only needed temporarily.
 
 Feature: `v1_42`
 
+## `variations`
+a string representing the variations
 <!-- impl FontDescription::fn set_weight -->
 Sets the weight field of a font description. The weight field
 specifies how bold or light the font should be. In addition
@@ -1170,17 +1297,47 @@ fields will get back to their default values.
 bitmask of fields in the `self` to unset.
 <!-- impl FontDescription::fn from_string -->
 Creates a new font description from a string representation in the
-form "[FAMILY-LIST] [STYLE-OPTIONS] [SIZE]", where FAMILY-LIST is a
-comma separated list of families optionally terminated by a comma,
-STYLE_OPTIONS is a whitespace separated list of words where each word
-describes one of style, variant, weight, stretch, or gravity, and SIZE
-is a decimal number (size in points) or optionally followed by the
-unit modifier "px" for absolute size. Any one of the options may
-be absent. If FAMILY-LIST is absent, then the family_name field of
-the resulting font description will be initialized to `None`. If
-STYLE-OPTIONS is missing, then all style options will be set to the
-default values. If SIZE is missing, the size in the resulting font
-description will be set to 0.
+form
+
+"\[FAMILY-LIST] \[STYLE-OPTIONS] \[SIZE] \[VARIATIONS]",
+
+where FAMILY-LIST is a comma-separated list of families optionally
+terminated by a comma, STYLE_OPTIONS is a whitespace-separated list
+of words where each word describes one of style, variant, weight,
+stretch, or gravity, and SIZE is a decimal number (size in points)
+or optionally followed by the unit modifier "px" for absolute size.
+VARIATIONS is a comma-separated list of font variation
+specifications of the form "\@axis=value" (the = sign is optional).
+
+The following words are understood as styles:
+"Normal", "Roman", "Oblique", "Italic".
+
+The following words are understood as variants:
+"Small-Caps".
+
+The following words are understood as weights:
+"Thin", "Ultra-Light", "Extra-Light", "Light", "Semi-Light",
+"Demi-Light", "Book", "Regular", "Medium", "Semi-Bold", "Demi-Bold",
+"Bold", "Ultra-Bold", "Extra-Bold", "Heavy", "Black", "Ultra-Black",
+"Extra-Black".
+
+The following words are understood as stretch values:
+"Ultra-Condensed", "Extra-Condensed", "Condensed", "Semi-Condensed",
+"Semi-Expanded", "Expanded", "Extra-Expanded", "Ultra-Expanded".
+
+The following words are understood as gravity values:
+"Not-Rotated", "South", "Upside-Down", "North", "Rotated-Left",
+"East", "Rotated-Right", "West".
+
+Any one of the options may be absent. If FAMILY-LIST is absent, then
+the family_name field of the resulting font description will be
+initialized to `None`. If STYLE-OPTIONS is missing, then all style
+options will be set to the default values. If SIZE is missing, the
+size in the resulting font description will be set to 0.
+
+A typical example:
+
+"Cantarell Italic Light 15 \@wght=200"
 ## `str`
 string representation of a font description.
 
@@ -1279,6 +1436,16 @@ by double-width characters.
 # Returns
 
 `true` if the family is monospace.
+<!-- trait FontFamilyExt::fn is_variable -->
+A variable font is a font which has axes that can be modified to
+produce different faces.
+
+Feature: `v1_44`
+
+
+# Returns
+
+`true` if the family is variable
 <!-- trait FontFamilyExt::fn list_faces -->
 Lists the different font faces that make up `self`. The faces
 in a family share a common design, but differ in slant, weight,
@@ -1350,19 +1517,6 @@ in `Context`.
 # Returns
 
 The current serial number of `self`.
-<!-- trait FontMapExt::fn get_shape_engine_type -->
-Returns the render ID for shape engines for this fontmap.
-See the `<structfield>`render_type`</structfield>` field of
-`EngineInfo`.
-
-# Deprecated since 1.38
-
-
-# Returns
-
-the ID string for shape engines for
- this fontmap. Owned by Pango, should not be modified
- or freed.
 <!-- trait FontMapExt::fn list_families -->
 List all families for a fontmap.
 ## `families`
@@ -1395,21 +1549,31 @@ a `Language` the fonts will be used for
 
 the newly allocated
  `Fontset` loaded, or `None` if no font matched.
+<!-- struct FontMask -->
+The bits in a `FontMask` correspond to fields in a
+`FontDescription` that have been set.
+<!-- struct FontMask::const FAMILY -->
+the font family is specified.
+<!-- struct FontMask::const STYLE -->
+the font style is specified.
+<!-- struct FontMask::const VARIANT -->
+the font variant is specified.
+<!-- struct FontMask::const WEIGHT -->
+the font weight is specified.
+<!-- struct FontMask::const STRETCH -->
+the font stretch is specified.
+<!-- struct FontMask::const SIZE -->
+the font size is specified.
+<!-- struct FontMask::const GRAVITY -->
+the font gravity is specified (Since: 1.16.)
+<!-- struct FontMask::const VARIATIONS -->
+OpenType font variations are specified (Since: 1.42)
 <!-- struct FontMetrics -->
 A `FontMetrics` structure holds the overall metric information
 for a font (possibly restricted to a script). The fields of this
 structure are private to implementations of a font backend. See
 the documentation of the corresponding getters for documentation
 of their meaning.
-<!-- impl FontMetrics::fn new -->
-Creates a new `FontMetrics` structure. This is only for
-internal use by Pango backends and there is no public way
-to set the fields of the structure.
-
-# Returns
-
-a newly-created `FontMetrics` structure
- with a reference count of 1.
 <!-- impl FontMetrics::fn get_approximate_char_width -->
 Gets the approximate character width for a font metrics structure.
 This is merely a representative value useful, for example, for
@@ -1450,6 +1614,19 @@ where the ink will be.)
 # Returns
 
 the descent, in Pango units.
+<!-- impl FontMetrics::fn get_height -->
+Gets the line height from a font metrics structure. The
+line height is the distance between successive baselines
+in wrapped text.
+
+If the line height is not available, 0 is returned.
+
+Feature: `v1_44`
+
+
+# Returns
+
+the height, in Pango units
 <!-- impl FontMetrics::fn get_strikethrough_position -->
 Gets the suggested position to draw the strikethrough.
 The value returned is the distance `<emphasis>`above`</emphasis>` the
@@ -1767,6 +1944,10 @@ the newly allocated `GlyphString`,
 Compute the logical and ink extents of a glyph string. See the documentation
 for `FontExt::get_glyph_extents` for details about the interpretation
 of the rectangles.
+
+Examples of logical (red) and ink (green) rects:
+
+![](rects1.png) ![](rects2.png)
 ## `font`
 a `Font`
 ## `ink_rect`
@@ -1913,6 +2094,22 @@ Creates a new `Item` structure initialized to default values.
 
 the newly allocated `Item`, which should
  be freed with `Item::free`.
+<!-- impl Item::fn apply_attrs -->
+Add attributes to a PangoItem. The idea is that you have
+attributes that don't affect itemization, such as font features,
+so you filter them out using `AttrList::filter`, itemize
+your text, then reapply the attributes to the resulting items
+using this function.
+
+The `iter` should be positioned before the range of the item,
+and will be advanced past it. This function is meant to be called
+in a loop over the items resulting from itemization, while passing
+the iter to each call.
+
+Feature: `v1_44`
+
+## `iter`
+a `AttrIterator`
 <!-- impl Item::fn copy -->
 Copy an existing `Item` structure.
 
@@ -1992,6 +2189,10 @@ though, except that it is positive if the return value is not
 
 The `Language::includes_script` function uses this function
 internally.
+
+Note: while the return value is declared as PangoScript, the
+returned values are from the GUnicodeScript enumeration, which
+may have more values. Callers need to handle unknown values.
 ## `num_scripts`
 location to return number of scripts,
  or `None`
@@ -2116,8 +2317,8 @@ It is possible, as well, to ignore the 2-D setup, and simply
 treat the results of a `Layout` as a list of lines.
 
 <figure id="parameters">
-`<title>`Adjustable parameters for a PangoLayout`</title>`
-<graphic fileref="layout.gif" format="GIF">`</graphic>`
+`<title>`Adjustable parameters (on the left) and font metrics (on the right) for a PangoLayout`</title>`
+<graphic fileref="layout.png" format="PNG">`</graphic>`
 `</figure>`
 
 The `Layout` structure is opaque, and has no user-visible
@@ -2313,6 +2514,12 @@ the requested
  range. This layout line can be ref'ed and retained,
  but will become invalid if changes are made to the
  `Layout`. No changes should be made to the line.
+<!-- impl Layout::fn get_line_spacing -->
+Gets the value that has been
+set with `Layout::set_line_spacing`.
+
+Feature: `v1_44`
+
 <!-- impl Layout::fn get_lines -->
 Returns the lines of the `self` as a list.
 
@@ -2668,6 +2875,28 @@ Note that this setting is not implemented and so is ignored in Pango
 older than 1.18.
 ## `justify`
 whether the lines in the layout should be justified.
+<!-- impl Layout::fn set_line_spacing -->
+Sets a factor for line spacing.
+Typical values are: 0, 1, 1.5, 2.
+The default values is 0.
+
+If `factor` is non-zero, lines are placed
+so that
+
+baseline2 = baseline1 + factor * height2
+
+where height2 is the line height of the
+second line (as determined by the font(s)).
+In this case, the spacing set with
+`Layout::set_spacing` is ignored.
+
+If `factor` is zero, spacing is applied as
+before.
+
+Feature: `v1_44`
+
+## `factor`
+the new line spacing factor
 <!-- impl Layout::fn set_markup -->
 Same as `Layout::set_markup_with_accel`, but
 the markup text isn't scanned for accelerators.
@@ -2707,8 +2936,17 @@ you want to allow editing of newlines on a single text line.
 ## `setting`
 new setting
 <!-- impl Layout::fn set_spacing -->
-Sets the amount of spacing in Pango unit between the lines of the
-layout.
+Sets the amount of spacing in Pango unit between
+the lines of the layout. When placing lines with
+spacing, Pango arranges things so that
+
+line2.top = line1.bottom + spacing
+
+Note: Since 1.44, Pango defaults to using the
+line height (as determined by the font) for placing
+lines. The `spacing` set with this function is only
+taken into account when the line-height factor is
+set to zero with `Layout::set_line_spacing`.
 ## `spacing`
 the amount of spacing
 <!-- impl Layout::fn set_tabs -->
@@ -2721,13 +2959,16 @@ a `TabArray`, or `None`
 <!-- impl Layout::fn set_text -->
 Sets the text of the layout.
 
-Note that if you have used
-`Layout::set_markup` or `Layout::set_markup_with_accel` on
-`self` before, you may want to call `Layout::set_attributes` to clear
-the attributes set on the layout from the markup as this function does not
-clear attributes.
+This function validates `text` and renders invalid UTF-8
+with a placeholder glyph.
+
+Note that if you have used `Layout::set_markup` or
+`Layout::set_markup_with_accel` on `self` before, you may
+want to call `Layout::set_attributes` to clear the attributes
+set on the layout from the markup as this function does not clear
+attributes.
 ## `text`
-a valid UTF-8 string
+the text
 ## `length`
 maximum length of `text`, in bytes. -1 indicates that
  the string is nul-terminated and the length should be
@@ -2880,6 +3121,10 @@ extents, plus half of the spacing above and below the line, if
 `Layout::set_spacing` has been called to set layout spacing.
 The Y positions are in layout coordinates (origin at top left of the
 entire layout).
+
+Note: Since 1.44, Pango uses line heights for placing lines,
+and there may be gaps between the ranges returned by this
+function.
 ## `y0_`
 start of line, or `None`
 ## `y1_`
@@ -2964,6 +3209,14 @@ rectangle used to store the extents of
 ## `logical_rect`
 rectangle used to store the logical
  extents of the glyph string, or `None`
+<!-- impl LayoutLine::fn get_height -->
+Computes the height of the line, ie the distance between
+this and the previous lines baseline.
+
+Feature: `v1_44`
+
+## `height`
+return location for the line height
 <!-- impl LayoutLine::fn get_pixel_extents -->
 Computes the logical and ink extents of `self` in device units.
 This function just calls `LayoutLine::get_extents` followed by
@@ -3182,10 +3435,6 @@ then applying the original transformation.
 amount to translate in the X direction
 ## `ty`
 amount to translate in the Y direction
-<!-- struct Rectangle -->
-The `Rectangle` structure represents a rectangle. It is frequently
-used to represent the logical or ink extents of a single glyph or section
-of text. (See, for instance, `FontExt::get_glyph_extents`)
 <!-- enum RenderPart -->
 `RenderPart` defines different items to render for such
 purposes as setting colors.
@@ -3362,7 +3611,7 @@ the color for the
 <!-- trait RendererExt::fn get_layout -->
 Gets the layout currently being rendered using `self`.
 Calling this function only makes sense from inside a subclass's
-methods, like in its draw_shape<!---->() for example.
+methods, like in its draw_shape vfunc, for example.
 
 The returned layout should not be modified while still being
 rendered.
@@ -3374,7 +3623,7 @@ the layout, or `None` if
 <!-- trait RendererExt::fn get_layout_line -->
 Gets the layout line currently being rendered using `self`.
 Calling this function only makes sense from inside a subclass's
-methods, like in its draw_shape<!---->() for example.
+methods, like in its draw_shape vfunc, for example.
 
 The returned layout line should not be modified while still being
 rendered.
@@ -3434,12 +3683,14 @@ a `Matrix`, or `None` to unset any existing matrix.
 <!-- enum Script -->
 The `Script` enumeration identifies different writing
 systems. The values correspond to the names as defined in the
-Unicode standard.
-Note that new types may be added in the future. Applications should be ready
-to handle unknown values. This enumeration is interchangeable with
-`glib::UnicodeScript`. See <ulink
+Unicode standard. See <ulink
 url="http://www.unicode.org/reports/tr24/">Unicode Standard Annex
 `24`: Script names`</ulink>`.
+
+Note that this enumeration is deprecated and will not be updated
+to include values in newer versions of the Unicode standard.
+Applications should use the GUnicodeScript enumeration instead,
+whose values are interchangeable with PangoScript.
 <!-- enum Script::variant InvalidCode -->
 a value never returned from `Script::for_unichar`
 <!-- enum Script::variant Common -->
@@ -3810,18 +4061,18 @@ a single underline should be drawn
 <!-- enum Underline::variant Double -->
 a double underline should be drawn
 <!-- enum Underline::variant Low -->
-a single underline should be drawn at a position
-beneath the ink extents of the text being
-underlined. This should be used only for underlining
-single characters, such as for keyboard
-accelerators. `Underline::Single` should
-be used for extended portions of text.
+a single underline should be drawn at a
+ position beneath the ink extents of the text being
+ underlined. This should be used only for underlining
+ single characters, such as for keyboard accelerators.
+ `Underline::Single` should be used for extended
+ portions of text.
 <!-- enum Underline::variant Error -->
 a wavy underline should be drawn below.
-This underline is typically used to indicate
-an error such as a possilble mispelling; in some
-cases a contrasting color may automatically
-be used. This type of underlining is available since Pango 1.4.
+ This underline is typically used to indicate an error such
+ as a possible mispelling; in some cases a contrasting color
+ may automatically be used. This type of underlining is
+ available since Pango 1.4.
 <!-- enum Variant -->
 An enumeration specifying capitalization variant of the font.
 <!-- enum Variant::variant Normal -->

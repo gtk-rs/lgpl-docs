@@ -48,7 +48,7 @@ plus '-' and '.'. The empty string is not a valid action name.
 It is an error to call this function with a non-utf8 `action_name`.
 `action_name` must not be `None`.
 ## `action_name`
-an potential action name
+a potential action name
 
 # Returns
 
@@ -617,7 +617,7 @@ applications installed on the system.
 As of GLib 2.20, URIs will always be converted to POSIX paths
 (using `File::get_path`) when using `AppInfo::launch` even if
 the application requested an URI and not a POSIX path. For example
-for an desktop-file based application with Exec key `totem
+for a desktop-file based application with Exec key `totem
 %U` and a single URI, `sftp://foo/file.avi`, then
 `/home/user/.gvfs/sftp on foo/file.avi` will be passed. This will
 only work if a set of suitable GIO extensions (such as gvfs 2.26
@@ -663,7 +663,7 @@ different ideas of what a given URI means.
 
 # Implements
 
-[`AppInfoExt`](trait.AppInfoExt.html)
+[`AppInfoExt`](trait.AppInfoExt.html), [`AppInfoExtManual`](prelude/trait.AppInfoExtManual.html)
 <!-- trait AppInfoExt -->
 Trait containing all `AppInfo` methods.
 
@@ -1080,6 +1080,16 @@ Checks if the application supports reading files and directories from URIs.
 # Returns
 
 `true` if the `self` supports URIs.
+<!-- struct AppInfoCreateFlags -->
+Flags used when creating a `AppInfo`.
+<!-- struct AppInfoCreateFlags::const NONE -->
+No flags.
+<!-- struct AppInfoCreateFlags::const NEEDS_TERMINAL -->
+Application opens in a terminal window.
+<!-- struct AppInfoCreateFlags::const SUPPORTS_URIS -->
+Application supports URI arguments.
+<!-- struct AppInfoCreateFlags::const SUPPORTS_STARTUP_NOTIFICATION -->
+Application supports startup notification. Since 2.26
 <!-- struct AppInfoMonitor -->
 `AppInfoMonitor` is a very simple object used for monitoring the app
 info database for changes (ie: newly installed or removed
@@ -1167,7 +1177,7 @@ Initiates startup notification for the application and returns the
 `DESKTOP_STARTUP_ID` for the launched operation, if supported.
 
 Startup notification IDs are defined in the
-[FreeDesktop.Org Startup Notifications standard](http://standards.freedesktop.org/startup-notification-spec/startup-notification-latest.txt").
+[FreeDesktop.Org Startup Notifications standard](http://standards.freedesktop.org/startup-notification-spec/startup-notification-latest.txt).
 ## `info`
 a `AppInfo`
 ## `files`
@@ -1292,7 +1302,7 @@ The `Application::startup` signal lets you handle the application
 initialization for all of these in a single place.
 
 Regardless of which of these entry points is used to start the
-application, GApplication passes some "platform data from the
+application, GApplication passes some ‘platform data’ from the
 launching instance to the primary instance, in the form of a
 `glib::Variant` dictionary mapping strings to variants. To use platform
 data, override the `before_emit` or `after_emit` virtual functions
@@ -1496,14 +1506,14 @@ consumed, they will no longer be visible to the default handling
 
 It is important to use the proper GVariant format when retrieving
 the options with `glib::VariantDict::lookup`:
-- for `glib::OptionArg::None`, use b
-- for `glib::OptionArg::String`, use &s
-- for `glib::OptionArg::Int`, use i
-- for `glib::OptionArg::Int64`, use x
-- for `glib::OptionArg::Double`, use d
-- for `glib::OptionArg::Filename`, use ^ay
-- for `glib::OptionArg::StringArray`, use &as
-- for `glib::OptionArg::FilenameArray`, use ^aay
+- for `glib::OptionArg::None`, use `b`
+- for `glib::OptionArg::String`, use `&s`
+- for `glib::OptionArg::Int`, use `i`
+- for `glib::OptionArg::Int64`, use `x`
+- for `glib::OptionArg::Double`, use `d`
+- for `glib::OptionArg::Filename`, use `^&ay`
+- for `glib::OptionArg::StringArray`, use `^a&s`
+- for `glib::OptionArg::FilenameArray`, use `^a&ay`
 ## `entries`
 a
  `None`-terminated list of `GOptionEntrys`
@@ -2455,6 +2465,71 @@ always zero. If the application use count is zero, though, the exit
 status of the local `ApplicationCommandLine` is used.
 ## `exit_status`
 the exit status
+<!-- struct ApplicationFlags -->
+Flags used to define the behaviour of a `Application`.
+<!-- struct ApplicationFlags::const FLAGS_NONE -->
+Default
+<!-- struct ApplicationFlags::const IS_SERVICE -->
+Run as a service. In this mode, registration
+ fails if the service is already running, and the application
+ will initially wait up to 10 seconds for an initial activation
+ message to arrive.
+<!-- struct ApplicationFlags::const IS_LAUNCHER -->
+Don't try to become the primary instance.
+<!-- struct ApplicationFlags::const HANDLES_OPEN -->
+This application handles opening files (in
+ the primary instance). Note that this flag only affects the default
+ implementation of `local_command_line`, and has no effect if
+ `ApplicationFlags::HandlesCommandLine` is given.
+ See `Application::run` for details.
+<!-- struct ApplicationFlags::const HANDLES_COMMAND_LINE -->
+This application handles command line
+ arguments (in the primary instance). Note that this flag only affect
+ the default implementation of `local_command_line`.
+ See `Application::run` for details.
+<!-- struct ApplicationFlags::const SEND_ENVIRONMENT -->
+Send the environment of the
+ launching process to the primary instance. Set this flag if your
+ application is expected to behave differently depending on certain
+ environment variables. For instance, an editor might be expected
+ to use the `GIT_COMMITTER_NAME` environment variable
+ when editing a git commit message. The environment is available
+ to the `Application::command-line` signal handler, via
+ `ApplicationCommandLineExt::getenv`.
+<!-- struct ApplicationFlags::const NON_UNIQUE -->
+Make no attempts to do any of the typical
+ single-instance application negotiation, even if the application
+ ID is given. The application neither attempts to become the
+ owner of the application ID nor does it check if an existing
+ owner already exists. Everything occurs in the local process.
+ Since: 2.30.
+<!-- struct ApplicationFlags::const CAN_OVERRIDE_APP_ID -->
+Allow users to override the
+ application ID from the command line with `--gapplication-app-id`.
+ Since: 2.48
+<!-- struct ApplicationFlags::const ALLOW_REPLACEMENT -->
+Allow another instance to take over
+ the bus name. Since: 2.60
+<!-- struct ApplicationFlags::const REPLACE -->
+Take over from another instance. This flag is
+ usually set by passing `--gapplication-replace` on the commandline.
+ Since: 2.60
+<!-- struct AskPasswordFlags -->
+`AskPasswordFlags` are used to request specific information from the
+user, or to notify the user of their choices in an authentication
+situation.
+<!-- struct AskPasswordFlags::const NEED_PASSWORD -->
+operation requires a password.
+<!-- struct AskPasswordFlags::const NEED_USERNAME -->
+operation requires a username.
+<!-- struct AskPasswordFlags::const NEED_DOMAIN -->
+operation requires a domain.
+<!-- struct AskPasswordFlags::const SAVING_SUPPORTED -->
+operation supports saving settings.
+<!-- struct AskPasswordFlags::const ANONYMOUS_SUPPORTED -->
+operation supports anonymous users.
+<!-- struct AskPasswordFlags::const TCRYPT -->
+operation takes TCRYPT parameters (Since: 2.58)
 <!-- struct BufferedInputStream -->
 Buffered input stream implements `FilterInputStream` and provides
 for buffered reads.
@@ -2689,6 +2764,36 @@ a `gboolean`.
 Sets the size of the internal buffer to `size`.
 ## `size`
 a `gsize`.
+<!-- struct BusNameOwnerFlags -->
+Flags used in `g_bus_own_name`.
+<!-- struct BusNameOwnerFlags::const NONE -->
+No flags set.
+<!-- struct BusNameOwnerFlags::const ALLOW_REPLACEMENT -->
+Allow another message bus connection to claim the name.
+<!-- struct BusNameOwnerFlags::const REPLACE -->
+If another message bus connection owns the name and have
+specified `BusNameOwnerFlags::AllowReplacement`, then take the name from the other connection.
+<!-- struct BusNameOwnerFlags::const DO_NOT_QUEUE -->
+If another message bus connection owns the name, immediately
+return an error from `g_bus_own_name` rather than entering the waiting queue for that name. (Since 2.54)
+<!-- struct BusNameWatcherFlags -->
+Flags used in `g_bus_watch_name`.
+<!-- struct BusNameWatcherFlags::const NONE -->
+No flags set.
+<!-- struct BusNameWatcherFlags::const AUTO_START -->
+If no-one owns the name when
+beginning to watch the name, ask the bus to launch an owner for the
+name.
+<!-- enum BusType -->
+An enumeration for well-known message buses.
+<!-- enum BusType::variant Starter -->
+An alias for the message bus that activated the process, if any.
+<!-- enum BusType::variant None -->
+Not a message bus.
+<!-- enum BusType::variant System -->
+The system-wide message bus.
+<!-- enum BusType::variant Session -->
+The login session message bus.
 <!-- struct BytesIcon -->
 `BytesIcon` specifies an image held in memory in a common format (usually
 png) to be used as icon.
@@ -3137,6 +3242,14 @@ a `ConverterResult`, `ConverterResult::Error` on error.
 Resets all internal state in the converter, making it behave
 as if it was just created. If the converter has any internal
 state that would produce output then that output is lost.
+<!-- struct ConverterFlags -->
+Flags used when calling a `Converter::convert`.
+<!-- struct ConverterFlags::const NONE -->
+No flags.
+<!-- struct ConverterFlags::const INPUT_AT_END -->
+At end of input data
+<!-- struct ConverterFlags::const FLUSH -->
+Flush data
 <!-- struct ConverterInputStream -->
 Converter input stream implements `InputStream` and allows
 conversion of data of various types during reading.
@@ -3257,7 +3370,7 @@ A `Credentials`. Free with `gobject::ObjectExt::unref`.
 Gets a pointer to native credentials of type `native_type` from
 `self`.
 
-It is a programming error (which will cause an warning to be
+It is a programming error (which will cause a warning to be
 logged) to use this method if there is no `Credentials` support for
 the OS or if `native_type` isn't supported by the OS.
 ## `native_type`
@@ -3307,7 +3420,7 @@ user, `false` otherwise or if `error` is set.
 Copies the native credentials of type `native_type` from `native`
 into `self`.
 
-It is a programming error (which will cause an warning to be
+It is a programming error (which will cause a warning to be
 logged) to use this method if there is no `Credentials` support for
 the OS or if `native_type` isn't supported by the OS.
 ## `native_type`
@@ -3350,13 +3463,3374 @@ The native credentials type is a struct sockpeercred. Added in 2.30.
 The native credentials type is a ucred_t. Added in 2.40.
 <!-- enum CredentialsType::variant NetbsdUnpcbid -->
 The native credentials type is a struct unpcbid.
+<!-- struct DBusArgInfo -->
+Information about an argument for a method or a signal.
+<!-- impl DBusArgInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusArgInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
+<!-- struct DBusAuthObserver -->
+The `DBusAuthObserver` type provides a mechanism for participating
+in how a `DBusServer` (or a `DBusConnection`) authenticates remote
+peers. Simply instantiate a `DBusAuthObserver` and connect to the
+signals you are interested in. Note that new signals may be added
+in the future
+
+## Controlling Authentication Mechanisms
+
+By default, a `DBusServer` or server-side `DBusConnection` will allow
+any authentication mechanism to be used. If you only
+want to allow D-Bus connections with the `EXTERNAL` mechanism,
+which makes use of credentials passing and is the recommended
+mechanism for modern Unix platforms such as Linux and the BSD family,
+you would use a signal handler like this:
+
+
+```C
+static gboolean
+on_allow_mechanism (GDBusAuthObserver *observer,
+                    const gchar       *mechanism,
+                    gpointer           user_data)
+{
+  if (g_strcmp0 (mechanism, "EXTERNAL") == 0)
+    {
+      return TRUE;
+    }
+
+  return FALSE;
+}
+```
+
+## Controlling Authorization # {`auth`-observer}
+
+By default, a `DBusServer` or server-side `DBusConnection` will accept
+connections from any successfully authenticated user (but not from
+anonymous connections using the `ANONYMOUS` mechanism). If you only
+want to allow D-Bus connections from processes owned by the same uid
+as the server, you would use a signal handler like the following:
+
+
+```C
+static gboolean
+on_authorize_authenticated_peer (GDBusAuthObserver *observer,
+                                 GIOStream         *stream,
+                                 GCredentials      *credentials,
+                                 gpointer           user_data)
+{
+  gboolean authorized;
+
+  authorized = FALSE;
+  if (credentials != NULL)
+    {
+      GCredentials *own_credentials;
+      own_credentials = g_credentials_new ();
+      if (g_credentials_is_same_user (credentials, own_credentials, NULL))
+        authorized = TRUE;
+      g_object_unref (own_credentials);
+    }
+
+  return authorized;
+}
+```
+
+# Implements
+
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusAuthObserver::fn new -->
+Creates a new `DBusAuthObserver` object.
+
+# Returns
+
+A `DBusAuthObserver`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusAuthObserver::fn allow_mechanism -->
+Emits the `DBusAuthObserver::allow-mechanism` signal on `self`.
+## `mechanism`
+The name of the mechanism, e.g. `DBUS_COOKIE_SHA1`.
+
+# Returns
+
+`true` if `mechanism` can be used to authenticate the other peer, `false` if not.
+<!-- impl DBusAuthObserver::fn authorize_authenticated_peer -->
+Emits the `DBusAuthObserver::authorize-authenticated-peer` signal on `self`.
+## `stream`
+A `IOStream` for the `DBusConnection`.
+## `credentials`
+Credentials received from the peer or `None`.
+
+# Returns
+
+`true` if the peer is authorized, `false` if not.
+<!-- impl DBusAuthObserver::fn connect_allow_mechanism -->
+Emitted to check if `mechanism` is allowed to be used.
+## `mechanism`
+The name of the mechanism, e.g. `DBUS_COOKIE_SHA1`.
+
+# Returns
+
+`true` if `mechanism` can be used to authenticate the other peer, `false` if not.
+<!-- impl DBusAuthObserver::fn connect_authorize_authenticated_peer -->
+Emitted to check if a peer that is successfully authenticated
+is authorized.
+## `stream`
+A `IOStream` for the `DBusConnection`.
+## `credentials`
+Credentials received from the peer or `None`.
+
+# Returns
+
+`true` if the peer is authorized, `false` if not.
+<!-- struct DBusCallFlags -->
+Flags used in `DBusConnection::call` and similar APIs.
+<!-- struct DBusCallFlags::const NONE -->
+No flags set.
+<!-- struct DBusCallFlags::const NO_AUTO_START -->
+The bus must not launch
+an owner for the destination name in response to this method
+invocation.
+<!-- struct DBusCallFlags::const ALLOW_INTERACTIVE_AUTHORIZATION -->
+the caller is prepared to
+wait for interactive authorization. Since 2.46.
+<!-- struct DBusCapabilityFlags -->
+Capabilities negotiated with the remote peer.
+<!-- struct DBusCapabilityFlags::const NONE -->
+No flags set.
+<!-- struct DBusCapabilityFlags::const UNIX_FD_PASSING -->
+The connection
+supports exchanging UNIX file descriptors with the remote peer.
+<!-- struct DBusConnection -->
+The `DBusConnection` type is used for D-Bus connections to remote
+peers such as a message buses. It is a low-level API that offers a
+lot of flexibility. For instance, it lets you establish a connection
+over any transport that can by represented as a `IOStream`.
+
+This class is rarely used directly in D-Bus clients. If you are writing
+a D-Bus client, it is often easier to use the `g_bus_own_name`,
+`g_bus_watch_name` or `DBusProxy::new_for_bus` APIs.
+
+As an exception to the usual GLib rule that a particular object must not
+be used by two threads at the same time, `DBusConnection`'s methods may be
+called from any thread. This is so that `g_bus_get` and `g_bus_get_sync`
+can safely return the same `DBusConnection` when called from any thread.
+
+Most of the ways to obtain a `DBusConnection` automatically initialize it
+(i.e. connect to D-Bus): for instance, `DBusConnection::new` and
+`g_bus_get`, and the synchronous versions of those methods, give you an
+initialized connection. Language bindings for GIO should use
+`Initable::new` or `AsyncInitable::new_async`, which also initialize the
+connection.
+
+If you construct an uninitialized `DBusConnection`, such as via
+`gobject::Object::new`, you must initialize it via `Initable::init` or
+`AsyncInitable::init_async` before using its methods or properties.
+Calling methods or accessing properties on a `DBusConnection` that has not
+completed initialization successfully is considered to be invalid, and leads
+to undefined behaviour. In particular, if initialization fails with a
+`glib::Error`, the only valid thing you can do with that `DBusConnection` is to
+free it with `gobject::ObjectExt::unref`.
+
+## An example D-Bus server # {`gdbus`-server}
+
+Here is an example for a D-Bus server:
+[gdbus-example-server.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-server.c)
+
+## An example for exporting a subtree # {`gdbus`-subtree-server}
+
+Here is an example for exporting a subtree:
+[gdbus-example-subtree.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-subtree.c)
+
+## An example for file descriptor passing # {`gdbus`-unix-fd-client}
+
+Here is an example for passing UNIX file descriptors:
+[gdbus-unix-fd-client.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-unix-fd-client.c)
+
+## An example for exporting a GObject # {`gdbus`-export}
+
+Here is an example for exporting a `gobject::Object`:
+[gdbus-example-export.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-export.c)
+
+# Implements
+
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusConnection::fn new_finish -->
+Finishes an operation started with `DBusConnection::new`.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback`
+ passed to `DBusConnection::new`.
+
+# Returns
+
+a `DBusConnection` or `None` if `error` is set. Free
+ with `gobject::ObjectExt::unref`.
+<!-- impl DBusConnection::fn new_for_address_finish -->
+Finishes an operation started with `DBusConnection::new_for_address`.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed
+ to `DBusConnection::new`
+
+# Returns
+
+a `DBusConnection` or `None` if `error` is set. Free with
+ `gobject::ObjectExt::unref`.
+<!-- impl DBusConnection::fn new_for_address_sync -->
+Synchronously connects and sets up a D-Bus client connection for
+exchanging D-Bus messages with an endpoint specified by `address`
+which must be in the
+[D-Bus address format](https://dbus.freedesktop.org/doc/dbus-specification.html`addresses`).
+
+This constructor can only be used to initiate client-side
+connections - use `DBusConnection::new_sync` if you need to act
+as the server. In particular, `flags` cannot contain the
+`DBusConnectionFlags::AuthenticationServer` or
+`DBusConnectionFlags::AuthenticationAllowAnonymous` flags.
+
+This is a synchronous failable constructor. See
+`DBusConnection::new_for_address` for the asynchronous version.
+
+If `observer` is not `None` it may be used to control the
+authentication process.
+## `address`
+a D-Bus address
+## `flags`
+flags describing how to make the connection
+## `observer`
+a `DBusAuthObserver` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+a `DBusConnection` or `None` if `error` is set. Free with
+ `gobject::ObjectExt::unref`.
+<!-- impl DBusConnection::fn new_sync -->
+Synchronously sets up a D-Bus connection for exchanging D-Bus messages
+with the end represented by `stream`.
+
+If `stream` is a `SocketConnection`, then the corresponding `Socket`
+will be put into non-blocking mode.
+
+The D-Bus connection will interact with `stream` from a worker thread.
+As a result, the caller should not interact with `stream` after this
+method has been called, except by calling `gobject::ObjectExt::unref` on it.
+
+If `observer` is not `None` it may be used to control the
+authentication process.
+
+This is a synchronous failable constructor. See
+`DBusConnection::new` for the asynchronous version.
+## `stream`
+a `IOStream`
+## `guid`
+the GUID to use if authenticating as a server or `None`
+## `flags`
+flags describing how to make the connection
+## `observer`
+a `DBusAuthObserver` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+a `DBusConnection` or `None` if `error` is set. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusConnection::fn new -->
+Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
+with the end represented by `stream`.
+
+If `stream` is a `SocketConnection`, then the corresponding `Socket`
+will be put into non-blocking mode.
+
+The D-Bus connection will interact with `stream` from a worker thread.
+As a result, the caller should not interact with `stream` after this
+method has been called, except by calling `gobject::ObjectExt::unref` on it.
+
+If `observer` is not `None` it may be used to control the
+authentication process.
+
+When the operation is finished, `callback` will be invoked. You can
+then call `DBusConnection::new_finish` to get the result of the
+operation.
+
+This is an asynchronous failable constructor. See
+`DBusConnection::new_sync` for the synchronous
+version.
+## `stream`
+a `IOStream`
+## `guid`
+the GUID to use if authenticating as a server or `None`
+## `flags`
+flags describing how to make the connection
+## `observer`
+a `DBusAuthObserver` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request is satisfied
+## `user_data`
+the data to pass to `callback`
+<!-- impl DBusConnection::fn new_for_address -->
+Asynchronously connects and sets up a D-Bus client connection for
+exchanging D-Bus messages with an endpoint specified by `address`
+which must be in the
+[D-Bus address format](https://dbus.freedesktop.org/doc/dbus-specification.html`addresses`).
+
+This constructor can only be used to initiate client-side
+connections - use `DBusConnection::new` if you need to act as the
+server. In particular, `flags` cannot contain the
+`DBusConnectionFlags::AuthenticationServer` or
+`DBusConnectionFlags::AuthenticationAllowAnonymous` flags.
+
+When the operation is finished, `callback` will be invoked. You can
+then call `DBusConnection::new_for_address_finish` to get the result of
+the operation.
+
+If `observer` is not `None` it may be used to control the
+authentication process.
+
+This is an asynchronous failable constructor. See
+`DBusConnection::new_for_address_sync` for the synchronous
+version.
+## `address`
+a D-Bus address
+## `flags`
+flags describing how to make the connection
+## `observer`
+a `DBusAuthObserver` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request is satisfied
+## `user_data`
+the data to pass to `callback`
+<!-- impl DBusConnection::fn add_filter -->
+Adds a message filter. Filters are handlers that are run on all
+incoming and outgoing messages, prior to standard dispatch. Filters
+are run in the order that they were added. The same handler can be
+added as a filter more than once, in which case it will be run more
+than once. Filters added during a filter callback won't be run on
+the message being processed. Filter functions are allowed to modify
+and even drop messages.
+
+Note that filters are run in a dedicated message handling thread so
+they can't block and, generally, can't do anything but signal a
+worker thread. Also note that filters are rarely needed - use API
+such as `DBusConnection::send_message_with_reply`,
+`DBusConnection::signal_subscribe` or `DBusConnection::call` instead.
+
+If a filter consumes an incoming message the message is not
+dispatched anywhere else - not even the standard dispatch machinery
+(that API such as `DBusConnection::signal_subscribe` and
+`DBusConnection::send_message_with_reply` relies on) will see the
+message. Similarly, if a filter consumes an outgoing message, the
+message will not be sent to the other peer.
+
+If `user_data_free_func` is non-`None`, it will be called (in the
+thread-default main context of the thread you are calling this
+method from) at some point after `user_data` is no longer
+needed. (It is not guaranteed to be called synchronously when the
+filter is removed, and may be called after `self` has been
+destroyed.)
+## `filter_function`
+a filter function
+## `user_data`
+user data to pass to `filter_function`
+## `user_data_free_func`
+function to free `user_data` with when filter
+ is removed or `None`
+
+# Returns
+
+a filter identifier that can be used with
+ `DBusConnection::remove_filter`
+<!-- impl DBusConnection::fn call -->
+Asynchronously invokes the `method_name` method on the
+`interface_name` D-Bus interface on the remote object at
+`object_path` owned by `bus_name`.
+
+If `self` is closed then the operation will fail with
+`IOErrorEnum::Closed`. If `cancellable` is canceled, the operation will
+fail with `IOErrorEnum::Cancelled`. If `parameters` contains a value
+not compatible with the D-Bus protocol, the operation fails with
+`IOErrorEnum::InvalidArgument`.
+
+If `reply_type` is non-`None` then the reply will be checked for having this type and an
+error will be raised if it does not match. Said another way, if you give a `reply_type`
+then any non-`None` return value will be of this type. Unless it’s
+`G_VARIANT_TYPE_UNIT`, the `reply_type` will be a tuple containing one or more
+values.
+
+If the `parameters` `glib::Variant` is floating, it is consumed. This allows
+convenient 'inline' use of `glib::Variant::new`, e.g.:
+
+```C
+ g_dbus_connection_call (connection,
+                         "org.freedesktop.StringThings",
+                         "/org/freedesktop/StringThings",
+                         "org.freedesktop.StringThings",
+                         "TwoStrings",
+                         g_variant_new ("(ss)",
+                                        "Thing One",
+                                        "Thing Two"),
+                         NULL,
+                         G_DBUS_CALL_FLAGS_NONE,
+                         -1,
+                         NULL,
+                         (GAsyncReadyCallback) two_strings_done,
+                         NULL);
+```
+
+This is an asynchronous method. When the operation is finished,
+`callback` will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from. You can then call
+`DBusConnection::call_finish` to get the result of the operation.
+See `DBusConnection::call_sync` for the synchronous version of this
+function.
+
+If `callback` is `None` then the D-Bus method call message will be sent with
+the `DBusMessageFlags::NoReplyExpected` flag set.
+## `bus_name`
+a unique or well-known bus name or `None` if
+ `self` is not a message bus connection
+## `object_path`
+path of remote object
+## `interface_name`
+D-Bus interface to invoke method on
+## `method_name`
+the name of the method to invoke
+## `parameters`
+a `glib::Variant` tuple with parameters for the method
+ or `None` if not passing parameters
+## `reply_type`
+the expected type of the reply (which will be a
+ tuple), or `None`
+## `flags`
+flags from the `DBusCallFlags` enumeration
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request
+ is satisfied or `None` if you don't care about the result of the
+ method invocation
+## `user_data`
+the data to pass to `callback`
+<!-- impl DBusConnection::fn call_finish -->
+Finishes an operation started with `DBusConnection::call`.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed to `DBusConnection::call`
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+ return values. Free with `glib::Variant::unref`.
+<!-- impl DBusConnection::fn call_sync -->
+Synchronously invokes the `method_name` method on the
+`interface_name` D-Bus interface on the remote object at
+`object_path` owned by `bus_name`.
+
+If `self` is closed then the operation will fail with
+`IOErrorEnum::Closed`. If `cancellable` is canceled, the
+operation will fail with `IOErrorEnum::Cancelled`. If `parameters`
+contains a value not compatible with the D-Bus protocol, the operation
+fails with `IOErrorEnum::InvalidArgument`.
+
+If `reply_type` is non-`None` then the reply will be checked for having
+this type and an error will be raised if it does not match. Said
+another way, if you give a `reply_type` then any non-`None` return
+value will be of this type.
+
+If the `parameters` `glib::Variant` is floating, it is consumed.
+This allows convenient 'inline' use of `glib::Variant::new`, e.g.:
+
+```C
+ g_dbus_connection_call_sync (connection,
+                              "org.freedesktop.StringThings",
+                              "/org/freedesktop/StringThings",
+                              "org.freedesktop.StringThings",
+                              "TwoStrings",
+                              g_variant_new ("(ss)",
+                                             "Thing One",
+                                             "Thing Two"),
+                              NULL,
+                              G_DBUS_CALL_FLAGS_NONE,
+                              -1,
+                              NULL,
+                              &error);
+```
+
+The calling thread is blocked until a reply is received. See
+`DBusConnection::call` for the asynchronous version of
+this method.
+## `bus_name`
+a unique or well-known bus name or `None` if
+ `self` is not a message bus connection
+## `object_path`
+path of remote object
+## `interface_name`
+D-Bus interface to invoke method on
+## `method_name`
+the name of the method to invoke
+## `parameters`
+a `glib::Variant` tuple with parameters for the method
+ or `None` if not passing parameters
+## `reply_type`
+the expected type of the reply, or `None`
+## `flags`
+flags from the `DBusCallFlags` enumeration
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+ return values. Free with `glib::Variant::unref`.
+<!-- impl DBusConnection::fn call_with_unix_fd_list -->
+Like `DBusConnection::call` but also takes a `UnixFDList` object.
+
+This method is only available on UNIX.
+## `bus_name`
+a unique or well-known bus name or `None` if
+ `self` is not a message bus connection
+## `object_path`
+path of remote object
+## `interface_name`
+D-Bus interface to invoke method on
+## `method_name`
+the name of the method to invoke
+## `parameters`
+a `glib::Variant` tuple with parameters for the method
+ or `None` if not passing parameters
+## `reply_type`
+the expected type of the reply, or `None`
+## `flags`
+flags from the `DBusCallFlags` enumeration
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `fd_list`
+a `UnixFDList` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request is
+ satisfied or `None` if you don't * care about the result of the
+ method invocation
+## `user_data`
+The data to pass to `callback`.
+<!-- impl DBusConnection::fn call_with_unix_fd_list_finish -->
+Finishes an operation started with `DBusConnection::call_with_unix_fd_list`.
+## `out_fd_list`
+return location for a `UnixFDList` or `None`
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed to
+ `DBusConnection::call_with_unix_fd_list`
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+ return values. Free with `glib::Variant::unref`.
+<!-- impl DBusConnection::fn call_with_unix_fd_list_sync -->
+Like `DBusConnection::call_sync` but also takes and returns `UnixFDList` objects.
+
+This method is only available on UNIX.
+## `bus_name`
+a unique or well-known bus name or `None`
+ if `self` is not a message bus connection
+## `object_path`
+path of remote object
+## `interface_name`
+D-Bus interface to invoke method on
+## `method_name`
+the name of the method to invoke
+## `parameters`
+a `glib::Variant` tuple with parameters for
+ the method or `None` if not passing parameters
+## `reply_type`
+the expected type of the reply, or `None`
+## `flags`
+flags from the `DBusCallFlags` enumeration
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `fd_list`
+a `UnixFDList` or `None`
+## `out_fd_list`
+return location for a `UnixFDList` or `None`
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+ return values. Free with `glib::Variant::unref`.
+<!-- impl DBusConnection::fn close -->
+Closes `self`. Note that this never causes the process to
+exit (this might only happen if the other end of a shared message
+bus connection disconnects, see `DBusConnection:exit-on-close`).
+
+Once the connection is closed, operations such as sending a message
+will return with the error `IOErrorEnum::Closed`. Closing a connection
+will not automatically flush the connection so queued messages may
+be lost. Use `DBusConnection::flush` if you need such guarantees.
+
+If `self` is already closed, this method fails with
+`IOErrorEnum::Closed`.
+
+When `self` has been closed, the `DBusConnection::closed`
+signal is emitted in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread that `self` was constructed in.
+
+This is an asynchronous method. When the operation is finished,
+`callback` will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from. You can
+then call `DBusConnection::close_finish` to get the result of the
+operation. See `DBusConnection::close_sync` for the synchronous
+version.
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request is
+ satisfied or `None` if you don't care about the result
+## `user_data`
+The data to pass to `callback`
+<!-- impl DBusConnection::fn close_finish -->
+Finishes an operation started with `DBusConnection::close`.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed
+ to `DBusConnection::close`
+
+# Returns
+
+`true` if the operation succeeded, `false` if `error` is set
+<!-- impl DBusConnection::fn close_sync -->
+Synchronously closes `self`. The calling thread is blocked
+until this is done. See `DBusConnection::close` for the
+asynchronous version of this method and more details about what it
+does.
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+`true` if the operation succeeded, `false` if `error` is set
+<!-- impl DBusConnection::fn emit_signal -->
+Emits a signal.
+
+If the parameters GVariant is floating, it is consumed.
+
+This can only fail if `parameters` is not compatible with the D-Bus protocol
+(`IOErrorEnum::InvalidArgument`), or if `self` has been closed
+(`IOErrorEnum::Closed`).
+## `destination_bus_name`
+the unique bus name for the destination
+ for the signal or `None` to emit to all listeners
+## `object_path`
+path of remote object
+## `interface_name`
+D-Bus interface to emit a signal on
+## `signal_name`
+the name of the signal to emit
+## `parameters`
+a `glib::Variant` tuple with parameters for the signal
+ or `None` if not passing parameters
+
+# Returns
+
+`true` unless `error` is set
+<!-- impl DBusConnection::fn export_action_group -->
+Exports `action_group` on `self` at `object_path`.
+
+The implemented D-Bus API should be considered private. It is
+subject to change in the future.
+
+A given object path can only have one action group exported on it.
+If this constraint is violated, the export will fail and 0 will be
+returned (with `error` set accordingly).
+
+You can unexport the action group using
+`DBusConnection::unexport_action_group` with the return value of
+this function.
+
+The thread default main context is taken at the time of this call.
+All incoming action activations and state change requests are
+reported from this context. Any changes on the action group that
+cause it to emit signals must also come from this same context.
+Since incoming action activations and state change requests are
+rather likely to cause changes on the action group, this effectively
+limits a given action group to being exported from only one main
+context.
+## `object_path`
+a D-Bus object path
+## `action_group`
+a `ActionGroup`
+
+# Returns
+
+the ID of the export (never zero), or 0 in case of failure
+<!-- impl DBusConnection::fn export_menu_model -->
+Exports `menu` on `self` at `object_path`.
+
+The implemented D-Bus API should be considered private.
+It is subject to change in the future.
+
+An object path can only have one menu model exported on it. If this
+constraint is violated, the export will fail and 0 will be
+returned (with `error` set accordingly).
+
+You can unexport the menu model using
+`DBusConnection::unexport_menu_model` with the return value of
+this function.
+## `object_path`
+a D-Bus object path
+## `menu`
+a `MenuModel`
+
+# Returns
+
+the ID of the export (never zero), or 0 in case of failure
+<!-- impl DBusConnection::fn flush -->
+Asynchronously flushes `self`, that is, writes all queued
+outgoing message to the transport and then flushes the transport
+(using `OutputStreamExt::flush_async`). This is useful in programs
+that wants to emit a D-Bus signal and then exit immediately. Without
+flushing the connection, there is no guaranteed that the message has
+been sent to the networking buffers in the OS kernel.
+
+This is an asynchronous method. When the operation is finished,
+`callback` will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from. You can
+then call `DBusConnection::flush_finish` to get the result of the
+operation. See `DBusConnection::flush_sync` for the synchronous
+version.
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the
+ request is satisfied or `None` if you don't care about the result
+## `user_data`
+The data to pass to `callback`
+<!-- impl DBusConnection::fn flush_finish -->
+Finishes an operation started with `DBusConnection::flush`.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed
+ to `DBusConnection::flush`
+
+# Returns
+
+`true` if the operation succeeded, `false` if `error` is set
+<!-- impl DBusConnection::fn flush_sync -->
+Synchronously flushes `self`. The calling thread is blocked
+until this is done. See `DBusConnection::flush` for the
+asynchronous version of this method and more details about what it
+does.
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+`true` if the operation succeeded, `false` if `error` is set
+<!-- impl DBusConnection::fn get_capabilities -->
+Gets the capabilities negotiated with the remote peer
+
+# Returns
+
+zero or more flags from the `DBusCapabilityFlags` enumeration
+<!-- impl DBusConnection::fn get_exit_on_close -->
+Gets whether the process is terminated when `self` is
+closed by the remote peer. See
+`DBusConnection:exit-on-close` for more details.
+
+# Returns
+
+whether the process is terminated when `self` is
+ closed by the remote peer
+<!-- impl DBusConnection::fn get_flags -->
+Gets the flags used to construct this connection
+
+Feature: `v2_60`
+
+
+# Returns
+
+zero or more flags from the `DBusConnectionFlags` enumeration
+<!-- impl DBusConnection::fn get_guid -->
+The GUID of the peer performing the role of server when
+authenticating. See `DBusConnection:guid` for more details.
+
+# Returns
+
+The GUID. Do not free this string, it is owned by
+ `self`.
+<!-- impl DBusConnection::fn get_last_serial -->
+Retrieves the last serial number assigned to a `DBusMessage` on
+the current thread. This includes messages sent via both low-level
+API such as `DBusConnection::send_message` as well as
+high-level API such as `DBusConnection::emit_signal`,
+`DBusConnection::call` or `DBusProxyExt::call`.
+
+# Returns
+
+the last used serial or zero when no message has been sent
+ within the current thread
+<!-- impl DBusConnection::fn get_peer_credentials -->
+Gets the credentials of the authenticated peer. This will always
+return `None` unless `self` acted as a server
+(e.g. `DBusConnectionFlags::AuthenticationServer` was passed)
+when set up and the client passed credentials as part of the
+authentication process.
+
+In a message bus setup, the message bus is always the server and
+each application is a client. So this method will always return
+`None` for message bus clients.
+
+# Returns
+
+a `Credentials` or `None` if not
+ available. Do not free this object, it is owned by `self`.
+<!-- impl DBusConnection::fn get_stream -->
+Gets the underlying stream used for IO.
+
+While the `DBusConnection` is active, it will interact with this
+stream from a worker thread, so it is not safe to interact with
+the stream directly.
+
+# Returns
+
+the stream used for IO
+<!-- impl DBusConnection::fn get_unique_name -->
+Gets the unique name of `self` as assigned by the message
+bus. This can also be used to figure out if `self` is a
+message bus connection.
+
+# Returns
+
+the unique name or `None` if `self` is not a message
+ bus connection. Do not free this string, it is owned by
+ `self`.
+<!-- impl DBusConnection::fn is_closed -->
+Gets whether `self` is closed.
+
+# Returns
+
+`true` if the connection is closed, `false` otherwise
+<!-- impl DBusConnection::fn register_object -->
+Registers callbacks for exported objects at `object_path` with the
+D-Bus interface that is described in `interface_info`.
+
+Calls to functions in `vtable` (and `user_data_free_func`) will happen
+in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from.
+
+Note that all `glib::Variant` values passed to functions in `vtable` will match
+the signature given in `interface_info` - if a remote caller passes
+incorrect values, the `org.freedesktop.DBus.Error.InvalidArgs`
+is returned to the remote caller.
+
+Additionally, if the remote caller attempts to invoke methods or
+access properties not mentioned in `interface_info` the
+`org.freedesktop.DBus.Error.UnknownMethod` resp.
+`org.freedesktop.DBus.Error.InvalidArgs` errors
+are returned to the caller.
+
+It is considered a programming error if the
+`GDBusInterfaceGetPropertyFunc` function in `vtable` returns a
+`glib::Variant` of incorrect type.
+
+If an existing callback is already registered at `object_path` and
+`interface_name`, then `error` is set to `IOErrorEnum::Exists`.
+
+GDBus automatically implements the standard D-Bus interfaces
+org.freedesktop.DBus.Properties, org.freedesktop.DBus.Introspectable
+and org.freedesktop.Peer, so you don't have to implement those for the
+objects you export. You can implement org.freedesktop.DBus.Properties
+yourself, e.g. to handle getting and setting of properties asynchronously.
+
+Note that the reference count on `interface_info` will be
+incremented by 1 (unless allocated statically, e.g. if the
+reference count is -1, see `DBusInterfaceInfo::ref`) for as long
+as the object is exported. Also note that `vtable` will be copied.
+
+See this [server][gdbus-server] for an example of how to use this method.
+## `object_path`
+the object path to register at
+## `interface_info`
+introspection data for the interface
+## `vtable`
+a `DBusInterfaceVTable` to call into or `None`
+## `user_data`
+data to pass to functions in `vtable`
+## `user_data_free_func`
+function to call when the object path is unregistered
+
+# Returns
+
+0 if `error` is set, otherwise a registration id (never 0)
+ that can be used with `DBusConnection::unregister_object`
+<!-- impl DBusConnection::fn register_object_with_closures -->
+Version of `DBusConnection::register_object` using closures instead of a
+`DBusInterfaceVTable` for easier binding in other languages.
+
+Feature: `v2_46`
+
+## `object_path`
+The object path to register at.
+## `interface_info`
+Introspection data for the interface.
+## `method_call_closure`
+`gobject::Closure` for handling incoming method calls.
+## `get_property_closure`
+`gobject::Closure` for getting a property.
+## `set_property_closure`
+`gobject::Closure` for setting a property.
+
+# Returns
+
+0 if `error` is set, otherwise a registration id (never 0)
+that can be used with `DBusConnection::unregister_object` .
+<!-- impl DBusConnection::fn register_subtree -->
+Registers a whole subtree of dynamic objects.
+
+The `enumerate` and `introspection` functions in `vtable` are used to
+convey, to remote callers, what nodes exist in the subtree rooted
+by `object_path`.
+
+When handling remote calls into any node in the subtree, first the
+`enumerate` function is used to check if the node exists. If the node exists
+or the `DBusSubtreeFlags::DispatchToUnenumeratedNodes` flag is set
+the `introspection` function is used to check if the node supports the
+requested method. If so, the `dispatch` function is used to determine
+where to dispatch the call. The collected `DBusInterfaceVTable` and
+`gpointer` will be used to call into the interface vtable for processing
+the request.
+
+All calls into user-provided code will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from.
+
+If an existing subtree is already registered at `object_path` or
+then `error` is set to `IOErrorEnum::Exists`.
+
+Note that it is valid to register regular objects (using
+`DBusConnection::register_object`) in a subtree registered with
+`DBusConnection::register_subtree` - if so, the subtree handler
+is tried as the last resort. One way to think about a subtree
+handler is to consider it a fallback handler for object paths not
+registered via `DBusConnection::register_object` or other bindings.
+
+Note that `vtable` will be copied so you cannot change it after
+registration.
+
+See this [server][gdbus-subtree-server] for an example of how to use
+this method.
+## `object_path`
+the object path to register the subtree at
+## `vtable`
+a `DBusSubtreeVTable` to enumerate, introspect and
+ dispatch nodes in the subtree
+## `flags`
+flags used to fine tune the behavior of the subtree
+## `user_data`
+data to pass to functions in `vtable`
+## `user_data_free_func`
+function to call when the subtree is unregistered
+
+# Returns
+
+0 if `error` is set, otherwise a subtree registration id (never 0)
+that can be used with `DBusConnection::unregister_subtree` .
+<!-- impl DBusConnection::fn remove_filter -->
+Removes a filter.
+
+Note that since filters run in a different thread, there is a race
+condition where it is possible that the filter will be running even
+after calling `DBusConnection::remove_filter`, so you cannot just
+free data that the filter might be using. Instead, you should pass
+a `GDestroyNotify` to `DBusConnection::add_filter`, which will be
+called when it is guaranteed that the data is no longer needed.
+## `filter_id`
+an identifier obtained from `DBusConnection::add_filter`
+<!-- impl DBusConnection::fn send_message -->
+Asynchronously sends `message` to the peer represented by `self`.
+
+Unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag, the serial number
+will be assigned by `self` and set on `message` via
+`DBusMessage::set_serial`. If `out_serial` is not `None`, then the
+serial number used will be written to this location prior to
+submitting the message to the underlying transport.
+
+If `self` is closed then the operation will fail with
+`IOErrorEnum::Closed`. If `message` is not well-formed,
+the operation fails with `IOErrorEnum::InvalidArgument`.
+
+See this [server][gdbus-server] and [client][gdbus-unix-fd-client]
+for an example of how to use this low-level API to send and receive
+UNIX file descriptors.
+
+Note that `message` must be unlocked, unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag.
+## `message`
+a `DBusMessage`
+## `flags`
+flags affecting how the message is sent
+## `out_serial`
+return location for serial number assigned
+ to `message` when sending it or `None`
+
+# Returns
+
+`true` if the message was well-formed and queued for
+ transmission, `false` if `error` is set
+<!-- impl DBusConnection::fn send_message_with_reply -->
+Asynchronously sends `message` to the peer represented by `self`.
+
+Unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag, the serial number
+will be assigned by `self` and set on `message` via
+`DBusMessage::set_serial`. If `out_serial` is not `None`, then the
+serial number used will be written to this location prior to
+submitting the message to the underlying transport.
+
+If `self` is closed then the operation will fail with
+`IOErrorEnum::Closed`. If `cancellable` is canceled, the operation will
+fail with `IOErrorEnum::Cancelled`. If `message` is not well-formed,
+the operation fails with `IOErrorEnum::InvalidArgument`.
+
+This is an asynchronous method. When the operation is finished, `callback`
+will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from. You can then call
+`DBusConnection::send_message_with_reply_finish` to get the result of the operation.
+See `DBusConnection::send_message_with_reply_sync` for the synchronous version.
+
+Note that `message` must be unlocked, unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag.
+
+See this [server][gdbus-server] and [client][gdbus-unix-fd-client]
+for an example of how to use this low-level API to send and receive
+UNIX file descriptors.
+## `message`
+a `DBusMessage`
+## `flags`
+flags affecting how the message is sent
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `out_serial`
+return location for serial number assigned
+ to `message` when sending it or `None`
+## `cancellable`
+a `Cancellable` or `None`
+## `callback`
+a `GAsyncReadyCallback` to call when the request
+ is satisfied or `None` if you don't care about the result
+## `user_data`
+The data to pass to `callback`
+<!-- impl DBusConnection::fn send_message_with_reply_finish -->
+Finishes an operation started with `DBusConnection::send_message_with_reply`.
+
+Note that `error` is only set if a local in-process error
+occurred. That is to say that the returned `DBusMessage` object may
+be of type `DBusMessageType::Error`. Use
+`DBusMessage::to_gerror` to transcode this to a `glib::Error`.
+
+See this [server][gdbus-server] and [client][gdbus-unix-fd-client]
+for an example of how to use this low-level API to send and receive
+UNIX file descriptors.
+## `res`
+a `AsyncResult` obtained from the `GAsyncReadyCallback` passed to
+ `DBusConnection::send_message_with_reply`
+
+# Returns
+
+a locked `DBusMessage` or `None` if `error` is set
+<!-- impl DBusConnection::fn send_message_with_reply_sync -->
+Synchronously sends `message` to the peer represented by `self`
+and blocks the calling thread until a reply is received or the
+timeout is reached. See `DBusConnection::send_message_with_reply`
+for the asynchronous version of this method.
+
+Unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag, the serial number
+will be assigned by `self` and set on `message` via
+`DBusMessage::set_serial`. If `out_serial` is not `None`, then the
+serial number used will be written to this location prior to
+submitting the message to the underlying transport.
+
+If `self` is closed then the operation will fail with
+`IOErrorEnum::Closed`. If `cancellable` is canceled, the operation will
+fail with `IOErrorEnum::Cancelled`. If `message` is not well-formed,
+the operation fails with `IOErrorEnum::InvalidArgument`.
+
+Note that `error` is only set if a local in-process error
+occurred. That is to say that the returned `DBusMessage` object may
+be of type `DBusMessageType::Error`. Use
+`DBusMessage::to_gerror` to transcode this to a `glib::Error`.
+
+See this [server][gdbus-server] and [client][gdbus-unix-fd-client]
+for an example of how to use this low-level API to send and receive
+UNIX file descriptors.
+
+Note that `message` must be unlocked, unless `flags` contain the
+`DBusSendMessageFlags::PreserveSerial` flag.
+## `message`
+a `DBusMessage`
+## `flags`
+flags affecting how the message is sent.
+## `timeout_msec`
+the timeout in milliseconds, -1 to use the default
+ timeout or `G_MAXINT` for no timeout
+## `out_serial`
+return location for serial number
+ assigned to `message` when sending it or `None`
+## `cancellable`
+a `Cancellable` or `None`
+
+# Returns
+
+a locked `DBusMessage` that is the reply
+ to `message` or `None` if `error` is set
+<!-- impl DBusConnection::fn set_exit_on_close -->
+Sets whether the process should be terminated when `self` is
+closed by the remote peer. See `DBusConnection:exit-on-close` for
+more details.
+
+Note that this function should be used with care. Most modern UNIX
+desktops tie the notion of a user session with the session bus, and expect
+all of a user's applications to quit when their bus connection goes away.
+If you are setting `exit_on_close` to `false` for the shared session
+bus connection, you should make sure that your application exits
+when the user session ends.
+## `exit_on_close`
+whether the process should be terminated
+ when `self` is closed by the remote peer
+<!-- impl DBusConnection::fn signal_subscribe -->
+Subscribes to signals on `self` and invokes `callback` with a whenever
+the signal is received. Note that `callback` will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from.
+
+If `self` is not a message bus connection, `sender` must be
+`None`.
+
+If `sender` is a well-known name note that `callback` is invoked with
+the unique name for the owner of `sender`, not the well-known name
+as one would expect. This is because the message bus rewrites the
+name. As such, to avoid certain race conditions, users should be
+tracking the name owner of the well-known name and use that when
+processing the received signal.
+
+If one of `DBusSignalFlags::MatchArg0Namespace` or
+`DBusSignalFlags::MatchArg0Path` are given, `arg0` is
+interpreted as part of a namespace or path. The first argument
+of a signal is matched against that part as specified by D-Bus.
+
+If `user_data_free_func` is non-`None`, it will be called (in the
+thread-default main context of the thread you are calling this
+method from) at some point after `user_data` is no longer
+needed. (It is not guaranteed to be called synchronously when the
+signal is unsubscribed from, and may be called after `self`
+has been destroyed.)
+
+As `callback` is potentially invoked in a different thread from where it’s
+emitted, it’s possible for this to happen after
+`DBusConnection::signal_unsubscribe` has been called in another thread.
+Due to this, `user_data` should have a strong reference which is freed with
+`user_data_free_func`, rather than pointing to data whose lifecycle is tied
+to the signal subscription. For example, if a `gobject::Object` is used to store the
+subscription ID from `DBusConnection::signal_subscribe`, a strong reference
+to that `gobject::Object` must be passed to `user_data`, and `gobject::ObjectExt::unref` passed to
+`user_data_free_func`. You are responsible for breaking the resulting
+reference count cycle by explicitly unsubscribing from the signal when
+dropping the last external reference to the `gobject::Object`. Alternatively, a weak
+reference may be used.
+
+It is guaranteed that if you unsubscribe from a signal using
+`DBusConnection::signal_unsubscribe` from the same thread which made the
+corresponding `DBusConnection::signal_subscribe` call, `callback` will not
+be invoked after `DBusConnection::signal_unsubscribe` returns.
+
+The returned subscription identifier is an opaque value which is guaranteed
+to never be zero.
+
+This function can never fail.
+## `sender`
+sender name to match on (unique or well-known name)
+ or `None` to listen from all senders
+## `interface_name`
+D-Bus interface name to match on or `None` to
+ match on all interfaces
+## `member`
+D-Bus signal name to match on or `None` to match on
+ all signals
+## `object_path`
+object path to match on or `None` to match on
+ all object paths
+## `arg0`
+contents of first string argument to match on or `None`
+ to match on all kinds of arguments
+## `flags`
+`DBusSignalFlags` describing how arg0 is used in subscribing to the
+ signal
+## `callback`
+callback to invoke when there is a signal matching the requested data
+## `user_data`
+user data to pass to `callback`
+## `user_data_free_func`
+function to free `user_data` with when
+ subscription is removed or `None`
+
+# Returns
+
+a subscription identifier that can be used with `DBusConnection::signal_unsubscribe`
+<!-- impl DBusConnection::fn signal_unsubscribe -->
+Unsubscribes from signals.
+
+Note that there may still be D-Bus traffic to process (relating to this
+signal subscription) in the current thread-default `glib::MainContext` after this
+function has returned. You should continue to iterate the `glib::MainContext`
+until the `GDestroyNotify` function passed to
+`DBusConnection::signal_subscribe` is called, in order to avoid memory
+leaks through callbacks queued on the `glib::MainContext` after it’s stopped being
+iterated.
+## `subscription_id`
+a subscription id obtained from
+ `DBusConnection::signal_subscribe`
+<!-- impl DBusConnection::fn start_message_processing -->
+If `self` was created with
+`DBusConnectionFlags::DelayMessageProcessing`, this method
+starts processing messages. Does nothing on if `self` wasn't
+created with this flag or if the method has already been called.
+<!-- impl DBusConnection::fn unexport_action_group -->
+Reverses the effect of a previous call to
+`DBusConnection::export_action_group`.
+
+It is an error to call this function with an ID that wasn't returned
+from `DBusConnection::export_action_group` or to call it with the
+same ID more than once.
+## `export_id`
+the ID from `DBusConnection::export_action_group`
+<!-- impl DBusConnection::fn unexport_menu_model -->
+Reverses the effect of a previous call to
+`DBusConnection::export_menu_model`.
+
+It is an error to call this function with an ID that wasn't returned
+from `DBusConnection::export_menu_model` or to call it with the
+same ID more than once.
+## `export_id`
+the ID from `DBusConnection::export_menu_model`
+<!-- impl DBusConnection::fn unregister_object -->
+Unregisters an object.
+## `registration_id`
+a registration id obtained from
+ `DBusConnection::register_object`
+
+# Returns
+
+`true` if the object was unregistered, `false` otherwise
+<!-- impl DBusConnection::fn unregister_subtree -->
+Unregisters a subtree.
+## `registration_id`
+a subtree registration id obtained from
+ `DBusConnection::register_subtree`
+
+# Returns
+
+`true` if the subtree was unregistered, `false` otherwise
+<!-- impl DBusConnection::fn connect_closed -->
+Emitted when the connection is closed.
+
+The cause of this event can be
+
+- If `DBusConnection::close` is called. In this case
+ `remote_peer_vanished` is set to `false` and `error` is `None`.
+
+- If the remote peer closes the connection. In this case
+ `remote_peer_vanished` is set to `true` and `error` is set.
+
+- If the remote peer sends invalid or malformed data. In this
+ case `remote_peer_vanished` is set to `false` and `error` is set.
+
+Upon receiving this signal, you should give up your reference to
+`connection`. You are guaranteed that this signal is emitted only
+once.
+## `remote_peer_vanished`
+`true` if `connection` is closed because the
+ remote peer closed its end of the connection
+## `error`
+a `glib::Error` with more details about the event or `None`
+<!-- impl DBusConnection::fn set_property_address -->
+A D-Bus address specifying potential endpoints that can be used
+when establishing the connection.
+<!-- impl DBusConnection::fn set_property_authentication_observer -->
+A `DBusAuthObserver` object to assist in the authentication process or `None`.
+<!-- impl DBusConnection::fn get_property_capabilities -->
+Flags from the `DBusCapabilityFlags` enumeration
+representing connection features negotiated with the other peer.
+<!-- impl DBusConnection::fn get_property_closed -->
+A boolean specifying whether the connection has been closed.
+<!-- impl DBusConnection::fn get_property_exit_on_close -->
+A boolean specifying whether the process will be terminated (by
+calling `raise(SIGTERM)`) if the connection is closed by the
+remote peer.
+
+Note that `DBusConnection` objects returned by `g_bus_get_finish`
+and `g_bus_get_sync` will (usually) have this property set to `true`.
+<!-- impl DBusConnection::fn set_property_exit_on_close -->
+A boolean specifying whether the process will be terminated (by
+calling `raise(SIGTERM)`) if the connection is closed by the
+remote peer.
+
+Note that `DBusConnection` objects returned by `g_bus_get_finish`
+and `g_bus_get_sync` will (usually) have this property set to `true`.
+<!-- impl DBusConnection::fn get_property_flags -->
+Flags from the `DBusConnectionFlags` enumeration.
+<!-- impl DBusConnection::fn set_property_flags -->
+Flags from the `DBusConnectionFlags` enumeration.
+<!-- impl DBusConnection::fn get_property_guid -->
+The GUID of the peer performing the role of server when
+authenticating.
+
+If you are constructing a `DBusConnection` and pass
+`DBusConnectionFlags::AuthenticationServer` in the
+`DBusConnection:flags` property then you MUST also set this
+property to a valid guid.
+
+If you are constructing a `DBusConnection` and pass
+`DBusConnectionFlags::AuthenticationClient` in the
+`DBusConnection:flags` property you will be able to read the GUID
+of the other peer here after the connection has been successfully
+initialized.
+<!-- impl DBusConnection::fn set_property_guid -->
+The GUID of the peer performing the role of server when
+authenticating.
+
+If you are constructing a `DBusConnection` and pass
+`DBusConnectionFlags::AuthenticationServer` in the
+`DBusConnection:flags` property then you MUST also set this
+property to a valid guid.
+
+If you are constructing a `DBusConnection` and pass
+`DBusConnectionFlags::AuthenticationClient` in the
+`DBusConnection:flags` property you will be able to read the GUID
+of the other peer here after the connection has been successfully
+initialized.
+<!-- impl DBusConnection::fn get_property_stream -->
+The underlying `IOStream` used for I/O.
+
+If this is passed on construction and is a `SocketConnection`,
+then the corresponding `Socket` will be put into non-blocking mode.
+
+While the `DBusConnection` is active, it will interact with this
+stream from a worker thread, so it is not safe to interact with
+the stream directly.
+<!-- impl DBusConnection::fn set_property_stream -->
+The underlying `IOStream` used for I/O.
+
+If this is passed on construction and is a `SocketConnection`,
+then the corresponding `Socket` will be put into non-blocking mode.
+
+While the `DBusConnection` is active, it will interact with this
+stream from a worker thread, so it is not safe to interact with
+the stream directly.
+<!-- impl DBusConnection::fn get_property_unique_name -->
+The unique name as assigned by the message bus or `None` if the
+connection is not open or not a message bus connection.
+<!-- struct DBusConnectionFlags -->
+Flags used when creating a new `DBusConnection`.
+<!-- struct DBusConnectionFlags::const NONE -->
+No flags set.
+<!-- struct DBusConnectionFlags::const AUTHENTICATION_CLIENT -->
+Perform authentication against server.
+<!-- struct DBusConnectionFlags::const AUTHENTICATION_SERVER -->
+Perform authentication against client.
+<!-- struct DBusConnectionFlags::const AUTHENTICATION_ALLOW_ANONYMOUS -->
+When
+authenticating as a server, allow the anonymous authentication
+method.
+<!-- struct DBusConnectionFlags::const MESSAGE_BUS_CONNECTION -->
+Pass this flag if connecting to a peer that is a
+message bus. This means that the Hello() method will be invoked as part of the connection setup.
+<!-- struct DBusConnectionFlags::const DELAY_MESSAGE_PROCESSING -->
+If set, processing of D-Bus messages is
+delayed until `DBusConnection::start_message_processing` is called.
+<!-- struct DBusInterface -->
+The `DBusInterface` type is the base type for D-Bus interfaces both
+on the service side (see `DBusInterfaceSkeleton`) and client side
+(see `DBusProxy`).
+
+# Implements
+
+[`DBusInterfaceExt`](trait.DBusInterfaceExt.html)
+<!-- trait DBusInterfaceExt -->
+Trait containing all `DBusInterface` methods.
+
+# Implementors
+
+[`DBusInterfaceSkeleton`](struct.DBusInterfaceSkeleton.html), [`DBusInterface`](struct.DBusInterface.html), [`DBusProxy`](struct.DBusProxy.html)
+<!-- trait DBusInterfaceExt::fn get -->
+Gets the `DBusObject` that `self` belongs to, if any.
+
+# Returns
+
+A `DBusObject` or `None`. The returned
+reference should be freed with `gobject::ObjectExt::unref`.
+<!-- trait DBusInterfaceExt::fn get_info -->
+Gets D-Bus introspection information for the D-Bus interface
+implemented by `self`.
+
+# Returns
+
+A `DBusInterfaceInfo`. Do not free.
+<!-- trait DBusInterfaceExt::fn get_object -->
+Gets the `DBusObject` that `self` belongs to, if any.
+
+It is not safe to use the returned object if `self` or
+the returned object is being used from other threads. See
+`DBusInterface::dup_object` for a thread-safe alternative.
+
+# Returns
+
+A `DBusObject` or `None`. The returned
+ reference belongs to `self` and should not be freed.
+<!-- trait DBusInterfaceExt::fn set_object -->
+Sets the `DBusObject` for `self` to `object`.
+
+Note that `self` will hold a weak reference to `object`.
+## `object`
+A `DBusObject` or `None`.
+<!-- struct DBusInterfaceInfo -->
+Information about a D-Bus interface.
+<!-- impl DBusInterfaceInfo::fn cache_build -->
+Builds a lookup-cache to speed up
+`DBusInterfaceInfo::lookup_method`,
+`DBusInterfaceInfo::lookup_signal` and
+`DBusInterfaceInfo::lookup_property`.
+
+If this has already been called with `self`, the existing cache is
+used and its use count is increased.
+
+Note that `self` cannot be modified until
+`DBusInterfaceInfo::cache_release` is called.
+<!-- impl DBusInterfaceInfo::fn cache_release -->
+Decrements the usage count for the cache for `self` built by
+`DBusInterfaceInfo::cache_build` (if any) and frees the
+resources used by the cache if the usage count drops to zero.
+<!-- impl DBusInterfaceInfo::fn generate_xml -->
+Appends an XML representation of `self` (and its children) to `string_builder`.
+
+This function is typically used for generating introspection XML
+documents at run-time for handling the
+`org.freedesktop.DBus.Introspectable.Introspect`
+method.
+## `indent`
+Indentation level.
+## `string_builder`
+A `glib::String` to to append XML data to.
+<!-- impl DBusInterfaceInfo::fn lookup_method -->
+Looks up information about a method.
+
+The cost of this function is O(n) in number of methods unless
+`DBusInterfaceInfo::cache_build` has been used on `self`.
+## `name`
+A D-Bus method name (typically in CamelCase)
+
+# Returns
+
+A `DBusMethodInfo` or `None` if not found. Do not free, it is owned by `self`.
+<!-- impl DBusInterfaceInfo::fn lookup_property -->
+Looks up information about a property.
+
+The cost of this function is O(n) in number of properties unless
+`DBusInterfaceInfo::cache_build` has been used on `self`.
+## `name`
+A D-Bus property name (typically in CamelCase).
+
+# Returns
+
+A `DBusPropertyInfo` or `None` if not found. Do not free, it is owned by `self`.
+<!-- impl DBusInterfaceInfo::fn lookup_signal -->
+Looks up information about a signal.
+
+The cost of this function is O(n) in number of signals unless
+`DBusInterfaceInfo::cache_build` has been used on `self`.
+## `name`
+A D-Bus signal name (typically in CamelCase)
+
+# Returns
+
+A `DBusSignalInfo` or `None` if not found. Do not free, it is owned by `self`.
+<!-- impl DBusInterfaceInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusInterfaceInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
+<!-- struct DBusInterfaceSkeleton -->
+Abstract base class for D-Bus interfaces on the service side.
+
+# Implements
+
+[`DBusInterfaceSkeletonExt`](trait.DBusInterfaceSkeletonExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`DBusInterfaceExt`](trait.DBusInterfaceExt.html)
+<!-- trait DBusInterfaceSkeletonExt -->
+Trait containing all `DBusInterfaceSkeleton` methods.
+
+# Implementors
+
+[`DBusInterfaceSkeleton`](struct.DBusInterfaceSkeleton.html)
+<!-- trait DBusInterfaceSkeletonExt::fn export -->
+Exports `self` at `object_path` on `connection`.
+
+This can be called multiple times to export the same `self`
+onto multiple connections however the `object_path` provided must be
+the same for all connections.
+
+Use `DBusInterfaceSkeletonExt::unexport` to unexport the object.
+## `connection`
+A `DBusConnection` to export `self` on.
+## `object_path`
+The path to export the interface at.
+
+# Returns
+
+`true` if the interface was exported on `connection`, otherwise `false` with
+`error` set.
+<!-- trait DBusInterfaceSkeletonExt::fn flush -->
+If `self` has outstanding changes, request for these changes to be
+emitted immediately.
+
+For example, an exported D-Bus interface may queue up property
+changes and emit the
+`org.freedesktop.DBus.Properties.PropertiesChanged`
+signal later (e.g. in an idle handler). This technique is useful
+for collapsing multiple property changes into one.
+<!-- trait DBusInterfaceSkeletonExt::fn get_connection -->
+Gets the first connection that `self` is exported on, if any.
+
+# Returns
+
+A `DBusConnection` or `None` if `self` is
+not exported anywhere. Do not free, the object belongs to `self`.
+<!-- trait DBusInterfaceSkeletonExt::fn get_connections -->
+Gets a list of the connections that `self` is exported on.
+
+# Returns
+
+A list of
+ all the connections that `self` is exported on. The returned
+ list should be freed with `glib::List::free` after each element has
+ been freed with `gobject::ObjectExt::unref`.
+<!-- trait DBusInterfaceSkeletonExt::fn get_flags -->
+Gets the `DBusInterfaceSkeletonFlags` that describes what the behavior
+of `self`
+
+# Returns
+
+One or more flags from the `DBusInterfaceSkeletonFlags` enumeration.
+<!-- trait DBusInterfaceSkeletonExt::fn get_info -->
+Gets D-Bus introspection information for the D-Bus interface
+implemented by `self`.
+
+# Returns
+
+A `DBusInterfaceInfo` (never `None`). Do not free.
+<!-- trait DBusInterfaceSkeletonExt::fn get_object_path -->
+Gets the object path that `self` is exported on, if any.
+
+# Returns
+
+A string owned by `self` or `None` if `self` is not exported
+anywhere. Do not free, the string belongs to `self`.
+<!-- trait DBusInterfaceSkeletonExt::fn get_properties -->
+Gets all D-Bus properties for `self`.
+
+# Returns
+
+A `glib::Variant` of type
+['a{sv}'][G-VARIANT-TYPE-VARDICT:CAPS].
+Free with `glib::Variant::unref`.
+<!-- trait DBusInterfaceSkeletonExt::fn get_vtable -->
+Gets the interface vtable for the D-Bus interface implemented by
+`self`. The returned function pointers should expect `self`
+itself to be passed as `user_data`.
+
+# Returns
+
+A `DBusInterfaceVTable` (never `None`).
+<!-- trait DBusInterfaceSkeletonExt::fn has_connection -->
+Checks if `self` is exported on `connection`.
+## `connection`
+A `DBusConnection`.
+
+# Returns
+
+`true` if `self` is exported on `connection`, `false` otherwise.
+<!-- trait DBusInterfaceSkeletonExt::fn set_flags -->
+Sets flags describing what the behavior of `skeleton` should be.
+## `flags`
+Flags from the `DBusInterfaceSkeletonFlags` enumeration.
+<!-- trait DBusInterfaceSkeletonExt::fn unexport -->
+Stops exporting `self` on all connections it is exported on.
+
+To unexport `self` from only a single connection, use
+`DBusInterfaceSkeletonExt::unexport_from_connection`
+<!-- trait DBusInterfaceSkeletonExt::fn unexport_from_connection -->
+Stops exporting `self` on `connection`.
+
+To stop exporting on all connections the interface is exported on,
+use `DBusInterfaceSkeletonExt::unexport`.
+## `connection`
+A `DBusConnection`.
+<!-- trait DBusInterfaceSkeletonExt::fn connect_g_authorize_method -->
+Emitted when a method is invoked by a remote caller and used to
+determine if the method call is authorized.
+
+Note that this signal is emitted in a thread dedicated to
+handling the method call so handlers are allowed to perform
+blocking IO. This means that it is appropriate to call e.g.
+[`polkit_authority_check_authorization_sync`](http://hal.freedesktop.org/docs/polkit/PolkitAuthority.html`polkit`-authority-check-authorization-sync)
+with the
+[POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION](http://hal.freedesktop.org/docs/polkit/PolkitAuthority.html`POLKIT`-CHECK-AUTHORIZATION-FLAGS-ALLOW-USER-INTERACTION:CAPS)
+flag set.
+
+If `false` is returned then no further handlers are run and the
+signal handler must take a reference to `invocation` and finish
+handling the call (e.g. return an error via
+`DBusMethodInvocation::return_error`).
+
+Otherwise, if `true` is returned, signal emission continues. If no
+handlers return `false`, then the method is dispatched. If
+`interface` has an enclosing `DBusObjectSkeleton`, then the
+`DBusObjectSkeleton::authorize-method` signal handlers run before
+the handlers for this signal.
+
+The default class handler just returns `true`.
+
+Please note that the common case is optimized: if no signals
+handlers are connected and the default class handler isn't
+overridden (for both `interface` and the enclosing
+`DBusObjectSkeleton`, if any) and `DBusInterfaceSkeleton:g-flags` does
+not have the
+`DBusInterfaceSkeletonFlags::HandleMethodInvocationsInThread`
+flags set, no dedicated thread is ever used and the call will be
+handled in the same thread as the object that `interface` belongs
+to was exported in.
+## `invocation`
+A `DBusMethodInvocation`.
+
+# Returns
+
+`true` if the call is authorized, `false` otherwise.
+<!-- trait DBusInterfaceSkeletonExt::fn get_property_g_flags -->
+Flags from the `DBusInterfaceSkeletonFlags` enumeration.
+<!-- trait DBusInterfaceSkeletonExt::fn set_property_g_flags -->
+Flags from the `DBusInterfaceSkeletonFlags` enumeration.
+<!-- struct DBusInterfaceSkeletonFlags -->
+Flags describing the behavior of a `DBusInterfaceSkeleton` instance.
+<!-- struct DBusInterfaceSkeletonFlags::const NONE -->
+No flags set.
+<!-- struct DBusInterfaceSkeletonFlags::const HANDLE_METHOD_INVOCATIONS_IN_THREAD -->
+Each method invocation is handled in
+ a thread dedicated to the invocation. This means that the method implementation can use blocking IO
+ without blocking any other part of the process. It also means that the method implementation must
+ use locking to access data structures used by other threads.
+<!-- struct DBusMenuModel -->
+`DBusMenuModel` is an implementation of `MenuModel` that can be used
+as a proxy for a menu model that is exported over D-Bus with
+`DBusConnection::export_menu_model`.
+
+# Implements
+
+[`MenuModelExt`](trait.MenuModelExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusMenuModel::fn get -->
+Obtains a `DBusMenuModel` for the menu model which is exported
+at the given `bus_name` and `object_path`.
+
+The thread default main context is taken at the time of this call.
+All signals on the menu model (and any linked models) are reported
+with respect to this context. All calls on the returned menu model
+(and linked models) must also originate from this same context, with
+the thread default main context unchanged.
+## `connection`
+a `DBusConnection`
+## `bus_name`
+the bus name which exports the menu model
+ or `None` if `connection` is not a message bus connection
+## `object_path`
+the object path at which the menu model is exported
+
+# Returns
+
+a `DBusMenuModel` object. Free with
+ `gobject::ObjectExt::unref`.
+<!-- struct DBusMessage -->
+A type for representing D-Bus messages that can be sent or received
+on a `DBusConnection`.
+
+# Implements
+
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusMessage::fn new -->
+Creates a new empty `DBusMessage`.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_from_blob -->
+Creates a new `DBusMessage` from the data stored at `blob`. The byte
+order that the message was in can be retrieved using
+`DBusMessage::get_byte_order`.
+
+If the `blob` cannot be parsed, contains invalid fields, or contains invalid
+headers, `IOErrorEnum::InvalidArgument` will be returned.
+## `blob`
+A blob representing a binary D-Bus message.
+## `blob_len`
+The length of `blob`.
+## `capabilities`
+A `DBusCapabilityFlags` describing what protocol features are supported.
+
+# Returns
+
+A new `DBusMessage` or `None` if `error` is set. Free with
+`gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_method_call -->
+Creates a new `DBusMessage` for a method call.
+## `name`
+A valid D-Bus name or `None`.
+## `path`
+A valid object path.
+## `interface_`
+A valid D-Bus interface name or `None`.
+## `method`
+A valid method name.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_signal -->
+Creates a new `DBusMessage` for a signal emission.
+## `path`
+A valid object path.
+## `interface_`
+A valid D-Bus interface name.
+## `signal`
+A valid signal name.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn bytes_needed -->
+Utility function to calculate how many bytes are needed to
+completely deserialize the D-Bus message stored at `blob`.
+## `blob`
+A blob representing a binary D-Bus message.
+## `blob_len`
+The length of `blob` (must be at least 16).
+
+# Returns
+
+Number of bytes needed or -1 if `error` is set (e.g. if
+`blob` contains invalid data or not enough data is available to
+determine the size).
+<!-- impl DBusMessage::fn copy -->
+Copies `self`. The copy is a deep copy and the returned
+`DBusMessage` is completely identical except that it is guaranteed
+to not be locked.
+
+This operation can fail if e.g. `self` contains file descriptors
+and the per-process or system-wide open files limit is reached.
+
+# Returns
+
+A new `DBusMessage` or `None` if `error` is set.
+ Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn get_arg0 -->
+Convenience to get the first item in the body of `self`.
+
+# Returns
+
+The string item or `None` if the first item in the body of
+`self` is not a string.
+<!-- impl DBusMessage::fn get_body -->
+Gets the body of a message.
+
+# Returns
+
+A `glib::Variant` or `None` if the body is
+empty. Do not free, it is owned by `self`.
+<!-- impl DBusMessage::fn get_byte_order -->
+Gets the byte order of `self`.
+
+# Returns
+
+The byte order.
+<!-- impl DBusMessage::fn get_destination -->
+Convenience getter for the `DBusMessageHeaderField::Destination` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_error_name -->
+Convenience getter for the `DBusMessageHeaderField::ErrorName` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_flags -->
+Gets the flags for `self`.
+
+# Returns
+
+Flags that are set (typically values from the `DBusMessageFlags` enumeration bitwise ORed together).
+<!-- impl DBusMessage::fn get_header -->
+Gets a header field on `self`.
+
+The caller is responsible for checking the type of the returned `glib::Variant`
+matches what is expected.
+## `header_field`
+A 8-bit unsigned integer (typically a value from the `DBusMessageHeaderField` enumeration)
+
+# Returns
+
+A `glib::Variant` with the value if the header was found, `None`
+otherwise. Do not free, it is owned by `self`.
+<!-- impl DBusMessage::fn get_header_fields -->
+Gets an array of all header fields on `self` that are set.
+
+# Returns
+
+An array of header fields
+terminated by `DBusMessageHeaderField::Invalid`. Each element
+is a `guchar`. Free with `g_free`.
+<!-- impl DBusMessage::fn get_interface -->
+Convenience getter for the `DBusMessageHeaderField::Interface` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_locked -->
+Checks whether `self` is locked. To monitor changes to this
+value, conncet to the `gobject::Object::notify` signal to listen for changes
+on the `DBusMessage:locked` property.
+
+# Returns
+
+`true` if `self` is locked, `false` otherwise.
+<!-- impl DBusMessage::fn get_member -->
+Convenience getter for the `DBusMessageHeaderField::Member` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_message_type -->
+Gets the type of `self`.
+
+# Returns
+
+A 8-bit unsigned integer (typically a value from the `DBusMessageType` enumeration).
+<!-- impl DBusMessage::fn get_num_unix_fds -->
+Convenience getter for the `DBusMessageHeaderField::NumUnixFds` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_path -->
+Convenience getter for the `DBusMessageHeaderField::Path` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_reply_serial -->
+Convenience getter for the `DBusMessageHeaderField::ReplySerial` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_sender -->
+Convenience getter for the `DBusMessageHeaderField::Sender` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_serial -->
+Gets the serial for `self`.
+
+# Returns
+
+A `guint32`.
+<!-- impl DBusMessage::fn get_signature -->
+Convenience getter for the `DBusMessageHeaderField::Signature` header field.
+
+# Returns
+
+The value.
+<!-- impl DBusMessage::fn get_unix_fd_list -->
+Gets the UNIX file descriptors associated with `self`, if any.
+
+This method is only available on UNIX.
+
+# Returns
+
+A `UnixFDList` or `None` if no file descriptors are
+associated. Do not free, this object is owned by `self`.
+<!-- impl DBusMessage::fn lock -->
+If `self` is locked, does nothing. Otherwise locks the message.
+<!-- impl DBusMessage::fn new_method_error -->
+Creates a new `DBusMessage` that is an error reply to `self`.
+## `error_name`
+A valid D-Bus error name.
+## `error_message_format`
+The D-Bus error message in a `printf` format.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_method_error_literal -->
+Creates a new `DBusMessage` that is an error reply to `self`.
+## `error_name`
+A valid D-Bus error name.
+## `error_message`
+The D-Bus error message.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_method_error_valist -->
+Like `DBusMessage::new_method_error` but intended for language bindings.
+## `error_name`
+A valid D-Bus error name.
+## `error_message_format`
+The D-Bus error message in a `printf` format.
+## `var_args`
+Arguments for `error_message_format`.
+
+# Returns
+
+A `DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn new_method_reply -->
+Creates a new `DBusMessage` that is a reply to `self`.
+
+# Returns
+
+`DBusMessage`. Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusMessage::fn print -->
+Produces a human-readable multi-line description of `self`.
+
+The contents of the description has no ABI guarantees, the contents
+and formatting is subject to change at any time. Typical output
+looks something like this:
+
+```text
+Flags:   none
+Version: 0
+Serial:  4
+Headers:
+  path -> objectpath '/org/gtk/GDBus/TestObject'
+  interface -> 'org.gtk.GDBus.TestInterface'
+  member -> 'GimmeStdout'
+  destination -> ':1.146'
+Body: ()
+UNIX File Descriptors:
+  (none)
+```
+or
+
+```text
+Flags:   no-reply-expected
+Version: 0
+Serial:  477
+Headers:
+  reply-serial -> uint32 4
+  destination -> ':1.159'
+  sender -> ':1.146'
+  num-unix-fds -> uint32 1
+Body: ()
+UNIX File Descriptors:
+  fd 12: dev=0:10,mode=020620,ino=5,uid=500,gid=5,rdev=136:2,size=0,atime=1273085037,mtime=1273085851,ctime=1272982635
+```
+## `indent`
+Indentation level.
+
+# Returns
+
+A string that should be freed with `g_free`.
+<!-- impl DBusMessage::fn set_body -->
+Sets the body `self`. As a side-effect the
+`DBusMessageHeaderField::Signature` header field is set to the
+type string of `body` (or cleared if `body` is `None`).
+
+If `body` is floating, `self` assumes ownership of `body`.
+## `body`
+Either `None` or a `glib::Variant` that is a tuple.
+<!-- impl DBusMessage::fn set_byte_order -->
+Sets the byte order of `self`.
+## `byte_order`
+The byte order.
+<!-- impl DBusMessage::fn set_destination -->
+Convenience setter for the `DBusMessageHeaderField::Destination` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_error_name -->
+Convenience setter for the `DBusMessageHeaderField::ErrorName` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_flags -->
+Sets the flags to set on `self`.
+## `flags`
+Flags for `self` that are set (typically values from the `DBusMessageFlags`
+enumeration bitwise ORed together).
+<!-- impl DBusMessage::fn set_header -->
+Sets a header field on `self`.
+
+If `value` is floating, `self` assumes ownership of `value`.
+## `header_field`
+A 8-bit unsigned integer (typically a value from the `DBusMessageHeaderField` enumeration)
+## `value`
+A `glib::Variant` to set the header field or `None` to clear the header field.
+<!-- impl DBusMessage::fn set_interface -->
+Convenience setter for the `DBusMessageHeaderField::Interface` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_member -->
+Convenience setter for the `DBusMessageHeaderField::Member` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_message_type -->
+Sets `self` to be of `type_`.
+## `type_`
+A 8-bit unsigned integer (typically a value from the `DBusMessageType` enumeration).
+<!-- impl DBusMessage::fn set_num_unix_fds -->
+Convenience setter for the `DBusMessageHeaderField::NumUnixFds` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_path -->
+Convenience setter for the `DBusMessageHeaderField::Path` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_reply_serial -->
+Convenience setter for the `DBusMessageHeaderField::ReplySerial` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_sender -->
+Convenience setter for the `DBusMessageHeaderField::Sender` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_serial -->
+Sets the serial for `self`.
+## `serial`
+A `guint32`.
+<!-- impl DBusMessage::fn set_signature -->
+Convenience setter for the `DBusMessageHeaderField::Signature` header field.
+## `value`
+The value to set.
+<!-- impl DBusMessage::fn set_unix_fd_list -->
+Sets the UNIX file descriptors associated with `self`. As a
+side-effect the `DBusMessageHeaderField::NumUnixFds` header
+field is set to the number of fds in `fd_list` (or cleared if
+`fd_list` is `None`).
+
+This method is only available on UNIX.
+## `fd_list`
+A `UnixFDList` or `None`.
+<!-- impl DBusMessage::fn to_blob -->
+Serializes `self` to a blob. The byte order returned by
+`DBusMessage::get_byte_order` will be used.
+## `out_size`
+Return location for size of generated blob.
+## `capabilities`
+A `DBusCapabilityFlags` describing what protocol features are supported.
+
+# Returns
+
+A pointer to a
+valid binary D-Bus message of `out_size` bytes generated by `self`
+or `None` if `error` is set. Free with `g_free`.
+<!-- impl DBusMessage::fn to_gerror -->
+If `self` is not of type `DBusMessageType::Error` does
+nothing and returns `false`.
+
+Otherwise this method encodes the error in `self` as a `glib::Error`
+using `DBusError::set_dbus_error` using the information in the
+`DBusMessageHeaderField::ErrorName` header field of `self` as
+well as the first string item in `self`'s body.
+
+# Returns
+
+`true` if `error` was set, `false` otherwise.
+<!-- enum DBusMessageByteOrder -->
+Enumeration used to describe the byte order of a D-Bus message.
+<!-- enum DBusMessageByteOrder::variant BigEndian -->
+The byte order is big endian.
+<!-- enum DBusMessageByteOrder::variant LittleEndian -->
+The byte order is little endian.
+<!-- struct DBusMessageFlags -->
+Message flags used in `DBusMessage`.
+<!-- struct DBusMessageFlags::const NONE -->
+No flags set.
+<!-- struct DBusMessageFlags::const NO_REPLY_EXPECTED -->
+A reply is not expected.
+<!-- struct DBusMessageFlags::const NO_AUTO_START -->
+The bus must not launch an
+owner for the destination name in response to this message.
+<!-- struct DBusMessageFlags::const ALLOW_INTERACTIVE_AUTHORIZATION -->
+If set on a method
+call, this flag means that the caller is prepared to wait for interactive
+authorization. Since 2.46.
+<!-- enum DBusMessageHeaderField -->
+Header fields used in `DBusMessage`.
+<!-- enum DBusMessageHeaderField::variant Invalid -->
+Not a valid header field.
+<!-- enum DBusMessageHeaderField::variant Path -->
+The object path.
+<!-- enum DBusMessageHeaderField::variant Interface -->
+The interface name.
+<!-- enum DBusMessageHeaderField::variant Member -->
+The method or signal name.
+<!-- enum DBusMessageHeaderField::variant ErrorName -->
+The name of the error that occurred.
+<!-- enum DBusMessageHeaderField::variant ReplySerial -->
+The serial number the message is a reply to.
+<!-- enum DBusMessageHeaderField::variant Destination -->
+The name the message is intended for.
+<!-- enum DBusMessageHeaderField::variant Sender -->
+Unique name of the sender of the message (filled in by the bus).
+<!-- enum DBusMessageHeaderField::variant Signature -->
+The signature of the message body.
+<!-- enum DBusMessageHeaderField::variant NumUnixFds -->
+The number of UNIX file descriptors that accompany the message.
+<!-- enum DBusMessageType -->
+Message types used in `DBusMessage`.
+<!-- enum DBusMessageType::variant Invalid -->
+Message is of invalid type.
+<!-- enum DBusMessageType::variant MethodCall -->
+Method call.
+<!-- enum DBusMessageType::variant MethodReturn -->
+Method reply.
+<!-- enum DBusMessageType::variant Error -->
+Error reply.
+<!-- enum DBusMessageType::variant Signal -->
+Signal emission.
+<!-- struct DBusMethodInfo -->
+Information about a method on an D-Bus interface.
+<!-- impl DBusMethodInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusMethodInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
+<!-- struct DBusMethodInvocation -->
+Instances of the `DBusMethodInvocation` class are used when
+handling D-Bus method calls. It provides a way to asynchronously
+return results and errors.
+
+The normal way to obtain a `DBusMethodInvocation` object is to receive
+it as an argument to the `handle_method_call` function in a
+`DBusInterfaceVTable` that was passed to `DBusConnection::register_object`.
+
+# Implements
+
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusMethodInvocation::fn get_connection -->
+Gets the `DBusConnection` the method was invoked on.
+
+# Returns
+
+A `DBusConnection`. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_interface_name -->
+Gets the name of the D-Bus interface the method was invoked on.
+
+If this method call is a property Get, Set or GetAll call that has
+been redirected to the method call handler then
+"org.freedesktop.DBus.Properties" will be returned. See
+`DBusInterfaceVTable` for more information.
+
+# Returns
+
+A string. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_message -->
+Gets the `DBusMessage` for the method invocation. This is useful if
+you need to use low-level protocol features, such as UNIX file
+descriptor passing, that cannot be properly expressed in the
+`glib::Variant` API.
+
+See this [server][gdbus-server] and [client][gdbus-unix-fd-client]
+for an example of how to use this low-level API to send and receive
+UNIX file descriptors.
+
+# Returns
+
+`DBusMessage`. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_method_info -->
+Gets information about the method call, if any.
+
+If this method invocation is a property Get, Set or GetAll call that
+has been redirected to the method call handler then `None` will be
+returned. See `DBusMethodInvocation::get_property_info` and
+`DBusInterfaceVTable` for more information.
+
+# Returns
+
+A `DBusMethodInfo` or `None`. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_method_name -->
+Gets the name of the method that was invoked.
+
+# Returns
+
+A string. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_object_path -->
+Gets the object path the method was invoked on.
+
+# Returns
+
+A string. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_parameters -->
+Gets the parameters of the method invocation. If there are no input
+parameters then this will return a GVariant with 0 children rather than NULL.
+
+# Returns
+
+A `glib::Variant` tuple. Do not unref this because it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_property_info -->
+Gets information about the property that this method call is for, if
+any.
+
+This will only be set in the case of an invocation in response to a
+property Get or Set call that has been directed to the method call
+handler for an object on account of its `property_get` or
+`property_set` vtable pointers being unset.
+
+See `DBusInterfaceVTable` for more information.
+
+If the call was GetAll, `None` will be returned.
+
+# Returns
+
+a `DBusPropertyInfo` or `None`
+<!-- impl DBusMethodInvocation::fn get_sender -->
+Gets the bus name that invoked the method.
+
+# Returns
+
+A string. Do not free, it is owned by `self`.
+<!-- impl DBusMethodInvocation::fn get_user_data -->
+Gets the `user_data` `gpointer` passed to `DBusConnection::register_object`.
+
+# Returns
+
+A `gpointer`.
+<!-- impl DBusMethodInvocation::fn return_dbus_error -->
+Finishes handling a D-Bus method call by returning an error.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `error_name`
+A valid D-Bus error name.
+## `error_message`
+A valid D-Bus error message.
+<!-- impl DBusMethodInvocation::fn return_error -->
+Finishes handling a D-Bus method call by returning an error.
+
+See `DBusError::encode_gerror` for details about what error name
+will be returned on the wire. In a nutshell, if the given error is
+registered using `DBusError::register_error` the name given
+during registration is used. Otherwise, a name of the form
+`org.gtk.GDBus.UnmappedGError.Quark...` is used. This provides
+transparent mapping of `glib::Error` between applications using GDBus.
+
+If you are writing an application intended to be portable,
+always register errors with `DBusError::register_error`
+or use `DBusMethodInvocation::return_dbus_error`.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+
+Since 2.48, if the method call requested for a reply not to be sent
+then this call will free `self` but otherwise do nothing (as per
+the recommendations of the D-Bus specification).
+## `domain`
+A `glib::Quark` for the `glib::Error` error domain.
+## `code`
+The error code.
+## `format`
+`printf`-style format.
+<!-- impl DBusMethodInvocation::fn return_error_literal -->
+Like `DBusMethodInvocation::return_error` but without `printf`-style formatting.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `domain`
+A `glib::Quark` for the `glib::Error` error domain.
+## `code`
+The error code.
+## `message`
+The error message.
+<!-- impl DBusMethodInvocation::fn return_error_valist -->
+Like `DBusMethodInvocation::return_error` but intended for
+language bindings.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `domain`
+A `glib::Quark` for the `glib::Error` error domain.
+## `code`
+The error code.
+## `format`
+`printf`-style format.
+## `var_args`
+`va_list` of parameters for `format`.
+<!-- impl DBusMethodInvocation::fn return_gerror -->
+Like `DBusMethodInvocation::return_error` but takes a `glib::Error`
+instead of the error domain, error code and message.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `error`
+A `glib::Error`.
+<!-- impl DBusMethodInvocation::fn return_value -->
+Finishes handling a D-Bus method call by returning `parameters`.
+If the `parameters` GVariant is floating, it is consumed.
+
+It is an error if `parameters` is not of the right format: it must be a tuple
+containing the out-parameters of the D-Bus method. Even if the method has a
+single out-parameter, it must be contained in a tuple. If the method has no
+out-parameters, `parameters` may be `None` or an empty tuple.
+
+
+```C
+GDBusMethodInvocation *invocation = some_invocation;
+g_autofree gchar *result_string = NULL;
+g_autoptr (GError) error = NULL;
+
+result_string = calculate_result (&error);
+
+if (error != NULL)
+  g_dbus_method_invocation_return_gerror (invocation, error);
+else
+  g_dbus_method_invocation_return_value (invocation,
+                                         g_variant_new ("(s)", result_string));
+
+// Do not free @self here; returning a value does that
+```
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+
+Since 2.48, if the method call requested for a reply not to be sent
+then this call will sink `parameters` and free `self`, but
+otherwise do nothing (as per the recommendations of the D-Bus
+specification).
+## `parameters`
+A `glib::Variant` tuple with out parameters for the method or `None` if not passing any parameters.
+<!-- impl DBusMethodInvocation::fn return_value_with_unix_fd_list -->
+Like `DBusMethodInvocation::return_value` but also takes a `UnixFDList`.
+
+This method is only available on UNIX.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `parameters`
+A `glib::Variant` tuple with out parameters for the method or `None` if not passing any parameters.
+## `fd_list`
+A `UnixFDList` or `None`.
+<!-- impl DBusMethodInvocation::fn take_error -->
+Like `DBusMethodInvocation::return_gerror` but takes ownership
+of `error` so the caller does not need to free it.
+
+This method will take ownership of `self`. See
+`DBusInterfaceVTable` for more information about the ownership of
+`self`.
+## `error`
+A `glib::Error`.
+<!-- struct DBusNodeInfo -->
+Information about nodes in a remote object hierarchy.
+<!-- impl DBusNodeInfo::fn new_for_xml -->
+Parses `xml_data` and returns a `DBusNodeInfo` representing the data.
+
+The introspection XML must contain exactly one top-level
+`<node>` element.
+
+Note that this routine is using a
+[GMarkup][glib-Simple-XML-Subset-Parser.description]-based
+parser that only accepts a subset of valid XML documents.
+## `xml_data`
+Valid D-Bus introspection XML.
+
+# Returns
+
+A `DBusNodeInfo` structure or `None` if `error` is set. Free
+with `DBusNodeInfo::unref`.
+<!-- impl DBusNodeInfo::fn generate_xml -->
+Appends an XML representation of `self` (and its children) to `string_builder`.
+
+This function is typically used for generating introspection XML documents at run-time for
+handling the `org.freedesktop.DBus.Introspectable.Introspect` method.
+## `indent`
+Indentation level.
+## `string_builder`
+A `glib::String` to to append XML data to.
+<!-- impl DBusNodeInfo::fn lookup_interface -->
+Looks up information about an interface.
+
+The cost of this function is O(n) in number of interfaces.
+## `name`
+A D-Bus interface name.
+
+# Returns
+
+A `DBusInterfaceInfo` or `None` if not found. Do not free, it is owned by `self`.
+<!-- impl DBusNodeInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusNodeInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
+<!-- struct DBusObject -->
+The `DBusObject` type is the base type for D-Bus objects on both
+the service side (see `DBusObjectSkeleton`) and the client side
+(see `DBusObjectProxy`). It is essentially just a container of
+interfaces.
+
+# Implements
+
+[`DBusObjectExt`](trait.DBusObjectExt.html)
+<!-- trait DBusObjectExt -->
+Trait containing all `DBusObject` methods.
+
+# Implementors
+
+[`DBusObject`](struct.DBusObject.html)
+<!-- trait DBusObjectExt::fn get_interface -->
+Gets the D-Bus interface with name `interface_name` associated with
+`self`, if any.
+## `interface_name`
+A D-Bus interface name.
+
+# Returns
+
+`None` if not found, otherwise a
+ `DBusInterface` that must be freed with `gobject::ObjectExt::unref`.
+<!-- trait DBusObjectExt::fn get_interfaces -->
+Gets the D-Bus interfaces associated with `self`.
+
+# Returns
+
+A list of `DBusInterface` instances.
+ The returned list must be freed by `glib::List::free` after each element has been freed
+ with `gobject::ObjectExt::unref`.
+<!-- trait DBusObjectExt::fn get_object_path -->
+Gets the object path for `self`.
+
+# Returns
+
+A string owned by `self`. Do not free.
+<!-- trait DBusObjectExt::fn connect_interface_added -->
+Emitted when `interface` is added to `object`.
+## `interface`
+The `DBusInterface` that was added.
+<!-- trait DBusObjectExt::fn connect_interface_removed -->
+Emitted when `interface` is removed from `object`.
+## `interface`
+The `DBusInterface` that was removed.
+<!-- struct DBusPropertyInfo -->
+Information about a D-Bus property on a D-Bus interface.
+<!-- impl DBusPropertyInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusPropertyInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
+<!-- struct DBusProxy -->
+`DBusProxy` is a base class used for proxies to access a D-Bus
+interface on a remote object. A `DBusProxy` can be constructed for
+both well-known and unique names.
+
+By default, `DBusProxy` will cache all properties (and listen to
+changes) of the remote object, and proxy all signals that get
+emitted. This behaviour can be changed by passing suitable
+`DBusProxyFlags` when the proxy is created. If the proxy is for a
+well-known name, the property cache is flushed when the name owner
+vanishes and reloaded when a name owner appears.
+
+The unique name owner of the proxy's name is tracked and can be read from
+`DBusProxy:g-name-owner`. Connect to the `gobject::Object::notify` signal to
+get notified of changes. Additionally, only signals and property
+changes emitted from the current name owner are considered and
+calls are always sent to the current name owner. This avoids a
+number of race conditions when the name is lost by one owner and
+claimed by another. However, if no name owner currently exists,
+then calls will be sent to the well-known name which may result in
+the message bus launching an owner (unless
+`DBusProxyFlags::DoNotAutoStart` is set).
+
+The generic `DBusProxy::g-properties-changed` and
+`DBusProxy::g-signal` signals are not very convenient to work with.
+Therefore, the recommended way of working with proxies is to subclass
+`DBusProxy`, and have more natural properties and signals in your derived
+class. This [example][gdbus-example-gdbus-codegen] shows how this can
+easily be done using the [gdbus-codegen][gdbus-codegen] tool.
+
+A `DBusProxy` instance can be used from multiple threads but note
+that all signals (e.g. `DBusProxy::g-signal`, `DBusProxy::g-properties-changed`
+and `gobject::Object::notify`) are emitted in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread where the instance was constructed.
+
+An example using a proxy for a well-known name can be found in
+[gdbus-example-watch-proxy.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-watch-proxy.c)
+
+# Implements
+
+[`DBusProxyExt`](trait.DBusProxyExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`DBusInterfaceExt`](trait.DBusInterfaceExt.html)
+<!-- trait DBusProxyExt -->
+Trait containing all `DBusProxy` methods.
+
+# Implementors
+
+[`DBusProxy`](struct.DBusProxy.html)
+<!-- impl DBusProxy::fn new_finish -->
+Finishes creating a `DBusProxy`.
+## `res`
+A `AsyncResult` obtained from the `GAsyncReadyCallback` function passed to `DBusProxy::new`.
+
+# Returns
+
+A `DBusProxy` or `None` if `error` is set.
+ Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusProxy::fn new_for_bus_finish -->
+Finishes creating a `DBusProxy`.
+## `res`
+A `AsyncResult` obtained from the `GAsyncReadyCallback` function passed to `DBusProxy::new_for_bus`.
+
+# Returns
+
+A `DBusProxy` or `None` if `error` is set.
+ Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusProxy::fn new_for_bus_sync -->
+Like `DBusProxy::new_sync` but takes a `BusType` instead of a `DBusConnection`.
+
+`DBusProxy` is used in this [example][gdbus-wellknown-proxy].
+## `bus_type`
+A `BusType`.
+## `flags`
+Flags used when constructing the proxy.
+## `info`
+A `DBusInterfaceInfo` specifying the minimal interface
+ that `proxy` conforms to or `None`.
+## `name`
+A bus name (well-known or unique).
+## `object_path`
+An object path.
+## `interface_name`
+A D-Bus interface name.
+## `cancellable`
+A `Cancellable` or `None`.
+
+# Returns
+
+A `DBusProxy` or `None` if error is set.
+ Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusProxy::fn new_sync -->
+Creates a proxy for accessing `interface_name` on the remote object
+at `object_path` owned by `name` at `connection` and synchronously
+loads D-Bus properties unless the
+`DBusProxyFlags::DoNotLoadProperties` flag is used.
+
+If the `DBusProxyFlags::DoNotConnectSignals` flag is not set, also sets up
+match rules for signals. Connect to the `DBusProxy::g-signal` signal
+to handle signals from the remote object.
+
+If both `DBusProxyFlags::DoNotLoadProperties` and
+`DBusProxyFlags::DoNotConnectSignals` are set, this constructor is
+guaranteed to return immediately without blocking.
+
+If `name` is a well-known name and the
+`DBusProxyFlags::DoNotAutoStart` and `DBusProxyFlags::DoNotAutoStartAtConstruction`
+flags aren't set and no name owner currently exists, the message bus
+will be requested to launch a name owner for the name.
+
+This is a synchronous failable constructor. See `DBusProxy::new`
+and `DBusProxy::new_finish` for the asynchronous version.
+
+`DBusProxy` is used in this [example][gdbus-wellknown-proxy].
+## `connection`
+A `DBusConnection`.
+## `flags`
+Flags used when constructing the proxy.
+## `info`
+A `DBusInterfaceInfo` specifying the minimal interface that `proxy` conforms to or `None`.
+## `name`
+A bus name (well-known or unique) or `None` if `connection` is not a message bus connection.
+## `object_path`
+An object path.
+## `interface_name`
+A D-Bus interface name.
+## `cancellable`
+A `Cancellable` or `None`.
+
+# Returns
+
+A `DBusProxy` or `None` if error is set.
+ Free with `gobject::ObjectExt::unref`.
+<!-- impl DBusProxy::fn new -->
+Creates a proxy for accessing `interface_name` on the remote object
+at `object_path` owned by `name` at `connection` and asynchronously
+loads D-Bus properties unless the
+`DBusProxyFlags::DoNotLoadProperties` flag is used. Connect to
+the `DBusProxy::g-properties-changed` signal to get notified about
+property changes.
+
+If the `DBusProxyFlags::DoNotConnectSignals` flag is not set, also sets up
+match rules for signals. Connect to the `DBusProxy::g-signal` signal
+to handle signals from the remote object.
+
+If both `DBusProxyFlags::DoNotLoadProperties` and
+`DBusProxyFlags::DoNotConnectSignals` are set, this constructor is
+guaranteed to complete immediately without blocking.
+
+If `name` is a well-known name and the
+`DBusProxyFlags::DoNotAutoStart` and `DBusProxyFlags::DoNotAutoStartAtConstruction`
+flags aren't set and no name owner currently exists, the message bus
+will be requested to launch a name owner for the name.
+
+This is a failable asynchronous constructor - when the proxy is
+ready, `callback` will be invoked and you can use
+`DBusProxy::new_finish` to get the result.
+
+See `DBusProxy::new_sync` and for a synchronous version of this constructor.
+
+`DBusProxy` is used in this [example][gdbus-wellknown-proxy].
+## `connection`
+A `DBusConnection`.
+## `flags`
+Flags used when constructing the proxy.
+## `info`
+A `DBusInterfaceInfo` specifying the minimal interface that `proxy` conforms to or `None`.
+## `name`
+A bus name (well-known or unique) or `None` if `connection` is not a message bus connection.
+## `object_path`
+An object path.
+## `interface_name`
+A D-Bus interface name.
+## `cancellable`
+A `Cancellable` or `None`.
+## `callback`
+Callback function to invoke when the proxy is ready.
+## `user_data`
+User data to pass to `callback`.
+<!-- impl DBusProxy::fn new_for_bus -->
+Like `DBusProxy::new` but takes a `BusType` instead of a `DBusConnection`.
+
+`DBusProxy` is used in this [example][gdbus-wellknown-proxy].
+## `bus_type`
+A `BusType`.
+## `flags`
+Flags used when constructing the proxy.
+## `info`
+A `DBusInterfaceInfo` specifying the minimal interface that `proxy` conforms to or `None`.
+## `name`
+A bus name (well-known or unique).
+## `object_path`
+An object path.
+## `interface_name`
+A D-Bus interface name.
+## `cancellable`
+A `Cancellable` or `None`.
+## `callback`
+Callback function to invoke when the proxy is ready.
+## `user_data`
+User data to pass to `callback`.
+<!-- trait DBusProxyExt::fn call -->
+Asynchronously invokes the `method_name` method on `self`.
+
+If `method_name` contains any dots, then `name` is split into interface and
+method name parts. This allows using `self` for invoking methods on
+other interfaces.
+
+If the `DBusConnection` associated with `self` is closed then
+the operation will fail with `IOErrorEnum::Closed`. If
+`cancellable` is canceled, the operation will fail with
+`IOErrorEnum::Cancelled`. If `parameters` contains a value not
+compatible with the D-Bus protocol, the operation fails with
+`IOErrorEnum::InvalidArgument`.
+
+If the `parameters` `glib::Variant` is floating, it is consumed. This allows
+convenient 'inline' use of `glib::Variant::new`, e.g.:
+
+```C
+ g_dbus_proxy_call (proxy,
+                    "TwoStrings",
+                    g_variant_new ("(ss)",
+                                   "Thing One",
+                                   "Thing Two"),
+                    G_DBUS_CALL_FLAGS_NONE,
+                    -1,
+                    NULL,
+                    (GAsyncReadyCallback) two_strings_done,
+                    &data);
+```
+
+If `self` has an expected interface (see
+`DBusProxy:g-interface-info`) and `method_name` is referenced by it,
+then the return value is checked against the return type.
+
+This is an asynchronous method. When the operation is finished,
+`callback` will be invoked in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread you are calling this method from.
+You can then call `DBusProxyExt::call_finish` to get the result of
+the operation. See `DBusProxyExt::call_sync` for the synchronous
+version of this method.
+
+If `callback` is `None` then the D-Bus method call message will be sent with
+the `DBusMessageFlags::NoReplyExpected` flag set.
+## `method_name`
+Name of method to invoke.
+## `parameters`
+A `glib::Variant` tuple with parameters for the signal or `None` if not passing parameters.
+## `flags`
+Flags from the `DBusCallFlags` enumeration.
+## `timeout_msec`
+The timeout in milliseconds (with `G_MAXINT` meaning
+ "infinite") or -1 to use the proxy default timeout.
+## `cancellable`
+A `Cancellable` or `None`.
+## `callback`
+A `GAsyncReadyCallback` to call when the request is satisfied or `None` if you don't
+care about the result of the method invocation.
+## `user_data`
+The data to pass to `callback`.
+<!-- trait DBusProxyExt::fn call_finish -->
+Finishes an operation started with `DBusProxyExt::call`.
+## `res`
+A `AsyncResult` obtained from the `GAsyncReadyCallback` passed to `DBusProxyExt::call`.
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+return values. Free with `glib::Variant::unref`.
+<!-- trait DBusProxyExt::fn call_sync -->
+Synchronously invokes the `method_name` method on `self`.
+
+If `method_name` contains any dots, then `name` is split into interface and
+method name parts. This allows using `self` for invoking methods on
+other interfaces.
+
+If the `DBusConnection` associated with `self` is disconnected then
+the operation will fail with `IOErrorEnum::Closed`. If
+`cancellable` is canceled, the operation will fail with
+`IOErrorEnum::Cancelled`. If `parameters` contains a value not
+compatible with the D-Bus protocol, the operation fails with
+`IOErrorEnum::InvalidArgument`.
+
+If the `parameters` `glib::Variant` is floating, it is consumed. This allows
+convenient 'inline' use of `glib::Variant::new`, e.g.:
+
+```C
+ g_dbus_proxy_call_sync (proxy,
+                         "TwoStrings",
+                         g_variant_new ("(ss)",
+                                        "Thing One",
+                                        "Thing Two"),
+                         G_DBUS_CALL_FLAGS_NONE,
+                         -1,
+                         NULL,
+                         &error);
+```
+
+The calling thread is blocked until a reply is received. See
+`DBusProxyExt::call` for the asynchronous version of this
+method.
+
+If `self` has an expected interface (see
+`DBusProxy:g-interface-info`) and `method_name` is referenced by it,
+then the return value is checked against the return type.
+## `method_name`
+Name of method to invoke.
+## `parameters`
+A `glib::Variant` tuple with parameters for the signal
+ or `None` if not passing parameters.
+## `flags`
+Flags from the `DBusCallFlags` enumeration.
+## `timeout_msec`
+The timeout in milliseconds (with `G_MAXINT` meaning
+ "infinite") or -1 to use the proxy default timeout.
+## `cancellable`
+A `Cancellable` or `None`.
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+return values. Free with `glib::Variant::unref`.
+<!-- trait DBusProxyExt::fn call_with_unix_fd_list -->
+Like `DBusProxyExt::call` but also takes a `UnixFDList` object.
+
+This method is only available on UNIX.
+## `method_name`
+Name of method to invoke.
+## `parameters`
+A `glib::Variant` tuple with parameters for the signal or `None` if not passing parameters.
+## `flags`
+Flags from the `DBusCallFlags` enumeration.
+## `timeout_msec`
+The timeout in milliseconds (with `G_MAXINT` meaning
+ "infinite") or -1 to use the proxy default timeout.
+## `fd_list`
+A `UnixFDList` or `None`.
+## `cancellable`
+A `Cancellable` or `None`.
+## `callback`
+A `GAsyncReadyCallback` to call when the request is satisfied or `None` if you don't
+care about the result of the method invocation.
+## `user_data`
+The data to pass to `callback`.
+<!-- trait DBusProxyExt::fn call_with_unix_fd_list_finish -->
+Finishes an operation started with `DBusProxyExt::call_with_unix_fd_list`.
+## `out_fd_list`
+Return location for a `UnixFDList` or `None`.
+## `res`
+A `AsyncResult` obtained from the `GAsyncReadyCallback` passed to `DBusProxyExt::call_with_unix_fd_list`.
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+return values. Free with `glib::Variant::unref`.
+<!-- trait DBusProxyExt::fn call_with_unix_fd_list_sync -->
+Like `DBusProxyExt::call_sync` but also takes and returns `UnixFDList` objects.
+
+This method is only available on UNIX.
+## `method_name`
+Name of method to invoke.
+## `parameters`
+A `glib::Variant` tuple with parameters for the signal
+ or `None` if not passing parameters.
+## `flags`
+Flags from the `DBusCallFlags` enumeration.
+## `timeout_msec`
+The timeout in milliseconds (with `G_MAXINT` meaning
+ "infinite") or -1 to use the proxy default timeout.
+## `fd_list`
+A `UnixFDList` or `None`.
+## `out_fd_list`
+Return location for a `UnixFDList` or `None`.
+## `cancellable`
+A `Cancellable` or `None`.
+
+# Returns
+
+`None` if `error` is set. Otherwise a `glib::Variant` tuple with
+return values. Free with `glib::Variant::unref`.
+<!-- trait DBusProxyExt::fn get_cached_property -->
+Looks up the value for a property from the cache. This call does no
+blocking IO.
+
+If `self` has an expected interface (see
+`DBusProxy:g-interface-info`) and `property_name` is referenced by
+it, then `value` is checked against the type of the property.
+## `property_name`
+Property name.
+
+# Returns
+
+A reference to the `glib::Variant` instance
+ that holds the value for `property_name` or `None` if the value is not in
+ the cache. The returned reference must be freed with `glib::Variant::unref`.
+<!-- trait DBusProxyExt::fn get_cached_property_names -->
+Gets the names of all cached properties on `self`.
+
+# Returns
+
+A
+ `None`-terminated array of strings or `None` if
+ `self` has no cached properties. Free the returned array with
+ `g_strfreev`.
+<!-- trait DBusProxyExt::fn get_connection -->
+Gets the connection `self` is for.
+
+# Returns
+
+A `DBusConnection` owned by `self`. Do not free.
+<!-- trait DBusProxyExt::fn get_default_timeout -->
+Gets the timeout to use if -1 (specifying default timeout) is
+passed as `timeout_msec` in the `DBusProxyExt::call` and
+`DBusProxyExt::call_sync` functions.
+
+See the `DBusProxy:g-default-timeout` property for more details.
+
+# Returns
+
+Timeout to use for `self`.
+<!-- trait DBusProxyExt::fn get_flags -->
+Gets the flags that `self` was constructed with.
+
+# Returns
+
+Flags from the `DBusProxyFlags` enumeration.
+<!-- trait DBusProxyExt::fn get_interface_info -->
+Returns the `DBusInterfaceInfo`, if any, specifying the interface
+that `self` conforms to. See the `DBusProxy:g-interface-info`
+property for more details.
+
+# Returns
+
+A `DBusInterfaceInfo` or `None`.
+ Do not unref the returned object, it is owned by `self`.
+<!-- trait DBusProxyExt::fn get_interface_name -->
+Gets the D-Bus interface name `self` is for.
+
+# Returns
+
+A string owned by `self`. Do not free.
+<!-- trait DBusProxyExt::fn get_name -->
+Gets the name that `self` was constructed for.
+
+# Returns
+
+A string owned by `self`. Do not free.
+<!-- trait DBusProxyExt::fn get_name_owner -->
+The unique name that owns the name that `self` is for or `None` if
+no-one currently owns that name. You may connect to the
+`gobject::Object::notify` signal to track changes to the
+`DBusProxy:g-name-owner` property.
+
+# Returns
+
+The name owner or `None` if no name
+ owner exists. Free with `g_free`.
+<!-- trait DBusProxyExt::fn get_object_path -->
+Gets the object path `self` is for.
+
+# Returns
+
+A string owned by `self`. Do not free.
+<!-- trait DBusProxyExt::fn set_cached_property -->
+If `value` is not `None`, sets the cached value for the property with
+name `property_name` to the value in `value`.
+
+If `value` is `None`, then the cached value is removed from the
+property cache.
+
+If `self` has an expected interface (see
+`DBusProxy:g-interface-info`) and `property_name` is referenced by
+it, then `value` is checked against the type of the property.
+
+If the `value` `glib::Variant` is floating, it is consumed. This allows
+convenient 'inline' use of `glib::Variant::new`, e.g.
+
+```C
+ g_dbus_proxy_set_cached_property (proxy,
+                                   "SomeProperty",
+                                   g_variant_new ("(si)",
+                                                 "A String",
+                                                 42));
+```
+
+Normally you will not need to use this method since `self`
+is tracking changes using the
+`org.freedesktop.DBus.Properties.PropertiesChanged`
+D-Bus signal. However, for performance reasons an object may
+decide to not use this signal for some properties and instead
+use a proprietary out-of-band mechanism to transmit changes.
+
+As a concrete example, consider an object with a property
+`ChatroomParticipants` which is an array of strings. Instead of
+transmitting the same (long) array every time the property changes,
+it is more efficient to only transmit the delta using e.g. signals
+`ChatroomParticipantJoined(String name)` and
+`ChatroomParticipantParted(String name)`.
+## `property_name`
+Property name.
+## `value`
+Value for the property or `None` to remove it from the cache.
+<!-- trait DBusProxyExt::fn set_default_timeout -->
+Sets the timeout to use if -1 (specifying default timeout) is
+passed as `timeout_msec` in the `DBusProxyExt::call` and
+`DBusProxyExt::call_sync` functions.
+
+See the `DBusProxy:g-default-timeout` property for more details.
+## `timeout_msec`
+Timeout in milliseconds.
+<!-- trait DBusProxyExt::fn set_interface_info -->
+Ensure that interactions with `self` conform to the given
+interface. See the `DBusProxy:g-interface-info` property for more
+details.
+## `info`
+Minimum interface this proxy conforms to
+ or `None` to unset.
+<!-- trait DBusProxyExt::fn connect_g_properties_changed -->
+Emitted when one or more D-Bus properties on `proxy` changes. The
+local cache has already been updated when this signal fires. Note
+that both `changed_properties` and `invalidated_properties` are
+guaranteed to never be `None` (either may be empty though).
+
+If the proxy has the flag
+`DBusProxyFlags::GetInvalidatedProperties` set, then
+`invalidated_properties` will always be empty.
+
+This signal corresponds to the
+`PropertiesChanged` D-Bus signal on the
+`org.freedesktop.DBus.Properties` interface.
+## `changed_properties`
+A `glib::Variant` containing the properties that changed (type: `a{sv}`)
+## `invalidated_properties`
+A `None` terminated array of properties that was invalidated
+<!-- trait DBusProxyExt::fn connect_g_signal -->
+Emitted when a signal from the remote object and interface that `proxy` is for, has been received.
+## `sender_name`
+The sender of the signal or `None` if the connection is not a bus connection.
+## `signal_name`
+The name of the signal.
+## `parameters`
+A `glib::Variant` tuple with parameters for the signal.
+<!-- trait DBusProxyExt::fn set_property_g_bus_type -->
+If this property is not `BusType::None`, then
+`DBusProxy:g-connection` must be `None` and will be set to the
+`DBusConnection` obtained by calling `g_bus_get` with the value
+of this property.
+<!-- trait DBusProxyExt::fn get_property_g_connection -->
+The `DBusConnection` the proxy is for.
+<!-- trait DBusProxyExt::fn set_property_g_connection -->
+The `DBusConnection` the proxy is for.
+<!-- trait DBusProxyExt::fn get_property_g_default_timeout -->
+The timeout to use if -1 (specifying default timeout) is passed
+as `timeout_msec` in the `DBusProxyExt::call` and
+`DBusProxyExt::call_sync` functions.
+
+This allows applications to set a proxy-wide timeout for all
+remote method invocations on the proxy. If this property is -1,
+the default timeout (typically 25 seconds) is used. If set to
+`G_MAXINT`, then no timeout is used.
+<!-- trait DBusProxyExt::fn set_property_g_default_timeout -->
+The timeout to use if -1 (specifying default timeout) is passed
+as `timeout_msec` in the `DBusProxyExt::call` and
+`DBusProxyExt::call_sync` functions.
+
+This allows applications to set a proxy-wide timeout for all
+remote method invocations on the proxy. If this property is -1,
+the default timeout (typically 25 seconds) is used. If set to
+`G_MAXINT`, then no timeout is used.
+<!-- trait DBusProxyExt::fn get_property_g_flags -->
+Flags from the `DBusProxyFlags` enumeration.
+<!-- trait DBusProxyExt::fn set_property_g_flags -->
+Flags from the `DBusProxyFlags` enumeration.
+<!-- trait DBusProxyExt::fn get_property_g_interface_info -->
+Ensure that interactions with this proxy conform to the given
+interface. This is mainly to ensure that malformed data received
+from the other peer is ignored. The given `DBusInterfaceInfo` is
+said to be the "expected interface".
+
+The checks performed are:
+- When completing a method call, if the type signature of
+ the reply message isn't what's expected, the reply is
+ discarded and the `glib::Error` is set to `IOErrorEnum::InvalidArgument`.
+
+- Received signals that have a type signature mismatch are dropped and
+ a warning is logged via `g_warning`.
+
+- Properties received via the initial `GetAll()` call or via the
+ `::PropertiesChanged` signal (on the
+ [org.freedesktop.DBus.Properties](http://dbus.freedesktop.org/doc/dbus-specification.html`standard`-interfaces-properties)
+ interface) or set using `DBusProxyExt::set_cached_property`
+ with a type signature mismatch are ignored and a warning is
+ logged via `g_warning`.
+
+Note that these checks are never done on methods, signals and
+properties that are not referenced in the given
+`DBusInterfaceInfo`, since extending a D-Bus interface on the
+service-side is not considered an ABI break.
+<!-- trait DBusProxyExt::fn set_property_g_interface_info -->
+Ensure that interactions with this proxy conform to the given
+interface. This is mainly to ensure that malformed data received
+from the other peer is ignored. The given `DBusInterfaceInfo` is
+said to be the "expected interface".
+
+The checks performed are:
+- When completing a method call, if the type signature of
+ the reply message isn't what's expected, the reply is
+ discarded and the `glib::Error` is set to `IOErrorEnum::InvalidArgument`.
+
+- Received signals that have a type signature mismatch are dropped and
+ a warning is logged via `g_warning`.
+
+- Properties received via the initial `GetAll()` call or via the
+ `::PropertiesChanged` signal (on the
+ [org.freedesktop.DBus.Properties](http://dbus.freedesktop.org/doc/dbus-specification.html`standard`-interfaces-properties)
+ interface) or set using `DBusProxyExt::set_cached_property`
+ with a type signature mismatch are ignored and a warning is
+ logged via `g_warning`.
+
+Note that these checks are never done on methods, signals and
+properties that are not referenced in the given
+`DBusInterfaceInfo`, since extending a D-Bus interface on the
+service-side is not considered an ABI break.
+<!-- trait DBusProxyExt::fn get_property_g_interface_name -->
+The D-Bus interface name the proxy is for.
+<!-- trait DBusProxyExt::fn set_property_g_interface_name -->
+The D-Bus interface name the proxy is for.
+<!-- trait DBusProxyExt::fn get_property_g_name -->
+The well-known or unique name that the proxy is for.
+<!-- trait DBusProxyExt::fn set_property_g_name -->
+The well-known or unique name that the proxy is for.
+<!-- trait DBusProxyExt::fn get_property_g_name_owner -->
+The unique name that owns `DBusProxy:g-name` or `None` if no-one
+currently owns that name. You may connect to `gobject::Object::notify` signal to
+track changes to this property.
+<!-- trait DBusProxyExt::fn get_property_g_object_path -->
+The object path the proxy is for.
+<!-- trait DBusProxyExt::fn set_property_g_object_path -->
+The object path the proxy is for.
+<!-- struct DBusProxyFlags -->
+Flags used when constructing an instance of a `DBusProxy` derived class.
+<!-- struct DBusProxyFlags::const NONE -->
+No flags set.
+<!-- struct DBusProxyFlags::const DO_NOT_LOAD_PROPERTIES -->
+Don't load properties.
+<!-- struct DBusProxyFlags::const DO_NOT_CONNECT_SIGNALS -->
+Don't connect to signals on the remote object.
+<!-- struct DBusProxyFlags::const DO_NOT_AUTO_START -->
+If the proxy is for a well-known name,
+do not ask the bus to launch an owner during proxy initialization or a method call.
+This flag is only meaningful in proxies for well-known names.
+<!-- struct DBusProxyFlags::const GET_INVALIDATED_PROPERTIES -->
+If set, the property value for any __invalidated property__ will be (asynchronously) retrieved upon receiving the [`PropertiesChanged`](http://dbus.freedesktop.org/doc/dbus-specification.html`standard`-interfaces-properties) D-Bus signal and the property will not cause emission of the `DBusProxy::g-properties-changed` signal. When the value is received the `DBusProxy::g-properties-changed` signal is emitted for the property along with the retrieved value. Since 2.32.
+<!-- struct DBusProxyFlags::const DO_NOT_AUTO_START_AT_CONSTRUCTION -->
+If the proxy is for a well-known name,
+do not ask the bus to launch an owner during proxy initialization, but allow it to be
+autostarted by a method call. This flag is only meaningful in proxies for well-known names,
+and only if `DBusProxyFlags::DoNotAutoStart` is not also specified.
+<!-- struct DBusSendMessageFlags -->
+Flags used when sending `GDBusMessages` on a `DBusConnection`.
+<!-- struct DBusSendMessageFlags::const NONE -->
+No flags set.
+<!-- struct DBusSendMessageFlags::const PRESERVE_SERIAL -->
+Do not automatically
+assign a serial number from the `DBusConnection` object when
+sending a message.
+<!-- struct DBusServer -->
+`DBusServer` is a helper for listening to and accepting D-Bus
+connections. This can be used to create a new D-Bus server, allowing two
+peers to use the D-Bus protocol for their own specialized communication.
+A server instance provided in this way will not perform message routing or
+implement the org.freedesktop.DBus interface.
+
+To just export an object on a well-known name on a message bus, such as the
+session or system bus, you should instead use `g_bus_own_name`.
+
+An example of peer-to-peer communication with G-DBus can be found
+in [gdbus-example-peer.c](https://git.gnome.org/browse/glib/tree/gio/tests/gdbus-example-peer.c).
+
+Note that a minimal `DBusServer` will accept connections from any
+peer. In many use-cases it will be necessary to add a `DBusAuthObserver`
+that only accepts connections that have successfully authenticated
+as the same user that is running the `DBusServer`.
+
+# Implements
+
+[`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl DBusServer::fn new_sync -->
+Creates a new D-Bus server that listens on the first address in
+`address` that works.
+
+Once constructed, you can use `DBusServer::get_client_address` to
+get a D-Bus address string that clients can use to connect.
+
+To have control over the available authentication mechanisms and
+the users that are authorized to connect, it is strongly recommended
+to provide a non-`None` `DBusAuthObserver`.
+
+Connect to the `DBusServer::new-connection` signal to handle
+incoming connections.
+
+The returned `DBusServer` isn't active - you have to start it with
+`DBusServer::start`.
+
+`DBusServer` is used in this [example][gdbus-peer-to-peer].
+
+This is a synchronous failable constructor. There is currently no
+asynchronous version.
+## `address`
+A D-Bus address.
+## `flags`
+Flags from the `DBusServerFlags` enumeration.
+## `guid`
+A D-Bus GUID.
+## `observer`
+A `DBusAuthObserver` or `None`.
+## `cancellable`
+A `Cancellable` or `None`.
+
+# Returns
+
+A `DBusServer` or `None` if `error` is set. Free with
+`gobject::ObjectExt::unref`.
+<!-- impl DBusServer::fn get_client_address -->
+Gets a
+[D-Bus address](https://dbus.freedesktop.org/doc/dbus-specification.html`addresses`)
+string that can be used by clients to connect to `self`.
+
+# Returns
+
+A D-Bus address string. Do not free, the string is owned
+by `self`.
+<!-- impl DBusServer::fn get_flags -->
+Gets the flags for `self`.
+
+# Returns
+
+A set of flags from the `DBusServerFlags` enumeration.
+<!-- impl DBusServer::fn get_guid -->
+Gets the GUID for `self`.
+
+# Returns
+
+A D-Bus GUID. Do not free this string, it is owned by `self`.
+<!-- impl DBusServer::fn is_active -->
+Gets whether `self` is active.
+
+# Returns
+
+`true` if server is active, `false` otherwise.
+<!-- impl DBusServer::fn start -->
+Starts `self`.
+<!-- impl DBusServer::fn stop -->
+Stops `self`.
+<!-- impl DBusServer::fn connect_new_connection -->
+Emitted when a new authenticated connection has been made. Use
+`DBusConnection::get_peer_credentials` to figure out what
+identity (if any), was authenticated.
+
+If you want to accept the connection, take a reference to the
+`connection` object and return `true`. When you are done with the
+connection call `DBusConnection::close` and give up your
+reference. Note that the other peer may disconnect at any time -
+a typical thing to do when accepting a connection is to listen to
+the `DBusConnection::closed` signal.
+
+If `DBusServer:flags` contains `DBusServerFlags::RunInThread`
+then the signal is emitted in a new thread dedicated to the
+connection. Otherwise the signal is emitted in the
+[thread-default main context][g-main-context-push-thread-default]
+of the thread that `server` was constructed in.
+
+You are guaranteed that signal handlers for this signal runs
+before incoming messages on `connection` are processed. This means
+that it's suitable to call `DBusConnection::register_object` or
+similar from the signal handler.
+## `connection`
+A `DBusConnection` for the new connection.
+
+# Returns
+
+`true` to claim `connection`, `false` to let other handlers
+run.
+<!-- impl DBusServer::fn get_property_active -->
+Whether the server is currently active.
+<!-- impl DBusServer::fn get_property_address -->
+The D-Bus address to listen on.
+<!-- impl DBusServer::fn set_property_address -->
+The D-Bus address to listen on.
+<!-- impl DBusServer::fn get_property_authentication_observer -->
+A `DBusAuthObserver` object to assist in the authentication process or `None`.
+<!-- impl DBusServer::fn set_property_authentication_observer -->
+A `DBusAuthObserver` object to assist in the authentication process or `None`.
+<!-- impl DBusServer::fn get_property_client_address -->
+The D-Bus address that clients can use.
+<!-- impl DBusServer::fn get_property_flags -->
+Flags from the `DBusServerFlags` enumeration.
+<!-- impl DBusServer::fn set_property_flags -->
+Flags from the `DBusServerFlags` enumeration.
+<!-- impl DBusServer::fn get_property_guid -->
+The guid of the server.
+<!-- impl DBusServer::fn set_property_guid -->
+The guid of the server.
+<!-- struct DBusServerFlags -->
+Flags used when creating a `DBusServer`.
+<!-- struct DBusServerFlags::const NONE -->
+No flags set.
+<!-- struct DBusServerFlags::const RUN_IN_THREAD -->
+All `DBusServer::new-connection`
+signals will run in separated dedicated threads (see signal for
+details).
+<!-- struct DBusServerFlags::const AUTHENTICATION_ALLOW_ANONYMOUS -->
+Allow the anonymous
+authentication method.
+<!-- struct DBusSignalFlags -->
+Flags used when subscribing to signals via `DBusConnection::signal_subscribe`.
+<!-- struct DBusSignalFlags::const NONE -->
+No flags set.
+<!-- struct DBusSignalFlags::const NO_MATCH_RULE -->
+Don't actually send the AddMatch
+D-Bus call for this signal subscription. This gives you more control
+over which match rules you add (but you must add them manually).
+<!-- struct DBusSignalFlags::const MATCH_ARG0_NAMESPACE -->
+Match first arguments that
+contain a bus or interface name with the given namespace.
+<!-- struct DBusSignalFlags::const MATCH_ARG0_PATH -->
+Match first arguments that
+contain an object path that is either equivalent to the given path,
+or one of the paths is a subpath of the other.
+<!-- struct DBusSignalInfo -->
+Information about a signal on a D-Bus interface.
+<!-- impl DBusSignalInfo::fn ref -->
+If `self` is statically allocated does nothing. Otherwise increases
+the reference count.
+
+# Returns
+
+The same `self`.
+<!-- impl DBusSignalInfo::fn unref -->
+If `self` is statically allocated, does nothing. Otherwise decreases
+the reference count of `self`. When its reference count drops to 0,
+the memory used is freed.
 <!-- struct DataInputStream -->
 Data input stream implements `InputStream` and includes functions for
 reading structured data directly from a binary input stream.
 
 # Implements
 
-[`DataInputStreamExt`](trait.DataInputStreamExt.html), [`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
+[`DataInputStreamExt`](trait.DataInputStreamExt.html), [`BufferedInputStreamExt`](trait.BufferedInputStreamExt.html), [`FilterInputStreamExt`](trait.FilterInputStreamExt.html), [`InputStreamExt`](trait.InputStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`DataInputStreamExtManual`](prelude/trait.DataInputStreamExtManual.html), [`InputStreamExtManual`](prelude/trait.InputStreamExtManual.html)
 <!-- trait DataInputStreamExt -->
 Trait containing all `DataInputStream` methods.
 
@@ -3574,18 +7048,18 @@ an error occurred.
 Reads a string from the data input stream, up to the first
 occurrence of any of the stop characters.
 
-Note that, in contrast to `DataInputStreamExt::read_until_async`,
+Note that, in contrast to `DataInputStream::read_until_async`,
 this function consumes the stop character that it finds.
 
 Don't use this function in new code. Its functionality is
-inconsistent with `DataInputStreamExt::read_until_async`. Both
+inconsistent with `DataInputStream::read_until_async`. Both
 functions will be marked as deprecated in a future release. Use
-`DataInputStreamExt::read_upto` instead, but note that that function
+`DataInputStream::read_upto` instead, but note that that function
 does not consume the stop character.
 
 # Deprecated since 2.56
 
-Use `DataInputStreamExt::read_upto` instead, which has more
+Use `DataInputStream::read_upto` instead, which has more
  consistent behaviour regarding the stop character.
 ## `stop_chars`
 characters to terminate the read.
@@ -3601,10 +7075,10 @@ a string with the data that was read
  a `gsize` to get the length of the string. This function will
  return `None` on an error.
 <!-- trait DataInputStreamExt::fn read_until_async -->
-The asynchronous version of `DataInputStreamExt::read_until`.
+The asynchronous version of `DataInputStream::read_until`.
 It is an error to have two outstanding calls to this function.
 
-Note that, in contrast to `DataInputStreamExt::read_until`,
+Note that, in contrast to `DataInputStream::read_until`,
 this function does not consume the stop character that it finds. You
 must read it for yourself.
 
@@ -3613,13 +7087,13 @@ can then call `DataInputStreamExt::read_until_finish` to get
 the result of the operation.
 
 Don't use this function in new code. Its functionality is
-inconsistent with `DataInputStreamExt::read_until`. Both functions
+inconsistent with `DataInputStream::read_until`. Both functions
 will be marked as deprecated in a future release. Use
-`DataInputStreamExt::read_upto_async` instead.
+`DataInputStream::read_upto_async` instead.
 
 # Deprecated since 2.56
 
-Use `DataInputStreamExt::read_upto_async` instead, which
+Use `DataInputStream::read_upto_async` instead, which
  has more consistent behaviour regarding the stop character.
 ## `stop_chars`
 characters to terminate the read.
@@ -3633,7 +7107,7 @@ callback to call when the request is satisfied.
 the data to pass to callback function.
 <!-- trait DataInputStreamExt::fn read_until_finish -->
 Finish an asynchronous call started by
-`DataInputStreamExt::read_until_async`.
+`DataInputStream::read_until_async`.
 
 # Deprecated since 2.56
 
@@ -3654,10 +7128,10 @@ a string with the data that was read
 Reads a string from the data input stream, up to the first
 occurrence of any of the stop characters.
 
-In contrast to `DataInputStreamExt::read_until`, this function
+In contrast to `DataInputStream::read_until`, this function
 does not consume the stop character. You have to use
 `DataInputStreamExt::read_byte` to get it before calling
-`DataInputStreamExt::read_upto` again.
+`DataInputStream::read_upto` again.
 
 Note that `stop_chars` may contain '\0' if `stop_chars_len` is
 specified.
@@ -3680,13 +7154,13 @@ a string with the data that was read
  a `gsize` to get the length of the string. This function will
  return `None` on an error
 <!-- trait DataInputStreamExt::fn read_upto_async -->
-The asynchronous version of `DataInputStreamExt::read_upto`.
+The asynchronous version of `DataInputStream::read_upto`.
 It is an error to have two outstanding calls to this function.
 
-In contrast to `DataInputStreamExt::read_until`, this function
+In contrast to `DataInputStream::read_until`, this function
 does not consume the stop character. You have to use
 `DataInputStreamExt::read_byte` to get it before calling
-`DataInputStreamExt::read_upto` again.
+`DataInputStream::read_upto` again.
 
 Note that `stop_chars` may contain '\0' if `stop_chars_len` is
 specified.
@@ -3709,11 +7183,11 @@ callback to call when the request is satisfied
 the data to pass to callback function
 <!-- trait DataInputStreamExt::fn read_upto_finish -->
 Finish an asynchronous call started by
-`DataInputStreamExt::read_upto_async`.
+`DataInputStream::read_upto_async`.
 
 Note that this function does not consume the stop character. You
 have to use `DataInputStreamExt::read_byte` to get it before calling
-`DataInputStreamExt::read_upto_async` again.
+`DataInputStream::read_upto_async` again.
 
 The returned string will always be nul-terminated on success.
 ## `result`
@@ -3886,7 +7360,7 @@ file when using it.
 
 # Implements
 
-[`DesktopAppInfoExt`](trait.DesktopAppInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AppInfoExt`](trait.AppInfoExt.html)
+[`DesktopAppInfoExt`](trait.DesktopAppInfoExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AppInfoExt`](trait.AppInfoExt.html), [`AppInfoExtManual`](prelude/trait.AppInfoExtManual.html)
 <!-- trait DesktopAppInfoExt -->
 Trait containing all `DesktopAppInfo` methods.
 
@@ -4490,6 +7964,10 @@ been pressed.
 <!-- trait DriveExt::fn connect_stop_button -->
 Emitted when the physical stop button (if any) of a drive has
 been pressed.
+<!-- struct DriveStartFlags -->
+Flags used when starting a drive.
+<!-- struct DriveStartFlags::const NONE -->
+No flags set.
 <!-- enum DriveStartStopType -->
 Enumeration describing how a drive can be started/stopped.
 <!-- enum DriveStartStopType::variant Unknown -->
@@ -5505,7 +8983,7 @@ input `File`
 
 # Returns
 
-`true` if the `files`'s parent, grandparent, etc is `prefix`,
+`true` if the `self`'s parent, grandparent, etc is `prefix`,
  `false` otherwise.
 <!-- trait FileExt::fn has_uri_scheme -->
 Checks to see if a `File` has a given URI scheme.
@@ -5616,7 +9094,7 @@ a `glib::Bytes` or `None` and `error` is set
 <!-- trait FileExt::fn load_contents -->
 Loads the content of the file into memory. The data is always
 zero-terminated, but this is not included in the resultant `length`.
-The returned `content` should be freed with `g_free` when no longer
+The returned `contents` should be freed with `g_free` when no longer
 needed.
 
 If `cancellable` is not `None`, then the operation can be cancelled by
@@ -5660,7 +9138,7 @@ the data to pass to callback function
 <!-- trait FileExt::fn load_contents_finish -->
 Finishes an asynchronous load of the `self`'s contents.
 The contents are placed in `contents`, and `length` is set to the
-size of the `contents` string. The `content` should be freed with
+size of the `contents` string. The `contents` should be freed with
 `g_free` when no longer needed. If `etag_out` is present, it will be
 set to the new entity tag for the `self`.
 ## `res`
@@ -5705,7 +9183,7 @@ the data to pass to the callback functions
 Finishes an asynchronous partial load operation that was started
 with `File::load_partial_contents_async`. The data is always
 zero-terminated, but this is not included in the resultant `length`.
-The returned `content` should be freed with `g_free` when no longer
+The returned `contents` should be freed with `g_free` when no longer
 needed.
 ## `res`
 a `AsyncResult`
@@ -6026,10 +9504,6 @@ inside the same filesystem), but the fallback code does not.
 
 If the flag `FileCopyFlags::Overwrite` is specified an already
 existing `destination` file is overwritten.
-
-If the flag `FileCopyFlags::NofollowSymlinks` is specified then symlinks
-will be copied as symlinks, otherwise the target of the
-`self` symlink will be copied.
 
 If `cancellable` is not `None`, then the operation can be cancelled by
 triggering the cancellable object from another thread. If the operation
@@ -6631,7 +10105,7 @@ was cancelled, the error `IOErrorEnum::Cancelled` will be returned.
 If `make_backup` is `true`, this function will attempt to
 make a backup of `self`.
 
-Note that no copy of `content` will be made, so it must stay valid
+Note that no copy of `contents` will be made, so it must stay valid
 until `callback` is called. See `File::replace_contents_bytes_async`
 for a `glib::Bytes` version that will automatically hold a reference to the
 contents (without copying) for the duration of the call.
@@ -6775,7 +10249,7 @@ a given relative path string
  `None` if `relative_path` is `None` or if `self` is invalid.
  Free the returned object with `gobject::ObjectExt::unref`.
 <!-- trait FileExt::fn set_attribute -->
-Sets an attribute in the file with attribute name `attribute` to `value`.
+Sets an attribute in the file with attribute name `attribute` to `value_p`.
 
 Some attributes can be unset by setting `type_` to
 `FileAttributeType::Invalid` and `value_p` to `None`.
@@ -7096,7 +10570,7 @@ a `GAsyncReadyCallback` to call
 ## `user_data`
 the data to pass to callback function
 <!-- trait FileExt::fn stop_mountable_finish -->
-Finishes an stop operation, see `File::stop_mountable` for details.
+Finishes a stop operation, see `File::stop_mountable` for details.
 
 Finish an asynchronous stop operation that was started
 with `File::stop_mountable`.
@@ -7198,7 +10672,7 @@ counted structures, and are created with a reference count of 1. If
 the number of references falls to 0, the `FileAttributeMatcher` is
 automatically destroyed.
 
-The `attribute` string should be formatted with specific keys separated
+The `attributes` string should be formatted with specific keys separated
 from namespaces with a double colon. Several "namespace::key" strings may be
 concatenated with a single comma (e.g. "standard::type,standard::is-hidden").
 The wildcard "*" may be used to match all keys and namespaces, or
@@ -7322,6 +10796,38 @@ a signed 8-byte/64-bit integer.
 a `gobject::Object`.
 <!-- enum FileAttributeType::variant Stringv -->
 a `None` terminated char **. Since 2.22
+<!-- struct FileCopyFlags -->
+Flags used when copying or moving files.
+<!-- struct FileCopyFlags::const NONE -->
+No flags set.
+<!-- struct FileCopyFlags::const OVERWRITE -->
+Overwrite any existing files
+<!-- struct FileCopyFlags::const BACKUP -->
+Make a backup of any existing files.
+<!-- struct FileCopyFlags::const NOFOLLOW_SYMLINKS -->
+Don't follow symlinks.
+<!-- struct FileCopyFlags::const ALL_METADATA -->
+Copy all file metadata instead of just default set used for copy (see `FileInfo`).
+<!-- struct FileCopyFlags::const NO_FALLBACK_FOR_MOVE -->
+Don't use copy and delete fallback if native move not supported.
+<!-- struct FileCopyFlags::const TARGET_DEFAULT_PERMS -->
+Leaves target file with default perms, instead of setting the source file perms.
+<!-- struct FileCreateFlags -->
+Flags used when an operation may create a file.
+<!-- struct FileCreateFlags::const NONE -->
+No flags set.
+<!-- struct FileCreateFlags::const PRIVATE -->
+Create a file that can only be
+ accessed by the current user.
+<!-- struct FileCreateFlags::const REPLACE_DESTINATION -->
+Replace the destination
+ as if it didn't exist before. Don't try to keep any old
+ permissions, replace instead of following links. This
+ is generally useful if you're doing a "copy over"
+ rather than a "save new version of" replace operation.
+ You can think of it as "unlink destination" before
+ writing to it, although the implementation may not
+ be exactly like that. Since 2.20
 <!-- struct FileEnumerator -->
 `FileEnumerator` allows you to operate on a set of `GFiles`,
 returning a `FileInfo` structure for each file enumerated (e.g.
@@ -7578,7 +11084,7 @@ on the output stream.
 
 # Implements
 
-[`FileIOStreamExt`](trait.FileIOStreamExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html)
+[`FileIOStreamExt`](trait.FileIOStreamExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`SeekableExt`](trait.SeekableExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait FileIOStreamExt -->
 Trait containing all `FileIOStream` methods.
 
@@ -7778,7 +11284,7 @@ a file attribute key.
 a signed 32-bit integer from the attribute.
 <!-- impl FileInfo::fn get_attribute_int64 -->
 Gets a signed 64-bit integer contained within the attribute. If the
-attribute does not contain an signed 64-bit integer, or is invalid,
+attribute does not contain a signed 64-bit integer, or is invalid,
 0 will be returned.
 ## `attribute`
 a file attribute key.
@@ -7922,6 +11428,10 @@ Checks if a file is a symlink.
 Gets the modification time of the current `self` and returns it as a
 `glib::DateTime`.
 
+This requires the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute. If
+`G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC` is provided, the resulting `glib::DateTime`
+will have microsecond precision.
+
 Feature: `v2_62`
 
 
@@ -7976,7 +11486,7 @@ a file attribute key.
 
 # Returns
 
-`true` if `Ginfo` has an attribute named `attribute`,
+`true` if `self` has an attribute named `attribute`,
  `false` otherwise.
 <!-- impl FileInfo::fn has_namespace -->
 Checks if a file info structure has an attribute in the
@@ -7986,7 +11496,7 @@ a file attribute namespace.
 
 # Returns
 
-`true` if `Ginfo` has an attribute in `name_space`,
+`true` if `self` has an attribute in `name_space`,
  `false` otherwise.
 <!-- impl FileInfo::fn list_attributes -->
 Lists the file info structure's attributes.
@@ -8133,16 +11643,18 @@ See `G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK`.
 ## `is_symlink`
 a `gboolean`.
 <!-- impl FileInfo::fn set_modification_date_time -->
-Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute in the file
-info to the given date/time value.
+Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` and
+`G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC` attributes in the file info to the
+given date/time value.
 
 Feature: `v2_62`
 
 ## `mtime`
 a `glib::DateTime`.
 <!-- impl FileInfo::fn set_modification_time -->
-Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` attribute in the file
-info to the given time value.
+Sets the `G_FILE_ATTRIBUTE_TIME_MODIFIED` and
+`G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC` attributes in the file info to the
+given time value.
 
 # Deprecated since 2.62
 
@@ -8242,6 +11754,22 @@ a `AsyncResult`.
 # Returns
 
 `FileInfo`.
+<!-- struct FileMeasureFlags -->
+Flags that can be used with `File::measure_disk_usage`.
+<!-- struct FileMeasureFlags::const NONE -->
+No flags set.
+<!-- struct FileMeasureFlags::const REPORT_ANY_ERROR -->
+Report any error encountered
+ while traversing the directory tree. Normally errors are only
+ reported for the toplevel file.
+<!-- struct FileMeasureFlags::const APPARENT_SIZE -->
+Tally usage based on apparent file
+ sizes. Normally, the block-size is used, if available, as this is a
+ more accurate representation of disk space used.
+ Compare with `du --apparent-size`.
+<!-- struct FileMeasureFlags::const NO_XDEV -->
+Do not cross mount point boundaries.
+ Compare with `du -x`.
 <!-- struct FileMonitor -->
 Monitors a file or directory for changes.
 
@@ -8365,6 +11893,27 @@ the file was moved into the
 the file was moved out of the
  monitored directory to another location -- only sent if the
  `FileMonitorFlags::WatchMoves` flag is set. Since: 2.46
+<!-- struct FileMonitorFlags -->
+Flags used to set what a `FileMonitor` will watch for.
+<!-- struct FileMonitorFlags::const NONE -->
+No flags set.
+<!-- struct FileMonitorFlags::const WATCH_MOUNTS -->
+Watch for mount events.
+<!-- struct FileMonitorFlags::const SEND_MOVED -->
+Pair DELETED and CREATED events caused
+ by file renames (moves) and send a single G_FILE_MONITOR_EVENT_MOVED
+ event instead (NB: not supported on all backends; the default
+ behaviour -without specifying this flag- is to send single DELETED
+ and CREATED events). Deprecated since 2.46: use
+ `FileMonitorFlags::WatchMoves` instead.
+<!-- struct FileMonitorFlags::const WATCH_HARD_LINKS -->
+Watch for changes to the file made
+ via another hard link. Since 2.36.
+<!-- struct FileMonitorFlags::const WATCH_MOVES -->
+Watch for rename operations on a
+ monitored directory. This causes `FileMonitorEvent::Renamed`,
+ `FileMonitorEvent::MovedIn` and `FileMonitorEvent::MovedOut`
+ events to be emitted when possible. Since: 2.46.
 <!-- struct FileOutputStream -->
 GFileOutputStream provides output streams that write their
 content to a file.
@@ -8450,6 +11999,12 @@ a `AsyncResult`.
 # Returns
 
 A `FileInfo` for the finished query.
+<!-- struct FileQueryInfoFlags -->
+Flags used when querying a `FileInfo`.
+<!-- struct FileQueryInfoFlags::const NONE -->
+No flags set.
+<!-- struct FileQueryInfoFlags::const NOFOLLOW_SYMLINKS -->
+Don't follow symlinks.
 <!-- enum FileType -->
 Indicates the file's on-disk type.
 
@@ -8766,7 +12321,7 @@ stream in (though they are guaranteed not to crash).
 
 # Implements
 
-[`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait IOStreamExt -->
 Trait containing all `IOStream` methods.
 
@@ -8906,6 +12461,19 @@ optional `Cancellable` object, `None` to ignore.
 a `GAsyncReadyCallback`.
 ## `user_data`
 user data passed to `callback`.
+<!-- struct IOStreamSpliceFlags -->
+GIOStreamSpliceFlags determine how streams should be spliced.
+<!-- struct IOStreamSpliceFlags::const NONE -->
+Do not close either stream.
+<!-- struct IOStreamSpliceFlags::const CLOSE_STREAM1 -->
+Close the first stream after
+ the splice.
+<!-- struct IOStreamSpliceFlags::const CLOSE_STREAM2 -->
+Close the second stream after
+ the splice.
+<!-- struct IOStreamSpliceFlags::const WAIT_FOR_BOTH -->
+Wait for both splice operations to finish
+ before calling the callback.
 <!-- struct Icon -->
 `Icon` is a very minimal interface for icons. It provides functions
 for checking the equality of two icons, hashing of icons and
@@ -9966,6 +13534,44 @@ Feature: `v2_44`
 
 ## `item`
 the new item
+<!-- trait ListStoreExt::fn find -->
+Looks up the given `item` in the list store by looping over the items until
+the first occurrence of `item`. If `item` was not found, then `position` will
+not be set, and this method will return `false`.
+
+If you need to compare the two items with a custom comparison function, use
+`ListStoreExt::find_with_equal_func` with a custom `GEqualFunc` instead.
+
+Feature: `v2_64`
+
+## `item`
+an item
+## `position`
+the first position of `item`, if it was found.
+
+# Returns
+
+Whether `self` contains `item`. If it was found, `position` will be
+set to the position where `item` occurred for the first time.
+<!-- trait ListStoreExt::fn find_with_equal_func -->
+Looks up the given `item` in the list store by looping over the items and
+comparing them with `compare_func` until the first occurrence of `item` which
+matches. If `item` was not found, then `position` will not be set, and this
+method will return `false`.
+
+Feature: `v2_64`
+
+## `item`
+an item
+## `equal_func`
+A custom equality check function
+## `position`
+the first position of `item`, if it was found.
+
+# Returns
+
+Whether `self` contains `item`. If it was found, `position` will be
+set to the position where `item` occurred for the first time.
 <!-- trait ListStoreExt::fn insert -->
 Inserts `item` into `self` at `position`. `item` must be of type
 `ListStore:item-type` or derived from it. `position` must be smaller
@@ -10172,6 +13778,104 @@ input data
 length of the data, may be -1 if `data` is a nul-terminated string
 ## `destroy`
 function that is called to free `data`, or `None`
+<!-- struct MemoryMonitor -->
+`MemoryMonitor` will monitor system memory and suggest to the application
+when to free memory so as to leave more room for other applications.
+It is implemented on Linux using the [Low Memory Monitor](https://gitlab.freedesktop.org/hadess/low-memory-monitor/)
+([API documentation](https://hadess.pages.freedesktop.org/low-memory-monitor/)).
+
+There is also an implementation for use inside Flatpak sandboxes.
+
+Possible actions to take when the signal is received are:
+- Free caches
+- Save files that haven't been looked at in a while to disk, ready to be reopened when needed
+- Run a garbage collection cycle
+- Try and compress fragmented allocations
+- Exit on idle if the process has no reason to stay around
+
+See `MemoryMonitorWarningLevel` for details on the various warning levels.
+
+
+```C
+static void
+warning_cb (GMemoryMonitor *m, GMemoryMonitorWarningLevel level)
+{
+  g_debug ("Warning level: %d", level);
+  if (warning_level > G_MEMORY_MONITOR_WARNING_LEVEL_LOW)
+    drop_caches ();
+}
+
+static GMemoryMonitor *
+monitor_low_memory (void)
+{
+  GMemoryMonitor *m;
+  m = g_memory_monitor_dup_default ();
+  g_signal_connect (G_OBJECT (m), "low-memory-warning",
+                    G_CALLBACK (warning_cb), NULL);
+  return m;
+}
+```
+
+Don't forget to disconnect the `MemoryMonitor::low-memory-warning`
+signal, and unref the `MemoryMonitor` itself when exiting.
+
+Feature: `v2_64`
+
+# Implements
+
+[`MemoryMonitorExt`](trait.MemoryMonitorExt.html)
+<!-- trait MemoryMonitorExt -->
+Trait containing all `MemoryMonitor` methods.
+
+Feature: `v2_64`
+
+# Implementors
+
+[`MemoryMonitor`](struct.MemoryMonitor.html)
+<!-- impl MemoryMonitor::fn dup_default -->
+Gets a reference to the default `MemoryMonitor` for the system.
+
+Feature: `v2_64`
+
+
+# Returns
+
+a new reference to the default `MemoryMonitor`
+<!-- trait MemoryMonitorExt::fn connect_low_memory_warning -->
+Emitted when the system is running low on free memory. The signal
+handler should then take the appropriate action depending on the
+warning level. See the `MemoryMonitorWarningLevel` documentation for
+details.
+
+Feature: `v2_64`
+
+## `level`
+the `MemoryMonitorWarningLevel` warning level
+<!-- enum MemoryMonitorWarningLevel -->
+Memory availability warning levels.
+
+Note that because new values might be added, it is recommended that applications check
+`MemoryMonitorWarningLevel` as ranges, for example:
+
+```C
+if (warning_level > G_MEMORY_MONITOR_WARNING_LEVEL_LOW)
+  drop_caches ();
+```
+<!-- enum MemoryMonitorWarningLevel::variant Low -->
+Memory on the device is low, processes
+ should free up unneeded resources (for example, in-memory caches) so they can
+ be used elsewhere.
+<!-- enum MemoryMonitorWarningLevel::variant Medium -->
+Same as `MemoryMonitorWarningLevel::Low`
+ but the device has even less free memory, so processes should try harder to free
+ up unneeded resources. If your process does not need to stay running, it is a
+ good time for it to quit.
+<!-- enum MemoryMonitorWarningLevel::variant Critical -->
+The system will soon start terminating
+ processes to reclaim memory, including background processes.
+
+Feature: `v2_64`
+
 <!-- struct MemoryOutputStream -->
 `MemoryOutputStream` is a class for using arbitrary
 memory chunks as output for GIO streaming output operations.
@@ -11081,7 +14785,7 @@ Trait containing all `MenuModel` methods.
 
 # Implementors
 
-[`MenuModel`](struct.MenuModel.html), [`Menu`](struct.Menu.html)
+[`DBusMenuModel`](struct.DBusMenuModel.html), [`MenuModel`](struct.MenuModel.html), [`Menu`](struct.Menu.html)
 <!-- trait MenuModelExt::fn get_item_attribute -->
 Queries item at position `item_index` in `self` for the attribute
 specified by `attribute`.
@@ -11423,7 +15127,7 @@ memory cards. See the
 [shared-mime-info](http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec)
 specification for more on x-content types.
 
-This is an synchronous operation and as such may block doing IO;
+This is a synchronous operation and as such may block doing IO;
 see `Mount::guess_content_type` for the asynchronous version.
 ## `force_rescan`
 Whether to force a rescan of the content.
@@ -11540,6 +15244,10 @@ This signal is emitted when the `Mount` have been
 unmounted. If the recipient is holding references to the
 object they should release them so the object can be
 finalized.
+<!-- struct MountMountFlags -->
+Flags used when mounting a mount.
+<!-- struct MountMountFlags::const NONE -->
+No flags set.
 <!-- struct MountOperation -->
 `MountOperation` provides a mechanism for interacting with the user.
 It can be used for authenticating mountable operations, such as loop
@@ -11859,6 +15567,13 @@ The user requested the mount operation
 <!-- enum MountOperationResult::variant Unhandled -->
 The request was unhandled (i.e. not
  implemented)
+<!-- struct MountUnmountFlags -->
+Flags used when an unmounting a mount.
+<!-- struct MountUnmountFlags::const NONE -->
+No flags set.
+<!-- struct MountUnmountFlags::const FORCE -->
+Unmount even if there are outstanding
+ file operations on the mount.
 <!-- struct NetworkAddress -->
 `NetworkAddress` provides an easy way to resolve a hostname and
 then attempt to connect to that host, handling the possibility of
@@ -13073,6 +16788,16 @@ location to store the number of bytes that were written to the stream
 # Returns
 
 `true` on success, `false` if there was an error
+<!-- struct OutputStreamSpliceFlags -->
+GOutputStreamSpliceFlags determine how streams should be spliced.
+<!-- struct OutputStreamSpliceFlags::const NONE -->
+Do not close either stream.
+<!-- struct OutputStreamSpliceFlags::const CLOSE_SOURCE -->
+Close the source stream after
+ the splice.
+<!-- struct OutputStreamSpliceFlags::const CLOSE_TARGET -->
+Close the target stream after
+ the splice.
 <!-- enum PasswordSave -->
 `PasswordSave` is used to indicate the lifespan of a saved password.
 
@@ -14229,6 +17954,17 @@ itself as the default resolver for all later code to use.
 <!-- trait ResolverExt::fn connect_reload -->
 Emitted when the resolver notices that the system resolver
 configuration has changed.
+<!-- struct ResolverNameLookupFlags -->
+Flags to modify lookup behavior.
+<!-- struct ResolverNameLookupFlags::const DEFAULT -->
+default behavior (same as `ResolverExt::lookup_by_name`)
+<!-- struct ResolverNameLookupFlags::const IPV4_ONLY -->
+only resolve ipv4 addresses
+<!-- struct ResolverNameLookupFlags::const IPV6_ONLY -->
+only resolve ipv6 addresses
+
+Feature: `v2_60`
+
 <!-- enum ResolverRecordType -->
 The type of record that `ResolverExt::lookup_records` or
 `ResolverExt::lookup_records_async` should retrieve. The records are returned
@@ -14528,6 +18264,10 @@ from a `Resource` routine.
 no file was found at the requested path
 <!-- enum ResourceError::variant Internal -->
 unknown error
+<!-- struct ResourceLookupFlags -->
+GResourceLookupFlags determine how resource path lookups are handled.
+<!-- struct ResourceLookupFlags::const NONE -->
+No flags set.
 <!-- struct Seekable -->
 `Seekable` is implemented by streams (implementations of
 `InputStream` or `OutputStream`) that support seeking.
@@ -15269,7 +19009,7 @@ Gets the value that is stored in `self` for `key` and converts it
 to the flags value that it represents.
 
 In order to use this function the type of the value must be an array
-of strings and it must be marked in the schema file as an flags type.
+of strings and it must be marked in the schema file as a flags type.
 
 It is a programmer error to give a `key` that isn't contained in the
 schema for `self` or is not marked as a flags type.
@@ -15488,7 +19228,7 @@ with it.
 
 # Deprecated since 2.46
 
-Use g_settings_schema_list_keys `instead`.
+Use `SettingsSchema::list_keys` instead.
 
 # Returns
 
@@ -15998,6 +19738,27 @@ Since GSettings performs no locking operations for itself, this call
 will always be made in response to external events.
 ## `key`
 the name of the key
+<!-- struct SettingsBindFlags -->
+Flags used when creating a binding. These flags determine in which
+direction the binding works. The default is to synchronize in both
+directions.
+<!-- struct SettingsBindFlags::const DEFAULT -->
+Equivalent to `G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET`
+<!-- struct SettingsBindFlags::const GET -->
+Update the `gobject::Object` property when the setting changes.
+ It is an error to use this flag if the property is not writable.
+<!-- struct SettingsBindFlags::const SET -->
+Update the setting when the `gobject::Object` property changes.
+ It is an error to use this flag if the property is not readable.
+<!-- struct SettingsBindFlags::const NO_SENSITIVITY -->
+Do not try to bind a "sensitivity" property to the writability of the setting
+<!-- struct SettingsBindFlags::const GET_NO_CHANGES -->
+When set in addition to `SettingsBindFlags::Get`, set the `gobject::Object` property
+ value initially from the setting, but do not listen for changes of the setting
+<!-- struct SettingsBindFlags::const INVERT_BOOLEAN -->
+When passed to `SettingsExt::bind`, uses a pair of mapping functions that invert
+ the boolean value when mapping between the setting and the property. The setting and property must both
+ be booleans. You cannot pass this flag to `SettingsExt::bind_with_mapping`.
 <!-- struct SettingsSchema -->
 The `SettingsSchemaSource` and `SettingsSchema` APIs provide a
 mechanism for advanced control over the loading of schemas and a
@@ -16116,7 +19877,7 @@ schemas correspond to exactly one set of keys in the backend
 database: those located at the path returned by this function.
 
 Relocatable schemas can be referenced by other schemas and can
-threfore describe multiple sets of keys at different locations. For
+therefore describe multiple sets of keys at different locations. For
 relocatable schemas, this function will return `None`.
 
 # Returns
@@ -16581,7 +20342,7 @@ Feature: `v2_44`
 
 # Implements
 
-[`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- impl SimpleIOStream::fn new -->
 Creates a new `SimpleIOStream` wrapping `input_stream` and `output_stream`.
 See also `IOStream`.
@@ -18633,7 +22394,7 @@ substreams of the `IOStream` separately will not close the underlying
 
 # Implements
 
-[`SocketConnectionExt`](trait.SocketConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`SocketConnectionExt`](trait.SocketConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait SocketConnectionExt -->
 Trait containing all `SocketConnection` methods.
 
@@ -19620,6 +23381,48 @@ the `AsyncResult` passed to your `GAsyncReadyCallback`
 # Returns
 
 `true` if successful, or `false` with `error` set
+<!-- struct SubprocessFlags -->
+Flags to define the behaviour of a `Subprocess`.
+
+Note that the default for stdin is to redirect from `/dev/null`. For
+stdout and stderr the default are for them to inherit the
+corresponding descriptor from the calling process.
+
+Note that it is a programmer error to mix 'incompatible' flags. For
+example, you may not request both `SubprocessFlags::StdoutPipe` and
+`SubprocessFlags::StdoutSilence`.
+<!-- struct SubprocessFlags::const NONE -->
+No flags.
+<!-- struct SubprocessFlags::const STDIN_PIPE -->
+create a pipe for the stdin of the
+ spawned process that can be accessed with
+ `Subprocess::get_stdin_pipe`.
+<!-- struct SubprocessFlags::const STDIN_INHERIT -->
+stdin is inherited from the
+ calling process.
+<!-- struct SubprocessFlags::const STDOUT_PIPE -->
+create a pipe for the stdout of the
+ spawned process that can be accessed with
+ `Subprocess::get_stdout_pipe`.
+<!-- struct SubprocessFlags::const STDOUT_SILENCE -->
+silence the stdout of the spawned
+ process (ie: redirect to `/dev/null`).
+<!-- struct SubprocessFlags::const STDERR_PIPE -->
+create a pipe for the stderr of the
+ spawned process that can be accessed with
+ `Subprocess::get_stderr_pipe`.
+<!-- struct SubprocessFlags::const STDERR_SILENCE -->
+silence the stderr of the spawned
+ process (ie: redirect to `/dev/null`).
+<!-- struct SubprocessFlags::const STDERR_MERGE -->
+merge the stderr of the spawned
+ process with whatever the stdout happens to be. This is a good way
+ of directing both streams to a common log file, for example.
+<!-- struct SubprocessFlags::const INHERIT_FDS -->
+spawned processes will inherit the
+ file descriptors of their parent, unless those descriptors have
+ been explicitly marked as close-on-exec. This flag has no effect
+ over the "standard" file descriptors (stdin, stdout, stderr).
 <!-- struct SubprocessLauncher -->
 This class contains a set of options for launching child processes,
 such as where its standard input and output will be directed, the
@@ -19886,7 +23689,7 @@ for TCP/IP sockets.
 
 # Implements
 
-[`TcpConnectionExt`](trait.TcpConnectionExt.html), [`SocketConnectionExt`](trait.SocketConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`TcpConnectionExt`](trait.TcpConnectionExt.html), [`SocketConnectionExt`](trait.SocketConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait TcpConnectionExt -->
 Trait containing all `TcpConnection` methods.
 
@@ -20276,6 +24079,35 @@ constructing a key (eg, from a file), but cannot be read.
 PKCS`8` format is supported since 2.32; earlier releases only
 support PKCS`1`. You can use the `openssl rsa`
 tool to convert PKCS`8` keys to PKCS`1`.
+<!-- struct TlsCertificateFlags -->
+A set of flags describing TLS certification validation. This can be
+used to set which validation steps to perform (eg, with
+`TlsClientConnection::set_validation_flags`), or to describe why
+a particular certificate was rejected (eg, in
+`TlsConnection::accept-certificate`).
+<!-- struct TlsCertificateFlags::const UNKNOWN_CA -->
+The signing certificate authority is
+ not known.
+<!-- struct TlsCertificateFlags::const BAD_IDENTITY -->
+The certificate does not match the
+ expected identity of the site that it was retrieved from.
+<!-- struct TlsCertificateFlags::const NOT_ACTIVATED -->
+The certificate's activation time
+ is still in the future
+<!-- struct TlsCertificateFlags::const EXPIRED -->
+The certificate has expired
+<!-- struct TlsCertificateFlags::const REVOKED -->
+The certificate has been revoked
+ according to the `TlsConnection`'s certificate revocation list.
+<!-- struct TlsCertificateFlags::const INSECURE -->
+The certificate's algorithm is
+ considered insecure.
+<!-- struct TlsCertificateFlags::const GENERIC_ERROR -->
+Some other error occurred validating
+ the certificate
+<!-- struct TlsCertificateFlags::const VALIDATE_ALL -->
+the combination of all of the above
+ flags
 <!-- enum TlsCertificateRequestFlags -->
 Flags for `TlsInteractionExt::request_certificate`,
 `TlsInteractionExt::request_certificate_async`, and
@@ -20288,7 +24120,7 @@ No flags
 
 # Implements
 
-[`TlsClientConnectionExt`](trait.TlsClientConnectionExt.html), [`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`TlsClientConnectionExt`](trait.TlsClientConnectionExt.html), [`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait TlsClientConnectionExt -->
 Trait containing all `TlsClientConnection` methods.
 
@@ -20313,12 +24145,34 @@ the expected identity of the server
 the new
 `TlsClientConnection`, or `None` on error
 <!-- trait TlsClientConnectionExt::fn copy_session_state -->
-Copies session state from one connection to another. This is
-not normally needed, but may be used when the same session
-needs to be used between different endpoints as is required
-by some protocols such as FTP over TLS. `source` should have
-already completed a handshake, and `self` should not have
-completed a handshake.
+Possibly copies session state from one connection to another, for use
+in TLS session resumption. This is not normally needed, but may be
+used when the same session needs to be used between different
+endpoints, as is required by some protocols, such as FTP over TLS.
+`source` should have already completed a handshake and, since TLS 1.3,
+it should have been used to read data at least once. `self` should not
+have completed a handshake.
+
+It is not possible to know whether a call to this function will
+actually do anything. Because session resumption is normally used
+only for performance benefit, the TLS backend might not implement
+this function. Even if implemented, it may not actually succeed in
+allowing `self` to resume `source`'s TLS session, because the server
+may not have sent a session resumption token to `source`, or it may
+refuse to accept the token from `self`. There is no way to know
+whether a call to this function is actually successful.
+
+Using this function is not required to benefit from session
+resumption. If the TLS backend supports session resumption, the
+session will be resumed automatically if it is possible to do so
+without weakening the privacy guarantees normally provided by TLS,
+without need to call this function. For example, with TLS 1.3,
+a session ticket will be automatically copied from any
+`TlsClientConnection` that has previously received session tickets
+from the server, provided a ticket is available that has not
+previously been used for session resumption, since session ticket
+reuse would be a privacy weakness. Using this function causes the
+ticket to be copied without regard for privacy considerations.
 
 Feature: `v2_46`
 
@@ -20347,18 +24201,16 @@ a `SocketConnectable` describing the
 expected server identity, or `None` if the expected identity is not
 known.
 <!-- trait TlsClientConnectionExt::fn get_use_ssl3 -->
-Gets whether `self` will force the lowest-supported TLS protocol
-version rather than attempt to negotiate the highest mutually-
-supported version of TLS; see `TlsClientConnection::set_use_ssl3`.
+SSL 3.0 is no longer supported. See
+`TlsClientConnection::set_use_ssl3` for details.
 
 # Deprecated since 2.56
 
-SSL 3.0 is insecure, and this function does not
-actually indicate whether it is enabled.
+SSL 3.0 is insecure.
 
 # Returns
 
-whether `self` will use the lowest-supported TLS protocol version
+`false`
 <!-- trait TlsClientConnectionExt::fn get_validation_flags -->
 Gets `self`'s validation flags
 
@@ -20373,26 +24225,22 @@ performing `TlsCertificateFlags::BadIdentity` validation, if enabled.
 ## `identity`
 a `SocketConnectable` describing the expected server identity
 <!-- trait TlsClientConnectionExt::fn set_use_ssl3 -->
-Since 2.42.1, if `use_ssl3` is `true`, this forces `self` to use the
-lowest-supported TLS protocol version rather than trying to properly
-negotiate the highest mutually-supported protocol version with the
-peer. Be aware that SSL 3.0 is generally disabled by the
-`TlsBackend`, so the lowest-supported protocol version is probably
-not SSL 3.0.
+Since GLib 2.42.1, SSL 3.0 is no longer supported.
 
-Since 2.58, this may additionally cause an RFC 7507 fallback SCSV to
-be sent to the server, causing modern TLS servers to immediately
-terminate the connection. You should generally only use this function
-if you need to connect to broken servers that exhibit TLS protocol
-version intolerance, and when an initial attempt to connect to a
-server normally has already failed.
+From GLib 2.42.1 through GLib 2.62, this function could be used to
+force use of TLS 1.0, the lowest-supported TLS protocol version at
+the time. In the past, this was needed to connect to broken TLS
+servers that exhibited protocol version intolerance. Such servers
+are no longer common, and using TLS 1.0 is no longer considered
+acceptable.
+
+Since GLib 2.64, this function does nothing.
 
 # Deprecated since 2.56
 
-SSL 3.0 is insecure, and this function does not
-generally enable or disable it, despite its name.
+SSL 3.0 is insecure.
 ## `use_ssl3`
-whether to use the lowest-supported protocol version
+a `gboolean`, ignored
 <!-- trait TlsClientConnectionExt::fn set_validation_flags -->
 Sets `self`'s validation flags, to override the default set of
 checks performed when validating a server certificate. By default,
@@ -20438,23 +24286,19 @@ this is also used to give a hint to the server about what
 certificate we expect, which is useful for servers that serve
 virtual hosts.
 <!-- trait TlsClientConnectionExt::fn get_property_use_ssl3 -->
-If `true`, forces the connection to use a fallback version of TLS
-or SSL, rather than trying to negotiate the best version of TLS
-to use. See `TlsClientConnection::set_use_ssl3`.
+SSL 3.0 is no longer supported. See
+`TlsClientConnection::set_use_ssl3` for details.
 
 # Deprecated since 2.56
 
-SSL 3.0 is insecure, and this property does not
-generally enable or disable it, despite its name.
+SSL 3.0 is insecure.
 <!-- trait TlsClientConnectionExt::fn set_property_use_ssl3 -->
-If `true`, forces the connection to use a fallback version of TLS
-or SSL, rather than trying to negotiate the best version of TLS
-to use. See `TlsClientConnection::set_use_ssl3`.
+SSL 3.0 is no longer supported. See
+`TlsClientConnection::set_use_ssl3` for details.
 
 # Deprecated since 2.56
 
-SSL 3.0 is insecure, and this property does not
-generally enable or disable it, despite its name.
+SSL 3.0 is insecure.
 <!-- trait TlsClientConnectionExt::fn get_property_validation_flags -->
 What steps to perform when validating a certificate received from
 a server. Server certificates that fail to validate in all of the
@@ -20475,7 +24319,7 @@ For DTLS (Datagram TLS) support, see `DtlsConnection`.
 
 # Implements
 
-[`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait TlsConnectionExt -->
 Trait containing all `TlsConnection` methods.
 
@@ -20559,7 +24403,7 @@ Changing the rehandshake mode is no longer
 
 # Returns
 
-`self`'s rehandshaking mode
+`TlsRehandshakeMode::Safely`
 <!-- trait TlsConnectionExt::fn get_require_close_notify -->
 Tests whether or not `self` expects a proper TLS close notification
 when the connection is closed. See
@@ -20574,28 +24418,30 @@ Attempts a TLS handshake on `self`.
 
 On the client side, it is never necessary to call this method;
 although the connection needs to perform a handshake after
-connecting (or after sending a "STARTTLS"-type command) and may
-need to rehandshake later if the server requests it,
+connecting (or after sending a "STARTTLS"-type command),
 `TlsConnection` will handle this for you automatically when you try
-to send or receive data on the connection. However, you can call
-`TlsConnectionExt::handshake` manually if you want to know for sure
-whether the initial handshake succeeded or failed (as opposed to
-just immediately trying to write to `self`'s output stream, in which
-case if it fails, it may not be possible to tell if it failed
-before or after completing the handshake).
+to send or receive data on the connection. You can call
+`TlsConnectionExt::handshake` manually if you want to know whether
+the initial handshake succeeded or failed (as opposed to just
+immediately trying to use `self` to read or write, in which case,
+if it fails, it may not be possible to tell if it failed before or
+after completing the handshake), but beware that servers may reject
+client authentication after the handshake has completed, so a
+successful handshake does not indicate the connection will be usable.
 
 Likewise, on the server side, although a handshake is necessary at
 the beginning of the communication, you do not need to call this
 function explicitly unless you want clearer error reporting.
 
-If TLS 1.2 or older is in use, you may call
-`TlsConnectionExt::handshake` after the initial handshake to
-rehandshake; however, this usage is deprecated because rehandshaking
-is no longer part of the TLS protocol in TLS 1.3. Accordingly, the
-behavior of calling this function after the initial handshake is now
-undefined, except it is guaranteed to be reasonable and
-nondestructive so as to preserve compatibility with code written for
-older versions of GLib.
+Previously, calling `TlsConnectionExt::handshake` after the initial
+handshake would trigger a rehandshake; however, this usage was
+deprecated in GLib 2.60 because rehandshaking was removed from the
+TLS protocol in TLS 1.3. Since GLib 2.64, calling this function after
+the initial handshake will no longer do anything.
+
+When using a `TlsConnection` created by `SocketClient`, the
+`SocketClient` performs the initial handshake, so calling this
+function manually is not recommended.
 
 `TlsConnection::accept_certificate` may be emitted during the
 handshake.
@@ -20685,27 +24531,10 @@ should occur for this connection.
 ## `interaction`
 an interaction object, or `None`
 <!-- trait TlsConnectionExt::fn set_rehandshake_mode -->
-Sets how `self` behaves with respect to rehandshaking requests, when
-TLS 1.2 or older is in use.
-
-`TlsRehandshakeMode::Never` means that it will never agree to
-rehandshake after the initial handshake is complete. (For a client,
-this means it will refuse rehandshake requests from the server, and
-for a server, this means it will close the connection with an error
-if the client attempts to rehandshake.)
-
-`TlsRehandshakeMode::Safely` means that the connection will allow a
-rehandshake only if the other end of the connection supports the
-TLS `renegotiation_info` extension. This is the default behavior,
-but means that rehandshaking will not work against older
-implementations that do not support that extension.
-
-`TlsRehandshakeMode::Unsafely` means that the connection will allow
-rehandshaking even without the `renegotiation_info` extension. On
-the server side in particular, this is not recommended, since it
-leaves the server open to certain attacks. However, this mode is
-necessary if you need to allow renegotiation with older client
-software.
+Since GLib 2.64, changing the rehandshake mode is no longer supported
+and will have no effect. With TLS 1.3, rehandshaking has been removed from
+the TLS protocol, replaced by separate post-handshake authentication and
+rekey operations.
 
 # Deprecated since 2.60
 
@@ -20861,9 +24690,17 @@ behavior.
 <!-- trait TlsConnectionExt::fn get_property_rehandshake_mode -->
 The rehandshaking mode. See
 `TlsConnectionExt::set_rehandshake_mode`.
+
+# Deprecated since 2.60
+
+The rehandshake mode is ignored.
 <!-- trait TlsConnectionExt::fn set_property_rehandshake_mode -->
 The rehandshaking mode. See
 `TlsConnectionExt::set_rehandshake_mode`.
+
+# Deprecated since 2.60
+
+The rehandshake mode is ignored.
 <!-- trait TlsConnectionExt::fn get_property_require_close_notify -->
 Whether or not proper TLS close notification is required.
 See `TlsConnectionExt::set_require_close_notify`.
@@ -21153,6 +24990,10 @@ No lookup flags
 <!-- enum TlsDatabaseLookupFlags::variant Keypair -->
 Restrict lookup to certificates that have
  a private key.
+<!-- struct TlsDatabaseVerifyFlags -->
+Flags for `TlsDatabaseExt::verify_chain`.
+<!-- struct TlsDatabaseVerifyFlags::const NONE -->
+No verification flags
 <!-- struct TlsFileDatabase -->
 `TlsFileDatabase` is implemented by `TlsDatabase` objects which load
 their certificate information from a file. It is an interface which
@@ -21388,7 +25229,7 @@ will be called when the interaction completes
 ## `user_data`
 data to pass to the `callback`
 <!-- trait TlsInteractionExt::fn request_certificate_finish -->
-Complete an request certificate user interaction request. This should be once
+Complete a request certificate user interaction request. This should be once
 the `TlsInteractionExt::request_certificate_async` completion callback is called.
 
 If `TlsInteractionResult::Handled` is returned, then the `TlsConnection`
@@ -21512,6 +25353,18 @@ representation of the password flags returned from
 `TlsPasswordExt::get_flags`.
 ## `warning`
 The user readable warning
+<!-- struct TlsPasswordFlags -->
+Various flags for the password.
+<!-- struct TlsPasswordFlags::const NONE -->
+No flags
+<!-- struct TlsPasswordFlags::const RETRY -->
+The password was wrong, and the user should retry.
+<!-- struct TlsPasswordFlags::const MANY_TRIES -->
+Hint to the user that the password has been
+ wrong many times, and the user may not have many chances left.
+<!-- struct TlsPasswordFlags::const FINAL_TRY -->
+Hint to the user that this is the last try to get
+ this password right.
 <!-- enum TlsRehandshakeMode -->
 When to allow rehandshaking. See
 `TlsConnectionExt::set_rehandshake_mode`.
@@ -21533,7 +25386,7 @@ representing a server-side TLS connection.
 
 # Implements
 
-[`TlsServerConnectionExt`](trait.TlsServerConnectionExt.html), [`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`TlsServerConnectionExt`](trait.TlsServerConnectionExt.html), [`TlsConnectionExt`](trait.TlsConnectionExt.html), [`IOStreamExt`](trait.IOStreamExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`IOStreamExtManual`](prelude/trait.IOStreamExtManual.html)
 <!-- trait TlsServerConnectionExt -->
 Trait containing all `TlsServerConnection` methods.
 
@@ -21564,6 +25417,145 @@ rehandshake with a different mode from the initial handshake.
 The `TlsAuthenticationMode` for the server. This can be changed
 before calling `TlsConnectionExt::handshake` if you want to
 rehandshake with a different mode from the initial handshake.
+<!-- struct UnixFDList -->
+A `UnixFDList` contains a list of file descriptors. It owns the file
+descriptors that it contains, closing them when finalized.
+
+It may be wrapped in a `UnixFDMessage` and sent over a `Socket` in
+the `SocketFamily::Unix` family by using `Socket::send_message`
+and received using `Socket::receive_message`.
+
+Note that `<gio/gunixfdlist.h>` belongs to the UNIX-specific GIO
+interfaces, thus you have to use the `gio-unix-2.0.pc` pkg-config
+file when using it.
+
+# Implements
+
+[`UnixFDListExt`](trait.UnixFDListExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`UnixFDListExtManual`](prelude/trait.UnixFDListExtManual.html)
+<!-- trait UnixFDListExt -->
+Trait containing all `UnixFDList` methods.
+
+# Implementors
+
+[`UnixFDList`](struct.UnixFDList.html)
+<!-- impl UnixFDList::fn new -->
+Creates a new `UnixFDList` containing no file descriptors.
+
+# Returns
+
+a new `UnixFDList`
+<!-- impl UnixFDList::fn new_from_array -->
+Creates a new `UnixFDList` containing the file descriptors given in
+`fds`. The file descriptors become the property of the new list and
+may no longer be used by the caller. The array itself is owned by
+the caller.
+
+Each file descriptor in the array should be set to close-on-exec.
+
+If `n_fds` is -1 then `fds` must be terminated with -1.
+## `fds`
+the initial list of file descriptors
+## `n_fds`
+the length of `fds`, or -1
+
+# Returns
+
+a new `UnixFDList`
+<!-- trait UnixFDListExtManual::fn append -->
+Adds a file descriptor to `self`.
+
+The file descriptor is duplicated using `dup`. You keep your copy
+of the descriptor and the copy contained in `self` will be closed
+when `self` is finalized.
+
+A possible cause of failure is exceeding the per-process or
+system-wide file descriptor limit.
+
+The index of the file descriptor in the list is returned. If you use
+this index with `UnixFDList::get` then you will receive back a
+duplicated copy of the same file descriptor.
+## `fd`
+a valid open file descriptor
+
+# Returns
+
+the index of the appended fd in case of success, else -1
+ (and `error` is set)
+<!-- trait UnixFDListExtManual::fn get -->
+Gets a file descriptor out of `self`.
+
+`index_` specifies the index of the file descriptor to get. It is a
+programmer error for `index_` to be out of range; see
+`UnixFDListExt::get_length`.
+
+The file descriptor is duplicated using `dup` and set as
+close-on-exec before being returned. You must call `close` on it
+when you are done.
+
+A possible cause of failure is exceeding the per-process or
+system-wide file descriptor limit.
+## `index_`
+the index into the list
+
+# Returns
+
+the file descriptor, or -1 in case of error
+<!-- trait UnixFDListExt::fn get_length -->
+Gets the length of `self` (ie: the number of file descriptors
+contained within).
+
+# Returns
+
+the length of `self`
+<!-- trait UnixFDListExtManual::fn peek_fds -->
+Returns the array of file descriptors that is contained in this
+object.
+
+After this call, the descriptors remain the property of `self`. The
+caller must not close them and must not free the array. The array is
+valid only until `self` is changed in any way.
+
+If `length` is non-`None` then it is set to the number of file
+descriptors in the returned array. The returned array is also
+terminated with -1.
+
+This function never returns `None`. In case there are no file
+descriptors contained in `self`, an empty array is returned.
+## `length`
+pointer to the length of the returned
+ array, or `None`
+
+# Returns
+
+an array of file
+ descriptors
+<!-- trait UnixFDListExtManual::fn steal_fds -->
+Returns the array of file descriptors that is contained in this
+object.
+
+After this call, the descriptors are no longer contained in
+`self`. Further calls will return an empty list (unless more
+descriptors have been added).
+
+The return result of this function must be freed with `g_free`.
+The caller is also responsible for closing all of the file
+descriptors. The file descriptors in the array are set to
+close-on-exec.
+
+If `length` is non-`None` then it is set to the number of file
+descriptors in the returned array. The returned array is also
+terminated with -1.
+
+This function never returns `None`. In case there are no file
+descriptors contained in `self`, an empty array is returned.
+## `length`
+pointer to the length of the returned
+ array, or `None`
+
+# Returns
+
+an array of file
+ descriptors
 <!-- struct UnixInputStream -->
 `UnixInputStream` implements `InputStream` for reading from a UNIX
 file descriptor, including asynchronous operations. (If the file
@@ -21626,11 +25618,18 @@ The file descriptor that the stream reads from.
 <!-- struct UnixMountEntry -->
 Defines a Unix mount entry (e.g. `<filename>`/media/cdrom`</filename>`).
 This corresponds roughly to a mtab entry.
+
+Feature: `v2_54`
 <!-- struct UnixMountPoint -->
 Defines a Unix mount point (e.g. `<filename>`/dev`</filename>`).
 This corresponds roughly to a fstab entry.
+
+Feature: `v2_54`
 <!-- impl UnixMountPoint::fn compare -->
 Compares two unix mount points.
+
+Feature: `v2_54`
+
 ## `mount2`
 a `GUnixMount`.
 
@@ -21649,8 +25648,14 @@ Feature: `v2_54`
 a new `UnixMountPoint`
 <!-- impl UnixMountPoint::fn free -->
 Frees a unix mount point.
+
+Feature: `v2_54`
+
 <!-- impl UnixMountPoint::fn get_device_path -->
 Gets the device path for a unix mount point.
+
+Feature: `v2_54`
+
 
 # Returns
 
@@ -21658,11 +25663,17 @@ a string containing the device path.
 <!-- impl UnixMountPoint::fn get_fs_type -->
 Gets the file system type for the mount point.
 
+Feature: `v2_54`
+
+
 # Returns
 
 a string containing the file system type.
 <!-- impl UnixMountPoint::fn get_mount_path -->
 Gets the mount path for a unix mount point.
+
+Feature: `v2_54`
+
 
 # Returns
 
@@ -21670,17 +25681,26 @@ a string containing the mount path.
 <!-- impl UnixMountPoint::fn get_options -->
 Gets the options for the mount point.
 
+Feature: `v2_54`
+
+
 # Returns
 
 a string containing the options.
 <!-- impl UnixMountPoint::fn guess_can_eject -->
 Guesses whether a Unix mount point can be ejected.
 
+Feature: `v2_54`
+
+
 # Returns
 
 `true` if `self` is deemed to be ejectable.
 <!-- impl UnixMountPoint::fn guess_icon -->
 Guesses the icon of a Unix mount point.
+
+Feature: `v2_54`
+
 
 # Returns
 
@@ -21689,6 +25709,9 @@ a `Icon`
 Guesses the name of a Unix mount point.
 The result is a translated string.
 
+Feature: `v2_54`
+
+
 # Returns
 
 A newly allocated string that must
@@ -21696,11 +25719,17 @@ A newly allocated string that must
 <!-- impl UnixMountPoint::fn guess_symbolic_icon -->
 Guesses the symbolic icon of a Unix mount point.
 
+Feature: `v2_54`
+
+
 # Returns
 
 a `Icon`
 <!-- impl UnixMountPoint::fn is_loopback -->
 Checks if a unix mount point is a loopback device.
+
+Feature: `v2_54`
+
 
 # Returns
 
@@ -21708,11 +25737,17 @@ Checks if a unix mount point is a loopback device.
 <!-- impl UnixMountPoint::fn is_readonly -->
 Checks if a unix mount point is read only.
 
+Feature: `v2_54`
+
+
 # Returns
 
 `true` if a mount point is read only.
 <!-- impl UnixMountPoint::fn is_user_mountable -->
 Checks if a unix mount point is mountable by the user.
+
+Feature: `v2_54`
+
 
 # Returns
 

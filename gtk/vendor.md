@@ -406,6 +406,14 @@ The label for the link to the website of the program.
 Whether to wrap the text in the license dialog.
 <!-- trait AboutDialogExt::fn set_property_wrap_license -->
 Whether to wrap the text in the license dialog.
+<!-- struct AccelFlags -->
+Accelerator flags used with `AccelGroup::connect`.
+<!-- struct AccelFlags::const VISIBLE -->
+Accelerator is visible
+<!-- struct AccelFlags::const LOCKED -->
+Accelerator not removable
+<!-- struct AccelFlags::const MASK -->
+Mask
 <!-- struct AccelGroup -->
 A `AccelGroup` represents a group of keyboard accelerators,
 typically attached to a toplevel `Window` (with
@@ -425,7 +433,7 @@ and mnemonics, of course.
 
 # Implements
 
-[`AccelGroupExt`](trait.AccelGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`AccelGroupExt`](trait.AccelGroupExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccelGroupExtManual`](prelude/trait.AccelGroupExtManual.html)
 <!-- trait AccelGroupExt -->
 Trait containing all `AccelGroup` methods.
 
@@ -2037,6 +2045,19 @@ Tracking the screensaver state is supported on Linux.
 
 Feature: `v3_24`
 
+<!-- struct ApplicationInhibitFlags -->
+Types of user actions that may be blocked by `GtkApplicationExt::inhibit`.
+<!-- struct ApplicationInhibitFlags::const LOGOUT -->
+Inhibit ending the user session
+ by logging out or by shutting down the computer
+<!-- struct ApplicationInhibitFlags::const SWITCH -->
+Inhibit user switching
+<!-- struct ApplicationInhibitFlags::const SUSPEND -->
+Inhibit suspending the
+ session or computer
+<!-- struct ApplicationInhibitFlags::const IDLE -->
+Inhibit the session being
+ marked as idle (and possibly locked)
 <!-- struct ApplicationWindow -->
 `ApplicationWindow` is a `Window` subclass that offers some
 extra functionality for better integration with `Application`
@@ -2734,7 +2755,7 @@ Trait containing all `Box` methods.
 
 # Implementors
 
-[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`InfoBar`](struct.InfoBar.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html)
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`InfoBar`](struct.InfoBar.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`ShortcutsGroup`](struct.ShortcutsGroup.html), [`ShortcutsSection`](struct.ShortcutsSection.html), [`ShortcutsShortcut`](struct.ShortcutsShortcut.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html)
 <!-- impl Box::fn new -->
 Creates a new `Box`.
 ## `orientation`
@@ -2909,7 +2930,7 @@ Trait containing all `Buildable` methods.
 
 # Implementors
 
-[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
+[`AboutDialog`](struct.AboutDialog.html), [`AccelLabel`](struct.AccelLabel.html), [`ActionBar`](struct.ActionBar.html), [`AppChooserButton`](struct.AppChooserButton.html), [`AppChooserDialog`](struct.AppChooserDialog.html), [`AppChooserWidget`](struct.AppChooserWidget.html), [`ApplicationWindow`](struct.ApplicationWindow.html), [`AspectFrame`](struct.AspectFrame.html), [`Assistant`](struct.Assistant.html), [`Bin`](struct.Bin.html), [`Box`](struct.Box.html), [`Buildable`](struct.Buildable.html), [`ButtonBox`](struct.ButtonBox.html), [`Button`](struct.Button.html), [`Calendar`](struct.Calendar.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellArea`](struct.CellArea.html), [`CellView`](struct.CellView.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`ColorButton`](struct.ColorButton.html), [`ColorChooserDialog`](struct.ColorChooserDialog.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`ComboBoxText`](struct.ComboBoxText.html), [`ComboBox`](struct.ComboBox.html), [`Container`](struct.Container.html), [`Dialog`](struct.Dialog.html), [`DrawingArea`](struct.DrawingArea.html), [`EntryCompletion`](struct.EntryCompletion.html), [`Entry`](struct.Entry.html), [`EventBox`](struct.EventBox.html), [`Expander`](struct.Expander.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserDialog`](struct.FileChooserDialog.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FileFilter`](struct.FileFilter.html), [`Fixed`](struct.Fixed.html), [`FlowBoxChild`](struct.FlowBoxChild.html), [`FlowBox`](struct.FlowBox.html), [`FontButton`](struct.FontButton.html), [`FontChooserDialog`](struct.FontChooserDialog.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Frame`](struct.Frame.html), [`GLArea`](struct.GLArea.html), [`Grid`](struct.Grid.html), [`HeaderBar`](struct.HeaderBar.html), [`IconView`](struct.IconView.html), [`Image`](struct.Image.html), [`InfoBar`](struct.InfoBar.html), [`Invisible`](struct.Invisible.html), [`Label`](struct.Label.html), [`Layout`](struct.Layout.html), [`LevelBar`](struct.LevelBar.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`ListBox`](struct.ListBox.html), [`ListStore`](struct.ListStore.html), [`LockButton`](struct.LockButton.html), [`MenuBar`](struct.MenuBar.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuShell`](struct.MenuShell.html), [`MenuToolButton`](struct.MenuToolButton.html), [`Menu`](struct.Menu.html), [`MessageDialog`](struct.MessageDialog.html), [`Misc`](struct.Misc.html), [`ModelButton`](struct.ModelButton.html), [`Notebook`](struct.Notebook.html), [`OffscreenWindow`](struct.OffscreenWindow.html), [`Overlay`](struct.Overlay.html), [`Paned`](struct.Paned.html), [`PlacesSidebar`](struct.PlacesSidebar.html), [`Plug`](struct.Plug.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html), [`ProgressBar`](struct.ProgressBar.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`Range`](struct.Range.html), [`RecentChooserDialog`](struct.RecentChooserDialog.html), [`RecentChooserMenu`](struct.RecentChooserMenu.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`RecentFilter`](struct.RecentFilter.html), [`Revealer`](struct.Revealer.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`ScrolledWindow`](struct.ScrolledWindow.html), [`SearchBar`](struct.SearchBar.html), [`SearchEntry`](struct.SearchEntry.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`SeparatorToolItem`](struct.SeparatorToolItem.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`ShortcutsGroup`](struct.ShortcutsGroup.html), [`ShortcutsSection`](struct.ShortcutsSection.html), [`ShortcutsShortcut`](struct.ShortcutsShortcut.html), [`ShortcutsWindow`](struct.ShortcutsWindow.html), [`SizeGroup`](struct.SizeGroup.html), [`Socket`](struct.Socket.html), [`SpinButton`](struct.SpinButton.html), [`Spinner`](struct.Spinner.html), [`StackSidebar`](struct.StackSidebar.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Stack`](struct.Stack.html), [`Statusbar`](struct.Statusbar.html), [`Switch`](struct.Switch.html), [`TextTagTable`](struct.TextTagTable.html), [`TextView`](struct.TextView.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`ToolItemGroup`](struct.ToolItemGroup.html), [`ToolItem`](struct.ToolItem.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`TreeStore`](struct.TreeStore.html), [`TreeViewColumn`](struct.TreeViewColumn.html), [`TreeView`](struct.TreeView.html), [`Viewport`](struct.Viewport.html), [`VolumeButton`](struct.VolumeButton.html), [`Widget`](struct.Widget.html), [`Window`](struct.Window.html)
 <!-- trait BuildableExt::fn add_child -->
 Adds a child to `self`. `type_` is an optional string
 describing how the child should be added.
@@ -3029,14 +3050,14 @@ A `Builder` holds a reference to all objects that it has constructed
 and drops these references when it is finalized. This finalization can
 cause the destruction of non-widget objects or widgets which are not
 contained in a toplevel window. For toplevel windows constructed by a
-builder, it is the responsibility of the user to call `WidgetExt::destroy`
+builder, it is the responsibility of the user to call `Widget::destroy`
 to get rid of them and all the widgets they contain.
 
 The functions `Builder::get_object` and `BuilderExt::get_objects`
 can be used to access the widgets in the interface by the names assigned
 to them inside the UI description. Toplevel windows returned by these
 functions will stay around until the user explicitly destroys them
-with `WidgetExt::destroy`. Other widgets will either be part of a
+with `Widget::destroy`. Other widgets will either be part of a
 larger hierarchy constructed by the builder (in which case you should
 not have to worry about their lifecycle), or without a parent, in which
 case they have to be added to some container to make use of them.
@@ -3127,8 +3148,8 @@ It is also possible to bind a property value to another object's
 property value using the attributes
 "bind-source" to specify the source object of the binding,
 "bind-property" to specify the source property and optionally
-"bind-flags" to specify the binding flags
-Internally builder implement this using GBinding objects.
+"bind-flags" to specify the binding flags.
+Internally builder implements this using GBinding objects.
 For more information see `gobject::ObjectExt::bind_property`
 
 Signal handlers are set up with the `<signal>` element. The “name”
@@ -3147,7 +3168,7 @@ Sometimes it is necessary to refer to widgets which have implicitly
 been constructed by GTK+ as part of a composite widget, to set
 properties on them or to add further children (e.g. the `vbox` of
 a `Dialog`). This can be achieved by setting the “internal-child”
-propery of the `<child>` element to a true value. Note that `Builder`
+property of the `<child>` element to a true value. Note that `Builder`
 still requires an `<object>` element for the internal child, even if it
 has already been constructed.
 
@@ -4179,6 +4200,20 @@ This property gets initially set to the current year.
 <!-- trait CalendarExt::fn set_property_year -->
 The selected year.
 This property gets initially set to the current year.
+<!-- struct CalendarDisplayOptions -->
+These options can be used to influence the display and behaviour of a `Calendar`.
+<!-- struct CalendarDisplayOptions::const SHOW_HEADING -->
+Specifies that the month and year should be displayed.
+<!-- struct CalendarDisplayOptions::const SHOW_DAY_NAMES -->
+Specifies that three letter day descriptions should be present.
+<!-- struct CalendarDisplayOptions::const NO_MONTH_CHANGE -->
+Prevents the user from switching months with the calendar.
+<!-- struct CalendarDisplayOptions::const SHOW_WEEK_NUMBERS -->
+Displays each week numbers of the current year, down the
+left side of the calendar.
+<!-- struct CalendarDisplayOptions::const SHOW_DETAILS -->
+Just show an indicator, not the full details
+text when details are provided. See `CalendarExt::set_detail_func`.
 <!-- struct CellArea -->
 The `CellArea` is an abstract class for `CellLayout` widgets
 (also referred to as "layouting widgets") to interface with an
@@ -4494,9 +4529,9 @@ properties for a cell area class and `CellAreaClass::find_cell_property`
 or `CellAreaClass::list_cell_properties` to get information about
 existing cell properties.
 
-To set the value of a cell property, use `CellArea::cell_set_property`,
+To set the value of a cell property, use `CellAreaExt::cell_set_property`,
 `CellAreaExt::cell_set` or `CellAreaExt::cell_set_valist`. To obtain
-the value of a cell property, use `CellArea::cell_get_property`,
+the value of a cell property, use `CellAreaExt::cell_get_property`,
 `CellAreaExt::cell_get` or `CellAreaExt::cell_get_valist`.
 
 # Implements
@@ -5091,7 +5126,7 @@ side.
 
 Alignments of ``GtkCellRenderers`` rendered in adjacent rows can be
 configured by configuring the `CellAreaBox` align child cell property
-with `CellArea::cell_set_property` or by specifying the "align"
+with `CellAreaExt::cell_set_property` or by specifying the "align"
 argument to `CellAreaBoxExt::pack_start` and `CellAreaBoxExt::pack_end`.
 
 # Implements
@@ -6277,6 +6312,23 @@ consisting of 12 frames, in 750 milliseconds.
 The `IconSize` value that specifies the size of the rendered spinner.
 <!-- trait CellRendererSpinnerExt::fn set_property_size -->
 The `IconSize` value that specifies the size of the rendered spinner.
+<!-- struct CellRendererState -->
+Tells how a cell is to be rendered.
+<!-- struct CellRendererState::const SELECTED -->
+The cell is currently selected, and
+ probably has a selection colored background to render to.
+<!-- struct CellRendererState::const PRELIT -->
+The mouse is hovering over the cell.
+<!-- struct CellRendererState::const INSENSITIVE -->
+The cell is drawn in an insensitive manner
+<!-- struct CellRendererState::const SORTED -->
+The cell is in a sorted row
+<!-- struct CellRendererState::const FOCUSED -->
+The cell is in the focus row.
+<!-- struct CellRendererState::const EXPANDABLE -->
+The cell is in a row that can be expanded. Since 3.4
+<!-- struct CellRendererState::const EXPANDED -->
+The cell is in a row that is expanded. Since 3.4
 <!-- struct CellRendererText -->
 A `CellRendererText` renders a given text in its cell, using the font, color and
 style information provided by its properties. The text will be ellipsized if it is
@@ -8733,7 +8785,7 @@ container can destroy that widget. If you want to use `widget`
 again, you need to add a reference to it before removing it from
 a container, using `gobject::ObjectExt::ref`. If you don’t want to use `widget`
 again it’s usually more efficient to simply destroy it directly
-using `WidgetExt::destroy` since this will remove it from the
+using `Widget::destroy` since this will remove it from the
 container and help break any circular reference count cycles.
 ## `widget`
 a current child of `self`
@@ -9121,6 +9173,29 @@ Delete to the end of the
 Delete entire line. Like C-k in pico.
 <!-- enum DeleteType::variant Whitespace -->
 Delete only whitespace. Like M-\ in Emacs.
+<!-- struct DestDefaults -->
+The `DestDefaults` enumeration specifies the various
+types of action that will be taken on behalf
+of the user for a drag destination site.
+<!-- struct DestDefaults::const MOTION -->
+If set for a widget, GTK+, during a drag over this
+ widget will check if the drag matches this widget’s list of possible targets
+ and actions.
+ GTK+ will then call `gdk_drag_status` as appropriate.
+<!-- struct DestDefaults::const HIGHLIGHT -->
+If set for a widget, GTK+ will draw a highlight on
+ this widget as long as a drag is over this widget and the widget drag format
+ and action are acceptable.
+<!-- struct DestDefaults::const DROP -->
+If set for a widget, when a drop occurs, GTK+ will
+ will check if the drag matches this widget’s list of possible targets and
+ actions. If so, GTK+ will call `WidgetExt::drag_get_data` on behalf of the widget.
+ Whether or not the drop is successful, GTK+ will call `gtk_drag_finish`. If
+ the action was a move, then if the drag was successful, then `true` will be
+ passed for the `delete` parameter to `gtk_drag_finish`.
+<!-- struct DestDefaults::const ALL -->
+If set, specifies that all default actions should
+ be taken.
 <!-- struct Dialog -->
 Dialog boxes are a convenient way to prompt the user for a small amount
 of input, e.g. to display a message, ask a question, or anything else
@@ -9470,6 +9545,17 @@ instead of the action-area.
 
 For technical reasons, this property is declared as an integer
 property, but you should only set it to `true` or `false`.
+<!-- struct DialogFlags -->
+Flags used to influence dialog construction.
+<!-- struct DialogFlags::const MODAL -->
+Make the constructed dialog modal,
+ see `GtkWindowExt::set_modal`
+<!-- struct DialogFlags::const DESTROY_WITH_PARENT -->
+Destroy the dialog when its
+ parent is destroyed, see `GtkWindowExt::set_destroy_with_parent`
+<!-- struct DialogFlags::const USE_HEADER_BAR -->
+Create dialog with actions in header
+ bar instead of action area. Since 3.12.
 <!-- enum DirectionType -->
 Focus movement types.
 <!-- enum DirectionType::variant TabForward -->
@@ -11555,7 +11641,7 @@ Trait containing all `EventController` methods.
 
 # Implementors
 
-[`EventController`](struct.EventController.html), [`Gesture`](struct.Gesture.html), [`PadController`](struct.PadController.html)
+[`EventControllerKey`](struct.EventControllerKey.html), [`EventControllerMotion`](struct.EventControllerMotion.html), [`EventControllerScroll`](struct.EventControllerScroll.html), [`EventController`](struct.EventController.html), [`Gesture`](struct.Gesture.html), [`PadController`](struct.PadController.html)
 <!-- trait EventControllerExt::fn get_propagation_phase -->
 Gets the propagation phase at which `self` handles events.
 
@@ -11598,6 +11684,210 @@ The propagation phase at which this controller will handle events.
 The widget receiving the ``GdkEvents`` that the controller will handle.
 <!-- trait EventControllerExt::fn set_property_widget -->
 The widget receiving the ``GdkEvents`` that the controller will handle.
+<!-- struct EventControllerKey -->
+`EventControllerKey` is an event controller meant for situations
+where you need access to key events.
+
+This object was added in 3.24.
+
+Feature: `v3_24`
+
+# Implements
+
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl EventControllerKey::fn get_im_context -->
+Gets the IM context of a key controller.
+
+Feature: `v3_24`
+
+
+# Returns
+
+the IM context
+<!-- impl EventControllerKey::fn connect_key_pressed -->
+This signal is emitted whenever a key is pressed.
+
+Feature: `v3_24`
+
+## `keyval`
+the pressed key.
+## `keycode`
+the raw code of the pressed key.
+## `state`
+the bitmask, representing the state of modifier keys and pointer buttons. See `gdk::ModifierType`.
+
+# Returns
+
+`true` if the key press was handled, `false` otherwise.
+<!-- impl EventControllerKey::fn connect_key_released -->
+This signal is emitted whenever a key is released.
+
+Feature: `v3_24`
+
+## `keyval`
+the released key.
+## `keycode`
+the raw code of the released key.
+## `state`
+the bitmask, representing the state of modifier keys and pointer buttons. See `gdk::ModifierType`.
+<!-- struct EventControllerMotion -->
+`EventControllerMotion` is an event controller meant for situations
+where you need to track the position of the pointer.
+
+This object was added in 3.24.
+
+Feature: `v3_24`
+
+# Implements
+
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl EventControllerMotion::fn new -->
+Creates a new event controller that will handle motion events
+for the given `widget`.
+
+Feature: `v3_24`
+
+## `widget`
+a `Widget`
+
+# Returns
+
+a new `EventControllerMotion`
+<!-- impl EventControllerMotion::fn connect_enter -->
+Signals that the pointer has entered the widget.
+## `x`
+the x coordinate
+## `y`
+the y coordinate
+<!-- impl EventControllerMotion::fn connect_leave -->
+Signals that pointer has left the widget.
+<!-- impl EventControllerMotion::fn connect_motion -->
+Emitted when the pointer moves inside the widget.
+## `x`
+the x coordinate
+## `y`
+the y coordinate
+<!-- struct EventControllerScroll -->
+`EventControllerScroll` is an event controller meant to handle
+scroll events from mice and touchpads. It is capable of handling
+both discrete and continuous scroll events, abstracting them both
+on the `EventControllerScroll::scroll` signal (deltas in the
+discrete case are multiples of 1).
+
+In the case of continuous scroll events, `EventControllerScroll`
+encloses all `EventControllerScroll::scroll` events between two
+`EventControllerScroll::scroll-begin` and `EventControllerScroll::scroll-end`
+signals.
+
+The behavior of the event controller can be modified by the
+flags given at creation time, or modified at a later point through
+`EventControllerScroll::set_flags` (e.g. because the scrolling
+conditions of the widget changed).
+
+The controller can be set up to emit motion for either/both vertical
+and horizontal scroll events through `EventControllerScrollFlags::Vertical`,
+`EventControllerScrollFlags::Horizontal` and `GTK_EVENT_CONTROLLER_SCROLL_BOTH`.
+If any axis is disabled, the respective `EventControllerScroll::scroll`
+delta will be 0. Vertical scroll events will be translated to horizontal
+motion for the devices incapable of horizontal scrolling.
+
+The event controller can also be forced to emit discrete events on all devices
+through `EventControllerScrollFlags::Discrete`. This can be used to implement
+discrete actions triggered through scroll events (e.g. switching across
+combobox options).
+
+The `EventControllerScrollFlags::Kinetic` flag toggles the emission of the
+`EventControllerScroll::decelerate` signal, emitted at the end of scrolling
+with two X/Y velocity arguments that are consistent with the motion that
+was received.
+
+This object was added in 3.24.
+
+Feature: `v3_24`
+
+# Implements
+
+[`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+<!-- impl EventControllerScroll::fn new -->
+Creates a new event controller that will handle scroll events
+for the given `widget`.
+
+Feature: `v3_24`
+
+## `widget`
+a `Widget`
+## `flags`
+behavior flags
+
+# Returns
+
+a new `EventControllerScroll`
+<!-- impl EventControllerScroll::fn get_flags -->
+Gets the flags conditioning the scroll controller behavior.
+
+Feature: `v3_24`
+
+
+# Returns
+
+the controller flags.
+<!-- impl EventControllerScroll::fn set_flags -->
+Sets the flags conditioning scroll controller behavior.
+
+Feature: `v3_24`
+
+## `flags`
+behavior flags
+<!-- impl EventControllerScroll::fn connect_decelerate -->
+Emitted after scroll is finished if the `EventControllerScrollFlags::Kinetic`
+flag is set. `vel_x` and `vel_y` express the initial velocity that was
+imprinted by the scroll events. `vel_x` and `vel_y` are expressed in
+pixels/ms.
+## `vel_x`
+X velocity
+## `vel_y`
+Y velocity
+<!-- impl EventControllerScroll::fn connect_scroll -->
+Signals that the widget should scroll by the
+amount specified by `dx` and `dy`.
+## `dx`
+X delta
+## `dy`
+Y delta
+<!-- impl EventControllerScroll::fn connect_scroll_begin -->
+Signals that a new scrolling operation has begun. It will
+only be emitted on devices capable of it.
+<!-- impl EventControllerScroll::fn connect_scroll_end -->
+Signals that a new scrolling operation has finished. It will
+only be emitted on devices capable of it.
+<!-- impl EventControllerScroll::fn get_property_flags -->
+The flags affecting event controller behavior
+
+Feature: `v3_24`
+
+<!-- impl EventControllerScroll::fn set_property_flags -->
+The flags affecting event controller behavior
+
+Feature: `v3_24`
+
+<!-- struct EventControllerScrollFlags -->
+Describes the behavior of a `EventControllerScroll`.
+<!-- struct EventControllerScrollFlags::const NONE -->
+Don't emit scroll.
+<!-- struct EventControllerScrollFlags::const VERTICAL -->
+Emit scroll with vertical deltas.
+<!-- struct EventControllerScrollFlags::const HORIZONTAL -->
+Emit scroll with horizontal deltas.
+<!-- struct EventControllerScrollFlags::const DISCRETE -->
+Only emit deltas that are multiples of 1.
+<!-- struct EventControllerScrollFlags::const KINETIC -->
+Emit `EventControllerScroll::decelerate`
+ after continuous scroll finishes.
+<!-- struct EventControllerScrollFlags::const BOTH_AXES -->
+Emit scroll on both axes.
+
+Feature: `v3_24`
+
 <!-- enum EventSequenceState -->
 Describes the state of a `gdk::EventSequence` in a `Gesture`.
 <!-- enum EventSequenceState::variant None -->
@@ -13724,6 +14014,18 @@ Feature: `v3_22`
 # Returns
 
 a new, floating, `glib::Variant`
+<!-- struct FileFilterFlags -->
+These flags indicate what parts of a `FileFilterInfo` struct
+are filled or need to be filled.
+<!-- struct FileFilterFlags::const FILENAME -->
+the filename of the file being tested
+<!-- struct FileFilterFlags::const URI -->
+the URI for the file being tested
+<!-- struct FileFilterFlags::const DISPLAY_NAME -->
+the string that will be used to
+ display the file in the file chooser
+<!-- struct FileFilterFlags::const MIME_TYPE -->
+the mime type of the file
 <!-- struct Fixed -->
 The `Fixed` widget is a container which can place child widgets
 at fixed positions and with fixed sizes, given in pixels. `Fixed`
@@ -14721,6 +15023,23 @@ Transient parent of the dialog, or `None`
 # Returns
 
 a new `FontChooserDialog`
+<!-- struct FontChooserLevel -->
+This enumeration specifies the granularity of font selection
+that is desired in a font chooser.
+
+This enumeration may be extended in the future; applications should
+ignore unknown values.
+<!-- struct FontChooserLevel::const FAMILY -->
+Allow selecting a font family
+<!-- struct FontChooserLevel::const STYLE -->
+Allow selecting a specific font face
+<!-- struct FontChooserLevel::const SIZE -->
+Allow selecting a specific font size
+<!-- struct FontChooserLevel::const FEATURES -->
+Allow selecting specific OpenType font features
+
+Feature: `v3_24`
+
 <!-- struct FontChooserWidget -->
 The `FontChooserWidget` widget lists the available fonts,
 styles and sizes, allowing the user to select a font. It is
@@ -15977,7 +16296,7 @@ Trait containing all `GestureSingle` methods.
 
 # Implementors
 
-[`GestureDrag`](struct.GestureDrag.html), [`GestureLongPress`](struct.GestureLongPress.html), [`GestureMultiPress`](struct.GestureMultiPress.html), [`GestureSingle`](struct.GestureSingle.html), [`GestureSwipe`](struct.GestureSwipe.html)
+[`GestureDrag`](struct.GestureDrag.html), [`GestureLongPress`](struct.GestureLongPress.html), [`GestureMultiPress`](struct.GestureMultiPress.html), [`GestureSingle`](struct.GestureSingle.html), [`GestureStylus`](struct.GestureStylus.html), [`GestureSwipe`](struct.GestureSwipe.html)
 <!-- trait GestureSingleExt::fn get_button -->
 Returns the button number `self` listens for, or 0 if `self`
 reacts to any button press.
@@ -16045,6 +16364,70 @@ and pointer emulated events.
 Whether the gesture handles only touch events.
 <!-- trait GestureSingleExt::fn set_property_touch_only -->
 Whether the gesture handles only touch events.
+<!-- struct GestureStylus -->
+`GestureStylus` is a `Gesture` implementation specific to stylus
+input. The provided signals just provide the basic information
+
+Feature: `v3_24`
+
+# Implements
+
+[`GestureSingleExt`](trait.GestureSingleExt.html), [`GestureExt`](trait.GestureExt.html), [`EventControllerExt`](trait.EventControllerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`GestureStylusExtManual`](prelude/trait.GestureStylusExtManual.html)
+<!-- impl GestureStylus::fn new -->
+Creates a new `GestureStylus`.
+
+Feature: `v3_24`
+
+## `widget`
+a `Widget`
+
+# Returns
+
+a newly created stylus gesture
+<!-- impl GestureStylus::fn get_axes -->
+Returns the current values for the requested `axes`. This function
+must be called from either the `GestureStylus:down`,
+`GestureStylus:motion`, `GestureStylus:up` or `GestureStylus:proximity`
+signals.
+
+Feature: `v3_24`
+
+## `axes`
+array of requested axes, terminated with `gdk::AxisUse::Ignore`
+## `values`
+return location for the axis values
+
+# Returns
+
+`true` if there is a current value for the axes
+<!-- impl GestureStylus::fn get_axis -->
+Returns the current value for the requested `axis`. This function
+must be called from either the `GestureStylus:down`,
+`GestureStylus:motion`, `GestureStylus:up` or `GestureStylus:proximity`
+signals.
+
+Feature: `v3_24`
+
+## `axis`
+requested device axis
+## `value`
+return location for the axis value
+
+# Returns
+
+`true` if there is a current value for the axis
+<!-- impl GestureStylus::fn get_device_tool -->
+Returns the `gdk::DeviceTool` currently driving input through this gesture.
+This function must be called from either the `GestureStylus::down`,
+`GestureStylus::motion`, `GestureStylus::up` or `GestureStylus::proximity`
+signal handlers.
+
+Feature: `v3_24`
+
+
+# Returns
+
+The current stylus tool
 <!-- struct GestureSwipe -->
 `GestureSwipe` is a `Gesture` implementation able to recognize
 swipes, after a press/move/.../move/release sequence happens, the
@@ -17074,6 +17457,40 @@ the rendered icon; this may be a newly
  created icon or a new reference to an internal icon, so you must
  not modify the icon. Use `gobject::ObjectExt::unref` to release your reference
  to the icon.
+<!-- struct IconLookupFlags -->
+Used to specify options for `IconThemeExt::lookup_icon`
+<!-- struct IconLookupFlags::const NO_SVG -->
+Never get SVG icons, even if gdk-pixbuf
+ supports them. Cannot be used together with `IconLookupFlags::ForceSvg`.
+<!-- struct IconLookupFlags::const FORCE_SVG -->
+Get SVG icons, even if gdk-pixbuf
+ doesn’t support them.
+ Cannot be used together with `IconLookupFlags::NoSvg`.
+<!-- struct IconLookupFlags::const USE_BUILTIN -->
+When passed to
+ `IconThemeExt::lookup_icon` includes builtin icons
+ as well as files. For a builtin icon, `IconInfo::get_filename`
+ is `None` and you need to call `IconInfo::get_builtin_pixbuf`.
+<!-- struct IconLookupFlags::const GENERIC_FALLBACK -->
+Try to shorten icon name at '-'
+ characters before looking at inherited themes. This flag is only
+ supported in functions that take a single icon name. For more general
+ fallback, see `IconTheme::choose_icon`. Since 2.12.
+<!-- struct IconLookupFlags::const FORCE_SIZE -->
+Always get the icon scaled to the
+ requested size. Since 2.14.
+<!-- struct IconLookupFlags::const FORCE_REGULAR -->
+Try to always load regular icons, even
+ when symbolic icon names are given. Since 3.14.
+<!-- struct IconLookupFlags::const FORCE_SYMBOLIC -->
+Try to always load symbolic icons, even
+ when regular icon names are given. Since 3.14.
+<!-- struct IconLookupFlags::const DIR_LTR -->
+Try to load a variant of the icon for left-to-right
+ text direction. Since 3.14.
+<!-- struct IconLookupFlags::const DIR_RTL -->
+Try to load a variant of the icon for right-to-left
+ text direction. Since 3.14.
 <!-- enum IconSize -->
 Built-in stock icon sizes.
 <!-- enum IconSize::variant Invalid -->
@@ -18973,6 +19390,43 @@ The type may be used to determine the appearance of the info bar.
 Whether to include a standard close button.
 <!-- trait InfoBarExt::fn set_property_show_close_button -->
 Whether to include a standard close button.
+<!-- struct InputHints -->
+Describes hints that might be taken into account by input methods
+or applications. Note that input methods may already tailor their
+behaviour according to the `InputPurpose` of the entry.
+
+Some common sense is expected when using these flags - mixing
+`InputHints::Lowercase` with any of the uppercase hints makes no sense.
+
+This enumeration may be extended in the future; input methods should
+ignore unknown values.
+<!-- struct InputHints::const NONE -->
+No special behaviour suggested
+<!-- struct InputHints::const SPELLCHECK -->
+Suggest checking for typos
+<!-- struct InputHints::const NO_SPELLCHECK -->
+Suggest not checking for typos
+<!-- struct InputHints::const WORD_COMPLETION -->
+Suggest word completion
+<!-- struct InputHints::const LOWERCASE -->
+Suggest to convert all text to lowercase
+<!-- struct InputHints::const UPPERCASE_CHARS -->
+Suggest to capitalize all text
+<!-- struct InputHints::const UPPERCASE_WORDS -->
+Suggest to capitalize the first
+ character of each word
+<!-- struct InputHints::const UPPERCASE_SENTENCES -->
+Suggest to capitalize the
+ first word of each sentence
+<!-- struct InputHints::const INHIBIT_OSK -->
+Suggest to not show an onscreen keyboard
+ (e.g for a calculator that already has all the keys).
+<!-- struct InputHints::const VERTICAL_WRITING -->
+The text is vertical. Since 3.18
+<!-- struct InputHints::const EMOJI -->
+Suggest offering Emoji support. Since 3.22.20
+<!-- struct InputHints::const NO_EMOJI -->
+Suggest not offering Emoji support. Since 3.22.20
 <!-- enum InputPurpose -->
 Describes primary purpose of the input widget. This information is
 useful for on-screen keyboards and similar input methods to decide
@@ -19012,6 +19466,8 @@ Edited field expects the name of a person
 Like `InputPurpose::FreeForm`, but characters are hidden
 <!-- enum InputPurpose::variant Pin -->
 Like `InputPurpose::Digits`, but characters are hidden
+<!-- enum InputPurpose::variant Terminal -->
+Allow any character, in addition to control codes
 <!-- struct Invisible -->
 The `Invisible` widget is used internally in GTK+, and is probably not
 very useful for application developers.
@@ -19053,6 +19509,26 @@ the associated `gdk::Screen`.
 Sets the `gdk::Screen` where the `Invisible` object will be displayed.
 ## `screen`
 a `gdk::Screen`.
+<!-- struct JunctionSides -->
+Describes how a rendered element connects to adjacent elements.
+<!-- struct JunctionSides::const NONE -->
+No junctions.
+<!-- struct JunctionSides::const CORNER_TOPLEFT -->
+Element connects on the top-left corner.
+<!-- struct JunctionSides::const CORNER_TOPRIGHT -->
+Element connects on the top-right corner.
+<!-- struct JunctionSides::const CORNER_BOTTOMLEFT -->
+Element connects on the bottom-left corner.
+<!-- struct JunctionSides::const CORNER_BOTTOMRIGHT -->
+Element connects on the bottom-right corner.
+<!-- struct JunctionSides::const TOP -->
+Element connects on the top side.
+<!-- struct JunctionSides::const BOTTOM -->
+Element connects on the bottom side.
+<!-- struct JunctionSides::const LEFT -->
+Element connects on the left side.
+<!-- struct JunctionSides::const RIGHT -->
+Element connects on the right side.
 <!-- enum Justification -->
 Used for justifying the text inside a `Label` widget. (See also
 `Alignment`).
@@ -24022,7 +24498,7 @@ Trait containing all `Orientable` methods.
 
 # Implementors
 
-[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`CellView`](struct.CellView.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FlowBox`](struct.FlowBox.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Grid`](struct.Grid.html), [`InfoBar`](struct.InfoBar.html), [`LevelBar`](struct.LevelBar.html), [`Orientable`](struct.Orientable.html), [`Paned`](struct.Paned.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`SpinButton`](struct.SpinButton.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`VolumeButton`](struct.VolumeButton.html)
+[`AppChooserWidget`](struct.AppChooserWidget.html), [`Box`](struct.Box.html), [`ButtonBox`](struct.ButtonBox.html), [`CellAreaBox`](struct.CellAreaBox.html), [`CellRendererProgress`](struct.CellRendererProgress.html), [`CellView`](struct.CellView.html), [`ColorChooserWidget`](struct.ColorChooserWidget.html), [`FileChooserButton`](struct.FileChooserButton.html), [`FileChooserWidget`](struct.FileChooserWidget.html), [`FlowBox`](struct.FlowBox.html), [`FontChooserWidget`](struct.FontChooserWidget.html), [`Grid`](struct.Grid.html), [`InfoBar`](struct.InfoBar.html), [`LevelBar`](struct.LevelBar.html), [`Orientable`](struct.Orientable.html), [`Paned`](struct.Paned.html), [`ProgressBar`](struct.ProgressBar.html), [`Range`](struct.Range.html), [`RecentChooserWidget`](struct.RecentChooserWidget.html), [`ScaleButton`](struct.ScaleButton.html), [`Scale`](struct.Scale.html), [`Scrollbar`](struct.Scrollbar.html), [`Separator`](struct.Separator.html), [`ShortcutLabel`](struct.ShortcutLabel.html), [`ShortcutsGroup`](struct.ShortcutsGroup.html), [`ShortcutsSection`](struct.ShortcutsSection.html), [`ShortcutsShortcut`](struct.ShortcutsShortcut.html), [`SpinButton`](struct.SpinButton.html), [`StackSwitcher`](struct.StackSwitcher.html), [`Statusbar`](struct.Statusbar.html), [`ToolPalette`](struct.ToolPalette.html), [`Toolbar`](struct.Toolbar.html), [`VolumeButton`](struct.VolumeButton.html)
 <!-- trait OrientableExt::fn get_orientation -->
 Retrieves the orientation of the `self`.
 
@@ -24179,8 +24655,6 @@ Represents the packing location `Box` children. (See: `VBox`,
 The child is packed into the start of the box
 <!-- enum PackType::variant End -->
 The child is packed into the end of the box
-<!-- struct PadActionEntry -->
-Struct defining a pad action entry.
 <!-- enum PadActionType -->
 The type of a pad action.
 <!-- enum PadActionType::variant Button -->
@@ -24308,8 +24782,6 @@ Landscape mode.
 Reverse portrait mode.
 <!-- enum PageOrientation::variant ReverseLandscape -->
 Reverse landscape mode.
-<!-- struct PageRange -->
-See also `PrintSettings::set_page_ranges`.
 <!-- enum PageSet -->
 See also `gtk_print_job_set_page_set`.
 <!-- enum PageSet::variant All -->
@@ -25078,6 +25550,33 @@ whether to include custom paper sizes
 
 a newly allocated list of newly
  allocated `PaperSize` objects
+<!-- struct PlacesOpenFlags -->
+These flags serve two purposes. First, the application can call `PlacesSidebar::set_open_flags`
+using these flags as a bitmask. This tells the sidebar that the application is able to open
+folders selected from the sidebar in various ways, for example, in new tabs or in new windows in
+addition to the normal mode.
+
+Second, when one of these values gets passed back to the application in the
+`PlacesSidebar::open-location` signal, it means that the application should
+open the selected location in the normal way, in a new tab, or in a new
+window. The sidebar takes care of determining the desired way to open the location,
+based on the modifier keys that the user is pressing at the time the selection is made.
+
+If the application never calls `PlacesSidebar::set_open_flags`, then the sidebar will only
+use `PlacesOpenFlags::Normal` in the `PlacesSidebar::open-location` signal. This is the
+default mode of operation.
+<!-- struct PlacesOpenFlags::const NORMAL -->
+This is the default mode that `PlacesSidebar` uses if no other flags
+ are specified. It indicates that the calling application should open the selected location
+ in the normal way, for example, in the folder view beside the sidebar.
+<!-- struct PlacesOpenFlags::const NEW_TAB -->
+When passed to `PlacesSidebar::set_open_flags`, this indicates
+ that the application can open folders selected from the sidebar in new tabs. This value
+ will be passed to the `PlacesSidebar::open-location` signal when the user selects
+ that a location be opened in a new tab instead of in the standard fashion.
+<!-- struct PlacesOpenFlags::const NEW_WINDOW -->
+Similar to `PlacesOpenFlags::NewTab`, but indicates that the application
+ can open folders in new windows.
 <!-- struct PlacesSidebar -->
 `PlacesSidebar` is a widget that displays a list of frequently-used places in the
 file system: the user’s home directory, the user’s bookmarks, and volumes and drives.
@@ -29126,9 +29625,6 @@ a `RecentManager`
 # Returns
 
 a new `RecentChooserWidget`
-<!-- struct RecentData -->
-Meta-data to be passed to `RecentManagerExt::add_full` when
-registering a recently used resource.
 <!-- struct RecentFilter -->
 A `RecentFilter` can be used to restrict the files being shown
 in a `RecentChooser`. Files can be filtered based on their name
@@ -29283,6 +29779,24 @@ that will be displayed in the recently used resources selector
 user interface if there is a selectable list of filters.
 ## `name`
 then human readable name of `self`
+<!-- struct RecentFilterFlags -->
+These flags indicate what parts of a `RecentFilterInfo` struct
+are filled or need to be filled.
+<!-- struct RecentFilterFlags::const URI -->
+the URI of the file being tested
+<!-- struct RecentFilterFlags::const DISPLAY_NAME -->
+the string that will be used to
+ display the file in the recent chooser
+<!-- struct RecentFilterFlags::const MIME_TYPE -->
+the mime type of the file
+<!-- struct RecentFilterFlags::const APPLICATION -->
+the list of applications that have
+ registered the file
+<!-- struct RecentFilterFlags::const GROUP -->
+the groups to which the file belongs to
+<!-- struct RecentFilterFlags::const AGE -->
+the number of days elapsed since the file
+ has been registered
 <!-- struct RecentInfo -->
 `RecentInfo`-struct contains private data only, and should
 be accessed using the provided API.
@@ -29759,6 +30273,20 @@ Sort the returned list with the least recently used
 <!-- enum RecentSortType::variant Custom -->
 Sort the returned list using a custom sorting
  function passed using `RecentChooser::set_sort_func`.
+<!-- struct RegionFlags -->
+Describes a region within a widget.
+<!-- struct RegionFlags::const EVEN -->
+Region has an even number within a set.
+<!-- struct RegionFlags::const ODD -->
+Region has an odd number within a set.
+<!-- struct RegionFlags::const FIRST -->
+Region is the first one within a set.
+<!-- struct RegionFlags::const LAST -->
+Region is the last one within a set.
+<!-- struct RegionFlags::const ONLY -->
+Region is the only one within a set.
+<!-- struct RegionFlags::const SORTED -->
+Region is part of a sorted area.
 <!-- enum ReliefStyle -->
 Indicated the relief to be drawn around a `Button`.
 <!-- enum ReliefStyle::variant Normal -->
@@ -30166,6 +30694,8 @@ is tailored for this use case.
 
 `ScaleButton` has a single CSS node with name button. To differentiate
 it from a plain `Button`, it gets the .scale style class.
+
+The popup widget that contains the scale has a .scale-popup style class.
 
 # Implements
 
@@ -32092,6 +32622,253 @@ The text that is displayed when no accelerator is set.
 
 Feature: `v3_22`
 
+<!-- enum ShortcutType -->
+`ShortcutType` specifies the kind of shortcut that is being described.
+More values may be added to this enumeration over time.
+<!-- enum ShortcutType::variant Accelerator -->
+The shortcut is a keyboard accelerator. The `ShortcutsShortcut:accelerator`
+ property will be used.
+<!-- enum ShortcutType::variant GesturePinch -->
+The shortcut is a pinch gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant GestureStretch -->
+The shortcut is a stretch gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant GestureRotateClockwise -->
+The shortcut is a clockwise rotation gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant GestureRotateCounterclockwise -->
+The shortcut is a counterclockwise rotation gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant GestureTwoFingerSwipeLeft -->
+The shortcut is a two-finger swipe gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant GestureTwoFingerSwipeRight -->
+The shortcut is a two-finger swipe gesture. GTK+ provides an icon and subtitle.
+<!-- enum ShortcutType::variant Gesture -->
+The shortcut is a gesture. The `ShortcutsShortcut:icon` property will be
+ used.
+
+Feature: `v3_20`
+
+<!-- struct ShortcutsGroup -->
+A `ShortcutsGroup` represents a group of related keyboard shortcuts
+or gestures. The group has a title. It may optionally be associated with
+a view of the application, which can be used to show only relevant shortcuts
+depending on the application context.
+
+This widget is only meant to be used with `ShortcutsWindow`.
+
+Feature: `v3_20`
+
+# Implements
+
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+<!-- impl ShortcutsGroup::fn set_property_accel_size_group -->
+The size group for the accelerator portion of shortcuts in this group.
+
+This is used internally by GTK+, and must not be modified by applications.
+<!-- impl ShortcutsGroup::fn get_property_height -->
+A rough measure for the number of lines in this group.
+
+This is used internally by GTK+, and is not useful for applications.
+<!-- impl ShortcutsGroup::fn get_property_title -->
+The title for this group of shortcuts.
+<!-- impl ShortcutsGroup::fn set_property_title -->
+The title for this group of shortcuts.
+<!-- impl ShortcutsGroup::fn set_property_title_size_group -->
+The size group for the textual portion of shortcuts in this group.
+
+This is used internally by GTK+, and must not be modified by applications.
+<!-- impl ShortcutsGroup::fn get_property_view -->
+An optional view that the shortcuts in this group are relevant for.
+The group will be hidden if the `ShortcutsWindow:view-name` property
+does not match the view of this group.
+
+Set this to `None` to make the group always visible.
+<!-- impl ShortcutsGroup::fn set_property_view -->
+An optional view that the shortcuts in this group are relevant for.
+The group will be hidden if the `ShortcutsWindow:view-name` property
+does not match the view of this group.
+
+Set this to `None` to make the group always visible.
+<!-- struct ShortcutsSection -->
+A `ShortcutsSection` collects all the keyboard shortcuts and gestures
+for a major application mode. If your application needs multiple sections,
+you should give each section a unique `ShortcutsSection:section-name` and
+a `ShortcutsSection:title` that can be shown in the section selector of
+the `ShortcutsWindow`.
+
+The `ShortcutsSection:max-height` property can be used to influence how
+the groups in the section are distributed over pages and columns.
+
+This widget is only meant to be used with `ShortcutsWindow`.
+
+Feature: `v3_20`
+
+# Implements
+
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+<!-- impl ShortcutsSection::fn get_property_max_height -->
+The maximum number of lines to allow per column. This property can
+be used to influence how the groups in this section are distributed
+across pages and columns. The default value of 15 should work in
+most cases.
+<!-- impl ShortcutsSection::fn set_property_max_height -->
+The maximum number of lines to allow per column. This property can
+be used to influence how the groups in this section are distributed
+across pages and columns. The default value of 15 should work in
+most cases.
+<!-- impl ShortcutsSection::fn get_property_section_name -->
+A unique name to identify this section among the sections
+added to the `ShortcutsWindow`. Setting the `ShortcutsWindow:section-name`
+property to this string will make this section shown in the
+`ShortcutsWindow`.
+<!-- impl ShortcutsSection::fn set_property_section_name -->
+A unique name to identify this section among the sections
+added to the `ShortcutsWindow`. Setting the `ShortcutsWindow:section-name`
+property to this string will make this section shown in the
+`ShortcutsWindow`.
+<!-- impl ShortcutsSection::fn get_property_title -->
+The string to show in the section selector of the `ShortcutsWindow`
+for this section. If there is only one section, you don't need to
+set a title, since the section selector will not be shown in this case.
+<!-- impl ShortcutsSection::fn set_property_title -->
+The string to show in the section selector of the `ShortcutsWindow`
+for this section. If there is only one section, you don't need to
+set a title, since the section selector will not be shown in this case.
+<!-- impl ShortcutsSection::fn get_property_view_name -->
+A view name to filter the groups in this section by.
+See `ShortcutsGroup:view`.
+
+Applications are expected to use the `ShortcutsWindow:view-name`
+property for this purpose.
+<!-- impl ShortcutsSection::fn set_property_view_name -->
+A view name to filter the groups in this section by.
+See `ShortcutsGroup:view`.
+
+Applications are expected to use the `ShortcutsWindow:view-name`
+property for this purpose.
+<!-- struct ShortcutsShortcut -->
+A `ShortcutsShortcut` represents a single keyboard shortcut or gesture
+with a short text. This widget is only meant to be used with `ShortcutsWindow`.
+
+Feature: `v3_20`
+
+# Implements
+
+[`BoxExt`](trait.BoxExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html), [`BuildableExtManual`](prelude/trait.BuildableExtManual.html)
+<!-- impl ShortcutsShortcut::fn set_property_accel_size_group -->
+The size group for the accelerator portion of this shortcut.
+
+This is used internally by GTK+, and must not be modified by applications.
+<!-- impl ShortcutsShortcut::fn get_property_accelerator -->
+The accelerator(s) represented by this object. This property is used
+if `ShortcutsShortcut:shortcut-type` is set to `ShortcutType::Accelerator`.
+
+The syntax of this property is (an extension of) the syntax understood by
+`gtk_accelerator_parse`. Multiple accelerators can be specified by separating
+them with a space, but keep in mind that the available width is limited.
+It is also possible to specify ranges of shortcuts, using ... between the keys.
+Sequences of keys can be specified using a + or & between the keys.
+
+Examples:
+- A single shortcut: `<ctl>``<alt>`delete
+- Two alternative shortcuts: `<shift>`a Home
+- A range of shortcuts: `<alt>`1...`<alt>`9
+- Several keys pressed together: Control_L&Control_R
+- A sequence of shortcuts or keys: `<ctl>`c+`<ctl>`x
+
+Use + instead of & when the keys may (or have to be) pressed sequentially (e.g
+use t+t for 'press the t key twice').
+
+Note that <, > and & need to be escaped as &lt;, &gt; and &amp; when used
+in .ui files.
+<!-- impl ShortcutsShortcut::fn set_property_accelerator -->
+The accelerator(s) represented by this object. This property is used
+if `ShortcutsShortcut:shortcut-type` is set to `ShortcutType::Accelerator`.
+
+The syntax of this property is (an extension of) the syntax understood by
+`gtk_accelerator_parse`. Multiple accelerators can be specified by separating
+them with a space, but keep in mind that the available width is limited.
+It is also possible to specify ranges of shortcuts, using ... between the keys.
+Sequences of keys can be specified using a + or & between the keys.
+
+Examples:
+- A single shortcut: `<ctl>``<alt>`delete
+- Two alternative shortcuts: `<shift>`a Home
+- A range of shortcuts: `<alt>`1...`<alt>`9
+- Several keys pressed together: Control_L&Control_R
+- A sequence of shortcuts or keys: `<ctl>`c+`<ctl>`x
+
+Use + instead of & when the keys may (or have to be) pressed sequentially (e.g
+use t+t for 'press the t key twice').
+
+Note that <, > and & need to be escaped as &lt;, &gt; and &amp; when used
+in .ui files.
+<!-- impl ShortcutsShortcut::fn get_property_action_name -->
+A detailed action name. If this is set for a shortcut
+of type `ShortcutType::Accelerator`, then GTK+ will use
+the accelerators that are associated with the action
+via `GtkApplicationExt::set_accels_for_action`, and setting
+`ShortcutsShortcut::accelerator` is not necessary.
+
+Feature: `v3_22`
+
+<!-- impl ShortcutsShortcut::fn set_property_action_name -->
+A detailed action name. If this is set for a shortcut
+of type `ShortcutType::Accelerator`, then GTK+ will use
+the accelerators that are associated with the action
+via `GtkApplicationExt::set_accels_for_action`, and setting
+`ShortcutsShortcut::accelerator` is not necessary.
+
+Feature: `v3_22`
+
+<!-- impl ShortcutsShortcut::fn get_property_direction -->
+The text direction for which this shortcut is active. If the shortcut
+is used regardless of the text direction, set this property to
+`TextDirection::None`.
+<!-- impl ShortcutsShortcut::fn set_property_direction -->
+The text direction for which this shortcut is active. If the shortcut
+is used regardless of the text direction, set this property to
+`TextDirection::None`.
+<!-- impl ShortcutsShortcut::fn get_property_icon -->
+An icon to represent the shortcut or gesture. This property is used if
+`ShortcutsShortcut:shortcut-type` is set to `ShortcutType::Gesture`.
+For the other predefined gesture types, GTK+ provides an icon on its own.
+<!-- impl ShortcutsShortcut::fn set_property_icon -->
+An icon to represent the shortcut or gesture. This property is used if
+`ShortcutsShortcut:shortcut-type` is set to `ShortcutType::Gesture`.
+For the other predefined gesture types, GTK+ provides an icon on its own.
+<!-- impl ShortcutsShortcut::fn get_property_icon_set -->
+`true` if an icon has been set.
+<!-- impl ShortcutsShortcut::fn set_property_icon_set -->
+`true` if an icon has been set.
+<!-- impl ShortcutsShortcut::fn get_property_shortcut_type -->
+The type of shortcut that is represented.
+<!-- impl ShortcutsShortcut::fn set_property_shortcut_type -->
+The type of shortcut that is represented.
+<!-- impl ShortcutsShortcut::fn get_property_subtitle -->
+The subtitle for the shortcut or gesture.
+
+This is typically used for gestures and should be a short, one-line
+text that describes the gesture itself. For the predefined gesture
+types, GTK+ provides a subtitle on its own.
+<!-- impl ShortcutsShortcut::fn set_property_subtitle -->
+The subtitle for the shortcut or gesture.
+
+This is typically used for gestures and should be a short, one-line
+text that describes the gesture itself. For the predefined gesture
+types, GTK+ provides a subtitle on its own.
+<!-- impl ShortcutsShortcut::fn get_property_subtitle_set -->
+`true` if a subtitle has been set.
+<!-- impl ShortcutsShortcut::fn set_property_subtitle_set -->
+`true` if a subtitle has been set.
+<!-- impl ShortcutsShortcut::fn get_property_title -->
+The textual description for the shortcut or gesture represented by
+this object. This should be a short string that can fit in a single line.
+<!-- impl ShortcutsShortcut::fn set_property_title -->
+The textual description for the shortcut or gesture represented by
+this object. This should be a short string that can fit in a single line.
+<!-- impl ShortcutsShortcut::fn set_property_title_size_group -->
+The size group for the textual portion of this shortcut.
+
+This is used internally by GTK+, and must not be modified by applications.
 <!-- struct ShortcutsWindow -->
 A `ShortcutsWindow` shows brief information about the keyboard shortcuts
 and gestures of an application. The shortcuts can be grouped, and you can
@@ -33327,6 +34104,38 @@ Cover the old page sliding down or uncover the new page sliding up, according to
 Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14
 <!-- enum StackTransitionType::variant OverRightLeft -->
 Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14
+<!-- struct StateFlags -->
+Describes a widget state. Widget states are used to match the widget
+against CSS pseudo-classes. Note that GTK extends the regular CSS
+classes and sometimes uses different names.
+<!-- struct StateFlags::const NORMAL -->
+State during normal operation.
+<!-- struct StateFlags::const ACTIVE -->
+Widget is active.
+<!-- struct StateFlags::const PRELIGHT -->
+Widget has a mouse pointer over it.
+<!-- struct StateFlags::const SELECTED -->
+Widget is selected.
+<!-- struct StateFlags::const INSENSITIVE -->
+Widget is insensitive.
+<!-- struct StateFlags::const INCONSISTENT -->
+Widget is inconsistent.
+<!-- struct StateFlags::const FOCUSED -->
+Widget has the keyboard focus.
+<!-- struct StateFlags::const BACKDROP -->
+Widget is in a background toplevel window.
+<!-- struct StateFlags::const DIR_LTR -->
+Widget is in left-to-right text direction. Since 3.8
+<!-- struct StateFlags::const DIR_RTL -->
+Widget is in right-to-left text direction. Since 3.8
+<!-- struct StateFlags::const LINK -->
+Widget is a link. Since 3.12
+<!-- struct StateFlags::const VISITED -->
+The location the widget points to has already been visited. Since 3.12
+<!-- struct StateFlags::const CHECKED -->
+Widget is checked. Since 3.14
+<!-- struct StateFlags::const DROP_ACTIVE -->
+Widget is highlighted as a drop target for DND. Since 3.20
 <!-- struct Statusbar -->
 A `Statusbar` is usually placed along the bottom of an application's
 main `Window`. It may provide a regular commentary of the application's
@@ -33496,7 +34305,7 @@ still take precedence over your changes, as it uses the
 
 # Implements
 
-[`StyleContextExt`](trait.StyleContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)
+[`StyleContextExt`](trait.StyleContextExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`StyleContextExtManual`](prelude/trait.StyleContextExtManual.html)
 <!-- trait StyleContextExt -->
 Trait containing all `StyleContext` methods.
 
@@ -33594,7 +34403,7 @@ the priority of the style provider. The lower
 Retrieves several style property values from `self` for a
 given state.
 
-See `StyleContext::get_property` for details.
+See `StyleContextExt::get_property` for details.
 ## `state`
 state to retrieve the property values for
 <!-- trait StyleContextExt::fn get_background_color -->
@@ -33619,7 +34428,7 @@ return value for the background color
 <!-- trait StyleContextExt::fn get_border -->
 Gets the border for a given state as a `Border`.
 
-See `StyleContext::get_property` and
+See `StyleContextExt::get_property` and
 `GTK_STYLE_PROPERTY_BORDER_WIDTH` for details.
 ## `state`
 state to retrieve the border for
@@ -33638,7 +34447,7 @@ return value for the border color
 <!-- trait StyleContextExt::fn get_color -->
 Gets the foreground color for a given state.
 
-See `StyleContext::get_property` and
+See `StyleContextExt::get_property` and
 `GTK_STYLE_PROPERTY_COLOR` for details.
 ## `state`
 state to retrieve the color for
@@ -33769,7 +34578,7 @@ va_list of property name/return location pairs, followed by `None`
 <!-- trait StyleContextExt::fn get_valist -->
 Retrieves several style property values from `self` for a given state.
 
-See `StyleContext::get_property` for details.
+See `StyleContextExt::get_property` for details.
 ## `state`
 state to retrieve the property values for
 ## `args`
@@ -33928,6 +34737,18 @@ for details.
 <!-- trait StyleContextExt::fn set_property_parent -->
 Sets or gets the style context’s parent. See `StyleContextExt::set_parent`
 for details.
+<!-- struct StyleContextPrintFlags -->
+Flags that modify the behavior of `StyleContextExt::to_string`.
+New values may be added to this enumeration.
+<!-- struct StyleContextPrintFlags::const RECURSE -->
+Print the entire tree of
+ CSS nodes starting at the style context's node
+<!-- struct StyleContextPrintFlags::const SHOW_STYLE -->
+Show the values of the
+ CSS properties for each node
+
+Feature: `v3_20`
+
 <!-- struct StyleProperties -->
 `[Deprecated since 3.16]` `StyleProperties` provides the storage for style information
 that is used by `StyleContext` and other `StyleProvider`
@@ -34210,6 +35031,21 @@ a pointer to a copy of `self`.
 <!-- impl TargetEntry::fn free -->
 Frees a `TargetEntry` returned from
 `TargetEntry::new` or `TargetEntry::copy`.
+<!-- struct TargetFlags -->
+The `TargetFlags` enumeration is used to specify
+constraints on a `TargetEntry`.
+<!-- struct TargetFlags::const SAME_APP -->
+If this is set, the target will only be selected
+ for drags within a single application.
+<!-- struct TargetFlags::const SAME_WIDGET -->
+If this is set, the target will only be selected
+ for drags within a single widget.
+<!-- struct TargetFlags::const OTHER_APP -->
+If this is set, the target will not be selected
+ for drags within a single application.
+<!-- struct TargetFlags::const OTHER_WIDGET -->
+If this is set, the target will not be selected
+ for drags withing a single widget.
 <!-- struct TargetList -->
 A `TargetList`-struct is a reference counted list
 of `TargetPair` and should be treated as
@@ -35221,7 +36057,7 @@ registered using `TextBuffer::register_serialize_format` or
 `TextBufferExt::register_serialize_tagset`
 ## `format`
 a `gdk::Atom` representing a registered rich text format.
-<!-- trait TextBufferExt::fn connect_apply_tag -->
+<!-- trait TextBufferExtManual::fn connect_apply_tag -->
 The ::apply-tag signal is emitted to apply a tag to a
 range of text in a `TextBuffer`.
 Applying actually occurs in the default handler.
@@ -35253,7 +36089,7 @@ See also:
 <!-- trait TextBufferExt::fn connect_changed -->
 The ::changed signal is emitted when the content of a `TextBuffer`
 has changed.
-<!-- trait TextBufferExt::fn connect_delete_range -->
+<!-- trait TextBufferExtManual::fn connect_delete_range -->
 The ::delete-range signal is emitted to delete a range
 from a `TextBuffer`.
 
@@ -35281,7 +36117,7 @@ See also:
 `TextBufferExt::backspace`,
 `TextBufferExt::delete_selection`,
 `TextBufferExt::backspace`.
-<!-- trait TextBufferExt::fn connect_insert_child_anchor -->
+<!-- trait TextBufferExtManual::fn connect_insert_child_anchor -->
 The ::insert-child-anchor signal is emitted to insert a
 `TextChildAnchor` in a `TextBuffer`.
 Insertion actually occurs in the default handler.
@@ -35296,7 +36132,7 @@ See also: `TextBufferExt::insert_child_anchor`.
 position to insert `anchor` in `textbuffer`
 ## `anchor`
 the `TextChildAnchor` to be inserted
-<!-- trait TextBufferExt::fn connect_insert_pixbuf -->
+<!-- trait TextBufferExtManual::fn connect_insert_pixbuf -->
 The ::insert-pixbuf signal is emitted to insert a `gdk_pixbuf::Pixbuf`
 in a `TextBuffer`. Insertion actually occurs in the default handler.
 
@@ -35359,7 +36195,7 @@ This is useful to properly scroll the view to the end of the pasted text.
 See `TextBufferExt::paste_clipboard` for more details.
 ## `clipboard`
 the `Clipboard` pasted from
-<!-- trait TextBufferExt::fn connect_remove_tag -->
+<!-- trait TextBufferExtManual::fn connect_remove_tag -->
 The ::remove-tag signal is emitted to remove all occurrences of `tag` from
 a range of text in a `TextBuffer`.
 Removal actually occurs in the default handler.
@@ -36532,6 +37368,21 @@ to the left of the newly-inserted text, otherwise to the right.
 The name of the mark or `None` if the mark is anonymous.
 <!-- trait TextMarkExt::fn set_property_name -->
 The name of the mark or `None` if the mark is anonymous.
+<!-- struct TextSearchFlags -->
+Flags affecting how a search is done.
+
+If neither `TextSearchFlags::VisibleOnly` nor `TextSearchFlags::TextOnly` are
+enabled, the match must be exact; the special 0xFFFC character will match
+embedded pixbufs or child widgets.
+<!-- struct TextSearchFlags::const VISIBLE_ONLY -->
+Search only visible data. A search match may
+have invisible text interspersed.
+<!-- struct TextSearchFlags::const TEXT_ONLY -->
+Search only text. A match may have pixbufs or
+child widgets mixed inside the matched range.
+<!-- struct TextSearchFlags::const CASE_INSENSITIVE -->
+The text will be matched regardless of
+what case it is in.
 <!-- struct TextTag -->
 You may wish to begin by reading the
 [text widget conceptual overview][TextWidget]
@@ -38958,6 +39809,12 @@ Is `true` if the `ToolPalette:icon-size` property has been set.
 The style of items in the tool palette.
 <!-- trait ToolPaletteExt::fn set_property_toolbar_style -->
 The style of items in the tool palette.
+<!-- struct ToolPaletteDragTargets -->
+Flags used to specify the supported drag targets.
+<!-- struct ToolPaletteDragTargets::const ITEMS -->
+Support drag of items.
+<!-- struct ToolPaletteDragTargets::const GROUPS -->
+Support drag of groups.
 <!-- struct ToolShell -->
 The `ToolShell` interface allows container widgets to provide additional
 information when embedding `ToolItem` widgets.
@@ -39995,12 +40852,6 @@ an array of integers
  i.e. `new_order``[newpos] = oldpos`
 ## `length`
 length of `new_order` array
-<!-- trait TreeModelExt::fn sort_new_with_model -->
-Creates a new `TreeModel`, with `self` as the child model.
-
-# Returns
-
-A new `TreeModel`.
 <!-- trait TreeModelExt::fn unref_node -->
 Lets the tree unref the node.
 
@@ -40273,6 +41124,19 @@ A ``GtkTreeModelFilterVisibleFunc``, the visible function
 User data to pass to the visible function, or `None`
 ## `destroy`
 Destroy notifier of `data`, or `None`
+<!-- struct TreeModelFlags -->
+These flags indicate various properties of a `TreeModel`.
+
+They are returned by `TreeModel::get_flags`, and must be
+static for the lifetime of the object. A more complete description
+of `TreeModelFlags::ItersPersist` can be found in the overview of
+this section.
+<!-- struct TreeModelFlags::const ITERS_PERSIST -->
+iterators survive all signals
+ emitted by the tree
+<!-- struct TreeModelFlags::const LIST_ONLY -->
+the model is a list only, and never
+ has children
 <!-- struct TreeModelSort -->
 The `TreeModelSort` is a model which implements the `TreeSortable`
 interface. It does not hold any data itself, but rather is created with
@@ -40380,6 +41244,14 @@ Trait containing all `TreeModelSort` methods.
 # Implementors
 
 [`TreeModelSort`](struct.TreeModelSort.html)
+<!-- impl TreeModelSort::fn new -->
+Creates a new `TreeModelSort`, with `child_model` as the child model.
+## `child_model`
+A `TreeModel`
+
+# Returns
+
+A new `TreeModelSort`.
 <!-- trait TreeModelSortExt::fn clear_cache -->
 This function should almost never be called. It clears the `self`
 of any cached iterators that haven’t been reffed with
@@ -43184,7 +44056,7 @@ look of applications without the need to write a theme engine in C.
 Use `WidgetClass::install_style_property` to install style properties for
 a widget class, `WidgetClass::find_style_property` or
 `WidgetClass::list_style_properties` to get information about existing
-style properties and `Widget::style_get_property`, `WidgetExt::style_get` or
+style properties and `WidgetExt::style_get_property`, `WidgetExt::style_get` or
 `WidgetExt::style_get_valist` to obtain the value of a style property.
 
 # `Widget` as `Buildable`
@@ -43509,7 +44381,7 @@ this function is called. It is not necessary to do so if you are
 implementing a `Container`, as you'll be able to use the
 `ContainerClass.remove`() virtual function for that.
 
-It's important to notice that `WidgetExt::destroy` will only cause
+It's important to notice that `Widget::destroy` will only cause
 the `self` to be finalized if no additional references, acquired
 using `gobject::ObjectExt::ref`, are held on it. In case additional references
 are in place, the `self` will be in an "inert" state after calling
@@ -44758,7 +45630,7 @@ To find out if the widget has the global input focus, use
 <!-- trait WidgetExt::fn hide -->
 Reverses the effects of `WidgetExt::show`, causing the widget to be
 hidden (invisible to the user).
-<!-- trait WidgetExt::fn hide_on_delete -->
+<!-- trait WidgetExtManual::fn hide_on_delete -->
 Utility function; intended to be connected to the `Widget::delete-event`
 signal on a `Window`. The function calls `WidgetExt::hide` on its
 argument, then returns `true`. If connected to ::delete-event, the
@@ -46015,7 +46887,7 @@ the `gdk::EventExpose` event
 <!-- trait WidgetExt::fn connect_delete_event -->
 The ::delete-event signal is emitted if a user requests that
 a toplevel window is closed. The default handler for this signal
-destroys the window. Connecting `WidgetExt::hide_on_delete` to
+destroys the window. Connecting `Widget::hide_on_delete` to
 this signal will cause the window to be hidden instead, so that
 it can later be shown again without reconstructing it.
 ## `event`
@@ -47384,7 +48256,7 @@ an internal top-level window list. This list can be obtained from
 the window internally, `Window::new` does not return a reference
 to the caller.
 
-To delete a `Window`, call `WidgetExt::destroy`.
+To delete a `Window`, call `Widget::destroy`.
 ## `type_`
 type of window
 
@@ -48400,7 +49272,7 @@ typically “do what you mean.”
 window gravity
 <!-- trait GtkWindowExt::fn set_has_user_ref_count -->
 Tells GTK+ whether to drop its extra reference to the window
-when `WidgetExt::destroy` is called.
+when `Widget::destroy` is called.
 
 This function is only exported for the benefit of language
 bindings which may need to keep the window alive until their
