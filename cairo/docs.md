@@ -810,7 +810,7 @@ sake of performance if non-inked path extents are desired.
 See Context::stroke(), Context::set_line_width(), Context::set_line_join(),
 Context::set_line_cap(), Context::set_dash(), and Context::stroke_preserve().
 <!-- impl Context::fn in_stroke -->
-Tests whether the given point is inside the area that would be affected by a 
+Tests whether the given point is inside the area that would be affected by a
 Context::stroke() operation given the current path and stroking parameters. Surface
 dimensions and clipping are not taken into account.
 
@@ -1130,7 +1130,7 @@ cr.rel_line_to(-width, 0);
 cr.close_path();
 ```
 <!-- impl Context::fn text_path -->
-Adds closed paths for the glyphs to the current path. The generated path if 
+Adds closed paths for the glyphs to the current path. The generated path if
 filled, achieves an effect similar to that of Context::show_glyphs().
 <!-- impl Context::fn rel_curve_to -->
 Relative-coordinate version of Context::curve_to(). All offsets are relative to
@@ -1232,6 +1232,23 @@ The default family then can be queried using FontFace::toy_get_family().
 
 The Context::select_font_face() function uses this to create font faces. See that
 function for limitations and other details of toy font faces.
+<!-- impl FontFace::fn create_from_ft -->
+Creates a font face from a freetype font face.
+
+# Safety
+
+The `FT_Face` must live at least as long as the returned `FontFace` object. One way to
+ensure this is to reference count the font and pass a `Rc<FT_Face>` to `set_user_data`.
+<!-- impl FontFace::fn create_from_ft_with_flags -->
+Creates a font face from a freetype font face and flags.
+
+Flags are passed directly through to the underlying
+`cairo_ft_font_face_create_for_ft_face` call.
+
+# Safety
+
+The `FT_Face` must live at least as long as the returned `FontFace` object. One way to
+ensure this is to reference count the font and pass it to `set_user_data`.
 <!-- impl FontFace::fn toy_get_family -->
 Gets the familly name of a toy font.
 <!-- impl FontFace::fn toy_get_slant -->
@@ -1586,7 +1603,7 @@ Mesh::begin_patch()/Mesh::end_patch().
 
 ```ignore
 let mut pattern = Mesh::new();
- Add a Coons patch 
+ Add a Coons patch
 pattern.begin_patch();
 pattern.move_to(0, 0);
 pattern.curve_to(30, -30,  60,  30, 100, 0);
@@ -1599,7 +1616,7 @@ pattern.set_corner_color_rgb(2, 0, 0, 1);
 pattern.set_corner_color_rgb(3, 1, 1, 0);
 pattern.end_patch();
 
- Add a Gouraud-shaded triangle 
+ Add a Gouraud-shaded triangle
 pattern.begin_patch()
 pattern.move_to(100, 100);
 pattern.line_to(130, 130);
