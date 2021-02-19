@@ -1,4 +1,38 @@
 <!-- file * -->
+<!-- struct AnchorHints -->
+Positioning hints for aligning a surface relative to a rectangle.
+
+These hints determine how the surface should be positioned in the case that
+the surface would fall off-screen if placed in its ideal position.
+
+For example, `AnchorHints::FlipX` will replace `Gravity::NorthWest` with
+`Gravity::NorthEast` and vice versa if the surface extends beyond the left
+or right edges of the monitor.
+
+If `AnchorHints::SlideX` is set, the surface can be shifted horizontally to fit
+on-screen. If `AnchorHints::ResizeX` is set, the surface can be shrunken
+horizontally to fit.
+
+In general, when multiple flags are set, flipping should take precedence over
+sliding, which should take precedence over resizing.
+<!-- struct AnchorHints::const FLIP_X -->
+allow flipping anchors horizontally
+<!-- struct AnchorHints::const FLIP_Y -->
+allow flipping anchors vertically
+<!-- struct AnchorHints::const SLIDE_X -->
+allow sliding surface horizontally
+<!-- struct AnchorHints::const SLIDE_Y -->
+allow sliding surface vertically
+<!-- struct AnchorHints::const RESIZE_X -->
+allow resizing surface horizontally
+<!-- struct AnchorHints::const RESIZE_Y -->
+allow resizing surface vertically
+<!-- struct AnchorHints::const FLIP -->
+allow flipping anchors on both axes
+<!-- struct AnchorHints::const SLIDE -->
+allow sliding surface on both axes
+<!-- struct AnchorHints::const RESIZE -->
+allow resizing surface on both axes
 <!-- struct AppLaunchContext -->
 `AppLaunchContext` is an implementation of `gio::AppLaunchContext` that
 handles launching an application in a graphical context. It provides
@@ -14,13 +48,23 @@ GdkAppLaunchContext *context;
 context = gdk_display_get_app_launch_context (display);
 
 gdk_app_launch_context_set_display (display);
-gdk_app_launch_context_set_timestamp (event->time);
+gdk_app_launch_context_set_timestamp (gdk_event_get_time (event));
 
 if (!g_app_info_launch_default_for_uri ("http://www.gtk.org", context, &error))
   g_warning ("Launching failed: %s\n", error->message);
 
 g_object_unref (context);
 ```
+
+# Implements
+
+[`gio::AppLaunchContextExt`](../gio/trait.AppLaunchContextExt.html)
+<!-- impl AppLaunchContext::fn get_display -->
+Gets the `Display` that `self` is for.
+
+# Returns
+
+the display of `self`
 <!-- impl AppLaunchContext::fn set_desktop -->
 Sets the workspace on which applications will be launched when
 using this context when running under a window manager that
@@ -63,6 +107,30 @@ typing in another window. This is also known as 'focus stealing
 prevention'.
 ## `timestamp`
 a timestamp
+<!-- struct AxisFlags -->
+Flags describing the current capabilities of a device/tool.
+<!-- struct AxisFlags::const X -->
+X axis is present
+<!-- struct AxisFlags::const Y -->
+Y axis is present
+<!-- struct AxisFlags::const DELTA_X -->
+Scroll X delta axis is present
+<!-- struct AxisFlags::const DELTA_Y -->
+Scroll Y delta axis is present
+<!-- struct AxisFlags::const PRESSURE -->
+Pressure axis is present
+<!-- struct AxisFlags::const XTILT -->
+X tilt axis is present
+<!-- struct AxisFlags::const YTILT -->
+Y tilt axis is present
+<!-- struct AxisFlags::const WHEEL -->
+Wheel axis is present
+<!-- struct AxisFlags::const DISTANCE -->
+Distance axis is present
+<!-- struct AxisFlags::const ROTATION -->
+Z-axis rotation is present
+<!-- struct AxisFlags::const SLIDER -->
+Slider axis is present
 <!-- enum AxisUse -->
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
@@ -77,6 +145,10 @@ the axis is ignored.
 the axis is used as the x axis.
 <!-- enum AxisUse::variant Y -->
 the axis is used as the y axis.
+<!-- enum AxisUse::variant DeltaX -->
+the axis is used as the scroll x delta
+<!-- enum AxisUse::variant DeltaY -->
+the axis is used as the scroll y delta
 <!-- enum AxisUse::variant Pressure -->
 the axis is used for pressure information.
 <!-- enum AxisUse::variant Xtilt -->
@@ -93,24 +165,27 @@ the axis is used for pen rotation information
 the axis is used for pen slider information
 <!-- enum AxisUse::variant Last -->
 a constant equal to the numerically highest axis value.
-<!-- enum ByteOrder -->
-A set of values describing the possible byte-orders
-for storing pixel values in memory.
-<!-- enum ByteOrder::variant LsbFirst -->
-The values are stored with the least-significant byte
- first. For instance, the 32-bit value 0xffeecc would be stored
- in memory as 0xcc, 0xee, 0xff, 0x00.
-<!-- enum ByteOrder::variant MsbFirst -->
-The values are stored with the most-significant byte
- first. For instance, the 32-bit value 0xffeecc would be stored
- in memory as 0x00, 0xff, 0xee, 0xcc.
+<!-- struct ButtonEvent -->
+An event related to a button on a pointer device/
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl ButtonEvent::fn get_button -->
+Extract the button number from a button event.
+
+# Returns
+
+the button of `self`
 <!-- struct CairoContext -->
 `CairoContext` is an object representing the platform-specific
 draw context.
 
 ``GdkCairoContexts`` are created for a `Display` using
-`SurfaceExt::create_cairo_context`, and the context can then be used
+`Surface::create_cairo_context`, and the context can then be used
 to draw on that `Surface`.
+
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
@@ -127,7 +202,7 @@ The returned context is guaranteed to be valid until
 
 a Cairo context to be used
  to draw the contents of the `Surface`. `None` is returned
- when `contet` is not drawing.
+ when `context` is not drawing.
 <!-- struct Clipboard -->
 The `Clipboard` object represents a clipboard of data shared
 between different applications or between different parts of
@@ -438,7 +513,7 @@ the actual implementations.
 
 A `ContentFormats` describes a set of possible formats content can be
 exchanged in. It is assumed that this set is ordered. `GTypes` are more
-important than mime types. Order between different `Gtypes` or mime types
+important than mime types. Order between different `GTypes` or mime types
 is the order they were added in, most important first. Functions that
 care about order, such as `ContentFormats::union` will describe in
 their documentation how they interpret that order, though in general the
@@ -501,8 +576,9 @@ optional pointer to take the
 
 # Returns
 
-`G_TYPE_INVALID`-terminated array of
- types included in `self` or `None` if none.
+
+ `G_TYPE_INVALID`-terminated array of types included in `self` or
+ `None` if none.
 <!-- impl ContentFormats::fn get_mime_types -->
 Gets the mime types included in `self`. Note that `self` may not
 contain any mime types, in particular when they are empty. In that
@@ -549,7 +625,7 @@ Prints the given `self` into a string for human consumption.
 This is meant for debugging and logging.
 
 The form of the representation may change at any time and is
-not guranteed to stay identical.
+not guaranteed to stay identical.
 ## `string`
 a `glib::String` to print into
 <!-- impl ContentFormats::fn ref -->
@@ -703,10 +779,48 @@ a `gobject::Value`
 # Returns
 
 a new `ContentProvider`
+<!-- impl ContentProvider::fn new_typed -->
+Create a content provider that provides the value of the given
+`type_`.
+
+The value is provided using G_VALUE_COLLECT(), so the same rules
+apply as when calling `gobject::Object::new` or `gobject::Object::set`.
+## `type_`
+Type of value to follow
+
+# Returns
+
+a new `ContentProvider`
+<!-- impl ContentProvider::fn new_union -->
+Creates a content provider that represents all the given `providers`.
+
+Whenever data needs to be written, the union provider will try the given
+`providers` in the given order and the first one supporting a format will
+be chosen to provide it.
+
+This allows an easy way to support providing data in different formats.
+For example, an image may be provided by its file and by the image
+contents with a call such as
+
+```C
+gdk_content_provider_new_union ((GdkContentProvider *[2]) {
+                                  gdk_content_provider_new_typed (G_TYPE_FILE, file),
+                                  gdk_content_provider_new_typed (G_TYPE_TEXTURE, texture)
+                                }, 2);
+```
+## `providers`
+
+ The ``GdkContentProviders`` to present the union of
+## `n_providers`
+the number of providers
+
+# Returns
+
+a new `ContentProvider`
 <!-- trait ContentProviderExt::fn content_changed -->
-Emits the `ContentProvider::contents-changed` signal.
+Emits the `ContentProvider::content-changed` signal.
 <!-- trait ContentProviderExt::fn get_value -->
-Gets the convtents of `self` stored in `value`.
+Gets the contents of `self` stored in `value`.
 
 The `value` will have been initialized to the `glib::Type` the value should be
 provided in. This given `glib::Type` does not need to be listed in the formats
@@ -770,6 +884,8 @@ a `gio::AsyncResult`
 
 `true` if the operation was completed successfully. Otherwise
  `error` will be set to describe the failure.
+<!-- trait ContentProviderExt::fn connect_content_changed -->
+Emitted whenever the content provided by this provider has changed.
 <!-- trait ContentProviderExt::fn get_property_formats -->
 The possible formats that the provider can provide its data in.
 <!-- trait ContentProviderExt::fn get_property_storable_formats -->
@@ -838,6 +954,30 @@ Associate data with the current serialization operation.
 data to associate with this operation
 ## `notify`
 destroy notify for `data`
+<!-- struct CrossingEvent -->
+An event caused by a pointing device moving between surfaces.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl CrossingEvent::fn get_detail -->
+Extracts the notify detail from a crossing event.
+
+# Returns
+
+the notify detail of `self`
+<!-- impl CrossingEvent::fn get_focus -->
+Checks if the `self` surface is the focus surface.
+
+# Returns
+
+`true` if the surface is the focus surface
+<!-- impl CrossingEvent::fn get_mode -->
+Extracts the crossing mode from a crossing event.
+
+# Returns
+
+the mode of `self`
 <!-- enum CrossingMode -->
 Specifies the crossing mode for enter and leave events.
 <!-- enum CrossingMode::variant Normal -->
@@ -847,11 +987,11 @@ crossing because a grab is activated.
 <!-- enum CrossingMode::variant Ungrab -->
 crossing because a grab is deactivated.
 <!-- enum CrossingMode::variant GtkGrab -->
-crossing because a GTK+ grab is activated.
+crossing because a GTK grab is activated.
 <!-- enum CrossingMode::variant GtkUngrab -->
-crossing because a GTK+ grab is deactivated.
+crossing because a GTK grab is deactivated.
 <!-- enum CrossingMode::variant StateChanged -->
-crossing because a GTK+ widget changed
+crossing because a GTK widget changed
  state (e.g. sensitivity).
 <!-- enum CrossingMode::variant TouchBegin -->
 crossing because a touch sequence has begun,
@@ -951,6 +1091,10 @@ the fallback of the cursor or `None` to use
 Returns the horizontal offset of the hotspot. The hotspot indicates the
 pixel that will be directly above the cursor.
 
+Note that named cursors may have a nonzero hotspot, but this function
+will only return the hotspot position for cursors created with
+`Cursor::new_from_texture`.
+
 # Returns
 
 the horizontal offset of the hotspot or 0 for named cursors
@@ -958,12 +1102,16 @@ the horizontal offset of the hotspot or 0 for named cursors
 Returns the vertical offset of the hotspot. The hotspot indicates the
 pixel that will be directly above the cursor.
 
+Note that named cursors may have a nonzero hotspot, but this function
+will only return the hotspot position for cursors created with
+`Cursor::new_from_texture`.
+
 # Returns
 
 the vertical offset of the hotspot or 0 for named cursors
 <!-- impl Cursor::fn get_name -->
 Returns the name of the cursor. If the cursor is not a named cursor, `None`
-will be returned and the `Cursor`::texture property will be set.
+will be returned.
 
 # Returns
 
@@ -971,182 +1119,105 @@ the name of the cursor or `None` if it is not
  a named cursor
 <!-- impl Cursor::fn get_texture -->
 Returns the texture for the cursor. If the cursor is a named cursor, `None`
-will be returned and the `Cursor`::name property will be set.
+will be returned.
 
 # Returns
 
 the texture for cursor or `None` if it is a
  named cursor
+<!-- struct DNDEvent -->
+An event related to drag and drop operations.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl DNDEvent::fn get_drop -->
+Gets the `Drop` from a DND event.
+
+# Returns
+
+the drop
+<!-- struct DeleteEvent -->
+An event related to closing a top-level surface.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
 <!-- struct Device -->
 The `Device` object represents a single input device, such
 as a keyboard, a mouse, a touchpad, etc.
 
-See the `Seat` documentation for more information
-about the various kinds of master and slave devices, and their
-relationships.
-<!-- impl Device::fn free_history -->
-Frees an array of `TimeCoord` that was returned by `Device::get_history`.
-## `events`
-an array of `TimeCoord`.
-## `n_events`
-the length of the array.
-<!-- impl Device::fn get_associated_device -->
-Returns the associated device to `self`, if `self` is of type
-`DeviceType::Master`, it will return the paired pointer or
-keyboard.
+See the `Seat` documentation for more information about the
+various kinds of devices, and their relationships.
 
-If `self` is of type `DeviceType::Slave`, it will return
-the master device to which `self` is attached to.
-
-If `self` is of type `DeviceType::Floating`, `None` will be
-returned, as there is no associated device.
+This is an Abstract Base Class, you cannot instantiate it.
+<!-- impl Device::fn get_caps_lock_state -->
+Retrieves whether the Caps Lock modifier of the
+keyboard is locked, if `self` is a keyboard device.
 
 # Returns
 
-The associated device, or
- `None`
-<!-- impl Device::fn get_axes -->
-Returns the axes currently available on the device.
-<!-- impl Device::fn get_axis -->
-Interprets an array of double as axis values for a given device,
-and locates the value in the array for a given axis use.
-## `axes`
-pointer to an array of axes
-## `use_`
-the use to look for
-## `value`
-location to store the found value.
+`true` if Caps Lock is on for `self`
+<!-- impl Device::fn get_device_tool -->
+Retrieves the `DeviceTool` associated to `self`.
 
 # Returns
 
-`true` if the given axis use was found, otherwise `false`
-<!-- impl Device::fn get_axis_use -->
-Returns the axis use for `index_`.
-## `index_`
-the index of the axis.
+the `DeviceTool`
+<!-- impl Device::fn get_direction -->
+Returns the direction of effective layout of the keyboard,
+if `self` is a keyboard device.
+
+The direction of a layout is the direction of the majority
+of its symbols. See `pango_unichar_direction`.
 
 # Returns
 
-a `AxisUse` specifying how the axis is used.
-<!-- impl Device::fn get_axis_value -->
-Interprets an array of double as axis values for a given device,
-and locates the value in the array for a given axis label, as returned
-by `Device::list_axes`
-## `axes`
-pointer to an array of axes
-## `axis_label`
-name of the label
-## `value`
-location to store the found value.
-
-# Returns
-
-`true` if the given axis use was found, otherwise `false`.
-<!-- impl Device::fn get_device_type -->
-Returns the device type for `self`.
-
-# Returns
-
-the `DeviceType` for `self`.
+`pango::Direction::Ltr` or `pango::Direction::Rtl`
+ if it can determine the direction. `pango::Direction::Neutral`
+ otherwise
 <!-- impl Device::fn get_display -->
 Returns the `Display` to which `self` pertains.
 
 # Returns
 
 a `Display`. This memory is owned
- by GTK+, and must not be freed or unreffed.
+ by GTK, and must not be freed or unreffed.
 <!-- impl Device::fn get_has_cursor -->
 Determines whether the pointer follows device motion.
-This is not meaningful for keyboard devices, which don't have a pointer.
+This is not meaningful for keyboard devices, which
+don't have a pointer.
 
 # Returns
 
 `true` if the pointer follows device motion
-<!-- impl Device::fn get_history -->
-Obtains the motion history for a pointer device; given a starting and
-ending timestamp, return all events in the motion history for
-the device in the given range of time. Some windowing systems
-do not support motion history, in which case, `false` will
-be returned. (This is not distinguishable from the case where
-motion history is supported and no events were found.)
-
-Note that there is also `gdk_surface_set_event_compression` to get
-more motion events delivered directly, independent of the windowing
-system.
-## `surface`
-the surface with respect to which which the event coordinates will be reported
-## `start`
-starting timestamp for range of events to return
-## `stop`
-ending timestamp for the range of events to return
-## `events`
-
- location to store a newly-allocated array of `TimeCoord`, or
- `None`
-## `n_events`
-location to store the length of
- `events`, or `None`
+<!-- impl Device::fn get_modifier_state -->
+Retrieves the current modifier state of the keyboard,
+if `self` is a keyboard device.
 
 # Returns
 
-`true` if the windowing system supports motion history and
- at least one event was found.
-<!-- impl Device::fn get_key -->
-If `index_` has a valid keyval, this function will return `true`
-and fill in `keyval` and `modifiers` with the keyval settings.
-## `index_`
-the index of the macro button to get.
-## `keyval`
-return value for the keyval.
-## `modifiers`
-return value for modifiers.
-
-# Returns
-
-`true` if keyval is set for `index`.
-<!-- impl Device::fn get_last_event_surface -->
-Gets information about which surface the given pointer device is in, based on events
-that have been received so far from the display server. If another application
-has a pointer grab, or this application has a grab with owner_events = `false`,
-`None` may be returned even if the pointer is physically over one of this
-application's surfaces.
-
-# Returns
-
-the last surface the device
-<!-- impl Device::fn get_mode -->
-Determines the mode of the device.
-
-# Returns
-
-a `InputSource`
-<!-- impl Device::fn get_n_axes -->
-Returns the number of axes the device currently has.
-
-# Returns
-
-the number of axes.
-<!-- impl Device::fn get_n_keys -->
-Returns the number of keys the device currently has.
-
-# Returns
-
-the number of keys.
+the current modifier state
 <!-- impl Device::fn get_name -->
-Determines the name of the device.
+Determines the name of the device, suitable
+for showing in a user interface.
 
 # Returns
 
 a name
-<!-- impl Device::fn get_position -->
-Gets the current location of `self` in double precision. As a slave device's
-coordinates are those of its master pointer, this function
-may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them. See `gdk_device_grab`.
-## `x`
-location to store root window X coordinate of `self`, or `None`.
-## `y`
-location to store root window Y coordinate of `self`, or `None`.
+<!-- impl Device::fn get_num_lock_state -->
+Retrieves whether the Num Lock modifier of the
+keyboard is locked, if `self` is a keyboard device.
+
+# Returns
+
+`true` if Num Lock is on for `self`
+<!-- impl Device::fn get_num_touches -->
+Retrieves the number of touch points associated to `self`.
+
+# Returns
+
+the number of touch points
 <!-- impl Device::fn get_product_id -->
 Returns the product ID of this device, or `None` if this information couldn't
 be obtained. This ID is retrieved from the device, and is thus constant for
@@ -1155,39 +1226,29 @@ it. See `Device::get_vendor_id` for more information.
 # Returns
 
 the product ID, or `None`
+<!-- impl Device::fn get_scroll_lock_state -->
+Retrieves whether the Scroll Lock modifier of the
+keyboard is locked, if `self` is a keyboard device.
+
+# Returns
+
+`true` if Scroll Lock is on for `self`
 <!-- impl Device::fn get_seat -->
 Returns the `Seat` the device belongs to.
 
 # Returns
 
-A `Seat`. This memory is owned by GTK+ and
- must not be freed.
+a `Seat`
 <!-- impl Device::fn get_source -->
 Determines the type of the device.
 
 # Returns
 
 a `InputSource`
-<!-- impl Device::fn get_state -->
-Gets the current state of a pointer device relative to `surface`. As a slave
-device’s coordinates are those of its master pointer, this
-function may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them. See `gdk_device_grab`.
-## `surface`
-a `Surface`.
-## `axes`
-an array of doubles to store the values of
-the axes of `self` in, or `None`.
-## `mask`
-location to store the modifiers, or `None`.
 <!-- impl Device::fn get_surface_at_position -->
 Obtains the surface underneath `self`, returning the location of the device in `win_x` and `win_y` in
 double precision. Returns `None` if the surface tree under `self` is not known to GDK (for example,
 belongs to another application).
-
-As a slave device coordinates are those of its master pointer, This
-function may not be called on devices of type `DeviceType::Slave`,
-unless there is an ongoing grab on them, see `gdk_device_grab`.
 ## `win_x`
 return location for the X coordinate of the device location,
  relative to the surface origin, or `None`.
@@ -1212,10 +1273,10 @@ compose `gio::Settings` paths to store settings for this device.
  static GSettings *
  get_device_settings (GdkDevice *device)
  {
-   const gchar *vendor, *product;
+   const char *vendor, *product;
    GSettings *settings;
    GdkDevice *device;
-   gchar *path;
+   char *path;
 
    vendor = gdk_device_get_vendor_id (device);
    product = gdk_device_get_product_id (device);
@@ -1231,86 +1292,36 @@ compose `gio::Settings` paths to store settings for this device.
 # Returns
 
 the vendor ID, or `None`
-<!-- impl Device::fn list_axes -->
-Returns a `glib::List` of ``GdkAtoms``, containing the labels for
-the axes that `self` currently has.
+<!-- impl Device::fn has_bidi_layouts -->
+Determines if keyboard layouts for both right-to-left and
+left-to-right languages are in use on the keyboard, if
+`self` is a keyboard device.
 
 # Returns
 
-
- A `glib::List` of strings, free with `glib::List::free`.
-<!-- impl Device::fn list_slave_devices -->
-If the device if of type `DeviceType::Master`, it will return
-the list of slave devices attached to it, otherwise it will return
-`None`
-
-# Returns
-
-
- the list of slave devices, or `None`. The list must be
- freed with `glib::List::free`, the contents of the list are
- owned by GTK+ and should not be freed.
-<!-- impl Device::fn set_axis_use -->
-Specifies how an axis of a device is used.
-## `index_`
-the index of the axis
-## `use_`
-specifies how the axis is used
-<!-- impl Device::fn set_key -->
-Specifies the X key event to generate when a macro button of a device
-is pressed.
-## `index_`
-the index of the macro button to set
-## `keyval`
-the keyval to generate
-## `modifiers`
-the modifiers to set
-<!-- impl Device::fn set_mode -->
-Sets a the mode of an input device. The mode controls if the
-device is active and whether the device’s range is mapped to the
-entire screen or to a single surface.
-
-Note: This is only meaningful for floating devices, master devices (and
-slaves connected to these) drive the pointer cursor, which is not limited
-by the input mode.
-## `mode`
-the input mode.
-
-# Returns
-
-`true` if the mode was successfully changed.
+`true` if there are layouts with both directions,
+ `false` otherwise
 <!-- impl Device::fn connect_changed -->
 The ::changed signal is emitted either when the `Device`
 has changed the number of either axes or keys. For example
-In X this will normally happen when the slave device routing
-events through the master device changes (for example, user
-switches from the USB mouse to a tablet), in that case the
-master device will change to reflect the new slave device
-axes and keys.
+on X11 this will normally happen when the physical device
+routing events through the logical device changes (for
+example, user switches from the USB mouse to a tablet); in
+that case the logical device will change to reflect the axes
+and keys on the new physical device.
 <!-- impl Device::fn connect_tool_changed -->
 The ::tool-changed signal is emitted on pen/eraser
 ``GdkDevices`` whenever tools enter or leave proximity.
 ## `tool`
 The new current tool
-<!-- impl Device::fn get_property_associated_device -->
-Associated pointer or keyboard with this device, if any. Devices of type `DeviceType::Master`
-always come in keyboard/pointer pairs. Other device types will have a `None` associated device.
-<!-- impl Device::fn get_property_axes -->
-The axes currently available for this device.
 <!-- impl Device::fn get_property_display -->
 The `Display` the `Device` pertains to.
 <!-- impl Device::fn set_property_display -->
 The `Display` the `Device` pertains to.
 <!-- impl Device::fn get_property_has_cursor -->
-Whether the device is represented by a cursor on the screen. Devices of type
-`DeviceType::Master` will have `true` here.
+Whether the device is represented by a cursor on the screen.
 <!-- impl Device::fn set_property_has_cursor -->
-Whether the device is represented by a cursor on the screen. Devices of type
-`DeviceType::Master` will have `true` here.
-<!-- impl Device::fn get_property_input_source -->
-Source type for the device.
-<!-- impl Device::fn set_property_input_source -->
-Source type for the device.
+Whether the device is represented by a cursor on the screen.
 <!-- impl Device::fn get_property_n_axes -->
 Number of axes in the device.
 <!-- impl Device::fn get_property_name -->
@@ -1333,10 +1344,10 @@ Product ID of this device, see `Device::get_product_id`.
 `Seat` of this device.
 <!-- impl Device::fn set_property_seat -->
 `Seat` of this device.
-<!-- impl Device::fn get_property_type -->
-Device role in the device manager.
-<!-- impl Device::fn set_property_type -->
-Device role in the device manager.
+<!-- impl Device::fn get_property_source -->
+Source type for the device.
+<!-- impl Device::fn set_property_source -->
+Source type for the device.
 <!-- impl Device::fn get_property_vendor_id -->
 Vendor ID of this device, see `Device::get_vendor_id`.
 <!-- impl Device::fn set_property_vendor_id -->
@@ -1352,13 +1363,12 @@ can be used to obtain the number of groups, `DevicePad::get_n_features`
 and `DevicePad::get_feature_group` can be combined to find out the
 number of buttons/rings/strips the device has, and how are they grouped.
 
-Each of those groups have different modes, which may be used to map
-each individual pad feature to multiple actions. Only one mode is
-effective (current) for each given group, different groups may have
-different current modes. The number of available modes in a group can
-be found out through `DevicePad::get_group_n_modes`, and the current
-mode for a given group will be notified through the `EventPadGroupMode`
-event.
+Each of those groups have different modes, which may be used to map each
+individual pad feature to multiple actions. Only one mode is effective
+(current) for each given group, different groups may have different
+current modes. The number of available modes in a group can be found
+out through `DevicePad::get_group_n_modes`, and the current mode for
+a given group will be notified through events of type `EventType::PadGroupMode`.
 
 # Implements
 
@@ -1414,7 +1424,13 @@ a ring-shaped interactive area
 <!-- enum DevicePadFeature::variant Strip -->
 a straight interactive area
 <!-- struct DeviceTool -->
+A physical tool associated to a `Device`.
+<!-- impl DeviceTool::fn get_axes -->
+Gets the axes of the tool.
 
+# Returns
+
+the axes of `self`
 <!-- impl DeviceTool::fn get_hardware_id -->
 Gets the hardware ID of this tool, or 0 if it's not known. When
 non-zero, the identificator is unique for the given tool model,
@@ -1462,16 +1478,6 @@ Tool is an airbrush stylus.
 Tool is a mouse.
 <!-- enum DeviceToolType::variant Lens -->
 Tool is a lens cursor.
-<!-- enum DeviceType -->
-Indicates the device type.
-<!-- enum DeviceType::variant Master -->
-Device is a master (or virtual) device. There will
- be an associated focus indicator on the screen.
-<!-- enum DeviceType::variant Slave -->
-Device is a slave (or physical) device.
-<!-- enum DeviceType::variant Floating -->
-Device is a physical device, currently not attached to
- any seat.
 <!-- struct Display -->
 `Display` objects are the GDK representation of a workstation.
 
@@ -1484,7 +1490,7 @@ objects. Every display has a one or more seats, which can be accessed with
 `Display::get_default_seat` and `Display::list_seats`.
 
 Output devices are represented by `Monitor` objects, which can be accessed
-with `Display::get_monitor` and similar APIs.
+with `Display::get_monitor_at_surface` and similar APIs.
 <!-- impl Display::fn get_default -->
 Gets the default `Display`. This is a convenience
 function for:
@@ -1540,55 +1546,15 @@ Gets the clipboard used for copy/paste operations.
 # Returns
 
 the display's clipboard
-<!-- impl Display::fn get_default_group -->
-Returns the default group leader surface for all toplevel surfaces
-on `self`. This surface is implicitly created by GDK.
-See `gdk_surface_set_group`.
-
-# Returns
-
-The default group leader surface
-for `self`
 <!-- impl Display::fn get_default_seat -->
 Returns the default `Seat` for this display.
+
+Note that a display may not have a seat. In this case,
+this function will return `None`.
 
 # Returns
 
 the default seat.
-<!-- impl Display::fn get_event -->
-Gets the next `Event` to be processed for `self`, fetching events from the
-windowing system if necessary.
-
-# Returns
-
-the next `Event` to be processed,
- or `None` if no events are pending
-<!-- impl Display::fn get_keymap -->
-Returns the `Keymap` attached to `self`.
-
-# Returns
-
-the `Keymap` attached to `self`.
-<!-- impl Display::fn get_monitor -->
-Gets a monitor associated with this display.
-## `monitor_num`
-number of the monitor
-
-# Returns
-
-the `Monitor`, or `None` if
- `monitor_num` is not a valid monitor number
-<!-- impl Display::fn get_monitor_at_point -->
-Gets the monitor in which the point (`x`, `y`) is located,
-or a nearby monitor if the point is not in any monitor.
-## `x`
-the x coordinate of the point
-## `y`
-the y coordinate of the point
-
-# Returns
-
-the monitor containing the point
 <!-- impl Display::fn get_monitor_at_surface -->
 Gets the monitor in which the largest area of `surface`
 resides, or a monitor close to `surface` if it is outside
@@ -1599,15 +1565,18 @@ a `Surface`
 # Returns
 
 the monitor with the largest overlap with `surface`
-<!-- impl Display::fn get_n_monitors -->
-Gets the number of monitors that belong to `self`.
+<!-- impl Display::fn get_monitors -->
+Gets the list of monitors associated with this display.
 
-The returned number is valid until the next emission of the
-`Display::monitor-added` or `Display::monitor-removed` signal.
+Subsequent calls to this function will always return the same list for the
+same display.
+
+You can listen to the GListModel::items-changed signal on this list
+to monitor changes to the monitor of this display.
 
 # Returns
 
-the number of monitors
+a `gio::ListModel` of `Monitor`
 <!-- impl Display::fn get_name -->
 Gets the name of the display.
 
@@ -1623,22 +1592,6 @@ locally.
 # Returns
 
 the primary clipboard
-<!-- impl Display::fn get_primary_monitor -->
-Gets the primary monitor for the display.
-
-The primary monitor is considered the monitor where the “main desktop”
-lives. While normal application surfaces typically allow the window
-manager to place the surfaces, specialized desktop applications
-such as panels should place themselves on the primary monitor.
-
-If no monitor is the designated primary monitor, any monitor
-(usually the first) may be returned. To make sure there is a dedicated
-primary monitor, use `Monitor::is_primary` on the returned monitor.
-
-# Returns
-
-the primary monitor, or any monitor if no
- primary monitor is configured by the user
 <!-- impl Display::fn get_setting -->
 Retrieves a desktop-wide setting such as double-click time
 for the `self`.
@@ -1658,13 +1611,6 @@ if no ID has been defined.
 # Returns
 
 the startup notification ID for `self`, or `None`
-<!-- impl Display::fn has_pending -->
-Returns whether the display has events that are waiting
-to be processed.
-
-# Returns
-
-`true` if there are events ready to be processed.
 <!-- impl Display::fn is_closed -->
 Finds out if the display has been closed.
 
@@ -1674,7 +1620,7 @@ Finds out if the display has been closed.
 <!-- impl Display::fn is_composited -->
 Returns whether surfaces can reasonably be expected to have
 their alpha channel drawn correctly on the screen. Check
-`Display::is_rgba` for wether the display supports an
+`Display::is_rgba` for whether the display supports an
 alpha channel.
 
 On X11 this function returns whether a compositing manager is
@@ -1687,7 +1633,7 @@ On modern displays, this value is always `true`.
 Whether surfaces with RGBA visuals can reasonably be
 expected to have their alpha channels drawn correctly on the screen.
 <!-- impl Display::fn is_rgba -->
-Returns wether surfaces on this `self` are created with an
+Returns whether surfaces on this `self` are created with an
 alpha channel.
 
 Even if a `true` is returned, it is possible that the
@@ -1696,9 +1642,6 @@ surface on the screen: in particular, for X an appropriate
 windowing manager and compositing manager must be running to
 provide appropriate display. Use `Display::is_composited`
 to check if that is the case.
-
-For setting an overall opacity for a top-level surface, see
-`SurfaceExt::set_opacity`.
 
 On modern displays, this value is always `true`.
 
@@ -1713,71 +1656,136 @@ Returns the list of seats known to `self`.
 
 the
  list of seats known to the `Display`
+<!-- impl Display::fn map_keycode -->
+Returns the keyvals bound to `keycode`. The Nth `KeymapKey`
+in `keys` is bound to the Nth keyval in `keyvals`.
+
+When a keycode is pressed by the user, the keyval from
+this list of entries is selected by considering the effective
+keyboard group and level.
+
+Free the returned arrays with `g_free`.
+## `keycode`
+a keycode
+## `keys`
+return
+ location for array of `KeymapKey`, or `None`
+## `keyvals`
+return
+ location for array of keyvals, or `None`
+## `n_entries`
+length of `keys` and `keyvals`
+
+# Returns
+
+`true` if there were any entries
+<!-- impl Display::fn map_keyval -->
+Obtains a list of keycode/group/level combinations that will
+generate `keyval`. Groups and levels are two kinds of keyboard mode;
+in general, the level determines whether the top or bottom symbol
+on a key is used, and the group determines whether the left or
+right symbol is used.
+
+On US keyboards, the shift key changes the keyboard level, and there
+are no groups. A group switch key might convert a keyboard between
+Hebrew to English modes, for example.
+
+``GdkEventKey`` contains a `group` field that indicates the active
+keyboard group. The level is computed from the modifier mask.
+
+The returned array should be freed with `g_free`.
+## `keyval`
+a keyval, such as `GDK_KEY_a`, `GDK_KEY_Up`, `GDK_KEY_Return`, etc.
+## `keys`
+return location
+ for an array of `KeymapKey`
+## `n_keys`
+return location for number of elements in returned array
+
+# Returns
+
+`true` if keys were found and returned
 <!-- impl Display::fn notify_startup_complete -->
 Indicates to the GUI environment that the application has
 finished loading, using a given identifier.
 
-GTK+ will call this function automatically for ``GtkWindow``
+GTK will call this function automatically for ``GtkWindow``
 with custom startup-notification identifier unless
 `gtk_window_set_auto_startup_notification` is called to
 disable that feature.
 ## `startup_id`
 a startup-notification identifier, for which
  notification process should be completed
-<!-- impl Display::fn peek_event -->
-Gets a copy of the first `Event` in the `self`’s event queue, without
-removing the event from the queue. (Note that this function will
-not get more events from the windowing system. It only checks the events
-that have already been moved to the GDK event queue.)
-
-# Returns
-
-the first `Event` on the
- event queue
 <!-- impl Display::fn put_event -->
-Appends a copy of the given event onto the front of the event
+Appends the given event onto the front of the event
 queue for `self`.
+
+This function is only useful in very special situations
+and should not be used by applications.
 ## `event`
-a `Event`.
+a `Event`
 <!-- impl Display::fn supports_input_shapes -->
-Returns `true` if `gdk_surface_input_shape_combine_mask` can
+Returns `true` if `Surface::set_input_region` can
 be used to modify the input shape of surfaces on `self`.
+
+On modern displays, this value is always `true`.
 
 # Returns
 
 `true` if surfaces with modified input shape are supported
-<!-- impl Display::fn supports_shapes -->
-Returns `true` if `gdk_surface_shape_combine_mask` can
-be used to create shaped windows on `self`.
-
-# Returns
-
-`true` if shaped windows are supported
 <!-- impl Display::fn sync -->
 Flushes any requests queued for the windowing system and waits until all
 requests have been handled. This is often used for making sure that the
 display is synchronized with the current state of the program. Calling
-`Display::sync` before `gdk_error_trap_pop` makes sure that any errors
-generated from earlier requests are handled before the error trap is
-removed.
+`Display::sync` before `gdk_x11_display_error_trap_pop` makes sure
+that any errors generated from earlier requests are handled before the
+error trap is removed.
 
 This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.
+<!-- impl Display::fn translate_key -->
+Translates the contents of a ``GdkEventKey`` (ie `keycode`, `state`, and `group`)
+into a keyval, effective group, and level. Modifiers that affected the
+translation and are thus unavailable for application use are returned in
+`consumed_modifiers`.
+
+The `effective_group` is the group that was actually used for the translation;
+some keys such as Enter are not affected by the active keyboard group.
+The `level` is derived from `state`.
+
+`consumed_modifiers` gives modifiers that should be masked outfrom `state`
+when comparing this key press to a keyboard shortcut. For instance, on a US
+keyboard, the `plus` symbol is shifted, so when comparing a key press to a
+`<Control>plus` accelerator `<Shift>` should be masked out.
+
+This function should rarely be needed, since ``GdkEventKey`` already contains
+the translated keyval. It is exported for the benefit of virtualized test
+environments.
+## `keycode`
+a keycode
+## `state`
+a modifier state
+## `group`
+active keyboard group
+## `keyval`
+return location for keyval, or `None`
+## `effective_group`
+return location for effective
+ group, or `None`
+## `level`
+return location for level, or `None`
+## `consumed`
+return location for modifiers
+ that were used to determine the group or level, or `None`
+
+# Returns
+
+`true` if there was a keyval bound to keycode/state/group.
 <!-- impl Display::fn connect_closed -->
 The ::closed signal is emitted when the connection to the windowing
 system for `display` is closed.
 ## `is_error`
 `true` if the display was closed due to an error
-<!-- impl Display::fn connect_monitor_added -->
-The ::monitor-added signal is emitted whenever a monitor is
-added.
-## `monitor`
-the monitor that was just added
-<!-- impl Display::fn connect_monitor_removed -->
-The ::monitor-removed signal is emitted whenever a monitor is
-removed.
-## `monitor`
-the monitor that was just removed
 <!-- impl Display::fn connect_opened -->
 The ::opened signal is emitted when the connection to the windowing
 system for `display` is opened.
@@ -1797,8 +1805,11 @@ changes its value.
 ## `setting`
 the name of the setting that changed
 <!-- impl Display::fn get_property_composited -->
-`true` if the display properly composits the alpha channel.
+`true` if the display properly composites the alpha channel.
 See `Display::is_composited` for details.
+<!-- impl Display::fn get_property_input_shapes -->
+`true` if the display supports input shapes. See
+`Display::supports_input_shapes` for details.
 <!-- impl Display::fn get_property_rgba -->
 `true` if the display supports an alpha channel. See `Display::is_rgba`
 for details.
@@ -1834,8 +1845,8 @@ macros like GDK_IS_X11_DISPLAY() to find out which backend is in use:
     }
   else
 #endif
-#ifdef GDK_WINDOWING_QUARTZ
-  if (GDK_IS_QUARTZ_DISPLAY (display))
+#ifdef GDK_WINDOWING_MACOS
+  if (GDK_IS_MACOS_DISPLAY (display))
     {
       // make Quartz-specific calls here
     }
@@ -1854,9 +1865,7 @@ to limit what backends can be used.
 
 # Returns
 
-The global `DisplayManager` singleton;
- `gdk_parse_args`, `gdk_init`, or `gdk_init_check` must have
- been called first.
+The global `DisplayManager` singleton
 <!-- impl DisplayManager::fn get_default_display -->
 Gets the default `Display`.
 
@@ -1892,10 +1901,22 @@ the opened display
 <!-- struct Drag -->
 The `Drag` struct contains only private fields and
 should not be accessed directly.
+
+This is an Abstract Base Class, you cannot instantiate it.
 <!-- impl Drag::fn begin -->
 Starts a drag and creates a new drag context for it.
 
-This function is called by the drag source.
+This function is called by the drag source. After this call, you
+probably want to set up the drag icon using the surface returned
+by `Drag::get_drag_surface`.
+
+This function returns a reference to the `Drag` object, but GTK
+keeps its own reference as well, as long as the DND operation is
+going on.
+
+Note: if `actions` include `DragAction::Move`, you need to listen for
+the `Drag::dnd-finished` signal and delete the data at the source
+if `Drag::get_selected_action` returns `DragAction::Move`.
 ## `surface`
 the source surface for this drag
 ## `device`
@@ -1932,6 +1953,12 @@ Determines the bitmask of possible actions proposed by the source.
 # Returns
 
 the `DragAction` flags
+<!-- impl Drag::fn get_content -->
+Returns the `ContentProvider` associated to the `Drag` object.
+
+# Returns
+
+The `ContentProvider` associated to `self`.
 <!-- impl Drag::fn get_device -->
 Returns the `Device` associated to the `Drag` object.
 
@@ -1967,6 +1994,12 @@ Determines the action chosen by the drag destination.
 # Returns
 
 a `DragAction` value
+<!-- impl Drag::fn get_surface -->
+Returns the `Surface` where the drag originates.
+
+# Returns
+
+The `Surface` where the drag originates
 <!-- impl Drag::fn set_hotspot -->
 Sets the position of the drag surface that will be kept
 under the cursor hotspot. Initially, the hotspot is at the
@@ -1999,6 +2032,20 @@ The `Display` that the drag belongs to.
 The possible formats that the drag can provide its data in.
 <!-- impl Drag::fn set_property_formats -->
 The possible formats that the drag can provide its data in.
+<!-- struct DragAction -->
+Used in `Drop` and `Drag` to indicate the actions that the
+destination can and should do with the dropped data.
+<!-- struct DragAction::const COPY -->
+Copy the data.
+<!-- struct DragAction::const MOVE -->
+Move the data, i.e. first copy it, then delete
+ it from the source using the DELETE target of the X selection protocol.
+<!-- struct DragAction::const LINK -->
+Add a link to the data. Note that this is only
+ useful if source and destination agree on what it means, and is not
+ supported on all platforms.
+<!-- struct DragAction::const ASK -->
+Ask the user what to do with the data.
 <!-- enum DragCancelReason -->
 Used in `Drag` to the reason of a cancelled DND operation.
 <!-- enum DragCancelReason::variant NoTarget -->
@@ -2007,14 +2054,39 @@ There is no suitable drop target.
 Drag cancelled by the user
 <!-- enum DragCancelReason::variant Error -->
 Unspecified error.
+<!-- struct DragSurface -->
+A `DragSurface` is an interface implemented by ``GdkSurfaces`` used
+during a DND operation.
+
+# Implements
+
+[`DragSurfaceExt`](trait.DragSurfaceExt.html), [`SurfaceExt`](trait.SurfaceExt.html), [`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)
+<!-- trait DragSurfaceExt -->
+Trait containing all `DragSurface` methods.
+
+# Implementors
+
+[`DragSurface`](struct.DragSurface.html)
+<!-- trait DragSurfaceExt::fn present -->
+Present `self`.
+## `width`
+the unconstrained drag_surface width to layout
+## `height`
+the unconstrained drag_surface height to layout
+
+# Returns
+
+`false` if it failed to be presented, otherwise `true`.
 <!-- struct DrawContext -->
 `DrawContext` is the base object used by contexts implementing different
 rendering methods, such as `GLContext` or `VulkanContext`. It provides
 shared functionality between those contexts.
 
-You will always interact with one of those s.ubclasses.
+You will always interact with one of those subclasses.
 
 A `DrawContext` is always associated with a single toplevel surface.
+
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
@@ -2045,7 +2117,7 @@ hardware in use, it might be necessary to draw a larger region. Drawing
 implementation must use `DrawContext::get_frame_region` to query the
 region that must be drawn.
 
-When using GTK+, the widget system automatically places calls to
+When using GTK, the widget system automatically places calls to
 `DrawContextExt::begin_frame` and `DrawContextExt::end_frame` via the
 use of `GskRenderers`, so application code does not need to call these
 functions explicitly.
@@ -2072,7 +2144,7 @@ After a call to `DrawContextExt::begin_frame` this function will return
 a union of the region passed to that function and the area of the surface
 that the `self` determined needs to be repainted.
 
-If `self` is not inbetween calls to `DrawContextExt::begin_frame` and
+If `self` is not in between calls to `DrawContextExt::begin_frame` and
 `DrawContextExt::end_frame`, `None` will be returned.
 
 # Returns
@@ -2094,16 +2166,19 @@ In this situation, drawing commands may be effecting the contents of a
 
 # Returns
 
-`true` if the context is between `begin_frame` and `end_frame` calls.
+`true` if the context is between `DrawContextExt::begin_frame`
+ and `DrawContextExt::end_frame` calls.
 <!-- trait DrawContextExt::fn get_property_display -->
 The `Display` used to create the `DrawContext`.
 <!-- trait DrawContextExt::fn get_property_surface -->
-The `Surface` the gl context is bound to.
+The `Surface` the context is bound to.
 <!-- trait DrawContextExt::fn set_property_surface -->
-The `Surface` the gl context is bound to.
+The `Surface` the context is bound to.
 <!-- struct Drop -->
 The `Drop` struct contains only private fields and
 should not be accessed directly.
+
+This is an Abstract Base Class, you cannot instantiate it.
 <!-- impl Drop::fn finish -->
 Ends the drag operation after a drop.
 
@@ -2115,12 +2190,15 @@ the action performed by the destination or 0 if the drop
 <!-- impl Drop::fn get_actions -->
 Returns the possible actions for this `Drop`. If this value
 contains multiple actions - ie `DragAction::is_unique`
-returns `false` for the result - `gdk_drag_finish` must choose
-the action to use when accepting the drop.
+returns `false` for the result - `Drop::finish` must choose
+the action to use when accepting the drop. This will only
+happen if you passed `DragAction::Ask` as one of the possible
+actions in `Drop::status`. `DragAction::Ask` itself will not
+be included in the actions returned by this function.
 
 This value may change over the lifetime of the `Drop` both
 as a response to source side actions as well as to calls to
-`Drop::status` or `gdk_drag_finish`. The source side will
+`Drop::status` or `Drop::finish`. The source side will
 not change this value anymore once a drop has started.
 
 # Returns
@@ -2186,29 +2264,6 @@ return location for the used mime type
 # Returns
 
 the `gio::InputStream`, or `None`
-<!-- impl Drop::fn read_text_async -->
-Asynchronously request the drag operation's contents converted to a string.
-When the operation is finished `callback` will be called. You can then
-call `Drop::read_text_finish` to get the result.
-
-This is a simple wrapper around `Drop::read_value_async`. Use
-that function or `Drop::read_async` directly if you need more
-control over the operation.
-## `cancellable`
-optional `gio::Cancellable` object, `None` to ignore.
-## `callback`
-callback to call when the request is satisfied
-## `user_data`
-the data to pass to callback function
-<!-- impl Drop::fn read_text_finish -->
-Finishes an asynchronous read started with
-`Drop::read_text_async`.
-## `result`
-a `gio::AsyncResult`
-
-# Returns
-
-a new string or `None` on error.
 <!-- impl Drop::fn read_value_async -->
 Asynchronously request the drag operation's contents converted to the given
 `type_`. When the operation is finished `callback` will be called.
@@ -2245,6 +2300,9 @@ When calling this function, do not restrict the passed in actions to
 the ones provided by `Drop::get_actions`. Those actions may
 change in the future, even depending on the actions you provide here.
 
+The `preferred` action is a hint to the drag'n'drop mechanism about which
+action to use when multiple actions are possible.
+
 This function should be called by drag destinations in response to
 `EventType::DragEnter` or `EventType::DragMotion` events. If the destination does
 not yet know the exact actions it supports, it should set any possible
@@ -2252,6 +2310,9 @@ actions first and then later call this function again.
 ## `actions`
 Supported actions of the destination, or 0 to indicate
  that a drop will not be accepted
+## `preferred`
+A unique action that's a member of `actions` indicating the
+ preferred action.
 <!-- impl Drop::fn get_property_actions -->
 The possible actions for this drop
 <!-- impl Drop::fn set_property_actions -->
@@ -2277,22 +2338,19 @@ The `Surface` the drop happens on
 <!-- struct Event -->
 The `Event` struct contains only private fields and
 should not be accessed directly.
-<!-- impl Event::fn new -->
-Creates a new event of the given type. All fields are set to 0.
-## `type_`
-a `EventType`
 
-# Returns
+This is an Abstract Base Class, you cannot instantiate it.
 
-a newly-allocated `Event`. Free with `gobject::Object::unref`
-<!-- impl Event::fn copy -->
-Copies a `Event`, copying or incrementing the reference count of the
-resources associated with it (e.g. `Surface`’s and strings).
+# Implements
 
-# Returns
+[`EventExt`](trait.EventExt.html)
+<!-- trait EventExt -->
+Trait containing all `Event` methods.
 
-a copy of `self`. Free with `gobject::Object::unref`
-<!-- impl Event::fn get_axes -->
+# Implementors
+
+[`ButtonEvent`](struct.ButtonEvent.html), [`CrossingEvent`](struct.CrossingEvent.html), [`DNDEvent`](struct.DNDEvent.html), [`DeleteEvent`](struct.DeleteEvent.html), [`Event`](struct.Event.html), [`FocusEvent`](struct.FocusEvent.html), [`GrabBrokenEvent`](struct.GrabBrokenEvent.html), [`KeyEvent`](struct.KeyEvent.html), [`MotionEvent`](struct.MotionEvent.html), [`PadEvent`](struct.PadEvent.html), [`ProximityEvent`](struct.ProximityEvent.html), [`ScrollEvent`](struct.ScrollEvent.html), [`TouchEvent`](struct.TouchEvent.html), [`TouchpadEvent`](struct.TouchpadEvent.html)
+<!-- trait EventExt::fn get_axes -->
 Extracts all axis values from an event.
 ## `axes`
 the array of values for all axes
@@ -2302,7 +2360,7 @@ the length of array
 # Returns
 
 `true` on success, otherwise `false`
-<!-- impl Event::fn get_axis -->
+<!-- trait EventExt::fn get_axis -->
 Extract the axis value for a particular axis use from
 an event structure.
 ## `axis_use`
@@ -2313,368 +2371,107 @@ location to store the value found
 # Returns
 
 `true` if the specified axis was found, otherwise `false`
-<!-- impl Event::fn get_button -->
-Extract the button number from an event.
-## `button`
-location to store mouse button number
+<!-- trait EventExt::fn get_device -->
+Returns the device of an event.
 
 # Returns
 
-`true` if the event delivered a button number
-<!-- impl Event::fn get_click_count -->
-Extracts the click count from an event.
-## `click_count`
-location to store click count
-
-# Returns
-
-`true` if the event delivered a click count
-<!-- impl Event::fn get_coords -->
-Extract the event surface relative x/y coordinates from an event.
-## `x_win`
-location to put event surface x coordinate
-## `y_win`
-location to put event surface y coordinate
-
-# Returns
-
-`true` if the event delivered event surface coordinates
-<!-- impl Event::fn get_crossing_detail -->
-Extracts the crossing detail from an event.
-## `detail`
-return location for the crossing detail
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_crossing_mode -->
-Extracts the crossing mode from an event.
-## `mode`
-return location for the crossing mode
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_device -->
-If the event contains a “device” field, this function will return
-it, else it will return `None`.
-
-# Returns
-
-a `Device`, or `None`.
-<!-- impl Event::fn get_device_tool -->
+a `Device`.
+<!-- trait EventExt::fn get_device_tool -->
 If the event was generated by a device that supports
 different tools (eg. a tablet), this function will
 return a `DeviceTool` representing the tool that
 caused the event. Otherwise, `None` will be returned.
 
-Note: the `DeviceTool`<!-- -->s will be constant during
+Note: the ``GdkDeviceTools`` will be constant during
 the application lifetime, if settings must be stored
 persistently across runs, see `DeviceTool::get_serial`
 
 # Returns
 
 The current device tool, or `None`
-<!-- impl Event::fn get_display -->
+<!-- trait EventExt::fn get_display -->
 Retrieves the `Display` associated to the `self`.
 
 # Returns
 
 a `Display`
-<!-- impl Event::fn get_drop -->
-Gets the `Drop` from a DND event.
-
-# Returns
-
-the drop
-<!-- impl Event::fn get_event_sequence -->
-If `self` if of type `EventType::TouchBegin`, `EventType::TouchUpdate`,
-`EventType::TouchEnd` or `EventType::TouchCancel`, returns the `EventSequence`
+<!-- trait EventExt::fn get_event_sequence -->
+If `self` is a touch event, returns the `EventSequence`
 to which the event belongs. Otherwise, return `None`.
 
 # Returns
 
 the event sequence that the event belongs to
-<!-- impl Event::fn get_event_type -->
+<!-- trait EventExt::fn get_event_type -->
 Retrieves the type of the event.
 
 # Returns
 
 a `EventType`
-<!-- impl Event::fn get_focus_in -->
-Extracts whether this is a focus-in or focus-out event.
-## `focus_in`
-return location for focus direction
+<!-- trait EventExt::fn get_history -->
+Retrieves the history of the `self`, as a list of time and coordinates.
+
+The history includes events that are not delivered to the application
+because they occurred in the same frame as `self`.
+
+Note that only motion and scroll events record history, and motion
+events only if one of the mouse buttons is down.
+## `out_n_coords`
+Return location for the length of the returned array
 
 # Returns
 
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_grab_surface -->
-Extracts the grab surface from a grab broken event.
-## `surface`
-Return location for the grab surface
+an
+ array of time and coordinates
+<!-- trait EventExt::fn get_modifier_state -->
+Returns the modifier state field of an event.
 
 # Returns
 
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_key_group -->
-Extracts the key group from an event.
-## `group`
-return location for the key group
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_key_is_modifier -->
-Extracts whether the event is a key event for
-a modifier key.
-## `is_modifier`
-return location for the value
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_keycode -->
-Extracts the hardware keycode from an event.
-
-Also see `Event::get_scancode`.
-## `keycode`
-location to store the keycode
-
-# Returns
-
-`true` if the event delivered a hardware keycode
-<!-- impl Event::fn get_keyval -->
-Extracts the keyval from an event.
-## `keyval`
-location to store the keyval
-
-# Returns
-
-`true` if the event delivered a key symbol
-<!-- impl Event::fn get_motion_history -->
-Retrieves the history of the `self` motion, as a list of time and
-coordinates.
-
-# Returns
-
-a list
- of time and coordinates
-<!-- impl Event::fn get_pad_axis_value -->
-Extracts the information from a pad event.
-## `index`
-Return location for the axis index
-## `value`
-Return location for the axis value
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_pad_button -->
-Extracts information about the pressed button from
-a pad event.
-## `button`
-Return location for the button
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_pad_group_mode -->
-Extracts group and mode information from a pad event.
-## `group`
-return location for the group
-## `mode`
-return location for the mode
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_pointer_emulated -->
+the modifier state of `self`
+<!-- trait EventExt::fn get_pointer_emulated -->
 Returns whether this event is an 'emulated' pointer event (typically
 from a touch event), as opposed to a real one.
 
 # Returns
 
 `true` if this event is emulated
-<!-- impl Event::fn get_root_coords -->
-Extract the root window relative x/y coordinates from an event.
-## `x_root`
-location to put root window x coordinate
-## `y_root`
-location to put root window y coordinate
+<!-- trait EventExt::fn get_position -->
+Extract the event surface relative x/y coordinates from an event.
+## `x`
+location to put event surface x coordinate
+## `y`
+location to put event surface y coordinate
+<!-- trait EventExt::fn get_seat -->
+Returns the seat that originated the event.
 
 # Returns
 
-`true` if the event delivered root window coordinates
-<!-- impl Event::fn get_scancode -->
-Gets the keyboard low-level scancode of a key event.
-
-This is usually hardware_keycode. On Windows this is the high
-word of WM_KEY{DOWN,UP} lParam which contains the scancode and
-some extended flags.
-
-# Returns
-
-The associated keyboard scancode or 0
-<!-- impl Event::fn get_scroll_deltas -->
-Retrieves the scroll deltas from a `Event`
-## `delta_x`
-return location for X delta
-## `delta_y`
-return location for Y delta
-
-# Returns
-
-`true` if the event contains smooth scroll information
-<!-- impl Event::fn get_scroll_direction -->
-Extracts the scroll direction from an event.
-## `direction`
-location to store the scroll direction
-
-# Returns
-
-`true` if the event delivered a scroll direction
-<!-- impl Event::fn get_seat -->
-Returns the `Seat` this event was generated for.
-
-# Returns
-
-The `Seat` of this event
-<!-- impl Event::fn get_source_device -->
-This function returns the hardware (slave) `Device` that has
-triggered the event, falling back to the virtual (master) device
-(as in `Event::get_device`) if the event wasn’t caused by
-interaction with a hardware device. This may happen for example
-in synthesized crossing events after a `Surface` updates its
-geometry or a grab is acquired/released.
-
-If the event does not contain a device field, this function will
-return `None`.
-
-# Returns
-
-a `Device`, or `None`.
-<!-- impl Event::fn get_state -->
-If the event contains a “state” field, puts that field in `state`.
-
-Otherwise stores an empty state (0).
-`self` may be `None`, in which case it’s treated
-as if the event had no state field.
-## `state`
-return location for state
-
-# Returns
-
-`true` if there was a state field in the event
-<!-- impl Event::fn get_surface -->
+a `Seat`.
+<!-- trait EventExt::fn get_surface -->
 Extracts the `Surface` associated with an event.
 
 # Returns
 
 The `Surface` associated with the event
-<!-- impl Event::fn get_time -->
+<!-- trait EventExt::fn get_time -->
 Returns the time stamp from `self`, if there is one; otherwise
-returns `GDK_CURRENT_TIME`. If `self` is `None`, returns `GDK_CURRENT_TIME`.
+returns `GDK_CURRENT_TIME`.
 
 # Returns
 
 time stamp field from `self`
-<!-- impl Event::fn get_touch_emulating_pointer -->
-Extracts whether a touch event is emulating a pointer event.
-## `emulating`
-Return location for information
+<!-- trait EventExt::fn ref -->
+Increase the ref count of `self`.
 
 # Returns
 
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_touchpad_angle_delta -->
-Extracts the angle from a touchpad event.
-## `delta`
-Return location for angle
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_touchpad_deltas -->
-Extracts delta information from a touchpad event.
-## `dx`
-return location for x
-## `dy`
-return location for y
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_touchpad_gesture_n_fingers -->
-Extracts the number of fingers from a touchpad event.
-## `n_fingers`
-return location for the number of fingers
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_touchpad_gesture_phase -->
-Extracts the touchpad gesture phase from a touchpad event.
-## `phase`
-Return location for the gesture phase
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn get_touchpad_scale -->
-Extracts the scale from a touchpad event.
-## `scale`
-Return location for scale
-
-# Returns
-
-`true` on success, otherwise `false`
-<!-- impl Event::fn is_scroll_stop_event -->
-Check whether a scroll event is a stop scroll event. Scroll sequences
-with smooth scroll information may provide a stop scroll event once the
-interaction with the device finishes, e.g. by lifting a finger. This
-stop scroll event is the signal that a widget may trigger kinetic
-scrolling based on the current velocity.
-
-Stop scroll events always have a a delta of 0/0.
-
-# Returns
-
-`true` if the event is a scroll stop event
-<!-- impl Event::fn is_sent -->
-Returns whether the event was sent explicitly.
-
-# Returns
-
-`true` if the event was sent explicitly
-<!-- impl Event::fn set_device -->
-Sets the device for `self` to `device`. The event must
-have been allocated by GTK+, for instance, by
-`Event::copy`.
-## `device`
-a `Device`
-<!-- impl Event::fn set_device_tool -->
-Sets the device tool for this event, should be rarely used.
-## `tool`
-tool to set on the event, or `None`
-<!-- impl Event::fn set_display -->
-Sets the display that an event is associated with.
-## `display`
-a `Display`
-<!-- impl Event::fn set_source_device -->
-Sets the slave device for `self` to `device`.
-
-The event must have been allocated by GTK+,
-for instance by `Event::copy`.
-## `device`
-a `Device`
-<!-- impl Event::fn triggers_context_menu -->
-This function returns whether a `EventButton` should trigger a
-context menu, according to platform conventions. The right mouse
-button always triggers context menus. Additionally, if
-`Keymap::get_modifier_mask` returns a non-0 mask for
-`ModifierIntent::ContextMenu`, then the left mouse button will
-also trigger a context menu if this modifier is pressed.
+`self`
+<!-- trait EventExt::fn triggers_context_menu -->
+This function returns whether a `Event` should trigger a
+context menu, according to platform conventions. The right
+mouse button always triggers context menus.
 
 This function should always be used instead of simply checking for
 event->button == `GDK_BUTTON_SECONDARY`.
@@ -2682,23 +2479,18 @@ event->button == `GDK_BUTTON_SECONDARY`.
 # Returns
 
 `true` if the event should trigger a context menu.
+<!-- trait EventExt::fn unref -->
+Decrease the ref count of `self`, and free it
+if the last reference is dropped.
 <!-- struct EventSequence -->
 `EventSequence` is an opaque type representing a sequence
 of related touch events.
 <!-- enum EventType -->
 Specifies the type of the event.
-
-Do not confuse these events with the signals that GTK+ widgets emit.
-Although many of these events result in corresponding signals being emitted,
-the events are often transformed or filtered along the way.
-<!-- enum EventType::variant Nothing -->
-a special code to indicate a null event.
 <!-- enum EventType::variant Delete -->
 the window manager has requested that the toplevel surface be
  hidden or destroyed, usually when the user clicks on a special icon in the
  title bar.
-<!-- enum EventType::variant Destroy -->
-the surface has been destroyed.
 <!-- enum EventType::variant MotionNotify -->
 the pointer (usually a mouse) has moved.
 <!-- enum EventType::variant ButtonPress -->
@@ -2715,9 +2507,6 @@ the pointer has entered the surface.
 the pointer has left the surface.
 <!-- enum EventType::variant FocusChange -->
 the keyboard focus has entered or left the surface.
-<!-- enum EventType::variant Configure -->
-the size, position or stacking order of the surface has changed.
- Note that GTK+ discards these events for `SurfaceType::Child` surfaces.
 <!-- enum EventType::variant ProximityIn -->
 an input device has moved into contact with a sensing
  surface (e.g. a touchscreen or graphics tablet).
@@ -2736,46 +2525,49 @@ a drop operation onto the surface has started.
 <!-- enum EventType::variant Scroll -->
 the scroll wheel was turned
 <!-- enum EventType::variant GrabBroken -->
-a pointer or keyboard grab was broken. This event type
- was added in 2.8.
+a pointer or keyboard grab was broken.
 <!-- enum EventType::variant TouchBegin -->
-A new touch event sequence has just started. This event
- type was added in 3.4.
+A new touch event sequence has just started.
 <!-- enum EventType::variant TouchUpdate -->
-A touch event sequence has been updated. This event type
- was added in 3.4.
+A touch event sequence has been updated.
 <!-- enum EventType::variant TouchEnd -->
-A touch event sequence has finished. This event type
- was added in 3.4.
+A touch event sequence has finished.
 <!-- enum EventType::variant TouchCancel -->
-A touch event sequence has been canceled. This event type
- was added in 3.4.
+A touch event sequence has been canceled.
 <!-- enum EventType::variant TouchpadSwipe -->
 A touchpad swipe gesture event, the current state
- is determined by its phase field. This event type was added in 3.18.
+ is determined by its phase field.
 <!-- enum EventType::variant TouchpadPinch -->
 A touchpad pinch gesture event, the current state
- is determined by its phase field. This event type was added in 3.18.
+ is determined by its phase field.
 <!-- enum EventType::variant PadButtonPress -->
-A tablet pad button press event. This event type
- was added in 3.22.
+A tablet pad button press event.
 <!-- enum EventType::variant PadButtonRelease -->
-A tablet pad button release event. This event type
- was added in 3.22.
+A tablet pad button release event.
 <!-- enum EventType::variant PadRing -->
-A tablet pad axis event from a "ring". This event type was
- added in 3.22.
+A tablet pad axis event from a "ring".
 <!-- enum EventType::variant PadStrip -->
-A tablet pad axis event from a "strip". This event type was
- added in 3.22.
+A tablet pad axis event from a "strip".
 <!-- enum EventType::variant PadGroupMode -->
-A tablet pad group mode change. This event type was
- added in 3.22.
+A tablet pad group mode change.
 <!-- enum EventType::variant EventLast -->
-marks the end of the `EventType` enumeration. Added in 2.18
+marks the end of the `EventType` enumeration.
+<!-- struct FocusEvent -->
+An event related to a focus change.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl FocusEvent::fn get_in -->
+Extracts whether this event is about focus entering or
+leaving the surface.
+
+# Returns
+
+`true` of the focus is entering
 <!-- struct FrameClock -->
-A `FrameClock` tells the application when to update and repaint a
-window. This may be synced to the vertical refresh rate of the
+A `FrameClock` tells the application when to update and repaint
+a surface. This may be synced to the vertical refresh rate of the
 monitor, for example. Even when the frame clock uses a simple timer
 rather than a hardware-based vertical sync, the frame clock helps
 because it ensures everything paints at the same time (reducing the
@@ -2807,6 +2599,8 @@ if different animations are timed by looking at the difference in
 time between an initial value from `FrameClock::get_frame_time`
 and the value inside the `FrameClock::update` signal of the clock,
 they will stay exactly synchronized.
+
+This is an Abstract Base Class, you cannot instantiate it.
 <!-- impl FrameClock::fn begin_updating -->
 Starts updates for an animation. Until a matching call to
 `FrameClock::end_updating` is made, the frame clock will continually
@@ -2826,6 +2620,13 @@ the `FrameTimings` for the
  frame currently being processed, or even no frame is being
  processed, for the previous frame. Before any frames have been
  processed, returns `None`.
+<!-- impl FrameClock::fn get_fps -->
+Calculates the current frames-per-second, based on the
+frame timings of `self`.
+
+# Returns
+
+the current fps, as a double
 <!-- impl FrameClock::fn get_frame_counter -->
 A `FrameClock` maintains a 64-bit counter that increments for
 each frame drawn.
@@ -2921,8 +2722,8 @@ performed. GTK normally handles this internally.
 This signal is emitted as the third step of toolkit and
 application processing of the frame. The frame is
 repainted. GDK normally handles this internally and
-produces expose events, which are turned into GTK
-``GtkWidget`::draw` signals.
+emits `Surface::render` which are turned into
+``GtkWidget`::snapshot` signals by GTK.
 <!-- impl FrameClock::fn connect_resume_events -->
 This signal is emitted after processing of the frame is
 finished, and is handled internally by GTK to resume normal
@@ -2934,6 +2735,26 @@ be updated using `FrameClock::get_frame_time`.
 Applications can connect directly to this signal, or
 use `gtk_widget_add_tick_callback` as a more convenient
 interface.
+<!-- struct FrameClockPhase -->
+`FrameClockPhase` is used to represent the different paint clock
+phases that can be requested. The elements of the enumeration
+correspond to the signals of `FrameClock`.
+<!-- struct FrameClockPhase::const NONE -->
+no phase
+<!-- struct FrameClockPhase::const FLUSH_EVENTS -->
+corresponds to `FrameClock`::flush-events. Should not be handled by applications.
+<!-- struct FrameClockPhase::const BEFORE_PAINT -->
+corresponds to `FrameClock`::before-paint. Should not be handled by applications.
+<!-- struct FrameClockPhase::const UPDATE -->
+corresponds to `FrameClock`::update.
+<!-- struct FrameClockPhase::const LAYOUT -->
+corresponds to `FrameClock`::layout. Should not be handled by applicatiosn.
+<!-- struct FrameClockPhase::const PAINT -->
+corresponds to `FrameClock`::paint.
+<!-- struct FrameClockPhase::const RESUME_EVENTS -->
+corresponds to `FrameClock`::resume-events. Should not be handled by applications.
+<!-- struct FrameClockPhase::const AFTER_PAINT -->
+corresponds to `FrameClock`::after-paint. Should not be handled by applications.
 <!-- struct FrameTimings -->
 A `FrameTimings` object holds timing information for a single frame
 of the application’s displays. To retrieve `FrameTimings` objects,
@@ -3028,7 +2849,7 @@ Span across all monitors when fullscreen.
 OpenGL draw context.
 
 ``GdkGLContexts`` are created for a `Surface` using
-`SurfaceExt::create_gl_context`, and the context will match the
+`Surface::create_gl_context`, and the context will match the
 the characteristics of the surface.
 
 A `GLContext` is not tied to any particular normal framebuffer.
@@ -3054,7 +2875,7 @@ A `GLContext` is not realized until either `GLContext::make_current`,
 or until it is realized using `GLContext::realize`. It is possible to
 specify details of the GL context like the OpenGL version to be used, or
 whether the GL context should have extra state validation enabled after
-calling `SurfaceExt::create_gl_context` by calling `GLContext::realize`.
+calling `Surface::create_gl_context` by calling `GLContext::realize`.
 If the realization fails you have the option to change the settings of the
 `GLContext` and try again.
 
@@ -3076,6 +2897,8 @@ You can now perform your drawing using OpenGL commands.
 You can check which `GLContext` is the current one by using
 `GLContext::get_current`; you can also unset any `GLContext`
 that is currently set by calling `GLContext::clear_current`.
+
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
@@ -3185,7 +3008,7 @@ whether to enable debugging in the context
 <!-- impl GLContext::fn set_forward_compatible -->
 Sets whether the `GLContext` should be forward compatible.
 
-Forward compatibile contexts must not support OpenGL functionality that
+Forward compatible contexts must not support OpenGL functionality that
 has been marked as deprecated in the requested version; non-forward
 compatible contexts, on the other hand, must support both deprecated and
 non deprecated functionality.
@@ -3206,7 +3029,7 @@ the major version to request
 ## `minor`
 the minor version to request
 <!-- impl GLContext::fn set_use_es -->
-Requests that GDK create a OpenGL ES context instead of an OpenGL one,
+Requests that GDK create an OpenGL ES context instead of an OpenGL one,
 if the platform and windowing system allows it.
 
 The `self` must not have been realized.
@@ -3238,7 +3061,7 @@ The shader compilation failed
 <!-- enum GLError::variant LinkFailed -->
 The shader linking failed
 <!-- struct GLTexture -->
-
+A `Texture` representing a GL texture object.
 
 # Implements
 
@@ -3273,94 +3096,26 @@ was created with `GLTexture::new`.
 The texture contents are still available via the
 `TextureExt::download` function, after this function
 has been called.
-<!-- struct Geometry -->
-The `Geometry` struct gives the window manager information about
-a surface’s geometry constraints. Normally you would set these on
-the GTK+ level using `gtk_window_set_geometry_hints`. ``GtkWindow``
-then sets the hints on the `Surface` it creates.
+<!-- struct GrabBrokenEvent -->
+An event related to a broken windowing system grab.
 
-`SurfaceExt::set_geometry_hints` expects the hints to be fully valid already
-and simply passes them to the window manager; in contrast,
-`gtk_window_set_geometry_hints` performs some interpretation. For example,
-``GtkWindow`` will apply the hints to the geometry widget instead of the
-toplevel window, if you set a geometry widget. Also, the
-`min_width`/`min_height`/`max_width`/`max_height` fields may be set to -1, and
-``GtkWindow`` will substitute the size request of the surface or geometry widget.
-If the minimum size hint is not provided, ``GtkWindow`` will use its requisition
-as the minimum size. If the minimum size is provided and a geometry widget is
-set, ``GtkWindow`` will take the minimum size as the minimum size of the
-geometry widget rather than the entire surface. The base size is treated
-similarly.
+# Implements
 
-The canonical use-case for `gtk_window_set_geometry_hints` is to get a
-terminal widget to resize properly. Here, the terminal text area should be
-the geometry widget; ``GtkWindow`` will then automatically set the base size to
-the size of other widgets in the terminal window, such as the menubar and
-scrollbar. Then, the `width_inc` and `height_inc` fields should be set to the
-size of one character in the terminal. Finally, the base size should be set
-to the size of one character. The net effect is that the minimum size of the
-terminal will have a 1x1 character terminal area, and only terminal sizes on
-the “character grid” will be allowed.
+[`EventExt`](trait.EventExt.html)
+<!-- impl GrabBrokenEvent::fn get_grab_surface -->
+Extracts the grab surface from a grab broken event.
 
-Here’s an example of how the terminal example would be implemented, assuming
-a terminal area widget called “terminal” and a toplevel window “toplevel”:
+# Returns
 
+the grab surface of `self`
+<!-- impl GrabBrokenEvent::fn get_implicit -->
+Checks whether the grab broken event is for an implicit grab.
 
-```C
-    GdkGeometry hints;
+# Returns
 
-    hints.base_width = terminal->char_width;
-        hints.base_height = terminal->char_height;
-        hints.min_width = terminal->char_width;
-        hints.min_height = terminal->char_height;
-        hints.width_inc = terminal->char_width;
-        hints.height_inc = terminal->char_height;
-
- gtk_window_set_geometry_hints (GTK_WINDOW (toplevel),
-                                GTK_WIDGET (terminal),
-                                &hints,
-                                GDK_HINT_RESIZE_INC |
-                                GDK_HINT_MIN_SIZE |
-                                GDK_HINT_BASE_SIZE);
-```
-
-The other useful fields are the `min_aspect` and `max_aspect` fields; these
-contain a width/height ratio as a floating point number. If a geometry widget
-is set, the aspect applies to the geometry widget rather than the entire
-window. The most common use of these hints is probably to set `min_aspect` and
-`max_aspect` to the same value, thus forcing the window to keep a constant
-aspect ratio.
-<!-- enum GrabOwnership -->
-Defines how device grabs interact with other devices.
-<!-- enum GrabOwnership::variant None -->
-All other devices’ events are allowed.
-<!-- enum GrabOwnership::variant Surface -->
-Other devices’ events are blocked for the grab surface.
-<!-- enum GrabOwnership::variant Application -->
-Other devices’ events are blocked for the whole application.
-<!-- enum GrabStatus -->
-Returned by `gdk_device_grab` to indicate success or the reason for the
-failure of the grab attempt.
-<!-- enum GrabStatus::variant Success -->
-the resource was successfully grabbed.
-<!-- enum GrabStatus::variant AlreadyGrabbed -->
-the resource is actively grabbed by another client.
-<!-- enum GrabStatus::variant InvalidTime -->
-the resource was grabbed more recently than the
- specified time.
-<!-- enum GrabStatus::variant NotViewable -->
-the grab surface or the `confine_to` surface are not
- viewable.
-<!-- enum GrabStatus::variant Frozen -->
-the resource is frozen by an active grab of another client.
-<!-- enum GrabStatus::variant Failed -->
-the grab failed for some other reason
+`true` if the an implicit grab was broken
 <!-- enum Gravity -->
-Defines the reference point of a surface and the meaning of coordinates
-passed to `gtk_window_move`. See `gtk_window_move` and the "implementation
-notes" section of the
-[Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec)
-specification for more details.
+Defines the reference point of a surface and is used in `PopupLayout`.
 <!-- enum Gravity::variant NorthWest -->
 the reference point is at the top left corner.
 <!-- enum Gravity::variant North -->
@@ -3382,18 +3137,6 @@ the reference point is at the lower right corner.
 <!-- enum Gravity::variant Static -->
 the reference point is at the top left corner of the
  surface itself, ignoring window manager decorations.
-<!-- enum InputMode -->
-An enumeration that describes the mode of an input device.
-<!-- enum InputMode::variant Disabled -->
-the device is disabled and will not report any events.
-<!-- enum InputMode::variant Screen -->
-the device is enabled. The device’s coordinate space
- maps to the entire screen.
-<!-- enum InputMode::variant Surface -->
-the device is enabled. The device’s coordinate space
- is mapped to a single surface. The manner in which this surface
- is chosen is undefined, but it will typically be the same
- way in which the focus surface for key events is determined.
 <!-- enum InputSource -->
 An enumeration describing the type of an input device in general terms.
 <!-- enum InputSource::variant Mouse -->
@@ -3401,263 +3144,96 @@ the device is a mouse. (This will be reported for the core
  pointer, even if it is something else, such as a trackball.)
 <!-- enum InputSource::variant Pen -->
 the device is a stylus of a graphics tablet or similar device.
-<!-- enum InputSource::variant Eraser -->
-the device is an eraser. Typically, this would be the other end
- of a stylus on a graphics tablet.
-<!-- enum InputSource::variant Cursor -->
-the device is a graphics tablet “puck” or similar device.
 <!-- enum InputSource::variant Keyboard -->
 the device is a keyboard.
 <!-- enum InputSource::variant Touchscreen -->
 the device is a direct-input touch device, such
- as a touchscreen or tablet. This device type has been added in 3.4.
+ as a touchscreen or tablet
 <!-- enum InputSource::variant Touchpad -->
 the device is an indirect touch device, such
- as a touchpad. This device type has been added in 3.4.
+ as a touchpad
 <!-- enum InputSource::variant Trackpoint -->
-the device is a trackpoint. This device type has been
- added in 3.22
+the device is a trackpoint
 <!-- enum InputSource::variant TabletPad -->
 the device is a "pad", a collection of buttons,
- rings and strips found in drawing tablets. This device type has been
- added in 3.22.
-<!-- struct Keymap -->
-A `Keymap` defines the translation from keyboard state
-(including a hardware key, a modifier mask, and active keyboard group)
-to a keyval. This translation has two phases. The first phase is
-to determine the effective keyboard group and level for the keyboard
-state; the second phase is to look up the keycode/group/level triplet
-in the keymap and see what keyval it corresponds to.
-<!-- impl Keymap::fn add_virtual_modifiers -->
-Maps the non-virtual modifiers (i.e Mod2, Mod3, ...) which are set
-in `state` to the virtual modifiers (i.e. Super, Hyper and Meta) and
-set the corresponding bits in `state`.
+ rings and strips found in drawing tablets
+<!-- struct KeyEvent -->
+An event related to a key-based device.
 
-GDK already does this before delivering key events, but for
-compatibility reasons, it only sets the first virtual modifier
-it finds, whereas this function sets all matching virtual modifiers.
+# Implements
 
-This function is useful when matching key events against
-accelerators.
-## `state`
-pointer to the modifier mask to change
-<!-- impl Keymap::fn get_caps_lock_state -->
-Returns whether the Caps Lock modifer is locked.
+[`EventExt`](trait.EventExt.html)
+<!-- impl KeyEvent::fn get_consumed_modifiers -->
+Extracts the consumed modifiers from a key event.
 
 # Returns
 
-`true` if Caps Lock is on
-<!-- impl Keymap::fn get_direction -->
-Returns the direction of effective layout of the keymap.
-The direction of a layout is the direction of the majority of its
-symbols. See `pango_unichar_direction`.
+the consumed modifiers or `self`
+<!-- impl KeyEvent::fn get_keycode -->
+Extracts the keycode from a key event.
 
 # Returns
 
-`pango::Direction::Ltr` or `pango::Direction::Rtl`
- if it can determine the direction. `pango::Direction::Neutral`
- otherwise.
-<!-- impl Keymap::fn get_display -->
-Retrieves the `Display` associated to the `self`.
+the keycode of `self`
+<!-- impl KeyEvent::fn get_keyval -->
+Extracts the keyval from a key event.
 
 # Returns
 
-a `Display`
-<!-- impl Keymap::fn get_entries_for_keycode -->
-Returns the keyvals bound to `hardware_keycode`.
-The Nth `KeymapKey` in `keys` is bound to the Nth
-keyval in `keyvals`. Free the returned arrays with `g_free`.
-When a keycode is pressed by the user, the keyval from
-this list of entries is selected by considering the effective
-keyboard group and level. See `Keymap::translate_keyboard_state`.
-## `hardware_keycode`
-a keycode
-## `keys`
-return
- location for array of `KeymapKey`, or `None`
-## `keyvals`
-return
- location for array of keyvals, or `None`
-## `n_entries`
-length of `keys` and `keyvals`
+the keyval of `self`
+<!-- impl KeyEvent::fn get_layout -->
+Extracts the layout from a key event.
 
 # Returns
 
-`true` if there were any entries
-<!-- impl Keymap::fn get_entries_for_keyval -->
-Obtains a list of keycode/group/level combinations that will
-generate `keyval`. Groups and levels are two kinds of keyboard mode;
-in general, the level determines whether the top or bottom symbol
-on a key is used, and the group determines whether the left or
-right symbol is used. On US keyboards, the shift key changes the
-keyboard level, and there are no groups. A group switch key might
-convert a keyboard between Hebrew to English modes, for example.
-`EventKey` contains a `group` field that indicates the active
-keyboard group. The level is computed from the modifier mask.
-The returned array should be freed
-with `g_free`.
+the layout of `self`
+<!-- impl KeyEvent::fn get_level -->
+Extracts the shift level from a key event.
+
+# Returns
+
+the shift level of `self`
+<!-- impl KeyEvent::fn get_match -->
+Gets a keyval and modifier combination that will cause
+`KeyEvent::matches` to successfully match the given event.
 ## `keyval`
-a keyval, such as `GDK_KEY_a`, `GDK_KEY_Up`, `GDK_KEY_Return`, etc.
-## `keys`
-return location
- for an array of `KeymapKey`
-## `n_keys`
-return location for number of elements in returned array
-
-# Returns
-
-`true` if keys were found and returned
-<!-- impl Keymap::fn get_modifier_mask -->
-Returns the modifier mask the `self`’s windowing system backend
-uses for a particular purpose.
-
-Note that this function always returns real hardware modifiers, not
-virtual ones (e.g. it will return `ModifierType::Mod1Mask` rather than
-`ModifierType::MetaMask` if the backend maps MOD1 to META), so there are use
-cases where the return value of this function has to be transformed
-by `Keymap::add_virtual_modifiers` in order to contain the
-expected result.
-## `intent`
-the use case for the modifier mask
-
-# Returns
-
-the modifier mask used for `intent`.
-<!-- impl Keymap::fn get_modifier_state -->
-Returns the current modifier state.
-
-# Returns
-
-the current modifier state.
-<!-- impl Keymap::fn get_num_lock_state -->
-Returns whether the Num Lock modifer is locked.
-
-# Returns
-
-`true` if Num Lock is on
-<!-- impl Keymap::fn get_scroll_lock_state -->
-Returns whether the Scroll Lock modifer is locked.
-
-# Returns
-
-`true` if Scroll Lock is on
-<!-- impl Keymap::fn have_bidi_layouts -->
-Determines if keyboard layouts for both right-to-left and left-to-right
-languages are in use.
-
-# Returns
-
-`true` if there are layouts in both directions, `false` otherwise
-<!-- impl Keymap::fn lookup_key -->
-Looks up the keyval mapped to a keycode/group/level triplet.
-If no keyval is bound to `key`, returns 0. For normal user input,
-you want to use `Keymap::translate_keyboard_state` instead of
-this function, since the effective group/level may not be
-the same as the current keyboard state.
-## `key`
-a `KeymapKey` with keycode, group, and level initialized
-
-# Returns
-
-a keyval, or 0 if none was mapped to the given `key`
-<!-- impl Keymap::fn map_virtual_modifiers -->
-Maps the virtual modifiers (i.e. Super, Hyper and Meta) which
-are set in `state` to their non-virtual counterparts (i.e. Mod2,
-Mod3,...) and set the corresponding bits in `state`.
-
-This function is useful when matching key events against
-accelerators.
-## `state`
-pointer to the modifier state to map
-
-# Returns
-
-`false` if two virtual modifiers were mapped to the
- same non-virtual modifier. Note that `false` is also returned
- if a virtual modifier is mapped to a non-virtual modifier that
- was already set in `state`.
-<!-- impl Keymap::fn translate_keyboard_state -->
-Translates the contents of a `EventKey` into a keyval, effective
-group, and level. Modifiers that affected the translation and
-are thus unavailable for application use are returned in
-`consumed_modifiers`.
-See [Groups][key-group-explanation] for an explanation of
-groups and levels. The `effective_group` is the group that was
-actually used for the translation; some keys such as Enter are not
-affected by the active keyboard group. The `level` is derived from
-`state`. For convenience, `EventKey` already contains the translated
-keyval, so this function isn’t as useful as you might think.
-
-`consumed_modifiers` gives modifiers that should be masked outfrom `state`
-when comparing this key press to a hot key. For instance, on a US keyboard,
-the `plus` symbol is shifted, so when comparing a key press to a
-`<Control>plus` accelerator `<Shift>` should be masked out.
-
-
-```C
-// We want to ignore irrelevant modifiers like ScrollLock
-#define ALL_ACCELS_MASK (GDK_CONTROL_MASK | GDK_SHIFT_MASK | GDK_MOD1_MASK)
-gdk_keymap_translate_keyboard_state (keymap, event->hardware_keycode,
-                                     event->state, event->group,
-                                     &keyval, NULL, NULL, &consumed);
-if (keyval == GDK_PLUS &&
-    (event->state & ~consumed & ALL_ACCELS_MASK) == GDK_CONTROL_MASK)
-  // Control was pressed
-```
-
-An older interpretation `consumed_modifiers` was that it contained
-all modifiers that might affect the translation of the key;
-this allowed accelerators to be stored with irrelevant consumed
-modifiers, by doing:
-
-```C
-// XXX Don’t do this XXX
-if (keyval == accel_keyval &&
-    (event->state & ~consumed & ALL_ACCELS_MASK) == (accel_mods & ~consumed))
-  // Accelerator was pressed
-```
-
-However, this did not work if multi-modifier combinations were
-used in the keymap, since, for instance, `<Control>` would be
-masked out even if only `<Control><Alt>` was used in the keymap.
-To support this usage as well as well as possible, all single
-modifier combinations that could affect the key for any combination
-of modifiers will be returned in `consumed_modifiers`; multi-modifier
-combinations are returned only when actually found in `state`. When
-you store accelerators, you should always store them with consumed
-modifiers removed. Store `<Control>plus`, not `<Control><Shift>plus`,
-## `hardware_keycode`
-a keycode
-## `state`
-a modifier state
-## `group`
-active keyboard group
-## `keyval`
-return location for keyval, or `None`
-## `effective_group`
-return location for effective
- group, or `None`
-## `level`
-return location for level, or `None`
-## `consumed_modifiers`
+return location for a keyval
+## `modifiers`
 return location for modifiers
- that were used to determine the group or level, or `None`
 
 # Returns
 
-`true` if there was a keyval bound to the keycode/state/group
-<!-- impl Keymap::fn connect_direction_changed -->
-The ::direction-changed signal gets emitted when the direction
-of the keymap changes. See `Keymap::get_direction`.
-<!-- impl Keymap::fn connect_keys_changed -->
-The ::keys-changed signal is emitted when the mapping represented by
-`keymap` changes.
-<!-- impl Keymap::fn connect_state_changed -->
-The ::state-changed signal is emitted when the state of the
-keyboard changes, e.g when Caps Lock is turned on or off.
-See `Keymap::get_caps_lock_state`.
-<!-- struct KeymapKey -->
-A `KeymapKey` is a hardware key that can be mapped to a keyval.
+`true` on success
+<!-- impl KeyEvent::fn is_modifier -->
+Extracts whether the key event is for a modifier key.
+
+# Returns
+
+`true` if the `self` is for a modifier key
+<!-- impl KeyEvent::fn matches -->
+Matches a key event against a keyboard shortcut that is specified
+as a keyval and modifiers. Partial matches are possible where the
+combination matches if the currently active group is ignored.
+
+Note that we ignore Caps Lock for matching.
+## `keyval`
+the keyval to match
+## `modifiers`
+the modifiers to match
+
+# Returns
+
+a `KeyMatch` value describing whether `self` matches
+<!-- enum KeyMatch -->
+The possible return values from `KeyEvent::matches`
+describe how well an event matches a given keyval and modifiers.
+<!-- enum KeyMatch::variant None -->
+The key event does not match
+<!-- enum KeyMatch::variant Partial -->
+The key event matches if keyboard state
+ (specifically, the currently active group) is ignored
+<!-- enum KeyMatch::variant Exact -->
+The key event matches
 <!-- enum MemoryFormat -->
 `MemoryFormat` describes a format that bytes can have in memory.
 
@@ -3676,6 +3252,9 @@ for details).
 <!-- enum MemoryFormat::variant A8r8g8b8Premultiplied -->
 4 bytes; for alpha, red, green, blue.
  The color values are premultiplied with the alpha value.
+<!-- enum MemoryFormat::variant R8g8b8a8Premultiplied -->
+4 bytes; for red, green, blue, alpha
+ The color values are premultiplied with the alpha value.
 <!-- enum MemoryFormat::variant B8g8r8a8 -->
 4 bytes; for blue, green, red, alpha.
 <!-- enum MemoryFormat::variant A8r8g8b8 -->
@@ -3692,7 +3271,7 @@ for details).
 The number of formats. This value will change as
  more formats get added, so do not rely on its concrete integer.
 <!-- struct MemoryTexture -->
-
+A `Texture` representing image data in memory.
 
 # Implements
 
@@ -3715,46 +3294,52 @@ rowstride for the data
 # Returns
 
 A newly-created `Texture`
-<!-- enum ModifierIntent -->
-This enum is used with `Keymap::get_modifier_mask`
-in order to determine what modifiers the
-currently used windowing system backend uses for particular
-purposes. For example, on X11/Windows, the Control key is used for
-invoking menu shortcuts (accelerators), whereas on Apple computers
-it’s the Command key (which correspond to `ModifierType::ControlMask` and
-`ModifierType::Mod2Mask`, respectively).
-<!-- enum ModifierIntent::variant PrimaryAccelerator -->
-the primary modifier used to invoke
- menu accelerators.
-<!-- enum ModifierIntent::variant ContextMenu -->
-the modifier used to invoke context menus.
- Note that mouse button 3 always triggers context menus. When this modifier
- is not 0, it additionally triggers context menus when used with mouse button 1.
-<!-- enum ModifierIntent::variant ExtendSelection -->
-the modifier used to extend selections
- using `modifier`-click or `modifier`-cursor-key
-<!-- enum ModifierIntent::variant ModifySelection -->
-the modifier used to modify selections,
- which in most cases means toggling the clicked item into or out of the selection.
-<!-- enum ModifierIntent::variant NoTextInput -->
-when any of these modifiers is pressed, the
- key event cannot produce a symbol directly. This is meant to be used for
- input methods, and for use cases like typeahead search.
-<!-- enum ModifierIntent::variant ShiftGroup -->
-the modifier that switches between keyboard
- groups (AltGr on X11/Windows and Option/Alt on OS X).
-<!-- enum ModifierIntent::variant DefaultModMask -->
-The set of modifier masks accepted
-as modifiers in accelerators. Needed because Command is mapped to MOD2 on
-OSX, which is widely used, but on X11 MOD2 is NumLock and using that for a
-mod key is problematic at best.
-Ref: https://bugzilla.gnome.org/show_bug.cgi?id=736125.
+<!-- struct ModifierType -->
+A set of bit-flags to indicate the state of modifier keys and mouse buttons
+in various event types. Typical modifier keys are Shift, Control, Meta,
+Super, Hyper, Alt, Compose, Apple, CapsLock or ShiftLock.
+
+Note that GDK may add internal values to events which include values outside
+of this enumeration. Your code should preserve and ignore them. You can use
+`GDK_MODIFIER_MASK` to remove all private values.
+<!-- struct ModifierType::const SHIFT_MASK -->
+the Shift key.
+<!-- struct ModifierType::const LOCK_MASK -->
+a Lock key (depending on the modifier mapping of the
+ X server this may either be CapsLock or ShiftLock).
+<!-- struct ModifierType::const CONTROL_MASK -->
+the Control key.
+<!-- struct ModifierType::const ALT_MASK -->
+the fourth modifier key (it depends on the modifier
+ mapping of the X server which key is interpreted as this modifier, but
+ normally it is the Alt key).
+<!-- struct ModifierType::const BUTTON1_MASK -->
+the first mouse button.
+<!-- struct ModifierType::const BUTTON2_MASK -->
+the second mouse button.
+<!-- struct ModifierType::const BUTTON3_MASK -->
+the third mouse button.
+<!-- struct ModifierType::const BUTTON4_MASK -->
+the fourth mouse button.
+<!-- struct ModifierType::const BUTTON5_MASK -->
+the fifth mouse button.
+<!-- struct ModifierType::const SUPER_MASK -->
+the Super modifier
+<!-- struct ModifierType::const HYPER_MASK -->
+the Hyper modifier
+<!-- struct ModifierType::const META_MASK -->
+the Meta modifier
 <!-- struct Monitor -->
 `Monitor` objects represent the individual outputs that are
-associated with a `Display`. `Display` has APIs to enumerate
-monitors with `Display::get_n_monitors` and `Display::get_monitor`, and
-to find particular monitors with `Display::get_primary_monitor` or
-`Display::get_monitor_at_surface`.
+associated with a `Display`. `Display` keeps a `gio::ListModel` to enumerate
+and monitor monitors with `Display::get_monitors`.
+You can use `Display::get_monitor_at_surface` to find a particular monitor.
+<!-- impl Monitor::fn get_connector -->
+Gets the name of the monitor's connector, if available.
+
+# Returns
+
+the name of the connector
 <!-- impl Monitor::fn get_display -->
 Gets the display that this monitor belongs to.
 
@@ -3774,13 +3359,18 @@ Gets the height in millimeters of the monitor.
 
 the physical height of the monitor
 <!-- impl Monitor::fn get_manufacturer -->
-Gets the name of the monitor's manufacturer, if available.
+Gets the name or PNP ID of the monitor's manufacturer, if available.
+
+Note that this value might also vary depending on actual
+display backend.
+
+PNP ID registry is located at https://uefi.org/pnp_id_list
 
 # Returns
 
 the name of the manufacturer, or `None`
 <!-- impl Monitor::fn get_model -->
-Gets the a string identifying the monitor model, if available.
+Gets the string identifying the monitor model, if available.
 
 # Returns
 
@@ -3801,7 +3391,7 @@ on very high density outputs this can be a higher value (often 2).
 
 This can be used if you want to create pixel based data for a
 particular monitor, but most of the time you’re drawing to a surface
-where it is better to use `SurfaceExt::get_scale_factor` instead.
+where it is better to use `Surface::get_scale_factor` instead.
 
 # Returns
 
@@ -3819,29 +3409,6 @@ Gets the width in millimeters of the monitor.
 # Returns
 
 the physical width of the monitor
-<!-- impl Monitor::fn get_workarea -->
-Retrieves the size and position of the “work area” on a monitor
-within the display coordinate space. The returned geometry is in
-”application pixels”, not in ”device pixels” (see
-`Monitor::get_scale_factor`).
-
-The work area should be considered when positioning menus and
-similar popups, to avoid placing them below panels, docks or other
-desktop components.
-
-Note that not all backends may have a concept of workarea. This
-function will return the monitor geometry if a workarea is not
-available, or does not apply.
-## `workarea`
-a `Rectangle` to be filled with
- the monitor workarea
-<!-- impl Monitor::fn is_primary -->
-Gets whether this monitor should be considered primary
-(see `Display::get_primary_monitor`).
-
-# Returns
-
-`true` if `self` is primary
 <!-- impl Monitor::fn is_valid -->
 Returns `true` if the `self` object corresponds to a
 physical monitor. The `self` becomes invalid when the
@@ -3853,6 +3420,12 @@ physical monitor is unplugged or removed.
 <!-- impl Monitor::fn connect_invalidate -->
 The ::invalidate signal gets emitted when the output represented
 by `monitor` gets disconnected.
+<!-- struct MotionEvent -->
+An event related to a pointer or touch device motion.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
 <!-- enum NotifyType -->
 Specifies the kind of crossing for enter and leave events.
 
@@ -3877,8 +3450,33 @@ the pointer moves between two surfaces
  common ancestor.
 <!-- enum NotifyType::variant Unknown -->
 an unknown type of enter/leave event occurred.
+<!-- struct PadEvent -->
+An event related to a pad-based device.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl PadEvent::fn get_axis_value -->
+Extracts the information from a pad strip or ring event.
+## `index`
+Return location for the axis index
+## `value`
+Return location for the axis value
+<!-- impl PadEvent::fn get_button -->
+Extracts information about the pressed button from
+a pad event.
+
+# Returns
+
+the button of `self`
+<!-- impl PadEvent::fn get_group_mode -->
+Extracts group and mode information from a pad event.
+## `group`
+return location for the group
+## `mode`
+return location for the mode
 <!-- struct Paintable -->
-`Paintable` is a simple interface used by GDK and GDK to represent
+`Paintable` is a simple interface used by GDK and GTK to represent
 objects that can be painted anywhere at any size without requiring any
 sort of layout. The interface is inspired by similar concepts elsewhere,
 such as [ClutterContent](https://developer.gnome.org/clutter/stable/ClutterContent.html),
@@ -3897,13 +3495,13 @@ resolution screens or when OpenGL is available. A `Paintable` will however
 always produce the same output for the same snapshot.
 
 A `Paintable` may change its contents, meaning that it will now produce a
-different output with the same snpashot. Once that happens, it will call
+different output with the same snapshot. Once that happens, it will call
 `Paintable::invalidate_contents` which will emit the
-`Paintable::invalidate-contents` signal.
-If a paintable is known to never change its contents, it will set the
-`GDK_PAINTABLE_STATIC_CONTENT` flag. If a consumer cannot deal with changing
-contents, it may call `gdk_paintable_get_static_image` which will return a
-static paintable and use that.
+`Paintable::invalidate-contents` signal. If a paintable is known to never
+change its contents, it will set the `PaintableFlags::Contents` flag.
+If a consumer cannot deal with changing contents, it may call
+`Paintable::get_current_image` which will return a static paintable and
+use that.
 
 A paintable can report an intrinsic (or preferred) size or aspect ratio it
 wishes to be rendered at, though it doesn't have to. Consumers of the interface
@@ -3931,7 +3529,7 @@ Trait containing all `Paintable` methods.
 [`GLTexture`](struct.GLTexture.html), [`MemoryTexture`](struct.MemoryTexture.html), [`Paintable`](struct.Paintable.html), [`Texture`](struct.Texture.html)
 <!-- impl Paintable::fn new_empty -->
 Returns a paintable that has the given intrinsic size and draws nothing.
-This is often useful for implementing the `GdkPaintableClass`:`get_current_image`
+This is often useful for implementing the `PaintableInterface.get_current_image`()
 virtual function when the paintable is in an incomplete state (like a
 ``GtkMediaStream`` before receiving the first frame).
 ## `intrinsic_width`
@@ -3991,24 +3589,24 @@ See `PaintableFlags` for the flags and what they mean.
 The `PaintableFlags` for this paintable.
 <!-- trait PaintableExt::fn get_intrinsic_aspect_ratio -->
 Gets the preferred aspect ratio the `self` would like to be displayed at.
-The aspect ration is the width divided by the height, so a value of 0.5 means
+The aspect ratio is the width divided by the height, so a value of 0.5 means
 that the `self` prefers to be displayed twice as high as it is wide.
 Consumers of this interface can use this to preserve aspect ratio when displaying
-this paintable.
+the paintable.
 
 This is a purely informational value and does not in any way limit the values
 that may be passed to `Paintable::snapshot`.
 
-Usually when a `self` returns non-0 values from
+Usually when a `self` returns nonzero values from
 `Paintable::get_intrinsic_width` and `Paintable::get_intrinsic_height`
 the aspect ratio should conform to those values, though that is not required.
 
-If the `self` does not have a preferred aspect ratio, it returns 0.0.
+If the `self` does not have a preferred aspect ratio, it returns 0.
 Negative values are never returned.
 
 # Returns
 
-the intrinsic aspect ratio of `self` or 0.0 if none.
+the intrinsic aspect ratio of `self` or 0 if none.
 <!-- trait PaintableExt::fn get_intrinsic_height -->
 Gets the preferred height the `self` would like to be displayed at.
 Consumers of this interface can use this to reserve enough space to draw
@@ -4040,18 +3638,18 @@ the intrinsic width of `self` or 0 if none.
 <!-- trait PaintableExt::fn invalidate_contents -->
 Called by implementations of `Paintable` to invalidate their contents.
 Unless the contents are invalidated, implementations must guarantee that
-multiple calls to `Paintable`::snapshot produce the same output.
+multiple calls of `Paintable::snapshot` produce the same output.
 
-This function will emit the `Paintable`::invalidate-contents signal.
+This function will emit the `Paintable::invalidate-contents` signal.
 
 If a `self` reports the `PaintableFlags::Contents` flag,
 it must not call this function.
 <!-- trait PaintableExt::fn invalidate_size -->
 Called by implementations of `Paintable` to invalidate their size.
-As long as the size is not invalidated, `self` must return the same values
-for its width, height and intrinsic height.
+As long as the size is not invalidated, `self` must return the same
+values for its intrinsic width, height and aspect ratio.
 
-This function will emit the `Paintable`::invalidate-size signal.
+This function will emit the `Paintable::invalidate-size` signal.
 
 If a `self` reports the `PaintableFlags::Size` flag,
 it must not call this function.
@@ -4078,6 +3676,242 @@ has changed.
 
 Examples for such an event would be a paintable displaying the contents of a toplevel
 surface being resized.
+<!-- struct PaintableFlags -->
+Flags about this object. Implementations use these for optimizations
+such as caching.
+<!-- struct PaintableFlags::const SIZE -->
+The size is immutable.
+ The `Paintable::invalidate-size` signal will never be
+ emitted.
+<!-- struct PaintableFlags::const CONTENTS -->
+The content is immutable.
+ The `Paintable::invalidate-contents` signal will never be
+ emitted.
+<!-- struct Popup -->
+A `Popup` is a surface that is attached to another surface,
+called its `Popup:parent`, and is positioned relative to it.
+
+``GdkPopups`` are typically used to implement menus and similar popups.
+They can be modal, which is indicated by the `Popup:autohide` property.
+
+# Implements
+
+[`PopupExt`](trait.PopupExt.html), [`SurfaceExt`](trait.SurfaceExt.html), [`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)
+<!-- trait PopupExt -->
+Trait containing all `Popup` methods.
+
+# Implementors
+
+[`Popup`](struct.Popup.html)
+<!-- trait PopupExt::fn get_autohide -->
+Returns whether this popup is set to hide on outside clicks.
+
+# Returns
+
+`true` if `self` will autohide
+<!-- trait PopupExt::fn get_parent -->
+Returns the parent surface of a popup.
+
+# Returns
+
+the parent surface
+<!-- trait PopupExt::fn get_position_x -->
+Obtains the position of the popup relative to its parent.
+
+# Returns
+
+the X coordinate of `self` position
+<!-- trait PopupExt::fn get_position_y -->
+Obtains the position of the popup relative to its parent.
+
+# Returns
+
+the Y coordinate of `self` position
+<!-- trait PopupExt::fn get_rect_anchor -->
+Gets the current popup rectangle anchor.
+
+The value returned may change after calling `Popup::present`,
+or after the `Surface::layout` signal is emitted.
+
+# Returns
+
+the current rectangle anchor value of `self`
+<!-- trait PopupExt::fn get_surface_anchor -->
+Gets the current popup surface anchor.
+
+The value returned may change after calling `Popup::present`,
+or after the `Surface::layout` signal is emitted.
+
+# Returns
+
+the current surface anchor value of `self`
+<!-- trait PopupExt::fn present -->
+Present `self` after having processed the `PopupLayout` rules.
+If the popup was previously now showing, it will be showed,
+otherwise it will change position according to `layout`.
+
+After calling this function, the result should be handled in response
+to the `Surface::layout` signal being emitted. The resulting popup
+position can be queried using `Popup::get_position_x`,
+`Popup::get_position_y`, and the resulting size will be sent as
+parameters in the layout signal. Use `Popup::get_rect_anchor` and
+`Popup::get_surface_anchor` to get the resulting anchors.
+
+Presenting may fail, for example if the `self` is set to autohide
+and is immediately hidden upon being presented. If presenting failed,
+the `Surface::layout` signal will not me emitted.
+## `width`
+the unconstrained popup width to layout
+## `height`
+the unconstrained popup height to layout
+## `layout`
+the `PopupLayout` object used to layout
+
+# Returns
+
+`false` if it failed to be presented, otherwise `true`.
+<!-- struct PopupLayout -->
+Popups are positioned relative to their parent surface.
+The `PopupLayout` struct contains information that is
+necessary to do so.
+
+The positioning requires a negotiation with the windowing system,
+since it depends on external constraints, such as the position of
+the parent surface, and the screen dimensions.
+
+The basic ingredients are a rectangle on the parent surface,
+and the anchor on both that rectangle and the popup. The anchors
+specify a side or corner to place next to each other.
+
+![Popup anchors](popup-anchors.png)
+
+For cases where placing the anchors next to each other would make
+the popup extend offscreen, the layout includes some hints for how
+to resolve this problem. The hints may suggest to flip the anchor
+position to the other side, or to 'slide' the popup along a side,
+or to resize it.
+
+![Flipping popups](popup-flip.png)
+
+![Sliding popups](popup-slide.png)
+
+These hints may be combined.
+
+Ultimatively, it is up to the windowing system to determine the position
+and size of the popup. You can learn about the result by calling
+`Popup::get_position_x`, `Popup::get_position_y`,
+`Popup::get_rect_anchor` and `Popup::get_surface_anchor` after the
+popup has been presented. This can be used to adjust the rendering. For
+example, `GtkPopover` changes its arrow position accordingly. But you have
+to be careful avoid changing the size of the popover, or it has to be
+presented again.
+<!-- impl PopupLayout::fn new -->
+Create a popup layout description. Used together with `Popup::present`
+to describe how a popup surface should be placed and behave on-screen.
+
+`anchor_rect` is relative to the top-left corner of the surface's parent.
+`rect_anchor` and `surface_anchor` determine anchor points on `anchor_rect`
+and surface to pin together.
+
+The position of `anchor_rect`'s anchor point can optionally be offset using
+`PopupLayout::set_offset`, which is equivalent to offsetting the
+position of surface.
+## `anchor_rect`
+the anchor `Rectangle` to align `surface` with
+## `rect_anchor`
+the point on `anchor_rect` to align with `surface`'s anchor point
+## `surface_anchor`
+the point on `surface` to align with `rect`'s anchor point
+
+# Returns
+
+newly created instance of `PopupLayout`
+<!-- impl PopupLayout::fn copy -->
+Create a new `PopupLayout` and copy the contents of `self` into it.
+
+# Returns
+
+a copy of `self`.
+<!-- impl PopupLayout::fn equal -->
+Check whether `self` and `other` has identical layout properties.
+## `other`
+another `PopupLayout`
+
+# Returns
+
+`true` if `self` and `other` have identical layout properties,
+otherwise `false`.
+<!-- impl PopupLayout::fn get_anchor_hints -->
+Get the `AnchorHints`.
+
+# Returns
+
+the `AnchorHints`.
+<!-- impl PopupLayout::fn get_anchor_rect -->
+Get the anchor rectangle.
+
+# Returns
+
+The anchor rectangle.
+<!-- impl PopupLayout::fn get_offset -->
+Retrieves the offset for the anchor rectangle.
+## `dx`
+return location for the delta X coordinate
+## `dy`
+return location for the delta Y coordinate
+<!-- impl PopupLayout::fn get_rect_anchor -->
+Returns the anchor position on the anchor rectangle.
+
+# Returns
+
+the anchor on the anchor rectangle.
+<!-- impl PopupLayout::fn get_surface_anchor -->
+Returns the anchor position on the popup surface.
+
+# Returns
+
+the anchor on the popup surface.
+<!-- impl PopupLayout::fn ref -->
+Increases the reference count of `value`.
+
+# Returns
+
+the same `self`
+<!-- impl PopupLayout::fn set_anchor_hints -->
+Set new anchor hints.
+
+The set `anchor_hints` determines how `surface` will be moved if the anchor
+points cause it to move off-screen. For example, `AnchorHints::FlipX` will
+replace `Gravity::NorthWest` with `Gravity::NorthEast` and vice versa
+if `surface` extends beyond the left or right edges of the monitor.
+## `anchor_hints`
+the new `AnchorHints`
+<!-- impl PopupLayout::fn set_anchor_rect -->
+Set the anchor rectangle.
+## `anchor_rect`
+the new anchor rectangle
+<!-- impl PopupLayout::fn set_offset -->
+Offset the position of the anchor rectangle with the given delta.
+## `dx`
+x delta to offset the anchor rectangle with
+## `dy`
+y delta to offset the anchor rectangle with
+<!-- impl PopupLayout::fn set_rect_anchor -->
+Set the anchor on the anchor rectangle.
+## `anchor`
+the new rect anchor
+<!-- impl PopupLayout::fn set_surface_anchor -->
+Set the anchor on the popup surface.
+## `anchor`
+the new popup surface anchor
+<!-- impl PopupLayout::fn unref -->
+Decreases the reference count of `value`.
+<!-- struct ProximityEvent -->
+An event related to the proximity of a tool to a device.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
 <!-- struct RGBA -->
 A `RGBA` is used to represent a (possibly translucent)
 color, in a way that is compatible with cairo’s notion of color.
@@ -4128,14 +3962,16 @@ The string can be either one of:
 - A standard name (Taken from the X11 rgb.txt file).
 - A hexadecimal value in the form “\#rgb”, “\#rrggbb”,
  “\#rrrgggbbb” or ”\#rrrrggggbbbb”
+- A hexadecimal value in the form “\#rgba”, “\#rrggbbaa”,
+ or ”\#rrrrggggbbbbaaaa”
 - A RGB color in the form “rgb(r,g,b)” (In this case the color will
  have full opacity)
 - A RGBA color in the form “rgba(r,g,b,a)”
 
 Where “r”, “g”, “b” and “a” are respectively the red, green, blue and
-alpha color values. In the last two cases, “r”, “g”, and “b” are either integers
-in the range 0 to 255 or percentage values in the range 0% to 100%, and
-a is a floating point value in the range 0 to 1.
+alpha color values. In the last two cases, “r”, “g”, and “b” are either
+integers in the range 0 to 255 or percentage values in the range 0% to
+100%, and a is a floating point value in the range 0 to 1.
 ## `spec`
 the string specifying the color
 
@@ -4145,7 +3981,7 @@ the string specifying the color
 <!-- impl RGBA::fn to_string -->
 Returns a textual specification of `self` in the form
 `rgb(r,g,b)` or
-`rgba(r g,b,a)`,
+`rgba(r,g,b,a)`,
 where “r”, “g”, “b” and “a” represent the red, green,
 blue and alpha values respectively. “r”, “g”, and “b” are
 represented as integers in the range 0 to 255, and “a”
@@ -4223,16 +4059,61 @@ the surface is scrolled to the left.
 the surface is scrolled to the right.
 <!-- enum ScrollDirection::variant Smooth -->
 the scrolling is determined by the delta values
- in scroll events. See `Event::get_scroll_deltas`
+ in scroll events. See `ScrollEvent::get_deltas`
+<!-- struct ScrollEvent -->
+An event related to a scrolling motion.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl ScrollEvent::fn get_deltas -->
+Extracts the scroll deltas of a scroll event.
+
+The deltas will be zero unless the scroll direction
+is `ScrollDirection::Smooth`.
+## `delta_x`
+return location for x scroll delta
+## `delta_y`
+return location for y scroll delta
+<!-- impl ScrollEvent::fn get_direction -->
+Extracts the direction of a scroll event.
+
+# Returns
+
+the scroll direction of `self`
+<!-- impl ScrollEvent::fn is_stop -->
+Check whether a scroll event is a stop scroll event. Scroll sequences
+with smooth scroll information may provide a stop scroll event once the
+interaction with the device finishes, e.g. by lifting a finger. This
+stop scroll event is the signal that a widget may trigger kinetic
+scrolling based on the current velocity.
+
+Stop scroll events always have a delta of 0/0.
+
+# Returns
+
+`true` if the event is a scroll stop event
 <!-- struct Seat -->
 The `Seat` object represents a collection of input devices
 that belong to a user.
+
+This is an Abstract Base Class, you cannot instantiate it.
 <!-- impl Seat::fn get_capabilities -->
 Returns the capabilities this `Seat` currently has.
 
 # Returns
 
 the seat capabilities
+<!-- impl Seat::fn get_devices -->
+Returns the devices that match the given capabilities.
+## `capabilities`
+capabilities to get devices for
+
+# Returns
+
+A list of ``GdkDevices``.
+ The list must be freed with `glib::List::free`, the elements are owned
+ by GTK and must not be freed.
 <!-- impl Seat::fn get_display -->
 Returns the `Display` this seat belongs to.
 
@@ -4241,99 +4122,27 @@ Returns the `Display` this seat belongs to.
 a `Display`. This object is owned by GTK
  and must not be freed.
 <!-- impl Seat::fn get_keyboard -->
-Returns the master device that routes keyboard events.
+Returns the device that routes keyboard events.
 
 # Returns
 
-a master `Device` with keyboard
+a `Device` with keyboard
  capabilities. This object is owned by GTK and must not be freed.
-<!-- impl Seat::fn get_master_pointers -->
-Returns all master pointers with the given capabilities driven by this `self`.
-On most backends this function will return a list with a single element (meaning
-that all input devices drive the same onscreen cursor).
-
-In other backends where there can possibly be multiple foci (eg. wayland),
-this function will return all master ``GdkDevices`` that represent these.
-## `capabilities`
-Queried capabilities
-
-# Returns
-
-A list
-of master pointing devices
 <!-- impl Seat::fn get_pointer -->
-Returns the master device that routes pointer events.
+Returns the device that routes pointer events.
 
 # Returns
 
-a master `Device` with pointer
+a `Device` with pointer
  capabilities. This object is owned by GTK and must not be freed.
-<!-- impl Seat::fn get_slaves -->
-Returns the slave devices that match the given capabilities.
-## `capabilities`
-capabilities to get devices for
+<!-- impl Seat::fn get_tools -->
+Returns all ``GdkDeviceTools`` that are known to the
+application.
 
 # Returns
 
-A list of ``GdkDevices``.
- The list must be freed with `glib::List::free`, the elements are owned
- by GDK and must not be freed.
-<!-- impl Seat::fn grab -->
-Grabs the seat so that all events corresponding to the given `capabilities`
-are passed to this application until the seat is ungrabbed with `Seat::ungrab`,
-or the surface becomes hidden. This overrides any previous grab on the
-seat by this client.
 
-As a rule of thumb, if a grab is desired over `SeatCapabilities::Pointer`,
-all other "pointing" capabilities (eg. `SeatCapabilities::Touch`) should
-be grabbed too, so the user is able to interact with all of those while
-the grab holds, you should thus use `SeatCapabilities::AllPointing` most
-commonly.
-
-Grabs are used for operations which need complete control over the
-events corresponding to the given capabilities. For example in GTK this
-is used for Drag and Drop operations, popup menus and such.
-
-Note that if the event mask of a `Surface` has selected both button press
-and button release events, or touch begin and touch end, then a press event
-will cause an automatic grab until the button is released, equivalent to a
-grab on the surface with `owner_events` set to `true`. This is done because most
-applications expect to receive paired press and release events.
-
-If you set up anything at the time you take the grab that needs to be
-cleaned up when the grab ends, you should handle the `EventGrabBroken`
-events that are emitted when the grab ends unvoluntarily.
-## `surface`
-the `Surface` which will own the grab
-## `capabilities`
-capabilities that will be grabbed
-## `owner_events`
-if `false` then all device events are reported with respect to
- `surface` and are only reported if selected by `event_mask`. If
- `true` then pointer events for this application are reported
- as normal, but pointer events outside this application are
- reported with respect to `surface` and only if selected by
- `event_mask`. In either mode, unreported events are discarded.
-## `cursor`
-the cursor to display while the grab is active. If
- this is `None` then the normal cursors are used for
- `surface` and its descendants, and the cursor for `surface` is used
- elsewhere.
-## `event`
-the event that is triggering the grab, or `None` if none
- is available.
-## `prepare_func`
-function to
- prepare the surface to be grabbed, it can be `None` if `surface` is
- visible before this call.
-## `prepare_func_data`
-user data to pass to `prepare_func`
-
-# Returns
-
-`GrabStatus::Success` if the grab was successful.
-<!-- impl Seat::fn ungrab -->
-Releases a grab added through `Seat::grab`.
+ A list of tools. Free with `glib::List::free`.
 <!-- impl Seat::fn connect_device_added -->
 The ::device-added signal is emitted when a new input
 device is related to this seat.
@@ -4362,8 +4171,28 @@ the just removed `DeviceTool`
 `Display` of this seat.
 <!-- impl Seat::fn set_property_display -->
 `Display` of this seat.
+<!-- struct SeatCapabilities -->
+Flags describing the seat capabilities.
+<!-- struct SeatCapabilities::const NONE -->
+No input capabilities
+<!-- struct SeatCapabilities::const POINTER -->
+The seat has a pointer (e.g. mouse)
+<!-- struct SeatCapabilities::const TOUCH -->
+The seat has touchscreen(s) attached
+<!-- struct SeatCapabilities::const TABLET_STYLUS -->
+The seat has drawing tablet(s) attached
+<!-- struct SeatCapabilities::const KEYBOARD -->
+The seat has keyboard(s) attached
+<!-- struct SeatCapabilities::const TABLET_PAD -->
+The seat has drawing tablet pad(s) attached
+<!-- struct SeatCapabilities::const ALL_POINTING -->
+The union of all pointing capabilities
+<!-- struct SeatCapabilities::const ALL -->
+The union of all capabilities
 <!-- struct Snapshot -->
+Base type for snapshot operations.
 
+This is an Abstract Base Class, you cannot instantiate it.
 <!-- enum SubpixelLayout -->
 This enumeration describes how the red, green and blue components
 of physical pixels on an output device are laid out.
@@ -4381,180 +4210,52 @@ The layout is vertical, the order is RGB
 The layout is vertical, the order is BGR
 <!-- struct Surface -->
 A `Surface` is a (usually) rectangular region on the screen.
-It’s a low-level object, used to implement high-level objects such as
-``GtkWidget`` and ``GtkWindow`` on the GTK level. A ``GtkWindow`` is a toplevel
-surface, the thing a user might think of as a “window” with a titlebar
-and so on; a ``GtkWindow`` may contain many sub-`GdkSurfaces`.
+It’s a low-level object, used to implement high-level objects
+such as ``GtkWindow`` or ``GtkDialog`` in GTK.
+
+The surfaces you see in practice are either `Toplevel` or
+`Popup`, and those interfaces provide much of the required
+API to interact with these surfaces. Other, more specialized
+surface types exist, but you will rarely interact with them
+directly.
+
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
-[`SurfaceExt`](trait.SurfaceExt.html), [`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)
-<!-- trait SurfaceExt -->
-Trait containing all `Surface` methods.
-
-# Implementors
-
-[`Surface`](struct.Surface.html)
-<!-- impl Surface::fn new_child -->
-Creates a new client-side child surface.
-## `parent`
-the parent surface
-## `position`
-placement of the surface inside `parent`
-
-# Returns
-
-the new `Surface`
+[`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)
 <!-- impl Surface::fn new_popup -->
-Creates a new toplevel popup surface. The surface will bypass surface
-management.
-## `display`
-the display to create the surface on
-## `position`
-position of the surface on screen
+Create a new popup surface.
+
+The surface will be attached to `parent` and can be positioned
+relative to it using `Popup::present`.
+## `parent`
+the parent surface to attach the surface to
+## `autohide`
+whether to hide the surface on outside clicks
 
 # Returns
 
-the new `Surface`
-<!-- impl Surface::fn new_temp -->
-Creates a new toplevel temporary surface. The surface will be
-situated off-screen and not handle output.
-
-You most likely do not want to use this function.
-## `display`
-the display to create the surface on
-
-# Returns
-
-the new `Surface`
+a new `Surface`
 <!-- impl Surface::fn new_toplevel -->
-Creates a new toplevel surface. The surface will be managed by the surface
-manager.
+Creates a new toplevel surface.
 ## `display`
 the display to create the surface on
-## `width`
-width of new surface
-## `height`
-height of new surface
 
 # Returns
 
 the new `Surface`
-<!-- impl Surface::fn constrain_size -->
-Constrains a desired width and height according to a
-set of geometry hints (such as minimum and maximum size).
-## `geometry`
-a `Geometry` structure
-## `flags`
-a mask indicating what portions of `geometry` are set
-## `width`
-desired width of surface
-## `height`
-desired height of the surface
-## `new_width`
-location to store resulting width
-## `new_height`
-location to store resulting height
-<!-- trait SurfaceExt::fn beep -->
+<!-- impl Surface::fn beep -->
 Emits a short beep associated to `self` in the appropriate
 display, if supported. Otherwise, emits a short beep on
 the display just as `Display::beep`.
-<!-- trait SurfaceExt::fn begin_move_drag -->
-Begins a surface move operation (for a toplevel surface).
-
-This function assumes that the drag is controlled by the
-client pointer device, use `SurfaceExt::begin_move_drag_for_device`
-to begin a drag with a different device.
-## `button`
-the button being used to drag, or 0 for a keyboard-initiated drag
-## `x`
-surface X coordinate of mouse click that began the drag
-## `y`
-surface Y coordinate of mouse click that began the drag
-## `timestamp`
-timestamp of mouse click that began the drag
-<!-- trait SurfaceExt::fn begin_move_drag_for_device -->
-Begins a surface move operation (for a toplevel surface).
-## `device`
-the device used for the operation
-## `button`
-the button being used to drag, or 0 for a keyboard-initiated drag
-## `x`
-surface X coordinate of mouse click that began the drag
-## `y`
-surface Y coordinate of mouse click that began the drag
-## `timestamp`
-timestamp of mouse click that began the drag
-<!-- trait SurfaceExt::fn begin_resize_drag -->
-Begins a surface resize operation (for a toplevel surface).
-
-This function assumes that the drag is controlled by the
-client pointer device, use `SurfaceExt::begin_resize_drag_for_device`
-to begin a drag with a different device.
-## `edge`
-the edge or corner from which the drag is started
-## `button`
-the button being used to drag, or 0 for a keyboard-initiated drag
-## `x`
-surface X coordinate of mouse click that began the drag
-## `y`
-surface Y coordinate of mouse click that began the drag
-## `timestamp`
-timestamp of mouse click that began the drag (use `Event::get_time`)
-<!-- trait SurfaceExt::fn begin_resize_drag_for_device -->
-Begins a surface resize operation (for a toplevel surface).
-You might use this function to implement a “window resize grip,”
-## `edge`
-the edge or corner from which the drag is started
-## `device`
-the device used for the operation
-## `button`
-the button being used to drag, or 0 for a keyboard-initiated drag
-## `x`
-surface X coordinate of mouse click that began the drag
-## `y`
-surface Y coordinate of mouse click that began the drag
-## `timestamp`
-timestamp of mouse click that began the drag (use `Event::get_time`)
-<!-- trait SurfaceExt::fn coords_from_parent -->
-Transforms surface coordinates from a parent surface to a child
-surface.
-
-Calling this function is equivalent to subtracting the return
-values of `SurfaceExt::get_position` from the parent coordinates.
-
-See also: `SurfaceExt::coords_to_parent`
-## `parent_x`
-X coordinate in parent’s coordinate system
-## `parent_y`
-Y coordinate in parent’s coordinate system
-## `x`
-return location for X coordinate in child’s coordinate system
-## `y`
-return location for Y coordinate in child’s coordinate system
-<!-- trait SurfaceExt::fn coords_to_parent -->
-Transforms surface coordinates from a child surface to its parent
-surface. Calling this function is equivalent to adding the return
-values of `SurfaceExt::get_position` to the child coordinates.
-
-See also: `SurfaceExt::coords_from_parent`
-## `x`
-X coordinate in child’s coordinate system
-## `y`
-Y coordinate in child’s coordinate system
-## `parent_x`
-return location for X coordinate
-in parent’s coordinate system, or `None`
-## `parent_y`
-return location for Y coordinate
-in parent’s coordinate system, or `None`
-<!-- trait SurfaceExt::fn create_cairo_context -->
+<!-- impl Surface::fn create_cairo_context -->
 Creates a new `CairoContext` for rendering on `self`.
 
 # Returns
 
 the newly created `CairoContext`
-<!-- trait SurfaceExt::fn create_gl_context -->
+<!-- impl Surface::fn create_gl_context -->
 Creates a new `GLContext` matching the
 framebuffer format to the visual of the `Surface`. The context
 is disconnected from any particular surface or surface.
@@ -4568,7 +4269,7 @@ call `GLContext::make_current` or `GLContext::realize`.
 
 the newly created `GLContext`, or
 `None` on error
-<!-- trait SurfaceExt::fn create_similar_surface -->
+<!-- impl Surface::fn create_similar_surface -->
 Create a new surface that is as compatible as possible with the
 given `self`. For example the new surface will have the same
 fallback resolution and font options as `self`. Generally, the new
@@ -4594,7 +4295,7 @@ with it.
 This function always returns a valid pointer, but it will return a
 pointer to a “nil” surface if `other` is already in an error state
 or any other error occurs.
-<!-- trait SurfaceExt::fn create_vulkan_context -->
+<!-- impl Surface::fn create_vulkan_context -->
 Creates a new `VulkanContext` for rendering on `self`.
 
 If the creation of the `VulkanContext` failed, `error` will be set.
@@ -4603,72 +4304,14 @@ If the creation of the `VulkanContext` failed, `error` will be set.
 
 the newly created `VulkanContext`, or
 `None` on error
-<!-- trait SurfaceExt::fn deiconify -->
-Attempt to deiconify (unminimize) `self`. On X11 the window manager may
-choose to ignore the request to deiconify. When using GTK,
-use `gtk_window_deiconify` instead of the `Surface` variant. Or better yet,
-you probably want to use `gtk_window_present_with_time`, which raises the surface, focuses it,
-unminimizes it, and puts it on the current desktop.
-<!-- trait SurfaceExt::fn destroy -->
+<!-- impl Surface::fn destroy -->
 Destroys the window system resources associated with `self` and decrements `self`'s
 reference count. The window system resources for all children of `self` are also
 destroyed, but the children’s reference counts are not decremented.
 
 Note that a surface will not be destroyed automatically when its reference count
 reaches zero. You must call this function yourself before that happens.
-<!-- trait SurfaceExt::fn focus -->
-Sets keyboard focus to `self`. In most cases, `gtk_window_present_with_time`
-should be used on a ``GtkWindow``, rather than calling this function.
-## `timestamp`
-timestamp of the event triggering the surface focus
-<!-- trait SurfaceExt::fn freeze_updates -->
-Temporarily freezes a surface such that it won’t receive expose
-events. The surface will begin receiving expose events again when
-`SurfaceExt::thaw_updates` is called. If `SurfaceExt::freeze_updates`
-has been called more than once, `SurfaceExt::thaw_updates` must be called
-an equal number of times to begin processing exposes.
-<!-- trait SurfaceExt::fn fullscreen -->
-Moves the surface into fullscreen mode. This means the
-surface covers the entire screen and is above any panels
-or task bars.
-
-If the surface was already fullscreen, then this function does nothing.
-
-On X11, asks the window manager to put `self` in a fullscreen
-state, if the window manager supports this operation. Not all
-window managers support this, and some deliberately ignore it or
-don’t have a concept of “fullscreen”; so you can’t rely on the
-fullscreenification actually happening. But it will happen with
-most standard window managers, and GDK makes a best effort to get
-it to happen.
-<!-- trait SurfaceExt::fn fullscreen_on_monitor -->
-Moves the surface into fullscreen mode on the given monitor. This means
-the surface covers the entire screen and is above any panels or task bars.
-
-If the surface was already fullscreen, then this function does nothing.
-## `monitor`
-Which monitor to display fullscreen on.
-<!-- trait SurfaceExt::fn get_accept_focus -->
-Determines whether or not the desktop environment shuld be hinted that
-the surface does not want to receive input focus.
-
-# Returns
-
-whether or not the surface should receive input focus.
-<!-- trait SurfaceExt::fn get_children -->
-Gets the list of children of `self` known to GDK.
-This function only returns children created via GDK,
-so for example it’s useless when used with the root window;
-it only returns surfaces an application created itself.
-
-The returned list must be freed, but the elements in the
-list need not be.
-
-# Returns
-
-
- list of child surfaces inside `self`
-<!-- trait SurfaceExt::fn get_cursor -->
+<!-- impl Surface::fn get_cursor -->
 Retrieves a `Cursor` pointer for the cursor currently set on the
 specified `Surface`, or `None`. If the return value is `None` then
 there is no custom cursor set on the specified surface, and it is
@@ -4678,32 +4321,23 @@ using the cursor for its parent surface.
 
 a `Cursor`, or `None`. The
  returned object is owned by the `Surface` and should not be
- unreferenced directly. Use `SurfaceExt::set_cursor` to unset the
+ unreferenced directly. Use `Surface::set_cursor` to unset the
  cursor of the surface
-<!-- trait SurfaceExt::fn get_decorations -->
-Returns the decorations set on the `Surface` with
-`SurfaceExt::set_decorations`.
-## `decorations`
-The surface decorations will be written here
-
-# Returns
-
-`true` if the surface has decorations set, `false` otherwise.
-<!-- trait SurfaceExt::fn get_device_cursor -->
+<!-- impl Surface::fn get_device_cursor -->
 Retrieves a `Cursor` pointer for the `device` currently set on the
 specified `Surface`, or `None`. If the return value is `None` then
 there is no custom cursor set on the specified surface, and it is
 using the cursor for its parent surface.
 ## `device`
-a master, pointer `Device`.
+a logical, pointer `Device`.
 
 # Returns
 
 a `Cursor`, or `None`. The
  returned object is owned by the `Surface` and should not be
- unreferenced directly. Use `SurfaceExt::set_cursor` to unset the
+ unreferenced directly. Use `Surface::set_cursor` to unset the
  cursor of the surface
-<!-- trait SurfaceExt::fn get_device_position -->
+<!-- impl Surface::fn get_device_position -->
 Obtains the current device position in doubles and modifier state.
 The position is given in coordinates relative to the upper left
 corner of `self`.
@@ -4718,24 +4352,14 @@ return location for the modifier mask, or `None`.
 
 # Returns
 
-The surface underneath `device`
-(as with `Device::get_surface_at_position`), or `None` if the
-surface is not known to GDK.
-<!-- trait SurfaceExt::fn get_display -->
+`true` if the device is over the surface
+<!-- impl Surface::fn get_display -->
 Gets the `Display` associated with a `Surface`.
 
 # Returns
 
 the `Display` associated with `self`
-<!-- trait SurfaceExt::fn get_focus_on_map -->
-Determines whether or not the desktop environment should be hinted that the
-surface does not want to receive input focus when it is mapped.
-
-# Returns
-
-whether or not the surface wants to receive input focus when
-it is mapped.
-<!-- trait SurfaceExt::fn get_frame_clock -->
+<!-- impl Surface::fn get_frame_clock -->
 Gets the frame clock for the surface. The frame clock for a surface
 never changes unless the surface is reparented to a new toplevel
 surface.
@@ -4743,128 +4367,24 @@ surface.
 # Returns
 
 the frame clock
-<!-- trait SurfaceExt::fn get_frame_extents -->
-Obtains the bounding box of the surface, including window manager
-titlebar/borders if any. The frame position is given in root window
-coordinates. To get the position of the surface itself (rather than
-the frame) in root window coordinates, use `SurfaceExt::get_origin`.
-## `rect`
-rectangle to fill with bounding box of the surface frame
-<!-- trait SurfaceExt::fn get_fullscreen_mode -->
-Obtains the `FullscreenMode` of the `self`.
-
-# Returns
-
-The `FullscreenMode` applied to the surface when fullscreen.
-<!-- trait SurfaceExt::fn get_geometry -->
-Any of the return location arguments to this function may be `None`,
-if you aren’t interested in getting the value of that field.
-
-The X and Y coordinates returned are relative to the parent surface
-of `self`, which for toplevels usually means relative to the
-surface decorations (titlebar, etc.) rather than relative to the
-root window (screen-size background window).
-
-On the X11 platform, the geometry is obtained from the X server,
-so reflects the latest position of `self`; this may be out-of-sync
-with the position of `self` delivered in the most-recently-processed
-`EventConfigure`. `SurfaceExt::get_position` in contrast gets the
-position from the most recent configure event.
-
-Note: If `self` is not a toplevel, it is much better
-to call `SurfaceExt::get_position`, `SurfaceExt::get_width` and
-`SurfaceExt::get_height` instead, because it avoids the roundtrip to
-the X server and because these functions support the full 32-bit
-coordinate space, whereas `SurfaceExt::get_geometry` is restricted to
-the 16-bit coordinates of X11.
-## `x`
-return location for X coordinate of surface (relative to its parent)
-## `y`
-return location for Y coordinate of surface (relative to its parent)
-## `width`
-return location for width of surface
-## `height`
-return location for height of surface
-<!-- trait SurfaceExt::fn get_height -->
+<!-- impl Surface::fn get_height -->
 Returns the height of the given `self`.
 
-On the X11 platform the returned size is the size reported in the
-most-recently-processed configure event, rather than the current
-size on the X server.
+Surface size is reported in ”application pixels”, not
+”device pixels” (see `Surface::get_scale_factor`).
 
 # Returns
 
 The height of `self`
-<!-- trait SurfaceExt::fn get_modal_hint -->
-Determines whether or not the window manager is hinted that `self`
-has modal behaviour.
+<!-- impl Surface::fn get_mapped -->
+Checks whether the surface has been mapped (with `Toplevel::present`
+or `Popup::present`).
 
 # Returns
 
-whether or not the surface has the modal hint set.
-<!-- trait SurfaceExt::fn get_origin -->
-Obtains the position of a surface in root window coordinates.
-(Compare with `SurfaceExt::get_position` and
-`SurfaceExt::get_geometry` which return the position of a surface
-relative to its parent surface.)
-## `x`
-return location for X coordinate
-## `y`
-return location for Y coordinate
-
-# Returns
-
-not meaningful, ignore
-<!-- trait SurfaceExt::fn get_parent -->
-Obtains the parent of `self`, as known to GDK. Does not query the
-X server; thus this returns the parent as passed to `gdk_surface_new`,
-not the actual parent. This should never matter unless you’re using
-Xlib calls mixed with GDK calls on the X11 platform. It may also
-matter for toplevel windows, because the window manager may choose
-to reparent them.
-
-# Returns
-
-parent of `self`
-<!-- trait SurfaceExt::fn get_pass_through -->
-Returns whether input to the surface is passed through to the surface
-below.
-
-See `SurfaceExt::set_pass_through` for details
-<!-- trait SurfaceExt::fn get_position -->
-Obtains the position of the surface as reported in the
-most-recently-processed `EventConfigure`. Contrast with
-`SurfaceExt::get_geometry` which queries the X server for the
-current surface position, regardless of which events have been
-received or processed.
-
-The position coordinates are relative to the surface’s parent surface.
-## `x`
-X coordinate of surface
-## `y`
-Y coordinate of surface
-<!-- trait SurfaceExt::fn get_root_coords -->
-Obtains the position of a surface position in root
-window coordinates. This is similar to
-`SurfaceExt::get_origin` but allows you to pass
-in any position in the surface, not just the origin.
-## `x`
-X coordinate in surface
-## `y`
-Y coordinate in surface
-## `root_x`
-return location for X coordinate
-## `root_y`
-return location for Y coordinate
-<!-- trait SurfaceExt::fn get_root_origin -->
-Obtains the top-left corner of the window manager frame in root
-surface coordinates.
-## `x`
-return location for X position of surface frame
-## `y`
-return location for Y position of surface frame
-<!-- trait SurfaceExt::fn get_scale_factor -->
-Returns the internal scale factor that maps from surface coordiantes
+`true` if the surface is mapped
+<!-- impl Surface::fn get_scale_factor -->
+Returns the internal scale factor that maps from surface coordinates
 to the actual device pixels. On traditional systems this is 1, but
 on very high density outputs this can be a higher value (often 2).
 
@@ -4880,466 +4400,75 @@ a configure event will be sent to the toplevel surface.
 # Returns
 
 the scale factor
-<!-- trait SurfaceExt::fn get_state -->
-Gets the bitwise OR of the currently active surface state flags,
-from the `SurfaceState` enumeration.
-
-# Returns
-
-surface state bitfield
-<!-- trait SurfaceExt::fn get_support_multidevice -->
-Returns `true` if the surface is aware of the existence of multiple
-devices.
-
-# Returns
-
-`true` if the surface handles multidevice features.
-<!-- trait SurfaceExt::fn get_surface_type -->
-Gets the type of the surface. See `SurfaceType`.
-
-# Returns
-
-type of surface
-<!-- trait SurfaceExt::fn get_toplevel -->
-Gets the toplevel surface that’s an ancestor of `self`.
-
-Any surface type but `SurfaceType::Child` is considered a
-toplevel surface, as is a `SurfaceType::Child` surface that
-has a root surface as parent.
-
-# Returns
-
-the toplevel surface containing `self`
-<!-- trait SurfaceExt::fn get_type_hint -->
-This function returns the type hint set for a surface.
-
-# Returns
-
-The type hint set for `self`
-<!-- trait SurfaceExt::fn get_width -->
+<!-- impl Surface::fn get_width -->
 Returns the width of the given `self`.
 
-On the X11 platform the returned size is the size reported in the
-most-recently-processed configure event, rather than the current
-size on the X server.
+Surface size is reported in ”application pixels”, not
+”device pixels” (see `Surface::get_scale_factor`).
 
 # Returns
 
 The width of `self`
-<!-- trait SurfaceExt::fn has_native -->
-Checks whether the surface has a native surface or not.
-
-# Returns
-
-`true` if the `self` has a native surface, `false` otherwise.
-<!-- trait SurfaceExt::fn hide -->
+<!-- impl Surface::fn hide -->
 For toplevel surfaces, withdraws them, so they will no longer be
 known to the window manager; for all surfaces, unmaps them, so
 they won’t be displayed. Normally done automatically as
 part of `gtk_widget_hide`.
-<!-- trait SurfaceExt::fn iconify -->
-Asks to iconify (minimize) `self`. The window manager may choose
-to ignore the request, but normally will honor it. Using
-`gtk_window_iconify` is preferred, if you have a ``GtkWindow`` widget.
-
-This function only makes sense when `self` is a toplevel surface.
-<!-- trait SurfaceExt::fn input_shape_combine_region -->
-Like `gdk_surface_shape_combine_region`, but the shape applies
-only to event handling. Mouse events which happen while
-the pointer position corresponds to an unset bit in the
-mask will be passed on the surface below `self`.
-
-An input shape is typically used with RGBA surfaces.
-The alpha channel of the surface defines which pixels are
-invisible and allows for nicely antialiased borders,
-and the input shape controls where the surface is
-“clickable”.
-
-On the X11 platform, this requires version 1.1 of the
-shape extension.
-
-On the Win32 platform, this functionality is not present and the
-function does nothing.
-## `shape_region`
-region of surface to be non-transparent
-## `offset_x`
-X position of `shape_region` in `self` coordinates
-## `offset_y`
-Y position of `shape_region` in `self` coordinates
-<!-- trait SurfaceExt::fn is_destroyed -->
+<!-- impl Surface::fn is_destroyed -->
 Check to see if a surface is destroyed..
 
 # Returns
 
 `true` if the surface is destroyed
-<!-- trait SurfaceExt::fn is_input_only -->
-Determines whether or not the surface is an input only surface.
-
-# Returns
-
-`true` if `self` is input only
-<!-- trait SurfaceExt::fn is_viewable -->
-Check if the surface and all ancestors of the surface are
-mapped. (This is not necessarily "viewable" in the X sense, since
-we only check as far as we have GDK surface parents, not to the root
-surface.)
-
-# Returns
-
-`true` if the surface is viewable
-<!-- trait SurfaceExt::fn is_visible -->
-Checks whether the surface has been mapped (with `SurfaceExt::show` or
-`SurfaceExt::show_unraised`).
-
-# Returns
-
-`true` if the surface is mapped
-<!-- trait SurfaceExt::fn lower -->
-Lowers `self` to the bottom of the Z-order (stacking order), so that
-other surfaces with the same parent surface appear above `self`.
-This is true whether or not the other surfaces are visible.
-
-If `self` is a toplevel, the window manager may choose to deny the
-request to move the surface in the Z-order, `SurfaceExt::lower` only
-requests the restack, does not guarantee it.
-
-Note that `SurfaceExt::show` raises the surface again, so don’t call this
-function before `SurfaceExt::show`. (Try `SurfaceExt::show_unraised`.)
-<!-- trait SurfaceExt::fn maximize -->
-Maximizes the surface. If the surface was already maximized, then
-this function does nothing.
-
-On X11, asks the window manager to maximize `self`, if the window
-manager supports this operation. Not all window managers support
-this, and some deliberately ignore it or don’t have a concept of
-“maximized”; so you can’t rely on the maximization actually
-happening. But it will happen with most standard window managers,
-and GDK makes a best effort to get it to happen.
-
-On Windows, reliably maximizes the surface.
-<!-- trait SurfaceExt::fn merge_child_input_shapes -->
-Merges the input shape masks for any child surfaces into the
-input shape mask for `self`. i.e. the union of all input masks
-for `self` and its children will become the new input mask
-for `self`. See `SurfaceExt::input_shape_combine_region`.
-
-This function is distinct from `SurfaceExt::set_child_input_shapes`
-because it includes `self`’s input shape mask in the set of
-shapes to be merged.
-<!-- trait SurfaceExt::fn move -->
-Repositions a surface relative to its parent surface.
-For toplevel surfaces, window managers may ignore or modify the move;
-you should probably use `gtk_window_move` on a ``GtkWindow`` widget
-anyway, instead of using GDK functions. For child surfaces,
-the move will reliably succeed.
-
-If you’re also planning to resize the surface, use `SurfaceExt::move_resize`
-to both move and resize simultaneously, for a nicer visual effect.
-## `x`
-X coordinate relative to surface’s parent
-## `y`
-Y coordinate relative to surface’s parent
-<!-- trait SurfaceExt::fn move_resize -->
-Equivalent to calling `SurfaceExt::move` and `SurfaceExt::resize`,
-except that both operations are performed at once, avoiding strange
-visual effects. (i.e. the user may be able to see the surface first
-move, then resize, if you don’t use `SurfaceExt::move_resize`.)
-## `x`
-new X position relative to surface’s parent
-## `y`
-new Y position relative to surface’s parent
-## `width`
-new width
-## `height`
-new height
-<!-- trait SurfaceExt::fn move_to_rect -->
-Moves `self` to `rect`, aligning their anchor points.
-
-`rect` is relative to the top-left corner of the surface that `self` is
-transient for. `rect_anchor` and `surface_anchor` determine anchor points on
-`rect` and `self` to pin together. `rect`'s anchor point can optionally be
-offset by `rect_anchor_dx` and `rect_anchor_dy`, which is equivalent to
-offsetting the position of `self`.
-
-`anchor_hints` determines how `self` will be moved if the anchor points cause
-it to move off-screen. For example, `AnchorHints::FlipX` will replace
-`Gravity::NorthWest` with `Gravity::NorthEast` and vice versa if
-`self` extends beyond the left or right edges of the monitor.
-
-Connect to the `Surface::moved-to-rect` signal to find out how it was
-actually positioned.
-## `rect`
-the destination `Rectangle` to align `self` with
-## `rect_anchor`
-the point on `rect` to align with `self`'s anchor point
-## `surface_anchor`
-the point on `self` to align with `rect`'s anchor point
-## `anchor_hints`
-positioning hints to use when limited on space
-## `rect_anchor_dx`
-horizontal offset to shift `self`, i.e. `rect`'s anchor
- point
-## `rect_anchor_dy`
-vertical offset to shift `self`, i.e. `rect`'s anchor point
-<!-- trait SurfaceExt::fn peek_children -->
-Like `SurfaceExt::get_children`, but does not copy the list of
-children, so the list does not need to be freed.
-
-# Returns
-
-
- a reference to the list of child surfaces in `self`
-<!-- trait SurfaceExt::fn queue_expose -->
-Forces an expose event for `self` to be scheduled.
-
-If the invalid area of `self` is empty, an expose event will
-still be emitted. Its invalid region will be empty.
+<!-- impl Surface::fn queue_render -->
+Forces a `Surface::render` signal emission for `self`
+to be scheduled.
 
 This function is useful for implementations that track invalid
 regions on their own.
-<!-- trait SurfaceExt::fn raise -->
-Raises `self` to the top of the Z-order (stacking order), so that
-other surfaces with the same parent surface appear below `self`.
-This is true whether or not the surfaces are visible.
-
-If `self` is a toplevel, the window manager may choose to deny the
-request to move the surface in the Z-order, `SurfaceExt::raise` only
-requests the restack, does not guarantee it.
-<!-- trait SurfaceExt::fn register_dnd -->
-Registers a surface as a potential drop destination.
-<!-- trait SurfaceExt::fn resize -->
-Resizes `self`; for toplevel surfaces, asks the window manager to resize
-the surface. The window manager may not allow the resize. When using GTK,
-use `gtk_window_resize` instead of this low-level GDK function.
-
-Surfaces may not be resized below 1x1.
-
-If you’re also planning to move the surface, use `SurfaceExt::move_resize`
-to both move and resize simultaneously, for a nicer visual effect.
-## `width`
-new width of the surface
-## `height`
-new height of the surface
-<!-- trait SurfaceExt::fn restack -->
-Changes the position of `self` in the Z-order (stacking order), so that
-it is above `sibling` (if `above` is `true`) or below `sibling` (if `above` is
-`false`).
-
-If `sibling` is `None`, then this either raises (if `above` is `true`) or
-lowers the surface.
-
-If `self` is a toplevel, the window manager may choose to deny the
-request to move the surface in the Z-order, `SurfaceExt::restack` only
-requests the restack, does not guarantee it.
-## `sibling`
-a `Surface` that is a sibling of `self`, or `None`
-## `above`
-a boolean
-<!-- trait SurfaceExt::fn set_accept_focus -->
-Setting `accept_focus` to `false` hints the desktop environment that the
-surface doesn’t want to receive input focus.
-
-On X, it is the responsibility of the window manager to interpret this
-hint. ICCCM-compliant window manager usually respect it.
-## `accept_focus`
-`true` if the surface should receive input focus
-<!-- trait SurfaceExt::fn set_child_input_shapes -->
-Sets the input shape mask of `self` to the union of input shape masks
-for all children of `self`, ignoring the input shape mask of `self`
-itself. Contrast with `SurfaceExt::merge_child_input_shapes` which includes
-the input shape mask of `self` in the masks to be merged.
-<!-- trait SurfaceExt::fn set_cursor -->
+<!-- impl Surface::fn request_layout -->
+Request a `FrameClockPhase::Layout` from the surface's
+frame clock. See `FrameClock::request_phase`.
+<!-- impl Surface::fn set_cursor -->
 Sets the default mouse pointer for a `Surface`.
 
 Note that `cursor` must be for the same display as `self`.
 
 Use `Cursor::new_from_name` or `Cursor::new_from_texture` to
 create the cursor. To make the cursor invisible, use `GDK_BLANK_CURSOR`.
-Passing `None` for the `cursor` argument to `SurfaceExt::set_cursor` means
+Passing `None` for the `cursor` argument to `Surface::set_cursor` means
 that `self` will use the cursor of its parent surface. Most surfaces
 should use this default.
 ## `cursor`
 a cursor
-<!-- trait SurfaceExt::fn set_decorations -->
-“Decorations” are the features the window manager adds to a toplevel `Surface`.
-This function sets the traditional Motif window manager hints that tell the
-window manager which decorations you would like your surface to have.
-Usually you should use `gtk_window_set_decorated` on a ``GtkWindow`` instead of
-using the GDK function directly.
-
-The `decorations` argument is the logical OR of the fields in
-the `WMDecoration` enumeration. If `WMDecoration::All` is included in the
-mask, the other bits indicate which decorations should be turned off.
-If `WMDecoration::All` is not included, then the other bits indicate
-which decorations should be turned on.
-
-Most window managers honor a decorations hint of 0 to disable all decorations,
-but very few honor all possible combinations of bits.
-## `decorations`
-decoration hint mask
-<!-- trait SurfaceExt::fn set_device_cursor -->
+<!-- impl Surface::fn set_device_cursor -->
 Sets a specific `Cursor` for a given device when it gets inside `self`.
-Use `gdk_cursor_new_fromm_name` or `Cursor::new_from_texture` to create
+Use `Cursor::new_from_name` or `Cursor::new_from_texture` to create
 the cursor. To make the cursor invisible, use `GDK_BLANK_CURSOR`. Passing
-`None` for the `cursor` argument to `SurfaceExt::set_cursor` means that
+`None` for the `cursor` argument to `Surface::set_cursor` means that
 `self` will use the cursor of its parent surface. Most surfaces should
 use this default.
 ## `device`
-a master, pointer `Device`
+a logical, pointer `Device`
 ## `cursor`
 a `Cursor`
-<!-- trait SurfaceExt::fn set_focus_on_map -->
-Setting `focus_on_map` to `false` hints the desktop environment that the
-surface doesn’t want to receive input focus when it is mapped.
-focus_on_map should be turned off for surfaces that aren’t triggered
-interactively (such as popups from network activity).
+<!-- impl Surface::fn set_input_region -->
+Apply the region to the surface for the purpose of event
+handling. Mouse events which happen while the pointer position
+corresponds to an unset bit in the mask will be passed on the
+surface below `self`.
 
-On X, it is the responsibility of the window manager to interpret
-this hint. Window managers following the freedesktop.org window
-manager extension specification should respect it.
-## `focus_on_map`
-`true` if the surface should receive input focus when mapped
-<!-- trait SurfaceExt::fn set_fullscreen_mode -->
-Specifies whether the `self` should span over all monitors (in a multi-head
-setup) or only the current monitor when in fullscreen mode.
+An input region is typically used with RGBA surfaces.
+The alpha channel of the surface defines which pixels are
+invisible and allows for nicely antialiased borders,
+and the input region controls where the surface is
+“clickable”.
 
-The `mode` argument is from the `FullscreenMode` enumeration.
-If `FullscreenMode::AllMonitors` is specified, the fullscreen `self` will
-span over all monitors of the display.
-
-On X11, searches through the list of monitors display the ones
-which delimit the 4 edges of the entire display and will ask the window
-manager to span the `self` over these monitors.
-
-If the XINERAMA extension is not available or not usable, this function
-has no effect.
-
-Not all window managers support this, so you can’t rely on the fullscreen
-surface to span over the multiple monitors when `FullscreenMode::AllMonitors`
-is specified.
-## `mode`
-fullscreen mode
-<!-- trait SurfaceExt::fn set_functions -->
-Sets hints about the window management functions to make available
-via buttons on the window frame.
-
-On the X backend, this function sets the traditional Motif window
-manager hint for this purpose. However, few window managers do
-anything reliable or interesting with this hint. Many ignore it
-entirely.
-
-The `functions` argument is the logical OR of values from the
-`WMFunction` enumeration. If the bitmask includes `WMFunction::All`,
-then the other bits indicate which functions to disable; if
-it doesn’t include `WMFunction::All`, it indicates which functions to
-enable.
-## `functions`
-bitmask of operations to allow on `self`
-<!-- trait SurfaceExt::fn set_geometry_hints -->
-Sets the geometry hints for `self`. Hints flagged in `geom_mask`
-are set, hints not flagged in `geom_mask` are unset.
-To unset all hints, use a `geom_mask` of 0 and a `geometry` of `None`.
-
-This function provides hints to the surfaceing system about
-acceptable sizes for a toplevel surface. The purpose of
-this is to constrain user resizing, but the windowing system
-will typically (but is not required to) also constrain the
-current size of the surface to the provided values and
-constrain programatic resizing via `SurfaceExt::resize` or
-`SurfaceExt::move_resize`.
-
-Note that on X11, this effect has no effect on surfaces
-of type `SurfaceType::Temp` since these surfaces are not resizable
-by the user.
-
-Since you can’t count on the windowing system doing the
-constraints for programmatic resizes, you should generally
-call `Surface::constrain_size` yourself to determine
-appropriate sizes.
-## `geometry`
-geometry hints
-## `geom_mask`
-bitmask indicating fields of `geometry` to pay attention to
-<!-- trait SurfaceExt::fn set_icon_list -->
-Sets a list of icons for the surface. One of these will be used
-to represent the surface when it has been iconified. The icon is
-usually shown in an icon box or some sort of task bar. Which icon
-size is shown depends on the window manager. The window manager
-can scale the icon but setting several size icons can give better
-image quality since the window manager may only need to scale the
-icon by a small amount or not at all.
-
-Note that some platforms don't support surface icons.
-## `surfaces`
-
- A list of image surfaces, of different sizes.
-<!-- trait SurfaceExt::fn set_icon_name -->
-Surfaces may have a name used while minimized, distinct from the
-name they display in their titlebar. Most of the time this is a bad
-idea from a user interface standpoint. But you can set such a name
-with this function, if you like.
-
-After calling this with a non-`None` `name`, calls to `SurfaceExt::set_title`
-will not update the icon title.
-
-Using `None` for `name` unsets the icon title; further calls to
-`SurfaceExt::set_title` will again update the icon title as well.
-
-Note that some platforms don't support surface icons.
-## `name`
-name of surface while iconified (minimized)
-<!-- trait SurfaceExt::fn set_keep_above -->
-Set if `self` must be kept above other surfaces. If the
-surface was already above, then this function does nothing.
-
-On X11, asks the window manager to keep `self` above, if the window
-manager supports this operation. Not all window managers support
-this, and some deliberately ignore it or don’t have a concept of
-“keep above”; so you can’t rely on the surface being kept above.
-But it will happen with most standard window managers,
-and GDK makes a best effort to get it to happen.
-## `setting`
-whether to keep `self` above other surfaces
-<!-- trait SurfaceExt::fn set_keep_below -->
-Set if `self` must be kept below other surfaces. If the
-surface was already below, then this function does nothing.
-
-On X11, asks the window manager to keep `self` below, if the window
-manager supports this operation. Not all window managers support
-this, and some deliberately ignore it or don’t have a concept of
-“keep below”; so you can’t rely on the surface being kept below.
-But it will happen with most standard window managers,
-and GDK makes a best effort to get it to happen.
-## `setting`
-whether to keep `self` below other surfaces
-<!-- trait SurfaceExt::fn set_modal_hint -->
-The application can use this hint to tell the window manager
-that a certain surface has modal behaviour. The window manager
-can use this information to handle modal surfaces in a special
-way.
-
-You should only use this on surfaces for which you have
-previously called `SurfaceExt::set_transient_for`
-## `modal`
-`true` if the surface is modal, `false` otherwise.
-<!-- trait SurfaceExt::fn set_opacity -->
-Set `self` to render as partially transparent,
-with opacity 0 being fully transparent and 1 fully opaque. (Values
-of the opacity parameter are clamped to the [0,1] range.)
-
-For toplevel surfaces this depends on support from the windowing system
-that may not always be there. For instance, On X11, this works only on
-X screens with a compositing manager running. On Wayland, there is no
-per-surface opacity value that the compositor would apply. Instead, use
-`gdk_surface_set_opaque_region (surface, NULL)` to tell the compositor
-that the entire surface is (potentially) non-opaque, and draw your content
-with alpha, or use `gtk_widget_set_opacity` to set an overall opacity
-for your widgets.
-
-Support for non-toplevel surfaces was added in 3.8.
-## `opacity`
-opacity
-<!-- trait SurfaceExt::fn set_opaque_region -->
+Use `Display::supports_input_shapes` to find out if
+a particular backend supports input regions.
+## `region`
+region of surface to be reactive
+<!-- impl Surface::fn set_opaque_region -->
 For optimisation purposes, compositing window managers may
 like to not draw obscured regions of surfaces, or turn off blending
 during for these regions. With RGB windows with no transparency,
@@ -5352,156 +4481,33 @@ This function only works for toplevel surfaces.
 GTK will update this property automatically if
 the `self` background is opaque, as we know where the opaque regions
 are. If your surface background is not opaque, please update this
-property in your ``GtkWidget`::style-updated` handler.
+property in your ``GtkWidgetClass`.css_changed`() handler.
 ## `region`
 a region, or `None`
-<!-- trait SurfaceExt::fn set_pass_through -->
-Sets whether input to the surface is passed through to the surface
-below.
+<!-- impl Surface::fn translate_coordinates -->
+Translates the given coordinates from being
+relative to the `self` surface to being relative
+to the `to` surface.
 
-The default value of this is `false`, which means that pointer
-events that happen inside the surface are send first to the surface,
-but if the event is not selected by the event mask then the event
-is sent to the parent surface, and so on up the hierarchy.
-
-If `pass_through` is `true` then such pointer events happen as if the
-surface wasn't there at all, and thus will be sent first to any
-surfaces below `self`. This is useful if the surface is used in a
-transparent fashion. In the terminology of the web this would be called
-"pointer-events: none".
-
-Note that a surface with `pass_through` `true` can still have a subsurface
-without pass through, so you can get events on a subset of a surface. And in
-that cases you would get the in-between related events such as the pointer
-enter/leave events on its way to the destination surface.
-## `pass_through`
-a boolean
-<!-- trait SurfaceExt::fn set_shadow_width -->
-Newer GTK windows using client-side decorations use extra geometry
-around their frames for effects like shadows and invisible borders.
-Window managers that want to maximize windows or snap to edges need
-to know where the extents of the actual frame lie, so that users
-don’t feel like windows are snapping against random invisible edges.
-
-Note that this property is automatically updated by GTK, so this
-function should only be used by applications which do not use GTK
-to create toplevel surfaces.
-## `left`
-The left extent
-## `right`
-The right extent
-## `top`
-The top extent
-## `bottom`
-The bottom extent
-<!-- trait SurfaceExt::fn set_startup_id -->
-When using GTK, typically you should use `gtk_window_set_startup_id`
-instead of this low-level function.
-## `startup_id`
-a string with startup-notification identifier
-<!-- trait SurfaceExt::fn set_support_multidevice -->
-This function will enable multidevice features in `self`.
-
-Multidevice aware surfaces will need to handle properly multiple,
-per device enter/leave events, device grabs and grab ownerships.
-## `support_multidevice`
-`true` to enable multidevice support in `self`.
-<!-- trait SurfaceExt::fn set_title -->
-Sets the title of a toplevel surface, to be displayed in the titlebar.
-If you haven’t explicitly set the icon name for the surface
-(using `SurfaceExt::set_icon_name`), the icon name will be set to
-`title` as well. `title` must be in UTF-8 encoding (as with all
-user-readable strings in GDK and GTK). `title` may not be `None`.
-## `title`
-title of `self`
-<!-- trait SurfaceExt::fn set_transient_for -->
-Indicates to the window manager that `self` is a transient dialog
-associated with the application surface `parent`. This allows the
-window manager to do things like center `self` on `parent` and
-keep `self` above `parent`.
-
-See `gtk_window_set_transient_for` if you’re using ``GtkWindow`` or
-``GtkDialog``.
-## `parent`
-another toplevel `Surface`
-<!-- trait SurfaceExt::fn set_type_hint -->
-The application can use this call to provide a hint to the surface
-manager about the functionality of a surface. The window manager
-can use this information when determining the decoration and behaviour
-of the surface.
-
-The hint must be set before the surface is mapped.
-## `hint`
-A hint of the function this surface will have
-<!-- trait SurfaceExt::fn show -->
-Like `SurfaceExt::show_unraised`, but also raises the surface to the
-top of the surface stack (moves the surface to the front of the
-Z-order).
-
-This function maps a surface so it’s visible onscreen. Its opposite
-is `SurfaceExt::hide`.
-
-When implementing a ``GtkWidget``, you should call this function on the widget's
-`Surface` as part of the “map” method.
-<!-- trait SurfaceExt::fn show_unraised -->
-Shows a `Surface` onscreen, but does not modify its stacking
-order. In contrast, `SurfaceExt::show` will raise the surface
-to the top of the surface stack.
-
-On the X11 platform, in Xlib terms, this function calls
-XMapWindow() (it also updates some internal GDK state, which means
-that you can’t really use XMapWindow() directly on a GDK surface).
-<!-- trait SurfaceExt::fn show_window_menu -->
-Asks the windowing system to show the window menu. The window menu
-is the menu shown when right-clicking the titlebar on traditional
-windows managed by the window manager. This is useful for windows
-using client-side decorations, activating it with a right-click
-on the window decorations.
-## `event`
-a `Event` to show the menu for
+Note that this only works if `to` and `self` are
+popups or transient-for to the same toplevel
+(directly or indirectly).
+## `to`
+the target surface
+## `x`
+coordinates to translate
+## `y`
+coordinates to translate
 
 # Returns
 
-`true` if the window menu was shown and `false` otherwise.
-<!-- trait SurfaceExt::fn stick -->
-“Pins” a surface such that it’s on all workspaces and does not scroll
-with viewports, for window managers that have scrollable viewports.
-(When using ``GtkWindow``, `gtk_window_stick` may be more useful.)
-
-On the X11 platform, this function depends on window manager
-support, so may have no effect with many window managers. However,
-GDK will do the best it can to convince the window manager to stick
-the surface. For window managers that don’t support this operation,
-there’s nothing you can do to force it to happen.
-<!-- trait SurfaceExt::fn thaw_updates -->
-Thaws a surface frozen with `SurfaceExt::freeze_updates`.
-<!-- trait SurfaceExt::fn unfullscreen -->
-Moves the surface out of fullscreen mode. If the surface was not
-fullscreen, does nothing.
-
-On X11, asks the window manager to move `self` out of the fullscreen
-state, if the window manager supports this operation. Not all
-window managers support this, and some deliberately ignore it or
-don’t have a concept of “fullscreen”; so you can’t rely on the
-unfullscreenification actually happening. But it will happen with
-most standard window managers, and GDK makes a best effort to get
-it to happen.
-<!-- trait SurfaceExt::fn unmaximize -->
-Unmaximizes the surface. If the surface wasn’t maximized, then this
-function does nothing.
-
-On X11, asks the window manager to unmaximize `self`, if the
-window manager supports this operation. Not all window managers
-support this, and some deliberately ignore it or don’t have a
-concept of “maximized”; so you can’t rely on the unmaximization
-actually happening. But it will happen with most standard window
-managers, and GDK makes a best effort to get it to happen.
-
-On Windows, reliably unmaximizes the surface.
-<!-- trait SurfaceExt::fn unstick -->
-Reverse operation for `SurfaceExt::stick`; see `SurfaceExt::stick`,
-and `gtk_window_unstick`.
-<!-- trait SurfaceExt::fn connect_event -->
+`true` if the coordinates were successfully
+ translated
+<!-- impl Surface::fn connect_enter_monitor -->
+Emitted when `surface` starts being present on the monitor.
+## `monitor`
+the monitor
+<!-- impl Surface::fn connect_event -->
 Emitted when GDK receives an input event for `surface`.
 ## `event`
 an input event
@@ -5509,29 +4515,21 @@ an input event
 # Returns
 
 `true` to indicate that the event has been handled
-<!-- trait SurfaceExt::fn connect_moved_to_rect -->
-Emitted when the position of `surface` is finalized after being moved to a
-destination rectangle.
+<!-- impl Surface::fn connect_layout -->
+Emitted when the size of `surface` is changed, or when relayout should
+be performed.
 
-`surface` might be flipped over the destination rectangle in order to keep
-it on-screen, in which case `flipped_x` and `flipped_y` will be set to `true`
-accordingly.
-
-`flipped_rect` is the ideal position of `surface` after any possible
-flipping, but before any possible sliding. `final_rect` is `flipped_rect`,
-but possibly translated in the case that flipping is still ineffective in
-keeping `surface` on-screen.
-## `flipped_rect`
-the position of `surface` after any possible
- flipping or `None` if the backend can't obtain it
-## `final_rect`
-the final position of `surface` or `None` if the
- backend can't obtain it
-## `flipped_x`
-`true` if the anchors were flipped horizontally
-## `flipped_y`
-`true` if the anchors were flipped vertically
-<!-- trait SurfaceExt::fn connect_render -->
+Surface size is reported in ”application pixels”, not
+”device pixels” (see `Surface::get_scale_factor`).
+## `width`
+the current width
+## `height`
+the current height
+<!-- impl Surface::fn connect_leave_monitor -->
+Emitted when `surface` stops being present on the monitor.
+## `monitor`
+the monitor
+<!-- impl Surface::fn connect_render -->
 Emitted when part of the surface needs to be redrawn.
 ## `region`
 the region that needs to be redrawn
@@ -5539,23 +4537,17 @@ the region that needs to be redrawn
 # Returns
 
 `true` to indicate that the signal has been handled
-<!-- trait SurfaceExt::fn connect_size_changed -->
-Emitted when the size of `surface` is changed.
-## `width`
-the new width
-## `height`
-the new height
-<!-- trait SurfaceExt::fn get_property_cursor -->
-The mouse pointer for a `Surface`. See `SurfaceExt::set_cursor` and
-`SurfaceExt::get_cursor` for details.
-<!-- trait SurfaceExt::fn set_property_cursor -->
-The mouse pointer for a `Surface`. See `SurfaceExt::set_cursor` and
-`SurfaceExt::get_cursor` for details.
-<!-- trait SurfaceExt::fn get_property_display -->
-The `Display` connection of the surface. See `SurfaceExt::get_display`
+<!-- impl Surface::fn get_property_cursor -->
+The mouse pointer for a `Surface`. See `Surface::set_cursor` and
+`Surface::get_cursor` for details.
+<!-- impl Surface::fn set_property_cursor -->
+The mouse pointer for a `Surface`. See `Surface::set_cursor` and
+`Surface::get_cursor` for details.
+<!-- impl Surface::fn get_property_display -->
+The `Display` connection of the surface. See `Surface::get_display`
 for details.
-<!-- trait SurfaceExt::fn set_property_display -->
-The `Display` connection of the surface. See `SurfaceExt::get_display`
+<!-- impl Surface::fn set_property_display -->
+The `Display` connection of the surface. See `Surface::get_display`
 for details.
 <!-- enum SurfaceEdge -->
 Determines a surface edge or corner.
@@ -5575,65 +4567,10 @@ the lower left corner.
 the lower edge.
 <!-- enum SurfaceEdge::variant SouthEast -->
 the lower right corner.
-<!-- enum SurfaceType -->
-Describes the kind of surface.
-<!-- enum SurfaceType::variant Toplevel -->
-toplevel window (used to implement ``GtkWindow``)
-<!-- enum SurfaceType::variant Child -->
-child surface (used to implement e.g. ``GtkEntry``)
-<!-- enum SurfaceType::variant Temp -->
-override redirect temporary surface (used to implement ``GtkMenu``)
-<!-- enum SurfaceTypeHint -->
-These are hints for the window manager that indicate what type of function
-the window has. The window manager can use this when determining decoration
-and behaviour of the window. The hint must be set before mapping the window.
-
-See the [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec)
-specification for more details about window types.
-<!-- enum SurfaceTypeHint::variant Normal -->
-Normal toplevel window.
-<!-- enum SurfaceTypeHint::variant Dialog -->
-Dialog window.
-<!-- enum SurfaceTypeHint::variant Menu -->
-Window used to implement a menu; GTK uses
- this hint only for torn-off menus, see ``GtkTearoffMenuItem``.
-<!-- enum SurfaceTypeHint::variant Toolbar -->
-Window used to implement toolbars.
-<!-- enum SurfaceTypeHint::variant Splashscreen -->
-Window used to display a splash
- screen during application startup.
-<!-- enum SurfaceTypeHint::variant Utility -->
-Utility windows which are not detached
- toolbars or dialogs.
-<!-- enum SurfaceTypeHint::variant Dock -->
-Used for creating dock or panel windows.
-<!-- enum SurfaceTypeHint::variant Desktop -->
-Used for creating the desktop background
- window.
-<!-- enum SurfaceTypeHint::variant DropdownMenu -->
-A menu that belongs to a menubar.
-<!-- enum SurfaceTypeHint::variant PopupMenu -->
-A menu that does not belong to a menubar,
- e.g. a context menu.
-<!-- enum SurfaceTypeHint::variant Tooltip -->
-A tooltip.
-<!-- enum SurfaceTypeHint::variant Notification -->
-A notification - typically a “bubble”
- that belongs to a status icon.
-<!-- enum SurfaceTypeHint::variant Combo -->
-A popup from a combo box.
-<!-- enum SurfaceTypeHint::variant Dnd -->
-A window that is used to implement a DND cursor.
 <!-- struct Texture -->
-A `Texture` represents image data that can be displayed on screen.
+The `GdkTexture` structure contains only private data.
 
-There are various ways to create `Texture` objects from a `gdk_pixbuf::Pixbuf`
-or a cairo surface, or other pixel data.
-
-An important aspect of `GdkTextures` is that they are immutable - once
-the image data has been wrapped in a `Texture`, it may be uploaded
-to the GPU or used in other ways that make it impractical to allow
-modification.
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
@@ -5653,17 +4590,23 @@ a `gdk_pixbuf::Pixbuf`
 
 a new `Texture`
 <!-- impl Texture::fn new_from_file -->
-Creates a new texture by loading an image from a file. The file format is
-detected automatically. If `None` is returned, then `error` will be set.
+Creates a new texture by loading an image from a file.
+The file format is detected automatically, and can be any
+format that is supported by the gdk-pixbuf library, such as
+JPEG or PNG.
+
+If `None` is returned, then `error` will be set.
 ## `file`
 `gio::File` to load
 
 # Returns
 
-A newly-created `Texture` or `None` if an error occured.
+A newly-created `Texture` or `None` if an error occurred.
 <!-- impl Texture::fn new_from_resource -->
 Creates a new texture by loading an image from a resource.
-The file format is detected automatically.
+The file format is detected automatically, and can be any
+format that is supported by the gdk-pixbuf library, such as
+JPEG or PNG.
 
 It is a fatal error if `resource_path` does not specify a valid
 image resource and the program will abort if that happens.
@@ -5701,13 +4644,13 @@ pointer to enough memory to be filled with the
 ## `stride`
 rowstride in bytes
 <!-- trait TextureExt::fn get_height -->
-Returns the height of the `self`.
+Returns the height of the `self`, in pixels.
 
 # Returns
 
 the height of the `Texture`
 <!-- trait TextureExt::fn get_width -->
-Returns the width of `self`.
+Returns the width of `self`, in pixels.
 
 # Returns
 
@@ -5726,15 +4669,396 @@ the filename to store to
 
 `true` if saving succeeded, `false` on failure.
 <!-- trait TextureExt::fn get_property_height -->
-The height of the texture.
+The height of the texture, in pixels.
 <!-- trait TextureExt::fn set_property_height -->
-The height of the texture.
+The height of the texture, in pixels.
 <!-- trait TextureExt::fn get_property_width -->
-The width of the texture.
+The width of the texture, in pixels.
 <!-- trait TextureExt::fn set_property_width -->
-The width of the texture.
-<!-- struct TimeCoord -->
-A `TimeCoord` stores a single event in a motion history.
+The width of the texture, in pixels.
+<!-- struct Toplevel -->
+A `Toplevel` is a freestanding toplevel surface.
+
+The `Toplevel` interface provides useful APIs for
+interacting with the windowing system, such as controlling
+maximization and size of the surface, setting icons and
+transient parents for dialogs.
+
+# Implements
+
+[`ToplevelExt`](trait.ToplevelExt.html), [`SurfaceExt`](trait.SurfaceExt.html), [`ToplevelExtManual`](prelude/trait.ToplevelExtManual.html), [`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)
+<!-- trait ToplevelExt -->
+Trait containing all `Toplevel` methods.
+
+# Implementors
+
+[`Toplevel`](struct.Toplevel.html)
+<!-- trait ToplevelExt::fn begin_move -->
+Begins an interactive move operation (for a toplevel surface).
+You might use this function to implement draggable titlebars.
+## `device`
+the device used for the operation
+## `button`
+the button being used to drag, or 0 for a keyboard-initiated drag
+## `x`
+surface X coordinate of mouse click that began the drag
+## `y`
+surface Y coordinate of mouse click that began the drag
+## `timestamp`
+timestamp of mouse click that began the drag
+<!-- trait ToplevelExt::fn begin_resize -->
+Begins an interactive resize operation (for a toplevel surface).
+You might use this function to implement a “window resize grip.”
+## `edge`
+the edge or corner from which the drag is started
+## `device`
+the device used for the operation
+## `button`
+the button being used to drag, or 0 for a keyboard-initiated drag
+## `x`
+surface X coordinate of mouse click that began the drag
+## `y`
+surface Y coordinate of mouse click that began the drag
+## `timestamp`
+timestamp of mouse click that began the drag (use `EventExt::get_time`)
+<!-- trait ToplevelExt::fn focus -->
+Sets keyboard focus to `surface`.
+
+In most cases, `gtk_window_present_with_time` should be used
+on a ``GtkWindow``, rather than calling this function.
+## `timestamp`
+timestamp of the event triggering the surface focus
+<!-- trait ToplevelExt::fn get_state -->
+Gets the bitwise OR of the currently active surface state flags,
+from the `ToplevelState` enumeration.
+
+# Returns
+
+surface state bitfield
+<!-- trait ToplevelExt::fn inhibit_system_shortcuts -->
+Requests that the `self` inhibit the system shortcuts, asking the
+desktop environment/windowing system to let all keyboard events reach
+the surface, as long as it is focused, instead of triggering system
+actions.
+
+If granted, the rerouting remains active until the default shortcuts
+processing is restored with `Toplevel::restore_system_shortcuts`,
+or the request is revoked by the desktop environment, windowing system
+or the user.
+
+A typical use case for this API is remote desktop or virtual machine
+viewers which need to inhibit the default system keyboard shortcuts
+so that the remote session or virtual host gets those instead of the
+local environment.
+
+The windowing system or desktop environment may ask the user to grant
+or deny the request or even choose to ignore the request entirely.
+
+The caller can be notified whenever the request is granted or revoked
+by listening to the `Toplevel`::shortcuts-inhibited property.
+## `event`
+the `Event` that is triggering the inhibit
+ request, or `None` if none is available.
+<!-- trait ToplevelExt::fn lower -->
+Asks to lower the `self` below other windows.
+
+The windowing system may choose to ignore the request.
+
+# Returns
+
+`true` if the surface was lowered
+<!-- trait ToplevelExt::fn minimize -->
+Asks to minimize the `self`.
+
+The windowing system may choose to ignore the request.
+
+# Returns
+
+`true` if the surface was minimized
+<!-- trait ToplevelExt::fn present -->
+Present `self` after having processed the `ToplevelLayout` rules.
+If the toplevel was previously not showing, it will be showed,
+otherwise it will change layout according to `layout`.
+
+GDK may emit the 'compute-size' signal to let the user of this toplevel
+compute the preferred size of the toplevel surface. See
+`Toplevel::compute-size` for details.
+
+Presenting is asynchronous and the specified layout parameters are not
+guaranteed to be respected.
+## `layout`
+the `ToplevelLayout` object used to layout
+<!-- trait ToplevelExt::fn restore_system_shortcuts -->
+Restore default system keyboard shortcuts which were previously
+requested to be inhibited by `Toplevel::inhibit_system_shortcuts`.
+<!-- trait ToplevelExt::fn set_decorated -->
+Setting `decorated` to `false` hints the desktop environment
+that the surface has its own, client-side decorations and
+does not need to have window decorations added.
+## `decorated`
+`true` to request decorations
+<!-- trait ToplevelExt::fn set_deletable -->
+Setting `deletable` to `true` hints the desktop environment
+that it should offer the user a way to close the surface.
+## `deletable`
+`true` to request a delete button
+<!-- trait ToplevelExt::fn set_icon_list -->
+Sets a list of icons for the surface.
+
+One of these will be used to represent the surface in iconic form.
+The icon may be shown in window lists or task bars. Which icon
+size is shown depends on the window manager. The window manager
+can scale the icon but setting several size icons can give better
+image quality.
+
+Note that some platforms don't support surface icons.
+## `surfaces`
+
+ A list of textures to use as icon, of different sizes
+<!-- trait ToplevelExt::fn set_modal -->
+The application can use this hint to tell the
+window manager that a certain surface has modal
+behaviour. The window manager can use this information
+to handle modal surfaces in a special way.
+
+You should only use this on surfaces for which you have
+previously called `Toplevel::set_transient_for`.
+## `modal`
+`true` if the surface is modal, `false` otherwise.
+<!-- trait ToplevelExt::fn set_startup_id -->
+When using GTK, typically you should use `gtk_window_set_startup_id`
+instead of this low-level function.
+## `startup_id`
+a string with startup-notification identifier
+<!-- trait ToplevelExt::fn set_title -->
+Sets the title of a toplevel surface, to be displayed in the titlebar,
+in lists of windows, etc.
+## `title`
+title of `surface`
+<!-- trait ToplevelExt::fn set_transient_for -->
+Indicates to the window manager that `surface` is a transient dialog
+associated with the application surface `parent`. This allows the
+window manager to do things like center `surface` on `parent` and
+keep `surface` above `parent`.
+
+See `gtk_window_set_transient_for` if you’re using ``GtkWindow`` or
+``GtkDialog``.
+## `parent`
+another toplevel `Surface`
+<!-- trait ToplevelExt::fn show_window_menu -->
+Asks the windowing system to show the window menu.
+
+The window menu is the menu shown when right-clicking the titlebar
+on traditional windows managed by the window manager. This is useful
+for windows using client-side decorations, activating it with a
+right-click on the window decorations.
+## `event`
+a `Event` to show the menu for
+
+# Returns
+
+`true` if the window menu was shown and `false` otherwise.
+<!-- trait ToplevelExt::fn supports_edge_constraints -->
+Returns whether the desktop environment supports
+tiled window states.
+
+# Returns
+
+`true` if the desktop environment supports
+ tiled window states
+<!-- trait ToplevelExt::fn connect_compute_size -->
+Compute the desired size of the toplevel, given the information passed via
+the `ToplevelSize` object.
+
+It will normally be emitted during or after `Toplevel::present`,
+depending on the configuration received by the windowing system. It may
+also be emitted at any other point in time, in response to the windowing
+system spontaneously changing the configuration.
+
+It is the responsibility of the `Toplevel` user to handle this signal;
+failing to do so will result in an arbitrary size being used as a result.
+## `size`
+a `ToplevelSize`
+<!-- struct ToplevelLayout -->
+Toplevel surfaces are sovereign windows that can be presented
+to the user in various states (maximized, on all workspaces,
+etc).
+
+The `ToplevelLayout` struct contains information that
+is necessary to do so, and is passed to `Toplevel::present`.
+<!-- impl ToplevelLayout::fn new -->
+Create a toplevel layout description.
+
+Used together with `Toplevel::present` to describe
+how a toplevel surface should be placed and behave on-screen.
+
+The size is in ”application pixels”, not
+”device pixels” (see `Surface::get_scale_factor`).
+
+# Returns
+
+newly created instance of `ToplevelLayout`
+<!-- impl ToplevelLayout::fn copy -->
+Create a new `ToplevelLayout` and copy the contents of `self` into it.
+
+# Returns
+
+a copy of `self`.
+<!-- impl ToplevelLayout::fn equal -->
+Check whether `self` and `other` has identical layout properties.
+## `other`
+another `ToplevelLayout`
+
+# Returns
+
+`true` if `self` and `other` have identical layout properties,
+ otherwise `false`.
+<!-- impl ToplevelLayout::fn get_fullscreen -->
+If the layout specifies whether to the toplevel should go fullscreen,
+the value pointed to by `fullscreen` is set to `true` if it should go
+fullscreen, or `false`, if it should go unfullscreen.
+## `fullscreen`
+location to store whether the toplevel should be fullscreen
+
+# Returns
+
+whether the `self` specifies the fullscreen state for the toplevel
+<!-- impl ToplevelLayout::fn get_fullscreen_monitor -->
+Returns the monitor that the layout is fullscreening
+the surface on.
+
+# Returns
+
+the monitor on which `self` fullscreens
+<!-- impl ToplevelLayout::fn get_maximized -->
+If the layout specifies whether to the toplevel should go maximized,
+the value pointed to by `maximized` is set to `true` if it should go
+fullscreen, or `false`, if it should go unmaximized.
+## `maximized`
+set to `true` if the toplevel should be maximized
+
+# Returns
+
+whether the `self` specifies the maximized state for the toplevel
+<!-- impl ToplevelLayout::fn get_resizable -->
+Returns whether the layout should allow the user
+to resize the surface.
+
+# Returns
+
+`true` if the layout is resizable
+<!-- impl ToplevelLayout::fn ref -->
+Increases the reference count of `self`.
+
+# Returns
+
+the same `self`
+<!-- impl ToplevelLayout::fn set_fullscreen -->
+Sets whether the layout should cause the surface
+to be fullscreen when presented.
+## `fullscreen`
+`true` to fullscreen the surface
+## `monitor`
+the monitor to fullscreen on
+<!-- impl ToplevelLayout::fn set_maximized -->
+Sets whether the layout should cause the surface
+to be maximized when presented.
+## `maximized`
+`true` to maximize
+<!-- impl ToplevelLayout::fn set_resizable -->
+Sets whether the layout should allow the user
+to resize the surface after it has been presented.
+## `resizable`
+`true` to allow resizing
+<!-- impl ToplevelLayout::fn unref -->
+Decreases the reference count of `self`.
+<!-- struct ToplevelState -->
+Specifies the state of a toplevel surface.
+
+On platforms that support information about individual edges, the `ToplevelState::Tiled`
+state will be set whenever any of the individual tiled states is set. On platforms
+that lack that support, the tiled state will give an indication of tiledness without
+any of the per-edge states being set.
+<!-- struct ToplevelState::const MINIMIZED -->
+the surface is minimized
+<!-- struct ToplevelState::const MAXIMIZED -->
+the surface is maximized
+<!-- struct ToplevelState::const STICKY -->
+the surface is sticky
+<!-- struct ToplevelState::const FULLSCREEN -->
+the surface is maximized without decorations
+<!-- struct ToplevelState::const ABOVE -->
+the surface is kept above other surfaces
+<!-- struct ToplevelState::const BELOW -->
+the surface is kept below other surfaces
+<!-- struct ToplevelState::const FOCUSED -->
+the surface is presented as focused (with active decorations)
+<!-- struct ToplevelState::const TILED -->
+the surface is in a tiled state
+<!-- struct ToplevelState::const TOP_TILED -->
+whether the top edge is tiled
+<!-- struct ToplevelState::const TOP_RESIZABLE -->
+whether the top edge is resizable
+<!-- struct ToplevelState::const RIGHT_TILED -->
+whether the right edge is tiled
+<!-- struct ToplevelState::const RIGHT_RESIZABLE -->
+whether the right edge is resizable
+<!-- struct ToplevelState::const BOTTOM_TILED -->
+whether the bottom edge is tiled
+<!-- struct ToplevelState::const BOTTOM_RESIZABLE -->
+whether the bottom edge is resizable
+<!-- struct ToplevelState::const LEFT_TILED -->
+whether the left edge is tiled
+<!-- struct ToplevelState::const LEFT_RESIZABLE -->
+whether the left edge is resizable
+<!-- struct TouchEvent -->
+An event related to a touch-based device.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl TouchEvent::fn get_emulating_pointer -->
+Extracts whether a touch event is emulating a pointer event.
+
+# Returns
+
+`true` if `self` is emulating
+<!-- struct TouchpadEvent -->
+An event related to a touchpad device.
+
+# Implements
+
+[`EventExt`](trait.EventExt.html)
+<!-- impl TouchpadEvent::fn get_deltas -->
+Extracts delta information from a touchpad event.
+## `dx`
+return location for x
+## `dy`
+return location for y
+<!-- impl TouchpadEvent::fn get_gesture_phase -->
+Extracts the touchpad gesture phase from a touchpad event.
+
+# Returns
+
+the gesture phase of `self`
+<!-- impl TouchpadEvent::fn get_n_fingers -->
+Extracts the number of fingers from a touchpad event.
+
+# Returns
+
+the number of fingers for `self`
+<!-- impl TouchpadEvent::fn get_pinch_angle_delta -->
+Extracts the angle delta from a touchpad pinch event.
+
+# Returns
+
+the angle delta of `self`
+<!-- impl TouchpadEvent::fn get_pinch_scale -->
+Extracts the scale from a touchpad pinch event.
+
+# Returns
+
+the scale of `self`
 <!-- enum TouchpadGesturePhase -->
 Specifies the current state of a touchpad gesture. All gestures are
 guaranteed to begin with an event with phase `TouchpadGesturePhase::Begin`,
@@ -5767,11 +5091,13 @@ The gesture was cancelled, all
 Vulkan draw context.
 
 ``GdkVulkanContexts`` are created for a `Surface` using
-`SurfaceExt::create_vulkan_context`, and the context will match the
+`Surface::create_vulkan_context`, and the context will match the
 the characteristics of the surface.
 
 Support for `VulkanContext` is platform-specific, context creation
 can fail, returning `None` context.
+
+This is an Abstract Base Class, you cannot instantiate it.
 
 # Implements
 
